@@ -13,11 +13,15 @@ manda por e-mail, extrair do PDF quem é o tomador, casar com o de-para de
 clientes e despachar a nota para o e-mail certo pelo Outlook — com
 confirmação antes de qualquer envio.
 
-## Onde está instalada (global)
+## Onde está instalada
 
-Cópia canônica `~/.zcode/skills/terras-notas/`, com atalho para os outros
-agentes (`~/.agents/skills/terras-notas`). Funciona em qualquer workspace;
-os PDFs vivem em `notas_dir` (padrão `~/Documents/SLC`).
+Fonte única: `skills/terras-notas/` no repositório `terrasia-skills`. Cada agente
+enxerga a skill por um link simbólico criado pelo `scripts/instalar.sh` do
+repositório, então a edição se faz lá e vale para todos. Nos comandos abaixo,
+`$SKILL_DIR` é a pasta onde este `SKILL.md` está.
+
+Funciona em qualquer workspace; os PDFs vivem em `notas_dir` (padrão
+`~/Documents/SLC`).
 
 ## Regra de ouro (segurança)
 
@@ -32,7 +36,7 @@ os PDFs vivem em `notas_dir` (padrão `~/Documents/SLC`).
 
 ## Pré-requisitos
 
-Ferramenta: `python3 ~/.zcode/skills/terras-notas/scripts/terras_notas.py <comando>`.
+Ferramenta: `python3 $SKILL_DIR/scripts/terras_notas.py <comando>`.
 Config: `~/.config/terras-notas/config.json` (client_id do Entra, pasta das
 notas, templates de e-mail). Setup completo (venv + registro no app) está em
 `INSTALL.md`. Antes de qualquer coisa rode `check`.
@@ -73,8 +77,8 @@ notas, templates de e-mail). Setup completo (venv + registro no app) está em
 - Parser agora extrai também **endereço, município/UF, CEP e descrição do
   serviço** do tomador; o de-para ganhou a coluna `endereco`, preenchida a
   partir dos PDFs já parseados.
-- Atalhos: `~/.agents/skills/terras-notas`, `~/.assistant-os/skills/terras-notas`
-  e `~/.config/opencode/skills/terras-notas` apontam para a cópia canônica.
+- A instalação passou a vir do repositório `terrasia-skills` (ver "Onde está
+  instalada").
 
 ## Fluxo padrão
 

@@ -24,6 +24,8 @@ import os
 import re
 import sys
 
+AQUI = os.path.dirname(os.path.realpath(__file__))
+
 BASE = os.path.expanduser(os.environ.get("TERRAS_VIDEO_HOME", "~/.config/terras-video"))
 FFMPEG = os.path.join(BASE, "ffmpeg")
 BRAND_DIR = os.path.expanduser(os.environ.get("TERRAS_BRAND_DIR", "~/Documents/Diversos/terras-brand"))
@@ -58,7 +60,7 @@ def garantir_interpretador():
     if os.path.exists(venv_python) and os.path.realpath(sys.prefix) != os.path.realpath(venv_dir):
         os.execv(venv_python, [venv_python, os.path.abspath(__file__), *sys.argv[1:]])
     fail("faltam as bibliotecas do Google e o venv nao foi encontrado. "
-         "Rode: bash ~/.zcode/skills/terras-video/scripts/setup-youtube.sh")
+         f"Rode: bash {os.path.join(AQUI, 'setup-youtube.sh')}")
 
 
 def credenciais(console=False):
@@ -381,10 +383,10 @@ def main():
                 for a in p["avisos"]:
                     print("  - " + a)
             print("\n== comando para subir ==")
-            print("  python3 ~/.zcode/skills/terras-video/scripts/upload_youtube.py enviar \\\n"
+            print(f"  python3 {AQUI}/upload_youtube.py enviar \\\n"
                   f"    --video {os.path.abspath(args.roteiro).replace('roteiro', 'video') if False else '<o mp4 renderizado>'} \\\n"
                   f"    --titulo \"{p['titulo']}\" \\\n"
-                  f"    --descricao \"$(python3 ~/.zcode/skills/terras-video/scripts/upload_youtube.py pacote {args.roteiro} --json | python3 -c 'import json,sys; print(json.load(sys.stdin)[\"descricao\"])')\" \\\n"
+                  f"    --descricao \"$(python3 {AQUI}/upload_youtube.py pacote {args.roteiro} --json | python3 -c 'import json,sys; print(json.load(sys.stdin)[\"descricao\"])')\" \\\n"
                   f"    --tags \"{','.join(p['tags'])}\" \\\n"
                   f"    --thumb {p['capa']} --visibilidade unlisted")
     elif args.acao == "canal":

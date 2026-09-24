@@ -33,7 +33,9 @@ import subprocess
 import sys
 import time
 
-SKILL_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+SKILL_DIR = os.path.dirname(os.path.dirname(os.path.realpath(__file__)))
+# Skills vizinhas (terras-audio) no mesmo repositório; TERRAS_SKILLS_DIR aponta outra raiz.
+SKILLS_DIR = os.environ.get("TERRAS_SKILLS_DIR") or os.path.dirname(SKILL_DIR)
 # Template e fontes vivem no diretorio padrao da identidade (ver LEIA-ME.md de
 # ~/Documents/Diversos/terras-brand), nao na skill.
 BRAND_DIR = os.path.expanduser(os.environ.get("TERRAS_BRAND_DIR", "~/Documents/Diversos/terras-brand"))
@@ -95,18 +97,13 @@ SHORTS_MAX_S = 180
 
 def cli_de_audio():
     """Caminho do CLI da skill terras-audio, onde vive toda a parte de voz."""
-    candidatos = [
-        os.environ.get("TERRAS_AUDIO_CLI"),
-        os.path.expanduser("~/.zcode/skills/terras-audio/scripts/tts.py"),
-        os.path.expanduser("~/.claude/skills/terras-audio/scripts/tts.py"),
-        os.path.expanduser("~/.config/opencode/skills/terras-audio/scripts/tts.py"),
-        os.path.expanduser("~/.agents/skills/terras-audio/scripts/tts.py"),
-    ]
-    for c in candidatos:
+    padrao = os.path.join(SKILLS_DIR, "terras-audio", "scripts", "tts.py")
+    for c in (os.environ.get("TERRAS_AUDIO_CLI"), padrao):
         if c and os.path.exists(c):
             return c
-    fail("nao achei o CLI da skill terras-audio (~/.zcode/skills/terras-audio/scripts/tts.py). "
-         "Voz e pronuncia moram la; sem ele nao ha narracao.")
+    fail(f"nao achei o CLI da skill terras-audio ({padrao}). "
+         "Voz e pronuncia moram la; sem ele nao ha narracao. "
+         "TERRAS_AUDIO_CLI aponta outro caminho.")
 
 
 def fail(msg, extra=""):
@@ -394,7 +391,7 @@ def load_template(caminho=None):
         fail(
             f"template nao encontrado em {caminho}.\n"
             "O diretorio padrao da identidade sumiu ou mudou de lugar.\n"
-            "Recriar o que falta: bash ~/.zcode/skills/terras-video/scripts/setup-brand.sh"
+            f"Recriar o que falta: bash {os.path.join(SKILL_DIR, 'scripts', 'setup-brand.sh')}"
         )
     with open(caminho, encoding="utf-8") as fh:
         return fh.read()

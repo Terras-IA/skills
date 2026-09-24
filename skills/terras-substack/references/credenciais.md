@@ -13,7 +13,7 @@ O navegador embutido do ZCode guarda a sessao em texto claro na particao
 `zcode-embedded-browser`. Basta estar logado na aba dele:
 
 ```bash
-python3 ~/.zcode/skills/terras-substack/scripts/chrome_cookie.py substack.com \
+python3 $SKILL_DIR/scripts/chrome_cookie.py substack.com \
   --profile ~/.config/ZCode --save-config --user-id <SEU_USER_ID>
 ```
 
@@ -46,7 +46,7 @@ p.write_text(json.dumps(cfg, indent=2, ensure_ascii=False))
 os.chmod(p, 0o600)
 print("salvo em", p)
 PY
-python3 ~/.zcode/skills/terras-substack/scripts/terras_substack.py check
+python3 $SKILL_DIR/scripts/terras_substack.py check
 ```
 
 Tambem aceita variaveis de ambiente para uso pontual: `SUBSTACK_SID`,

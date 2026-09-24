@@ -4,7 +4,7 @@ version: 1.0.0
 access: free
 category: cultura
 description: Prepara o encontro mensal de toda a empresa com resumo de resultados, perguntas votadas e talking points.
-keywords: [all hands, all faces, encontro mensal da empresa, perguntas votadas, talking points, reunião geral]
+keywords: [all hands, encontro mensal da empresa, perguntas votadas, talking points, reunião geral]
 ---
 
 # Gerador de All Hands

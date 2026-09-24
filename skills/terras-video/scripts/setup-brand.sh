@@ -2,12 +2,15 @@
 # Cria/recria o diretorio padrao da identidade, sem sobrescrever nada editado.
 # As copias semente vivem nas skills (seed/), e a copia viva e o diretorio padrao.
 #
-#   bash ~/.zcode/skills/terras-video/scripts/setup-brand.sh
+#   bash <pasta da skill terras-video>/scripts/setup-brand.sh
 set -euo pipefail
 
 BRAND="${TERRAS_BRAND_DIR:-$HOME/Documents/Diversos/terras-brand}"
-BANNER_SEED="$HOME/.zcode/skills/terras-banner/seed"
-VIDEO_SEED="$HOME/.zcode/skills/terras-video/seed"
+# Skills vizinhas no mesmo repositório; TERRAS_SKILLS_DIR aponta outra raiz.
+SKILL_DIR="$(cd "$(dirname "$(readlink -f "${BASH_SOURCE[0]}")")/.." && pwd)"
+SKILLS_DIR="${TERRAS_SKILLS_DIR:-$(dirname "$SKILL_DIR")}"
+BANNER_SEED="$SKILLS_DIR/terras-banner/seed"
+VIDEO_SEED="$SKILL_DIR/seed"
 
 mkdir -p "$BRAND"/{fonts,templates,art,exports/cartelas,exports/banners,exports/thumbs}
 

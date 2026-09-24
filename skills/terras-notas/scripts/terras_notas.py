@@ -2,7 +2,7 @@
 """terras-notas — NFS-e da Fênix: baixa, analisa, casa o destinatário no de-para
 e envia pelo Outlook (Microsoft Graph).
 
-Uso: python3 ~/.zcode/skills/terras-notas/scripts/terras_notas.py <comando> [opções]
+Uso: python3 <pasta da skill>/scripts/terras_notas.py <comando> [opções]
 
 Comandos: check, auth, descobrir-remetente, fetch, parse, depara, match,
 despachar, status, run. Ações externas (criar rascunho, enviar e-mail) exigem
@@ -395,7 +395,7 @@ def _reexec_venv() -> None:
         pass
     if VENV_PYTHON.exists():
         os.execv(str(VENV_PYTHON), [str(VENV_PYTHON), str(Path(__file__).resolve()), *sys.argv[1:]])
-    sys.exit("[erro] msal não instalado. Rode: bash ~/.zcode/skills/terras-notas/scripts/setup.sh")
+    sys.exit(f"[erro] msal não instalado. Rode: bash {os.path.join(os.path.dirname(os.path.realpath(__file__)), 'setup.sh')}")
 
 
 def graph_app():

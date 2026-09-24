@@ -5,8 +5,8 @@ Uso:
     python3 gen_art.py --prompt "..." --out /caminho/arte.png [--size 1200x628]
     python3 gen_art.py --prompt-file prompt.txt --out arte.png --model qwen-image-3.0
 
-A chave sai do provider_config.json do ZCode (provedor com baseUrl maas.aliyuncs.com)
-ou da variável TERRAS_IMAGE_KEY. A URL devolvida é um OSS com expiração, então o
+A chave sai da variável TERRAS_IMAGE_KEY e o endpoint de TERRAS_IMAGE_ENDPOINT
+(padrão: o workspace Model Studio abaixo). A URL devolvida é um OSS com expiração, então o
 download acontece na mesma execução.
 """
 import argparse
@@ -17,8 +17,7 @@ import sys
 import urllib.error
 import urllib.request
 
-PROVIDER_CONFIG = os.path.expanduser("~/.zcode/v2/provider_config.json")
-DEFAULT_ENDPOINT = (
+DEFAULT_ENDPOINT = os.environ.get("TERRAS_IMAGE_ENDPOINT") or (
     "https://ws-crocxnyahqxwobq2.ap-southeast-1.maas.aliyuncs.com/compatible-mode/v1/images/generations"
 )
 DEFAULT_MODEL = "qwen-image-3.0-pro"
@@ -26,29 +25,14 @@ SIZE_RE = re.compile(r"^\d{3,4}x\d{3,4}$")
 
 
 def find_key():
-    """Procura a apiKey do provedor Alibaba/Model Studio no config do ZCode."""
-    env = os.environ.get("TERRAS_IMAGE_KEY")
-    if env:
-        return env, DEFAULT_ENDPOINT
-    try:
-        with open(PROVIDER_CONFIG) as fh:
-            cfg = json.load(fh)
-    except (OSError, ValueError) as exc:
-        sys.exit(f"não consegui ler {PROVIDER_CONFIG}: {exc}")
-    rules = (
-        cfg.get("config", {}).get("providerConfigRules", {}).get("providerRules", [])
-    )
-    for rule in rules:
-        conf = rule.get("config", {})
-        base = (conf.get("api", {}) or {}).get("baseUrl", "") or ""
-        key = (conf.get("access", {}) or {}).get("apiKey", "") or ""
-        if "maas.aliyuncs.com" in base and key:
-            endpoint = base.rstrip("/") + "/images/generations"
-            return key, endpoint
-    sys.exit(
-        "nenhum provedor maas.aliyuncs.com com apiKey em "
-        f"{PROVIDER_CONFIG}; use TERRAS_IMAGE_KEY para passar a chave na mão"
-    )
+    """Chave do Model Studio (Alibaba) pela variável de ambiente."""
+    key = os.environ.get("TERRAS_IMAGE_KEY")
+    if not key:
+        sys.exit(
+            "TERRAS_IMAGE_KEY não definida: exporte a apiKey do Model Studio "
+            "(maas.aliyuncs.com) antes de gerar a arte"
+        )
+    return key, DEFAULT_ENDPOINT
 
 
 def generate(prompt, out_path, size, model, key, endpoint, timeout=180):

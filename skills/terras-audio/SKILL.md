@@ -14,18 +14,20 @@ estável, audiolivro pede faixa mais baixa com teto de pico), e deixar as duas c
 juntas garantiria que um dia alguém normalizasse um capítulo de livro com alvo de
 vídeo.
 
-## Onde esta instalada (global)
+## Onde está instalada
 
-Canônica em `~/.zcode/skills/terras-audio/`, com symlinks em
-`~/.claude/skills/terras-audio` e `~/.config/opencode/skills/terras-audio`, e um
-ponteiro em `~/.agents/skills/terras-audio-fallback/`. O CLI é
-`scripts/tts.py` (`TERRAS_AUDIO_CLI` para apontar outro caminho).
+Fonte única: `skills/terras-audio/` no repositório `terrasia-skills`. Cada agente
+enxerga a skill por um link simbólico criado pelo `scripts/instalar.sh` do
+repositório, então a edição se faz lá e vale para todos. Nos comandos abaixo,
+`$SKILL_DIR` é a pasta onde este `SKILL.md` está.
+
+O CLI é `scripts/tts.py` (`TERRAS_AUDIO_CLI` aponta outro caminho).
 
 ## Requisitos
 
 As ferramentas vêm do setup da `terras-video`, na mesma pasta de support:
 `~/.config/terras-video/` com o `ffmpeg` estático e o venv com `edge-tts`. Se faltar,
-`bash ~/.zcode/skills/terras-video/scripts/setup.sh`. O CLI se reexecuta no python do
+`bash $SKILL_DIR/../terras-video/scripts/setup.sh`. O CLI se reexecuta no python do
 venv sozinho, então pode ser chamado com o `python3` do sistema.
 
 ## Comandos

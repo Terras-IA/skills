@@ -12,21 +12,12 @@ Levar um texto em markdown ate a Substack: converter para o formato do editor,
 criar o rascunho, conferir, e publicar (web, e-mail, agendado) ou despublicar.
 Vale tanto para posts longos quanto para Notes curtas.
 
-## Onde esta instalada (global)
+## Onde está instalada
 
-A copia canonica e `~/.zcode/skills/terras-substack/`, com atalhos para os outros
-agentes — a skill funciona em qualquer workspace, incluindo o projeto **terrasia**
-(`~/assistente-os`):
-
-| Caminho | Atende |
-|---|---|
-| `~/.zcode/skills/terras-substack/` | ZCode (canonica) |
-| `~/.agents/skills/terras-substack` | Claude, Codex e afins |
-| `~/.assistant-os/skills/terras-substack` | stack assistant-os (junto das outras `terras-*`) |
-| `~/.config/opencode/skills/terras-substack` | opencode (usado no repositorio terrasia) |
-
-Os quatro caminhos apontam para os mesmos arquivos: editar por qualquer um deles
-edita a copia canonica.
+Fonte única: `skills/terras-substack/` no repositório `terrasia-skills`. Cada agente
+enxerga a skill por um link simbólico criado pelo `scripts/instalar.sh` do
+repositório, então a edição se faz lá e vale para todos. Nos comandos abaixo,
+`$SKILL_DIR` é a pasta onde este `SKILL.md` está.
 
 ## Uso pelo terrasIA (MCP)
 
@@ -38,7 +29,7 @@ apenas spawnam este CLI — a logica de conversao e de API continua aqui, num
 lugar so. Detalhes em `docs/specs/SPEC-SUBSTACK-001.md` do repositorio.
 
 Para o daemon encontrar o CLI: `TERRAS_SUBSTACK_CLI` (default
-`~/.zcode/skills/terras-substack/scripts/terras_substack.py`),
+`$SKILL_DIR/scripts/terras_substack.py`),
 `TERRAS_SUBSTACK_PYTHON` (default `python3`) e `TERRAS_SUBSTACK_CONFIG`
 (default `~/.config/terras-substack/config.json`).
 
@@ -72,7 +63,7 @@ instalado). A configuracao fica em `~/.config/terras-substack/config.json`:
 Antes de qualquer coisa, rode `check`. Ele diz o que falta:
 
 ```bash
-python3 ~/.zcode/skills/terras-substack/scripts/terras_substack.py check
+python3 $SKILL_DIR/scripts/terras_substack.py check
 ```
 
 ### Estado desta maquina (2026-09-15)

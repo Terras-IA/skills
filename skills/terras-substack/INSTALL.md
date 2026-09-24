@@ -1,8 +1,9 @@
 # Instalação — terras-substack
 
 Skill para publicar e gerenciar posts na Substack a partir de markdown, usando a
-API interna do editor (não existe API pública de escrita). Funciona como skill
-em Claude Code, Codex/GPT, opencode e ZCode — o mesmo diretório serve para todos.
+API interna do editor (não existe API pública de escrita). É uma pasta com
+`SKILL.md` e scripts em Python: serve a qualquer agente que leia skills nesse
+formato, e o CLI funciona sozinho, sem agente nenhum.
 
 Versão do pacote: **1.0.0** (2026-09-15).
 
@@ -23,56 +24,12 @@ python3 <diretório-da-skill>/scripts/terras_substack.py check
 
 Sem cookie, ele responde com o que falta — não quebra.
 
-## Instalação por harness
+## Instalação
 
-### Claude Code
-```bash
-mkdir -p ~/.claude/skills
-unzip -o terras-substack-1.0.0.skill -d ~/.claude/skills
-```
-Skills de usuário ficam em `~/.claude/skills/<nome>/SKILL.md`.
-
-### Codex / ChatGPT (harness OpenAI)
-```bash
-mkdir -p ~/.codex/skills
-unzip -o terras-substack-1.0.0.skill -d ~/.codex/skills
-```
-Skills de usuário ficam em `~/.codex/skills/<nome>/SKILL.md` (os built-ins ficam
-em `.system/`).
-
-### opencode
-```bash
-unzip -o terras-substack-1.0.0.skill -d ~/.config/opencode/skills       # global
-unzip -o terras-substack-1.0.0.skill -d <repo>/.opencode/skills          # por projeto
-```
-
-### ZCode
-```bash
-unzip -o terras-substack-1.0.0.skill -d ~/.zcode/skills       # escopo de usuário (todo workspace)
-unzip -o terras-substack-1.0.0.skill -d <repo>/.zcode/skills  # escopo de workspace
-```
-
-### Compartilhado entre harnesses
-`~/.agents/skills/` é lido por Claude, Codex, opencode e ZCode como fallback —
-útil para manter **uma** cópia:
-
-```bash
-unzip -o terras-substack-1.0.0.skill -d ~/.agents/skills
-```
-
-### Cópia única com atalhos (opcional)
-Se preferir manter uma só instalação e apontar os outros harnesses para ela:
-
-```bash
-unzip -o terras-substack-1.0.0.skill -d ~/.zcode/skills
-ln -sfn ~/.zcode/skills/terras-substack ~/.agents/skills/terras-substack
-ln -sfn ~/.zcode/skills/terras-substack ~/.claude/skills/terras-substack
-ln -sfn ~/.zcode/skills/terras-substack ~/.codex/skills/terras-substack
-ln -sfn ~/.zcode/skills/terras-substack ~/.config/opencode/skills/terras-substack
-```
-
-> Não misture os dois métodos no mesmo caminho: extrair o zip por cima de um
-> diretório que é atalho faz o `unzip` escrever dentro da instalação canônica.
+A fonte é `skills/terras-substack/` no repositório `terrasia-skills`. O
+`scripts/instalar.sh` do repositório cria o link simbólico da skill em cada
+pasta de skills de agente que existir na máquina; sem ele, basta apontar o
+agente para esta pasta. Nunca copie a pasta: cópia diverge em silêncio.
 
 ## Uso
 
@@ -80,7 +37,7 @@ O agente invoca a skill sozinho quando o pedido envolver Substack. O CLI também
 funciona direto:
 
 ```bash
-S=~/.zcode/skills/terras-substack/scripts/terras_substack.py
+S=$SKILL_DIR/scripts/terras_substack.py
 
 python3 $S check                       # valida config e sessão
 python3 $S whoami                      # id do usuário e publicações
@@ -109,8 +66,8 @@ O markdown aceito (frontmatter + diretivas `::: paywall`, `::: subscribe`,
 
 ## Snippet para AGENTS.md / CLAUDE.md
 
-Harnesses que leem arquivo de instruções (Codex, opencode, Claude Code) podem
-ganhar uma linha explícita:
+Agentes que leem um arquivo de instruções do projeto (AGENTS.md, CLAUDE.md e
+afins) podem ganhar uma linha explícita:
 
 ```markdown
 - **Substack**: para publicar/gerenciar posts use a skill `terras-substack`
@@ -136,7 +93,7 @@ O `.skill`/`.zip` é gerado a partir deste diretório. Depois de editar a skill,
 reconstrua para o pacote não ficar defasado:
 
 ```bash
-cd ~/.zcode/skills
+cd <repositório terrasia-skills>/skills
 zip -r -q ~/Documents/Diversos/terras-substack-1.0.0.zip terras-substack \
   -x "terras-substack/scripts/__pycache__/*" -x "*.pyc"
 cp ~/Documents/Diversos/terras-substack-1.0.0.zip ~/Documents/Diversos/terras-substack-1.0.0.skill

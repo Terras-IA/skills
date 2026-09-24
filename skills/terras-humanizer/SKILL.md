@@ -12,7 +12,10 @@ Reescrever texto que soa gerado por IA para soar escrito por uma pessoa, mantend
 
 ## Onde está instalada
 
-Canônica em `~/.zcode/skills/terras-humanizer/SKILL.md`, com link simbólico em `~/.claude/skills/` e `~/.config/opencode/skills/` (mesmo padrão das outras terras-).
+Fonte única: `skills/terras-humanizer/` no repositório `terrasia-skills`. Cada agente
+enxerga a skill por um link simbólico criado pelo `scripts/instalar.sh` do
+repositório, então a edição se faz lá e vale para todos. Nos comandos abaixo,
+`$SKILL_DIR` é a pasta onde este `SKILL.md` está.
 
 ## Quando usar e quando não usar
 

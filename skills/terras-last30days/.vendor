@@ -1,0 +1,4 @@
+scripts/          # upstream mvanhorn/last30days-skill v3.25.0 (MIT), ver references/LICENSE-last30days.txt
+references/upstream-skill.md   # protocolo do autor original, mesma fonte
+references/upstream-skillignore.txt
+references/LICENSE-last30days.txt

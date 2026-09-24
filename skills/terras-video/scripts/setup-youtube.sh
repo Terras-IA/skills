@@ -2,7 +2,7 @@
 # Prepara a rota de upload no YouTube: bibliotecas no venv e conferencia da
 # credencial. Idempotente.
 #
-#   bash ~/.zcode/skills/terras-video/scripts/setup-youtube.sh
+#   bash <pasta da skill terras-video>/scripts/setup-youtube.sh
 set -euo pipefail
 
 BASE="${TERRAS_VIDEO_HOME:-$HOME/.config/terras-video}"
@@ -36,6 +36,6 @@ FALTA A CREDENCIAL (passo que so voce pode fazer, uma vez):
   4. Credenciais -> criar credencial -> ID do cliente OAuth -> "App para computador"
   5. baixar o JSON e salvar em: $CLIENTE
 
-Depois: $VENV/bin/python ~/.zcode/skills/terras-video/scripts/upload_youtube.py autorizar
+Depois: $VENV/bin/python $(dirname "$(readlink -f "${BASH_SOURCE[0]}")")/upload_youtube.py autorizar
 TXT
 fi

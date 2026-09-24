@@ -11,13 +11,12 @@ em voz neural, movimento fluido e montagem em mp4. Não escreve o texto na voz d
 autor (isso é a `terras-linkedin`) e não publica sozinho: entrega o arquivo e o
 pacote de publicação.
 
-## Onde esta instalada (global)
+## Onde está instalada
 
-A canônica é `~/.zcode/skills/terras-video/`. Os caminhos `~/.claude/skills/terras-video`
-e `~/.config/opencode/skills/terras-video` são symlinks para esse diretório. Em
-`~/.agents/skills/terras-video-fallback/` fica só um ponteiro, porque duas
-instalações de mesmo nome fazem a ferramenta responder "Skill name is ambiguous
-for subagent".
+Fonte única: `skills/terras-video/` no repositório `terrasia-skills`. Cada agente
+enxerga a skill por um link simbólico criado pelo `scripts/instalar.sh` do
+repositório, então a edição se faz lá e vale para todos. Nos comandos abaixo,
+`$SKILL_DIR` é a pasta onde este `SKILL.md` está.
 
 ## Regra de ouro
 
@@ -176,7 +175,7 @@ EN colada na frase) existiu aqui e foi **reprovado pelo ouvido dele**: "não pre
 misturou". O motivo ficou registrado em `build.py`.
 
 Detalhes de alvo de loudness, dicionário de pronúncia e calibragem estão em
-`~/.zcode/skills/terras-audio/SKILL.md`.
+`$SKILL_DIR/../terras-audio/SKILL.md`.
 
 ## Custo antes de gerar
 
@@ -315,7 +314,7 @@ O repositório terrasia (`~/assistente-os`) embrulha CLIs em tools MCP. O caminh
 para esta skill é o mesmo da `terras-substack`: as tools `video_plan`,
 `video_approve`, `video_render` e `video_status` apenas spawnam este `build.py`,
 e a lógica continua aqui, num lugar só. Variáveis: `TERRAS_VIDEO_CLI` (default
-`~/.zcode/skills/terras-video/scripts/build.py`) e `TERRAS_VIDEO_HOME` (default
+`$SKILL_DIR/scripts/build.py`) e `TERRAS_VIDEO_HOME` (default
 `~/.config/terras-video`).
 
 ## Armadilhas (cada uma já custou um render)

@@ -8,9 +8,12 @@ keywords: [banner, imagem, capa, thumbnail, card, og:image, substack, linkedin, 
 
 Produz o PNG que acompanha o texto, para LinkedIn e para Substack. Não escreve o post (isso é a `terras-linkedin`) nem publica (isso é a `terras-substack`): gera a imagem e entrega pronta para subir.
 
-## Onde esta instalada (global)
+## Onde está instalada
 
-A canonica e `~/.zcode/skills/terras-banner/`. Os caminhos `~/.claude/skills/terras-banner` e `~/.config/opencode/skills/terras-banner` sao symlinks para esse diretorio, entao editar a canonica vale para os tres na hora. Conferir com `stat -c '%i'` nos tres: mesmo inode quer dizer link de pe. Se um link se perder, recriar com `ln -s`, nunca com `cp`, para nao voltar a ter copias divergindo em silencio. Em `~/.agents/skills/terras-banner-fallback/` fica so um ponteiro, porque duas instalacoes de mesmo nome fazem a ferramenta responder "Skill name is ambiguous for subagent".
+Fonte única: `skills/terras-banner/` no repositório `terrasia-skills`. Cada agente
+enxerga a skill por um link simbólico criado pelo `scripts/instalar.sh` do
+repositório, então a edição se faz lá e vale para todos. Nos comandos abaixo,
+`$SKILL_DIR` é a pasta onde este `SKILL.md` está.
 
 ## Tamanhos que valem
 
@@ -103,7 +106,7 @@ No deck, basta o mesmo campo em cada slide do manifest.
 ## Pipeline
 
 1. **Direção de arte.** Antes de gerar, decidir o que a imagem diz: foto editorial do mundo do tema (data center, escritório, cidade, equipamento) ou arte abstrata na paleta. Foto segura mais atenção no feed do que gradiente, e gradiente é justamente o que faz o banner parecer template. Ver `references/art-direction.md`.
-2. **Arte.** `python3 scripts/gen_art.py --prompt "..." --out arte.png --size 1200x628`. A chave sai do `provider_config.json` do ZCode; a URL devolvida é um OSS que expira, e o script baixa na mesma execução. Peça sempre `no text, no letters` e diga onde fica o vazio: "large dark empty area on the left half for typography" o modelo respeita.
+2. **Arte.** `python3 scripts/gen_art.py --prompt "..." --out arte.png --size 1200x628`. A chave sai de `TERRAS_IMAGE_KEY` (e o endpoint, se diferente do padrão, de `TERRAS_IMAGE_ENDPOINT`); a URL devolvida é um OSS que expira, e o script baixa na mesma execução. Peça sempre `no text, no letters` e diga onde fica o vazio: "large dark empty area on the left half for typography" o modelo respeita.
 3. **Spec.** Escrever um JSON com o conteúdo (ver `templates/` e o cabeçalho de `scripts/make_banner.py`): `kick`, `headline`, `sub`, `stats`, `foot`, `bg`, `base`, `accent`. O texto aceita HTML inline (`<br>`, `<b>`, `<em class="accent">`), nunca markdown.
 4. **Render.** `python3 scripts/make_banner.py --spec banner.json --check`. Sai o PNG no tamanho exato e o HTML ao lado, e o `--check` falha se algum texto estourou, saiu do canvas ou cruzou com outro elemento.
 5. **Gate visual.** Passar o PNG pelo agente `documents:visual-judge` antes de entregar, olhando legibilidade sobre a arte (o ponto que mais costuma falhar) e se a manchete lê no tamanho de feed. Corrigir e repetir até passar; o gate é o que separa "ficou pronto" de "ficou bom".
@@ -130,7 +133,7 @@ que é a fonte única para banner e vídeo. O `brand.json` guarda os tokens, e o
 `LEIA-ME.md` explica cada pasta e como usar junto do CapCut. Editar lá vale para as
 duas skills na hora: esta skill lê `brand.json` para as cores quando o spec não
 declara `base` nem `accent`. Se o diretório for apagado, as sementes estão em
-`seed/` e o script `~/.zcode/skills/terras-video/scripts/setup-brand.sh` recria o
+`seed/` e o script `$SKILL_DIR/../terras-video/scripts/setup-brand.sh` recria o
 que falta sem sobrescrever nada editado.
 
 ## Armadilhas (cada uma já custou um render)

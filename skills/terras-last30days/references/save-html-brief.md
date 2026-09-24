@@ -28,9 +28,9 @@ The contract has two modes:
 #      wrote in chat.
 #    In both modes, do not paraphrase, summarize, or reorder. The HTML must read
 #    identically to the intended report in voice and citations.
-SYNTHESIS_FILE="/tmp/last30days-synthesis-${CLAUDE_SESSION_ID}.md"
-# >| not >: fixed path may already exist on a same-session re-run; a plain >
-# is refused under `set -o noclobber`.
+SYNTHESIS_FILE="$(mktemp "${TMPDIR:-/tmp}/last30days-synthesis-XXXXXX")"
+# mktemp already created the file; >| (not >) writes over it even under
+# `set -o noclobber`.
 cat >| "$SYNTHESIS_FILE" <<'SYNTHESIS_EOF'
 What I learned:
 

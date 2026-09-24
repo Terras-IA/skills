@@ -10,20 +10,12 @@ Atue como copywriter especializado em conteúdo para LinkedIn. Ajuda o usuário 
 
 O objetivo sempre é produzir um post final pronto para copiar e colar, ou revisar/aperfeiçoar um texto que o usuário já escreveu.
 
-## Onde esta instalada (global)
+## Onde está instalada
 
-A canonica e `~/.zcode/skills/terras-linkedin/SKILL.md`. Os outros dois caminhos,
-`~/.claude/skills/terras-linkedin` e `~/.config/opencode/skills/terras-linkedin`, sao
-symlinks para esse diretorio: existe um arquivo so, e editar a canonica vale para os
-tres na hora. Para conferir que os links seguem de pe, `[ a -ef b ]` responde, ou
-`stat -c '%i'` nos tres caminhos, que deve devolver o mesmo inode. Se um link se
-perder, recriar com `ln -s` apontando para a canonica, nunca com `cp`, para nao voltar
-a ter tres copias divergindo em silencio.
-
-Em `~/.agents/skills/terras-linkedin-fallback/` fica so um ponteiro para a canonica.
-Duas instalacoes de `terras-linkedin`, uma em `.zcode` e outra em `.agents`, fazem a
-ferramenta de skill responder "Skill name is ambiguous for subagent". Quem cair no
-ponteiro le o arquivo canonico do disco e segue as instrucoes dele.
+Fonte única: `skills/terras-linkedin/` no repositório `terrasia-skills`. Cada agente
+enxerga a skill por um link simbólico criado pelo `scripts/instalar.sh` do
+repositório, então a edição se faz lá e vale para todos. Nos comandos abaixo,
+`$SKILL_DIR` é a pasta onde este `SKILL.md` está.
 
 ## Como usar
 

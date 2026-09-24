@@ -97,6 +97,6 @@ apontando pro worktree para de funcionar quando o worktree é removido.
 Portada de `standards-v4`/`v4-standards` (repo `projeto0`), que continua
 existindo separadamente para quem ainda o referencia. Esta versão vive
 inteiramente em `terrasia`, sem dependência de caminho de outra máquina. O
-arquivo canônico é `.claude/skills/terras-standards/SKILL.md` no repo
-`terrasia` — a cópia em `~/.claude/skills/` é o que o runtime local
-carrega; mantenha as duas sincronizadas.
+arquivo canônico é `skills/terras-standards/SKILL.md` no repositório
+`terrasia-skills`; os agentes o enxergam por link simbólico criado pelo
+`scripts/instalar.sh`, então não há cópia a sincronizar.

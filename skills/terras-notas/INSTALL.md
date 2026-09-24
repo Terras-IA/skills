@@ -3,7 +3,7 @@
 ## 1. Dependências locais (uma vez)
 
 ```bash
-bash ~/.zcode/skills/terras-notas/scripts/setup.sh
+bash $SKILL_DIR/scripts/setup.sh
 ```
 
 Cria `~/.config/terras-notas/` com venv (herda `pdfplumber`/`requests` do
@@ -46,14 +46,14 @@ A skill precisa de um "client_id" para falar com o Outlook em seu nome.
 ## 3. Login e descoberta (uma vez)
 
 ```bash
-python3 ~/.zcode/skills/terras-notas/scripts/terras_notas.py auth
+python3 $SKILL_DIR/scripts/terras_notas.py auth
 ```
 
 Aparecerá `Acesse https://microsoft.com/devicelogin e insira o código XXXX`.
 Faça isso no navegador, autorize, e o token fica em cache (renova sozinho).
 
 ```bash
-python3 ~/.zcode/skills/terras-notas/scripts/terras_notas.py descobrir-remetente
+python3 $SKILL_DIR/scripts/terras_notas.py descobrir-remetente
 ```
 
 Lista quem mandou e-mail com "fenix/assessoria". Confirme o endereço da
@@ -63,9 +63,9 @@ Fênix Assessoria e coloque um trecho dele em `remetentes_fenix` na config
 ## 4. De-para e testes
 
 ```bash
-python3 ~/.zcode/skills/terras-notas/scripts/terras_notas.py depara list
-python3 ~/.zcode/skills/terras-notas/scripts/terras_notas.py run          # fetch + parse + match
-python3 ~/.zcode/skills/terras-notas/scripts/terras_notas.py despachar --rascunho
+python3 $SKILL_DIR/scripts/terras_notas.py depara list
+python3 $SKILL_DIR/scripts/terras_notas.py run          # fetch + parse + match
+python3 $SKILL_DIR/scripts/terras_notas.py despachar --rascunho
 ```
 
 Confira os rascunhos no Outlook; quando estiver confiante:

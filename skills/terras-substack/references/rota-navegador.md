@@ -36,7 +36,7 @@ O `fetch` feito **dentro** da pagina envia os cookies HttpOnly sozinho. Nada de
 copiar cookie:
 
 ```bash
-python3 ~/.zcode/skills/terras-substack/scripts/terras_substack.py \
+python3 $SKILL_DIR/scripts/terras_substack.py \
   browser-payload ~/Documents/Diversos/substack/drafts/post.md --action draft
 ```
 

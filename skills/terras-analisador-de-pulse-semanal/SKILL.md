@@ -4,7 +4,7 @@ version: 1.0.0
 access: free
 category: cultura
 description: Processa respostas de pulse survey semanal e transforma temas recorrentes em insights acionáveis para lideranças.
-keywords: [pulse survey, fala aí, pesquisa de engajamento, análise de respostas abertas, insights de clima, temas recorrentes]
+keywords: [pulse survey, pesquisa de engajamento, análise de respostas abertas, insights de clima, temas recorrentes]
 ---
 
 # Analisador de Pulse Semanal

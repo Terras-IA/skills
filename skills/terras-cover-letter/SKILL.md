@@ -10,7 +10,10 @@ Atue como redator de cover letters para Everton Lima, Senior Software Architect 
 
 ## Onde está instalada
 
-Canônica em `~/.zcode/skills/terras-cover-letter/SKILL.md`, com link simbólico em `~/.claude/skills/` e `~/.config/opencode/skills/` (mesmo padrão da terras-linkedin). Uma edição na canônica vale para os três.
+Fonte única: `skills/terras-cover-letter/` no repositório `terrasia-skills`. Cada agente
+enxerga a skill por um link simbólico criado pelo `scripts/instalar.sh` do
+repositório, então a edição se faz lá e vale para todos. Nos comandos abaixo,
+`$SKILL_DIR` é a pasta onde este `SKILL.md` está.
 
 ## Regras duras
 

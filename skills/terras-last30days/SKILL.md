@@ -21,11 +21,15 @@ Para posts, o fluxo é: esta skill acha a pauta, a fonte primária confirma o fa
 
 ## Onde está instalada
 
-Canônica em `~/.zcode/skills/terras-last30days/`, com link simbólico em `~/.claude/skills/` e `~/.config/opencode/skills/` (mesmo padrão das outras terras-).
+Fonte única: `skills/terras-last30days/` no repositório `terrasia-skills`. Cada agente
+enxerga a skill por um link simbólico criado pelo `scripts/instalar.sh` do
+repositório, então a edição se faz lá e vale para todos. Nos comandos abaixo,
+`$SKILL_DIR` é a pasta onde este `SKILL.md` está.
 
-Conteúdo: `scripts/` com o engine vendorizado (upstream `mvanhorn/last30days-skill` v3.25.0, MIT), `references/save-html-brief.md` e `references/upstream-skill.md` com o protocolo completo do autor. O runtime ocupa ~3 MB, sem a pasta de assets de demonstração.
-
-`SKILL_DIR` é sempre `~/.zcode/skills/terras-last30days`. O passo de "stale-clone self-check" do documento upstream não se aplica aqui.
+Conteúdo: `scripts/` com o engine vendorizado (upstream `mvanhorn/last30days-skill`
+v3.25.0, MIT), `references/save-html-brief.md` e `references/upstream-skill.md` com o
+protocolo completo do autor. O que é código de terceiro está listado em `.vendor`.
+O passo de "stale-clone self-check" do documento upstream não se aplica aqui.
 
 ## Requisitos
 
@@ -39,7 +43,7 @@ Conteúdo: `scripts/` com o engine vendorizado (upstream `mvanhorn/last30days-sk
 Rode em primeiro plano, com timeout de 300000 ms na ferramenta de shell. Uma execução típica leva de 1 a 3 minutos.
 
 ```bash
-SKILL_DIR="$HOME/.zcode/skills/terras-last30days"
+SKILL_DIR="$SKILL_DIR"
 python3 "$SKILL_DIR/scripts/last30days.py" "TEMA" \
   --emit=compact --save-dir="$HOME/Documents/Last30Days"
 ```
@@ -48,7 +52,7 @@ Exemplos de uso:
 
 ```bash
 # tema simples
-python3 "$SKILL_DIR/scripts/last30days.py" "Claude Code skills"
+python3 "$SKILL_DIR/scripts/last30days.py" "agentes de código"
 
 # mais rápido, menos fontes
 python3 "$SKILL_DIR/scripts/last30days.py" "fim de suporte .NET 8" --quick

@@ -14,7 +14,10 @@ Não é revisão de estilo nem lista de boas práticas genéricas. É o que est�
 
 ## Onde está instalada
 
-Canônica em `~/.zcode/skills/terras-tech-debt/SKILL.md`, com link simbólico em `~/.claude/skills/` e `~/.config/opencode/skills/` (mesmo padrão das outras terras-). Uma edição na canônica vale para os três.
+Fonte única: `skills/terras-tech-debt/` no repositório `terrasia-skills`. Cada agente
+enxerga a skill por um link simbólico criado pelo `scripts/instalar.sh` do
+repositório, então a edição se faz lá e vale para todos. Nos comandos abaixo,
+`$SKILL_DIR` é a pasta onde este `SKILL.md` está.
 
 ## Regras duras
 
@@ -52,7 +55,7 @@ Não pule. Opinião formada antes de entender o sistema produz auditoria ruim.
 3. Rode `git log --oneline -200` e `git log --stat --since="6 months ago"`. O que muda com frequência é onde a dívida mora.
 4. Identifique pontos de entrada, caminhos quentes e cantos frios.
 5. Liste os 20 maiores arquivos por linhas e os 20 mais modificados nos últimos 6 meses. A interseção costuma ser o alvo.
-6. Publique um plano com `TodoWrite` para o usuário acompanhar as fases.
+6. Publique o plano das fases como checklist para o usuário acompanhar.
 
 Escreva um modelo mental da arquitetura em 1 ou 2 parágrafos antes de seguir. Se o seu modelo contradiz o README, isso já é um achado.
 
@@ -94,9 +97,9 @@ Quando o pedido for auditar só o que mudou (revisão de PR grande, entrega de s
 
 ## Repositórios grandes
 
-Se o repo passar de 50 mil linhas ou tiver mais de 5 módulos de topo, dispare subagentes em paralelo, um por módulo, e sintetize os relatórios. Leitura serial em repo grande consome a janela de contexto antes de existir achado escrito.
+Se o repo passar de 50 mil linhas ou tiver mais de 5 módulos de topo, divida a leitura por módulo (em agentes paralelos, se o ambiente permitir; senão, em rodadas separadas) e sintetize os relatórios. Leitura serial em repo grande consome a janela de contexto antes de existir achado escrito.
 
-Cada subagente recebe: escopo (um módulo), a lista de dimensões, a exigência de citação e um teto de 200 achados. O agente principal junta, deduplica e ordena. Acima de 200 mil linhas, restrinja o escopo a um módulo e diga isso ao usuário.
+Cada rodada recebe: escopo (um módulo), a lista de dimensões, a exigência de citação e um teto de 200 achados. No fim, junte, deduplique e ordene. Acima de 200 mil linhas, restrinja o escopo a um módulo e diga isso ao usuário.
 
 ## Ferramentas por stack
 

@@ -35,6 +35,11 @@ import subprocess
 import sys
 import tempfile
 
+# setup-brand.sh mora na skill vizinha terras-video. TERRAS_SKILLS_DIR aponta outra raiz.
+_SKILL_DIR = os.path.dirname(os.path.dirname(os.path.realpath(__file__)))
+_SKILLS_DIR = os.environ.get("TERRAS_SKILLS_DIR") or os.path.dirname(_SKILL_DIR)
+SETUP_BRAND = os.path.join(_SKILLS_DIR, "terras-video", "scripts", "setup-brand.sh")
+
 SKILL_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 # Template e fontes vivem no diretorio padrao da identidade, nao na skill: editar
 # la vale para banner e video ao mesmo tempo. Ver LEIA-ME.md daquele diretorio.
@@ -139,7 +144,7 @@ def load_template():
         sys.exit(
             f"template nao encontrado em {TEMPLATE}.\n"
             "O diretorio padrao da identidade sumiu ou mudou de lugar.\n"
-            "Recriar o que falta: bash ~/.zcode/skills/terras-video/scripts/setup-brand.sh"
+            f"Recriar o que falta: bash {SETUP_BRAND}"
         )
     with open(TEMPLATE) as fh:
         return fh.read()
