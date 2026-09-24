@@ -21,6 +21,7 @@ skills/terras-<nome>/
   catalogo.md     # opcional: versão para o catálogo do motor, quando difere
   scripts/ references/ assets/ templates/ seed/   # o que a skill usar
   .vendor         # opcional: caminhos de código de terceiro (ver abaixo)
+  .nao-instalar   # opcional: só catálogo; o instalador não cria link (ver abaixo)
 catalogo.json     # skills que entram no catálogo do motor (e nome antigo, se mudou)
 evals/            # cenários de avaliação de algumas skills
 scripts/          # verificador, instalador e seus testes
@@ -30,6 +31,15 @@ scripts/          # verificador, instalador e seus testes
 prompt de um turno e não executa script nenhum. Quando a skill de agente manda
 rodar scripts ou fala de um repositório específico, a versão do catálogo é
 outra: só o método. Sem `catalogo.md`, o catálogo usa o próprio `SKILL.md`.
+
+**Skills de processo do terrasia.** `terras-qualidade`, `terras-validacao`,
+`terras-api-sync`, `terras-drift`, `terras-boundary`, `terras-reconstrucao`,
+`terras-adr` e `terras-backreview` têm aqui só a versão de catálogo (o método
+genérico que o motor injeta). A versão de agente é regra de trabalho do
+repositório `terrasia` e mora em `terrasia/.claude/skills/`, versionada junto do
+código que ela rege: quem clona o motor recebe o processo de qualidade junto.
+O `.nao-instalar` impede que o instalador ponha um segundo `terras-qualidade`
+ao lado do que o projeto já carrega.
 
 ## Regras (o `npm run verificar` barra cada uma)
 

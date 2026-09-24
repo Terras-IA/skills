@@ -40,6 +40,17 @@ for alvo in "${ALVOS[@]}"; do
     nome="$(basename "$skill")"
     origem="$SKILLS/$nome"
     destino="$pasta/$nome"
+    # .nao-instalar: a skill existe aqui só para o catálogo do motor (a versão de
+    # agente mora em outro lugar, ex. .claude/skills do terrasia). O link que
+    # este instalador tenha criado antes sai; o resto no caminho fica intacto.
+    if [ -f "$origem/.nao-instalar" ]; then
+      if [ -L "$destino" ] && [ "$(readlink -f "$destino")" = "$(readlink -f "$origem")" ]; then
+        echo "remove link  $destino (skill marcada .nao-instalar)"
+        faz rm "$destino"
+        alterados=$((alterados + 1))
+      fi
+      continue
+    fi
     if [ -L "$destino" ] && [ "$(readlink -f "$destino")" = "$(readlink -f "$origem")" ]; then
       continue
     fi

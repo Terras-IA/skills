@@ -1,88 +1,66 @@
 ---
 name: terras-api-sync
-description: Mantém o contrato público do motor terrasia síncrono: daemon + SDK @terrasia/client (client.ts e stream.ts) + README "Contrato da API" no mesmo commit. Use ao criar/alterar rota, payload, evento SSE ou status HTTP. Depois rode npm run build e typecheck+test do client.
-keywords: [mudar rota, novo endpoint, alterar API, contrato, SDK, client, README]
+version: 1.0.0
+access: free
+category: operacao
+description: Mudança de contrato de API é atualização atômica — servidor, SDK tipada e documentação humana no mesmo commit, com checklist por tipo de mudança.
+keywords: [mudei a api, contrato da api, sincronizar sdk, atualizar a documentacao da api]
 ---
 
----
+# Sincronia do contrato de API
 
-# Sincronia do Contrato da API — terrasia
+## Descrição
 
-Garante que `@terrasia/client` e `README.md` evoluam **junto** com as rotas do daemon, não depois.
+Garante que a SDK tipada e a documentação humana evoluam **junto** com as rotas do servidor — no mesmo commit, não depois. O sintoma do descuido: o build do servidor passa, mas os consumidores da API quebram em runtime, e a documentação passa a mentir sobre o código.
 
-## Arquitetura do polyrepo
+## Quando usar
 
-```
-terrasia (motor)          terrasia-admin           terrasia-client
-├── packages/daemon       ├── consome              ├── consome
-│   └── rotas HTTP        │   @terrasia/client     │   @terrasia/client
-│                         │   (file:../terrasia/   │   (file:../terrasia/
-│                         │    packages/client)    │    packages/client)
-│                         │                        │
-└── packages/client  ◄───┘                        ┘
-    @terrasia/client
-    (SDK tipado)
-```
+- Criar ou alterar rota, parâmetro, payload de resposta, evento de stream ou status code.
+- Deprecar ou remover rota.
+- Qualquer mudança no contrato público/compartilhado que outras superfícies consomem.
 
-## Regra de ouro
+## Como funciona
 
-> **Toda mudança no contrato público/compartilhado da API (rota nova, parâmetro novo, response alterado, evento SSE ou status code alterado) → 3 updates atômicos no mesmo commit:**
-> 1. **Daemon** (`packages/daemon/src/...`) — implementação da rota
-> 2. **SDK** (`packages/client/src/**`) — tipagem + método correspondente; inclui `client.ts` e `stream.ts` (`StreamEvent`, ex.: `callId`), não só o `client.ts`
-> 3. **Docs** (`README.md` seção "Contrato da API") — documentação humana
+### Regra de ouro
 
-## Checklist ao alterar rota
+> **Toda mudança no contrato público da API (rota nova, parâmetro novo, resposta alterada, evento de stream ou status code alterado) vira 3 atualizações atômicas no mesmo commit:**
+> 1. **Servidor** — implementação da rota.
+> 2. **SDK tipada** — tipagem + método correspondente, incluindo os tipos de stream (eventos), não só as chamadas simples.
+> 3. **Documentação humana** — a seção de contrato da API.
 
-| Mudança no daemon | Atualizar no `@terrasia/client` | Atualizar no `README.md` |
-|-------------------|--------------------------------|--------------------------|
-| Nova rota `GET /souls/:soul/threads` | Adicionar `listThreads(soul: string)` tipado | Adicionar linha na tabela "API Contract" |
-| Novo parâmetro `?limit=20` | Adicionar `limit?: number` no método | Documentar query param |
-| Response muda shape (`id` → `threadId`) | Atualizar interface `Thread` | Atualizar exemplo de response |
-| Novo evento SSE / campo no frame (`done` ganha `sources`) | Atualizar `StreamEvent` em `stream.ts` + testes do SDK (`stream.test.ts`) | Documentar frame na seção SSE |
-| Novo status `422` (validation error) | Adicionar no `throws` / tipo erro | Documentar caso de erro |
-| Rota deprecada/removida | Marcar `@deprecated` ou remover | Marcar como deprecated ou remover |
+### Checklist por tipo de mudança
 
-## Fluxo prático
+| Mudança no servidor | Atualizar na SDK | Atualizar na documentação |
+|---|---|---|
+| Nova rota | Método tipado correspondente | Linha na tabela de contrato |
+| Novo parâmetro de query | Campo opcional no método | Documentar o parâmetro |
+| Response muda de formato | Atualizar a interface | Atualizar exemplo de resposta |
+| Novo evento de stream / campo em frame | Atualizar o tipo do evento + testes da SDK | Documentar o frame |
+| Novo status code de erro | Adicionar no tipo de erro | Documentar o caso de erro |
+| Rota deprecada/removida | Marcar ou remover | Marcar ou remover |
 
-```
-1. Edita daemon (rota nova/alterada)
-2. Rode: npm run build   # compila kernel → daemon
-3. Rode: npm --workspace @terrasia/client typecheck && npm --workspace @terrasia/client test
-4. Edita `packages/client/src/**` (client.ts e, se tocar SSE, stream.ts) e roda os testes do SDK (mesmo commit)
-5. Edita README.md seção "Contrato da API" (mesmo commit)
-6. Commit único: "feat: nova rota X + SDK + docs"
-```
+### Fluxo prático
 
-## Validação automática (já existe no repo)
+1. Editar o servidor (rota nova/alterada).
+2. Compilar e testar o servidor.
+3. Editar a SDK no mesmo commit (tipos e métodos; se tocou stream, os eventos também).
+4. Editar a documentação da API no mesmo commit.
+5. Rodar a validação prática da rota contra o servidor real (ver procedimento de validação de entregas).
 
-- `npm run build` compila somente kernel e daemon; o client tem seus próprios comandos `typecheck` e `test`
-- `scripts/verify-all.sh` roda build + testes de todos os pacotes
-- `terras-validacao` exige `.http`/`api-smoke-test.sh` exercitando a rota real
-
-## Exemplo de uso
-
-```
-> terras-api-sync: vou adicionar PATCH /souls/:soul/threads/:id (renomear thread)
-> → Checklist:
->   1. Daemon: route handler + validation
->   2. Client: renameThread(soul, id, title) → Thread
->   3. README: adicionar na tabela + exemplo request/response
->   4. requests.http: adicionar request encadeado (cria thread → renomeia)
->   5. api-smoke-test.sh: adicionar step correspondente
-```
-
-## Integração com outras skills
-
-- `terras-boundary` — primeiro confirma se a rota **pertence ao motor** (não admin/client)
-- `terras-validacao` — exige artefato de validação (`.http` + `api-smoke-test.sh`) no mesmo PR
-- `terras-drift` — checa se `README.md` (contrato) está sincronizado com código real
-- `terras-reconstrucao` — ordem de construção: motor (daemon+client) antes de admin/client
-
-## Armadilhas comuns
+### Armadilhas comuns
 
 | Armadilha | Prevenção |
-|-----------|-----------|
-| Esquecer `packages/client` → build do daemon passa, mas admin/client quebram em runtime | Rodar explicitamente `npm --workspace @terrasia/client typecheck && npm --workspace @terrasia/client test` |
-| Atualizar `README.md` mas não o SDK (ou só `client.ts`, esquecendo `stream.ts`) | Checklist acima + commit atômico único |
-| Mudar só response shape, não request → SDK compila mas runtime falha | Testes de contrato em `api-smoke-test.sh` pegam |
-| Adicionar rota admin no motor (violando `terras-boundary`) | `terras-boundary` roda antes — bloqueia na origem |
+|---|---|
+| Esquecer a SDK → build do servidor passa, consumidores quebram em runtime | Rodar explicitamente o typecheck da SDK a cada mudança |
+| Atualizar a documentação mas não a SDK (ou só o client simples, esquecendo os eventos de stream) | Checklist acima + commit atômico único |
+| Mudar só o formato da resposta, não o request → SDK compila mas runtime falha | Smoke test contra servidor real |
+| Rota de superfície criada no núcleo | A regra de fronteira roda antes — bloqueia na origem |
+
+## Governança
+
+- O contrato é a fronteira entre o servidor e todo consumidor: mudança de contrato sem as três pernas é entrega quebrada, mesmo com todos os testes verdes.
+- Deprecação tem regra: marcar, documentar e dar janela — não remover rota de contrato sem aviso na documentação.
+
+## Critério de qualidade
+
+A entrega está pronta quando a mudança de contrato está no servidor, na SDK e na documentação **no mesmo commit**, com typecheck da SDK verde e a rota exercitada contra o servidor real.

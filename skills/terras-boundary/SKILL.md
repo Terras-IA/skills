@@ -1,74 +1,62 @@
 ---
 name: terras-boundary
-description: Decide onde colocar rota/feature nova: domínio, policy e API segura no motor terrasia; telas/rotas de superfície em terrasia-admin/terrasia-client. Área cinzenta → ADR (terras-adr). Use antes de codificar endpoint/UI.
-keywords: [onde vai, nova rota, endpoint, feature, admin, cliente, UI, motor]
+version: 1.0.0
+access: free
+category: operacao
+description: Decide onde colocar rota ou feature nova — núcleo/backend (domínio, regras, persistência, autorização) ou superfície (painel admin, app cliente). Área cinzenta vira decisão registrada.
+keywords: [onde coloco essa rota, onde vai essa feature, backend ou frontend, fronteira de repositorio]
 ---
 
----
+# Fronteira núcleo × superfície
 
-# Fronteira Motor vs Admin/Cliente — terrasia
+## Descrição
 
-Garante que toda rota/feature nova seja colocada no repositório correto desde o desenho, não descoberta tardiamente em code review.
+Garante que toda rota/feature nova seja colocada no lugar certo **desde o desenho**, não descoberta tardiamente em revisão. O erro clássico é o núcleo (backend) embutir tela de painel ou app de cliente final, e com o tempo virar um monólito que ninguém consegue separar.
 
-## Regra do projeto (CLAUDE.md)
+O núcleo continua dono de persistência, regras, autorização, auditoria e da API segura que as superfícies consomem. O que não pode é UI, página ou rota de superfície morar no núcleo.
 
-> **Não misturar UI, páginas ou rotas de superfície específicas de admin ou de cliente final aqui — isso é `terrasia-admin` / `terrasia-client`. Este repo é o motor.**
+## Quando usar
 
-Isso não transforma automaticamente uma operação de domínio em código de
-frontend. O motor continua dono de persistência, regras, autorização,
-auditoria e da API segura que uma ou ambas as superfícies consomem.
+- Antes de codificar qualquer rota, endpoint ou feature nova: pergunte "onde isso vai?"
+- Quando alguém propõe tela de painel ou de cliente dentro do backend.
+- Área cinzenta (endpoint exclusivo de uma superfície, mas com regra de domínio) — a decisão vira ADR registrado.
 
-## O que o monólito antigo fez (errado)
+## Como funciona
 
-`packages/daemon` embutia:
-- **Admin-only**: `routes/friendlyAdmin.ts`, `adminApiKeys.ts`, `adminOps.ts`, `adminPlans.ts`, `monitors.ts`, `infra.ts`, rota `mcp.ts` admin-gated (~500 LOC) + `web/index.html` (HUD, ~3.8k LOC estático)
-- **Cliente-final-only**: `accountAuth.ts`, `accountSouls.ts` (~480 LOC) + `web/friendly.html` (~850 LOC)
-- **Terceiro eixo (nem admin nem cliente)**: WhatsApp/Telegram (~1.1k LOC)
-- **Compartilhado pelas 3 superfícies**: `stream.ts`/`chat.ts` (API REST+SSE → virou `@terrasia/client`)
+### Checklist antes de criar rota/feature
 
-## Checklist antes de criar rota/feature
+| Pergunta | Se SIM | Se NÃO |
+|---|---|---|
+| É API de domínio segura, persistência, regra ou autorização consumida por SDK/superfície? | **Núcleo/backend** | Continua |
+| É página, componente, fluxo visual ou rota de UI de painel administrativo? | **App de admin** — não criar no núcleo | Continua |
+| É página, componente, fluxo visual ou rota de UI do usuário final? | **App cliente** — não criar no núcleo | Continua |
+| É endpoint exclusivo de uma superfície, mas com regra/autorização de domínio? | **Área cinzenta** — o núcleo guarda a regra; registrar ADR para decidir o adaptador | Continua |
+| É canal/integração (mensageria, CI externo)? | **Núcleo**, mas em módulo de integração separado, não no corpo do servidor | Continua |
+| É infra/observabilidade interna (health, métricas, logs)? | **Núcleo** — módulo interno | — |
 
-| Pergunta | Se SIM → | Se NÃO → |
-|----------|----------|----------|
-| É API de domínio segura, persistência, policy ou integração consumida por SDK/superfície? | **Motor (terrasia)** — contrato em `packages/daemon/src/` | Continua |
-| É página, componente, fluxo visual ou rota de UI de painel/admin? | **terrasia-admin** — não criar aqui | Continua |
-| É página, componente, fluxo visual ou rota de UI do usuário final? | **terrasia-client** — não criar aqui | Continua |
-| É endpoint exclusivo de uma superfície, mas com regra/autorização de domínio? | **Área cinzenta:** motor guarda a regra; criar ADR para decidir o adaptador/BFF | Continua |
-| É canal/integração (WhatsApp, Telegram, ADO)? | **Motor** — mas em `packages/integrations/` (futuro), não no daemon | Continua |
-| É infra/observabilidade interna (health, metrics, logs)? | **Motor** — `packages/kernel` ou `daemon` interno | — |
-
-## Casos fronteiriços (usar julgamento + registrar ADR se dúvida)
+### Casos fronteiriços
 
 | Área | Onde fica | Raciocínio |
-|------|-----------|------------|
-| `GET /health` / `GET /ready` | Motor (daemon) | Infra interna, não é UI admin |
-| `POST /webhooks/*` (receber eventos externos) | Motor (daemon) | Parte do contrato da API pública |
-| Tela admin de *souls* (criar/listar/configurar) | **terrasia-admin** | É superfície administrativa |
-| Operação de domínio de *souls* chamada pela tela admin | **Motor, salvo ADR** | Ownership, policy e persistência não devem migrar para a UI |
-| Métricas de uso/custos por soul | Motor (kernel/daemon) | Dados brutos; UI de visualização = admin |
-| Prompt injection detection config | Motor (security) | Regra de negócio do motor; UI de config = admin |
+|---|---|---|
+| `GET /health` | Núcleo | Infra interna, não é UI |
+| `POST /webhooks/*` (receber eventos externos) | Núcleo | Parte do contrato da API pública |
+| Tela de admin para gerenciar entidades | **App de admin** | É superfície administrativa |
+| Operação de domínio chamada pela tela de admin | **Núcleo, salvo ADR** | Propriedade, regra e persistência não migram para a UI |
+| Métricas de uso/custo por entidade | Núcleo (dados brutos) | UI de visualização = admin |
+| Configuração de regra de segurança | Núcleo (a regra) | UI de config = admin |
 
-## Como usar
+### Passo a passo
 
-1. **Antes de codificar** uma rota/endpoint/feature nova, pergunte: "Onde isso vai?"
-2. **Aplique o checklist** acima
-3. **Se cair em área cinzenta** → crie ADR leve (`terras-adr`) registrando a decisão
-4. **Se alguém propor rota admin/cliente aqui** → aponte para esta skill + `CLAUDE.md`
+1. Antes de codificar, pergunte: "Onde isso vai?"
+2. Aplique o checklist.
+3. Área cinzenta → registre um ADR com a decisão.
+4. Proposta de rota de superfície no núcleo → aponte para esta regra antes de codar.
 
-## Exemplo de uso
+## Governança
 
-```
-> terras-boundary: vou adicionar tela admin para criar souls
-> → terrasia-admin. A operação segura de criação/configuração da soul continua
-> no motor; se o endpoint é exclusivo do painel, registre ADR para definir o
-> contrato e o adaptador sem deslocar policy/persistência para a UI.
+- Regra e persistência de domínio **não migram** para a UI, mesmo quando o endpoint é exclusivo dela — a UI vira cliente, o núcleo continua dono.
+- Fronteira errada descoberta em revisão custa retrabalho; fronteira decidida antes de codar custa um minuto.
 
-> terras-boundary: novo endpoint GET /metrics/usage por soul
-> → MOTOR (kernel/daemon). Dado bruto. UI de gráfico = terrasia-admin.
-```
+## Critério de qualidade
 
-## Integração com outras skills
-
-- `terras-reconstrucao` — ordem de construção (motor primeiro, admin/client depois)
-- `terras-adr` — registrar decisão quando checklist não é claro
-- `terras-api-sync` — se for no motor, lembrar de sincronizar `@terrasia/client` + `README.md`
+A decisão está fechada quando: o local da feature está decidido e justificado antes da primeira linha de código, e área cinzenta tem ADR registrado com a justificativa de por que a regra ficou onde ficou.

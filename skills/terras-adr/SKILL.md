@@ -1,40 +1,46 @@
 ---
 name: terras-adr
-description: Registra decisão de reescrever vs. reaproveitar trecho do assistente-os quando NÃO estiver nas listas explícitas do CLAUDE.md/CONHECIMENTO-DO-MONOLITO.md. ADR leve em docs/adrs/. Complementa terras-reconstrucao (use-a primeiro).
-keywords: [copiar do assistente-os, reaproveitar, reescrever, ADR, decisão de design]
+version: 1.0.0
+access: free
+category: operacao
+description: Registra decisão de reescrever vs reaproveitar quando o caso não está numa lista canônica — ADR leve com contexto, decisão, alternativas, consequências e rastreabilidade.
+keywords: [adr, registrar decisao de design, reescrever ou reaproveitar, decisao arquitetural]
 ---
 
----
+# ADR leve — reescrever vs reaproveitar
 
-# ADR Leve — Reescrever vs Reaproveitar (terrasia)
+## Descrição
 
-Versão minimalista do fluxo ADR/Bloco G do `v4-standards`, **sem** perfil Core/AI-1..4, sem RACI, sem retention schedule, sem questionário de adoção. Só registra a decisão arquitetural quando a lista explícita não cobre o caso.
+Registra uma decisão de design em documento curto (ADR — Architecture Decision Record) quando o caso **não está coberto por lista canônica** do projeto. A lista diz o que é seguro reaproveitar quase como está e o que é reescrita deliberada; caso fora dela, a decisão precisa ser tomada, registrada e rastreável.
 
 ## Quando usar
 
-A lista canônica do que é **seguro reaproveitar quase verbatim** e do que é
-**reescrita de propósito** vive na seção "O que reescrever vs. o que
-reaproveitar quase verbatim" de `docs/CONHECIMENTO-DO-MONOLITO.md`, reforçada
-no `CLAUDE.md` §"Não fazer". **Releia lá — não confie numa cópia:** a lista
-cresce a cada módulo (ex.: `security/*` entrou quando o módulo security foi
-entregue).
+- O caso não está em nenhuma das listas explícitas do projeto (o que reaproveitar / o que reescrever).
+- Típico: um módulo, arquivo ou subsistema legado que não é nem claramente reescrita nem claramente reaproveitável.
+- Sempre **antes de codificar** — decidir no meio da implementação é o sintoma de que este passo foi pulado.
 
-**Se o seu caso NÃO está em nenhuma das duas listas** → use esta skill antes
-de codificar. Típico: um arquivo/subsistema do `assistente-os` que não é nem
-"cluster souls+governança" nem um dos itens já marcados como desacoplado.
+## Como funciona
 
-## Formato do ADR (arquivo: `docs/adrs/YYYY-MM-DD-<slug>.md`)
+### Passo a passo
+
+1. **Identificar** que o caso não está nas listas explícitas. Releia a lista canônica do projeto — não confie em memória, a lista cresce a cada módulo.
+2. **Criar o ADR** seguindo o formato abaixo (rascunho rápido serve).
+3. **Decidir** — uma das três opções, com justificativa.
+4. **Registrar** no diretório de decisões do projeto (criar se não existe).
+5. **Propagar minimamente** — o ADR é a fonte da decisão; atualizar a lista canônica só se o caso virar regra recorrente. Não reescrever documento histórico para registrar decisão pontual.
+
+### Formato do ADR (arquivo: `AAAA-MM-DD-<slug>.md`)
 
 ```markdown
 # ADR: <título curto> — reescrever vs reaproveitar <área>
 
 ## Contexto
-O que está em jogo: arquivo/módulo do assistente-os, o que ele faz, por que a decisão não é óbvia pelas listas canônicas (`CONHECIMENTO-DO-MONOLITO.md` / `CLAUDE.md`).
+O que está em jogo: o módulo/arquivo, o que ele faz, por que a decisão não é óbvia pelas listas canônicas.
 
 ## Decisão
 - [ ] **Reescrever do zero** — motivo: <ex: acoplamento oculto, decisões ad-hoc, fronteira errada>
-- [ ] **Reaproveitar com adaptações** — o que muda: <ex: remover dep X, ajustar interface Y>
-- [ ] **Reaproveitar verbatim** — justificativa: <ex: zero acoplamento, já validado em prod, igual ao item Z da lista>
+- [ ] **Reaproveitar com adaptações** — o que muda: <ex: remover dependência X, ajustar interface Y>
+- [ ] **Reaproveitar como está** — justificativa: <ex: zero acoplamento, já validado em produção, igual ao item Z da lista>
 
 ## Alternativas consideradas
 Breve: o que mais foi avaliado e por que descartado.
@@ -42,45 +48,20 @@ Breve: o que mais foi avaliado e por que descartado.
 ## Consequências
 - Positivas: <ex: fronteira limpa, teste isolado>
 - Negativas/Riscos: <ex: mais trabalho agora, duplicação temporária>
-- Mitigação: <ex: portar deps-zones antes, testar contra terrasia_test>
+- Mitigação: <ex: portar o gate de dependências antes, testar contra ambiente isolado>
 
 ## Rastreabilidade
-- Assistente-os ref: <caminho/arquivo no repo antigo>
-- Terrasia target: <pacote/módulo onde vai entrar>
+- Origem: <caminho/módulo no sistema antigo>
+- Destino: <onde vai entrar>
 - Relacionado: <outro ADR ou item da lista explícita>
 ```
 
-## Processo
+## Governança
 
-1. **Identificar** que o caso não está nas listas explícitas
-2. **Criar ADR** seguindo o formato acima (pode ser rascunho rápido)
-3. **Decidir** — uma das 3 opções, com justificativa
-4. **Registrar** em `docs/adrs/` (criar pasta se não existe)
-5. **Propagar a decisão de forma mínima** — manter o ADR como fonte da decisão; atualizar a lista em `CONHECIMENTO-DO-MONOLITO.md` somente se ela passa a ser uma regra recorrente de reuso/reescrita. Não reescrever a parte histórica do documento para registrar uma decisão nova.
+- ADR não é reunião: é decisão escrita. Decisão não documentada é decisão que será refeita (mal) daqui a seis meses.
+- O custo de um ADR leve (minutos) é muito menor que o custo do retrabalho por decisão implícita perdida.
+- Propagação é mínima de propósito: o ADR fica sendo a fonte; a lista canônica só muda quando o caso vira padrão.
 
-## Exemplo real (hipotético)
+## Critério de qualidade
 
-> Área: `packages/core/old/sessions.ts` (CRUD threads/sessions, ~400 LOC)
-> 
-> Não está na lista — sessions não é "cluster souls+governança" nem "seguro reaproveitar".
-> 
-> **Decisão**: Reescrever. Motivo: sessions no antigo usa `entityQueue` e `familias` acoplados; no terrasia isso vira kernel puro (threads) + daemon (stream), fronteiras diferentes.
-> 
-> **ADR gerado**: `docs/adrs/2026-09-10-sessions-rewrite.md` — fonte da decisão.
-> 
-> **Propagação (passo 5)**: só tocar `CONHECIMENTO-DO-MONOLITO.md` se isso
-> virar regra recorrente. Um caso pontual como este fica só no ADR.
-
-## Integração com terras-reconstrucao
-
-Esta skill **complementa** `terras-reconstrucao`:
-- `terras-reconstrucao` = checklist de navegação (onde olhar, ordem, listas explícitas)
-- `terras-adr` = ferramenta para decidir e registrar quando **não** está na lista
-
-Use `terras-reconstrucao` primeiro. Se o caso cair em "Fora do escopo" → use `terras-adr`.
-
-## Princípio
-
-> **Decisão não documentada = decisão que será refeita (mal) daqui 6 meses.**
-> 
-> O custo de um ADR leve (5 min) << custo de re-trabalho por decisão implícita perdida.
+O ADR está pronto quando alguém que não participou da decisão consegue, lendo só o documento, dizer o que foi decidido, por quê, o que foi considerado e o que custa — e encontrar o código correspondente pela rastreabilidade.

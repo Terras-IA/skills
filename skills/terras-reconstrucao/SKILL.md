@@ -1,93 +1,47 @@
 ---
 name: terras-reconstrucao
-description: Checklist para começar módulo novo da reconstrução do terrasia: ordem de construção, ler docs/subsistemas, reescrever vs. reaproveitar pela lista explícita, redação exata via docs/referencia-verbatim. Guia de onde procurar, não fonte da verdade.
-keywords: [reconstrução, módulo novo, ordem de construção, router, skills, governança, souls, memory, costs, integrations, security]
+version: 1.0.0
+access: free
+category: operacao
+description: Checklist para reconstruir um sistema legado módulo a módulo — ordem de construção, documentação permanente do sistema antigo e decisão explícita de reescrever vs reaproveitar.
+keywords: [sistema legado, reconstruir o conhecimento, ordem de construcao, mapear codigo antigo]
 ---
 
----
+# Reconstrução de sistema legado, módulo a módulo
 
-# Reconstrução módulo a módulo — terrasia
+## Descrição
 
-terrasia reimplementa deliberadamente o `assistente-os` antigo — não porta,
-não copia por padrão. O conhecimento real do monólito (decisões de schema,
-acoplamento testado em produção, fronteiras que já se provaram certas ou
-erradas) está documentado permanentemente dentro do próprio repo, nunca na
-memória de conversas anteriores nem no plano efêmero fora do git.
+Quando um sistema legado vai ser reimplementado de propósito (não portado, não copiado por padrão), o conhecimento real dele — decisões de schema, acoplamento testado em produção, fronteiras que se provaram certas ou erradas — precisa estar documentado permanentemente antes do código novo, nunca só na memória de quem viveu o projeto.
 
-Esta skill **não é a fonte da verdade** — é um checklist de onde procurar
-antes de escrever código novo de um módulo. O conteúdo real vive em
-`docs/CONHECIMENTO-DO-MONOLITO.md`, `docs/subsistemas/` e
-`docs/referencia-verbatim/`, e pode mudar — releia a fonte a cada módulo em
-vez de confiar num resumo memorizado.
+Esta instrução é um checklist de **onde procurar** antes de escrever código de um módulo novo. Não é a fonte da verdade: a fonte são os documentos do projeto, e eles mudam — releia a cada módulo em vez de confiar em resumo memorizado.
 
-## Antes de começar um módulo
+## Quando usar
 
-1. **Confirme onde esse módulo está na ordem de construção.** Releia a
-   seção "Ordem de construção módulo por módulo" em
-   `docs/CONHECIMENTO-DO-MONOLITO.md` — a ordem segue lógica de
-   risco/dependência (isolado primeiro, acoplado depois). Não é bloqueante,
-   mas mudar a ordem precisa de motivo concreto, não só preferência do
-   momento.
+- Começar módulo novo de uma reimplementação de sistema legado.
+- Entrar num projeto que já tem ordem de construção e listas de reescrever/reaproveitar.
+- Antes de copiar qualquer trecho do sistema antigo.
 
-2. **Leia o subsistema correspondente antes do inventário estrutural.** Os
-   4 docs em `docs/subsistemas/` carregam o comportamento real (algoritmos,
-   bugs de produção já corrigidos e por quê) que a tabela de LOC/acoplamento
-   de `CONHECIMENTO-DO-MONOLITO.md` não cobre. Mapeamento aproximado —
-   confirme sempre no índice do doc, porque nem todo módulo tem
-   correspondência 1:1:
-   - souls + policy + governança, router/tiers, skills →
-     `ROUTER-GOVERNANCA-SKILLS-SOULS.md`
-   - memory (RAG + grafo de conhecimento + LangGraph agent workflow) →
-     `RAG-E-GRAFO.md`
-   - daemon completo (orchestrator, MCP, canais) e integrations
-     WhatsApp/Telegram → `MCP-MULTITENANT-CANAIS.md` (ADO não tem
-     subsistema dedicado — era só 51 LOC no antigo, outlier isolado)
-   - costs/billing → `CUSTOS-CLI-VOZ-OBSERVABILIDADE.md`
-   - security, prompts → sem subsistema dedicado. Security já tem spec
-     própria registrada neste repo — procure docs/commits existentes antes
-     de escrever do zero. Prompts → os 12 prompts do Prompt Garden estão
-     verbatim em `docs/referencia-verbatim/`.
+## Como funciona
 
-   Se o módulo não aparecer nessa lista ou parecer ter mudado de lugar,
-   confie no doc real — esta tabela é só um atalho, não a fonte.
+### Antes de começar um módulo
 
-3. **Decida reescrever vs. reaproveitar pela lista explícita, não por
-   intuição.** Releia "O que reescrever vs. o que reaproveitar quase
-   verbatim" em `CONHECIMENTO-DO-MONOLITO.md`, reforçada no `CLAUDE.md`
-   §"Não fazer". Só copiar/adaptar verbatim o que estiver **explicitamente**
-   listado ali como seguro — não confie numa cópia inline nem em memória:
-   a lista cresce a cada módulo (ex.: `security/*` entrou na entrega do
-   módulo security). Caso fora da lista: esta skill **não decide** — o
-   default é não copiar; abra um ADR via `terras-adr` e decida lá
-   (reescrever, reaproveitar adaptado ou verbatim) antes de codificar.
+1. **Confirme onde o módulo está na ordem de construção.** A ordem segue lógica de risco e dependência — isolado primeiro, acoplado depois. Não é bloqueante, mas mudar a ordem exige motivo concreto, não preferência do momento.
+2. **Leia a documentação do subsistema correspondente antes do inventário estrutural.** Os documentos de subsistema carregam o comportamento real (algoritmos, bugs de produção já corrigidos e por quê) que a tabela de tamanho/acoplamento não cobre. Confirme sempre no documento real — o mapeamento pode não ser 1:1.
+3. **Decida reescrever vs reaproveitar pela lista explícita, não por intuição.** Só copiar/adaptar o que estiver explicitamente listado como seguro — não confie em cópia inline nem em memória: a lista cresce a cada módulo. Caso fora da lista: o padrão é **não copiar**; abra um ADR e decida lá (reescrever, reaproveitar adaptado ou como está) antes de codificar.
+4. **Para redação exata, use a referência literal do projeto, não a memória.** Prompts, regex de segurança, DDL de migrations, catálogo de rotas — onde a redação literal importa, existe cópia fiel da fonte. Confira o índice dela para saber o que está incluído e o que ficou só documentado em comportamento.
+5. **Se o módulo tocar camadas centrais, confira os gates de dependência.** Regras como "o núcleo nunca importa a camada de cima" precisam estar cobertas por verificação automatizada cedo, para pegar acoplamento indevido na origem em vez de descobrir depois de emaranhado.
+6. **Ao entregar, siga a regra de validação do projeto.** Endpoint, script ou mudança de comportamento observável vem com artefato que exercita a implementação de ponta a ponta, além dos testes automatizados.
 
-4. **Pra redação exata, use `docs/referencia-verbatim/`, não memória.**
-   Prompts, regex de segurança, DDL de migrations, catálogo de rotas REST —
-   onde a redação literal importa, esse diretório tem cópia fiel do
-   original. Ver o `README.md` de lá pro que está incluído vs. só
-   documentado em comportamento (o kernel MCP inteiro, por exemplo, ficou
-   só documentado, é grande demais pra copiar).
+### Fora do escopo
 
-5. **Se o módulo tocar `core` ou `memory` — em especial o cluster
-   souls+policy+governança — confira se `deps-zones.mjs` está cobrindo os
-   pacotes novos.** A regra "core nunca importa memory" (zero violações
-   verificadas por grep no repo antigo) já foi portada pra
-   `scripts/deps-zones.mjs` (roda via `npm run verify:deps-zones`): quando
-   um módulo novo criar pacotes, adicione as zonas/allowlists dele lá
-   cedo, pra pegar acoplamento indevido em vez de descobrir depois de já
-   estar emaranhado.
+- Não decide por você o que reescrever/reaproveitar quando o caso não está explicitamente listado — isso é decisão de design nova; documente depois de decidida, em vez de deixá-la implícita no código.
+- Não substitui a leitura dos documentos reais — é um checklist de navegação, não um cache do conteúdo deles.
 
-6. **Ao entregar, siga a regra de validação do `CLAUDE.md`.** Todo
-   endpoint, script ou mudança de comportamento observável precisa vir com
-   um `.http` ou script (`curl`/shell) que exercita a implementação ponta a
-   ponta, além dos testes automatizados — não é opcional nem substituível
-   só por unit tests.
+## Governança
 
-## Fora do escopo desta skill
+- O conhecimento do sistema antigo é ativo do projeto: se a documentação não existe ainda, criá-la é parte da reconstrução, não tarefa paralela opcional.
+- "Copia porque parece igual" sem item na lista explícita é a decisão mais cara da reconstrução — o default é não copiar, com decisão registrada.
 
-- Ela não decide por você o que reescrever/reaproveitar quando o caso não
-  está explicitamente listado no doc — isso é uma decisão de design nova;
-  documente-a em `CONHECIMENTO-DO-MONOLITO.md` depois de decidida, em vez
-  de deixá-la implícita só no código.
-- Ela não substitui a leitura dos documentos reais — é um checklist de
-  navegação, não um cache do conteúdo deles.
+## Critério de qualidade
+
+O módulo começa bem quando: a posição na ordem de construção foi confirmada, o subsistema foi lido na fonte, a decisão reescrever/reaproveitar está explícita (lista ou ADR) e o gate de dependências cobre as camadas novas — tudo isso antes da primeira linha de código.

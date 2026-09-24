@@ -28,7 +28,7 @@ test("sem --aplicar não muda nada", () => {
 test("--aplicar cria um link por skill em cada pasta de agente que existe", () => {
   const h = home();
   roda(h, "--aplicar");
-  const esperado = readdirSync(SKILLS).length;
+  const esperado = readdirSync(SKILLS).filter((n) => !existsSync(join(SKILLS, n, ".nao-instalar"))).length;
   for (const p of [".claude/skills", ".zcode/skills"]) {
     const itens = readdirSync(join(h, p));
     assert.equal(itens.length, esperado, p);
@@ -76,4 +76,25 @@ test("~/.agents/skills não recebe link (nome duplicado com ~/.zcode fica ambíg
   const h = home([".zcode/skills", ".agents/skills"]);
   roda(h, "--aplicar");
   assert.equal(readdirSync(join(h, ".agents/skills")).length, 0);
+});
+
+test("skill com .nao-instalar não recebe link, e o link que já existia para ela sai", () => {
+  const h = home();
+  roda(h, "--aplicar");
+  const alvo = readdirSync(SKILLS).find((n) => existsSync(join(SKILLS, n, ".nao-instalar")));
+  assert.ok(alvo, "nenhuma skill marcada com .nao-instalar no repositório");
+  assert.ok(!existsSync(join(h, ".claude/skills", alvo)), `${alvo} foi instalada`);
+  symlinkSync(join(SKILLS, alvo), join(h, ".claude/skills", alvo));
+  const saida = roda(h, "--aplicar");
+  assert.match(saida, new RegExp(`remove link\\s+.*${alvo}`));
+  assert.ok(!existsSync(join(h, ".claude/skills", alvo)));
+});
+
+test("pasta real com o nome de uma skill .nao-instalar não é tocada", () => {
+  const h = home();
+  const alvo = readdirSync(SKILLS).find((n) => existsSync(join(SKILLS, n, ".nao-instalar")));
+  mkdirSync(join(h, ".claude/skills", alvo));
+  roda(h, "--aplicar");
+  assert.ok(lstatSync(join(h, ".claude/skills", alvo)).isDirectory());
+  assert.ok(!existsSync(join(h, ".terras-skills-backup")));
 });
