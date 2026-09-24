@@ -1,0 +1,181 @@
+{
+  "skills": [
+    {
+      "nome": "terras-adr"
+    },
+    {
+      "nome": "terras-agenda-de-touchpoints",
+      "antigo": "agenda-de-touchpoints"
+    },
+    {
+      "nome": "terras-analisador-de-linguagem-inclusiva",
+      "antigo": "analisador-de-linguagem-inclusiva"
+    },
+    {
+      "nome": "terras-analisador-de-pulse-semanal",
+      "antigo": "analisador-fala-ai-pulse-semanal"
+    },
+    {
+      "nome": "terras-api-sync"
+    },
+    {
+      "nome": "terras-apuracao-retencoes-federais"
+    },
+    {
+      "nome": "terras-astro"
+    },
+    {
+      "nome": "terras-azure-devops"
+    },
+    {
+      "nome": "terras-backreview",
+      "antigo": "backreview"
+    },
+    {
+      "nome": "terras-bar-raiser-de-cultura",
+      "antigo": "bar-raiser-de-cultura"
+    },
+    {
+      "nome": "terras-boundary"
+    },
+    {
+      "nome": "terras-briefing-pre-reuniao-de-lideranca",
+      "antigo": "briefing-pre-reuniao-de-lideranca"
+    },
+    {
+      "nome": "terras-care-to-dare-coach",
+      "antigo": "care-to-dare-coach"
+    },
+    {
+      "nome": "terras-conciliacao-bancaria-ofx"
+    },
+    {
+      "nome": "terras-conferencia-fechamento-folha"
+    },
+    {
+      "nome": "terras-conferencia-nfe-tomador-prestador"
+    },
+    {
+      "nome": "terras-construtor-de-job-description",
+      "antigo": "construtor-de-job-description"
+    },
+    {
+      "nome": "terras-dashboard-de-utilizacao-de-beneficios",
+      "antigo": "dashboard-de-utilizacao-de-beneficios"
+    },
+    {
+      "nome": "terras-drift"
+    },
+    {
+      "nome": "terras-elaboracao-proposta-comercial"
+    },
+    {
+      "nome": "terras-fluxo-de-contas-a-pagar"
+    },
+    {
+      "nome": "terras-gerador-de-all-hands",
+      "antigo": "gerador-de-all-faces"
+    },
+    {
+      "nome": "terras-gerador-de-comunicacao-de-rh",
+      "antigo": "gerador-de-comunicacao-de-rh"
+    },
+    {
+      "nome": "terras-gerador-de-matriz-9-box",
+      "antigo": "gerador-de-matriz-9-box"
+    },
+    {
+      "nome": "terras-gerador-de-okrs-de-pessoas",
+      "antigo": "gerador-de-okrs-de-pessoas"
+    },
+    {
+      "nome": "terras-gerador-de-pdi",
+      "antigo": "gerador-de-pdi"
+    },
+    {
+      "nome": "terras-gerador-de-plano-de-entrevista-estruturada",
+      "antigo": "gerador-de-plano-de-entrevista-estruturada"
+    },
+    {
+      "nome": "terras-gerador-de-politica-de-beneficios",
+      "antigo": "gerador-de-politica-de-beneficios"
+    },
+    {
+      "nome": "terras-gestao-de-ferias-e-escalas"
+    },
+    {
+      "nome": "terras-gestao-de-inadimplencia-cobranca"
+    },
+    {
+      "nome": "terras-humanizer"
+    },
+    {
+      "nome": "terras-laravel"
+    },
+    {
+      "nome": "terras-last30days"
+    },
+    {
+      "nome": "terras-people-dashboard-automatico",
+      "antigo": "people-dashboard-automatico"
+    },
+    {
+      "nome": "terras-php"
+    },
+    {
+      "nome": "terras-playbook-quebra-objecoes"
+    },
+    {
+      "nome": "terras-ponytail"
+    },
+    {
+      "nome": "terras-postgres"
+    },
+    {
+      "nome": "terras-prompt"
+    },
+    {
+      "nome": "terras-qualidade"
+    },
+    {
+      "nome": "terras-qualificacao-icp-bant"
+    },
+    {
+      "nome": "terras-reconstrucao"
+    },
+    {
+      "nome": "terras-robo-de-atendimento-de-rh",
+      "antigo": "robo-de-atendimento-alli-style"
+    },
+    {
+      "nome": "terras-roteirizador-de-onboarding",
+      "antigo": "roteirizador-de-onboarding"
+    },
+    {
+      "nome": "terras-screenador-de-curriculos-com-ia",
+      "antigo": "screenador-de-curriculos-com-ia"
+    },
+    {
+      "nome": "terras-seed"
+    },
+    {
+      "nome": "terras-simulador-de-oferta",
+      "antigo": "simulador-de-oferta"
+    },
+    {
+      "nome": "terras-tech-debt"
+    },
+    {
+      "nome": "terras-triagem-riscos-psicossociais"
+    },
+    {
+      "nome": "terras-validacao"
+    },
+    {
+      "nome": "terras-validacao-regularidade-cadastral"
+    },
+    {
+      "nome": "terras-vercel"
+    }
+  ]
+}

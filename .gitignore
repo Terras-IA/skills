@@ -1,0 +1,10 @@
+__pycache__/
+*.pyc
+.venv/
+venv/
+node_modules/
+.env
+config.json
+*token*.json
+client_secret*.json
+.auth/

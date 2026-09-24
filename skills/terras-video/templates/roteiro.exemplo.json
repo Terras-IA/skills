@@ -1,0 +1,56 @@
+{
+  "titulo": "Exemplo: um video curto a partir de um post",
+  "size": "1920x1080",
+  "lang": "pt-BR",
+  "voice": "pt-BR-AntonioNeural",
+  "rate": "-8%",
+  "kick": "TerrasIA",
+  "foot": "eolimabr.substack.com",
+  "counter": true,
+  "art": null,
+  "out": null,
+  "blocks": [
+    {
+      "layout": "abertura",
+      "kick": "TerrasIA",
+      "headline": "O agente que<br><em>publica</em>",
+      "sub": "Do repositório à newsletter, com <b>uma aprovação no meio</b>.",
+      "narration": "Texto falado desta cartela. Uma ideia por cartela, frases curtas, e o corte acompanha a fala."
+    },
+    {
+      "layout": "numeros",
+      "kick": "Esta semana",
+      "headline": "13 textos,<br><em>2 idiomas</em>",
+      "stats": [
+        ["13", "textos no ar"],
+        ["02", "idiomas"],
+        ["01", "aprovação humana"]
+      ],
+      "narration": "Cartela de prova: aqui entra o numero que sustenta o que a abertura prometeu."
+    },
+    {
+      "layout": "lista",
+      "kick": "O que muda",
+      "headline": "Tres pecas<br><em>que faltavam</em>",
+      "list": [
+        "Ingestão com debounce na borda",
+        "Fila assíncrona com workers",
+        "Portão de aprovação humana"
+      ],
+      "narration": "Cartela de lista: no maximo quatro itens, cada um com uma linha, para leitura em diagonal."
+    },
+    {
+      "layout": "declaracao",
+      "kick": "A tese",
+      "headline": "O modelo e commodity.<br>O produto e a <em>harness</em>.",
+      "narration": "Cartela de declaração: uma ideia so, sem apoio, para dar respiro no meio do video."
+    },
+    {
+      "layout": "fecho",
+      "kick": "Próximo vídeo",
+      "headline": "O fluxo<br><em>por dentro</em>",
+      "sub": "Do commit ao post publicado, e a parte que sobra pra mim.",
+      "narration": "Fecho com o proximo passo, e a pergunta que puxa o comentario."
+    }
+  ]
+}

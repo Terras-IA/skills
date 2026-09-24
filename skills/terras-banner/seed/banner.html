@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="{{LANG}}">
+<head>
+<meta charset="utf-8">
+<title>PENDING</title>
+<style>
+  @font-face {
+    font-family: 'Inter';
+    src: url('file://{{FONTS_DIR}}/inter-latin-ext.woff2') format('woff2');
+    font-weight: 100 900; font-style: normal; font-display: block;
+  }
+  @font-face {
+    font-family: 'Inter';
+    src: url('file://{{FONTS_DIR}}/inter-latin.woff2') format('woff2');
+    font-weight: 100 900; font-style: normal; font-display: block;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html, body { width: {{W}}px; height: {{H}}px; overflow: hidden; }
+  body {
+    font-family: 'Inter', sans-serif;
+    background: {{BASE}};
+    color: #f8fafc;
+    position: relative;
+  }
+  .art { position: absolute; inset: 0; background: {{BG}} center/cover no-repeat; }
+  .scrim {
+    position: absolute; inset: 0;
+    background: linear-gradient({{SCRIM_ANGLE}}deg,
+      {{BASE_RGBA_STRONG}} 0%,
+      {{BASE_RGBA_MID}} {{SCRIM_STOP}}%,
+      {{BASE_RGBA_SOFT}} 76%,
+      rgba(4,7,13,0) 100%);
+  }
+  .floor {
+    position: absolute; left: 0; right: 0; bottom: 0; height: {{FLOOR_H}}px;
+    background: linear-gradient(to top, {{BASE_RGBA_STRONG}} 0%, {{BASE_RGBA_SOFT}} 45%, rgba(4,7,13,0) 100%);
+  }
+  .grain {
+    position: absolute; inset: 0; opacity: .16; mix-blend-mode: overlay;
+    background-image: radial-gradient(rgba(255,255,255,.5) .5px, transparent .5px);
+    background-size: 3px 3px;
+  }
+
+  /* Coluna única: cabeçalho no topo e rodapé de dados embaixo, sem nada absoluto
+     por cima de nada, então dois elementos não têm como se cruzar. */
+  .content {
+    position: absolute; left: {{PAD}}px; right: {{PAD}}px;
+    top: {{TOP}}px; bottom: {{BOTTOM}}px;
+    display: flex; flex-direction: column;
+  }
+  .head { {{HEAD_EXTRA}} }
+  .eyebrow {
+    display: flex; align-items: center; gap: {{EYE_GAP}}px;
+    font-size: {{EYE_SIZE}}px; font-weight: 600; letter-spacing: .22em;
+    text-transform: uppercase; color: {{ACCENT}};
+  }
+  .eyebrow::before {
+    content: ""; width: {{EYE_RULE}}px; height: 2px; background: {{ACCENT}}; display: block;
+  }
+  h1 {
+    margin-top: {{H1_TOP}}px;
+    font-size: {{H1_SIZE}}px; font-weight: 800; line-height: 1.02;
+    letter-spacing: -0.035em;
+  }
+  h1 em, h1 .accent { font-style: normal; color: {{ACCENT}}; }
+  .sub {
+    margin-top: {{SUB_TOP}}px;
+    font-size: {{SUB_SIZE}}px; font-weight: 400; line-height: 1.35;
+    color: #b8c4d4; letter-spacing: -0.01em;
+  }
+  .sub b, .sub strong { color: #f8fafc; font-weight: 600; }
+
+  .bottom {
+    margin-top: auto; padding-top: {{SUB_TOP}}px;
+    display: flex; justify-content: space-between; align-items: baseline;
+    gap: {{STAT_PAD}}px;
+  }
+  .stats { display: flex; align-items: baseline; min-width: 0; }
+  .stat { padding: 0 {{STAT_PAD}}px; border-left: 1px solid {{ACCENT_RGBA}}; }
+  .stat:first-child { padding-left: 0; border-left: 0; }
+  .stat:last-child { padding-right: 0; }
+  .stat .n {
+    font-size: {{STAT_N}}px; font-weight: 800; color: {{ACCENT}};
+    letter-spacing: -0.03em; margin-right: {{STAT_GAP}}px;
+  }
+  .stat .l { font-size: {{STAT_L}}px; font-weight: 500; color: #d7dfe9; }
+  .foot {
+    flex: none; font-size: {{FOOT_SIZE}}px; font-weight: 500;
+    letter-spacing: .06em; color: #8b9bb0;
+  }
+</style>
+</head>
+<body>
+  <div class="art"></div>
+  <div class="scrim"></div>
+  <div class="floor"></div>
+  <div class="grain"></div>
+
+  <div class="content">
+    <div class="head">
+      <div class="eyebrow" data-fit>{{KICKER}}</div>
+      <h1 data-fit>{{HEADLINE}}</h1>
+      <div class="sub" data-fit>{{SUB}}</div>
+    </div>
+
+    <div class="bottom">
+      <div class="stats" data-fit>{{STATS}}</div>
+      <div class="foot" data-fit>{{FOOT}}</div>
+    </div>
+  </div>
+
+<script>
+  // Relatório de encaixe: escreve JSON no <title>, lido pelo render via --dump-dom.
+  window.addEventListener('load', () => {
+    const W = {{W}}, H = {{H}};
+    const nodes = Array.from(document.querySelectorAll('[data-fit]'));
+    const issues = [];
+    const rects = nodes.map(el => ({ el, r: el.getBoundingClientRect() }));
+
+    rects.forEach(({ el, r }) => {
+      if (el.scrollWidth > el.clientWidth + 1) {
+        issues.push({ el: el.className || el.tagName, kind: 'cortado-na-horizontal',
+                      scroll: el.scrollWidth, client: el.clientWidth });
+      }
+      if (r.left < -1 || r.top < -1 || r.right > W + 1 || r.bottom > H + 1) {
+        issues.push({ el: el.className || el.tagName, kind: 'fora-do-canvas',
+                      box: [Math.round(r.left), Math.round(r.top), Math.round(r.right), Math.round(r.bottom)] });
+      }
+    });
+
+    for (let i = 0; i < rects.length; i++) {
+      for (let j = i + 1; j < rects.length; j++) {
+        const a = rects[i].r, b = rects[j].r;
+        const ox = Math.min(a.right, b.right) - Math.max(a.left, b.left);
+        const oy = Math.min(a.bottom, b.bottom) - Math.max(a.top, b.top);
+        if (ox > 4 && oy > 4) {
+          issues.push({ el: `${rects[i].el.className || rects[i].el.tagName} x ${rects[j].el.className || rects[j].el.tagName}`,
+                        kind: 'sobreposicao', overlap: [Math.round(ox), Math.round(oy)] });
+        }
+      }
+    }
+
+    document.title = JSON.stringify({ w: W, h: H, issues: issues });
+  });
+</script>
+</body>
+</html>

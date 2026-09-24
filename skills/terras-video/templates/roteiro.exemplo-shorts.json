@@ -1,0 +1,51 @@
+{
+  "titulo": "Exemplo: um short a partir de um post",
+  "formato": "shorts",
+  "tema": "youtube",
+  "lang": "pt-BR",
+  "voice": "pt-BR-ThalitaMultilingualNeural",
+  "rate": "-8%",
+  "kick": "terrasIA",
+  "kick_label": "Bastidores",
+  "counter": true,
+  "hud": "Node : core_oper_ia_01",
+  "blocks": [
+    {
+      "layout": "canal",
+      "kick": "terrasIA",
+      "kick_label": "Bastidores",
+      "headline": "O post que se<br><em>escreve sozinho</em>",
+      "sub": "Do repositório à newsletter, com <b>uma aprovação no meio</b>.",
+      "narration": "Quatro blocos de quinze a vinte palavras dão de trinta a quarenta segundos de short. O gancho fica na primeira cartela, e a fala acompanha o corte."
+    },
+    {
+      "layout": "canal",
+      "kick": "Esta semana",
+      "headline": "13 textos,<br><em>2 idiomas</em>",
+      "stats": [
+        ["13", "textos no ar"],
+        ["02", "idiomas"],
+        ["01", "aprovação humana"]
+      ],
+      "narration": "Cartela de números: no vertical os valores vão empilhados, um por linha, com o rótulo ao lado. Três números lado a lado não cabem em 1080 de largura."
+    },
+    {
+      "layout": "lista",
+      "kick": "O que muda",
+      "headline": "Três peças<br><em>que faltavam</em>",
+      "list": [
+        "Ingestão com debounce na borda",
+        "Fila assíncrona com workers",
+        "Portão de aprovação humana"
+      ],
+      "narration": "No máximo quatro itens, uma linha cada, para leitura em diagonal. Item comprido quebra em duas linhas e a checagem de encaixe avisa."
+    },
+    {
+      "layout": "fecho",
+      "kick": "Próximo vídeo",
+      "headline": "O fluxo<br><em>por dentro</em>",
+      "sub": "Do commit ao post publicado, e a parte que sobra pra mim.",
+      "narration": "Fecho com o próximo passo e a pergunta que puxa o comentário. O texto de tela mora entre y 294 e y 1336, que é a faixa livre do player encolhida pelo zoom."
+    }
+  ]
+}

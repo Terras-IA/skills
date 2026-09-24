@@ -1,0 +1,20 @@
+{
+  "out": "/home/support/linkedin/banner-digest-v2.png",
+  "html": "/home/support/linkedin/banner-digest-v2.html",
+  "size": "1200x628",
+  "lang": "pt-BR",
+  "kick": "Digest &middot; Setembro 2026",
+  "headline": "Doze temas<br>em <em>tr&ecirc;s dias</em>",
+  "sub": "O prazo que machuca &eacute; <b>o que ningu&eacute;m assumiu</b>.",
+  "stats": [
+    ["04", "datas de fim de suporte"],
+    ["05", "sobre agentes"],
+    ["03", "de opera&ccedil;&atilde;o"]
+  ],
+  "foot": "eolimabr.substack.com",
+  "bg": "/home/support/linkedin/assets/digest-bg-datacenter.png",
+  "base": "#05090f",
+  "accent": "#ffcc33",
+  "scrim": 0.95,
+  "scrim_angle": 97
+}

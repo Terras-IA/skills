@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="{{LANG}}">
+<head>
+<meta charset="utf-8">
+<title>PENDING</title>
+<style>
+{{FONT_FACES}}
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html, body { width: {{W}}px; height: {{H}}px; overflow: hidden; }
+  body {
+    font-family: {{FONT_STACK}};
+    background: {{BASE}};
+    color: {{COR_TEXTO}};
+    position: relative;
+  }
+  .art { position: absolute; inset: 0; background: {{BG}} center/cover no-repeat; }
+  .glow {
+    position: absolute; inset: 0;
+    background:
+      radial-gradient(120% 95% at 50% 0%, rgba(0,0,0,0) 40%, rgba(0,0,0,0.42) 100%),
+      radial-gradient(circle at 78% 14%, {{ACCENT_RGBA}} 0%, rgba(0,0,0,0) 55%),
+      radial-gradient(circle at 4% 98%, {{ACCENT_RGBA_SOFT}} 0%, rgba(0,0,0,0) 58%);
+  }
+  .scrim { position: absolute; inset: 0; background: {{SCRIM_CSS}}; }
+  .grain {
+    position: absolute; inset: 0; opacity: .14; mix-blend-mode: overlay;
+    background-image: radial-gradient(rgba(255,255,255,.5) .5px, transparent .5px);
+    background-size: 3px 3px;
+  }
+
+  /* Igual ao card deitado, com uma diferenca que manda no resto: o conteudo vive na
+     area segura. Em pe o pe do quadro e da interface dos Shorts (canal, titulo,
+     botoes), entao o padding de cima e de baixo nao e margem, e o recorte do que a
+     interface nao come. O rodape entra nessa faixa, senao a assinatura some. */
+  .content {
+    position: absolute; inset: 0;
+    padding: {{SAFE_TOP}}px {{PAD}}px {{SAFE_BOTTOM}}px;
+    display: flex; flex-direction: column; justify-content: space-between;
+  }
+  .brand { display: flex; align-items: center; gap: {{EYE_GAP}}px; }
+  .brand::before { content: ""; width: {{EYE_RULE}}px; height: 3px; background: {{ACCENT}}; display: block; }
+  .eyebrow {
+    font-size: {{EYE_SIZE}}px; font-weight: 600; letter-spacing: .2em;
+    text-transform: uppercase; color: {{ACCENT}};
+  }
+  .counter {
+    margin-left: auto; font-size: {{EYE_SIZE}}px; font-weight: 600; letter-spacing: .12em;
+    color: {{COR_RODAPE}};
+  }
+  .main { display: flex; flex-direction: column; justify-content: center; flex: 1; }
+  h1 {
+    font-size: {{H1_SIZE}}px; font-weight: 700; line-height: 1.08;
+    letter-spacing: -0.02em; max-width: {{H1_MAX}}px;
+  }
+  h1 em { font-style: normal; color: {{ACCENT}}; }
+  .sub {
+    margin-top: {{SUB_TOP}}px; font-size: {{SUB_SIZE}}px; line-height: 1.35;
+    color: {{COR_TEXTO_APOIO}}; max-width: {{SUB_MAX}}px;
+  }
+  .sub b { color: {{COR_TEXTO}}; font-weight: 600; }
+
+  /* Numeros empilhados: tres colunas de numero numa tela de 1080 de largura viram
+     tres colunas apertadas, e o valor grande perde o efeito. Empilhado, o valor fica
+     a esquerda e o rotulo ao lado, na mesma linha de base. */
+  .stats { display: flex; flex-direction: column; margin-top: {{SUB_TOP}}px; }
+  .stat { display: flex; align-items: baseline; gap: {{STAT_GAP}}px; }
+  .stat .n {
+    font-size: {{STAT_N}}px; font-weight: 700; color: {{ACCENT}};
+    line-height: 1; letter-spacing: -0.03em; min-width: {{STAT_N_MIN}}px;
+  }
+  .stat .l { font-size: {{STAT_L}}px; color: {{COR_TEXTO_APOIO}}; }
+  .stat + .stat { margin-top: {{STAT_GAP_V}}px; padding-top: {{STAT_GAP_V}}px; border-top: 2px solid {{COR_LINHA}}; }
+
+  ul.list { list-style: none; margin-top: {{SUB_TOP}}px; display: flex; flex-direction: column; gap: {{LIST_GAP}}px; }
+  ul.list li {
+    font-size: {{LIST_SIZE}}px; line-height: 1.28; color: {{COR_TEXTO_LISTA}};
+    padding-left: {{LIST_INDENT}}px; position: relative; max-width: {{H1_MAX}}px;
+  }
+  ul.list li::before {
+    content: ""; position: absolute; left: 0; top: .52em;
+    width: {{LIST_DASH}}px; height: 4px; background: {{ACCENT}};
+  }
+  ul.list li b { color: {{COR_TEXTO}}; font-weight: 600; }
+
+  /* Declaração: uma ideia só, com barra de acento à esquerda. */
+  .layout-declaracao h1 { border-left: {{DECO_BAR}}px solid {{ACCENT}}; padding-left: {{DECO_PAD}}px; }
+
+  .foot { font-size: {{FOOT_SIZE}}px; color: {{COR_RODAPE}}; letter-spacing: .04em; }
+</style>
+</head>
+<body class="layout-{{LAYOUT}}">
+  <div class="art"></div>
+  <div class="glow"></div>
+  <div class="scrim"></div>
+  <div class="grain"></div>
+  <div class="content">
+    <div class="brand">
+      <span class="eyebrow">{{KICKER}}</span>
+      <span class="counter">{{COUNTER}}</span>
+    </div>
+    <div class="main">
+      <h1>{{HEADLINE}}</h1>
+      <div class="sub">{{SUB}}</div>
+      {{LIST}}
+      {{STATS}}
+    </div>
+    <div class="foot">{{FOOT}}</div>
+  </div>
+<script>
+// Mesmo contrato do card deitado (veredito no <title>, lido pelo build.py com
+// --dump-dom), mais a checagem que so faz sentido em pe: nada de texto na faixa que a
+// interface do player cobre. Sem ela a area segura seria so um numero no comentario.
+(function () {
+  var W = {{W}}, H = {{H}};
+  var SAFE_TOP = {{SAFE_TOP}}, SAFE_BOTTOM = {{SAFE_BOTTOM}};
+  var problems = [];
+  var inner = [".brand", "h1", ".sub", "ul.list", ".stats", ".foot"]
+    .map(function (s) { return document.querySelector(s); })
+    .filter(function (el) { return el && el.offsetParent !== null && (el.textContent || "").trim() !== ""; });
+
+  inner.forEach(function (el) {
+    var r = el.getBoundingClientRect();
+    var nome = el.className || el.tagName;
+    if (r.left < -1 || r.top < -1 || r.right > W + 1 || r.bottom > H + 1) {
+      problems.push("fora do canvas: " + nome + " -> " + Math.round(r.left) + "," + Math.round(r.top) + " " + Math.round(r.right) + "x" + Math.round(r.bottom));
+    }
+    if (r.top < SAFE_TOP - 1 || r.bottom > H - SAFE_BOTTOM + 1) {
+      problems.push("fora da area segura: " + nome + " ocupa " + Math.round(r.top) + " a " +
+        Math.round(r.bottom) + ", e a faixa livre vai de " + SAFE_TOP + " a " + (H - SAFE_BOTTOM));
+    }
+    // Tolerância de 6px: line-height fracionário arredonda diferente entre
+    // clientHeight e scrollHeight e isso não é corte visível.
+    var TOL = 6;
+    if (el.scrollHeight > el.clientHeight + TOL || el.scrollWidth > el.clientWidth + TOL) {
+      problems.push("texto cortado: " + nome + " (" + el.scrollWidth + "x" + el.scrollHeight +
+        " em " + el.clientWidth + "x" + el.clientHeight + ")");
+    }
+  });
+
+  // Sobreposição só entre blocos empilhados diferentes (mesmo pai não conta).
+  for (var i = 0; i < inner.length; i++) {
+    for (var j = i + 1; j < inner.length; j++) {
+      var a = inner[i], b = inner[j];
+      if (a.contains(b) || b.contains(a)) continue;
+      var ra = a.getBoundingClientRect(), rb = b.getBoundingClientRect();
+      var ox = Math.min(ra.right, rb.right) - Math.max(ra.left, rb.left);
+      var oy = Math.min(ra.bottom, rb.bottom) - Math.max(ra.top, rb.top);
+      if (ox > 2 && oy > 2) {
+        problems.push("sobreposição: " + (a.className || a.tagName) + " x " + (b.className || b.tagName) + " (" + Math.round(ox) + "x" + Math.round(oy) + "px)");
+      }
+    }
+  }
+
+  var h1 = document.querySelector("h1");
+  if (h1) {
+    var lines = Math.round(h1.getBoundingClientRect().height / (parseFloat(getComputedStyle(h1).fontSize) * 1.08));
+    if (lines > {{H1_LINHAS_MAX}}) problems.push("manchete com " + lines + " linhas (max {{H1_LINHAS_MAX}} no vertical)");
+  }
+
+  document.title = problems.length ? "FALHA: " + problems.join(" | ") : "OK";
+})();
+</script>
+</body>
+</html>
