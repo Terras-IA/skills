@@ -128,3 +128,11 @@ test("config.example.json é permitido", () => {
   const raiz = repo({ "skills/terras-exemplo/SKILL.md": SKILL_OK, "skills/terras-exemplo/config.example.json": "{}" });
   assert.deepEqual(verificar(raiz), []);
 });
+
+test("marca de origem em script também é recusada", () => {
+  const raiz = repo({
+    "skills/terras-exemplo/SKILL.md": SKILL_OK,
+    "skills/terras-exemplo/scripts/x.py": "# tokens do design system do iFood\n",
+  });
+  assert.ok(regras(raiz).includes("origem"));
+});

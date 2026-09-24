@@ -117,7 +117,7 @@ export function verificar(raiz) {
           for (const [re, tipo] of HARNESS) if (re.test(linha)) acusa("harness", `${caminho}:${i + 1}`, `${tipo}: ${linha.trim().slice(0, 120)}`);
         });
       }
-      if (caminho.endsWith(".md")) for (const [re, marca] of ORIGEM) if (re.test(txt)) acusa("origem", caminho, `cita "${marca}"`);
+      if (!vendor.some((v) => rel.startsWith(v))) for (const [re, marca] of ORIGEM) if (re.test(txt)) acusa("origem", caminho, `cita "${marca}"`);
     }
   }
 

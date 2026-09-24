@@ -10,6 +10,8 @@ import { fileURLToPath } from "node:url";
 const RAIZ = fileURLToPath(new URL("..", import.meta.url));
 const SCRIPT = join(RAIZ, "scripts/instalar.sh");
 const SKILLS = join(RAIZ, "skills");
+const INSTALAVEIS = readdirSync(SKILLS).filter((n) => !existsSync(join(SKILLS, n, ".nao-instalar"))).sort();
+const [A, B] = INSTALAVEIS;
 
 function home(pastas = [".claude/skills", ".zcode/skills"]) {
   const h = mkdtempSync(join(tmpdir(), "terras-home-"));
@@ -32,22 +34,22 @@ test("--aplicar cria um link por skill em cada pasta de agente que existe", () =
   for (const p of [".claude/skills", ".zcode/skills"]) {
     const itens = readdirSync(join(h, p));
     assert.equal(itens.length, esperado, p);
-    const link = join(h, p, "terras-substack");
+    const link = join(h, p, A);
     assert.ok(lstatSync(link).isSymbolicLink());
-    assert.equal(realpathSync(link), realpathSync(join(SKILLS, "terras-substack")));
+    assert.equal(realpathSync(link), realpathSync(join(SKILLS, A)));
   }
   assert.ok(!existsSync(join(h, ".codex/skills")), "não cria pasta de agente que não existe");
 });
 
 test("pasta real no caminho vai para o backup antes do link", () => {
   const h = home();
-  mkdirSync(join(h, ".zcode/skills/terras-banner"));
-  writeFileSync(join(h, ".zcode/skills/terras-banner/SKILL.md"), "versão antiga");
+  mkdirSync(join(h, ".zcode/skills", B));
+  writeFileSync(join(h, ".zcode/skills", B, "SKILL.md"), "versão antiga");
   roda(h, "--aplicar");
-  assert.ok(lstatSync(join(h, ".zcode/skills/terras-banner")).isSymbolicLink());
+  assert.ok(lstatSync(join(h, ".zcode/skills", B)).isSymbolicLink());
   const backups = readdirSync(join(h, ".terras-skills-backup"));
   assert.equal(backups.length, 1);
-  const salvo = join(h, ".terras-skills-backup", backups[0], "zcode", "terras-banner", "SKILL.md");
+  const salvo = join(h, ".terras-skills-backup", backups[0], "zcode", B, "SKILL.md");
   assert.equal(readFileSync(salvo, "utf8"), "versão antiga");
 });
 
@@ -61,15 +63,15 @@ test("link que já aponta para o repositório fica como está e rodar de novo n�
 
 test("link apontando para outro lugar é trocado e o destino antigo registrado", () => {
   const h = home();
-  mkdirSync(join(h, "antigo/terras-linkedin"), { recursive: true });
-  symlinkSync(join(h, "antigo/terras-linkedin"), join(h, ".claude/skills/terras-linkedin"));
+  mkdirSync(join(h, "antigo", A), { recursive: true });
+  symlinkSync(join(h, "antigo", A), join(h, ".claude/skills", A));
   roda(h, "--aplicar");
-  assert.equal(realpathSync(join(h, ".claude/skills/terras-linkedin")), realpathSync(join(SKILLS, "terras-linkedin")));
+  assert.equal(realpathSync(join(h, ".claude/skills", A)), realpathSync(join(SKILLS, A)));
   const backups = readdirSync(join(h, ".terras-skills-backup"));
-  const registro = readFileSync(join(h, ".terras-skills-backup", backups[0], "claude", "terras-linkedin.link"), "utf8");
-  assert.equal(registro.trim(), join(h, "antigo/terras-linkedin"));
-  assert.ok(existsSync(join(h, "antigo/terras-linkedin")), "o destino do link antigo não é tocado");
-  assert.ok(readlinkSync(join(h, ".claude/skills/terras-linkedin")).startsWith("/"));
+  const registro = readFileSync(join(h, ".terras-skills-backup", backups[0], "claude", `${A}.link`), "utf8");
+  assert.equal(registro.trim(), join(h, "antigo", A));
+  assert.ok(existsSync(join(h, "antigo", A)), "o destino do link antigo não é tocado");
+  assert.ok(readlinkSync(join(h, ".claude/skills", A)).startsWith("/"));
 });
 
 test("~/.agents/skills não recebe link (nome duplicado com ~/.zcode fica ambíguo)", () => {
@@ -98,3 +100,18 @@ test("pasta real com o nome de uma skill .nao-instalar não é tocada", () => {
   assert.ok(lstatSync(join(h, ".claude/skills", alvo)).isDirectory());
   assert.ok(!existsSync(join(h, ".terras-skills-backup")));
 });
+
+test("link para skill que saiu do repositório é removido; link alheio fica", () => {
+  const h = home();
+  symlinkSync(join(SKILLS, "terras-que-nao-existe-mais"), join(h, ".claude/skills/terras-que-nao-existe-mais"));
+  mkdirSync(join(h, "outro/terras-de-outro"), { recursive: true });
+  symlinkSync(join(h, "outro/terras-de-outro"), join(h, ".claude/skills/terras-de-outro"));
+  const saida = roda(h, "--aplicar");
+  assert.match(saida, /remove órfão/);
+  assert.ok(!existsSync(join(h, ".claude/skills/terras-que-nao-existe-mais")) && !lstatExiste(join(h, ".claude/skills/terras-que-nao-existe-mais")));
+  assert.ok(lstatSync(join(h, ".claude/skills/terras-de-outro")).isSymbolicLink());
+});
+
+function lstatExiste(p) {
+  try { lstatSync(p); return true; } catch { return false; }
+}

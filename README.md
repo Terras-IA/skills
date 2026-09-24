@@ -45,7 +45,7 @@ ao lado do que o projeto já carrega.
 
 1. **Prefixo.** Toda pasta é `terras-<nome-em-kebab-case>`, e o `name` do
    cabeçalho é igual à pasta.
-2. **Cabeçalho aceito pelo motor.** LF (nunca CRLF), campos planos
+2. **Cabeçalho aceito pelo motor.** LF no arquivo inteiro (nunca CRLF), campos planos
    `chave: valor`, cabeçalho de no máximo 1024 caracteres.
 3. **Catálogo que dispara.** Skill listada em `catalogo.json` tem `description`
    de até 280 caracteres, sem bloco YAML, e `keywords` não vazias: sem
@@ -77,6 +77,7 @@ bash scripts/instalar.sh --aplicar # instala (backup em ~/.terras-skills-backup/
 
 Em máquina nova: clonar o repositório e rodar `bash scripts/instalar.sh
 --aplicar`. O instalador só cria link nas pastas de agente que já existem.
+Ele usa `readlink -f`: Linux, ou macOS 12.3 em diante.
 
 ## Mudar uma skill do catálogo
 
