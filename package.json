@@ -1,0 +1,13 @@
+{
+  "name": "terrasia-skills",
+  "private": true,
+  "description": "Fonte única das skills terras-*: agente e catálogo do motor terrasia.",
+  "type": "module",
+  "engines": { "node": ">=22" },
+  "scripts": {
+    "verificar": "node scripts/verificar.mjs",
+    "test": "node --test --test-timeout=60000 scripts/*.test.mjs",
+    "gate": "node scripts/verificar.mjs && node --test --test-timeout=60000 scripts/*.test.mjs",
+    "instalar": "bash scripts/instalar.sh"
+  }
+}
