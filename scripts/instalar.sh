@@ -19,11 +19,13 @@ SKILLS="$REPO/skills"
 BACKUP="$HOME/.terras-skills-backup/$(date +%Y%m%d-%H%M%S)"
 
 # agente|pasta de skills
+# ~/.agents/skills fica de fora de propósito: é pasta de fallback lida por mais
+# de um agente, e o mesmo nome lá e em ~/.zcode/skills fez o ZCode responder
+# "Skill name is ambiguous".
 ALVOS=(
   "claude|$HOME/.claude/skills"
   "zcode|$HOME/.zcode/skills"
   "opencode|$HOME/.config/opencode/skills"
-  "agents|$HOME/.agents/skills"
   "codex|$HOME/.codex/skills"
 )
 

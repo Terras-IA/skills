@@ -71,3 +71,9 @@ test("link apontando para outro lugar é trocado e o destino antigo registrado",
   assert.ok(existsSync(join(h, "antigo/terras-linkedin")), "o destino do link antigo não é tocado");
   assert.ok(readlinkSync(join(h, ".claude/skills/terras-linkedin")).startsWith("/"));
 });
+
+test("~/.agents/skills não recebe link (nome duplicado com ~/.zcode fica ambíguo)", () => {
+  const h = home([".zcode/skills", ".agents/skills"]);
+  roda(h, "--aplicar");
+  assert.equal(readdirSync(join(h, ".agents/skills")).length, 0);
+});
