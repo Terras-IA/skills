@@ -4,7 +4,7 @@ version: 1.0.0
 access: free
 category: comercial-vendas
 description: Estrutura a minuta de uma proposta a partir do que foi levantado na conversa, separando escopo de expectativa e marcando cada número que ainda precisa de confirmação antes de sair.
-keywords: [proposta comercial, minuta de proposta, escopo do projeto, precificacao, roi da entrega, orcamento para cliente, contraproposta]
+keywords: [proposta comercial, minuta de proposta, escopo do projeto, precificacao, roi da entrega, orcamento para cliente, contraproposta comercial, contraproposta do cliente]
 ---
 
 # Elaboração de proposta comercial

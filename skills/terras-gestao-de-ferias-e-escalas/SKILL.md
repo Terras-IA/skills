@@ -4,7 +4,7 @@ version: 1.0.0
 access: free
 category: dp-rh
 description: Organiza períodos aquisitivo e concessivo, abono e fracionamento por equipe, e mostra onde a escala não se sustenta — com os prazos informados pela empresa, não de memória.
-keywords: [ferias, periodo aquisitivo, periodo concessivo, abono pecuniario, escala de ferias, vender ferias, ferias vencidas, fracionamento de ferias]
+keywords: [periodo aquisitivo, periodo concessivo, abono pecuniario, escala de ferias, vender ferias, ferias vencidas, fracionamento de ferias]
 ---
 
 # Gestão de férias e escalas

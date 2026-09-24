@@ -4,7 +4,7 @@ version: 1.0.0
 access: free
 category: operacao
 description: Registra decisão de reescrever vs reaproveitar quando o caso não está numa lista canônica — ADR leve com contexto, decisão, alternativas, consequências e rastreabilidade.
-keywords: [adr, registrar decisao de design, reescrever ou reaproveitar, decisao arquitetural]
+keywords: [registrar um adr, escrever um adr, architecture decision record, registrar decisao de design, reescrever ou reaproveitar, decisao arquitetural]
 ---
 
 # ADR leve — reescrever vs reaproveitar
