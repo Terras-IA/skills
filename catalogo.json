@@ -16,6 +16,9 @@
       "antigo": "analisador-fala-ai-pulse-semanal"
     },
     {
+      "nome": "terras-analise-de-inadimplentes"
+    },
+    {
       "nome": "terras-api-sync"
     },
     {
@@ -36,6 +39,9 @@
       "antigo": "bar-raiser-de-cultura"
     },
     {
+      "nome": "terras-boleto-sankhya"
+    },
+    {
       "nome": "terras-boundary"
     },
     {
@@ -45,6 +51,9 @@
     {
       "nome": "terras-care-to-dare-coach",
       "antigo": "care-to-dare-coach"
+    },
+    {
+      "nome": "terras-cobranca-hubspot"
     },
     {
       "nome": "terras-conciliacao-bancaria-ofx"
@@ -142,6 +151,9 @@
     },
     {
       "nome": "terras-reconstrucao"
+    },
+    {
+      "nome": "terras-revisao-de-codigo"
     },
     {
       "nome": "terras-robo-de-atendimento-de-rh",
