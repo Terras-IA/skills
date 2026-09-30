@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="{{LANG}}">
+<head>
+<meta charset="utf-8">
+<title>PENDING</title>
+<style>
+  {{FONT_FACES}}
+  {{FONT_MONO_FACES}}
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html, body { width: {{W}}px; height: {{H}}px; overflow: hidden; }
+  body {
+    font-family: {{FONT_STACK}};
+    background: {{BASE}};
+    color: {{COR_TEXTO}};
+    position: relative;
+  }
+  .art { position: absolute; inset: 0; background: {{BG}} center/cover no-repeat; }
+  .veil {
+    position: absolute; inset: 0;
+    background: linear-gradient(100deg, rgba(2,6,23,.97) 0%, rgba(2,6,23,.94) 42%, rgba(2,6,23,.45) 78%, rgba(2,6,23,.25) 100%);
+  }
+  .content { position: absolute; inset: 0; display: flex; }
+
+  /* Coluna de texto: marca, manchete, apoio, dados. Largura fixa para a foto
+     nunca empurrar o texto, que e o que mantem as cartelas alinhadas entre si. */
+  .coluna {
+    width: {{COL_W}}px; padding: {{PAD}}px {{PAD}}px {{PAD_BOTTOM}}px;
+    display: flex; flex-direction: column;
+  }
+  .topo { display: flex; align-items: center; gap: {{GAP}}px; min-height: {{PILL_H}}px; }
+  .pill {
+    display: inline-flex; align-items: center; gap: {{PILL_GAP}}px;
+    border: 2px solid {{ACCENT}}; border-radius: 999px;
+    padding: {{PILL_PAD_V}}px {{PILL_PAD_H}}px;
+    font-family: {{FONT_MONO}}; font-size: {{PILL_SIZE}}px; font-weight: 700;
+    letter-spacing: .18em; text-transform: uppercase; color: {{ACCENT}};
+  }
+  .pill .pt { width: {{PILL_DOT}}px; height: {{PILL_DOT}}px; border-radius: 50%; background: {{ACCENT}}; }
+  .rotulo {
+    font-family: {{FONT_MONO}}; font-size: {{LABEL_SIZE}}px; font-weight: 500;
+    letter-spacing: .22em; text-transform: uppercase; color: {{COR_LABEL}};
+  }
+  .rotulo::before { content: "·"; margin-right: {{GAP}}px; color: {{COR_LABEL}}; }
+  .marca { margin-left: auto; font-family: {{FONT_MONO}}; font-size: {{MARK_SIZE}}px; font-weight: 700; letter-spacing: .1em; }
+  .marca b { color: {{ACCENT}}; }
+
+  .main { flex: 1; display: flex; flex-direction: column; justify-content: center; min-height: 0; }
+  h1 {
+    font-size: {{H1_SIZE}}px; font-weight: 700; line-height: {{H1_LH}};
+    letter-spacing: -0.025em; max-width: {{H1_MAX}}px;
+  }
+  h1 em { font-style: normal; color: {{ACCENT2}}; }
+  .sub {
+    margin-top: {{SUB_TOP}}px; font-size: {{SUB_SIZE}}px; line-height: 1.35;
+    color: {{COR_TEXTO_APOIO}}; max-width: {{SUB_MAX}}px;
+    border-left: {{BAR_W}}px solid {{ACCENT}}; padding-left: {{BAR_PAD}}px;
+  }
+  .sub b { color: {{COR_TEXTO}}; font-weight: 600; }
+
+  .rodape { display: flex; align-items: flex-end; justify-content: space-between; gap: {{GAP}}px; }
+  .stats, .assinatura { flex-shrink: 0; }
+  .main { padding-bottom: {{MAIN_GAP}}px; }
+  .stats { display: flex; align-items: flex-start; gap: {{STAT_GAP}}px; }
+  .main, .rodape { flex-shrink: 0; }
+  .stat { display: flex; flex-direction: column; gap: {{STAT_INNER}}px; }
+  .stat .n { font-family: {{FONT_MONO}}; font-size: {{STAT_N}}px; font-weight: 700; line-height: 1; color: {{ACCENT}}; }
+  .stat .l {
+    font-family: {{FONT_MONO}}; font-size: {{STAT_L}}px; font-weight: 500;
+    letter-spacing: .14em; text-transform: uppercase; color: {{COR_LABEL}};
+    white-space: nowrap;   /* rotulo quebrado em duas linhas desmonta a regua */
+  }
+  .stat + .stat { border-left: 1px solid {{COR_LINHA}}; padding-left: {{STAT_GAP}}px; }
+  .assinatura { text-align: right; display: flex; flex-direction: column; gap: 6px; }
+  .assinatura .l1 {
+    font-family: {{FONT_MONO}}; font-size: {{FOOT_L}}px; letter-spacing: .22em;
+    text-transform: uppercase; color: {{COR_RODAPE}}; white-space: nowrap;
+  }
+  .assinatura .l2 { font-family: {{FONT_MONO}}; font-size: {{FOOT_URL}}px; font-weight: 600; color: {{COR_TEXTO_APOIO}}; }
+
+  /* Painel da foto: mesma altura da area de texto, canto arredondado e HUD. */
+  .painel {
+    position: absolute; right: {{PAD}}px; top: {{PAD}}px; bottom: {{PAD_BOTTOM}}px;
+    width: {{PANEL_W}}px; border-radius: {{PANEL_R}}px; overflow: hidden;
+    background: {{FOTO}} center/cover no-repeat, {{BASE}};
+    box-shadow: 0 0 0 1px rgba(34,211,238,.25), 0 30px 80px rgba(0,0,0,.55);
+  }
+  .painel .hud {
+    position: absolute; left: {{HUD_LEFT}}px; bottom: {{HUD_BOTTOM}}px;
+    display: inline-flex; align-items: center; gap: 8px;
+    background: rgba(2,6,23,.72); border: 1px solid rgba(34,211,238,.45);
+    border-radius: 6px; padding: 7px 12px;
+    font-family: {{FONT_MONO}}; font-size: {{HUD_SIZE}}px; letter-spacing: .1em;
+    text-transform: uppercase; color: {{ACCENT}};
+  }
+  /* Ancorado a esquerda do painel, nunca sobre ele: na primeira versao o contador
+     encostava no canto arredondado e o ultimo digito caia fora da moldura. */
+  .contador {
+    position: absolute; top: {{PAD}}px; right: {{CONT_RIGHT}}px;
+    font-family: {{FONT_MONO}}; font-size: {{LABEL_SIZE}}px; letter-spacing: .2em;
+    color: {{COR_RODAPE}}; text-align: right; pointer-events: none;
+  }
+</style>
+</head>
+<body class="layout-canal">
+  <div class="art"></div>
+  <div class="veil"></div>
+  <div class="content">
+    <div class="coluna">
+      <div class="topo">
+        <span class="pill">{{PILL_ICON}}<span>{{KICKER}}</span></span>
+        <span class="rotulo">{{KICKER_LABEL}}</span>
+        <span class="marca">{{WORDMARK}}<b>{{WORDMARK_ALT}}</b></span>
+      </div>
+      <div class="main">
+        <h1>{{HEADLINE}}</h1>
+        <div class="sub">{{SUB}}</div>
+      </div>
+      <div class="rodape">
+        <div class="stats">{{STATS}}</div>
+        <span class="assinatura"><span class="l1">{{FOOT_LABEL}}</span><span class="l2">{{ASSINATURA}}</span></span>
+      </div>
+    </div>
+  </div>
+  <div class="painel"><span class="hud">{{HUD}}</span></div>
+  <div class="contador">{{COUNTER}}</div>
+<script>
+// Mesmo contrato do card.html: veredito no <title>, lido pelo build.py com --dump-dom.
+(function () {
+  var W = {{W}}, H = {{H}}, problems = [];
+  var TOL = 6;
+  var alvos = [".topo", ".marca", "h1", ".sub", ".stats", ".rodape", ".painel", ".assinatura"];
+  var els = alvos.map(function (s) { return document.querySelector(s); })
+                 .filter(function (el) { return el && (el.textContent || "").trim() !== ""; });
+  els.forEach(function (el) {
+    var r = el.getBoundingClientRect();
+    if (r.left < -1 || r.top < -1 || r.right > W + 1 || r.bottom > H + 1) {
+      problems.push("fora do canvas: " + (el.className || el.tagName));
+    }
+    if (el.scrollHeight > el.clientHeight + TOL || el.scrollWidth > el.clientWidth + TOL) {
+      problems.push("texto cortado: " + (el.className || el.tagName) +
+        " (" + el.scrollWidth + "x" + el.scrollHeight + " em " + el.clientWidth + "x" + el.clientHeight + ")");
+    }
+  });
+  var h1 = document.querySelector("h1");
+  if (h1) {
+    var linhas = Math.round(h1.getBoundingClientRect().height / (parseFloat(getComputedStyle(h1).fontSize) * {{H1_LH}}));
+    if (linhas > 3) problems.push("manchete com " + linhas + " linhas (max 3 no card de canal)");
+  }
+  // Texto nao pode invadir o painel da foto.
+  var painel = document.querySelector(".painel");
+  if (painel) {
+    var rp = painel.getBoundingClientRect();
+    [".topo", "h1", ".sub", ".stats", ".assinatura", ".contador"].forEach(function (s) {
+      var el = document.querySelector(s);
+      if (!el) return;
+      var r = el.getBoundingClientRect();
+      var ox = Math.min(r.right, rp.right) - Math.max(r.left, rp.left);
+      var oy = Math.min(r.bottom, rp.bottom) - Math.max(r.top, rp.top);
+      if (ox > 2 && oy > 2) problems.push("texto sob o painel: " + s + " (" + Math.round(ox) + "x" + Math.round(oy) + "px)");
+    });
+  }
+  document.title = problems.length ? "FALHA: " + problems.join(" | ") : "OK";
+})();
+</script>
+</body>
+</html>

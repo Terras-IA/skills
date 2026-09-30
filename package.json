@@ -8,6 +8,7 @@
     "verificar": "node scripts/verificar.mjs",
     "test": "node --test --test-timeout=60000 scripts/*.test.mjs",
     "gate": "node scripts/verificar.mjs && node --test --test-timeout=60000 scripts/*.test.mjs",
-    "instalar": "bash scripts/instalar.sh"
+    "instalar": "bash scripts/instalar.sh",
+    "marketplace": "node scripts/marketplace.mjs"
   }
 }

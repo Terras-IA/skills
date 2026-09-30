@@ -1,0 +1,1256 @@
+{
+  "$schema": "https://anthropic.com/claude-code/marketplace.schema.json",
+  "name": "terras",
+  "description": "Skills terras-* para Claude Code, instaláveis uma a uma.",
+  "owner": {
+    "name": "Everton Lima"
+  },
+  "plugins": [
+    {
+      "name": "terras-coders-mural",
+      "description": "Engajamento em lote no Mural de Posts da COD3RS e no LinkedIn, com aprovação humana antes de publicar.",
+      "version": "1.0.0",
+      "author": {
+        "name": "Everton Lima"
+      },
+      "source": "./plugins/terras-coders-mural",
+      "category": "productivity",
+      "license": "MIT"
+    },
+    {
+      "name": "terras-linkedin-alvos",
+      "description": "Comentários de qualidade, cedo, nos posts de perfis-alvo do LinkedIn, com aprovação antes de publicar.",
+      "version": "1.0.0",
+      "author": {
+        "name": "Everton Lima"
+      },
+      "source": "./plugins/terras-linkedin-alvos",
+      "category": "productivity",
+      "license": "MIT"
+    },
+    {
+      "name": "terras-midia",
+      "description": "Áudio, vídeo e banner: narração com voz e pronúncia cuidadas, vídeo a partir de roteiro e arte de capa. As três skills usam scripts umas das outras, por isso saem juntas.",
+      "version": "1.0.0",
+      "source": "./plugins/terras-midia",
+      "category": "productivity",
+      "license": "MIT",
+      "author": {
+        "name": "Everton Lima"
+      }
+    },
+    {
+      "name": "terras-agenda-de-touchpoints",
+      "description": "Estrutura 1:1s recorrentes com pautas, histórico de feedback, decisões e loops abertos.",
+      "version": "1.0.0",
+      "source": "./skills/terras-agenda-de-touchpoints",
+      "strict": false,
+      "skills": [
+        "./"
+      ],
+      "category": "avaliação",
+      "license": "MIT",
+      "author": {
+        "name": "Everton Lima"
+      },
+      "keywords": [
+        "1:1",
+        "one on one",
+        "agenda de touchpoints",
+        "cadência de encontros",
+        "loops abertos",
+        "reunião individual",
+        "pauta de 1:1"
+      ]
+    },
+    {
+      "name": "terras-analisador-de-linguagem-inclusiva",
+      "description": "Revisa vagas, avaliações e comunicados em busca de linguagem enviesada, excludente ou pouco acessível.",
+      "version": "1.0.0",
+      "source": "./skills/terras-analisador-de-linguagem-inclusiva",
+      "strict": false,
+      "skills": [
+        "./"
+      ],
+      "category": "dei",
+      "license": "MIT",
+      "author": {
+        "name": "Everton Lima"
+      },
+      "keywords": [
+        "linguagem inclusiva",
+        "viés de linguagem",
+        "texto enviesado",
+        "termos excludentes",
+        "análise de viés",
+        "texto inclusivo"
+      ]
+    },
+    {
+      "name": "terras-analisador-de-pulse-semanal",
+      "description": "Processa respostas de pulse survey semanal e transforma temas recorrentes em insights acionáveis para lideranças.",
+      "version": "1.0.0",
+      "source": "./skills/terras-analisador-de-pulse-semanal",
+      "strict": false,
+      "skills": [
+        "./"
+      ],
+      "category": "cultura",
+      "license": "MIT",
+      "author": {
+        "name": "Everton Lima"
+      },
+      "keywords": [
+        "pulse survey",
+        "pesquisa de engajamento",
+        "análise de respostas abertas",
+        "insights de clima",
+        "temas recorrentes"
+      ]
+    },
+    {
+      "name": "terras-apuracao-retencoes-federais",
+      "description": "Confere se as retenções federais na fonte de uma nota de serviço foram aplicadas, dispensadas ou esquecidas, usando as alíquotas e limites informados pela empresa, nunca de memória.",
+      "version": "1.0.0",
+      "source": "./skills/terras-apuracao-retencoes-federais",
+      "strict": false,
+      "skills": [
+        "./"
+      ],
+      "category": "fiscal",
+      "license": "MIT",
+      "author": {
+        "name": "Everton Lima"
+      },
+      "keywords": [
+        "retencao na fonte",
+        "retencoes federais",
+        "irrf",
+        "pis cofins csll",
+        "csrf",
+        "inss retido",
+        "darf",
+        "imposto retido"
+      ]
+    },
+    {
+      "name": "terras-astro",
+      "description": "Publica site estático multilíngue de graça no Cloudflare Pages com Astro e conteúdo em markdown. Use para criar site ou blog estático, configurar i18n, converter markdown em site e subir hospedagem gratuita.",
+      "version": "1.0.0",
+      "source": "./skills/terras-astro",
+      "strict": false,
+      "skills": [
+        "./"
+      ],
+      "category": "productivity",
+      "license": "MIT",
+      "author": {
+        "name": "Everton Lima"
+      },
+      "keywords": [
+        "astro.js",
+        "site astro",
+        "projeto astro",
+        "framework astro",
+        "cloudflare pages"
+      ]
+    },
+    {
+      "name": "terras-azure-devops",
+      "description": "List Azure DevOps projects, repositories, and branches; create pull requests; manage work items; check build status. Use when working with Azure DevOps resources, checking PR status, querying project structure, or automating DevOps workflows.",
+      "version": "1.0.0",
+      "source": "./skills/terras-azure-devops",
+      "strict": false,
+      "skills": [
+        "./"
+      ],
+      "category": "productivity",
+      "license": "MIT",
+      "author": {
+        "name": "Everton Lima"
+      },
+      "keywords": [
+        "azure devops",
+        "azure repos",
+        "azure pipelines",
+        "azure boards",
+        "work item"
+      ]
+    },
+    {
+      "name": "terras-bar-raiser-de-cultura",
+      "description": "Estrutura entrevistas de fit cultural com critérios observáveis, scoring e recomendação; use em processos seletivos que exigem avaliação consistente de valores.",
+      "version": "1.0.0",
+      "source": "./skills/terras-bar-raiser-de-cultura",
+      "strict": false,
+      "skills": [
+        "./"
+      ],
+      "category": "contratação",
+      "license": "MIT",
+      "author": {
+        "name": "Everton Lima"
+      },
+      "keywords": [
+        "entrevista de cultura",
+        "fit cultural",
+        "bar raiser",
+        "avaliar valores",
+        "veto de contratação",
+        "scorecard de entrevista"
+      ]
+    },
+    {
+      "name": "terras-briefing-pre-reuniao-de-lideranca",
+      "description": "Prepara briefings para líderes com saúde do time, feedbacks recentes, loops abertos, riscos e perguntas para a reunião.",
+      "version": "1.0.0",
+      "source": "./skills/terras-briefing-pre-reuniao-de-lideranca",
+      "strict": false,
+      "skills": [
+        "./"
+      ],
+      "category": "liderança",
+      "license": "MIT",
+      "author": {
+        "name": "Everton Lima"
+      },
+      "keywords": [
+        "briefing de liderança",
+        "reunião de calibração",
+        "preparar reunião",
+        "pauta de calibração",
+        "saúde do time",
+        "loops abertos",
+        "brief de uma página"
+      ]
+    },
+    {
+      "name": "terras-care-to-dare-coach",
+      "description": "Gera prompts de coaching, scripts de feedback e planos de desafio com base no framework Care to Dare.",
+      "version": "1.0.0",
+      "source": "./skills/terras-care-to-dare-coach",
+      "strict": false,
+      "skills": [
+        "./"
+      ],
+      "category": "liderança",
+      "license": "MIT",
+      "author": {
+        "name": "Everton Lima"
+      },
+      "keywords": [
+        "care to dare",
+        "coaching",
+        "script de feedback",
+        "conversa difícil",
+        "plano de desafio",
+        "feedback"
+      ]
+    },
+    {
+      "name": "terras-conciliacao-bancaria-ofx",
+      "description": "Concilia extrato bancário com os lançamentos internos e separa o que casou, o que divergiu, o que é tarifa e o que ficou sem par.",
+      "version": "1.0.0",
+      "source": "./skills/terras-conciliacao-bancaria-ofx",
+      "strict": false,
+      "skills": [
+        "./"
+      ],
+      "category": "financeiro",
+      "license": "MIT",
+      "author": {
+        "name": "Everton Lima"
+      },
+      "keywords": [
+        "conciliar",
+        "conciliação",
+        "extrato",
+        "ofx",
+        "fechar o caixa",
+        "saldo não bate",
+        "tarifa"
+      ]
+    },
+    {
+      "name": "terras-conferencia-fechamento-folha",
+      "description": "Confere o fechamento da folha antes do envio — horas extras, adicional noturno, faltas e encargos — apontando o que não fecha por matrícula, sem afirmar alíquota nem regra de convenção de memória.",
+      "version": "1.0.0",
+      "source": "./skills/terras-conferencia-fechamento-folha",
+      "strict": false,
+      "skills": [
+        "./"
+      ],
+      "category": "dp-rh",
+      "license": "MIT",
+      "author": {
+        "name": "Everton Lima"
+      },
+      "keywords": [
+        "fechamento de folha",
+        "folha de pagamento",
+        "hora extra",
+        "adicional noturno",
+        "banco de horas",
+        "inss fgts",
+        "dsr",
+        "faltas e atrasos"
+      ]
+    },
+    {
+      "name": "terras-conferencia-nfe-tomador-prestador",
+      "description": "Confere uma nota fiscal recebida ou emitida campo a campo e separa o que está consistente do que precisa de decisão humana, sem afirmar alíquota nem enquadramento por conta própria.",
+      "version": "1.0.0",
+      "source": "./skills/terras-conferencia-nfe-tomador-prestador",
+      "strict": false,
+      "skills": [
+        "./"
+      ],
+      "category": "fiscal",
+      "license": "MIT",
+      "author": {
+        "name": "Everton Lima"
+      },
+      "keywords": [
+        "nota fiscal",
+        "nf-e",
+        "nfs-e",
+        "cfop",
+        "ncm",
+        "issqn",
+        "icms",
+        "bitributacao",
+        "danfe",
+        "xml da nota"
+      ]
+    },
+    {
+      "name": "terras-construtor-de-job-description",
+      "description": "Gera descrições de cargo claras, inclusivas e alinhadas à cultura e ao modelo de competências da organização.",
+      "version": "1.0.0",
+      "source": "./skills/terras-construtor-de-job-description",
+      "strict": false,
+      "skills": [
+        "./"
+      ],
+      "category": "contratação",
+      "license": "MIT",
+      "author": {
+        "name": "Everton Lima"
+      },
+      "keywords": [
+        "descrição de vaga",
+        "job description",
+        "descrição de cargo",
+        "abrir vaga",
+        "requisitos da vaga",
+        "vaga inclusiva"
+      ]
+    },
+    {
+      "name": "terras-cover-letter",
+      "description": "Escreve e revisa cartas de apresentação (cover letters) para vagas internacionais e remotas. Use quando o usuário pedir carta de apresentação, cover letter, mensagem de candidatura para empresa de fora, InMail para recrutador, texto para vaga na gringa, ou revisar uma carta existente.",
+      "version": "1.0.0",
+      "source": "./skills/terras-cover-letter",
+      "strict": false,
+      "skills": [
+        "./"
+      ],
+      "category": "productivity",
+      "license": "MIT",
+      "author": {
+        "name": "Everton Lima"
+      },
+      "keywords": [
+        "cover letter",
+        "carta de apresentação",
+        "candidatura",
+        "vaga internacional",
+        "gringa",
+        "remoto",
+        "remote",
+        "inmail",
+        "recrutador",
+        "job application"
+      ]
+    },
+    {
+      "name": "terras-dashboard-de-utilizacao-de-beneficios",
+      "description": "Analisa adesão, utilização, custo e satisfação dos benefícios por tipo de saldo, período e público permitido.",
+      "version": "1.0.0",
+      "source": "./skills/terras-dashboard-de-utilizacao-de-beneficios",
+      "strict": false,
+      "skills": [
+        "./"
+      ],
+      "category": "benefícios",
+      "license": "MIT",
+      "author": {
+        "name": "Everton Lima"
+      },
+      "keywords": [
+        "utilização de benefícios",
+        "dashboard de benefícios",
+        "adesão ao benefício",
+        "va e vr",
+        "va vr",
+        "mobilidade",
+        "custo de benefícios",
+        "satisfação com benefícios"
+      ]
+    },
+    {
+      "name": "terras-decisor",
+      "description": "Use para tomar decisões estruturadas a partir de um contexto, retornando exclusivamente um YAML válido. Ideal para integração como motor de decisão em pipelines, sem chat ou texto extra. Use apenas quando o output precisa ser um YAML estruturado.",
+      "version": "1.0.0",
+      "source": "./skills/terras-decisor",
+      "strict": false,
+      "skills": [
+        "./"
+      ],
+      "category": "productivity",
+      "license": "MIT",
+      "author": {
+        "name": "Everton Lima"
+      }
+    },
+    {
+      "name": "terras-elaboracao-proposta-comercial",
+      "description": "Estrutura a minuta de uma proposta a partir do que foi levantado na conversa, separando escopo de expectativa e marcando cada número que ainda precisa de confirmação antes de sair.",
+      "version": "1.0.0",
+      "source": "./skills/terras-elaboracao-proposta-comercial",
+      "strict": false,
+      "skills": [
+        "./"
+      ],
+      "category": "comercial-vendas",
+      "license": "MIT",
+      "author": {
+        "name": "Everton Lima"
+      },
+      "keywords": [
+        "proposta comercial",
+        "minuta de proposta",
+        "escopo do projeto",
+        "precificacao",
+        "roi da entrega",
+        "orcamento para cliente",
+        "contraproposta comercial",
+        "contraproposta do cliente"
+      ]
+    },
+    {
+      "name": "terras-fluxo-de-contas-a-pagar",
+      "description": "Leva uma conta a pagar da chegada do documento até a liberação: autenticidade do boleto, alçada por valor e escalonamento.",
+      "version": "1.0.0",
+      "source": "./skills/terras-fluxo-de-contas-a-pagar",
+      "strict": false,
+      "skills": [
+        "./"
+      ],
+      "category": "financeiro",
+      "license": "MIT",
+      "author": {
+        "name": "Everton Lima"
+      },
+      "keywords": [
+        "boleto",
+        "contas a pagar",
+        "pagamento",
+        "alçada",
+        "boleto de fornecedor",
+        "liberar pagamento"
+      ]
+    },
+    {
+      "name": "terras-gerador-de-all-hands",
+      "description": "Prepara o encontro mensal de toda a empresa com resumo de resultados, perguntas votadas e talking points.",
+      "version": "1.0.0",
+      "source": "./skills/terras-gerador-de-all-hands",
+      "strict": false,
+      "skills": [
+        "./"
+      ],
+      "category": "cultura",
+      "license": "MIT",
+      "author": {
+        "name": "Everton Lima"
+      },
+      "keywords": [
+        "all hands",
+        "encontro mensal da empresa",
+        "perguntas votadas",
+        "talking points",
+        "reunião geral"
+      ]
+    },
+    {
+      "name": "terras-gerador-de-comunicacao-de-rh",
+      "description": "Redige comunicados internos claros sobre políticas, mudanças organizacionais, benefícios e atualizações de People.",
+      "version": "1.0.0",
+      "source": "./skills/terras-gerador-de-comunicacao-de-rh",
+      "strict": false,
+      "skills": [
+        "./"
+      ],
+      "category": "operação",
+      "license": "MIT",
+      "author": {
+        "name": "Everton Lima"
+      },
+      "keywords": [
+        "comunicado interno",
+        "comunicação de rh",
+        "aviso aos colaboradores",
+        "mudança de política",
+        "comunicado de home office",
+        "faq"
+      ]
+    },
+    {
+      "name": "terras-gerador-de-matriz-9-box",
+      "description": "Organiza performance e potencial em uma matriz 9-Box com critérios, evidências e planos de ação por quadrante.",
+      "version": "1.0.0",
+      "source": "./skills/terras-gerador-de-matriz-9-box",
+      "strict": false,
+      "skills": [
+        "./"
+      ],
+      "category": "talentos",
+      "license": "MIT",
+      "author": {
+        "name": "Everton Lima"
+      },
+      "keywords": [
+        "9 box",
+        "matriz de talentos",
+        "performance e potencial",
+        "calibração de talentos",
+        "quadrante",
+        "nove box"
+      ]
+    },
+    {
+      "name": "terras-gerador-de-okrs-de-pessoas",
+      "description": "Cria OKRs trimestrais de People conectados à estratégia do negócio, com resultados mensuráveis e responsáveis.",
+      "version": "1.0.0",
+      "source": "./skills/terras-gerador-de-okrs-de-pessoas",
+      "strict": false,
+      "skills": [
+        "./"
+      ],
+      "category": "people analytics",
+      "license": "MIT",
+      "author": {
+        "name": "Everton Lima"
+      },
+      "keywords": [
+        "okr",
+        "okrs de pessoas",
+        "objetivos e resultados-chave",
+        "okr trimestral",
+        "metas de people"
+      ]
+    },
+    {
+      "name": "terras-gerador-de-pdi",
+      "description": "Cria planos de desenvolvimento individual conectando feedbacks, competências, ações, recursos e evidências de evolução.",
+      "version": "1.0.0",
+      "source": "./skills/terras-gerador-de-pdi",
+      "strict": false,
+      "skills": [
+        "./"
+      ],
+      "category": "avaliação",
+      "license": "MIT",
+      "author": {
+        "name": "Everton Lima"
+      },
+      "keywords": [
+        "pdi",
+        "plano de desenvolvimento individual",
+        "gaps de competência",
+        "ações 70 20 10",
+        "desenvolvimento da pessoa",
+        "plano de desenvolvimento"
+      ]
+    },
+    {
+      "name": "terras-gerador-de-plano-de-entrevista-estruturada",
+      "description": "Cria roteiros por competência com perguntas comportamentais, sinais de evidência e rubrica de avaliação.",
+      "version": "1.0.0",
+      "source": "./skills/terras-gerador-de-plano-de-entrevista-estruturada",
+      "strict": false,
+      "skills": [
+        "./"
+      ],
+      "category": "contratação",
+      "license": "MIT",
+      "author": {
+        "name": "Everton Lima"
+      },
+      "keywords": [
+        "plano de entrevista",
+        "entrevista estruturada",
+        "roteiro de perguntas",
+        "rubrica de avaliação",
+        "perguntas comportamentais",
+        "painel de entrevistas"
+      ]
+    },
+    {
+      "name": "terras-gerador-de-politica-de-beneficios",
+      "description": "Redige políticas de benefícios claras, aplicáveis e alinhadas ao PAT e ao orçamento informado pela empresa.",
+      "version": "1.0.0",
+      "source": "./skills/terras-gerador-de-politica-de-beneficios",
+      "strict": false,
+      "skills": [
+        "./"
+      ],
+      "category": "benefícios",
+      "license": "MIT",
+      "author": {
+        "name": "Everton Lima"
+      },
+      "keywords": [
+        "política de benefícios",
+        "benefício flexível",
+        "pat",
+        "regras de benefícios",
+        "política de va e vr",
+        "elegibilidade de benefícios"
+      ]
+    },
+    {
+      "name": "terras-gestao-de-ferias-e-escalas",
+      "description": "Organiza períodos aquisitivo e concessivo, abono e fracionamento por equipe, e mostra onde a escala não se sustenta — com os prazos informados pela empresa, não de memória.",
+      "version": "1.0.0",
+      "source": "./skills/terras-gestao-de-ferias-e-escalas",
+      "strict": false,
+      "skills": [
+        "./"
+      ],
+      "category": "dp-rh",
+      "license": "MIT",
+      "author": {
+        "name": "Everton Lima"
+      },
+      "keywords": [
+        "periodo aquisitivo",
+        "periodo concessivo",
+        "abono pecuniario",
+        "escala de ferias",
+        "vender ferias",
+        "ferias vencidas",
+        "fracionamento de ferias"
+      ]
+    },
+    {
+      "name": "terras-gestao-de-inadimplencia-cobranca",
+      "description": "Monta a régua de cobrança de D-3 a D+15 com o tom de cada contato, os encargos do contrato e o ponto de decisão.",
+      "version": "1.0.0",
+      "source": "./skills/terras-gestao-de-inadimplencia-cobranca",
+      "strict": false,
+      "skills": [
+        "./"
+      ],
+      "category": "financeiro",
+      "license": "MIT",
+      "author": {
+        "name": "Everton Lima"
+      },
+      "keywords": [
+        "cobrança",
+        "cobrar",
+        "inadimplência",
+        "título vencido",
+        "não pagou",
+        "atraso",
+        "régua"
+      ]
+    },
+    {
+      "name": "terras-humanizer",
+      "description": "Reescreve texto com cara de IA para soar humano, sem mudar o que ele diz e sem inventar nada.",
+      "version": "1.0.0",
+      "source": "./skills/terras-humanizer",
+      "strict": false,
+      "skills": [
+        "./"
+      ],
+      "category": "productivity",
+      "license": "MIT",
+      "author": {
+        "name": "Everton Lima"
+      },
+      "keywords": [
+        "humanizar",
+        "humanizer",
+        "texto de IA",
+        "AI writing",
+        "marcas de IA",
+        "revisão",
+        "edição",
+        "prosa",
+        "português",
+        "inglês"
+      ]
+    },
+    {
+      "name": "terras-laravel",
+      "description": "Build robust Laravel apps avoiding Eloquent traps, queue failures, and auth pitfalls.",
+      "version": "1.0.1",
+      "source": "./skills/terras-laravel",
+      "strict": false,
+      "skills": [
+        "./"
+      ],
+      "category": "productivity",
+      "license": "MIT",
+      "author": {
+        "name": "Everton Lima"
+      },
+      "keywords": [
+        "laravel",
+        "eloquent",
+        "artisan"
+      ]
+    },
+    {
+      "name": "terras-last30days",
+      "description": "Pesquisa o que se falou sobre um tema nos últimos 30 dias em Reddit, X, YouTube, Hacker News, Polymarket, GitHub e web, com motor local vendorizado.",
+      "version": "3.25.0",
+      "source": "./skills/terras-last30days",
+      "strict": false,
+      "skills": [
+        "./"
+      ],
+      "category": "productivity",
+      "license": "MIT",
+      "author": {
+        "name": "Everton Lima"
+      },
+      "keywords": [
+        "last30days",
+        "pesquisa de pauta",
+        "trending",
+        "reddit",
+        "hacker news",
+        "youtube",
+        "x",
+        "sentimento",
+        "descoberta",
+        "tópicos recentes"
+      ]
+    },
+    {
+      "name": "terras-linkedin",
+      "description": "Ajuda a escrever posts para LinkedIn. Use quando o usuário pedir para escrever, redigir, revisar ou melhorar um post/texto para LinkedIn, e também quando perguntar sobre alcance, impressões, views ou por que um post rendeu pouco.",
+      "version": "1.0.0",
+      "source": "./skills/terras-linkedin",
+      "strict": false,
+      "skills": [
+        "./"
+      ],
+      "category": "productivity",
+      "license": "MIT",
+      "author": {
+        "name": "Everton Lima"
+      },
+      "keywords": [
+        "linkedin",
+        "post",
+        "escrever",
+        "redigir",
+        "revisar",
+        "comentar",
+        "comentário",
+        "responder post",
+        "post de terceiro",
+        "resposta curta",
+        "hook",
+        "cta",
+        "hashtags",
+        "travessao",
+        "em dash",
+        "carrossel",
+        "alcance",
+        "impressoes",
+        "distribuição",
+        "views",
+        "fora da rede"
+      ]
+    },
+    {
+      "name": "terras-notas",
+      "description": "Analisa NFS-e (nota fiscal de serviço) recebidas da contabilidade Fênix Assessoria, confere o tomador/destinatário contra um de-para de clientes e envia cada nota por e-mail pelo Outlook do Office 365 (Microsoft Graph).",
+      "version": "1.0.0",
+      "source": "./skills/terras-notas",
+      "strict": false,
+      "skills": [
+        "./"
+      ],
+      "category": "productivity",
+      "license": "MIT",
+      "author": {
+        "name": "Everton Lima"
+      },
+      "keywords": [
+        "nfse",
+        "nota fiscal",
+        "nfs-e",
+        "fenix",
+        "felix",
+        "contabilidade",
+        "assessoria",
+        "tomador",
+        "destinatario",
+        "de-para",
+        "outlook",
+        "office 365",
+        "graph",
+        "enviar nota",
+        "emitir nota"
+      ]
+    },
+    {
+      "name": "terras-people-dashboard-automatico",
+      "description": "Monta um dashboard mensal de liderança com headcount, retenção, remuneração, contratação e DEI.",
+      "version": "1.0.0",
+      "source": "./skills/terras-people-dashboard-automatico",
+      "strict": false,
+      "skills": [
+        "./"
+      ],
+      "category": "people analytics",
+      "license": "MIT",
+      "author": {
+        "name": "Everton Lima"
+      },
+      "keywords": [
+        "people dashboard",
+        "dashboard de rh",
+        "headcount",
+        "turnover",
+        "retenção de pessoas",
+        "people analytics",
+        "indicadores de rh"
+      ]
+    },
+    {
+      "name": "terras-php",
+      "description": "Write solid PHP avoiding type juggling traps, array quirks, and common security pitfalls.",
+      "version": "1.0.1",
+      "source": "./skills/terras-php",
+      "strict": false,
+      "skills": [
+        "./"
+      ],
+      "category": "productivity",
+      "license": "MIT",
+      "author": {
+        "name": "Everton Lima"
+      },
+      "keywords": [
+        "php",
+        "composer"
+      ]
+    },
+    {
+      "name": "terras-playbook-quebra-objecoes",
+      "description": "Classifica a objeção real por trás do que o cliente disse e devolve caminhos de resposta apoiados no que a empresa consegue sustentar, sem prometer preço, prazo ou funcionalidade que não existem.",
+      "version": "1.0.0",
+      "source": "./skills/terras-playbook-quebra-objecoes",
+      "strict": false,
+      "skills": [
+        "./"
+      ],
+      "category": "comercial-vendas",
+      "license": "MIT",
+      "author": {
+        "name": "Everton Lima"
+      },
+      "keywords": [
+        "objecao",
+        "quebra de objecoes",
+        "esta caro",
+        "vou pensar",
+        "concorrente",
+        "desconto",
+        "cliente sumiu",
+        "follow up de proposta"
+      ]
+    },
+    {
+      "name": "terras-ponytail",
+      "description": "Lazy senior dev mode for any coding task (write, refactor, fix, review): YAGNI, stdlib first, no unrequested abstractions. Not for non-coding requests.",
+      "version": "1.0.0",
+      "source": "./skills/terras-ponytail",
+      "strict": false,
+      "skills": [
+        "./"
+      ],
+      "category": "productivity",
+      "license": "MIT",
+      "author": {
+        "name": "Everton Lima"
+      },
+      "keywords": [
+        "over-engineering",
+        "overengineering",
+        "over engineering",
+        "simplificar o codigo",
+        "yagni"
+      ]
+    },
+    {
+      "name": "terras-postgres",
+      "description": "Administra e otimiza banco PostgreSQL pelas tools do postgres-mcp: verificação de saúde, ajuste de índice, análise de plano de consulta, leitura de schema e execução de SQL. Use quando pedirem Postgres, otimização de banco, índice lento ou desempenho de query.",
+      "version": "1.0.0",
+      "source": "./skills/terras-postgres",
+      "strict": false,
+      "skills": [
+        "./"
+      ],
+      "category": "productivity",
+      "license": "MIT",
+      "author": {
+        "name": "Everton Lima"
+      },
+      "keywords": [
+        "postgres",
+        "postgresql",
+        "query lenta",
+        "explain analyze"
+      ]
+    },
+    {
+      "name": "terras-prompt",
+      "description": "Use ao criar, revisar, avaliar ou ajustar um PROMPT (texto para IA), não para executar a tarefa descrita. Preserve a intenção original, otimize pela necessidade (não pelo tamanho) e nunca recrie de memória prompt canônico do Prompt Garden (docs/referencia-verbatim).",
+      "version": "1.0.0",
+      "source": "./skills/terras-prompt",
+      "strict": false,
+      "skills": [
+        "./"
+      ],
+      "category": "productivity",
+      "license": "MIT",
+      "author": {
+        "name": "Everton Lima"
+      },
+      "keywords": [
+        "prompt",
+        "otimizar prompt",
+        "reescrever prompt",
+        "avaliar prompt",
+        "prompt garden"
+      ]
+    },
+    {
+      "name": "terras-qualificacao-icp-bant",
+      "description": "Qualifica um lead a partir do que foi dito na conversa — orçamento, autoridade, necessidade e timing — separando o que o cliente afirmou do que o vendedor supôs, e dizendo o que falta perguntar.",
+      "version": "1.0.0",
+      "source": "./skills/terras-qualificacao-icp-bant",
+      "strict": false,
+      "skills": [
+        "./"
+      ],
+      "category": "comercial-vendas",
+      "license": "MIT",
+      "author": {
+        "name": "Everton Lima"
+      },
+      "keywords": [
+        "qualificacao de lead",
+        "bant",
+        "icp",
+        "lead qualificado",
+        "discovery",
+        "perfil de cliente ideal",
+        "vale a pena esse lead",
+        "descartar lead"
+      ]
+    },
+    {
+      "name": "terras-revisao-de-codigo",
+      "description": "Revisa uma mudança de código pelo risco que ela cria, com foco em integração que movimenta dinheiro ou dado de cliente: correção, idempotência, falha parcial, segredo, dado pessoal e teste que prova.",
+      "version": "1.0.0",
+      "source": "./skills/terras-revisao-de-codigo",
+      "strict": false,
+      "skills": [
+        "./"
+      ],
+      "category": "operacao",
+      "license": "MIT",
+      "author": {
+        "name": "Everton Lima"
+      },
+      "keywords": [
+        "revisao de codigo",
+        "revisar o codigo",
+        "revise o codigo",
+        "revisa o codigo",
+        "code review",
+        "pull request"
+      ]
+    },
+    {
+      "name": "terras-robo-de-atendimento-de-rh",
+      "description": "Estrutura um atendimento de auto serviço para dúvidas de férias, benefícios, políticas e folha, com encaminhamento seguro para casos complexos.",
+      "version": "1.0.0",
+      "source": "./skills/terras-robo-de-atendimento-de-rh",
+      "strict": false,
+      "skills": [
+        "./"
+      ],
+      "category": "operação",
+      "license": "MIT",
+      "author": {
+        "name": "Everton Lima"
+      },
+      "keywords": [
+        "atendimento de rh",
+        "autoatendimento",
+        "bot de rh",
+        "dúvidas de férias",
+        "fluxo de atendimento",
+        "encaminhamento humano"
+      ]
+    },
+    {
+      "name": "terras-roteirizador-de-onboarding",
+      "description": "Monta um plano de onboarding de 30, 60 e 90 dias com check-ins, tarefas e expectativas claras para a nova pessoa.",
+      "version": "1.0.0",
+      "source": "./skills/terras-roteirizador-de-onboarding",
+      "strict": false,
+      "skills": [
+        "./"
+      ],
+      "category": "contratação",
+      "license": "MIT",
+      "author": {
+        "name": "Everton Lima"
+      },
+      "keywords": [
+        "onboarding",
+        "plano de 30 60 90 dias",
+        "integração de pessoa nova",
+        "check-ins de onboarding",
+        "buddy",
+        "primeira semana"
+      ]
+    },
+    {
+      "name": "terras-screenador-de-curriculos-com-ia",
+      "description": "Ranqueia currículos por requisitos da vaga e anonimiza dados sensíveis para apoiar uma triagem mais justa e auditável.",
+      "version": "1.0.0",
+      "source": "./skills/terras-screenador-de-curriculos-com-ia",
+      "strict": false,
+      "skills": [
+        "./"
+      ],
+      "category": "contratação",
+      "license": "MIT",
+      "author": {
+        "name": "Everton Lima"
+      },
+      "keywords": [
+        "triagem de currículos",
+        "rankear candidatos",
+        "anonimizar currículos",
+        "filtro de currículo",
+        "triagem justa",
+        "screening"
+      ]
+    },
+    {
+      "name": "terras-seed",
+      "description": "Use sempre que o pedido for sobre criar, revisar, avaliar ou ajustar um PROMPT (o texto de instrução dado a uma IA como ChatGPT, Claude ou Gemini), e não sobre executar a tarefa que esse prompt descreve.",
+      "version": "1.0.0",
+      "source": "./skills/terras-seed",
+      "strict": false,
+      "skills": [
+        "./"
+      ],
+      "category": "productivity",
+      "license": "MIT",
+      "author": {
+        "name": "Everton Lima"
+      },
+      "keywords": [
+        "prompt",
+        "otimizar prompt",
+        "revisar prompt",
+        "avaliar prompt",
+        "ajustar prompt",
+        "prompt pra IA",
+        "monta um prompt",
+        "esse prompt tá bom",
+        "Lyra"
+      ]
+    },
+    {
+      "name": "terras-simulador-de-oferta",
+      "description": "Simula propostas de remuneração considerando benchmark de mercado, equidade interna e cenários de negociação.",
+      "version": "1.0.0",
+      "source": "./skills/terras-simulador-de-oferta",
+      "strict": false,
+      "skills": [
+        "./"
+      ],
+      "category": "contratação",
+      "license": "MIT",
+      "author": {
+        "name": "Everton Lima"
+      },
+      "keywords": [
+        "simular oferta",
+        "proposta de remuneração",
+        "contraproposta",
+        "faixa salarial",
+        "equity",
+        "compressão salarial",
+        "negociação de salário"
+      ]
+    },
+    {
+      "name": "terras-standards",
+      "description": "Aplica os Padrões Agnósticos de Engenharia e Produto v4.0 (arquitetura, segurança, privacidade e IA) com lastro em evidência real de cliente quando disponível.",
+      "version": "1.0.0",
+      "source": "./skills/terras-standards",
+      "strict": false,
+      "skills": [
+        "./"
+      ],
+      "category": "productivity",
+      "license": "MIT",
+      "author": {
+        "name": "Everton Lima"
+      }
+    },
+    {
+      "name": "terras-substack",
+      "description": "Publica, agenda e gerencia posts na Substack (newsletter) usando a API interna do editor. Use quando o pedido envolver Substack, publicar post, subir newsletter, criar rascunho, publicar nota/Note, agendar publicacao, despublicar, enviar imagem para o Substack, ou conferir rascunhos existentes.",
+      "version": "1.0.0",
+      "source": "./skills/terras-substack",
+      "strict": false,
+      "skills": [
+        "./"
+      ],
+      "category": "productivity",
+      "license": "MIT",
+      "author": {
+        "name": "Everton Lima"
+      },
+      "keywords": [
+        "substack",
+        "publicar",
+        "publish",
+        "newsletter",
+        "rascunho",
+        "draft",
+        "note",
+        "nota",
+        "agendar",
+        "schedule",
+        "unpublish",
+        "prosemirror",
+        "eolimabr"
+      ]
+    },
+    {
+      "name": "terras-tech-debt",
+      "description": "Auditoria de dívida técnica e arquitetura de um repositório, com achados citando arquivo:linha, severidade, esforço e a seção obrigatória 'parece ruim mas está certo'.",
+      "version": "1.0.0",
+      "source": "./skills/terras-tech-debt",
+      "strict": false,
+      "skills": [
+        "./"
+      ],
+      "category": "productivity",
+      "license": "MIT",
+      "author": {
+        "name": "Everton Lima"
+      },
+      "keywords": [
+        "auditoria",
+        "dívida técnica",
+        "tech debt",
+        "arquitetura",
+        "codebase",
+        "revisão de código",
+        "refatoração",
+        "legado",
+        "severidade",
+        "relatório técnico"
+      ]
+    },
+    {
+      "name": "terras-triagem-riscos-psicossociais",
+      "description": "Lê sinais agregados de sobrecarga e atrito de uma equipe e entrega indícios com evidência para a gestão avaliar, sem diagnosticar pessoa, sem dado de saúde e sem individualizar quem não pode ser individualizado.",
+      "version": "1.0.0",
+      "source": "./skills/terras-triagem-riscos-psicossociais",
+      "strict": false,
+      "skills": [
+        "./"
+      ],
+      "category": "dp-rh",
+      "license": "MIT",
+      "author": {
+        "name": "Everton Lima"
+      },
+      "keywords": [
+        "risco psicossocial",
+        "riscos psicossociais",
+        "sobrecarga cronica",
+        "iso 45003",
+        "clima organizacional",
+        "burnout na equipe",
+        "horas extras recorrentes",
+        "rotatividade"
+      ]
+    },
+    {
+      "name": "terras-validacao-regularidade-cadastral",
+      "description": "Organiza a checagem de idoneidade de um fornecedor ou parceiro — o que precisa ser verificado, onde, com que validade — e registra o que ficou sem comprovação.",
+      "version": "1.0.0",
+      "source": "./skills/terras-validacao-regularidade-cadastral",
+      "strict": false,
+      "skills": [
+        "./"
+      ],
+      "category": "fiscal",
+      "license": "MIT",
+      "author": {
+        "name": "Everton Lima"
+      },
+      "keywords": [
+        "regularidade fiscal",
+        "certidao negativa",
+        "cnd",
+        "idoneidade",
+        "homologacao de fornecedor",
+        "situacao cadastral",
+        "cnpj do fornecedor",
+        "inscricao estadual"
+      ]
+    },
+    {
+      "name": "terras-vercel",
+      "description": "Deploy applications and manage projects with complete CLI reference. Commands for deployments, projects, domains, environment variables, and live documentation access.",
+      "version": "1.0.0",
+      "source": "./skills/terras-vercel",
+      "strict": false,
+      "skills": [
+        "./"
+      ],
+      "category": "productivity",
+      "license": "MIT",
+      "author": {
+        "name": "Everton Lima"
+      },
+      "keywords": [
+        "vercel"
+      ]
+    }
+  ]
+}

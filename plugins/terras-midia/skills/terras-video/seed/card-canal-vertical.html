@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="{{LANG}}">
+<head>
+<meta charset="utf-8">
+<title>PENDING</title>
+<style>
+  {{FONT_FACES}}
+  {{FONT_MONO_FACES}}
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html, body { width: {{W}}px; height: {{H}}px; overflow: hidden; }
+  body {
+    font-family: {{FONT_STACK}};
+    background: {{BASE}};
+    color: {{COR_TEXTO}};
+    position: relative;
+  }
+  /* Em pe o painel de 31% da largura nao cabe: ele viraria um selo espremido ao lado
+     de uma coluna de 650px. A foto passa a ser o fundo do quadro inteiro, com o veu
+     escurecendo onde o texto encosta. O resto da identidade do card de canal fica:
+     pill com contorno, rotulos em mono, manchete, apoio com barra, regua de dados,
+     assinatura e o HUD. */
+  .art { position: absolute; inset: 0; background: {{FOTO}} center/cover no-repeat, {{BASE}}; }
+  .veil {
+    position: absolute; inset: 0;
+    background: linear-gradient(180deg,
+      rgba(2,6,23,.93) 0%, rgba(2,6,23,.78) 30%, rgba(2,6,23,.72) 52%,
+      rgba(2,6,23,.86) 74%, rgba(2,6,23,.97) 100%);
+  }
+  .content {
+    position: absolute; inset: 0;
+    padding: {{SAFE_TOP}}px {{PAD}}px {{SAFE_BOTTOM}}px;
+    display: flex; flex-direction: column; justify-content: space-between;
+  }
+  .topo { display: flex; align-items: center; gap: {{GAP}}px; min-height: {{PILL_H}}px; }
+  .pill {
+    display: inline-flex; align-items: center; gap: {{PILL_GAP}}px;
+    border: 2px solid {{ACCENT}}; border-radius: 999px;
+    padding: {{PILL_PAD_V}}px {{PILL_PAD_H}}px;
+    font-family: {{FONT_MONO}}; font-size: {{PILL_SIZE}}px; font-weight: 700;
+    letter-spacing: .18em; text-transform: uppercase; color: {{ACCENT}};
+    white-space: nowrap;
+  }
+  .rotulo {
+    font-family: {{FONT_MONO}}; font-size: {{LABEL_SIZE}}px; font-weight: 500;
+    letter-spacing: .22em; text-transform: uppercase; color: {{COR_LABEL}};
+    white-space: nowrap;
+  }
+  .rotulo::before { content: "·"; margin-right: {{GAP}}px; color: {{COR_LABEL}}; }
+  .marca { margin-left: auto; font-family: {{FONT_MONO}}; font-size: {{MARK_SIZE}}px; font-weight: 700; letter-spacing: .1em; white-space: nowrap; }
+  .marca b { color: {{ACCENT}}; }
+  /* Contador no fluxo, e nao ancorado: ancorado no canto ele caia em cima da marca,
+     que fica no mesmo canto. A checagem de encaixe pegou as duas colisoes. */
+  .contador {
+    font-family: {{FONT_MONO}}; font-size: {{LABEL_SIZE}}px; letter-spacing: .2em;
+    color: {{COR_RODAPE}}; white-space: nowrap;
+  }
+
+  .main { padding: {{MAIN_GAP}}px 0; }
+  h1 {
+    font-size: {{H1_SIZE}}px; font-weight: 700; line-height: {{H1_LH}};
+    letter-spacing: -0.025em; max-width: {{H1_MAX}}px;
+  }
+  h1 em { font-style: normal; color: {{ACCENT2}}; }
+  .sub {
+    margin-top: {{SUB_TOP}}px; font-size: {{SUB_SIZE}}px; line-height: 1.35;
+    color: {{COR_TEXTO_APOIO}}; max-width: {{SUB_MAX}}px;
+    border-left: {{BAR_W}}px solid {{ACCENT}}; padding-left: {{BAR_PAD}}px;
+  }
+  .sub b { color: {{COR_TEXTO}}; font-weight: 600; }
+
+  .rodape { display: flex; align-items: flex-end; justify-content: space-between; gap: {{GAP}}px; }
+  .direita { display: flex; flex-direction: column; align-items: flex-end; gap: {{STAT_GAP_V}}px; text-align: right; }
+  .stats { display: flex; flex-direction: column; min-width: 0; }
+  .stat { display: flex; align-items: baseline; gap: {{STAT_GAP}}px; }
+  .stat .n { font-family: {{FONT_MONO}}; font-size: {{STAT_N}}px; font-weight: 700; line-height: 1; color: {{ACCENT}}; min-width: {{STAT_N_MIN}}px; }
+  .stat .l {
+    font-family: {{FONT_MONO}}; font-size: {{STAT_L}}px; font-weight: 500;
+    letter-spacing: .14em; text-transform: uppercase; color: {{COR_LABEL}};
+    white-space: nowrap;   /* rotulo quebrado em duas linhas desmonta a regua */
+  }
+  .stat + .stat { margin-top: {{STAT_GAP_V}}px; padding-top: {{STAT_GAP_V}}px; border-top: 1px solid {{COR_LINHA}}; }
+  .assinatura { display: flex; flex-direction: column; gap: 6px; }
+  .assinatura .l1 {
+    font-family: {{FONT_MONO}}; font-size: {{FOOT_L}}px; letter-spacing: .22em;
+    text-transform: uppercase; color: {{COR_RODAPE}}; white-space: nowrap;
+  }
+  .assinatura .l2 { font-family: {{FONT_MONO}}; font-size: {{FOOT_URL}}px; font-weight: 600; color: {{COR_TEXTO_APOIO}}; }
+
+  /* O HUD entra no fluxo, como o contador: ancorado no canto inferior direito ele
+     caia em cima da assinatura, que ocupa a largura toda da linha de baixo. */
+  .hud {
+    display: inline-flex; align-items: center; gap: 8px;
+    background: rgba(2,6,23,.72); border: 1px solid rgba(34,211,238,.45);
+    border-radius: 6px; padding: 7px 12px;
+    font-family: {{FONT_MONO}}; font-size: {{HUD_SIZE}}px; letter-spacing: .1em;
+    text-transform: uppercase; color: {{ACCENT}};
+  }
+  .hud:empty { display: none; }   /* tema sem HUD nao deixa chip vazio no quadro */
+</style>
+</head>
+<body class="layout-canal">
+  <div class="art"></div>
+  <div class="veil"></div>
+  <div class="content">
+    <div class="topo">
+      <span class="pill">{{PILL_ICON}}<span>{{KICKER}}</span></span>
+      <span class="rotulo">{{KICKER_LABEL}}</span>
+      <span class="marca">{{WORDMARK}}<b>{{WORDMARK_ALT}}</b></span>
+      <span class="contador">{{COUNTER}}</span>
+    </div>
+    <div class="main">
+      <h1>{{HEADLINE}}</h1>
+      <div class="sub">{{SUB}}</div>
+    </div>
+    <div class="rodape">
+      <div class="stats">{{STATS}}</div>
+      <div class="direita">
+        <span class="assinatura"><span class="l1">{{FOOT_LABEL}}</span><span class="l2">{{ASSINATURA}}</span></span>
+        <span class="hud">{{HUD}}</span>
+      </div>
+    </div>
+  </div>
+<script>
+// Mesmo contrato do card de canal deitado, mais a area segura: nada de texto na faixa
+// que a interface dos Shorts cobre, nem embaixo do HUD.
+(function () {
+  var W = {{W}}, H = {{H}};
+  var SAFE_TOP = {{SAFE_TOP}}, SAFE_BOTTOM = {{SAFE_BOTTOM}};
+  var problems = [];
+  var TOL = 6;
+  var alvos = [".topo", ".marca", "h1", ".sub", ".stats", ".rodape", ".assinatura", ".hud", ".contador"];
+  var els = alvos.map(function (s) { return document.querySelector(s); })
+                 .filter(function (el) { return el && (el.textContent || "").trim() !== ""; });
+  els.forEach(function (el) {
+    var r = el.getBoundingClientRect();
+    var nome = el.className || el.tagName;
+    if (r.left < -1 || r.top < -1 || r.right > W + 1 || r.bottom > H + 1) {
+      problems.push("fora do canvas: " + nome);
+    }
+    if (r.top < SAFE_TOP - 1 || r.bottom > H - SAFE_BOTTOM + 1) {
+      problems.push("fora da area segura: " + nome + " ocupa " + Math.round(r.top) + " a " +
+        Math.round(r.bottom) + ", e a faixa livre vai de " + SAFE_TOP + " a " + (H - SAFE_BOTTOM));
+    }
+    if (el.scrollHeight > el.clientHeight + TOL || el.scrollWidth > el.clientWidth + TOL) {
+      problems.push("texto cortado: " + nome + " (" + el.scrollWidth + "x" + el.scrollHeight +
+        " em " + el.clientWidth + "x" + el.clientHeight + ")");
+    }
+  });
+  var h1 = document.querySelector("h1");
+  if (h1) {
+    var linhas = Math.round(h1.getBoundingClientRect().height / (parseFloat(getComputedStyle(h1).fontSize) * {{H1_LH}}));
+    if (linhas > {{H1_LINHAS_MAX}}) problems.push("manchete com " + linhas + " linhas (max {{H1_LINHAS_MAX}} no card de canal em pe)");
+  }
+  // Nada de texto na faixa que a interface cobre, nem bloco em cima de bloco. O HUD e
+  // o contador entram na lista como qualquer outro: eles ficam no fluxo, entao tambem
+  // podem estourar a faixa se alguem aumentar a fonte deles.
+  for (var i = 0; i < els.length; i++) {
+    for (var j = i + 1; j < els.length; j++) {
+      var a = els[i], b = els[j];
+      if (a.contains(b) || b.contains(a)) continue;
+      var ra = a.getBoundingClientRect(), rb = b.getBoundingClientRect();
+      var ox = Math.min(ra.right, rb.right) - Math.max(ra.left, rb.left);
+      var oy = Math.min(ra.bottom, rb.bottom) - Math.max(ra.top, rb.top);
+      if (ox > 2 && oy > 2) {
+        problems.push("sobreposição: " + (a.className || a.tagName) + " x " + (b.className || b.tagName) +
+          " (" + Math.round(ox) + "x" + Math.round(oy) + "px)");
+      }
+    }
+  }
+  document.title = problems.length ? "FALHA: " + problems.join(" | ") : "OK";
+})();
+</script>
+</body>
+</html>

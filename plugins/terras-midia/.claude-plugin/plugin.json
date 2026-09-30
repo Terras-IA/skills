@@ -1,0 +1,9 @@
+{
+  "name": "terras-midia",
+  "version": "1.0.0",
+  "description": "Áudio, vídeo e banner: narração com voz e pronúncia cuidadas, vídeo a partir de roteiro e arte de capa. As três skills usam scripts umas das outras, por isso saem juntas.",
+  "author": {
+    "name": "Everton Lima"
+  },
+  "license": "MIT"
+}
