@@ -696,6 +696,31 @@
       ]
     },
     {
+      "name": "terras-iecsjc-escalas",
+      "description": "Transformar planilhas de atividades da Igreja Evangélica Congregacional de São José dos Campos em artes individuais por assunto e uma escala geral em página única, usando a identidade visual disponível no diretório local.",
+      "version": "1.0.0",
+      "source": "./skills/terras-iecsjc-escalas",
+      "strict": false,
+      "skills": [
+        "./"
+      ],
+      "category": "productivity",
+      "license": "MIT",
+      "author": {
+        "name": "Everton Lima"
+      },
+      "keywords": [
+        "igreja",
+        "escala",
+        "iecsjc",
+        "planilha",
+        "arte",
+        "culto",
+        "santa ceia",
+        "identidade visual"
+      ]
+    },
+    {
       "name": "terras-laravel",
       "description": "Build robust Laravel apps avoiding Eloquent traps, queue failures, and auth pitfalls.",
       "version": "1.0.1",
