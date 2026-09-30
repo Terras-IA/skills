@@ -414,6 +414,32 @@
       }
     },
     {
+      "name": "terras-deep-research",
+      "description": "Pesquisa em profundidade com rastreamento de citações: pipeline de 3 a 8 fases (escopo, plano, recuperação, triangulação, síntese, crítica, refinamento e empacotamento), registro persistente de evidências e relatório estruturado com bibliografia completa.",
+      "version": "1.0.0",
+      "source": "./skills/terras-deep-research",
+      "strict": false,
+      "skills": [
+        "./"
+      ],
+      "category": "productivity",
+      "license": "MIT",
+      "author": {
+        "name": "Everton Lima"
+      },
+      "keywords": [
+        "deep research",
+        "pesquisa profunda",
+        "relatorio",
+        "citacoes",
+        "pesquisa",
+        "analise",
+        "tendencias",
+        "triangulacao",
+        "estado da arte"
+      ]
+    },
+    {
       "name": "terras-elaboracao-proposta-comercial",
       "description": "Estrutura a minuta de uma proposta a partir do que foi levantado na conversa, separando escopo de expectativa e marcando cada número que ainda precisa de confirmação antes de sair.",
       "version": "1.0.0",
@@ -439,6 +465,35 @@
       ]
     },
     {
+      "name": "terras-ffmpeg",
+      "description": "Edita vídeo e áudio com FFmpeg local a partir de pedidos em linguagem natural: cortar, aparar, juntar, redimensionar (9:16, 1:1), acelerar, legendas (SRT/ASS, animadas, karaokê), logos e textos sobrepostos, remoção de silêncio, sincronização multicâmera e de microfone externo, normalização de loudne",
+      "version": "1.0.0",
+      "source": "./skills/terras-ffmpeg",
+      "strict": false,
+      "skills": [
+        "./"
+      ],
+      "category": "productivity",
+      "license": "MIT",
+      "author": {
+        "name": "Everton Lima"
+      },
+      "keywords": [
+        "ffmpeg",
+        "video",
+        "audio",
+        "edicao",
+        "cortar",
+        "legenda",
+        "reels",
+        "tiktok",
+        "youtube",
+        "transcodificar",
+        "loudness",
+        "captions"
+      ]
+    },
+    {
       "name": "terras-fluxo-de-contas-a-pagar",
       "description": "Leva uma conta a pagar da chegada do documento até a liberação: autenticidade do boleto, alçada por valor e escalonamento.",
       "version": "1.0.0",
@@ -459,6 +514,32 @@
         "alçada",
         "boleto de fornecedor",
         "liberar pagamento"
+      ]
+    },
+    {
+      "name": "terras-frontend-slides",
+      "description": "Cria apresentações HTML ricas em animação, sem dependência nenhuma, do zero ou convertendo PowerPoint. Use quando o pedido for apresentação, slides, palestra, pitch, ou converter PPT/PPTX para web.",
+      "version": "1.0.0",
+      "source": "./skills/terras-frontend-slides",
+      "strict": false,
+      "skills": [
+        "./"
+      ],
+      "category": "productivity",
+      "license": "MIT",
+      "author": {
+        "name": "Everton Lima"
+      },
+      "keywords": [
+        "slides",
+        "apresentacao",
+        "palestra",
+        "pitch",
+        "html",
+        "pptx",
+        "deck",
+        "animacao",
+        "apresentacao web"
       ]
     },
     {
@@ -1235,6 +1316,33 @@
       ]
     },
     {
+      "name": "terras-user-research",
+      "description": "Pesquisa com usuários de ponta a ponta: planejar estudo qualitativo (roteiro de entrevista, guia de discussão, questionário de triagem, plano de pesquisa), sintetizar entrevistas em relatório com achados priorizados, personas e oportunidades, e planejar pesquisa quantitativa (survey, design de quest",
+      "version": "1.0.0",
+      "source": "./skills/terras-user-research",
+      "strict": false,
+      "skills": [
+        "./"
+      ],
+      "category": "productivity",
+      "license": "MIT",
+      "author": {
+        "name": "Everton Lima"
+      },
+      "keywords": [
+        "user research",
+        "pesquisa com usuarios",
+        "entrevista",
+        "roteiro",
+        "survey",
+        "sintese",
+        "personas",
+        "descoberta",
+        "qualitativa",
+        "quantitativa"
+      ]
+    },
+    {
       "name": "terras-validacao-regularidade-cadastral",
       "description": "Organiza a checagem de idoneidade de um fornecedor ou parceiro — o que precisa ser verificado, onde, com que validade — e registra o que ficou sem comprovação.",
       "version": "1.0.0",
@@ -1275,6 +1383,32 @@
       },
       "keywords": [
         "vercel"
+      ]
+    },
+    {
+      "name": "terras-visual-explainer",
+      "description": "Gera páginas HTML autocontidas que explicam visualmente sistemas, mudanças de código, planos, dados e conceitos técnicos: diagramas (inclusive Mermaid), visões de arquitetura, revisão de diff ou de plano, recapitulações de projeto, tabelas comparativas e decks de slides.",
+      "version": "1.0.0",
+      "source": "./skills/terras-visual-explainer",
+      "strict": false,
+      "skills": [
+        "./"
+      ],
+      "category": "productivity",
+      "license": "MIT",
+      "author": {
+        "name": "Everton Lima"
+      },
+      "keywords": [
+        "diagrama",
+        "explicacao visual",
+        "arquitetura",
+        "html",
+        "mermaid",
+        "tabela",
+        "diff",
+        "slides",
+        "visual"
       ]
     }
   ]

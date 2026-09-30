@@ -1,0 +1,5 @@
+reference/        # upstream 199-biotechnologies/claude-deep-research-skill (MIT, declarada no README), ver LICENSE
+templates/        # idem
+scripts/          # idem
+schemas/          # idem
+requirements.txt  # idem
