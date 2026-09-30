@@ -59,3 +59,7 @@ O LinkedIn proíbe automação nos termos de uso. O plugin trabalha devagar, em 
 aprovação humana, o que reduz o risco, mas não o elimina. Use por sua conta.
 
 A API do mural é interna à COD3RS e pode mudar sem aviso.
+
+## Licença
+
+MIT. Veja [LICENSE](LICENSE).

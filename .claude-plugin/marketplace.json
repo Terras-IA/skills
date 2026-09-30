@@ -14,7 +14,8 @@
         "name": "Everton Lima"
       },
       "source": "./plugins/terras-coders-mural",
-      "category": "productivity"
+      "category": "productivity",
+      "license": "MIT"
     },
     {
       "name": "terras-linkedin-alvos",
@@ -24,7 +25,8 @@
         "name": "Everton Lima"
       },
       "source": "./plugins/terras-linkedin-alvos",
-      "category": "productivity"
+      "category": "productivity",
+      "license": "MIT"
     }
   ]
 }

@@ -2,6 +2,15 @@
   "name": "terras-linkedin-alvos",
   "version": "1.0.0",
   "description": "Acompanha uma lista de perfis-alvo do LinkedIn (executivos, gestores, recrutadores), acha os posts recentes, curte e prepara comentários que acrescentam, publicados só com aprovação. Na hora ou agendado.",
-  "author": { "name": "Everton Lima" },
-  "keywords": ["linkedin", "networking", "vagas", "comentarios", "recrutador"]
+  "author": {
+    "name": "Everton Lima"
+  },
+  "keywords": [
+    "linkedin",
+    "networking",
+    "vagas",
+    "comentarios",
+    "recrutador"
+  ],
+  "license": "MIT"
 }

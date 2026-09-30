@@ -5,5 +5,12 @@
   "author": {
     "name": "Everton Lima"
   },
-  "keywords": ["cod3rs", "coders", "linkedin", "engajamento", "comunidade"]
+  "keywords": [
+    "cod3rs",
+    "coders",
+    "linkedin",
+    "engajamento",
+    "comunidade"
+  ],
+  "license": "MIT"
 }
