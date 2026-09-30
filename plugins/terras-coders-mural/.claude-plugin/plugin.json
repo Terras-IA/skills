@@ -1,0 +1,9 @@
+{
+  "name": "terras-coders-mural",
+  "version": "1.0.0",
+  "description": "Curte e comenta em lote os posts do Mural da comunidade COD3RS (app.coders.com.br) e comenta nos posts linkados no LinkedIn, sempre com aprovação antes de publicar.",
+  "author": {
+    "name": "Everton Lima"
+  },
+  "keywords": ["cod3rs", "coders", "linkedin", "engajamento", "comunidade"]
+}

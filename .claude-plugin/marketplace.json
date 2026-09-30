@@ -1,0 +1,30 @@
+{
+  "$schema": "https://anthropic.com/claude-code/marketplace.schema.json",
+  "name": "terras",
+  "description": "Skills terras-* para Claude Code, instaláveis uma a uma.",
+  "owner": {
+    "name": "Everton Lima"
+  },
+  "plugins": [
+    {
+      "name": "terras-coders-mural",
+      "description": "Engajamento em lote no Mural de Posts da COD3RS e no LinkedIn, com aprovação humana antes de publicar.",
+      "version": "1.0.0",
+      "author": {
+        "name": "Everton Lima"
+      },
+      "source": "./plugins/terras-coders-mural",
+      "category": "productivity"
+    },
+    {
+      "name": "terras-linkedin-alvos",
+      "description": "Comentários de qualidade, cedo, nos posts de perfis-alvo do LinkedIn, com aprovação antes de publicar.",
+      "version": "1.0.0",
+      "author": {
+        "name": "Everton Lima"
+      },
+      "source": "./plugins/terras-linkedin-alvos",
+      "category": "productivity"
+    }
+  ]
+}
