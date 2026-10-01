@@ -465,6 +465,33 @@
       ]
     },
     {
+      "name": "terras-excalidraw",
+      "description": "Use quando o pedido for um desenho Excalidraw, diagrama editável, esboço à mão, quadro branco, wireframe rascunho, ou imagem de diagrama (PNG/SVG) para post, slide ou documento que a pessoa queira poder editar depois. Também para converter Mermaid em Excalidraw ou reexportar um .excalidraw editado.",
+      "version": "1.0.0",
+      "source": "./skills/terras-excalidraw",
+      "strict": false,
+      "skills": [
+        "./"
+      ],
+      "category": "productivity",
+      "license": "MIT",
+      "author": {
+        "name": "Everton Lima"
+      },
+      "keywords": [
+        "excalidraw",
+        "diagrama editavel",
+        "esboco",
+        "quadro branco",
+        "whiteboard",
+        "wireframe",
+        "fluxograma",
+        "png",
+        "svg",
+        "mermaid"
+      ]
+    },
+    {
       "name": "terras-ffmpeg",
       "description": "Edita vídeo e áudio com FFmpeg local a partir de pedidos em linguagem natural: cortar, aparar, juntar, redimensionar (9:16, 1:1), acelerar, legendas (SRT/ASS, animadas, karaokê), logos e textos sobrepostos, remoção de silêncio, sincronização multicâmera e de microfone externo, normalização de loudne",
       "version": "1.0.0",

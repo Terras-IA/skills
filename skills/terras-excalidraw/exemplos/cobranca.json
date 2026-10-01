@@ -1,0 +1,15 @@
+[
+  {"type": "text", "x": 0, "y": -90, "text": "Régua de cobrança com aprovação humana", "fontSize": 28},
+  {"type": "rectangle", "id": "sankhya", "x": 0, "y": 0, "width": 220, "height": 90, "backgroundColor": "#e7f5ff", "fillStyle": "solid", "roundness": {"type": 3}, "label": {"text": "Sankhya\ntítulos em aberto"}},
+  {"type": "rectangle", "id": "filtro", "x": 380, "y": 0, "width": 220, "height": 90, "roundness": {"type": 3}, "label": {"text": "Robô filtra\nvencidos > 5 dias"}},
+  {"type": "rectangle", "id": "previa", "x": 760, "y": 0, "width": 220, "height": 90, "roundness": {"type": 3}, "label": {"text": "Prévia do lote"}},
+  {"type": "diamond", "id": "aprova", "x": 1140, "y": -25, "width": 200, "height": 140, "backgroundColor": "#fff3bf", "fillStyle": "solid", "label": {"text": "Humano\naprova?"}},
+  {"type": "rectangle", "id": "envio", "x": 1520, "y": 0, "width": 220, "height": 90, "backgroundColor": "#d3f9d8", "fillStyle": "solid", "roundness": {"type": 3}, "label": {"text": "Envia boleto\npor WhatsApp"}},
+  {"type": "rectangle", "id": "ajuste", "x": 760, "y": 230, "width": 220, "height": 90, "backgroundColor": "#ffe3e3", "fillStyle": "solid", "roundness": {"type": 3}, "label": {"text": "Ajuste do lote"}},
+  {"type": "arrow", "x": 0, "y": 0, "start": {"id": "sankhya"}, "end": {"id": "filtro"}, "label": {"text": "títulos"}},
+  {"type": "arrow", "x": 0, "y": 0, "start": {"id": "filtro"}, "end": {"id": "previa"}, "label": {"text": "vencidos"}},
+  {"type": "arrow", "x": 0, "y": 0, "start": {"id": "previa"}, "end": {"id": "aprova"}, "label": {"text": "lote"}},
+  {"type": "arrow", "x": 0, "y": 0, "start": {"id": "aprova"}, "end": {"id": "envio"}, "label": {"text": "sim"}},
+  {"type": "arrow", "x": 0, "y": 0, "start": {"id": "aprova"}, "end": {"id": "ajuste"}, "label": {"text": "não"}},
+  {"type": "arrow", "x": 0, "y": 0, "start": {"id": "ajuste"}, "end": {"id": "previa"}, "label": {"text": "refaz"}}
+]
