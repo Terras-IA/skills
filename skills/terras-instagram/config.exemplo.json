@@ -1,7 +1,7 @@
 {
-  "ig_user_id": "<IG_USER_ID da conta profissional, so digitos>",
-  "access_token": "<token de longa duracao da Meta>",
-  "app_secret": "<app secret, opcional: so para renovar/trocar token>",
+  "ig_user_id": "COLE_AQUI_ig_user",
+  "access_token": "COLE_AQUI_token",
+  "app_secret": "COLE_AQUI_app_secret",
   "fuso": "America/Sao_Paulo",
   "pasta_raiz": "~/Documents/IECSJC/instagram",
   "perfil": "@sua-conta",
@@ -11,7 +11,7 @@
   "hospedagem": {
     "tipo": "supabase",
     "url": "https://<projeto>.supabase.co",
-    "chave": "<service_role key, nunca commitar>",
+    "chave": "COLE_AQUI_service_role",
     "bucket": "instagram"
   }
 }
