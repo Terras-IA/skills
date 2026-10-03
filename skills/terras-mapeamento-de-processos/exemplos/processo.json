@@ -1,0 +1,321 @@
+{
+  "processo": "Atendimento e faturamento de Ordens de Serviço (manutenção predial)",
+  "objetivo": "Registrar, executar e faturar serviços solicitados pelos clientes, garantindo lançamento de materiais para faturamento correto.",
+  "gatilho": "[00:00:15] Supervisor: O cliente manda a solicitação no WhatsApp do plantão ou liga. Às vezes manda e-mail também, depende de quem atende.",
+  "fim": "[00:06:20] Supervisor: No fim do mês, o faturamento pega as OS fechadas e emite as notas.",
+  "volume_mensal": "~180 chamados/mês",
+  "atores": [
+    "Cliente",
+    "Atendente",
+    "Técnico",
+    "Gestor",
+    "Supervisor",
+    "Faturamento"
+  ],
+  "sistemas": [
+    "WhatsApp",
+    "Telefone",
+    "ERP",
+    "CRM",
+    "Outlook",
+    "Excel"
+  ],
+  "passos": [
+    {
+      "id": "P1",
+      "nome": "Receber solicitação do cliente",
+      "ator": "Cliente",
+      "tipo": "documento",
+      "sistema": [
+        "WhatsApp",
+        "Telefone",
+        "Outlook"
+      ],
+      "entradas": [
+        "Solicitação do cliente via mensagem/telefone/e-mail"
+      ],
+      "saidas": [
+        "Pedido registrado informalmente (mensagem/ligação/e-mail)"
+      ],
+      "tempo_execucao_min": null,
+      "tempo_espera_min": null,
+      "frequencia": "sempre",
+      "excecoes": [],
+      "evidencia": "[00:00:15] Supervisor: O cliente manda a solicitação no WhatsApp do plantão ou liga. Às vezes manda e-mail também, depende de quem atende.",
+      "confianca": "alta"
+    },
+    {
+      "id": "P2",
+      "nome": "Copiar pedido para o caderno de plantão",
+      "ator": "Atendente",
+      "tipo": "tarefa",
+      "sistema": [
+        "WhatsApp",
+        "Telefone"
+      ],
+      "entradas": [
+        "Solicitação recebida no WhatsApp/telefone/e-mail"
+      ],
+      "saidas": [
+        "Pedido escrito no caderno de plantão (registro manual)"
+      ],
+      "tempo_execucao_min": 5,
+      "tempo_espera_min": null,
+      "frequencia": "sempre",
+      "excecoes": [
+        "WhatsApp é do celular da equipe e ninguém tem acesso depois, por isso cópia manual no caderno"
+      ],
+      "evidencia": "[00:00:48] Supervisor: Aí o atendente copia o pedido num caderno de plantão, porque o WhatsApp é do celular da equipe, ninguém tem acesso depois. Isso leva uns 5 minutos.",
+      "confianca": "alta"
+    },
+    {
+      "id": "P3",
+      "nome": "Lançar OS no sistema (digitação)",
+      "ator": "Atendente",
+      "tipo": "tarefa",
+      "sistema": [
+        "ERP",
+        "CRM"
+      ],
+      "entradas": [
+        "Informação do pedido no caderno de plantão",
+        "Dados do cliente (CRM, sem integração)"
+      ],
+      "saidas": [
+        "OS criada no ERP"
+      ],
+      "tempo_execucao_min": 10,
+      "tempo_espera_min": null,
+      "frequencia": "sempre",
+      "excecoes": [
+        "Digitação manual por falta de integração com CRM (dados do cliente digitados novamente)"
+      ],
+      "evidencia": "[00:01:30] Supervisor: Depois de manhã, lá pelas 8h, ele passa o que está no caderno para o sistema de OS. É digitação, uns 10 minutos por chamado quando tem bastante.\n[00:01:40] ERP (sistema de OS) > tela \"Nova OS\" — atendente digita dados do cliente que já estão no CRM, sem integração.",
+      "confianca": "alta"
+    },
+    {
+      "id": "P4",
+      "nome": "Verificar urgência do chamado",
+      "ator": "Atendente",
+      "tipo": "decisao",
+      "sistema": [
+        "ERP",
+        "WhatsApp"
+      ],
+      "entradas": [
+        "OS registrada no ERP",
+        "Descrição/urgência informada pelo cliente"
+      ],
+      "saidas": [
+        "Encaminhar para técnico de plantão (urgente) ou colocar na fila normal (não urgente)"
+      ],
+      "tempo_execucao_min": null,
+      "tempo_espera_min": null,
+      "frequencia": "sempre",
+      "excecoes": [
+        "urgente: aciona técnico de plantão por telefone e resolve na hora, sem passar pela fila"
+      ],
+      "evidencia": "[00:02:10] Supervisor: Aí ele olha se é urgente. Se for urgente, ele liga pro técnico de plantão e resolve na hora. Se não for urgente, entra na fila normal.",
+      "confianca": "alta"
+    },
+    {
+      "id": "P5",
+      "nome": "Entrada na fila normal e espera por técnico",
+      "ator": "Técnico",
+      "tipo": "espera",
+      "sistema": [
+        "ERP"
+      ],
+      "entradas": [
+        "OS marcada como não urgente na fila do ERP"
+      ],
+      "saidas": [
+        "Técnico pega o chamado quando disponível e executa"
+      ],
+      "tempo_execucao_min": null,
+      "tempo_espera_min": 960,
+      "frequencia": "sempre",
+      "excecoes": [
+        "Sem prazo definido; tem chamado que fica 2 dias parado, às vezes mais"
+      ],
+      "evidencia": "[00:02:45] Supervisor: A fila normal é o problema. O técnico pega quando dá, não tem prazo. Tem chamado que fica 2 dias parado, às vezes mais.",
+      "confianca": "media"
+    },
+    {
+      "id": "P6",
+      "nome": "Solicitar aprovação de gasto > R$500 por e-mail",
+      "ator": "Atendente",
+      "tipo": "tarefa",
+      "sistema": [
+        "Outlook",
+        "ERP"
+      ],
+      "entradas": [
+        "OS com previsão de gasto acima de R$ 500"
+      ],
+      "saidas": [
+        "E-mail de pedido de aprovação enviado ao Gestor"
+      ],
+      "tempo_execucao_min": null,
+      "tempo_espera_min": null,
+      "frequencia": "às vezes",
+      "excecoes": [],
+      "evidencia": "[00:03:20] Supervisor: Ah, e antes de executar qualquer coisa acima de R$ 500 o gestor tem que aprovar. Isso é por e-mail hoje, o atendente manda e-mail pro gestor e espera.",
+      "confianca": "alta"
+    },
+    {
+      "id": "P7",
+      "nome": "Aguardar aprovação do gestor",
+      "ator": "Gestor",
+      "tipo": "aprovacao",
+      "sistema": [
+        "Outlook"
+      ],
+      "entradas": [
+        "E-mail de solicitação de aprovação enviado pelo atendente"
+      ],
+      "saidas": [
+        "Aprovação/recusa por e-mail (ou nenhuma resposta)"
+      ],
+      "tempo_execucao_min": null,
+      "tempo_espera_min": 240,
+      "frequencia": "às vezes",
+      "excecoes": [
+        "Gestor em reunião: pode ficar meio dia esperando; aprovações empilhadas sem ordem de prioridade"
+      ],
+      "evidencia": "[00:03:20] Supervisor: ...o atendente manda e-mail pro gestor e espera. Se o gestor está em reunião, fica meio dia esperando.\n[00:03:30] E-mail (Outlook) > caixa de entrada do gestor — aprovações empilhadas sem ordem de prioridade.",
+      "confianca": "alta"
+    },
+    {
+      "id": "P8",
+      "nome": "Execução do serviço pelo técnico e registro em papel",
+      "ator": "Técnico",
+      "tipo": "tarefa",
+      "sistema": [],
+      "entradas": [
+        "OS atribuída ao técnico",
+        "Materiais/peças utilizados durante execução"
+      ],
+      "saidas": [
+        "Registro manual em papel do material usado e execução do serviço"
+      ],
+      "tempo_execucao_min": null,
+      "tempo_espera_min": null,
+      "frequencia": "sempre",
+      "excecoes": [
+        "Técnico anota em papel por falta de sinal do celular no subsolo; depois repassa o papel ao supervisor"
+      ],
+      "evidencia": "[00:04:05] Supervisor: Quando o técnico executa, ele anota o que usou num papel, porque o celular não pega sinal no subsolo. Depois ele volta e me passa o papel.",
+      "confianca": "baixa"
+    },
+    {
+      "id": "P9",
+      "nome": "Lançar material usado na OS no ERP",
+      "ator": "Supervisor",
+      "tipo": "tarefa",
+      "sistema": [
+        "ERP"
+      ],
+      "entradas": [
+        "Papel com registro do material usado entregue pelo técnico",
+        "OS no ERP"
+      ],
+      "saidas": [
+        "OS atualizada no ERP com material lançado"
+      ],
+      "tempo_execucao_min": 15,
+      "tempo_espera_min": null,
+      "frequencia": "sempre",
+      "excecoes": [
+        "Se não for lançado no mesmo dia, no fim do mês dá confusão (material comprado mas não aparece na OS)"
+      ],
+      "evidencia": "[00:04:35] Supervisor: Aí eu lanço no sistema a OS com o material usado. Isso dá uns 15 minutos. Se eu não lançar no mesmo dia, no fim do mês dá confusão, porque o material foi comprado mas não aparece na OS.\n[00:04:50] ERP > tela \"Lançamento de material\" — digitação manual a partir de papel.",
+      "confianca": "alta"
+    },
+    {
+      "id": "P10",
+      "nome": "Exportar ERP e montar relatório de produtividade (semanal)",
+      "ator": "Supervisor",
+      "tipo": "tarefa",
+      "sistema": [
+        "ERP",
+        "Excel"
+      ],
+      "entradas": [
+        "Export do ERP",
+        "OS fechadas/fechamentos no ERP"
+      ],
+      "saidas": [
+        "Planilha Excel \"Produtividade\" e relatório semanal"
+      ],
+      "tempo_execucao_min": 120,
+      "tempo_espera_min": null,
+      "frequencia": "sempre",
+      "excecoes": [
+        "Precisa conferir chamado por chamado se foi fechado, processo manual e demorado"
+      ],
+      "evidencia": "[00:05:10] Supervisor: Uma vez por semana eu exporto a planilha do sistema para o Excel e monto o relatório de produtividade. Leva umas 2 horas, porque eu tenho que conferir chamado por chamado se foi fechado.\n[00:05:20] Excel > planilha \"Produtividade\" montada manualmente, cruzando export do ERP.",
+      "confianca": "alta"
+    },
+    {
+      "id": "P11",
+      "nome": "Reabertura de chamados retornados",
+      "ator": "Atendente",
+      "tipo": "tarefa",
+      "sistema": [
+        "ERP",
+        "CRM"
+      ],
+      "entradas": [
+        "Cliente reclama que problema voltou / OS reaberta"
+      ],
+      "saidas": [
+        "OS reaberta no ERP para novo atendimento"
+      ],
+      "tempo_execucao_min": null,
+      "tempo_espera_min": null,
+      "frequencia": "às vezes",
+      "excecoes": [
+        "~20% dos chamados retornam; causas: técnico não achou o problema, cadastro do cliente errado no sistema, faltou peça e ninguém avisou o cliente"
+      ],
+      "evidencia": "[00:05:50] Supervisor: Só que uns 20% dos chamados voltam. Ou porque o técnico não achou o problema de primeira, ou porque o cadastro do cliente estava errado no sistema, ou porque faltou peça e ninguém avisou o cliente. Quando volta, o atendente tem que reabrir e o cliente fica bravo.",
+      "confianca": "alta"
+    },
+    {
+      "id": "P12",
+      "nome": "Faturamento emite notas a partir das OS fechadas (mês)",
+      "ator": "Faturamento",
+      "tipo": "tarefa",
+      "sistema": [
+        "ERP"
+      ],
+      "entradas": [
+        "OS fechadas no ERP",
+        "Lançamentos de material no ERP"
+      ],
+      "saidas": [
+        "Notas fiscais emitidas / notas canceladas e reemitidas se houver erro"
+      ],
+      "tempo_execucao_min": null,
+      "tempo_espera_min": null,
+      "frequencia": "sempre",
+      "excecoes": [
+        "Às vezes a OS está fechada mas o material não está lançado, aí a nota sai errada e tem que cancelar"
+      ],
+      "evidencia": "[00:06:20] Supervisor: No fim do mês, o faturamento pega as OS fechadas e emite as notas. Eles reclamam que às vezes a OS está fechada mas o material não está lançado, aí a nota sai errada e tem que cancelar.",
+      "confianca": "alta"
+    }
+  ],
+  "lacunas": [
+    "Percentual de chamados classificados como urgentes vs não urgentes (impacta fila)",
+    "Tempo médio de execução do técnico por chamado (não informado)",
+    "Tempo médio de trabalho do atendente por tarefa (custo-hora do atendente não informado)",
+    "Alçada configurada no ERP (confirmado: sem alçada configurada no sistema) — necessidade de registro formal no sistema",
+    "Quem fecha a OS no ERP (técnico, atendente ou supervisor) e momento do fechamento",
+    "Tempo/ciclo do faturamento (tempo gasto no processo de emissão de notas)",
+    "Critérios formais para reabertura e responsividade ao cliente",
+    "Detalhes de integração entre CRM e ERP (atualmente sem integração)",
+    "Percentual de OS com material lançado no mesmo dia vs lançadas depois (impacta erros de faturamento)",
+    "Custo-hora e custos relacionados por papelada/retrabalho (não informado)"
+  ]
+}

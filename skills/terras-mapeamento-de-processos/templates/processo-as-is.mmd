@@ -1,0 +1,25 @@
+flowchart TD
+    subgraph CLIENTE
+        A(("Solicita serviço")) --> B["Abrir chamado por WhatsApp (3 min)"]
+    end
+    subgraph ATENDIMENTO
+        B --> C["Triagem manual no e-mail (10 min)"]
+        C --> D{"É urgente?"}
+        D -->|Sim| E["Acionar técnico por telefone (5 min)"]
+        D -->|Não| F(["espera: fila de 1 dia"])
+        E --> G["Preencher planilha de controle (8 min)"]
+        F --> G
+    end
+    subgraph GESTAO
+        G --> H["Aprovar por e-mail (2 min + espera 4h)"]
+        H --> I{"Aprovado?"}
+        I -->|Não| F
+    end
+    subgraph OPERACAO
+        I -->|Sim| J["Executar serviço (90 min)"]
+        J --> K["Lançar OS no sistema (15 min)"]
+        K --> L["Fechar chamado e faturar (10 min)"]
+    end
+    L --> M((("Entregue")))
+    classDef gargalo fill:#ffd7d7,stroke:#c00,stroke-width:2px
+    class F,H gargalo

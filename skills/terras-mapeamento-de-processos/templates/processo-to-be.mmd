@@ -1,0 +1,22 @@
+flowchart TD
+    subgraph CLIENTE
+        A(("Solicita serviço")) --> B["Abrir chamado em formulário único (2 min)"]
+    end
+    subgraph SISTEMA
+        B --> C[("Classificação automática por tipo (0 min)")]
+        C --> D[("Fila única com SLA e alerta (0 min)")]
+    end
+    subgraph ATENDIMENTO
+        D --> E["Assumir chamado na fila (1 min)"]
+        E --> F{"Precisa de aprovação?"}
+        F -->|Sim| G["Aprovação digital com alçada (1 min + espera 2h)"]
+        F -->|Não| H["Executar serviço (90 min)"]
+        G --> H
+    end
+    subgraph OPERACAO
+        H --> I[("OS gerada e lançada automaticamente (0 min)")]
+        I --> J[("Faturamento disparado no fechamento (2 min)")]
+    end
+    J --> K((("Entregue")))
+    classDef ganho fill:#d9f2d9,stroke:#2a7,stroke-width:2px
+    class C,D,I,J ganho
