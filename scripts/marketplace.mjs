@@ -27,9 +27,25 @@ function cabecalho(txt) {
   const m = /^---\n([\s\S]*?)\n---(\n|$)/.exec(txt);
   if (!m) return null;
   const campos = {};
-  for (const linha of m[1].split("\n")) {
-    const c = /^([a-zA-Z_-]+):\s?(.*)$/.exec(linha);
-    if (c) campos[c[1]] = c[2].trim();
+  const linhas = m[1].split("\n");
+  for (let i = 0; i < linhas.length; i++) {
+    const c = /^([a-zA-Z_-]+):\s?(.*)$/.exec(linhas[i]);
+    if (!c) continue;
+    let valor = c[2].trim();
+    // Bloco YAML (`>`/`|` com modificadores): o valor são as linhas indentadas
+    // seguintes. O motor exige cabeçalho plano, mas o manifesto é do marketplace,
+    // que lê YAML de verdade — sem isto a descrição sairia como ">-".
+    if (/^[|>][1-9+-]*$/.test(valor)) {
+      const partes = [];
+      for (i++; i < linhas.length; i++) {
+        const l = linhas[i];
+        if (l.trim() === "") continue;
+        if (!/^\s/.test(l)) { i--; break; }
+        partes.push(l.trim());
+      }
+      valor = partes.join(" ");
+    }
+    campos[c[1]] = valor;
   }
   return campos;
 }

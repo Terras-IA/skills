@@ -69,6 +69,15 @@ test("descrição longa é cortada em frase inteira para o manifesto, sem retic�
   assert.match(m.plugins[0].description, /útil\.$/);
 });
 
+test("description em bloco YAML sai como o texto, não como o marcador do bloco", () => {
+  const dobrado = `---\nname: terras-a\ndescription: >-\n  Primeira linha do texto.\n  Segunda parte da frase.\nkeywords: [x]\n---\n`;
+  const literal = `---\nname: terras-b\ndescription: |\n  Linha um.\n  Linha dois.\nversion: "2.0.0"\n---\n`;
+  const m = montarManifesto(repo({ "skills/terras-a/SKILL.md": dobrado, "skills/terras-b/SKILL.md": literal }));
+  assert.equal(m.plugins[0].description, "Primeira linha do texto. Segunda parte da frase.");
+  assert.equal(m.plugins[1].description, "Linha um. Linha dois.");
+  assert.equal(m.plugins[1].version, "2.0.0", "campos depois do bloco continuam sendo lidos");
+});
+
 const GRUPO = { "terras-midia": { description: "Áudio e vídeo juntos.", skills: ["terras-audio", "terras-video"] } };
 const repoComGrupo = () => {
   const raiz = repo({

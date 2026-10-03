@@ -980,7 +980,7 @@
     },
     {
       "name": "terras-governanca-padroes",
-      "description": ">-",
+      "description": "Audita onde as convenções de um projeto vivem (CLAUDE.md, AGENTS.md, lint, CI, docs, cabeça do time) e transforma padrão em governance rule: arquivo Markdown versionado, com dono, data de revisão, \"quando NÃO usar\" e ciclo de deprecação — legível e acionável por agente de IA.",
       "version": "1.0.0",
       "source": "./skills/terras-governanca-padroes",
       "strict": false,
@@ -1614,6 +1614,36 @@
       "keywords": [
         "php",
         "composer"
+      ]
+    },
+    {
+      "name": "terras-pipeline-de-automacao",
+      "description": "Projeta e monta pipelines de automação em que scripts determinísticos executam o trabalho e o agente decide só em pontos de revisão fechados.",
+      "version": "1.0.0",
+      "source": "./skills/terras-pipeline-de-automacao",
+      "strict": false,
+      "skills": [
+        "./"
+      ],
+      "category": "productivity",
+      "license": "MIT",
+      "author": {
+        "name": "Everton Lima"
+      },
+      "keywords": [
+        "pipeline",
+        "pipes and filters",
+        "rastro",
+        "recibo",
+        "idempotencia",
+        "provenance",
+        "receipts",
+        "hash",
+        "acervo",
+        "automacao",
+        "producao",
+        "revisao",
+        "agentic"
       ]
     },
     {
