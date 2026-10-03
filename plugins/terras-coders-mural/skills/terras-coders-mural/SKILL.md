@@ -65,7 +65,8 @@ comentário que prova leitura, e publica nos dois lugares só depois da aprovaç
    ~4s. Agrupe 4-5 posts por lote de ações do navegador. Erro "já comentado" = pule; "não confirmado" =
    confira a página antes de qualquer reenvio.
 8. **Fechamento.** Tabela final: curtidas, comentários no mural, comentários no LinkedIn, pulados e
-   motivo. Números vêm do retorno das chamadas, não da intenção.
+   motivo. Números vêm do retorno das chamadas, não da intenção. Diga se o mural ficou **em dia**
+   (todo post das últimas 36h com comentário seu) ou quantos faltam e por quê.
 
 ## Post do dia do usuário (opcional)
 

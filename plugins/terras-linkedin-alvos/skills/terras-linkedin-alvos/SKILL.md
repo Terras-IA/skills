@@ -56,7 +56,9 @@ Tudo fica em `~/.config/terras-linkedin-alvos/`. Formato em `references/config.m
 1. Carregue `alvos.json` e `engajados.json`. Janela padrão: `janela_horas` (24h; comentar cedo é o
    que dá visibilidade).
 2. Para cada alvo: navegue para `<url>/recent-activity/all/`, injete `scripts/alvos.js` e rode
-   `await __alvos.scan(janela)`. Descarte reposts e URNs que já estão em `engajados.json`. Post com
+   `await __alvos.scan(janela)`. Descarte reposts (exceto de alvos com `incluir_reposts: true`: aí o
+   comentário vai no post original, aberto pela `url` do repost, e fala com o autor original, não com
+   o alvo) e URNs que já estão em `engajados.json`. Post com
    `curtido: true` fora do arquivo foi curtido antes (à mão ou em outra sessão): registre em
    `engajados.json` com `curtido_em: "anterior"` e não clique em "Gostei"; ainda pode receber comentário.
 3. Para cada post que sobrou: abra `url` do post, leia com `get_page_text` (post inteiro e os
@@ -78,6 +80,12 @@ Tudo fica em `~/.config/terras-linkedin-alvos/`. Formato em `references/config.m
 8. **Fechamento.** O que foi curtido, comentado e pulado (e por quê), com números vindos dos retornos.
    Se um alvo chegou a 2-3 comentários do usuário nas últimas semanas e ainda não é conexão,
    **sugira** um convite com nota curta e mostre o rascunho (ver `references/estilo.md`).
+   Feche com o placar do dia. O objetivo é ficar **em dia**: zero post de alvo dentro da janela sem
+   comentário. Mostre "em dia" ou "N pendentes" (quais e por quê: aguardando aprovação, pulado,
+   sem assunto). A meta de SSI é piso, não teto: curtidas (5), comentários de qualidade (2-3) e,
+   na semana, posts próprios (3), contados em `engajados.json` com data de hoje (somando o mural
+   quando o usuário informar). Estar em dia nunca justifica comentário vazio: post sem assunto é
+   pulado com o motivo, e cada comentário continua passando pela aprovação.
 
 ## Na hora vs agendado
 

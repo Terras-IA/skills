@@ -24,6 +24,8 @@ sobreviver a atualizações e não ser distribuído junto.
 ```
 
 - `papel`: `executivo` | `gestor` | `recrutador` | `par`.
+- `incluir_reposts` (opcional, por alvo): `true` para alvos que só compartilham. O comentário vai no
+  post original que ele compartilhou; na tabela de aprovação, indique o autor original.
 - `curtir_automatico`: só vira `true` quando o usuário pedir explicitamente curtidas sem aprovação
   nas rodadas agendadas. Grave a data em `curtir_automatico_ativado_em` e diga como desligar.
 - `foco`: o tipo de vaga ou posicionamento; orienta o ângulo dos comentários.
