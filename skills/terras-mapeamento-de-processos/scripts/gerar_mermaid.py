@@ -42,10 +42,17 @@ def slug(texto) -> str:
     return t or "Processo"
 
 
-def fmt_min(v):
+def fmt_min(v, corrido=False):
+    """Trabalho usa dia útil (480 min); espera usa dia corrido (1440 min)."""
     if not v:
         return None
     v = float(v)
+    if corrido:
+        if v < 60:
+            return "{:.0f} min".format(v)
+        if v < 1440:
+            return "{:.1f} h".format(v / 60).replace(".0", "")
+        return "{:.1f} d corridos".format(v / 1440).replace(".0", "")
     if v < 60:
         return "{:.0f} min".format(v)
     if v < 480:
@@ -58,7 +65,7 @@ def rotulo(p: dict) -> str:
     if p.get("tempo_execucao_min"):
         partes.append(fmt_min(p["tempo_execucao_min"]))
     if p.get("tempo_espera_min"):
-        partes.append("espera " + fmt_min(p["tempo_espera_min"]))
+        partes.append("espera " + fmt_min(p["tempo_espera_min"], corrido=True))
     base = limpar(p.get("nome", "?"))
     if p.get("tipo") == "decisao" and not base.endswith("?"):
         base += "?"
