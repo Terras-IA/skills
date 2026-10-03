@@ -10,7 +10,7 @@ Para atualizar: `/plugin marketplace update terras`.
 
 ## As skills do catálogo
 
-Além dos dois plugins abaixo, cada skill `terras-*` de uso geral do catálogo é um plugin com o
+Além dos dois plugins abaixo, cada skill `terras-*` ou `terrasia-*` de uso geral do catálogo é um plugin com o
 mesmo nome da skill (escrita, LinkedIn, RH, financeiro, fiscal, vendas, desenvolvimento). Para
 ver a lista, `/plugin` e escolha o marketplace `terras`. Para instalar uma:
 
@@ -78,7 +78,7 @@ A API do mural é interna à COD3RS e pode mudar sem aviso.
 
 ## Para quem mantém este repositório
 
-Fonte única das skills `terras-*`. Cada skill mora aqui uma vez, e daqui sai
+Fonte única das skills da casa (`terras-*` e `terrasia-*`). Cada skill mora aqui uma vez, e daqui sai
 para três consumidores:
 
 - **Marketplace de plugins do Claude Code** (acima): o
@@ -98,7 +98,7 @@ tooling compartilhado com eles.
 ## Layout
 
 ```
-skills/terras-<nome>/
+skills/terras-<nome>/        # ou terrasia-<nome>/ para a família nova
   SKILL.md        # a skill (o que o agente carrega)
   catalogo.md     # opcional: versão para o catálogo do motor, quando difere
   scripts/ references/ assets/ templates/ seed/   # o que a skill usar
@@ -129,7 +129,8 @@ ao lado do que o projeto já carrega.
 
 ## Regras (o `npm run verificar` barra cada uma)
 
-1. **Prefixo.** Toda pasta é `terras-<nome-em-kebab-case>`, e o `name` do
+1. **Prefixo.** Toda pasta é `terras-<nome-em-kebab-case>` ou
+   `terrasia-<nome-em-kebab-case>`, e o `name` do
    cabeçalho é igual à pasta.
 2. **Cabeçalho aceito pelo motor.** LF no arquivo inteiro (nunca CRLF), campos planos
    `chave: valor`, cabeçalho de no máximo 1024 caracteres.

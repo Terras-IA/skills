@@ -1053,6 +1053,21 @@
       ]
     },
     {
+      "name": "terras-historias-infantis",
+      "description": "Cria histórias infantis ilustradas em quadrinhos e o LIVRO DE COLORIR da mesma história e das mesmas imagens — recebe um tema ou a história pronta, escreve o roteiro página a página (capa, cenas com balões, versículo se houver, aplicação), gera as imagens como arte vetorial infantil e deriva a versã",
+      "version": "1.0.0",
+      "source": "./skills/terras-historias-infantis",
+      "strict": false,
+      "skills": [
+        "./"
+      ],
+      "category": "productivity",
+      "license": "MIT",
+      "author": {
+        "name": "Everton Lima"
+      }
+    },
+    {
       "name": "terras-humanizer",
       "description": "Reescreve texto com cara de IA para soar humano, sem mudar o que ele diz e sem inventar nada.",
       "version": "1.0.0",
@@ -2127,6 +2142,63 @@
         "diff",
         "slides",
         "visual"
+      ]
+    },
+    {
+      "name": "terrasia-pauta-youtube",
+      "description": "Pesquisa de demanda (envelope) no YouTube antes de escrever o roteiro: compara consultas de tema pela mediana de views dos resultados, acha outliers (video muito acima da media do proprio canal) e colhe frases recorrentes dos titulos de melhor desempenho.",
+      "version": "1.0.0",
+      "source": "./skills/terrasia-pauta-youtube",
+      "strict": false,
+      "skills": [
+        "./"
+      ],
+      "category": "productivity",
+      "license": "MIT",
+      "author": {
+        "name": "Everton Lima"
+      },
+      "keywords": [
+        "youtube",
+        "pauta",
+        "tema",
+        "envelope",
+        "demanda",
+        "views",
+        "outlier",
+        "titulo",
+        "capa",
+        "thumbnail",
+        "pesquisa",
+        "roteiro",
+        "terrasia"
+      ]
+    },
+    {
+      "name": "terrasia-vagas-coders",
+      "description": "Filtra as vagas do board da comunidade COD3RS (app.coders.com.br/comunidade#vagas) contra o currículo do usuário e devolve só o que faz sentido real: balde A (recomendar), B (talvez) e C (descarte com motivo) — e, com aprovação por vaga, avança para a aplicação no site de cada uma (carta, formulário",
+      "version": "1.0.0",
+      "source": "./skills/terrasia-vagas-coders",
+      "strict": false,
+      "skills": [
+        "./"
+      ],
+      "category": "productivity",
+      "license": "MIT",
+      "author": {
+        "name": "Everton Lima"
+      },
+      "keywords": [
+        "cod3rs",
+        "coders",
+        "vagas",
+        "board",
+        "curriculo",
+        "triagem",
+        "emprego",
+        "remote",
+        "senior",
+        "fit"
       ]
     }
   ]

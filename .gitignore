@@ -8,3 +8,5 @@ config.json
 *token*.json
 client_secret*.json
 .auth/
+# Currículo destilado do usuário (a base versionada é perfil.example.md)
+skills/terrasia-vagas-coders/references/perfil.md

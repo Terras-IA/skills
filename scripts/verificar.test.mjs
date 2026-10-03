@@ -25,9 +25,14 @@ test("repositório correto não tem problema", () => {
   assert.deepEqual(verificar(repo({ "skills/terras-exemplo/SKILL.md": SKILL_OK }, ["terras-exemplo"])), []);
 });
 
-test("pasta sem o prefixo terras- é recusada", () => {
+test("pasta sem prefixo da casa é recusada", () => {
   const raiz = repo({ "skills/exemplo/SKILL.md": SKILL_OK.replace("terras-exemplo", "exemplo") });
   assert.ok(regras(raiz).includes("prefixo"));
+});
+
+test("prefixo terrasia- é aceito", () => {
+  const raiz = repo({ "skills/terrasia-exemplo/SKILL.md": SKILL_OK.replace("terras-exemplo", "terrasia-exemplo") }, ["terrasia-exemplo"]);
+  assert.deepEqual(verificar(raiz), []);
 });
 
 test("name do SKILL.md diferente da pasta é recusado", () => {

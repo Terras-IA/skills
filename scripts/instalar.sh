@@ -38,13 +38,14 @@ for alvo in "${ALVOS[@]}"; do
   [ -d "$pasta" ] || continue
   # Link que aponta para dentro deste repositório e cujo alvo sumiu (skill
   # renomeada ou removida) sai. Link para qualquer outro lugar não é tocado.
-  for link in "$pasta"/terras-*; do
+  for link in "$pasta"/{terras,terrasia}-*; do
     [ -L "$link" ] || continue
     case "$(readlink "$link")" in
       "$SKILLS"/*) [ -e "$link" ] || { echo "remove órfão $link"; faz rm "$link"; alterados=$((alterados + 1)); } ;;
     esac
   done
-  for skill in "$SKILLS"/terras-*/; do
+  for skill in "$SKILLS"/{terras,terrasia}-*/; do
+    [ -d "$skill" ] || continue
     nome="$(basename "$skill")"
     origem="$SKILLS/$nome"
     destino="$pasta/$nome"

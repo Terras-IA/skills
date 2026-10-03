@@ -1,7 +1,8 @@
 #!/usr/bin/env node
 // Verificador do repositório de skills. Sem dependência: só node:*.
 //
-// Barra o que já custou retrabalho: skill sem o prefixo terras-, cabeçalho que
+// Barra o que já custou retrabalho: skill sem prefixo da casa (terras- ou
+// terrasia-), cabeçalho que
 // o parser do motor recusa, skill do catálogo sem keywords (liberada e muda),
 // dependência de um harness específico, marca de terceiro que sobrou de
 // importação, segredo e arquivo de credencial ou cache.
@@ -12,7 +13,7 @@ import { existsSync, readdirSync, readFileSync, statSync } from "node:fs";
 import { join, relative } from "node:path";
 import { fileURLToPath } from "node:url";
 
-const NOME_RE = /^terras-[a-z0-9]+(-[a-z0-9]+)*$/;
+const NOME_RE = /^(terras|terrasia)-[a-z0-9]+(-[a-z0-9]+)*$/;
 const MAX_CABECALHO = 1024; // teto de frontmatter de skill de agente
 const MAX_DESCRICAO_CATALOGO = 280; // teto do parser do motor
 const TEXTO = /\.(md|py|sh|mjs|js|cjs|ts|json|txt|html|css|toml|ya?ml)$/i;
