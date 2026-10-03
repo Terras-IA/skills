@@ -20,6 +20,13 @@ conteudo vive na area segura do player, entre SAFE_TOP e SAFE_BOTTOM: o pe do qu
 esta coberto pela interface dos Shorts (canal, titulo, botoes), e cartela que ignora
 isso entrega texto escondido.
 
+Carrossel: `"formato": "carrossel"` (1080x1440, o 3:4 do deck da terras-banner) monta
+o video a partir dos slides ja renderizados. Cada bloco aponta para um PNG do deck no
+campo `slide` em vez de um layout de cartela, e a pagina pronta e o quadro inteiro, com
+narracao propria. Sem a area segura dos Shorts: o slide nao vive em player de vertical,
+o destino e o feed. O zoom padrao do slide e menor (ZOOM_SLIDE) porque o texto do deck
+chega perto das margens.
+
 Uso completo: python3 build.py render roteiro.json [--sem-checagem] [--exportar]
 """
 import argparse
@@ -51,6 +58,13 @@ FFMPEG = os.path.join(BASE_TOOLS, "ffmpeg")
 FPS = 60
 MOTION_SCALE = 2      # cartela ampliada antes do recorte: passo sub-pixel na saida
 ZOOM_END = 1.06
+# Slide de carrossel: o texto do deck fica a 62px da borda mais proxima (medido nos seis
+# slides do ADR), entao o zoom padrao cabe e nao corta nada. Mas medido no mesmo deck, o
+# zoom de 1,04 reprova no jerk (1,08 contra o teto de 1,0: com recuo pequeno a mediana
+# cai e a irregularidade relativa sobe) e o de 1,05 passa com folga (0,52 a 0,72 nos seis
+# slides). Por isso o slide usa 1,05: recuo de 26px nas laterais e 34px no topo/base, com
+# 28px de sobra no elemento mais apertado. O bloco ainda pode sobrepor com `zoom`.
+ZOOM_SLIDE = 1.05
 ZOOM_SECONDS = 4.0    # o movimento termina e a imagem descansa
 JERK_MAX = 1.0        # irregularidade aceitavel: ver references/identidade-e-movimento.md
 # A medida de movimento roda sempre na mesma densidade (4x menos pixel de cada eixo), e
@@ -76,6 +90,7 @@ FORMATOS = {
     "shorts": "1080x1920",
     "vertical": "1080x1920",   # mesmo formato, nome do dia a dia
     "quadrado": "1080x1080",
+    "carrossel": "1080x1440",  # 3:4 do slide do deck da terras-banner
 }
 # Faixa em que o conteudo pode viver no vertical, ANTES do zoom. O pe do quadro e da
 # interface do player: medido em 2026-09-20 no player web em 1080x1920, a pilha de
@@ -128,6 +143,24 @@ def strip_tags(html):
 
 # ---------------------------------------------------------------- plano
 
+def avisar_sotaque(cfg):
+    """Roteiro em ingles com o dicionario de aportuguesar ligado reescreve palavra inglesa.
+
+    O dicionario da terras-audio existe para termo ingles dentro de frase portuguesa
+    ("cache" -> "kêsh", "queue" -> "kiu"). Num roteiro que ja esta em ingles ele
+    destruiria a fala, porque metade das entradas e palavra comum em ingles. Quem narra
+    em ingles declara `"sotaque": "nenhum"`. Medido em 2026-09-26 no video do carrossel
+    do ADR em EN.
+    """
+    if not str(cfg.get("lang", "")).lower().startswith("en"):
+        return
+    padrao = brand_tokens().get("audio_video", {})
+    if (cfg.get("sotaque") or padrao.get("sotaque") or "nenhum") == "aportuguesar":
+        print("AVISO: roteiro em ingles com sotaque aportuguesar. O dicionario reescreve "
+              "palavra inglesa comum na fala (cache -> kêsh, queue -> kiu); declare "
+              '"sotaque": "nenhum" neste roteiro.')
+
+
 def cmd_plan(cfg, out_dir, roteiro_path=None):
     os.makedirs(out_dir, exist_ok=True)
     lines = [
@@ -142,30 +175,41 @@ def cmd_plan(cfg, out_dir, roteiro_path=None):
         "",
     ]
     for i, b in enumerate(cfg["blocks"], start=1):
-        lines += [f"## Bloco {i} ({b.get('layout', 'abertura')})", "", f"- **Na tela:** {strip_tags(b.get('headline', ''))}"]
-        if b.get("sub"):
-            lines.append(f"  - apoio: {strip_tags(b['sub'])}")
-        for item in b.get("list", []) or []:
-            lines.append(f"  - item: {strip_tags(item)}")
-        for stat in b.get("stats", []) or []:
-            lines.append(f"  - numero: {stat[0]} {strip_tags(stat[1])}")
-        if b.get("foot") or cfg.get("foot"):
-            lines.append(f"  - rodape: {b.get('foot', cfg.get('foot', ''))}")
+        if b.get("slide"):
+            cabeca = [f"## Bloco {i} (slide)", "",
+                      f"- **Na tela:** slide `{os.path.basename(str(b['slide']))}`"]
+        else:
+            cabeca = [f"## Bloco {i} ({b.get('layout', 'abertura')})", "",
+                      f"- **Na tela:** {strip_tags(b.get('headline', ''))}"]
+            if b.get("sub"):
+                cabeca.append(f"  - apoio: {strip_tags(b['sub'])}")
+            for item in b.get("list", []) or []:
+                cabeca.append(f"  - item: {strip_tags(item)}")
+            for stat in b.get("stats", []) or []:
+                cabeca.append(f"  - numero: {stat[0]} {strip_tags(stat[1])}")
+            if b.get("foot") or cfg.get("foot"):
+                cabeca.append(f"  - rodape: {b.get('foot', cfg.get('foot', ''))}")
         palavras = len(strip_tags(b["narration"]).split())
-        lines += ["", f"- **Falado ({palavras} palavras, ~{palavras / 2.6:.0f}s):** {b['narration']}", ""]
+        lines += cabeca + ["", f"- **Falado ({palavras} palavras, ~{palavras / 2.6:.0f}s):** {b['narration']}", ""]
     md = "\n".join(lines) + "\n"
     md_path = os.path.join(out_dir, "roteiro.md")
     with open(md_path, "w", encoding="utf-8") as fh:
         fh.write(md)
     print(md)
     print(f"--- roteiro salvo em {md_path}")
-    try:
-        alvo = roteiro_path or os.path.join(out_dir, "roteiro.json")
-        r = subprocess.run([sys.executable, cli_de_audio(), "relatorio", alvo],
-                           capture_output=True, text=True)
-        print((r.stdout or r.stderr).strip())
-    except Exception as e:
-        print(f"AVISO: relatorio de pronuncia nao rodou: {e}", file=sys.stderr)
+    if str(cfg.get("lang", "")).lower().startswith("en"):
+        # O detector da terras-audio procura termo ingles dentro de frase portuguesa;
+        # num roteiro todo em ingles ele lista "the", "with", "what" e vira ruido.
+        print("-- pronuncia: roteiro em ingles, o relatorio de termos ingleses nao se "
+              "aplica (quem manda na fala e a propria voz EN) --")
+    else:
+        try:
+            alvo = roteiro_path or os.path.join(out_dir, "roteiro.json")
+            r = subprocess.run([sys.executable, cli_de_audio(), "relatorio", alvo],
+                               capture_output=True, text=True)
+            print((r.stdout or r.stderr).strip())
+        except Exception as e:
+            print(f"AVISO: relatorio de pronuncia nao rodou: {e}", file=sys.stderr)
     if not cfg.get("aprovado"):
         print("Renderize somente depois de aprovar: python3 build.py aprovar roteiro.json")
 
@@ -197,13 +241,28 @@ def formato_de(cfg):
     except ValueError:
         fail(f"size invalido: {tamanho}. Use LARGURAxALTURA, ex.: 1080x1920")
     if height > width:
-        return ("shorts" if (cfg.get("formato") or "shorts").lower() in ("shorts", "vertical")
-                else "vertical"), width, height
+        nome = (cfg.get("formato") or "").lower()
+        if nome == "carrossel":
+            return "carrossel", width, height
+        return ("shorts" if nome in ("shorts", "vertical") else "vertical"), width, height
     return ("quadrado" if height == width else "horizontal"), width, height
 
 
 def e_vertical(cfg):
     return formato_de(cfg)[0] in ("shorts", "vertical")
+
+
+def e_shorts(cfg):
+    """Canvas em pe de player (Shorts/Reels): faixa segura e teto de 3 min valem aqui.
+
+    O carrossel tambem e um canvas em pe, mas nao vive em player de vertical: o slide
+    ja e a pagina inteira e o destino e o feed do LinkedIn. Por isso ele fica fora da
+    conta de area segura e do limite de duracao dos Shorts.
+    """
+    if (cfg.get("formato") or "").lower() == "carrossel":
+        return False
+    _, width, height = formato_de(cfg)
+    return height > width
 
 
 def metrics(width, height):
@@ -305,7 +364,7 @@ def metrics_do_formato(cfg):
 def linha_formato(cfg):
     """Uma linha dizendo o formato, o canvas e, no vertical, onde o texto pode ficar."""
     nome, width, height = formato_de(cfg)
-    if height <= width:
+    if not e_shorts(cfg):
         return f"{nome} {width}x{height}"
     livre_topo, livre_base = faixa_segura(height)
     return (f"{nome} {width}x{height} | a interface dos Shorts cobre fora de "
@@ -626,26 +685,33 @@ def carregar_cena(caminho):
     return modulo
 
 
-def fabrica_de_cartela(card_png, width, height):
-    """Cartela parada com zoom lento: o motor proprio da skill."""
+def fabrica_de_imagem(card, width, height, zoom_end=ZOOM_END):
+    """Imagem parada com zoom lento: o motor proprio da skill.
+
+    Vale para a cartela renderizada no Chrome e para o slide do deck (terras-banner),
+    que entra pelo mesmo caminho: uma pagina pronta que so respira. O `zoom_end` e o
+    teto da ampliacao, aplicado com easing ease-out sobre o centro do quadro.
+    """
     from PIL import Image
 
-    card = Image.open(card_png).convert("RGB")
-    # BOX e nao LANCZOS: a fonte entra ampliada 2x e o recorte sai em ~1,9:1, que e
-    # exatamente o caso em que o filtro de area e correto. Medido: diferenca media
-    # de 0,46/255 contra LANCZOS, mesma fluidez, e 3,3x mais rapido (34ms contra
-    # 113ms por quadro).
     big = card.resize((width * MOTION_SCALE, height * MOTION_SCALE), Image.LANCZOS)
     zoom_frames = max(int(ZOOM_SECONDS * FPS), 1)
 
     def quadro(i, total):
         t = min(i / zoom_frames, 1.0)
-        z = 1 + (ZOOM_END - 1) * (1 - (1 - t) ** 2)          # ease-out: acelera e assenta
+        z = 1 + (zoom_end - 1) * (1 - (1 - t) ** 2)          # ease-out: acelera e assenta
         bw, bh = width * MOTION_SCALE / z, height * MOTION_SCALE / z
         left, top = (width * MOTION_SCALE - bw) / 2, (height * MOTION_SCALE - bh) / 2
         return big.resize((width, height), Image.BOX, box=(left, top, left + bw, top + bh))
 
     return quadro, zoom_frames
+
+
+def fabrica_de_cartela(card_png, width, height):
+    """Cartela renderizada pelo Chrome, com o zoom padrao."""
+    from PIL import Image
+
+    return fabrica_de_imagem(Image.open(card_png).convert("RGB"), width, height)
 
 
 def ajustar_ao_canvas(img, width, height, modo="encaixar"):
@@ -680,6 +746,38 @@ def ajustar_ao_canvas(img, width, height, modo="encaixar"):
     fundo = ImageEnhance.Brightness(fundo).enhance(0.4)
     fundo.paste(dentro, ((width - dentro.width) // 2, (height - dentro.height) // 2))
     return fundo
+
+
+def abre_slide(caminho, width, height, ajuste="preencher"):
+    """Abre um slide do deck e o encaixa no canvas do video se o tamanho diferir.
+
+    O certo e o roteiro do carrossel usar o mesmo tamanho do deck (1080x1440), e nesse
+    caso a imagem passa direto. Quando difere, o slide e tratado como cena externa: o
+    encaixe e obrigatorio, senao o quadro de tamanho diferente desalinha o pipe do
+    ffmpeg e sai video embaralhado, sem erro nenhum.
+    """
+    from PIL import Image
+
+    img = Image.open(caminho).convert("RGB")
+    if img.size == (width, height):
+        return img
+    print(f"  aviso: slide {img.size[0]}x{img.size[1]} encaixado em {width}x{height} "
+          f"({ajuste}); deck e roteiro deveriam ter o mesmo tamanho")
+    return ajustar_ao_canvas(img, width, height, ajuste)
+
+
+def resolver_arquivo(caminho, base_dir):
+    """Resolve o caminho de um arquivo citado no roteiro.
+
+    Relativo ao diretorio do roteiro, nao ao diretorio de onde o shell chamou: o
+    roteiro do carrossel aponta para os slides que ficam ao lado dele.
+    """
+    p = os.path.expanduser(str(caminho))
+    if not os.path.isabs(p):
+        p = os.path.join(base_dir, p)
+    if not os.path.exists(p):
+        fail(f"arquivo do roteiro nao encontrado: {caminho} (procurado em {p})")
+    return p
 
 
 def fabrica_de_cena(modulo, funcao, duracao, width, height, ajuste="encaixar"):
@@ -811,6 +909,9 @@ def medir_custo(cfg):
         if b.get("cena"):
             dur = max(segundos + 0.6, float(b["cena"].get("duracao", segundos + 0.6)))
             tipo = f"cena {b['cena'].get('funcao', '?')}"
+        elif b.get("slide"):
+            dur = segundos + 0.6
+            tipo = f"slide {os.path.basename(str(b['slide']))}"
         else:
             dur = segundos + 0.6
             tipo = b.get("layout", "cartela")
@@ -892,7 +993,7 @@ def cmd_capa(cfg, out_dir, bloco=1, largura=1280, altura=720):
 
 # ---------------------------------------------------------------- render
 
-def cmd_render(cfg, out_dir, sem_checagem, exportar=False):
+def cmd_render(cfg, out_dir, sem_checagem, exportar=False, base_dir="."):
     if not cfg.get("aprovado"):
         fail("roteiro nao aprovado. Leia o roteiro e rode: python3 build.py aprovar roteiro.json")
     if not cfg.get("blocks"):
@@ -901,7 +1002,13 @@ def cmd_render(cfg, out_dir, sem_checagem, exportar=False):
     os.makedirs(out_dir, exist_ok=True)
     formato, width, height = formato_de(cfg)
     print(f"formato: {linha_formato(cfg)}")
-    if height > width:
+    if formato == "carrossel":
+        sem_slide = [i for i, b in enumerate(cfg["blocks"], start=1) if not b.get("slide")]
+        if sem_slide:
+            fail(f"o formato carrossel e montado com slides do deck (campo `slide`), e os "
+                 f"blocos {sem_slide} nao tem slide. Cartela HTML nao entra aqui: o slide "
+                 "ja e a pagina pronta que passou pelo gate da terras-banner.")
+    if e_shorts(cfg):
         # Short acima de 3 minutos deixa de ser Short: o YouTube joga no player normal,
         # com as cartelas em pe num quadro horizontal. Melhor cortar o texto agora do
         # que descobrir depois de renderizar.
@@ -927,7 +1034,25 @@ def cmd_render(cfg, out_dir, sem_checagem, exportar=False):
         fala = duration(wav)
         falas_lufs.append(loudness(wav)[0])
         cena = block.get("cena")
-        if cena:
+        slide = block.get("slide")
+        if cena and slide:
+            fail(f"bloco {i}: `cena` e `slide` no mesmo bloco; escolha um dos dois")
+        if slide:
+            # Slide do deck (terras-banner): a pagina pronta e o quadro inteiro. A copia
+            # em cartela-<i>.png mantem a inspecao e o --exportar funcionando igual.
+            caminho = resolver_arquivo(slide, base_dir)
+            zoom = float(block.get("zoom", ZOOM_SLIDE))
+            imagem = abre_slide(caminho, width, height, block.get("ajuste", "preencher"))
+            dur = fala + 0.6
+            imagem.save(png)
+            fabrica = fabrica_de_imagem(imagem, width, height, zoom)
+            motion = segment(wav, seg, dur, width, height, fabrica)
+            corte_h = round(width * (1 - 1 / zoom) / 2)
+            corte_v = round(height * (1 - 1 / zoom) / 2)
+            print(f"bloco {i}: slide {os.path.basename(caminho)} | fala {fala:.2f}s | "
+                  f"movimento {motion} | zoom {zoom:.2f} recua ~{corte_h}px nas laterais "
+                  f"e ~{corte_v}px no topo/base")
+        elif cena:
             # Cena desenhada por modulo externo (ex.: gerador do terrasia). A
             # duracao respeita o tempo que a animacao do modulo precisa.
             caminho = os.path.expanduser(cena["modulo"])
@@ -962,7 +1087,7 @@ def cmd_render(cfg, out_dir, sem_checagem, exportar=False):
     medias = [x for x in falas_lufs if x is not None]
     lufs_fala = sum(medias) / len(medias) if medias else None
     print(f"VIDEO: {video} | {total:.1f}s | {width}x{height} | {size_mb:.1f} MB | montagem {time.time() - t0:.0f}s")
-    if height > width:
+    if e_shorts(cfg):
         if total > SHORTS_MAX_S:
             print(f"ATENCAO: short de {total:.0f}s passou do limite de {SHORTS_MAX_S}s e o YouTube "
                   "nao vai classificar como Short. Corte antes de publicar.")
@@ -1011,7 +1136,14 @@ def main():
 
     with open(args.roteiro, encoding="utf-8") as fh:
         cfg = json.load(fh)
-    out_dir = args.out_dir or os.path.join(os.path.dirname(os.path.abspath(args.roteiro)), "out")
+    avisar_sotaque(cfg)
+    base_dir = os.path.dirname(os.path.abspath(args.roteiro))
+    # out_dir sempre absoluto: o concat demuxer do ffmpeg resolve os caminhos do
+    # `trechos.txt` a partir do diretorio do proprio arquivo de lista, entao um
+    # --out-dir relativo dobra o prefixo (`out/x/out/x/trecho-1.mp4`) e o render morre
+    # no ultimo passo, depois de gerar tudo. Aconteceu em 26/09/2026 no video do
+    # carrossel do ADR.
+    out_dir = os.path.abspath(args.out_dir or os.path.join(base_dir, "out"))
     if args.acao == "plan":
         cmd_plan(cfg, out_dir, os.path.abspath(args.roteiro))
         cmd_custo(cfg, out_dir)
@@ -1022,7 +1154,7 @@ def main():
     elif args.acao == "aprovar":
         cmd_aprovar(cfg, args.roteiro)
     else:
-        cmd_render(cfg, out_dir, args.sem_checagem, args.exportar)
+        cmd_render(cfg, out_dir, args.sem_checagem, args.exportar, base_dir)
 
 
 if __name__ == "__main__":

@@ -6,6 +6,8 @@ Uso:
 
 Manifest:
     {
+      "nome": "Como eu desenho pelo raio de explosao",   # OBRIGATORIO, tom pessoal
+      "autor": "Everton Lima",                            # opcional, default Everton Lima
       "size": "1080x1440",            # tamanho dos slides (padrao: retrato 3:4)
       "slides": [
         { "headline": "...", "sub": "...", "kick": "...", "bg": "...", ... },
@@ -13,11 +15,14 @@ Manifest:
       ]
     }
 
+O `nome` e obrigatorio e sempre em tom pessoal (primeira pessoa, no estilo das
+manchetes): vira o titulo do PDF (metadado), que e o que o LinkedIn mostra no
+documento. Nome tecnico de arquivo nao serve como titulo.
+
 Cada item de "slides" e um spec igual ao do make_banner.py, sem os campos
 "out", "html" e "size" (aqui eles saem do manifest). O --check roda por slide
 e falha se algum estourar ou sobrepor. Os PNGs temporarios vao para o mesmo
-diretorio do --out e sao removidos no fim; a resolucao padrao 144 dpi entrega
-pagina 16:9 de 13.33 x 7.5 polegadas.
+diretorio do --out e sao removidos no fim.
 """
 import argparse
 import json
@@ -46,6 +51,14 @@ def main():
     with open(a.manifest, encoding="utf-8") as fh:
         manifest = json.load(fh)
     size = manifest.get("size", "1080x1440")  # padrao retrato (3:4) desde 23/09
+    nome = (manifest.get("nome") or "").strip()
+    if not nome:
+        sys.exit(
+            "manifest sem `nome`: o PDF precisa de um nome em tom pessoal "
+            "(ex.: \"Como eu desenho pelo raio de explosao\"), que vira o "
+            "titulo do documento. Nome tecnico de arquivo nao serve."
+        )
+    autor = manifest.get("autor") or "Everton Lima"
     slides = manifest.get("slides", [])
     if not slides:
         sys.exit("manifest sem slides")
@@ -76,8 +89,10 @@ def main():
         imgs[0].save(
             a.out, "PDF", save_all=True,
             append_images=imgs[1:], resolution=a.dpi,
+            title=nome, author=autor,
         )
         print(f"{a.out}: {len(imgs)} paginas {size}px a {a.dpi} dpi")
+        print(f'  nome do PDF: "{nome}" (autor: {autor})')
 
         if a.keep_pngs:
             base = os.path.splitext(a.out)[0]

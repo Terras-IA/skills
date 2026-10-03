@@ -20,8 +20,8 @@ enxerga a skill por um link simbólico criado pelo `scripts/instalar.sh` do
 repositório, então a edição se faz lá e vale para todos. Nos comandos abaixo,
 `$SKILL_DIR` é a pasta onde este `SKILL.md` está.
 
-Funciona em qualquer workspace; os PDFs vivem em `notas_dir` (padrão
-`~/Documents/SLC`).
+Funciona em qualquer workspace;
+os PDFs vivem em `notas_dir` (padrão `~/Documents/SLC`).
 
 ## Regra de ouro (segurança)
 
@@ -41,26 +41,28 @@ Config: `~/.config/terras-notas/config.json` (client_id do Entra, pasta das
 notas, templates de e-mail). Setup completo (venv + registro no app) está em
 `INSTALL.md`. Antes de qualquer coisa rode `check`.
 
-### Estado desta máquina (2026-09-21)
+### Estado desta máquina (2026-10-01)
 
-- Parser NFS-e SJC **validado** com 4 notas reais (NF 77, 85, 86, 87 — série E)
-  — número, tomador, CNPJ, e-mail e valores conferidos nota a nota,
-  incluindo a NF 77 que não segue o padrão de nome de arquivo ("NotaFiscal_V029…").
+- **A prefeitura migrou de layout**: as notas de out/2026 (NFS-e 26 e 27, série
+  não se aplica) saem no **DANFSe v2.0 nacional**, com chave de 50 dígitos. O
+  parser `nfse-nacional-v1` foi escrito e validado nessas duas notas; o layout
+  municipal antigo continua funcionando (NF 77, 85, 86, 87).
+- Parser validado com 6 notas reais (77, 85, 86, 87, 26, 27) — número, tomador,
+  CNPJ, endereço, valores e descrição conferidos.
 - **Login Microsoft ativo**: app `terras-entra` (client_id
   `71a5cc16-e627-4936-ab2f-ceee328b5ced`) no tenant Sousa Lima Consultoria,
-  authority por tenant (`tenant` na config = id do diretório), "Allow public
-  client flows" **habilitado** no portal. Conta:
-  everton@sousalimaconsultoria.com.br. Token em `~/.config/terras-notas/token.json`,
-  renovação silenciosa validada.
-- **NF 86 enviada** para financeiro01@avanceibrasil.com (IEDI) em 2026-09-21,
-  conferida na pasta Enviados. Rascunhos prontos para NF 85 (Merco, dois
-  destinatários), NF 87 (Dimastec) e NF 77 (ISOG/julho).
+  authority por tenant, "Allow public client flows" habilitado. Conta:
+  everton@sousalimaconsultoria.com.br, renovação silenciosa validada.
+- **NF 86 enviada** ao IEDI e **recebimento confirmado pela Liziani** (que pediu
+  cópia para coord.financeiro@ — implementado). Rascunhos prontos: NF 85
+  (Merco), NF 87 (Dimastec), NF 77 (ISOG/julho), **NF 26 e 27 (ISOG, out/2026)**.
 - **Assinatura**: ativo da própria skill em `assets/assinatura.png`, importado
   do e-mail "NOTA SETEMBRO/2026" (enviado ao Merco em 02/09) com
   `assinatura importar`. Os envios saem em HTML com a imagem embutida. A NF 86
   saiu **antes** disso, com assinatura em texto puro.
 - De-para: Merco (gustavo + erica), Dimastec (adm@), ISOG/5G (anapaula@),
-  IEDI (financeiro01@, janela 15–20).
+  IEDI (financeiro01@ com **cópia para coord.financeiro@**, pedido pela Liziani
+  em 21/09 — a mesma que **confirmou o recebimento da NF 86**; janela 15–20).
 - **A Fênix não aparece na caixa**: varredura de 150 mensagens recentes não
   achou e-mail da contabilidade — as notas chegam por outro canal (o telefone
   informado é celular) e são salvas à mão em `~/Documents/SLC`. Logo,
@@ -77,8 +79,6 @@ notas, templates de e-mail). Setup completo (venv + registro no app) está em
 - Parser agora extrai também **endereço, município/UF, CEP e descrição do
   serviço** do tomador; o de-para ganhou a coluna `endereco`, preenchida a
   partir dos PDFs já parseados.
-- A instalação passou a vir do repositório `terrasia-skills` (ver "Onde está
-  instalada").
 
 ## Fluxo padrão
 
@@ -106,6 +106,8 @@ notas, templates de e-mail). Setup completo (venv + registro no app) está em
 | `despachar [--nota N] [--rascunho / --enviar --yes]` | monta/cria rascunho/envia |
 | `assinatura importar/mostrar` | traz a assinatura de um e-mail enviado e a usa |
 | `pedido add/list/rm/ficha/texto/enviar` | ficha de emissão por cliente e competência |
+| `lembrete [--postar]` | o que precisa de ação hoje (pedidos + janelas); `--postar` vai ao Discord |
+| `avisar "texto" / avisar --lembrete` | posta mensagem no Discord |
 | `status` | resumo (prontas, pendentes, enviadas) |
 | `run` | fetch + parse + match |
 
@@ -149,6 +151,22 @@ salvos em `notas_dir`. A skill cuida do pedido mensal e do envio ao cliente:
    assinatura, para `assessoria_email` (ou `--para`). Ao enviar, os itens ficam
    marcados como solicitados e não são pedidos de novo.
 
+**Lembrete**: `lembrete` é o comando que responde "o que precisa de ação hoje" —
+cruza pedidos ainda não solicitados, **janelas de envio de cada cliente** (o
+`janela_envio` do de-para; a nota tem de ser emitida antes da janela) e
+rascunhos parados. `lembrete --postar` publica o resultado no **Discord**
+(quando `discord_webhook` estiver na config); `avisar "texto"` posta mensagem
+avulsa, e `avisar --lembrete` posta o lembrete se houver pendência. Uma
+**automação roda todo dia às 9h** com `lembrete --postar` (Merco dia 3 e
+Dimastec dia 1 exigem pedido ao escritório ainda no mês anterior). O `status`
+também mostra o pedido do mês.
+
+**Janelas confirmadas pelo usuário (01/10)**: Dimastec **dia 1** (com cópia para
+dimas@dimastec.com.br — preferência observada num envio manual), Merco **até
+dia 3** (contrato: início 01/04/2026, pagamento dia 10, R$ 2.000/mês; contato
+de e-mail definitivo ainda não definido), ISOG **até dia 10**, IEDI **15–20**.
+A janela que o usuário diz prevalece sobre qualquer padrão deduzido do histórico.
+
 Detalhe que evita erro: **os dados do tomador não se digitam na emissão** — o
 portal busca no *Cadastro de Receitas Mobiliárias* da prefeitura pelo CNPJ, e
 divergência só o tomador corrige lá. Quando for esse o caso, o item do pedido já
@@ -162,12 +180,16 @@ Ordem: **CNPJ no de-para** (somado ao e-mail do próprio PDF, se houver) →
 (aparece no `match` e no `status`).
 
 Arquivo: `~/.config/terras-notas/depara.csv`
-(`cnpj,razao_social,apelidos,email,janela_envio,endereco,obs`).
+(`cnpj,razao_social,apelidos,email,cc,janela_envio,endereco,obs`).
 
 - **Vários destinatários**: separe por `;` ou `,` no campo `email`
   (ex.: `gustavo@merco.info;erica@merco.info`) — o e-mail sai para todos.
+- **`cc`**: quem entra em cópia, também com `;` para vários (ex.: o IEDI pediu
+  cópia para a coordenação financeira). O `despachar` mostra a coluna Cópia e o
+  `despacho` registra a cópia no state.
 - **`janela_envio`**: dias preferidos do mês, formato `15-20`. O `despachar`
   avisa quando o dia está fora da janela (o envio continua permitido).
+- **`endereco`**: endereço do tomador, usado na ficha de emissão do pedido.
 - Apelidos separam-se por `;`.
 
 ## Rota sem Graph (fallback)
@@ -179,9 +201,14 @@ corpo do e-mail com `parse --json`.
 
 ## Limitações conhecidas
 
-- Parser específico do layout de NFS-e de **São José dos Campos** (detalhes
-  e como estender em `references/nfse-sjc.md`). Nota de outra cidade cai no
-  aviso "campos não reconhecidos" e vai para revisão manual.
+- Dois layouts de NFS-e de **São José dos Campos**, detectados pelo conteúdo:
+  o municipal antigo (`nfse-sjc-v1`, `references/nfse-sjc.md`) e o **nacional
+  DANFSe v2.0** (`nfse-nacional-v1`, `references/nfse-nacional.md`), que passou
+  a ser emitido em out/2026. Nota de outra cidade cai no aviso "campos não
+  reconhecidos" e vai para revisão manual.
+- O `parse` roda `pdftotext` **e** `pdfplumber` e fica com o melhor resultado —
+  o pdfplumber cola espaços dos rótulos no layout nacional. O campo `extrator`
+  no state diz qual venceu.
 - `fetch` filtra por `remetentes_fenix` na config — se a Fênix trocar de
   endereço, rode `descobrir-remetente` de novo.
 - Anexo > 3 MB não sobe pelo endpoint simples (NFS-e de SJC tem ~30 KB).

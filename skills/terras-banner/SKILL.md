@@ -21,7 +21,7 @@ repositório, então a edição se faz lá e vale para todos. Nos comandos abaix
 |-----|---------|------------|
 | Feed do LinkedIn e og:image da Substack | `1200x628` | Formato do feed; deixou de ser o padrão em 23/09. |
 | Card em pé (LinkedIn, Substack Notes) | `1080x1350` | Texto no terço superior; peça arte, senão o fundo chapado fica vazio. |
-| Card em pé 3:4 | `1080x1440` | **Padrão desde 23/09** (spec e deck sem `size` caem aqui). Modo `tall` do template: manchete em largura cheia na base com apoio e régua de dados (números nowrap), `resumo` no centro do cartão (campo `resumo` no spec, só o retrato usa), tag sobe para o topo abaixo dos LEDs, assinatura no canto. Conferir no gate antes de entregar. |
+| Card em pé 3:4 | `1080x1440` | **Padrão desde 23/09** (spec e deck sem `size` caem aqui). Modo `tall`: arte em faixa no topo com divisória ciano, assinatura no topo à esquerda e tag no topo à direita (fora da arte), `resumo` abaixo da faixa (campo `resumo`), manchete/apoio/régua na base e mascote no canto inferior direito. Conferir no gate antes de entregar. |
 | Quadrado | `1200x1200` | Para carrossel ou citação. |
 | Story / vertical | `1080x1920` | Raro; conferir o encaixe sempre. |
 
@@ -34,13 +34,22 @@ slide com o `make_banner.py` e junta tudo num PDF multipagina. O manifest e:
 
 ```json
 {
-  "size": "1920x1080",
+  "nome": "Como eu desenho pelo raio de explosao",
+  "autor": "Everton Lima",
+  "size": "1080x1440",
   "slides": [
-    { "kick": "Tema", "headline": "Titulo<br><em>chave</em>", "sub": "Apoio.", "bg": "...", "base": "#060608", "accent": "#07d4ec", "scrim_angle": 90 },
+    { "kick": "Tema", "headline": "Titulo<br><em>chave</em>", "sub": "Apoio.", "bg": "...", "base": "#f4f5fa", "accent": "#22d3ee", "scrim_angle": 90 },
     { "...": "proximo slide" }
   ]
 }
 ```
+
+**O `nome` e obrigatorio e sempre em tom pessoal** (regra dele, 24/09: "para o pdf
+sempre precisamos ter 1 nome, e que seja mais pessoal"): primeira pessoa, no estilo das
+manchetes pessoais ("Como o registro me poupou tempo no futuro", "Como eu desenho pelo
+raio de explosao"). Ele vira o TITULO do PDF (metadado `/Title`, com autor `Everton
+Lima`), que e o que o LinkedIn mostra no documento; nome tecnico de arquivo (`deck-raio`,
+`deck-adr-en`) nao serve como titulo. O script se recusa a gerar o PDF sem `nome`.
 
 Cada item de `slides` e um spec normal sem `out`, `html` e `size`. O `--check` roda por
 slide e falha se algum estourar. Padrao de deck: 1080x1440 (retrato 3:4); 1920x1080 (16:9) e 1200x628 tambem valem.
@@ -57,22 +66,24 @@ O mascote oficial e o espectro de 32 poses em `art/mascote/` do diretorio da ide
 banner pelo campo `mascot` do spec, apontando para o PNG da pose, no canto inferior
 direito; `happy` e o padrao quando o post nao pede emocao especifica.
 
-Grupos e quando usar cada pose:
+Lista canonica 1-32 (ordem definida por ele em 24/09; nome em portugues = arquivo):
 
-- `01_positivos` (happy, very_happy, amei, convencido, aliviado, brancalhao): fecho
-  positivo, marco batido, recurso que encantou, autoridade, problema resolvido, toque
-  leve com humor.
-- `02_neutros` (neutral, concentrado, confused, very_confuse): padrao, passo de
-  processo, duvida leve.
-- `03_alertas` (tenso, assustado, cetico, dont_believe): risco a vista, incidente,
-  promessa boa demais, numero sem fonte.
-- `04_negativos` (sad, decepcionado, chorando, envergonhado, shy, ungry, irritado):
-  perda, resultado abaixo, retrabalho, erro assumido, luta contra o status quo.
-- `05_sistema` (falha): bug, exception, sistema fora do ar.
-- `06_tecnico` (hacker, alerta-tecnico, eureka, debugando, investigando,
-  professor-explicando, hot-take, metricas, security, deploy-ok-sucesso): codigo na mao,
-  aviso de sistema, insight, caca ao bug, diagnostico com dados, tutorial, opiniao forte,
-  numeros/medicao, dado sensivel, entrega validada.
+01 Aliviado (aliviado) | 02 Apaixonado (amei) | 03 Brincalhao (brancalhao) | 04 Confiante
+(convencido) | 05 Feliz (happy, padrao) | 06 Celebrando (very_happy) | 07 Concentrado
+(concentrado) | 08 Pensativo (confused) | 09 Neutro (neutral) | 10 Confuso
+(very_confuse) | 11 Assustado (assustado) | 12 Cetico (cetico) | 13 Surpreso
+(dont_believe) | 14 Ansioso (tenso) | 15 Chorando (chorando) | 16 Decepcionado
+(decepcionado) | 17 Envergonhado (envergonhado) | 18 Irritado (irritado) | 19 Triste
+(sad) | 20 Sonolento (shy) | 21 Bravo / Determinado (ungry) | 22 Erro / Glitch (falha) |
+23 Alerta Tecnico (alerta-tecnico) | 24 Debugando (debugando) | 25 Deploy / Sucesso
+(deploy-ok-sucesso) | 26 Eureka (eureka) | 27 Modo Codigo (hacker) | 28 Hot Take
+(hot-take) | 29 Investigando (investigando) | 30 Metricas (metricas) | 31 Professor /
+Explicando (professor-explicando) | 32 Seguranca / Guardiao (security)
+
+Grupos: 01-06 positivos, 07-10 neutros, 11-14 alertas, 15-21 negativos, 22 sistema,
+23-32 tecnicos. Quando usar cada um: campo `uso` em `brand.json`
+(`temas.pessoal.mascote.motivos`). Folha de contato numerada, nessa ordem, em
+`assets/mascote-folha-contato.png`.
 
 Uso no slide (regra pratica): a pose acompanha o texto do slide, nao o tema do post.
 Exemplo do carrossel do ADR (`deck-adr*.json`): #1 confused (ninguem sabia responder),
@@ -81,14 +92,14 @@ da renuncia), #5 metricas (a conta), #6 tenso (a pergunta final).
 
 Encaixe: o mascote tem `data-fit`, entao o `--check` reprova sobreposicao com regua ou
 assinatura; no modo com mascote o template ja reserva o canto (retrato: titleblock
-`calc(100% - 370px)` com mascote de 200px; linkedin: `fstats`/`fsign` com
-`calc(100% - 205px)` com mascote de 160px). Ajustar junto se trocar o tamanho do mascote.
+`calc(100% - 440px)` com mascote de 260px; linkedin: `fstats`/`fsign` com
+`calc(100% - 240px)` com mascote de 210px). Aumentado em 25/09 a pedido dele ('pode aumentar o tamanho do mascote'); ajustar os dois numeros juntos se mudar de novo.
 
 Conjunto essencial (10) quando nao quiser escolher: happy, neutral, concentrado,
-confused, tenso, falha, aliviado, decepcionado, convencido, amei. Rotulos confirmados por
-Ele em 24/09: brancalhao = brincalhao, very_confuse = muito confuso, shy = vergonha,
-dont_believe = nao acreditando. Faltam arquivos para Surpreso, Pensativo, Sonolento e
-Piscando. Folha de contato rotulada em `assets/mascote-folha-contato.png` do projeto.
+confused, tenso, falha, aliviado, decepcionado, convencido, amei. As quatro poses
+duvidosas foram resolvidas por imagem em 24/09: dont_believe = Surpreso (#13), shy =
+Sonolento (#20), confused = Pensativo (#08), very_confuse = Confuso (#10). Folha de
+contato numerada na ordem canonica em `assets/mascote-folha-contato.png` do projeto.
 
 ## Variante LinkedIn (carrossel no app)
 
@@ -106,7 +117,7 @@ No deck, basta o mesmo campo em cada slide do manifest.
 ## Pipeline
 
 1. **Direção de arte.** Antes de gerar, decidir o que a imagem diz: foto editorial do mundo do tema (data center, escritório, cidade, equipamento) ou arte abstrata na paleta. Foto segura mais atenção no feed do que gradiente, e gradiente é justamente o que faz o banner parecer template. Ver `references/art-direction.md`.
-2. **Arte.** `python3 scripts/gen_art.py --prompt "..." --out arte.png --size 1200x628`. A chave sai de `TERRAS_IMAGE_KEY` (e o endpoint, se diferente do padrão, de `TERRAS_IMAGE_ENDPOINT`); a URL devolvida é um OSS que expira, e o script baixa na mesma execução. Peça sempre `no text, no letters` e diga onde fica o vazio: "large dark empty area on the left half for typography" o modelo respeita.
+2. **Arte.** `python3 scripts/gen_art.py --prompt "..." --out arte.png --size 1200x628`. A chave sai de `TERRAS_IMAGE_KEY` (`TERRAS_IMAGE_ENDPOINT` aponta outro endpoint); se faltar ou a cota estourar, o script cai para `TERRAS_IMAGE_KEY_XAI` (x.ai) e depois `TERRAS_IMAGE_KEY_OPENAI` (OpenAI). A URL devolvida é um OSS que expira, e o script baixa na mesma execução. Peça sempre `no text, no letters` e diga onde fica o vazio: "large dark empty area on the left half for typography" o modelo respeita.
 3. **Spec.** Escrever um JSON com o conteúdo (ver `templates/` e o cabeçalho de `scripts/make_banner.py`): `kick`, `headline`, `sub`, `stats`, `foot`, `bg`, `base`, `accent`. O texto aceita HTML inline (`<br>`, `<b>`, `<em class="accent">`), nunca markdown.
 4. **Render.** `python3 scripts/make_banner.py --spec banner.json --check`. Sai o PNG no tamanho exato e o HTML ao lado, e o `--check` falha se algum texto estourou, saiu do canvas ou cruzou com outro elemento.
 5. **Gate visual.** Passar o PNG pelo agente `documents:visual-judge` antes de entregar, olhando legibilidade sobre a arte (o ponto que mais costuma falhar) e se a manchete lê no tamanho de feed. Corrigir e repetir até passar; o gate é o que separa "ficou pronto" de "ficou bom".
@@ -116,9 +127,25 @@ Cada idioma tem o próprio banner, com a manchete acompanhando o gancho daquele 
 
 ## Marca
 
-- Direcao de 23-24/09: sem efeito humano (arte grafica chapada, sem fotorrealismo), fundo deixa de ser sempre preto (variante `"tema": "claro"` no spec: base #f4f5fa, texto #14141e), cor predominante **#22d3ee**, sem os 4 LEDs da direita, identidade de tema via TIPOGRAFIA da tag (nunca icone). Mascote oficial: espectro JARVIS (`art/mascote-espectro.png`), campo `mascot` no spec.
+- **MODELO LINKEDIN APROVADO (24/09/2026)** e o **modelo retrato (padrao) corrigido no
+  mesmo dia**: no retrato, a arte e uma FAIXA no topo (top 128px, 42% de altura) com
+  divisoria ciano embaixo (`border-bottom` com o acento), a assinatura fica no topo a
+  ESQUERDA e a tag no topo a DIREITA (fora da arte), e o `resumo` vem ABAIXO da faixa
+  (`top: calc(42% + 168px)`), nunca em cima da imagem; manchete, apoio e regua seguem na
+  base. Referencia visual: `deck-adr-01.png`. Antes disso a tag e o resumo caiam sobre a
+  arte, o que ele reprovou em 24/09 ("titulo ficou encima da imagem", "texto descritivo
+  encima da imagem").
+- **FORMATO APROVADO (24/09/2026), referencia `banner-teste-claro.png` (copia em `$TERRAS_BRAND_DIR/referencias/formato-aprovado-2026-09-24.png`):** tema CLARO por
+  padrao. Fundo `#f4f5fa`, texto `#14141e`, apoio `#5a5c70`, acento ciano **#22d3ee**
+  (cor predominante), fonte Inter. Sem LEDs, sem rodape de dominio, sem efeito humano
+  (arte grafica chapada, nunca fotorrealismo). Identidade de tema pela TIPOGRAFIA da tag
+  com filete ciano. Assinatura dupla discreta no topo a esquerda: `eolimabr.substack.com
+  · linkedin.com/in/limaeverton`. Mascote no canto inferior direito (32 poses, secao
+  abaixo). Retrato 1080x1440 e o formato padrao de saida.
+- O tema escuro (base `#060608`) virou VARIANTE opt-in: campo `"tema": "escuro"` no spec.
+  Spec sem `tema`, sem `base` e sem `accent` ja nasce no formato aprovado.
 - Desde 22/09/2026 a identidade e o tema terrasia (extrado do codigo do produto, `temas.terrasia` do brand.json): base quase preta `#060608` (alt `#0a0a0e`), acento ciano `#07d4ec` (amostrado do material aprovado por ele; o verde neon `#00ff9d` foi reprovado de vista no mesmo dia), texto `#e8e8f0` e apoio `#8a8aad`, linha `#1a1a2e`. O navy `#05090f` com ambar `#ffcc33` caiu: tinha ficado padrao de mercado. Backup da paleta antiga em `brand.json.bak-2026-09-22`.
-- Fonte: Inter (variable) em `$TERRAS_BRAND_DIR/fonts/` (padrão `~/Documents/Diversos/terras-brand/fonts/`), com JetBrains Mono de fallback; a referência aprovada por ele é sans, não mono (a tentativa mono foi reprovada em 22/09). Fonte de sistema genérica (DejaVu, Liberation) é o que faz o visual parecer amador.
+- Fonte: Inter (variable) em `$TERRAS_BRAND_DIR/fonts/` (padrão `~/Documents/Diversos/terras-brand/fonts/`), com JetBrains Mono de fallback; a referência aprovada é sans (Inter), nunca mono. Fonte de sistema genérica (DejaVu, Liberation) é o que faz o visual parecer amador.
 - Layout (22/09/2026, referência dele em `~/Downloads/Identidade Terrasia*.png`): título gigante embaixo à esquerda (quebra de linha com até ~12 caracteres por linha a 88px), sub em cinza abaixo, tag do tema em caixa alta embaixo à direita com filete ciano, 4 LEDs anelados no topo à direita, arte do assunto à direita, e assinatura discreta em cinza no topo à esquerda com os dois endereços: `eolimabr.substack.com · linkedin.com/in/limaeverton`. Sem logo. No spec: `kick` vira a tag curta (sem data), `stats` e `foot` saem, `scrim_angle` 90; `signature` tem esse default no script e só se escreve para trocar.
 - Manchete: post de EXPERIENCIA PESSOAL pede primeira pessoa com benefício e o PRONOME EXPLICITO ("Como o registro me poupou tempo no futuro", "Como eu registro uma decisão numa página"), não tese fria ("Decisão sem registro vira relíquia") nem benefício sem o eu ("Como registrar decisões poupa tempo" foi reprovado por falta do eu). Tese abstrata fica para post conceitual. Regra dele em 23/09.
 - Arte sempre ligada ao assunto do post (o exemplo aprovado: fibra óptica que se divide em duas = o retry duplicando a request). Genérica tipo "robô/hack" foi reprovada.
@@ -140,6 +167,7 @@ que falta sem sobrescrever nada editado.
 
 - `size` é `"1200x628"` com `x`; com `*` a API devolve erro de parâmetro. Todo tamanho é `<largura>x<altura>`.
 - `qwen-image-3.0` e `qwen-image-3.0-pro` respondem nessa rota e respeitam o tamanho. `wan2.7-image` e `z-image-turbo` dão 404.
+- `gen_art.py` tem **cadeia de fallback** desde 03/10/2026: Alibaba qwen-image → x.ai `grok-imagine-image-2.0` (não aceita `size`, devolve ~1248x832; chave do provedor Grok) → OpenAI `gpt-image-2` (aceita só 1024x1024/1536x1024/1024x1536, resposta em b64; chave do provedor OpenAI). Em 03/10/2026 os três estavam sem crédito (Alibaba cota gratuita esgotada, x.ai e OpenAI sem saldo). Quando não houver crédito em nenhum, a saída é arte procedural em PIL no estilo chapado da casa (exemplo: `~/Documents/Diversos/substack/imagens/gerar_artes.py`) e pedir recarga ao usuário. Rotas gratuitas testadas e descartadas: Pollinations (marca d'água e borrado), Stable Horde anônimo (limite de 576px, estilo fora da marca).
 - Nunca escalar tipografia só pela altura: em canvas vertical o tipo estoura e tudo colide. O script usa o menor eixo.
 - Não pedir texto ao modelo de imagem. Letra sai torta e com erro de grafia; o texto é sempre HTML por cima.
 - O render é o Chrome do sistema (`google-chrome-stable`), já instalado. Playwright não está nesta máquina e não precisa ser instalado.

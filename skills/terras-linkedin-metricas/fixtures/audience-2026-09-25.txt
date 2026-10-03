@@ -1,0 +1,262 @@
+URL: https://www.linkedin.com/analytics/creator/audience/
+
+- heading "0 notificação" [level=2]
+- generic "Pular menu de navegação":
+  - button "Pular para pesquisa":
+    - generic: Pular para pesquisa
+  - button "Pular para conteúdo principal":
+    - generic: Pular para conteúdo principal
+  - button "Pular para barra lateral":
+    - generic: Pular para barra lateral
+  - button "Pular para conteúdo principal":
+    - generic: Pular para conteúdo principal
+  - button "Pular para à parte":
+    - generic: Pular para à parte
+  - button "Fechar menu pular":
+- banner:
+  - button "LinkedIn":
+    - img "LinkedIn"
+  - status
+  - search:
+    - textbox "Pesquisar"
+  - figure
+  - navigation:
+    - list:
+      - button "Início, 1 nova notificação":
+        - generic: Início
+      - link "Minha rede0 nova notificação":
+        - /url: https://www.linkedin.com/mynetwork
+        - generic: Minha rede
+      - link "Vagas, 0 nova notificação":
+        - /url: https://www.linkedin.com/jobs/
+        - generic: Vagas
+      - link "Mensagens, 0 nova notificação":
+        - /url: https://www.linkedin.com/messaging/
+        - generic: Mensagens
+      - link "Notificações, 3 novas notificações":
+        - /url: https://www.linkedin.com/notifications/
+        - generic: "3"
+        - generic: Notificações
+      - button "Eu":
+        - figure
+        - text: Eu
+  - navigation:
+    - list:
+      - button "Para negócios":
+        - text: Para negócios
+      - link "Anunciar, 0 nova notificação":
+        - /url: https://www.linkedin.com/campaignmanager/accounts/
+        - generic: Anunciar
+- main:
+  - complementary "Barra lateral":
+    - link:
+      - /url: https://www.linkedin.com/in/limaeverton/
+      - figure
+      - figure:
+        - img "Everton Lima"
+    - link "Everton Lima, Senior Software Architect & DevOps Engineer | .NET · Laravel · Kubernetes · Azure/AWS | I modernize legacy systems & cut infrastructure costs | Open to remote Senior/Staff roles, São Paulo e Região, Perfil verificado":
+      - /url: https://www.linkedin.com/in/limaeverton/
+      - generic "Everton Lima, Senior Software Architect & DevOps Engineer | .NET · Laravel · Kubernetes · Azure/AWS | I modernize legacy systems & cut infrastructure costs | Open to remote Senior/Staff roles, São Paulo e Região, Perfil verificado":
+        - paragraph: Everton Lima
+        - img "Perfil verificado"
+        - paragraph: Senior Software Architect & DevOps Engineer | .NET · Laravel · Kubernetes · Azure/AWS | I modernize legacy systems & cut infrastructure costs | Open to remote Senior/Staff roles
+        - paragraph: São Paulo e Região
+    - link "Sousa Lima Consultoria":
+      - /url: https://www.linkedin.com/in/limaeverton/
+      - figure
+      - paragraph: Sousa Lima Consultoria
+    - navigation:
+      - list:
+        - link "Visão geral":
+          - /url: https://www.linkedin.com/dashboard/
+          - generic: Visão geral
+        - link "Análise de conteúdos":
+          - /url: https://www.linkedin.com/analytics/creator/content/
+          - generic: Análise de conteúdos
+        - button "Análise de público":
+          - generic: Análise de público
+  - region "Conteúdo principal":
+    - button "7 dias":
+      - checkbox "7 dias"
+      - text: 7 dias
+    - link "Exportar":
+      - /url: https://www.linkedin.com/
+      - generic: Exportar
+    - paragraph: Aumento do número de seguidores
+    - button "Saiba mais":
+    - paragraph: "1.202"
+    - paragraph: Total de seguidores
+    - paragraph: 1%
+    - paragraph: em relação a 7 dias anteriores
+    - button "Cumulativo":
+      - checkbox "Cumulativo"
+      - text: Cumulativo
+    - region "Chart. Highcharts interactive chart.":
+      - heading "Chart" [level=6]
+      - generic: Line chart with 7 data points.
+      - generic: The chart has 1 X axis displaying Time. Data ranges from 2026-09-19 00:00:00 to 2026-09-25 00:00:00.
+      - generic: The chart has 1 Y axis displaying values. Data ranges from 0 to 15.
+      - img "Interactive chart":
+        - img "sábado, 19 de set. de 2026, 0. Novos seguidores."
+        - img "domingo, 20 de set. de 2026, 2. Novos seguidores."
+        - img "segunda-feira, 21 de set. de 2026, 5. Novos seguidores."
+        - img "terça-feira, 22 de set. de 2026, 8. Novos seguidores."
+        - img "quarta-feira, 23 de set. de 2026, 14. Novos seguidores."
+        - img "quinta-feira, 24 de set. de 2026, 15. Novos seguidores."
+        - img "sexta-feira, 25 de set. de 2026, 15. Novos seguidores."
+        - generic: 19 de set.
+        - generic: 21 de set.
+        - generic: 23 de set.
+        - generic: 25 de set.
+        - generic: "0"
+        - generic: "5"
+        - generic: "10"
+        - generic: "15"
+        - generic: "20"
+      - generic: End of interactive chart.
+    - paragraph: Os dados diários são registrados em UTC
+    - paragraph: Principais dados demográficos
+    - button "Saiba mais":
+    - navigation:
+      - list:
+        - button "Tudo":
+          - generic: Tudo
+        - button "Cargo":
+          - generic: Cargo
+        - button "Localidade":
+          - generic: Localidade
+        - button "Nível de experiência":
+          - generic: Nível de experiência
+        - button "Empresa":
+          - generic: Empresa
+        - button "Setor":
+          - generic: Setor
+        - button "Tamanho da empresa":
+          - generic: Tamanho da empresa
+    - paragraph: Nível de experiência
+    - paragraph: Sênior
+    - paragraph: 34%
+    - progressbar "34 por cento concluído"
+    - paragraph: Localidade
+    - paragraph: São Paulo e Região
+    - paragraph: 31%
+    - progressbar "31 por cento concluído"
+    - paragraph: Setor
+    - paragraph: Atividades dos serviços de tecnologia da informação
+    - paragraph: 27%
+    - progressbar "27 por cento concluído"
+    - paragraph: Tamanho da empresa
+    - paragraph: 51 a 200 funcionários
+    - paragraph: 14%
+    - progressbar "14 por cento concluído"
+    - paragraph: Cargo
+    - paragraph: Engenheiro de software
+    - paragraph: 4%
+    - progressbar "4 por cento concluído"
+    - paragraph: Empresa
+    - paragraph: Witec IT Solutions
+    - paragraph: 2%
+    - progressbar "2 por cento concluído"
+  - complementary "À parte":
+    - iframe:
+      - main "Work With Us Container":
+        - img "Everton"
+        - link "KUKA":
+          - /url: https://www.linkedin.com/li/tscp/sct?destinationUrl=http%3A%2F%2Fwww.linkedin.com%2Fcompany%2F52310%2Flife& [rastreio removido]
+          - img "KUKA"
+        - paragraph: Everton, explore oportunidades que vale a pena com KUKA
+        - paragraph: Fique por dentro das vagas e notícias do setor
+        - link "Seguir":
+          - /url: https://www.linkedin.com/li/tscp/sct?destinationUrl=http%3A%2F%2Fwww.linkedin.com%2Fcompany%2F52310%2Flife%3FisFollowingPage%3Dtrue& [rastreio removido]
+        - paragraph: Promovido
+        - button "Opções de anúncios":
+          - generic: Opções de anúncios
+    - link "Sobre":
+      - /url: https://about.linkedin.com/
+      - paragraph: Sobre
+    - link "Acessibilidade":
+      - /url: https://www.linkedin.com/accessibility/
+      - paragraph: Acessibilidade
+    - link "Central de Ajuda":
+      - /url: https://www.linkedin.com/help/linkedin/
+      - paragraph: Central de Ajuda
+    - button "Termos e Privacidade":
+      - paragraph: Termos e Privacidade
+    - link "Preferências de anúncios":
+      - /url: https://www.linkedin.com/help/linkedin/answer/62931/
+      - paragraph: Preferências de anúncios
+    - link "Publicidade":
+      - /url: https://www.linkedin.com/ad/start/?trk=n_nav_ads_rr
+      - paragraph: Publicidade
+    - button "Soluções corporativas":
+      - paragraph: Soluções corporativas
+    - link "Baixe o aplicativo do LinkedIn":
+      - /url: https://www.linkedin.com/mobile/
+      - paragraph: Baixe o aplicativo do LinkedIn
+    - link "Mais":
+      - /url: https://www.linkedin.com/
+      - paragraph: Mais
+    - paragraph: LinkedIn Corporation © 2026
+- complementary:
+  - img "Everton Lima"
+  - generic: O status está on-line
+  - button "Você está no módulo de mensagens. Pressione Enter para abrir a lista de conversas.":
+    - generic: Mensagens
+    - generic: Você está no módulo de mensagens. Pressione Enter para abrir a lista de conversas.
+  - button "Abrir o menu suspenso de mensagens":
+    - img "Abrir o menu suspenso de mensagens"
+  - button "Escrever mensagem":
+    - generic: Escrever mensagem
+  - button "Você está no módulo de mensagens. Pressione Enter para abrir a lista de conversas.":
+    - generic: Você está no módulo de mensagens. Pressione Enter para abrir a lista de conversas.
+  - heading "Caixas de entrada da página" [level=3]
+  - generic: Clique para ver as caixas de entrada afiliadas
+  - button "Caixas de entrada da página":
+- complementary "Assistente de IA para obter ajuda com sua carreira, vagas, etc."
+- iframe:
+  - region "Mensagem toast":
+    - heading "0 notificações no total" [level=2]
+    - alert
+  - region
+  - button "Pular para pesquisa":
+    - generic: Pular para pesquisa
+  - button "Pular para conteúdo principal":
+    - generic: Pular para conteúdo principal
+  - button "Atalhos do teclado":
+    - generic: Atalhos do teclado
+  - button "Fechar menu pular":
+    - generic: Fechar menu pular
+  - banner "Navegação geral":
+    - link "LinkedIn":
+      - /url: https://www.linkedin.com/feed/
+      - img "LinkedIn":
+    - combobox "Pesquisar"
+    - navigation "Navegação principal":
+      - list:
+        - link "atualizações do feed novas notificações Início":
+          - /url: https://www.linkedin.com/feed/
+          - generic: atualizações do feed novas notificações
+          - generic "Início"
+        - link "Minha rede":
+          - /url: https://www.linkedin.com/mynetwork/?
+          - generic "Minha rede"
+        - link "Vagas":
+          - /url: https://www.linkedin.com/jobs/?
+          - generic "Vagas"
+        - link "Mensagens":
+          - /url: https://www.linkedin.com/messaging/?
+          - generic "Mensagens"
+        - link "3 novas notificações Notificações":
+          - /url: https://www.linkedin.com/notifications/?
+          - generic: "3"
+          - generic: 3 novas notificações
+          - generic "Notificações"
+        - button "Everton Lima Eu":
+          - img "Everton Lima"
+          - text: Eu
+        - button "Para negócios":
+          - generic "Para negócios":
+            - text: Para negócios
+        - link "Veicular anúncio":
+          - /url: https://www.linkedin.com/campaignmanager/accounts?
+          - generic "Veicular anúncio"

@@ -26,9 +26,9 @@ Referência da skill `terras-humanizer`. Cada padrão traz os sinais, o problema
 
 ### 2. Fecho de uma linha e fragmento dramático
 
-**Sinais:** parágrafo de uma frase que repete o anterior; "É isso que importa de verdade."; "Leia de novo."; "Deixe isso assentar."; o mesmo fecho depois de várias seções; fileira de fragmentos ("Sem estética prévia. Sem nostalgia."); palavra em CAIXA ALTA ou com ponto entre letras (cada. santo. dia.).
+**Sinais:** parágrafo de uma frase que repete o anterior; "É isso que importa de verdade."; "Essa distinção importa."; "Leia de novo."; "Deixe isso assentar."; o mesmo fecho depois de várias seções; frase depois de um exemplo, cena ou número que nomeia o que ele mostrou ("Isso mostra a importância de...", "A mensagem ficou clara:", "Foi uma lição de paciência."); fileira de fragmentos ("Sem estética prévia. Sem nostalgia."); palavra em CAIXA ALTA ou com ponto entre letras (cada. santo. dia.).
 
-**Problema:** a linha pede pausa em vez de acrescentar. Frase curta pode ter ênfase quando traz fato novo. Corte o fecho que repete; junte a fileira de fragmentos numa frase específica.
+**Problema:** a linha pede pausa em vez de acrescentar. Frase curta pode ter ênfase quando traz fato novo. Corte o fecho que repete, inclusive o que explica um exemplo que o leitor acabou de ver; mantenha quando acrescenta fato ou consequência que o exemplo não mostra. Junte a fileira de fragmentos numa frase específica.
 
 **Antes:**
 > O cache corta trabalho repetido.
@@ -144,7 +144,7 @@ Uma pessoa pode fazer qualquer um destes de propósito, então os mais fracos pr
 
 **Sinais:** em inglês, "third-party", "cross-functional", "client-facing", "data-driven", "well-known", "high-quality", "real-time", "long-term", "end-to-end" hifenizados em qualquer posição da frase. Em português, o equivalente é o acúmulo de compostos por hífen onde a norma dispensa o sinal.
 
-**Problema:** o hífen fica onde a gramática não pede. Mantenha quando a norma exigir, como em "relatório de alta qualidade" (sem hífen, aliás) ou no composto que a gramática pede; tire quando não. **(fraco sozinho)**
+**Problema:** o hífen fica onde a gramática não pede. Em inglês, a regra é posicional: mantenha antes do substantivo ("a high-quality report") e tire depois ("the report is high quality"); palavras que o dicionário sempre hifeniza, como "third-party" e "cross-functional", mantêm o hífen em qualquer posição. Em português, o equivalente é o acúmulo de compostos por hífen onde a norma dispensa o sinal. **(fraco sozinho)**
 
 ### 11. Voz passiva e sujeito oculto
 
@@ -291,9 +291,9 @@ Templates e editores visuais também produzem formatação limpa demais. O víci
 
 ### 20. Títulos decorativos
 
-**Sinais:** título com toda palavra em maiúscula, emoji ou seta (→) enfeitando título e item de lista, linha horizontal entre cada seção, documento abrindo com título que repete o próprio nome.
+**Sinais:** título com toda palavra em maiúscula, emoji ou seta (→) enfeitando título e item de lista, linha horizontal entre cada seção, documento abrindo com título que repete o próprio nome, título escrito para efeito ("A decisão, numa tela só") em vez de nomear o que a seção guarda ("Como as seis opções se comparam").
 
-**Problema:** decoração no lugar de hierarquia. Use caixa de frase, tire o enfeite e a linha, e deixe o título aparecer uma vez.
+**Problema:** decoração no lugar de hierarquia. Use caixa de frase, tire o enfeite e a linha, nomeie o conteúdo em vez de causar impressão, e deixe o título aparecer uma vez.
 
 **Antes:**
 > 🚀 **Fase de Lançamento:** O produto chega no terceiro trimestre
@@ -354,15 +354,37 @@ Estas se removem direto. Nenhuma precisa de reescrita.
 >
 > Quando a página demora, o usuário vai embora.
 
-### 25. Texto sobre a versão anterior
+### 25. Texto sobre o documento em vez do assunto
 
-**Problema:** documentação e comentário descrevem o que substituíram em vez do comportamento atual. Mencione a versão anterior só em changelog, release notes e guia de migração.
+**Sinais:** o que o texto substituiu ("foi adicionado para substituir"); como foi montado ou de onde veio ("gerado a partir de", "compilado de", "tudo não confirmado foi marcado em vez de chutado"); legenda, layout ou ordem que o leitor já vê ("a tabela abaixo compara", "esta seção está organizada por responsável").
+
+**Problema:** o texto descreve a si mesmo em vez do assunto. Mencione a versão anterior só em changelog, release notes e guia de migração. Mantenha crédito de fonte que o leitor possa seguir; corte a narrativa de como você trabalhou. Mantenha ressalva que mude o que o leitor deve fazer. Declare convenção só quando o leitor não puder deduzi-la, e uma vez. Uma única descrição da página é **(fraca sozinha)**.
 
 **Antes:**
 > Esta função foi adicionada para substituir a abordagem anterior, que percorria todos os itens e causava desempenho O(n²).
 
 **Depois:**
 > Esta função usa tabela hash para busca O(1), evitando o custo O(n²) da iteração ingênua.
+
+## F. Escrever para o leitor errado
+
+### 26. Re-explicar o que o leitor já sabe
+
+Atua em **resposta**, não em texto solto: comentário, reply, mensagem num ticket ou PR.
+
+**Sinais:** resposta curta que reafirma o problema, percorre o diagnóstico e alinha as evidências antes de chegar à decisão; query, comando ou tabela de números incluídos para provar que o plano funciona; contexto que o outro escreveu ou com o qual já concordou; a resposta em si sentada na última linha.
+
+**Problema:** numa resposta, o leitor já tem o contexto — reconstruí-lo não acrescenta nada e enterra o ponto. Cada frase pode estar bem escrita sozinha, então o vício sobrevive a faxina frase a frase. Abra pela decisão e guarde só o raciocínio que mudaria a concordância do leitor: em geral, um fato que falta a ele e o link de que precisa para agir. Diagnóstico e prova de que o plano funciona pertencem ao ticket ou documento que segue; revisor que levanta um tema não está pedindo o texto completo. A regra de "acrescentar algo que o leitor ainda não tinha" conta a conversa ao redor, não só o texto anterior.
+
+**Antes:**
+> Pois é, você tem razão, isso contorna o problema em vez de corrigir. A correção de verdade está no `MergeService`: ao mover um filho para um novo pai, deveria atualizar `pipeline_id` junto com `parent_id`. Dá para reprocessar as linhas erradas a partir do log de auditoria com `Change.where(field: "pipeline_id", source: "merge")`. Verifiquei em QA: 123 merges no passado, só 6 linhas erradas agora, então a limpeza é pequena.
+>
+> Como o `MergeService` é compartilhado e não é específico desta conta, prefiro abrir um ticket separado a alargar este PR. O fallback aqui está bom até lá.
+
+**Depois:**
+> Concordo, isso é um contorno. Corrigir de verdade no `MergeService` alargaria este ticket demais: é código compartilhado, significa verificar o fluxo de merge de todas as contas, mais um reprocessamento das linhas já erradas.
+>
+> Prefiro manter este PR na conta e abrir ticket separado para a correção no `MergeService` e o reprocesse. Me diz se fecha.
 
 ---
 
@@ -380,4 +402,4 @@ Mantenha os detalhes que carregam a voz, a menos que atrapalhem o sentido:
 
 ## Fonte
 
-Padrões derivados de ["Signs of AI writing"](https://en.wikipedia.org/wiki/Wikipedia:Signs_of_AI_writing), da WikiProject AI Cleanup, e da skill `blader/humanizer` (MIT). Exemplos e lista de vocabulário adaptados para o português.
+Padrões derivados de ["Signs of AI writing"](https://en.wikipedia.org/wiki/Wikipedia:Signs_of_AI_writing), da WikiProject AI Cleanup, e da skill `blader/humanizer` v3.1.0 (MIT). Exemplos e lista de vocabulário adaptados para o português.

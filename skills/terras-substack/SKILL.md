@@ -155,10 +155,19 @@ Toda escrita aceita `--dry-run` (mostra a requisicao e nao executa). Em
 `<id-da-tag:nome>` no lugar do id, e uma tag nova seria criada antes de ser
 presa ao post.
 
-A imagem do post (og:image) sai da skill `terras-banner`: gerar o PNG em
+A imagem do post (capa e og:image) sai da skill `terras-banner`: gerar o PNG em
 1200x628, subir com `upload-image` e inserir `![alt](url)` como primeiro no do
 corpo, logo depois do frontmatter, porque o primeiro no e o que a Substack usa
 como og:image. Banner de digest publicado sai nos dois idiomas, um por post.
+
+## Digest / recap da semana
+
+Digest tambem pode ser longo na Substack. Nao resumir a forca para caber num tamanho arbitrario quando o valor estiver no mapa da semana, nos links entre textos e no agrupamento por tema.
+
+Quando houver digest nas duas plataformas:
+
+- o LinkedIn pode sair em versao longa, desde que abra forte e leia bem em diagonal;
+- a Substack aprofunda com links para os posts publicados, agrupamento por tema e pergunta final apontando o proximo aprofundamento.
 
 ## Rota alternativa: publicar pelo navegador
 

@@ -1,0 +1,40 @@
+{
+  "timezone": "America/Sao_Paulo",
+  "timezone_graph": "E. South America Standard Time",
+  "conta_padrao": "SLC",
+  "dias_padrao": 7,
+
+  "contas": [
+    {
+      "nome": "SLC",
+      "papel": "minha empresa (tenant próprio — dá para ler E escrever)",
+      "tenant": "<id-do-diretorio-ou-dominio>",
+      "client_id": "<client_id-do-app-registrado-nesse-tenant>",
+      "conta": "everton@sousalimaconsultoria.com.br",
+      "cor": "#040A21"
+    },
+    {
+      "nome": "ISO",
+      "papel": "presto serviço (outro tenant: só com app lá dentro ou feed .ics)",
+      "tenant": "<id-do-tenant-do-iso>",
+      "client_id": "",
+      "conta": "devops@iso5geducacional.com.br",
+      "cor": "#00D2FF"
+    }
+  ],
+
+  "feeds": [
+    {
+      "nome": "Google",
+      "papel": "endereço iCal secreto do Google Agenda (leitura)",
+      "url": "",
+      "cor": "#DB00B6"
+    },
+    {
+      "nome": "ISO",
+      "papel": "calendário publicado do ISO em .ics (leitura)",
+      "url": "",
+      "cor": "#00D2FF"
+    }
+  ]
+}

@@ -15,9 +15,11 @@ import argparse
 import base64
 import csv
 import difflib
+import io
 import json
 import os
 import re
+import shutil
 import subprocess
 import sys
 import unicodedata
@@ -116,6 +118,7 @@ def carregar_config() -> dict:
         "notas_dir": "~/Documents/SLC",
         "assessoria_nome": "Fênix Assessoria",
         "assessoria_email": "",
+        "discord_webhook": "",
         # Parâmetros de emissão do prestador (extraídos das NFS-e reais de SJC).
         # Usados na `pedido ficha`, que é o roteiro de preenchimento no portal.
         "emissao": {
@@ -174,7 +177,8 @@ def salvar_state(cfg: dict, st: dict) -> None:
 
 
 def chave_nota(nota: dict) -> str:
-    return f"{nota.get('numero')}/{nota.get('serie')}"
+    numero, serie = nota.get("numero"), (nota.get("serie") or "").strip()
+    return f"{numero}/{serie}" if serie else str(numero)
 
 
 def alerta_janela(janela: str, dia: int):
@@ -191,7 +195,7 @@ def alerta_janela(janela: str, dia: int):
 
 # ---------------------------------------------------------------- de-para
 
-COLUNAS_DEPARA = ["cnpj", "razao_social", "apelidos", "email", "janela_envio", "endereco", "obs"]
+COLUNAS_DEPARA = ["cnpj", "razao_social", "apelidos", "email", "cc", "janela_envio", "endereco", "obs"]
 
 
 def ler_depara() -> list[dict]:
@@ -265,27 +269,44 @@ def resolver_destino(nota: dict, depara: list[dict]):
             resultado = {"email": melhor["email"].strip(), "origem": "sugerido", "confianca": "media",
                          "sugestao_nome": melhor.get("razao_social", "")}
 
-    # Janela preferida de envio acompanha o cliente, venha o e-mail de onde vier.
+    # Janela preferida e cópia (CC) acompanham o cliente, venham de onde vierem.
     if resultado and linha_cnpj:
         janela = (linha_cnpj.get("janela_envio") or "").strip()
         if janela:
             resultado["janela"] = janela
+        copia = (linha_cnpj.get("cc") or "").strip()
+        if copia:
+            resultado["cc"] = copia
     return resultado
 
 
 # ---------------------------------------------------------------- parser NFS-e
 
-def extrair_texto_pdf(caminho: Path) -> str:
-    """Texto com layout. Tenta pdfplumber; cai para pdftotext -layout."""
+def extrair_textos_pdf(caminho: Path) -> list[tuple[str, str]]:
+    """Texto do PDF por cada extrator disponível.
+
+    Os dois erram de formas diferentes (o pdfplumber cola espaços dos rótulos no
+    layout nacional; o pdftotext é mais fiel com -layout), então o `parse` testa
+    os dois e fica com o resultado que reconhecer mais campos.
+    """
+    saidas: list[tuple[str, str]] = []
+    if shutil.which("pdftotext"):
+        try:
+            resultado = subprocess.run(["pdftotext", "-layout", str(caminho), "-"],
+                                       capture_output=True, text=True, check=True)
+            if resultado.stdout.strip():
+                saidas.append(("pdftotext", resultado.stdout))
+        except (subprocess.CalledProcessError, OSError):
+            pass
     try:
         import pdfplumber
         with pdfplumber.open(str(caminho)) as pdf:
-            return "\n".join((pagina.extract_text(layout=True) or "") for pagina in pdf.pages)
+            texto = "\n".join((pagina.extract_text(layout=True) or "") for pagina in pdf.pages)
+        if texto.strip():
+            saidas.append(("pdfplumber", texto))
     except ImportError:
         pass
-    saida = subprocess.run(["pdftotext", "-layout", str(caminho), "-"],
-                           capture_output=True, text=True, check=True)
-    return saida.stdout
+    return saidas
 
 
 def _secao(texto: str, inicio: str, fim: str) -> str:
@@ -311,7 +332,105 @@ def _nome_entre_linhas(secao_txt: str, rotulo: str) -> str:
     return ""
 
 
-def parse_nfse(texto: str) -> dict:
+def _colunas(linha: str) -> list[str]:
+    """Separa as colunas de uma linha do DANFSe (alinhadas por espaços)."""
+    return [c.strip() for c in re.split(r"\s{3,}", linha.strip()) if c.strip()]
+
+
+def _valor_apos_rotulo(linhas: list[str], rotulo: str, coluna: int = 0, janela: int = 3) -> str:
+    """Valor de uma célula: acha o rótulo e lê a coluna na(s) linha(s) seguinte(s)."""
+    for i, linha in enumerate(linhas):
+        if rotulo in linha:
+            for j in range(i + 1, min(i + 1 + janela, len(linhas))):
+                cols = _colunas(linhas[j])
+                if len(cols) > coluna and cols[coluna]:
+                    return cols[coluna]
+    return ""
+
+
+def parse_nfse_nacional(texto: str) -> dict:
+    """DANFSe v2.0 — padrão nacional (layout novo de SJC a partir de out/2026)."""
+    notas: dict = {}
+    linhas = texto.splitlines()
+
+    m = re.search(r"\b(\d{50})\b", texto)   # chave de acesso da NFS-e nacional: 50 dígitos
+    if m:
+        notas["chave_acesso"] = m.group(1)
+    for i, linha in enumerate(linhas):
+        if "NÚMERO DA NFS-e" in linha:
+            for j in range(i + 1, min(i + 3, len(linhas))):
+                m = re.match(r"\s*(\d+)\s+(\d{2}/\d{2}/\d{4})\s+(\d{2}/\d{2}/\d{4} \d{2}:\d{2}:\d{2})", linhas[j])
+                if m:
+                    notas["numero"] = int(m.group(1))
+                    notas["competencia"] = m.group(2)
+                    notas["emissao"] = m.group(3)
+                    break
+                if notas.get("numero"):
+                    break
+            break
+    # a NFS-e nacional não tem série própria: guarda a da DPS, sem usar como série
+    for i, linha in enumerate(linhas):
+        if "SÉRIE DA DPS" in linha:
+            for j in range(i + 1, min(i + 3, len(linhas))):
+                cols = _colunas(linhas[j])
+                if len(cols) >= 2:
+                    notas["dps_numero"], notas["dps_serie"] = cols[0], cols[1]
+                    break
+            break
+
+    def secao(inicio: str, fim: str) -> list[str]:
+        bloco = _secao(texto, inicio, fim)
+        return bloco.splitlines()
+
+    emit = secao("EMITENTE DA NFS-e", "TOMADOR / ADQUIRENTE")
+    m = CNPJ_RE.search(" ".join(emit))
+    notas["emitente_cnpj"] = m.group(0) if m else ""
+    notas["emitente_nome"] = _valor_apos_rotulo(emit, "Nome / Nome Empresarial")
+    notas["emitente_municipio"] = _valor_apos_rotulo(emit, "Nome / Nome Empresarial", 1)
+
+    tom = secao("TOMADOR / ADQUIRENTE", "DESTINATÁRIO DA OPERAÇÃO")
+    if not tom:
+        tom = secao("TOMADOR / ADQUIRENTE", "SERVIÇO PRESTADO")
+    m = CNPJ_RE.search(" ".join(tom))
+    notas["tomador_cnpj"] = m.group(0) if m else ""
+    notas["tomador_nome"] = _valor_apos_rotulo(tom, "Nome / Nome Empresarial")
+    notas["tomador_municipio_uf"] = _valor_apos_rotulo(tom, "Nome / Nome Empresarial", 1)
+    notas["tomador_endereco"] = _valor_apos_rotulo(tom, "Endereço")
+    cep = _valor_apos_rotulo(tom, "Nome / Nome Empresarial", 2)
+    m = re.search(r"(\d{5}-?\d{3})$", cep.replace(".", ""))
+    notas["tomador_cep"] = m.group(1) if m else ""
+    if " / " in notas.get("tomador_municipio_uf", ""):
+        notas["tomador_municipio"], notas["tomador_uf"] = [
+            p.strip() for p in notas["tomador_municipio_uf"].split(" / ", 1)]
+    email_tom = [e for e in EMAIL_RE.findall("\n".join(tom)) if e]
+    notas["tomador_email"] = email_tom[0] if email_tom else ""
+
+    for i, linha in enumerate(linhas):
+        if "Descrição do Serviço" in linha and i + 1 < len(linhas):
+            proxima = linhas[i + 1].strip()
+            if proxima and not proxima.startswith("-"):
+                notas["descricao_servico"] = proxima
+            break
+
+    m = re.search(r"Código de Tributação Nacional/Municipal\s*\n?\s*([\d.]+)\s*/", texto)
+    if not m:
+        m = re.search(r"\n\s*(\d{2}\.\d{2}\.\d{2})\s*/", texto)
+    notas["codigo_servico"] = m.group(1) if m else ""
+
+    bloco_valores = _secao(texto, "VALOR TOTAL DA NFS-e", "INFORMAÇÕES COMPLEMENTARES")
+    valores = re.findall(r"R\$\s*([\d.,]+)", bloco_valores)
+    if valores:
+        notas["valor_total"] = valores[0]
+    if len(valores) > 1:
+        notas["valor_liquido"] = valores[1]
+
+    notas["numero_serie"] = str(notas.get("numero", ""))
+    notas["parser"] = "nfse-nacional-v1"
+    notas["parseado_em"] = agora()
+    return notas
+
+
+def parse_nfse_sjc(texto: str) -> dict:
     nota: dict = {}
 
     m = re.search(
@@ -374,9 +493,18 @@ def parse_nfse(texto: str) -> dict:
         nota["nota_substituida"] = m.group(1)
 
     nota["valor_total"] = nota.get("valor_servico") or nota.get("valor_liquido") or ""
+    nota["numero_serie"] = (f"{nota.get('numero')}/{nota.get('serie')}"
+                            if nota.get("serie") else str(nota.get("numero", "")))
     nota["parseado_em"] = agora()
     nota["parser"] = "nfse-sjc-v1"
     return nota
+
+
+def parse_nfse(texto: str) -> dict:
+    """Escolhe o parser pelo layout: DANFSe nacional (novo) ou o municipal antigo."""
+    if re.search(r"DANFSe|CHAVE DE ACESSO DA NFS-e", texto, re.IGNORECASE):
+        return parse_nfse_nacional(texto)
+    return parse_nfse_sjc(texto)
 
 
 def parse_incompleto(nota: dict) -> list[str]:
@@ -526,7 +654,7 @@ def corpo_com_assinatura(texto: str, cfg: dict):
     }]
 
 
-def montar_mensagem(nota: dict, destino: str, cfg: dict, anexo: Path):
+def montar_mensagem(nota: dict, destino: str, cfg: dict, anexo: Path, cc: str = ""):
     campos = {
         **{k: nota.get(k, "") for k in nota},
         "assinatura": cfg.get("email_assinatura", ""),
@@ -536,6 +664,7 @@ def montar_mensagem(nota: dict, destino: str, cfg: dict, anexo: Path):
     }
     # O de-para aceita vários destinatários separados por vírgula ou ponto e vírgula.
     enderecos = [e.strip() for e in re.split(r"[,;]", destino) if e.strip()]
+    copias = [e.strip() for e in re.split(r"[,;]", cc or "") if e.strip()]
     corpo, extras = corpo_com_assinatura(renderizar(cfg["corpo_template"], campos), cfg)
     anexos = [{
         "@odata.type": "#microsoft.graph.fileAttachment",
@@ -544,12 +673,15 @@ def montar_mensagem(nota: dict, destino: str, cfg: dict, anexo: Path):
         "contentBytes": base64.b64encode(anexo.read_bytes()).decode("ascii"),
     }]
     anexos.extend(extras)
-    return {
+    mensagem = {
         "subject": renderizar(cfg["assunto_template"], campos),
         "body": corpo,
         "toRecipients": [{"emailAddress": {"address": e}} for e in enderecos],
         "attachments": anexos,
     }
+    if copias:
+        mensagem["ccRecipients"] = [{"emailAddress": {"address": e}} for e in copias]
+    return mensagem
 
 
 # ---------------------------------------------------------------- tabelas no console
@@ -727,9 +859,17 @@ def cmd_parse(args):
         if not pdf.exists():
             print(f"[aviso] {pdf} não existe")
             continue
-        nota = parse_nfse(extrair_texto_pdf(pdf))
+        nota, faltas, origem = {}, ["pdf ilegível"], ""
+        for nome_extrator, texto in extrair_textos_pdf(pdf):
+            candidato = parse_nfse(texto)
+            problemas = parse_incompleto(candidato)
+            if not problemas:
+                nota, faltas, origem = candidato, [], nome_extrator
+                break
+            if len(problemas) < len(faltas) or not nota:
+                nota, faltas, origem = candidato, problemas, nome_extrator
         nota["arquivo"] = pdf.name
-        faltas = parse_incompleto(nota)
+        nota["extrator"] = origem
         if faltas:
             pendentes.append((pdf.name, faltas))
         st["notas"][pdf.name] = nota
@@ -755,9 +895,9 @@ def cmd_depara(args):
         if not linhas:
             print(f"de-para vazio ({DEPARA_PATH})")
             return
-        imprimir_tabela([("CNPJ", 18), ("Razão social", 44), ("Apelidos", 20), ("E-mail", 34)],
-                        [[l.get("cnpj", ""), l.get("razao_social", ""), l.get("apelidos", ""), l.get("email", "")]
-                         for l in linhas])
+        imprimir_tabela([("CNPJ", 18), ("Razão social", 42), ("E-mail", 32), ("Cópia (CC)", 32)],
+                        [[l.get("cnpj", ""), l.get("razao_social", ""),
+                          l.get("email", ""), l.get("cc", "")] for l in linhas])
         return
     if args.acao == "add":
         if not args.email:
@@ -767,7 +907,8 @@ def cmd_depara(args):
         linhas = ler_depara()
         linhas.append({"cnpj": args.cnpj or "", "razao_social": args.nome or "",
                        "apelidos": args.apelidos or "", "email": args.email,
-                       "janela_envio": args.janela or "", "obs": args.obs or ""})
+                       "cc": args.cc or "", "janela_envio": args.janela or "",
+                       "endereco": args.endereco or "", "obs": args.obs or ""})
         gravar_depara(linhas)
         print(f"adicionado: {args.nome or args.cnpj} -> {args.email} (total {len(linhas)})")
         return
@@ -865,11 +1006,11 @@ def cmd_despachar(args):
         print("nada a despachar (sem notas novas com destino de alta confiança).")
         return
 
-    print(f"{'NF':5}  {'Tomador':42}  {'Destino':34}  Anexo")
-    print("-" * 100)
+    print(f"{'NF':5}  {'Tomador':38}  {'Destino':34}  {'Cópia':30}  Anexo")
+    print("-" * 118)
     for nota, destino, pdf in fila:
-        print(f"{str(nota.get('numero')):5}  {truncar(nota.get('tomador_nome', ''), 42):42}  "
-              f"{destino['email']:34}  {pdf.name}")
+        print(f"{str(nota.get('numero')):5}  {truncar(nota.get('tomador_nome', ''), 38):38}  "
+              f"{destino['email']:34}  {truncar(destino.get('cc', ''), 30):30}  {pdf.name}")
 
     hoje = datetime.now().day
     for nota, destino, _ in fila:
@@ -885,21 +1026,23 @@ def cmd_despachar(args):
     token = graph_token()
     modo = "rascunho" if args.rascunho else "enviado"
     for nota, destino, pdf in fila:
-        mensagem = montar_mensagem(nota, destino["email"], cfg, pdf)
+        mensagem = montar_mensagem(nota, destino["email"], cfg, pdf, cc=destino.get("cc", ""))
+        copia = f" (cc: {destino['cc']})" if destino.get("cc") else ""
         if args.rascunho:
             criada = graph_req("POST", "/me/messages", token, payload=mensagem)
             st["despachos"][chave_nota(nota)] = {
-                "email": destino["email"], "modo": modo, "enviado_em": agora(),
-                "origem": destino["origem"], "graph_id": criada.get("id", ""),
-                "arquivo": pdf.name}
-            print(f"[rascunho] NF {chave_nota(nota)} -> {destino['email']} (confira na pasta Rascunhos)")
+                "email": destino["email"], "cc": destino.get("cc", ""), "modo": modo,
+                "enviado_em": agora(), "origem": destino["origem"],
+                "graph_id": criada.get("id", ""), "arquivo": pdf.name}
+            print(f"[rascunho] NF {chave_nota(nota)} -> {destino['email']}{copia} "
+                  "(confira na pasta Rascunhos)")
         else:
             graph_req("POST", "/me/sendMail", token,
                       payload={"message": mensagem, "saveToSentItems": True})
             st["despachos"][chave_nota(nota)] = {
-                "email": destino["email"], "modo": modo, "enviado_em": agora(),
-                "origem": destino["origem"], "arquivo": pdf.name}
-            print(f"[enviado] NF {chave_nota(nota)} -> {destino['email']}")
+                "email": destino["email"], "cc": destino.get("cc", ""), "modo": modo,
+                "enviado_em": agora(), "origem": destino["origem"], "arquivo": pdf.name}
+            print(f"[enviado] NF {chave_nota(nota)} -> {destino['email']}{copia}")
     salvar_state(cfg, st)
 
 
@@ -1056,13 +1199,19 @@ def cmd_pedido(args):
         if not linha:
             conhecidos = ", ".join(l.get("razao_social", "?") for l in depara) or "(de-para vazio)"
             sys.exit(f"[erro] cliente «{args.cliente}» não está no de-para. Conhecidos: {conhecidos}")
-        descricao = args.descricao
+        # herda da última nota do cliente o que não for informado
+        iguais = [n for n in st["notas"].values()
+                  if so_digitos(n.get("tomador_cnpj") or "") == so_digitos(linha.get("cnpj") or "")]
+        iguais.sort(key=lambda n: n.get("numero") or 0, reverse=True)
+        ultima = iguais[0] if iguais else {}
+        descricao, herdou_desc = args.descricao, ""
         if not descricao:
-            # herda a descrição do serviço da última nota desse CNPJ, se houver
-            iguais = [n for n in st["notas"].values()
-                      if so_digitos(n.get("tomador_cnpj") or "") == so_digitos(linha.get("cnpj") or "")]
-            iguais.sort(key=lambda n: n.get("numero") or 0, reverse=True)
-            descricao = (iguais[0].get("descricao_servico") if iguais else "") or ""
+            descricao = ultima.get("descricao_servico") or ""
+            herdou_desc = " (da última nota)" if descricao else ""
+        valor, herdou_valor = args.valor, ""
+        if not valor:
+            valor = ultima.get("valor_total") or ultima.get("valor_liquido") or ""
+            herdou_valor = " (da última nota)" if valor else ""
         st["pedidos"].append({
             "competencia": competencia,
             "cliente": args.cliente,
@@ -1070,15 +1219,22 @@ def cmd_pedido(args):
             "razao_social": linha.get("razao_social", ""),
             "endereco": linha.get("endereco", ""),
             "descricao": descricao,
-            "valor": normalizar_valor(args.valor) if args.valor else "",
+            "valor": normalizar_valor(valor) if valor else "",
             "janela": (linha.get("janela_envio") or "").strip(),
             "obs": args.obs or "",
             "criado_em": agora(),
             "solicitado_em": None,
         })
         salvar_state(cfg, st)
-        print(f"adicionado ao pedido {competencia}: {linha.get('razao_social')}"
-              f" — R$ {normalizar_valor(args.valor) if args.valor else '(sem valor)'}")
+        print(f"adicionado ao pedido {competencia}: {linha.get('razao_social')} — "
+              f"R$ {normalizar_valor(valor) if valor else '(sem valor)'}{herdou_valor}")
+        if descricao:
+            print(f"  serviço: {descricao}{herdou_desc}")
+        outras = sorted({p["competencia"] for p in st["pedidos"]
+                         if p.get("competencia") != competencia and not p.get("solicitado_em")})
+        if outras:
+            print(f"  atenção: há item(ns) pendente(s) em {', '.join(outras)} "
+                  "(o `pedido list` filtra por competência; use --competencia para ver)")
         return
 
     itens = itens_do_pedido(st["pedidos"], competencia)
@@ -1156,6 +1312,110 @@ def cmd_pedido(args):
           f"({len(pendentes)} item(ns) marcados como solicitados)")
 
 
+def pendentes_pedido_antes(pedidos: list[dict], competencia: str) -> list[dict]:
+    """Itens pendentes de competências anteriores (podem ter ficado para trás)."""
+    return [p for p in pedidos
+            if p.get("competencia") != competencia and not p.get("solicitado_em")]
+
+
+# ---------------------------------------------------------------- avisos (Discord)
+
+def discord_postar(cfg: dict, texto: str) -> bool:
+    """Publica em canal do Discord via webhook. False se não configurado."""
+    url = (cfg.get("discord_webhook") or "").strip()
+    if not url:
+        return False
+    import requests
+    # o Discord aceita até 2000 caracteres por mensagem
+    for inicio in range(0, len(texto), 1900):
+        resposta = requests.post(url, json={"content": texto[inicio:inicio + 1900]}, timeout=30)
+        if resposta.status_code >= 300:
+            sys.exit(f"[erro] Discord {resposta.status_code}: {resposta.text[:300]}")
+    return True
+
+
+def cmd_avisar(args):
+    cfg = carregar_config()
+    if not (cfg.get("discord_webhook") or "").strip():
+        sys.exit("[erro] sem discord_webhook na config. Crie em: Servidor → Configurações do "
+                 "servidor → Integrações → Webhooks → Novo webhook → Copiar URL do webhook")
+    texto = args.texto
+    if args.lembrete:
+        lembrete_io = io.StringIO()
+        saida_padrao = sys.stdout
+        sys.stdout = lembrete_io
+        try:
+            cmd_lembrete(argparse.Namespace(antecedencia=args.antecedencia))
+        finally:
+            sys.stdout = saida_padrao
+        texto = lembrete_io.getvalue().strip()
+        if "nada pedindo ação" in texto:
+            print("(lembrete sem pendências — nada postado no Discord)")
+            return
+    discord_postar(cfg, f"**terras-notas**\n{texto}")
+    print("postado no Discord.")
+
+
+def cmd_lembrete(args):
+    """O que precisa de ação hoje — por janela de envio de cada cliente."""
+    cfg = carregar_config()
+    st = carregar_state(cfg)
+    depara = ler_depara()
+    hoje = datetime.now()
+    mes_atual = hoje.strftime("%Y-%m")
+    acoes: list[str] = []
+
+    # 1) pedidos à assessoria que ainda não foram enviados
+    for pedido in st.get("pedidos", []):
+        if pedido.get("solicitado_em") or pedido.get("cancelado"):
+            continue
+        acoes.append(f"PEDIDO {pedido.get('competencia')}: {pedido.get('razao_social')} "
+                     f"(R$ {pedido.get('valor') or '?'}) ainda não foi solicitado — "
+                     f"envie com `pedido enviar --rascunho` ou `--enviar --yes`")
+
+    # 2) janelas de envio dos clientes: avisa quando a janela está chegando
+    for linha in depara:
+        janela = (linha.get("janela_envio") or "").strip()
+        m = re.fullmatch(r"(\d{1,2})\s*-\s*(\d{1,2})", janela)
+        if not m:
+            continue
+        inicio, fim = int(m.group(1)), int(m.group(2))
+        faltam = inicio - hoje.day
+        dentro = inicio <= hoje.day <= fim
+        if not (dentro or (0 < faltam <= args.antecedencia) or (faltam <= 0 and hoje.day < inicio)):
+            continue
+        # nota já saiu para esse cliente neste mês?
+        alvo = norm(linha.get("email", ""))
+        ja_enviada = any(
+            d.get("modo") == "enviado" and (d.get("enviado_em") or "")[:7] == mes_atual
+            and any(norm(e) in alvo for e in re.split(r"[,;]", d.get("email", "")) if e.strip())
+            for d in st["despachos"].values())
+        if ja_enviada:
+            continue
+        quando = ("hoje é o último dia" if hoje.day == fim else
+                  f"faltam {faltam} dia(s)" if faltam > 0 else "janela aberta")
+        acoes.append(f"ENVIO {linha.get('razao_social')}: janela dos dias {inicio}–{fim} "
+                     f"({quando}, hoje é dia {hoje.day}) — nenhuma nota enviada neste mês")
+
+    # 3) rascunhos parados
+    rascunhos = [d for d in st["despachos"].values() if d.get("modo") == "rascunho"]
+    if rascunhos:
+        acoes.append(f"{len(rascunhos)} rascunho(s) no Outlook aguardando você enviar")
+
+    if not acoes:
+        print(f"nada pedindo ação hoje ({hoje.strftime('%d/%m/%Y')}).")
+        return
+    print(f"Pendências de {hoje.strftime('%d/%m/%Y')}:")
+    for linha in acoes:
+        print(f"- {linha}")
+    if getattr(args, "postar", False):
+        if discord_postar(carregar_config(),
+                          f"**terras-notas — {hoje.strftime('%d/%m/%Y')}**\n" + "\n".join(acoes)):
+            print("(postado no Discord)")
+        else:
+            print("(para receber isto no Discord, configure discord_webhook na config)")
+
+
 def cmd_status(args):
     cfg = carregar_config()
     st = carregar_state(cfg)
@@ -1178,6 +1438,20 @@ def cmd_status(args):
     print(f"notas parseadas: {total} | prontas p/ enviar: {prontas} | "
           f"sem destino confirmado: {pendentes_destino} | rascunhos: {rascunhos} | enviadas: {enviadas}")
     print(f"mensagens da Fênix já lidas: {len(st['mensagens'])} | de-para: {len(depara)} registro(s)")
+
+    competencia = args.competencia or competencia_atual()
+    pedidos = [p for p in st.get("pedidos", []) if not p.get("cancelado")]
+    do_mes = [p for p in pedidos if p.get("competencia") == competencia]
+    pendentes_pedido = [p for p in do_mes if not p.get("solicitado_em")]
+    if pendentes_pedido:
+        nomes = ", ".join(truncar(p.get("razao_social", "?"), 24) for p in pendentes_pedido)
+        print(f"pedido {competencia}: {len(pendentes_pedido)} item(ns) aguardando envio ao escritório "
+              f"({nomes}) — monte com `pedido ficha` e envie com `pedido enviar --rascunho`")
+    else:
+        print(f"pedido {competencia}: nada pendente")
+    anteriores = sorted({p.get("competencia") for p in pendentes_pedido_antes(pedidos, competencia)})
+    if anteriores:
+        print(f"atenção: pedido de {', '.join(anteriores)} ainda pendente — confira se já foi solicitado")
     if prontas:
         print("rode `despachar` para conferir e `despachar --enviar --yes` para enviar.")
     if pendentes_destino:
@@ -1216,7 +1490,9 @@ def main():
     p = sub.add_parser("depara", help="mantém o CSV nome/CNPJ -> e-mail")
     p.add_argument("acao", choices=["list", "add", "rm", "check"])
     p.add_argument("--cnpj"); p.add_argument("--nome"); p.add_argument("--apelidos")
-    p.add_argument("--email"); p.add_argument("--janela", help="dias preferidos p/ envio, ex.: 15-20")
+    p.add_argument("--email"); p.add_argument("--cc", help="quem entra em cópia (vários: separe por ;)")
+    p.add_argument("--janela", help="dias preferidos p/ envio, ex.: 15-20")
+    p.add_argument("--endereco", help="endereço do tomador p/ a ficha de emissão")
     p.add_argument("--obs"); p.add_argument("chave", nargs="?")
 
     p = sub.add_parser("match", help="casa notas com destinos (de-para)")
@@ -1246,7 +1522,18 @@ def main():
     p.add_argument("--enviar", action="store_true", help="envia de fato (exige --yes)")
     p.add_argument("--yes", action="store_true")
 
-    sub.add_parser("status", help="resumo do estado")
+    p = sub.add_parser("lembrete", help="o que precisa de ação hoje (pedidos e janelas dos clientes)")
+    p.add_argument("--antecedencia", type=int, default=5,
+                   help="quantos dias antes da janela começar já avisar (padrão 5)")
+    p.add_argument("--postar", action="store_true", help="publica o resultado no Discord (webhook na config)")
+
+    p = sub.add_parser("avisar", help="posta uma mensagem no Discord")
+    p.add_argument("--lembrete", action="store_true", help="posta o resultado do lembrete")
+    p.add_argument("--antecedencia", type=int, default=5)
+    p.add_argument("texto", nargs="*", help="mensagem a postar")
+
+    p = sub.add_parser("status", help="resumo do estado")
+    p.add_argument("--competencia", help="MM/AAAA do pedido a conferir (padrão: mês atual)")
 
     p = sub.add_parser("run", help="fetch + parse + match")
     p.add_argument("--desde", help="data ISO")
@@ -1257,7 +1544,8 @@ def main():
     {"check": cmd_check, "auth": cmd_auth, "descobrir-remetente": cmd_descobrir_remetente,
      "fetch": cmd_fetch, "parse": cmd_parse, "depara": cmd_depara, "match": cmd_match,
      "despachar": cmd_despachar, "assinatura": cmd_assinatura, "pedido": cmd_pedido,
-     "status": cmd_status, "run": cmd_run}[args.comando](args)
+     "status": cmd_status, "lembrete": cmd_lembrete, "avisar": cmd_avisar,
+     "run": cmd_run}[args.comando](args)
 
 
 if __name__ == "__main__":

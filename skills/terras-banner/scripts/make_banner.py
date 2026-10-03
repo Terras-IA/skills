@@ -153,8 +153,8 @@ def load_template():
 def render_html(spec, metrics):
     html = load_template()
 
-    base = spec.get("base") or brand_default("base_alt", "#0b1220")
-    accent = spec.get("accent") or brand_default("acento", "#ffcc33")
+    base = spec.get("base") or brand_default("base", "#f4f5fa")  # padrao: tema claro
+    accent = spec.get("accent") or brand_default("acento", "#22d3ee")
     bg = spec.get("bg")
     scale = metrics["H"] / 628
 
@@ -197,7 +197,7 @@ def render_html(spec, metrics):
             "HEADLINE": spec.get("headline", ""),
             "SUB": spec.get("sub", ""),
             "RESUMO": spec.get("resumo", ""),
-            "TEMA_CLASS": " claro" if spec.get("tema") == "claro" else "",
+            "TEMA_CLASS": " escuro" if spec.get("tema") == "escuro" else "",
             "STATS": build_stats_html(spec.get("stats"), scale),
             "FOOT": spec.get("foot", ""),
             "SIGNATURE": spec.get(

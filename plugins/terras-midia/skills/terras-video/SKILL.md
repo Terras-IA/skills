@@ -120,6 +120,59 @@ segundos a divisão não ajuda e o YouTube não monta). A cartela 1 **não** ser
 miniatura no feed, porque ali o Short pega um quadro do vídeo; a miniatura oficial vale
 no canal e na busca.
 
+## Vídeo do carrossel (slides do deck)
+
+O carrossel que a `terras-banner` já renderizou vira vídeo narrado: o roteiro pede
+`"formato": "carrossel"` (1080x1440, o 3:4 do deck) e cada bloco aponta para um slide
+com `slide` no lugar do layout de cartela. A página pronta é o quadro inteiro, então
+não há cartela HTML aqui, nem área segura de Shorts: o destino é o feed, e o slide já
+passou pelo check e pelo gate da `terras-banner`.
+
+```json
+{ "slide": "deck-adr-linkedin-01.png", "narration": "..." }
+```
+
+- O caminho do slide é relativo ao arquivo do roteiro, não ao diretório do shell.
+- O `size` do roteiro casa com o do deck (1080x1440). Se diferir, o slide é encaixado
+  no canvas com aviso, e o encaixe não é opcional: quadro de tamanho diferente desalinha
+  o pipe do ffmpeg e sai vídeo embaralhado, sem erro.
+- Ordem dos blocos é a ordem dos slides. No LinkedIn vale a variante `linkedin` do deck
+  (`deck-<slug>-linkedin-NN.png`), que é a aprovada para a leitura no app.
+- Movimento: o mesmo zoom lento, com teto `ZOOM_SLIDE` de 1,05. Medido no deck do ADR
+  (seis slides): o texto fica a 62px da borda mais próxima, o zoom de 1,05 recua 26px
+  nas laterais e 34px no topo/base sem cortar nada, e o de 1,04 reprova no jerk (1,08
+  contra o teto de 1,0, porque com recuo pequeno a mediana cai e a irregularidade
+  relativa sobe). O bloco aceita `zoom` próprio.
+- A montagem é a de sempre: fade para preto nas pontas de cada slide, narração por
+  bloco com 0,6s de respiro, concat e as checagens de movimento e de loudness. Sem o
+  teto de 3 minutos dos Shorts.
+- O `--exportar` copia o quadro usado de cada slide (`cartela-N.png`) junto do vídeo.
+- Pronúncia: o `plan` lista os termos de risco. `rabbitmq` entrou no dicionário da
+  `terras-audio` em 26/09/2026 como `Rábiti eme quê` (palpite calibrado com o Whisper:
+  o texto cru saía irreconhecível, "Hebtiemic"), e falta a escuta dele.
+
+### Narração em inglês
+
+O vídeo do carrossel em inglês (o par EN do post) precisa de três coisas que o roteiro
+em português não pede:
+
+- **`"sotaque": "nenhum"`, obrigatório.** O dicionário da `terras-audio` existe para
+  achar termo inglês dentro de frase portuguesa (`cache` -> `kêsh`, `queue` -> `kiu`) e
+  num roteiro todo em inglês ele reescreveria palavra comum e destruiria a fala. O
+  `build.py` avisa quando isso acontece (`avisar_sotaque`), e o roteiro declara também
+  `"lang": "en-US"`.
+- **Voz própria.** O padrão em inglês é `en-US-AvaMultilingualNeural` (escolhida em
+  26/09/2026 para o vídeo em EN do ADR, mantendo o timbre feminino da casa), com
+  `en-US-AndrewMultilingualNeural` e `en-US-EmmaMultilingualNeural` como alternativas
+  já ouvidas na análise. A Thalita, voz da casa em português, lê inglês de forma
+  inteligível, mas é voz pt-BR.
+- **Termo com letras separadas.** `RabbitMQ` junto sai "Rabatai Imkay" nas quatro vozes
+  testadas; `Rabbit M Q` (e também `Rabbit M-Q`, `Rabbit Em Cue` e `Rabbit M Queue`)
+  sai transcrito como `RabbitMQ`, que é a pronúncia certa. Vale para sigla em geral:
+  o TTS lê as letras quando elas vêm separadas.
+- O relatório de pronúncia da `terras-audio` é pulado no `plan` de roteiro em inglês:
+  ele procura termo inglês dentro de texto português e listaria "the", "with", "what".
+
 ## Temas
 
 O roteiro aceita `"tema": "pessoal"` (padrão), `"tema": "terrasia"` ou

@@ -53,6 +53,12 @@ DICIONARIO = {
     "throughput": "thrúput", "checkpoint": "tchékpoint", "endpoint": "éndpoint",
     "gateway": "guêtuêi", "pipeline": "páiplain", "plugin": "pláguin",
     "query": "kuéri", "queue": "kiu", "retry": "ritrái", "sandbox": "séndboks",
+    # `rabbitmq` entrou em 2026-09-26, para o video do carrossel do ADR. Calibragem
+    # provisoria, com o Whisper no lugar do ouvido dele: no contexto real do bloco, o
+    # texto cru saiu transcrito como "Hebtiemic" (irreconhecivel) e a grafia
+    # "Rábiti eme quê" saiu como "RabbitM que". As outras tentativas ("Rábit eme quê",
+    # "Rábite-MQ", "Rábiti éme quê") sairam pior. Falta a escuta dele.
+    "rabbitmq": "Rábiti eme quê",
     "script": "skript", "secret": "síkret", "secrets": "síkrents",
     "service": "sérvis", "snapshot": "snépshot", "staging": "stêidjing",
     "storage": "stórredj", "timeout": "táimaut", "tool": "túul",

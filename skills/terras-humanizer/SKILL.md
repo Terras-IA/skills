@@ -1,7 +1,7 @@
 ---
 name: terras-humanizer
-description: "Reescreve texto com cara de IA para soar humano, sem mudar o que ele diz e sem inventar nada. Use para revisar ou editar prosa com marcas de IA em português ou inglês: contraste 'não é X, é Y', frase de efeito de uma linha, abertura encenada, trio forçado, travessão em excesso, hipérbole, linguagem de venda, jargão de IA, negrito decorativo, gerúndio pendurado. Humanize text, remove AI writing tells, edit AI-sounding prose."
-keywords: [humanizar, humanizer, texto de IA, AI writing, marcas de IA, revisão, edição, prosa, português, inglês]
+description: "Reescreve texto com cara de IA para soar humano, sem mudar o que ele diz e sem inventar nada. Use para revisar ou editar prosa com marcas de IA em português ou inglês: contraste 'não é X, é Y', frase de efeito de uma linha, abertura encenada, trio forçado, travessão em excesso, hipérbole, linguagem de venda, jargão de IA, negrito decorativo, gerúndio pendurado; e para resposta que re-explica o que o leitor já sabe antes de chegar à decisão. Humanize text, remove AI writing tells, edit AI-sounding prose."
+keywords: [humanizar, humanizer, texto de IA, AI writing, marcas de IA, revisão, edição, prosa, resposta, reply, português, inglês]
 ---
 
 # Humanizer: tirar as marcas de texto de IA

@@ -40,6 +40,43 @@
       }
     },
     {
+      "name": "terras-agenda",
+      "description": "Agenda unificada do Everton: junta os calendários do Microsoft 365/Teams (Sousa Lima, ISO, THG — cada um num tenant) e qualquer feed .ics (Google Agenda, calendário publicado) numa agenda só, com detecção de choque de horário e criação de evento.",
+      "version": "1.0.0",
+      "source": "./skills/terras-agenda",
+      "strict": false,
+      "skills": [
+        "./"
+      ],
+      "category": "productivity",
+      "license": "MIT",
+      "author": {
+        "name": "Everton Lima"
+      },
+      "keywords": [
+        "agenda",
+        "calendário",
+        "calendario",
+        "calendar",
+        "reunião",
+        "reuniao",
+        "compromisso",
+        "evento",
+        "teams",
+        "outlook",
+        "google agenda",
+        "unificar",
+        "centralizar",
+        "conflito",
+        "horário",
+        "ics",
+        "ical",
+        "marcar",
+        "convite",
+        "graph"
+      ]
+    },
+    {
       "name": "terras-agenda-de-touchpoints",
       "description": "Estrutura 1:1s recorrentes com pautas, histórico de feedback, decisões e loops abertos.",
       "version": "1.0.0",
@@ -201,6 +238,30 @@
       ]
     },
     {
+      "name": "terras-brandkit",
+      "description": "Gera a imagem do brand kit de uma marca: quadro de identidade visual com direção de logo, paleta, tipografia, aplicações em mockup e apresentação para cliente. Use quando o pedido for criar/gerar o quadro de marca, brand book visual, logo system, moodboard ou rebranding visual.",
+      "version": "1.0.0",
+      "source": "./skills/terras-brandkit",
+      "strict": false,
+      "skills": [
+        "./"
+      ],
+      "category": "productivity",
+      "license": "MIT",
+      "author": {
+        "name": "Everton Lima"
+      },
+      "keywords": [
+        "brand kit",
+        "identidade visual",
+        "brand guidelines",
+        "logo",
+        "marca",
+        "rebranding",
+        "mockup"
+      ]
+    },
+    {
       "name": "terras-briefing-pre-reuniao-de-lideranca",
       "description": "Prepara briefings para líderes com saúde do time, feedbacks recentes, loops abertos, riscos e perguntas para a reunião.",
       "version": "1.0.0",
@@ -245,6 +306,34 @@
         "conversa difícil",
         "plano de desafio",
         "feedback"
+      ]
+    },
+    {
+      "name": "terras-comentarios",
+      "description": "Comenta em lote posts do LinkedIn de terceiros: o usuário manda uma lista de posts colados, a skill lê cada texto e devolve um comentário curto de até 100 caracteres, pronto para colar.",
+      "version": "1.0.0",
+      "source": "./skills/terras-comentarios",
+      "strict": false,
+      "skills": [
+        "./"
+      ],
+      "category": "productivity",
+      "license": "MIT",
+      "author": {
+        "name": "Everton Lima"
+      },
+      "keywords": [
+        "comentar",
+        "comentario",
+        "comentarios",
+        "lista de posts",
+        "lote",
+        "em lote",
+        "feed",
+        "engajamento",
+        "linkedin",
+        "resposta curta",
+        "comentar posts"
       ]
     },
     {
@@ -440,6 +529,97 @@
       ]
     },
     {
+      "name": "terras-design-taste-frontend",
+      "description": "Anti-slop de frontend para landing pages, portfólios e redesigns: lê o briefing, infere a direção de design e entrega interface que não parece template, com design system real quando couber e auditoria primeiro em redesign.",
+      "version": "1.0.0",
+      "source": "./skills/terras-design-taste-frontend",
+      "strict": false,
+      "skills": [
+        "./"
+      ],
+      "category": "productivity",
+      "license": "MIT",
+      "author": {
+        "name": "Everton Lima"
+      },
+      "keywords": [
+        "anti-slop",
+        "landing page",
+        "portfólio",
+        "design",
+        "frontend",
+        "redesenho"
+      ]
+    },
+    {
+      "name": "terras-design-taste-frontend-v1",
+      "description": "Versão 1 legada do design-taste-frontend (a v2 é a padrão da casa). Preservada para projetos que dependem do comportamento exato da v1. Use apenas quando a v2 quebrar algo específico do fluxo. Legacy v1, compatibilidade.",
+      "version": "1.0.0",
+      "source": "./skills/terras-design-taste-frontend-v1",
+      "strict": false,
+      "skills": [
+        "./"
+      ],
+      "category": "productivity",
+      "license": "MIT",
+      "author": {
+        "name": "Everton Lima"
+      },
+      "keywords": [
+        "v1",
+        "legado",
+        "compatibilidade",
+        "frontend design"
+      ]
+    },
+    {
+      "name": "terras-ebook",
+      "description": "Cria e-book e audiolivro para vender: estrutura, diagramação, EPUB e PDF A5 diagramado como livro, capa, ISBN, escolha de plataforma, royalties, preço e lançamento — e transforma acervo de YouTube em e-book.",
+      "version": "1.0.0",
+      "source": "./skills/terras-ebook",
+      "strict": false,
+      "skills": [
+        "./"
+      ],
+      "category": "productivity",
+      "license": "MIT",
+      "author": {
+        "name": "Everton Lima"
+      },
+      "keywords": [
+        "ebook",
+        "e-book",
+        "epub",
+        "pdf",
+        "livro",
+        "kdp",
+        "kindle",
+        "amazon",
+        "gumroad",
+        "payhip",
+        "kobo",
+        "apple-books",
+        "draft2digital",
+        "isbn",
+        "capa",
+        "diagramacao",
+        "sumario",
+        "folio",
+        "royalties",
+        "preco",
+        "lancamento",
+        "lead-magnet",
+        "playbook",
+        "apostila",
+        "audiolivro",
+        "youtube",
+        "transcricao",
+        "self-publishing",
+        "glossario",
+        "nota-de-rodape"
+      ]
+    },
+    {
       "name": "terras-elaboracao-proposta-comercial",
       "description": "Estrutura a minuta de uma proposta a partir do que foi levantado na conversa, separando escopo de expectativa e marcando cada número que ainda precisa de confirmação antes de sair.",
       "version": "1.0.0",
@@ -567,6 +747,28 @@
         "deck",
         "animacao",
         "apresentacao web"
+      ]
+    },
+    {
+      "name": "terras-full-output-enforcement",
+      "description": "Força saída completa em qualquer tarefa: proíbe truncamento, placeholders e abreviações tipo 'resto igual', e trata quebra por limite de token. Use quando o modelo estiver entregando trabalho pela metade, código cortado ou quando o pedido exigir arquivo inteiro sem omissões.",
+      "version": "1.0.0",
+      "source": "./skills/terras-full-output-enforcement",
+      "strict": false,
+      "skills": [
+        "./"
+      ],
+      "category": "productivity",
+      "license": "MIT",
+      "author": {
+        "name": "Everton Lima"
+      },
+      "keywords": [
+        "output completo",
+        "truncamento",
+        "placeholder",
+        "código completo",
+        "sem omissões"
       ]
     },
     {
@@ -777,6 +979,80 @@
       ]
     },
     {
+      "name": "terras-governanca-padroes",
+      "description": ">-",
+      "version": "1.0.0",
+      "source": "./skills/terras-governanca-padroes",
+      "strict": false,
+      "skills": [
+        "./"
+      ],
+      "category": "productivity",
+      "license": "MIT",
+      "author": {
+        "name": "Everton Lima"
+      },
+      "keywords": [
+        "governança",
+        "convenções",
+        "padrões",
+        "governance rules",
+        "conventions",
+        "standards",
+        "auditoria",
+        "versionamento",
+        "deprecação"
+      ]
+    },
+    {
+      "name": "terras-gpt-taste",
+      "description": "Variante estrita do design-taste para GPT/Codex: variância de layout com randomização real, estrutura AIDA, bento sem buracos, GSAP (pinning, stacking, scrubbing) e anti-slop agressivo. Use quando o alvo for GPT/Codex e o pedido for landing page de nível Awwwards com motion avançado.",
+      "version": "1.0.0",
+      "source": "./skills/terras-gpt-taste",
+      "strict": false,
+      "skills": [
+        "./"
+      ],
+      "category": "productivity",
+      "license": "MIT",
+      "author": {
+        "name": "Everton Lima"
+      },
+      "keywords": [
+        "gpt",
+        "codex",
+        "awwwards",
+        "landing page",
+        "gsap",
+        "bento",
+        "motion",
+        "anti-slop"
+      ]
+    },
+    {
+      "name": "terras-high-end-visual-design",
+      "description": "Design visual de alto padrão: define fontes, espaçamento, sombras, cartões e animações que fazem o site parecer caro, e bloqueia os padrões que deixam design de IA com cara de barato. Use quando o pedido for algo sofisticado, com cara de agência, Apple-like/Linear-tier, premium ou de alto valor.",
+      "version": "1.0.0",
+      "source": "./skills/terras-high-end-visual-design",
+      "strict": false,
+      "skills": [
+        "./"
+      ],
+      "category": "productivity",
+      "license": "MIT",
+      "author": {
+        "name": "Everton Lima"
+      },
+      "keywords": [
+        "premium",
+        "alto padrão",
+        "sofisticado",
+        "agência",
+        "animação",
+        "tipografia"
+      ]
+    },
+    {
       "name": "terras-humanizer",
       "description": "Reescreve texto com cara de IA para soar humano, sem mudar o que ele diz e sem inventar nada.",
       "version": "1.0.0",
@@ -799,8 +1075,63 @@
         "revisão",
         "edição",
         "prosa",
+        "resposta",
+        "reply",
         "português",
         "inglês"
+      ]
+    },
+    {
+      "name": "terras-humanizer-dev",
+      "description": "Reescreve ou revisa texto para soar natural e humano, preservando a voz, as opiniões e o ritmo do autor, sem deixar o texto errado ou informal demais.",
+      "version": "1.0.0",
+      "source": "./skills/terras-humanizer-dev",
+      "strict": false,
+      "skills": [
+        "./"
+      ],
+      "category": "productivity",
+      "license": "MIT",
+      "author": {
+        "name": "Everton Lima"
+      }
+    },
+    {
+      "name": "terras-identidade",
+      "description": "Le a identidade visual de uma marca a partir de imagens (pecas de anuncio, prints, manual, papelaria, site) e entrega ela pronta para reusar: cores com papel medido, tipografia, marca recortada em PNG, linguagem visual e tokens de CSS/JSON/Tailwind para site, sistema, documento e peca de marketing.",
+      "version": "1.0.0",
+      "source": "./skills/terras-identidade",
+      "strict": false,
+      "skills": [
+        "./"
+      ],
+      "category": "productivity",
+      "license": "MIT",
+      "author": {
+        "name": "Everton Lima"
+      },
+      "keywords": [
+        "identidade",
+        "identidade visual",
+        "marca",
+        "branding",
+        "brand",
+        "paleta",
+        "cores",
+        "tipografia",
+        "fonte",
+        "logo",
+        "ativo",
+        "manual de marca",
+        "design system",
+        "tokens",
+        "css",
+        "tailwind",
+        "extracao",
+        "whatsapp",
+        "peca",
+        "anuncio",
+        "cliente"
       ]
     },
     {
@@ -826,6 +1157,130 @@
         "culto",
         "santa ceia",
         "identidade visual"
+      ]
+    },
+    {
+      "name": "terras-image-to-code",
+      "description": "Pipeline imagem-primeiro para site: gera a própria imagem de referência, analisa em detalhe e implementa o frontend fiel a ela, seção a seção, evitando sub-geração e excesso de cartões aninhados.",
+      "version": "1.0.0",
+      "source": "./skills/terras-image-to-code",
+      "strict": false,
+      "skills": [
+        "./"
+      ],
+      "category": "productivity",
+      "license": "MIT",
+      "author": {
+        "name": "Everton Lima"
+      },
+      "keywords": [
+        "image to code",
+        "design to code",
+        "mockup",
+        "frontend",
+        "implementação",
+        "fidelidade"
+      ]
+    },
+    {
+      "name": "terras-imagegen-frontend-mobile",
+      "description": "Gera imagens de telas e fluxos de app mobile (iOS, Android, cross-platform) com mockup de celular, tipografia legível, paleta controlada e consistência entre telas. Só gera imagem, não escreve código. Use quando precisar de referência visual de app mobile. Mobile app screens, mockup, imagegen.",
+      "version": "1.0.0",
+      "source": "./skills/terras-imagegen-frontend-mobile",
+      "strict": false,
+      "skills": [
+        "./"
+      ],
+      "category": "productivity",
+      "license": "MIT",
+      "author": {
+        "name": "Everton Lima"
+      },
+      "keywords": [
+        "mobile",
+        "app",
+        "ios",
+        "android",
+        "mockup",
+        "telas",
+        "imagegen"
+      ]
+    },
+    {
+      "name": "terras-imagegen-frontend-web",
+      "description": "Gera as imagens de referência de um site — uma imagem horizontal por seção, nunca comprimidas — com variedade de composição, escala de hero, CTA e paleta única. Use quando precisar de comps/design de página web (landing, marketing, produto) antes de codar. Frontend image generation, website comps.",
+      "version": "1.0.0",
+      "source": "./skills/terras-imagegen-frontend-web",
+      "strict": false,
+      "skills": [
+        "./"
+      ],
+      "category": "productivity",
+      "license": "MIT",
+      "author": {
+        "name": "Everton Lima"
+      },
+      "keywords": [
+        "imagem",
+        "site",
+        "landing",
+        "hero",
+        "comps",
+        "referência visual",
+        "imagegen"
+      ]
+    },
+    {
+      "name": "terras-industrial-brutalist-ui",
+      "description": "Interface brutalista industrial: grade suíça rígida, tipografia mecânica com contraste extremo, paleta utilitária e degradação analógica (halftone, scanline, dither).",
+      "version": "1.0.0",
+      "source": "./skills/terras-industrial-brutalist-ui",
+      "strict": false,
+      "skills": [
+        "./"
+      ],
+      "category": "productivity",
+      "license": "MIT",
+      "author": {
+        "name": "Everton Lima"
+      },
+      "keywords": [
+        "brutalista",
+        "industrial",
+        "swiss",
+        "tipografia",
+        "dashboard",
+        "terminal",
+        "blueprint",
+        "UI"
+      ]
+    },
+    {
+      "name": "terras-instagram",
+      "description": "Escrever legendas e hashtags para o Instagram do IECSJC a partir das imagens geradas (timeline/ e stories/), validar imagens e registrar o que foi publicado; a publicação é manual, feita pelo usuário no app/navegador.",
+      "version": "1.0.0",
+      "source": "./skills/terras-instagram",
+      "strict": false,
+      "skills": [
+        "./"
+      ],
+      "category": "productivity",
+      "license": "MIT",
+      "author": {
+        "name": "Everton Lima"
+      },
+      "keywords": [
+        "instagram",
+        "post",
+        "legenda",
+        "hashtags",
+        "story",
+        "carrossel",
+        "publicar",
+        "registrar",
+        "fila",
+        "iecsjc",
+        "igreja"
       ]
     },
     {
@@ -914,6 +1369,101 @@
       ]
     },
     {
+      "name": "terras-linkedin-metricas",
+      "description": "Extrai, guarda e diagnostica as estatisticas dos posts do LinkedIn do Everton: impressoes, usuarios alcancados, divisao na rede e fora da rede, reacoes, comentarios, compartilhamentos, salvamentos, envios, visualizacoes de perfil, seguidores ganhos e os dados demograficos do publico alcancado.",
+      "version": "1.0.0",
+      "source": "./skills/terras-linkedin-metricas",
+      "strict": false,
+      "skills": [
+        "./"
+      ],
+      "category": "productivity",
+      "license": "MIT",
+      "author": {
+        "name": "Everton Lima"
+      },
+      "keywords": [
+        "linkedin",
+        "metricas",
+        "estatisticas",
+        "desempenho",
+        "impressoes",
+        "alcance",
+        "alcancados",
+        "fora da rede",
+        "engajamento",
+        "salvamentos",
+        "comentarios",
+        "seguidores",
+        "publico",
+        "demografia",
+        "relatorio",
+        "diagnostico",
+        "post rendeu",
+        "analytics"
+      ]
+    },
+    {
+      "name": "terras-miniapp-builder",
+      "description": "Cria um miniapp do zero — recebe o assunto, entrevista as lacunas, decide arquitetura e LGPD, escolhe e dosa a paleta, escreve a copy (promessa, objeções, crenças limitantes), constrói o app local-first, verifica e publica na Vercel (preview e depois produção).",
+      "version": "1.0.0",
+      "source": "./skills/terras-miniapp-builder",
+      "strict": false,
+      "skills": [
+        "./"
+      ],
+      "category": "productivity",
+      "license": "MIT",
+      "author": {
+        "name": "Everton Lima"
+      },
+      "keywords": [
+        "miniapp",
+        "mini-app",
+        "criar app",
+        "novo app",
+        "gerar app",
+        "aplicativo",
+        "pwa",
+        "app de bolso",
+        "publicar app",
+        "vercel",
+        "google stitch",
+        "lgpd",
+        "psicologia das cores",
+        "paleta",
+        "copy",
+        "objecao",
+        "crenca limitante",
+        "pitch",
+        "local-first"
+      ]
+    },
+    {
+      "name": "terras-minimalist-ui",
+      "description": "UI minimalista editorial: paleta monocromática quente, hierarquia tipográfica, bento grid flat e pastéis discretos; sem gradientes nem sombras pesadas. Use quando pedirem interface minimalista, limpa, estilo Notion/Linear ou document-style. Minimalist UI, editorial, clean interface.",
+      "version": "1.0.0",
+      "source": "./skills/terras-minimalist-ui",
+      "strict": false,
+      "skills": [
+        "./"
+      ],
+      "category": "productivity",
+      "license": "MIT",
+      "author": {
+        "name": "Everton Lima"
+      },
+      "keywords": [
+        "minimalista",
+        "minimal",
+        "editorial",
+        "notion",
+        "linear",
+        "bento",
+        "clean"
+      ]
+    },
+    {
       "name": "terras-notas",
       "description": "Analisa NFS-e (nota fiscal de serviço) recebidas da contabilidade Fênix Assessoria, confere o tomador/destinatário contra um de-para de clientes e envia cada nota por e-mail pelo Outlook do Office 365 (Microsoft Graph).",
       "version": "1.0.0",
@@ -943,6 +1493,34 @@
         "graph",
         "enviar nota",
         "emitir nota"
+      ]
+    },
+    {
+      "name": "terras-paper-diario",
+      "description": "Lê papers (arXiv e afins) sobre estudos que afetam o trabalho de quem desenvolve — agentes de IA em PRs, qualidade de código gerado, produtividade, mercado de trabalho — e produz uma análise com resumo honesto (com números), aplicação prática e aviso específico para JÚNIOR, PLENO e SÊNIOR, fechando",
+      "version": "1.0.0",
+      "source": "./skills/terras-paper-diario",
+      "strict": false,
+      "skills": [
+        "./"
+      ],
+      "category": "productivity",
+      "license": "MIT",
+      "author": {
+        "name": "Everton Lima"
+      },
+      "keywords": [
+        "paper",
+        "arxiv",
+        "estudo",
+        "pesquisa",
+        "paper do dia",
+        "paper-diario",
+        "agentes de ia",
+        "code review",
+        "carreira dev",
+        "análise de paper",
+        "digest diário"
       ]
     },
     {
@@ -1104,6 +1682,28 @@
       ]
     },
     {
+      "name": "terras-redesign-existing-projects",
+      "description": "Redesign de projeto existente: audita a UI atual, identifica padrões genéricos de IA e aplica padrão premium sem quebrar funcionalidade, em qualquer framework CSS ou CSS puro. Use quando o pedido for melhorar, repaginar, modernizar ou deixar bonito um site/app que já existe.",
+      "version": "1.0.0",
+      "source": "./skills/terras-redesign-existing-projects",
+      "strict": false,
+      "skills": [
+        "./"
+      ],
+      "category": "productivity",
+      "license": "MIT",
+      "author": {
+        "name": "Everton Lima"
+      },
+      "keywords": [
+        "redesign",
+        "auditar UI",
+        "melhorar design",
+        "repaginar",
+        "upgrade visual"
+      ]
+    },
+    {
       "name": "terras-revisao-de-codigo",
       "description": "Revisa uma mudança de código pelo risco que ela cria, com foco em integração que movimenta dinheiro ou dado de cliente: correção, idempotência, falha parcial, segredo, dado pessoal e teste que prova.",
       "version": "1.0.0",
@@ -1246,6 +1846,32 @@
       ]
     },
     {
+      "name": "terras-skill-factory",
+      "description": "Cria, revisa e mantém skills no padrão da casa terras-: inventário, frontmatter, catálogo de gatilhos, progressive disclosure e teste de aderência antes de fechar.",
+      "version": "1.0.0",
+      "source": "./skills/terras-skill-factory",
+      "strict": false,
+      "skills": [
+        "./"
+      ],
+      "category": "productivity",
+      "license": "MIT",
+      "author": {
+        "name": "Everton Lima"
+      },
+      "keywords": [
+        "skill",
+        "skills",
+        "criar skill",
+        "skill factory",
+        "padrão terras",
+        "SKILL.md",
+        "frontmatter",
+        "progressive disclosure",
+        "agent skills"
+      ]
+    },
+    {
       "name": "terras-standards",
       "description": "Aplica os Padrões Agnósticos de Engenharia e Produto v4.0 (arquitetura, segurança, privacidade e IA) com lastro em evidência real de cliente quando disponível.",
       "version": "1.0.0",
@@ -1259,6 +1885,28 @@
       "author": {
         "name": "Everton Lima"
       }
+    },
+    {
+      "name": "terras-stitch-design-taste",
+      "description": "Design system semântico para Google Stitch: gera DESIGN.md que impõe padrão premium anti-genérico (tipografia estrita, cor calibrada, layout assimétrico, micro-motion perpétuo, performance acelerada).",
+      "version": "1.0.0",
+      "source": "./skills/terras-stitch-design-taste",
+      "strict": false,
+      "skills": [
+        "./"
+      ],
+      "category": "productivity",
+      "license": "MIT",
+      "author": {
+        "name": "Everton Lima"
+      },
+      "keywords": [
+        "stitch",
+        "design system",
+        "DESIGN.md",
+        "micro-motion",
+        "tipografia"
+      ]
     },
     {
       "name": "terras-substack",
@@ -1315,6 +1963,49 @@
         "legado",
         "severidade",
         "relatório técnico"
+      ]
+    },
+    {
+      "name": "terras-transcription",
+      "description": "Transcreve áudio em texto fiel, localmente e sem API: reunião gravada, export do Otter/Zoom/Meet/Teams, nota de voz, entrevista, aula, podcast.",
+      "version": "1.0.0",
+      "source": "./skills/terras-transcription",
+      "strict": false,
+      "skills": [
+        "./"
+      ],
+      "category": "productivity",
+      "license": "MIT",
+      "author": {
+        "name": "Everton Lima"
+      },
+      "keywords": [
+        "transcricao",
+        "transcrição",
+        "transcrever",
+        "audio",
+        "mp3",
+        "m4a",
+        "wav",
+        "ogg",
+        "reuniao",
+        "reunião",
+        "ata",
+        "resumo",
+        "resumo de reuniao",
+        "otter",
+        "zoom",
+        "meet",
+        "teams",
+        "nota de voz",
+        "entrevista",
+        "aula",
+        "podcast",
+        "legenda",
+        "diarizacao",
+        "locutor",
+        "faster-whisper",
+        "whisper"
       ]
     },
     {

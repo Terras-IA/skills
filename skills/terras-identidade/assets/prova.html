@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<title>Prova de identidade — {{NOME}}</title>
+<style>
+  :root {
+    --largura: 1600px;
+    --pad: 64px;
+    --fonte-texto: "Inter", system-ui, -apple-system, "Segoe UI", sans-serif;
+    --fonte-titulo: "Inter", system-ui, sans-serif;
+    --texto: #12131a;
+    --texto-fraco: #62667a;
+    --papel: #ffffff;
+    --linha: #e2e4ec;
+    --superficie: #f6f7fb;
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0; width: var(--largura);
+    background: var(--papel); color: var(--texto);
+    font-family: var(--fonte-texto);
+    -webkit-font-smoothing: antialiased;
+  }
+  .folha { padding: 48px var(--pad) 56px; }
+  header.topo {
+    display: flex; align-items: flex-end; justify-content: space-between;
+    border-bottom: 2px solid var(--texto); padding-bottom: 18px; margin-bottom: 34px;
+  }
+  .topo h1 { font-family: var(--fonte-titulo); font-size: 44px; line-height: 1.05; margin: 0 0 6px; letter-spacing: -0.02em; }
+  .topo .sub { font-size: 15px; color: var(--texto-fraco); }
+  .selo {
+    font-size: 12px; font-weight: 700; letter-spacing: .14em; text-transform: uppercase;
+    padding: 8px 14px; border-radius: 999px; border: 1.5px solid currentColor; white-space: nowrap;
+  }
+  .selo.rascunho { color: #a15c00; background: #fff5e6; }
+  .selo.revisado { color: #0a7a4a; background: #e9f8f1; }
+
+  h2.secao {
+    font-family: var(--fonte-titulo);
+    font-size: 13px; letter-spacing: .18em; text-transform: uppercase;
+    color: var(--texto-fraco); margin: 40px 0 16px; font-weight: 700;
+  }
+  h2.secao:first-of-type { margin-top: 0; }
+
+  .paleta { display: grid; grid-template-columns: repeat(5, 1fr); gap: 14px; }
+  .cor { border: 1px solid var(--linha); border-radius: 12px; overflow: hidden; background: var(--papel); }
+  .cor .chapa { height: 96px; }
+  .cor .dados { padding: 11px 12px 13px; }
+  .cor .papel { font-size: 10.5px; letter-spacing: .12em; text-transform: uppercase; color: var(--texto-fraco); font-weight: 700; }
+  .cor .hex { font-size: 15px; font-weight: 650; margin-top: 3px; font-variant-numeric: tabular-nums; }
+  .cor .rgb { font-size: 11px; color: var(--texto-fraco); margin-top: 2px; font-variant-numeric: tabular-nums; }
+  .cor .contra { font-size: 11px; color: var(--texto-fraco); margin-top: 6px; border-top: 1px dashed var(--linha); padding-top: 6px; }
+
+  .marca-cores { display: grid; grid-template-columns: repeat(4, 1fr); gap: 14px; }
+  .dupla { border: 1px solid var(--linha); border-radius: 12px; overflow: hidden; }
+  .dupla .linha-cor { display: flex; height: 74px; }
+  .dupla .linha-cor div { flex: 1; display: flex; align-items: flex-end; padding: 7px 9px; font-size: 11px; font-weight: 650; }
+  .dupla .texto { padding: 10px 12px 12px; font-size: 12px; color: var(--texto-fraco); }
+  .dupla .texto b { color: var(--texto); font-size: 13px; display: block; margin-bottom: 3px; }
+
+  .tipo { display: grid; grid-template-columns: 1fr 1fr; gap: 26px; align-items: start; }
+  .tipo .bloco { border: 1px solid var(--linha); border-radius: 12px; padding: 20px 22px; }
+  .tipo .rotulo { font-size: 11px; letter-spacing: .12em; text-transform: uppercase; color: var(--texto-fraco); font-weight: 700; margin-bottom: 12px; }
+  .tipo .amostra-g { font-family: var(--fonte-titulo); font-size: 52px; font-weight: 800; line-height: 1.02; letter-spacing: -0.02em; margin: 0 0 10px; }
+  .tipo .amostra-m { font-size: 15px; line-height: 1.6; color: var(--texto-fraco); margin: 0; }
+  .tipo .escala { display: flex; flex-direction: column; gap: 7px; }
+  .tipo .escala div { display: flex; align-items: baseline; gap: 10px; overflow: hidden; }
+  .tipo .escala span.k { font-size: 11px; color: var(--texto-fraco); width: 48px; flex: none; font-variant-numeric: tabular-nums; }
+  .tipo .escala span.v { font-family: var(--fonte-titulo); font-weight: 700; white-space: nowrap; }
+  .aviso-substituta { font-size: 12px; color: #a15c00; background: #fff5e6; border-radius: 6px; padding: 7px 10px; margin-top: 12px; }
+
+  .aplicacao { display: grid; grid-template-columns: 1.15fr 1fr 1fr; gap: 18px; }
+  .peca { border-radius: 14px; overflow: hidden; border: 1px solid var(--linha); }
+  .peca .miolo { padding: 22px; min-height: 210px; display: flex; flex-direction: column; justify-content: space-between; }
+  .peca .kicker { font-size: 11px; letter-spacing: .16em; text-transform: uppercase; font-weight: 700; }
+  .peca h3 { font-family: var(--fonte-titulo); font-weight: 800; font-size: 27px; line-height: 1.1; margin: 10px 0 8px; }
+  .peca p { font-size: 13px; line-height: 1.5; margin: 0; opacity: .85; }
+  .peca .botao {
+    display: inline-block; padding: 10px 18px; border-radius: 8px;
+    font-size: 13px; font-weight: 700; margin-top: 16px; text-decoration: none;
+  }
+  .peca .rodape { font-size: 11.5px; letter-spacing: .04em; margin-top: 16px; opacity: .7; }
+  .doc { padding: 22px; }
+  .doc .titulo-doc { font-family: var(--fonte-titulo); font-weight: 800; font-size: 21px; margin: 0 0 4px; }
+  .doc .meta { font-size: 11px; letter-spacing: .1em; text-transform: uppercase; margin-bottom: 14px; }
+  .doc .regua { height: 3px; margin-bottom: 14px; }
+  .doc p { font-size: 13px; line-height: 1.62; margin: 0 0 10px; }
+  .doc .caixa { border-radius: 8px; padding: 12px 14px; font-size: 12.5px; line-height: 1.5; }
+
+  .marca-bloco { display: flex; gap: 16px; flex-wrap: wrap; align-items: center; }
+  .marca-bloco .ativo { border: 1px solid var(--linha); border-radius: 12px; padding: 18px 22px; }
+  .marca-bloco .ativo.escuro { background: #16171d; border-color: #262834; }
+  .marca-bloco img { max-height: 62px; max-width: 300px; display: block; }
+  .marca-bloco .legenda { font-size: 11px; color: var(--texto-fraco); margin-top: 10px; letter-spacing: .08em; text-transform: uppercase; }
+  .marca-bloco .ativo.escuro .legenda { color: #8f93a6; }
+
+  .pend { border: 1px solid #f0d9b5; background: #fffaf2; border-radius: 12px; padding: 18px 22px; }
+  .pend ul { margin: 0; padding-left: 20px; }
+  .pend li { font-size: 13px; line-height: 1.65; color: #6b4c15; }
+  .nota-rodape { font-size: 11.5px; color: var(--texto-fraco); margin-top: 26px; border-top: 1px solid var(--linha); padding-top: 14px; }
+</style>
+</head>
+<body>
+<div class="folha" id="folha"></div>
+<script>
+const D = {{DADOS}};
+
+const el = (tag, attrs = {}, filhos = []) => {
+  const n = document.createElement(tag);
+  for (const [k, v] of Object.entries(attrs)) {
+    if (k === "texto") n.textContent = v;
+    else if (k === "html") n.innerHTML = v;
+    else if (k === "estilo") n.setAttribute("style", v);
+    else n.setAttribute(k, v);
+  }
+  for (const f of [].concat(filhos)) if (f) n.appendChild(f);
+  return n;
+};
+
+const folha = document.getElementById("folha");
+
+// ---- cabecalho
+folha.appendChild(el("header", { class: "topo" }, [
+  el("div", {}, [
+    el("h1", { texto: D.nome }),
+    el("div", { class: "sub", texto: D.sub }),
+  ]),
+  el("div", { class: "selo " + D.seloClasse, texto: D.selo }),
+]));
+
+// ---- paleta
+folha.appendChild(el("h2", { class: "secao", texto: "Paleta e papeis" }));
+const paleta = el("div", { class: "paleta" });
+for (const c of D.paleta) {
+  paleta.appendChild(el("div", { class: "cor" }, [
+    el("div", { class: "chapa", estilo: `background:${c.hex}` }),
+    el("div", { class: "dados" }, [
+      el("div", { class: "papel", texto: c.papel }),
+      el("div", { class: "hex", texto: c.hex }),
+      el("div", { class: "rgb", texto: c.rgb }),
+      el("div", { class: "contra", texto: c.contraste }),
+    ]),
+  ]));
+}
+folha.appendChild(paleta);
+
+// ---- cores de marca
+if (D.coresMarca.length) {
+  folha.appendChild(el("h2", { class: "secao", texto: "Cores de marca — pura e versao que le como texto sobre papel" }));
+  const grade = el("div", { class: "marca-cores" });
+  for (const c of D.coresMarca) {
+    grade.appendChild(el("div", { class: "dupla" }, [
+      el("div", { class: "linha-cor" }, [
+        el("div", { estilo: `background:${c.hex};color:${c.legendaClara}`, texto: "pura" }),
+        el("div", { estilo: `background:${c.sobrePapel};color:${c.legendaSobrePapel}`, texto: "sobre papel" }),
+      ]),
+      el("div", { class: "texto", html: `<b>${c.nome}</b>${c.presenca} · contraste ${c.contrastePapel}:1 sobre papel<br>texto em documento e site: <b style="display:inline;font-size:12px">${c.sobrePapel}</b>` }),
+    ]));
+  }
+  folha.appendChild(grade);
+}
+
+// ---- tipografia
+folha.appendChild(el("h2", { class: "secao", texto: "Tipografia" }));
+const tipo = el("div", { class: "tipo" });
+const amostra = el("div", { class: "bloco" }, [
+  el("div", { class: "rotulo", texto: D.fonteTitulo ? "Titulo — " + D.fonteTitulo : "Titulo" }),
+  el("p", { class: "amostra-g", texto: "A marca fala assim" }),
+  el("p", { class: "amostra-m", texto: "Texto de apoio no corpo, no tamanho em que ele sera lido de verdade. Se esta linha cansa a vista, o tamanho ou a cor de apoio precisa mudar antes de ir para o material." }),
+]);
+if (D.avisoFonte) amostra.appendChild(el("div", { class: "aviso-substituta", texto: D.avisoFonte }));
+tipo.appendChild(amostra);
+
+const escala = el("div", { class: "bloco" }, [el("div", { class: "rotulo", texto: D.escalaRotulo })]);
+if (D.escala.length) {
+  const lista = el("div", { class: "escala" });
+  for (const e of D.escala) {
+    lista.appendChild(el("div", {}, [
+      el("span", { class: "k", texto: e.nome }),
+      el("span", { class: "v", estilo: `font-size:${e.px}px`, texto: e.px > 30 ? "Formação" : "Formação que avança" }),
+      el("span", { class: "k", texto: e.px + "px" }),
+    ]));
+  }
+  escala.appendChild(lista);
+} else {
+  escala.appendChild(el("p", { class: "amostra-m", texto: "Sem escala medida nesta identidade: o tamanho se define por target (site, documento, peça) e não se copia de uma peça de rede social, que é feita para ser vista de longe." }));
+}
+tipo.appendChild(escala);
+folha.appendChild(tipo);
+
+// ---- aplicacao
+folha.appendChild(el("h2", { class: "secao", texto: "Aplicação — mesma identidade em fundo escuro, fundo claro e documento" }));
+
+const pecaEscura = el("div", { class: "peca" }, [
+  el("div", { class: "miolo", estilo: `background:${D.base};color:${D.textoBase}` }, [
+    el("div", {}, [
+      el("div", { class: "kicker", estilo: `color:${D.acentoBase}`, texto: D.kicker }),
+      el("h3", { texto: "Título na cor de texto da marca" }),
+      el("p", { texto: "Parágrafo de apoio no tom secundário, sobre o fundo oficial." }),
+    ]),
+    el("div", {}, [
+      el("a", { class: "botao", estilo: `background:${D.acentoBase};color:${D.textoNoAcento}`, texto: "Ação principal" }),
+      el("div", { class: "rodape", texto: D.rodape }),
+    ]),
+  ]),
+]);
+
+const pecaClara = el("div", { class: "peca" }, [
+  el("div", { class: "miolo", estilo: `background:${D.papel};color:${D.tinta}` }, [
+    el("div", {}, [
+      el("div", { class: "kicker", estilo: `color:${D.acentoPapel}`, texto: D.kicker }),
+      el("h3", { texto: "O mesmo título em fundo claro" }),
+      el("p", { texto: "A cor de destaque aqui é a que sustenta leitura sobre branco; quando a cor pura não sustenta, entra a versão escurecida." }),
+    ]),
+    el("div", {}, [
+      el("a", { class: "botao", estilo: `background:${D.acentoPapel};color:#ffffff`, texto: "Ação principal" }),
+      el("div", { class: "rodape", texto: D.rodape }),
+    ]),
+  ]),
+]);
+
+const doc = el("div", { class: "peca doc", estilo: `background:${D.papel};color:${D.tinta}` }, [
+  el("div", { class: "meta", estilo: `color:${D.acentoPapel}`, texto: D.kicker }),
+  el("h3", { class: "titulo-doc", texto: "Documento da marca" }),
+  el("div", { class: "regua", estilo: `background:${D.acentoPapel}` }),
+  el("p", { texto: "Corpo do documento na cor de tinta, no tamanho de leitura. A identidade em papel vive de duas coisas: a cor certa e o respiro." }),
+  el("div", { class: "caixa", estilo: `background:${D.superficiePapel};border-left:3px solid ${D.acentoPapel}`,
+              texto: "Caixa de destaque: fundo levemente tingido e filete na cor de marca, sem sombra nem gradiente." }),
+]);
+folha.appendChild(el("div", { class: "aplicacao" }, [pecaEscura, pecaClara, doc]));
+
+// ---- marca
+if (D.ativos.length) {
+  folha.appendChild(el("h2", { class: "secao", texto: "Marca" }));
+  const bloco = el("div", { class: "marca-bloco" });
+  for (const a of D.ativos) {
+    const escuro = a.fundo === "escuro";
+    bloco.appendChild(el("div", { class: "ativo" + (escuro ? " escuro" : "") }, [
+      el("img", { src: a.caminho, alt: a.papel }),
+      el("div", { class: "legenda", texto: a.rotulo }),
+    ]));
+  }
+  folha.appendChild(bloco);
+}
+
+// ---- pendencias
+if (D.pendencias.length) {
+  folha.appendChild(el("h2", { class: "secao", texto: "Pendências declaradas — o que ainda não está confirmado" }));
+  const ul = el("ul");
+  for (const p of D.pendencias) ul.appendChild(el("li", { texto: p }));
+  folha.appendChild(el("div", { class: "pend" }, [ul]));
+}
+
+folha.appendChild(el("div", { class: "nota-rodape", texto: D.notaRodape }));
+document.title = "Prova de identidade — " + D.nome;
+</script>
+</body>
+</html>

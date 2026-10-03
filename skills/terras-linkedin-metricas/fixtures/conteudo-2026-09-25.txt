@@ -1,0 +1,389 @@
+URL: https://www.linkedin.com/analytics/creator/content/
+
+- heading "0 notificação" [level=2]
+- generic "Pular menu de navegação":
+  - button "Pular para pesquisa":
+    - generic: Pular para pesquisa
+  - button "Pular para conteúdo principal":
+    - generic: Pular para conteúdo principal
+  - button "Pular para barra lateral":
+    - generic: Pular para barra lateral
+  - button "Pular para conteúdo principal":
+    - generic: Pular para conteúdo principal
+  - button "Pular para à parte":
+    - generic: Pular para à parte
+  - button "Fechar menu pular":
+- banner:
+  - button "LinkedIn":
+    - img "LinkedIn"
+  - status
+  - search:
+    - textbox "Pesquisar"
+  - figure
+  - navigation:
+    - list:
+      - button "Início, 1 nova notificação":
+        - generic: Início
+      - link "Minha rede0 nova notificação":
+        - /url: https://www.linkedin.com/mynetwork
+        - generic: Minha rede
+      - link "Vagas, 0 nova notificação":
+        - /url: https://www.linkedin.com/jobs/
+        - generic: Vagas
+      - link "Mensagens, 0 nova notificação":
+        - /url: https://www.linkedin.com/messaging/
+        - generic: Mensagens
+      - link "Notificações, 3 novas notificações":
+        - /url: https://www.linkedin.com/notifications/
+        - generic: "3"
+        - generic: Notificações
+      - button "Eu":
+        - figure
+        - text: Eu
+  - navigation:
+    - list:
+      - button "Para negócios":
+        - text: Para negócios
+      - link "Anunciar, 0 nova notificação":
+        - /url: https://www.linkedin.com/campaignmanager/accounts/
+        - generic: Anunciar
+- main:
+  - complementary "Barra lateral":
+    - link:
+      - /url: https://www.linkedin.com/in/limaeverton/
+      - figure
+      - figure:
+        - img "Everton Lima"
+    - link "Everton Lima, Senior Software Architect & DevOps Engineer | .NET · Laravel · Kubernetes · Azure/AWS | I modernize legacy systems & cut infrastructure costs | Open to remote Senior/Staff roles, São Paulo e Região, Perfil verificado":
+      - /url: https://www.linkedin.com/in/limaeverton/
+      - generic "Everton Lima, Senior Software Architect & DevOps Engineer | .NET · Laravel · Kubernetes · Azure/AWS | I modernize legacy systems & cut infrastructure costs | Open to remote Senior/Staff roles, São Paulo e Região, Perfil verificado":
+        - paragraph: Everton Lima
+        - img "Perfil verificado"
+        - paragraph: Senior Software Architect & DevOps Engineer | .NET · Laravel · Kubernetes · Azure/AWS | I modernize legacy systems & cut infrastructure costs | Open to remote Senior/Staff roles
+        - paragraph: São Paulo e Região
+    - link "Sousa Lima Consultoria":
+      - /url: https://www.linkedin.com/in/limaeverton/
+      - figure
+      - paragraph: Sousa Lima Consultoria
+    - navigation:
+      - list:
+        - link "Visão geral":
+          - /url: https://www.linkedin.com/dashboard/
+          - generic: Visão geral
+        - button "Análise de conteúdos":
+          - generic: Análise de conteúdos
+        - link "Análise de público":
+          - /url: https://www.linkedin.com/analytics/creator/audience/
+          - generic: Análise de público
+  - region "Conteúdo principal":
+    - button "7 dias":
+      - checkbox "7 dias"
+      - text: 7 dias
+    - link "Exportar":
+      - /url: https://www.linkedin.com/
+      - generic: Exportar
+    - paragraph: Desempenho do conteúdo
+    - button "Saiba mais":
+    - button "Impressões":
+      - checkbox "Impressões"
+      - text: Impressões
+    - button "Cumulativo":
+      - checkbox "Cumulativo"
+      - text: Cumulativo
+    - paragraph: "3.543"
+    - paragraph: Impressões
+    - paragraph: 91%
+    - paragraph: em relação a 7 dias anteriores
+    - region "Chart. Highcharts interactive chart.":
+      - heading "Chart" [level=6]
+      - generic: Line chart with 7 data points.
+      - generic: The chart has 1 X axis displaying Time. Data ranges from 2026-09-19 00:00:00 to 2026-09-25 00:00:00.
+      - generic: The chart has 1 Y axis displaying values. Data ranges from 549 to 3543.
+      - img "Interactive chart":
+        - img "sábado, 19 de set. de 2026, 549. Impressões."
+        - img "domingo, 20 de set. de 2026, 1,169. Impressões."
+        - img "segunda-feira, 21 de set. de 2026, 2,189. Impressões."
+        - img "terça-feira, 22 de set. de 2026, 2,931. Impressões."
+        - img "quarta-feira, 23 de set. de 2026, 3,247. Impressões."
+        - img "quinta-feira, 24 de set. de 2026, 3,539. Impressões."
+        - img "sexta-feira, 25 de set. de 2026, 3,543. Impressões."
+        - generic: 19 de set.
+        - generic: 21 de set.
+        - generic: 23 de set.
+        - generic: 25 de set.
+        - generic: "0"
+        - generic: 1 mil
+        - generic: 2 mil
+        - generic: 3 mil
+        - generic: 4 mil
+      - generic: End of interactive chart.
+    - paragraph: Os dados diários são registrados em UTC
+    - paragraph: Descoberta
+    - button "Saiba mais":
+    - paragraph: "3.543"
+    - paragraph: Impressões
+    - paragraph: Na rede (seguidores e conexões)
+    - paragraph: 15%
+    - paragraph: Fora da rede
+    - paragraph: 85%
+    - paragraph: "2.056"
+    - paragraph: Usuários alcançados
+    - paragraph: Os usuários que publicam uma vez por semana podem receber até 4 vezes mais visualizações de perfil. Crie outra publicação para manter o ritmo.
+    - link "Inicie uma publicação":
+      - /url: https://www.linkedin.com/preload/sharebox/?linkOrigin=CONTENT_ANALYTICS_START_POST
+      - generic: Inicie uma publicação
+    - button "Fechar":
+    - paragraph: Engajamento
+    - button "Saiba mais":
+    - paragraph: "86"
+    - paragraph: Engajamento nas redes
+    - paragraph: Reações
+    - paragraph: "64"
+    - paragraph: Comentários
+    - paragraph: "19"
+    - paragraph: Compartilhamentos
+    - paragraph: "0"
+    - paragraph: Salvamentos
+    - paragraph: "3"
+    - paragraph: Envios no LinkedIn
+    - paragraph: "0"
+    - paragraph: Publicações de melhor desempenho
+    - button "Saiba mais":
+    - link "938 impressões • 2 engajamentos Ver análise":
+      - /url: https://www.linkedin.com/analytics/post-summary/urn:li:activity:7506359921433772032/
+      - paragraph: 938 impressões • 2 engajamentos
+      - paragraph: Ver análise
+    - heading "Publicação no feed" [level=2]:
+      - generic: Publicação no feed
+    - 'link "PHP 8.2 gets its last security patch on December 31, 2026. The branch closes: no fix for the next vulnerability, and the code keeps running as if nothing had changed. It has been security-only since December 2024, so this date is the last one. Teams find out by accident: a scanner flags an old CVE, an audit asks the runtime version, or the next framework major needs a newer PHP. Where
+      - /url: https://www.linkedin.com/feed/update/urn:li:share:7506359919995183104/
+      - paragraph:
+        - text: "PHP 8.2 gets its last security patch on December 31, 2026. The branch closes: no fix for the next vulnerability, and the code keeps running as if nothing had changed."
+        - text: "It has been security-only since December 2024, so this date is the last one. Teams find out by accident: a scanner flags an old CVE, an audit asks the runtime version, or the next framework major needs a newer PHP."
+        - text: "Where 8.2 hides: a platform.php pin in composer.json, a Docker base image nobody rebuilt, and the host you do not control."
+        - text: "Aim past it: 8.4 keeps security patches until 2028, 8.5 until 2029."
+        - text: "Where does your PHP version get decided: composer.json, the base image, or the host?"
+        - 'link "Ver hashtag: #php"':
+          - /url: https://www.linkedin.com/search/results/all/?keywords=%23php
+          - text: "#PHP"
+        - 'link "Ver hashtag: #laravel"':
+          - /url: https://www.linkedin.com/search/results/all/?keywords=%23laravel
+          - text: "#Laravel"
+        - 'link "Ver hashtag: #techdebt"':
+          - /url: https://www.linkedin.com/search/results/all/?keywords=%23techdebt
+          - text: "#TechDebt"
+        - 'link "Ver hashtag: #backend"':
+          - /url: https://www.linkedin.com/search/results/all/?keywords=%23backend
+          - text: "#Backend"
+    - link "691 impressões • 5 engajamentos Ver análise":
+      - /url: https://www.linkedin.com/analytics/post-summary/urn:li:activity:7505071482205618177/
+      - paragraph: 691 impressões • 5 engajamentos
+      - paragraph: Ver análise
+    - heading "Publicação no feed" [level=2]:
+      - generic: Publicação no feed
+    - link:
+      - /url: https://www.linkedin.com/feed/update/urn:li:share:7505071479483699200/
+      - paragraph:
+        - text: Your .NET 8 support does not end in 2028. It ends November 10, 2026.
+        - text: That's under 60 days. .NET 9 dies the same day.
+        - text: Most teams missed why, and it's the biggest .NET lifecycle change in years.
+        - text: Microsoft extended Standard Term Support from 18 to 24 months and aligned LTS and STS end dates. So .NET 8 (LTS, shipped Nov 2023) and .NET 9 (STS, shipped Nov 2024) now share a single end-of-support date.
+        - text: If your upgrade plan says "we're on LTS, we have until 2028," that plan is wrong.
+        - text: "What actually happens on November 10:"
+        - text: → No more security updates. No servicing fixes. Existing apps keep running — that's the trap, not the safety net.
+        - text: → .NET 8 and .NET 9 components in Visual Studio 2022 get marked out of support.
+        - text: "And that date deserves a second circle: .NET 11 is scheduled to hit GA on November 10, 2026. The funeral and the launch land on the same day."
+        - text: .NET 11 RC1 shipped September 8 with a Go-Live license, meaning it's supported for production. That's your validation window. November is not.
+        - text: "Where the real work lives — and it's almost never the TargetFramework bump:"
+        - text: • The transitive dependency graph. Packages pinned to net8.0, native dependencies with no net10.0 build.
+        - text: • API removals and behavior changes that compile clean and fail at runtime.
+        - text: • Your CI/CD images, because the SDK version is a build artifact too.
+        - text: • A tested rollback path, decided before 2am rather than during it.
+        - text: Staying on an unsupported runtime is a supply-chain decision, not a technical debt item. It belongs on the roadmap with a date, not on the backlog with a priority.
+        - text: Two months is enough time if you start now. It is not enough time if you start in November.
+        - text: Where is your stack today — still on .NET 8, already on .NET 10, or did you skip .NET 9 because it never made sense as a stop?
+        - 'link "Ver hashtag: #dotnet"':
+          - /url: https://www.linkedin.com/search/results/all/?keywords=%23dotnet
+          - text: "#dotnet"
+        - 'link "Ver hashtag: #csharp"':
+          - /url: https://www.linkedin.com/search/results/all/?keywords=%23csharp
+          - text: "#csharp"
+        - 'link "Ver hashtag: #softwareengineering"':
+          - /url: https://www.linkedin.com/search/results/all/?keywords=%23softwareengineering
+          - text: "#softwareengineering"
+    - link "388 impressões • 16 engajamentos Ver análise":
+      - /url: https://www.linkedin.com/analytics/post-summary/urn:li:activity:7508132238778281984/
+      - paragraph: 388 impressões • 16 engajamentos
+      - paragraph: Ver análise
+    - heading "Publicação no feed" [level=2]:
+      - generic: Publicação no feed
+    - link:
+      - /url: https://www.linkedin.com/feed/update/urn:li:share:7508132237398384640/
+      - figure
+      - paragraph:
+        - text: "A model that does not write a single sentence just passed 1,900 points and 500 comments on Hacker News. Jev, from TypeSafe AI, launched on September 15 with one job: typed questions in, typed decisions out. No prose, no parsing. The decision lands in your code ready to use."
+        - text: Three primitives. Choice picks from a list, Score rates against a rubric, Noul answers yes or no with the probability of yes. Mix all three in one call and they run in parallel against the same state.
+        - text: "The most useful detail is in the docs. They split confidence into bands: high acts alone, medium asks for confirmation or review, low does not act and goes to a human. Their own example routes below 0.5 to a human and requires 0.9 for destructive operations. That is the loop every triage pipeline hand-rolls, now coming out of the model."
+        - text: I build service desk triage with LLMs plus deterministic rules. The hard part was never the decision. It was getting the decision back as data the flow can trust. A calibrated probability solves that at the source.
+        - text: "Numbers, from the company: US$ 0.042 per million input tokens, output free, 70 to 500 milliseconds per decision. Caveats: early access, vendor figures, evals run by their own team, and no string generation, so it will not explain or chat. One week in, alternate implementations are already on GitHub."
+        - text: "Where would you draw the line: what confidence do you need before your pipeline acts without a human?"
+        - 'link "Ver hashtag: #ai"':
+          - /url: https://www.linkedin.com/search/results/all/?keywords=%23ai
+          - text: "#AI"
+        - 'link "Ver hashtag: #automation"':
+          - /url: https://www.linkedin.com/search/results/all/?keywords=%23automation
+          - text: "#Automation"
+        - 'link "Ver hashtag: #llm"':
+          - /url: https://www.linkedin.com/search/results/all/?keywords=%23llm
+          - text: "#LLM"
+        - 'link "Ver hashtag: #softwareengineering"':
+          - /url: https://www.linkedin.com/search/results/all/?keywords=%23softwareengineering
+          - text: "#SoftwareEngineering"
+        - 'link "Ver hashtag: #jev"':
+          - /url: https://www.linkedin.com/search/results/all/?keywords=%23jev
+          - text: "#Jev"
+    - link "Exibir mais":
+      - /url: https://www.linkedin.com/analytics/creator/top-posts/?endDate=2026-09-25&startDate=2026-09-19&metricType=IMPRESSIONS&timeRange=past_7_days
+      - generic: Exibir mais
+    - paragraph: Principais dados demográficos
+    - button "Saiba mais":
+    - navigation:
+      - list:
+        - button "Tudo":
+          - generic: Tudo
+        - button "Cargo":
+          - generic: Cargo
+        - button "Localidade":
+          - generic: Localidade
+        - button "Nível de experiência":
+          - generic: Nível de experiência
+        - button "Empresa":
+          - generic: Empresa
+        - button "Setor":
+          - generic: Setor
+        - button "Tamanho da empresa":
+          - generic: Tamanho da empresa
+    - paragraph: Setor
+    - paragraph: Desenvolvimento de software
+    - paragraph: 43%
+    - progressbar "43 por cento concluído"
+    - paragraph: Nível de experiência
+    - paragraph: Iniciante
+    - paragraph: 39%
+    - progressbar "39 por cento concluído"
+    - paragraph: Cargo
+    - paragraph: Engenheiro de software
+    - paragraph: 31%
+    - progressbar "31 por cento concluído"
+    - paragraph: Tamanho da empresa
+    - paragraph: 51 a 200 funcionários
+    - paragraph: 14%
+    - progressbar "14 por cento concluído"
+    - paragraph: Localidade
+    - paragraph: São Paulo e Região
+    - paragraph: 3%
+    - progressbar "3 por cento concluído"
+    - paragraph: Empresa
+    - paragraph: Microsoft
+    - paragraph: menos de 1%
+    - progressbar "0 por cento concluído"
+  - complementary "À parte":
+    - iframe:
+      - main "Work With Us Container":
+        - img "Everton"
+        - link "The Coca-Cola Company":
+          - /url: https://www.linkedin.com/li/tscp/sct?destinationUrl=http%3A%2F%2Fwww.linkedin.com%2Fcompany%2F1694%2Flife& [rastreio removido]
+          - img "The Coca-Cola Company"
+        - paragraph: Everton, explore oportunidades que vale a pena com The Coca-Cola Company
+        - paragraph: Fique por dentro das vagas e notícias do setor
+        - link "Seguir":
+          - /url: https://www.linkedin.com/li/tscp/sct?destinationUrl=http%3A%2F%2Fwww.linkedin.com%2Fcompany%2F1694%2Flife%3FisFollowingPage%3Dtrue& [rastreio removido]
+        - paragraph: Promovido
+        - button "Opções de anúncios":
+          - generic: Opções de anúncios
+    - link "Sobre":
+      - /url: https://about.linkedin.com/
+      - paragraph: Sobre
+    - link "Acessibilidade":
+      - /url: https://www.linkedin.com/accessibility/
+      - paragraph: Acessibilidade
+    - link "Central de Ajuda":
+      - /url: https://www.linkedin.com/help/linkedin/
+      - paragraph: Central de Ajuda
+    - button "Termos e Privacidade":
+      - paragraph: Termos e Privacidade
+    - link "Preferências de anúncios":
+      - /url: https://www.linkedin.com/help/linkedin/answer/62931/
+      - paragraph: Preferências de anúncios
+    - link "Publicidade":
+      - /url: https://www.linkedin.com/ad/start/?trk=n_nav_ads_rr
+      - paragraph: Publicidade
+    - button "Soluções corporativas":
+      - paragraph: Soluções corporativas
+    - link "Baixe o aplicativo do LinkedIn":
+      - /url: https://www.linkedin.com/mobile/
+      - paragraph: Baixe o aplicativo do LinkedIn
+    - link "Mais":
+      - /url: https://www.linkedin.com/
+      - paragraph: Mais
+    - paragraph: LinkedIn Corporation © 2026
+- complementary:
+  - img "Everton Lima"
+  - generic: O status está on-line
+  - button "Você está no módulo de mensagens. Pressione Enter para abrir a lista de conversas.":
+    - generic: Mensagens
+    - generic: Você está no módulo de mensagens. Pressione Enter para abrir a lista de conversas.
+  - button "Abrir o menu suspenso de mensagens":
+    - img "Abrir o menu suspenso de mensagens"
+  - button "Escrever mensagem":
+    - generic: Escrever mensagem
+  - button "Você está no módulo de mensagens. Pressione Enter para abrir a lista de conversas.":
+    - generic: Você está no módulo de mensagens. Pressione Enter para abrir a lista de conversas.
+- complementary "Assistente de IA para obter ajuda com sua carreira, vagas, etc."
+- iframe:
+  - region "Mensagem toast":
+    - heading "0 notificações no total" [level=2]
+    - alert
+  - region
+  - button "Pular para pesquisa":
+    - generic: Pular para pesquisa
+  - button "Pular para conteúdo principal":
+    - generic: Pular para conteúdo principal
+  - button "Atalhos do teclado":
+    - generic: Atalhos do teclado
+  - button "Fechar menu pular":
+    - generic: Fechar menu pular
+  - banner "Navegação geral":
+    - link "LinkedIn":
+      - /url: https://www.linkedin.com/feed/
+      - img "LinkedIn":
+    - combobox "Pesquisar"
+    - navigation "Navegação principal":
+      - list:
+        - link "atualizações do feed novas notificações Início":
+          - /url: https://www.linkedin.com/feed/
+          - generic: atualizações do feed novas notificações
+          - generic "Início"
+        - link "Minha rede":
+          - /url: https://www.linkedin.com/mynetwork/?
+          - generic "Minha rede"
+        - link "Vagas":
+          - /url: https://www.linkedin.com/jobs/?
+          - generic "Vagas"
+        - link "Mensagens":
+          - /url: https://www.linkedin.com/messaging/?
+          - generic "Mensagens"
+        - link "3 novas notificações Notificações":
+          - /url: https://www.linkedin.com/notifications/?
+          - generic: "3"
+          - generic: 3 novas notificações
+          - generic "Notificações"
+        - button "Everton Lima Eu":
+          - img "Everton Lima"
+          - text: Eu
+        - button "Para negócios":
+          - generic "Para negócios":
+            - text: Para negócios
+        - link "Veicular anúncio":
+          - /url: https://www.linkedin.com/campaignmanager/accounts?
+          - generic "Veicular anúncio"

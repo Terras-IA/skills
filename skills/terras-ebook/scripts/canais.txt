@@ -1,0 +1,13 @@
+# Canais do YouTube que a skill acompanha — um @handle por linha.
+# O handle está na URL do canal: youtube.com/@DwarkeshPatel -> @DwarkeshPatel
+# Linhas com # são ignoradas. Se este arquivo ficar vazio, a skill usa uma
+# lista padrão de canais de tecnologia em inglês (ver CANAIS_PADRAO no get_videos.py).
+
+@DwarkeshPatel
+@LatentSpacePod
+@ycombinator
+@a16z
+@RedpointAI
+@EveryInc
+@DataDrivenNYC
+@NoPriorsPodcast

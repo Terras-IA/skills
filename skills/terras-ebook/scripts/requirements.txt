@@ -1,0 +1,26 @@
+# Instale no venv da skill: ~/.config/terras-ebook/venv
+#   bash <pasta da skill>/scripts/setup.sh
+# (a instalação direta no python do sistema é bloqueada por PEP 668)
+
+# --- Pipeline de vídeo (rotas A e B) ----------------------------------------
+google-api-python-client   # busca dos vídeos na YouTube Data API v3
+python-dotenv              # leitura do .env
+requests                   # HTTP: Supadata e checagem de Shorts
+youtube-transcript-api     # transcrição grátis (a Supadata é o fallback pago)
+ebooklib                   # montagem do EPUB
+markdown                   # markdown -> HTML dos capítulos
+
+# --- Rota PDF (montagem do livro e verificação) ------------------------------
+reportlab                  # desenha capa, miolo, folio e fio-de-pé
+pypdf                      # merge da capa com o miolo, links e marcadores
+pdfplumber                 # mede as caixas do sumário e acha a página de cada capítulo
+fonttools                  # converte a fonte variável da marca (woff2) em TTF
+brotli                     # necessário para o fonttools ler woff2
+pymupdf                    # conferir links e texto extraído (o pypdf não resolve
+                           # destino em número de página; o PyMuPDF resolve)
+
+# Só na rota A (artigos escritos por API)
+anthropic                  # COBRADO POR USO — veja o SKILL.md antes de ligar isso
+
+# Opcional e pesado (puxa pandas/pyarrow): só para o dashboard.py
+# streamlit

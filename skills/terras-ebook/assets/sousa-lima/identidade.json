@@ -1,0 +1,50 @@
+{
+  "nome": "Sousa Lima Consultoria",
+  "descricao": "Identidade extraida de 'Section 1.pdf' (references/), o e-book template da consultoria. Paleta declarada na propria peca (PRIMARY, SECUNDARIA, ACCENT, LIGHT); logo, fundo de rede e padrao foram recortados do PDF, porque a peca veio rasterizada.",
+  "origem": "references/Section 1.pdf",
+  "extraido_em": "2026-09-22",
+  "capa_estilo": "logo-rede",
+  "assinatura": "sousalima.com.br",
+  "cores": {
+    "base": "#040A21",
+    "base_alt": "#081130",
+    "acento": "#00D2FF",
+    "acento_2": "#DB00B6",
+    "texto": "#FFFFFF",
+    "texto_apoio": "#9FB3D9",
+    "linha": "#1B2A52",
+    "tinta": "#0B1330",
+    "tinta_fraca": "#5A6A93",
+    "papel": "#FFFFFF",
+    "papel_alt": "#F4F7FC",
+    "linha_clara": "#D8E2F2",
+    "nota": "tinta/tinta_fraca/papel/papel_alt/linha_clara sao a versao para pagina clara: a peca original e escura, mas o miolo de um livro precisa de papel claro para leitura e impressao. O ciano puro e o magenta puro ficam em filetes e marcas; texto em acento usa a versao escurecida, calculada por contraste."
+  },
+  "fontes": {
+    "display": {
+      "arquivos": ["fontes/Michroma-Regular.ttf"],
+      "nota": "A face dos titulos da peca original esta rasterizada, sem fonte embutida (o PDF foi montado como imagem). Michroma e a alternativa livre (OFL) mais proxima: mesma linhagem da Bank Gothic, com o 'A' de topo reto e o 'S' quadrado. Trocar aqui quando a fonte original aparecer."
+    },
+    "texto": {
+      "arquivos": ["fontes/Montserrat-variavel.ttf"],
+      "pesos": { "regular": 400, "bold": 700, "forte": 700 },
+      "nota": "Montserrat é variável: o montador extrai as instâncias estáticas e cacheia. O negrito do corpo é 700 (e não 600) porque em 9 pt o SemiBold praticamente não se distingue do regular — os rótulos das listas precisam de contraste real."
+    }
+  },
+  "marca": {
+    "estilo": "lockup",
+    "estilos_disponiveis": ["lockup", "monograma-nome", "nome", "sem-marca"],
+    "nome": "SOUSA LIMA",
+    "apoio": "CONSULTORIA",
+    "nota": "lockup usa a imagem do conjunto (monograma + nome + apoio). monograma-nome desenha o simbolo e escreve o nome na fonte de titulo. nome usa so o nome em texto, sem imagem de logo. sem-marca NAO desenha nada da marca: nem logo, nem nome, nem assinatura de rodape — sobram tipografia, cores e estrutura. ATENCAO AO VOCABULARIO: quando o pedido e 'sem logo', ele quer sem-marca (a marca inteira some). Trocar por aqui ou por --marca (aceita tambem --marca sem-logo como apelido)."
+  },
+  "ativos": {
+    "logo_claro": "logo-branco.png",
+    "logo_escuro": "logo-preto.png",
+    "monograma_claro": "monograma-branco.png",
+    "monograma_escuro": "monograma-preto.png",
+    "fundo": "fundo-rede.png",
+    "padrao": "padrao-monograma.png",
+    "nota": "logo-*.png e o conjunto (monograma + SOUSA LIMA + CONSULTORIA); monograma-*.png e so o simbolo. Os dois sao SILHUETA CHAPADA: o template veio rasterizado a ~54 dpi e a sombra suave do contorno, virada em transparencia, virava um vinco escuro dentro do branco. A extracao binariza, fecha os cortes de 1-8 px e suaviza a borda, preservando o canal navy entre as fitas."
+  }
+}
