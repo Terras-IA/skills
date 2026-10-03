@@ -2,6 +2,7 @@
 name: terras-mapeamento-de-processos
 description: "Mapeia um processo a partir de áudio, gravação de tela, transcrição ou relato falado e devolve o mapa visual (AS-IS e TO-BE), o diagnóstico com números e o plano de melhoria priorizado com as oportunidades de automação. Use quando o pedido for mapear ou desenhar um processo, analisar o áudio ou a gravação de tela de uma rotina, achar o gargalo, reduzir tempo de atendimento, automatizar uma rotina operacional, fazer diagnóstico de processo, montar o fluxo AS-IS/TO-BE ou dimensionar quantas pessoas o processo consome. Cobre também 'é assim que a gente faz hoje, o que dá para melhorar'."
 keywords: [mapeamento de processo, mapear processo, processo, fluxograma, bpmn, as is, to be, gargalo, diagnostico de processo, melhoria de processo, automacao de processo, lean, desperdicio, lead time, sop, procedimento operacional, retrabalho, sla]
+version: 1.1.0
 license: MIT
 ---
 
@@ -66,10 +67,11 @@ Os **frames da gravação de tela são a melhor fonte de sistema e campo**: é o
 
    ```bash
    python3 "$SKILL_DIR/scripts/gerar_mermaid.py" --json processo.json --saida as-is.mmd --tipo as-is
-   node "$SKILL_DIR/../terras-excalidraw/scripts/render.mjs" as-is.mmd --out as-is
+   node "$SKILL_DIR/scripts/render_mermaid.mjs" as-is.mmd --out as-is        # SVG vetorial + PNG em alta (escala 3)
+   node "$SKILL_DIR/../terras-excalidraw/scripts/render.mjs" as-is.mmd --out as-is   # cena editável (.excalidraw)
    ```
 
-   Uma raia por ator, tempo no rótulo, espera como nó próprio, gargalo em vermelho. Sem a skill vizinha de diagrama, entregue o `.mmd` (abre em excalidraw.com, no VS Code ou em qualquer visualizador Mermaid) e diga isso. Convenções completas em `$SKILL_DIR/references/notacao-bpmn.md`.
+   Uma raia por ator, tempo no rótulo, espera como nó próprio, gargalo em vermelho. O `.mmd` é o artefato portátil: abre no mermaid.live, no VS Code e em qualquer visualizador Mermaid. Para documento, slide e impressão, use o `render_mermaid.mjs` (SVG e PNG em escala 3, texto vetorial nítido) — o `render.mjs` da terras-excalidraw serve para **editar** a cena, e a imagem dele sai pequena porque segue o tamanho da cena (não use para o PNG final). Convenções completas em `$SKILL_DIR/references/notacao-bpmn.md`.
 
 4. **Diagnostique.**
 
@@ -79,7 +81,7 @@ Os **frames da gravação de tela são a melhor fonte de sistema e campo**: é o
 
    Lead time, % do tempo que é espera, handoffs, FTE-h/mês, retrabalho, 8 desperdícios, riscos e controles. A tabela sai pronta para o relatório, com os alertas de lacuna de medição. Fórmulas, classificação VA/NVA, 5 Porquês e KPIs: `$SKILL_DIR/references/frameworks-analise.md`.
 
-5. **Desenhe o TO-BE e priorize.** Parta de `processo.json`, aplique as melhorias e salve `processo-to-be.json` **no mesmo schema**, com a origem da mudança no campo `evidencia` (ex.: "melhoria 3 — integração CRM/ERP"). Gere o diagrama com `--tipo to-be`.
+5. **Desenhe o TO-BE e priorize.** Parta de `processo.json`, aplique as melhorias e salve `processo-to-be.json` **no mesmo schema**, com a origem da mudança no campo `evidencia` (ex.: "melhoria 3 — integração CRM/ERP"). Gere o diagrama com `--tipo to-be` e renderize como no AS-IS (`render_mermaid.mjs` para a imagem em alta, `render.mjs` para a cena editável).
 
    A ordem de intervenção é fixa: **eliminar → simplificar → padronizar → automatizar → realocar → monitorar**. Escolha da tecnologia (regra, integração, RPA, IA, workflow): `$SKILL_DIR/references/automacao.md`. Priorize por impacto × esforço e destaque 3 quick wins.
 
@@ -104,12 +106,14 @@ Trabalhe numa pasta do processo (ex.: `processos/<slug>/`), nunca solto na raiz.
 | Propor automação antes de eliminar | Automatizar desperdício só acelera o desperdício |
 | Multiplicar etapa semanal pelo volume mensal | Calcule por período (semanal = ×4/mês) antes de falar de FTE-h |
 | Entregar sem olhar o PNG | O script não vê cruzamento de seta nem rótulo em cima de seta |
+| Entregar PNG pequeno ou texto borrado | Renderize com `render_mermaid.mjs` (escala 3, texto vetorial); o render do Excalidraw é para editar, não para a imagem final |
 
 ## Arquivos
 
 - `scripts/extrair_frames.sh` — vídeo/gravação de tela → frames + folhas de contato com timestamps.
 - `scripts/extrair_processo.py` — transcrição → `processo.json` (LLM com schema estrito).
 - `scripts/gerar_mermaid.py` — JSON → Mermaid AS-IS/TO-BE com raias.
+- `scripts/render_mermaid.mjs` — Mermaid → SVG vetorial + PNG em alta (escala 3), sem passar pelo Excalidraw.
 - `scripts/metricas.py` — JSON → tabela de métricas e alertas.
 - `references/frameworks-analise.md` — métricas, 8 desperdícios, 5 Porquês, Ishikawa, riscos, KPIs.
 - `references/automacao.md` — como escolher entre regra, API, RPA, IA e workflow.

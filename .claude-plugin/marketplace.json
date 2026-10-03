@@ -1421,7 +1421,7 @@
     {
       "name": "terras-mapeamento-de-processos",
       "description": "Mapeia um processo a partir de áudio, gravação de tela, transcrição ou relato falado e devolve o mapa visual (AS-IS e TO-BE), o diagnóstico com números e o plano de melhoria priorizado com as oportunidades de automação.",
-      "version": "1.0.0",
+      "version": "1.1.0",
       "source": "./skills/terras-mapeamento-de-processos",
       "strict": false,
       "skills": [

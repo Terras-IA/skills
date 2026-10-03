@@ -1,6 +1,6 @@
 # Notação BPMN e sua tradução para Mermaid
 
-Mermaid é o padrão de entrega desta skill: o `.mmd` abre em excalidraw.com, no VS Code e em qualquer visualizador, e sai em PNG/SVG pela skill vizinha de diagrama. Use BPMN formal apenas se o cliente exigir um `.bpmn` para ferramenta de modelagem.
+Mermaid é o padrão de entrega desta skill: o `.mmd` abre em excalidraw.com, no VS Code e em qualquer visualizador, e sai em SVG vetorial + PNG em alta pelo `scripts/render_mermaid.mjs` (a cena editável fica com a skill vizinha terras-excalidraw). Use BPMN formal apenas se o cliente exigir um `.bpmn` para ferramenta de modelagem.
 
 ## Correspondência de elementos
 
