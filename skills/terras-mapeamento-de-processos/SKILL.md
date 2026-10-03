@@ -2,7 +2,7 @@
 name: terras-mapeamento-de-processos
 description: "Mapeia um processo a partir de áudio, gravação de tela, transcrição ou relato falado e devolve o mapa visual (AS-IS e TO-BE), o diagnóstico com números e o plano de melhoria priorizado com as oportunidades de automação. Use quando o pedido for mapear ou desenhar um processo, analisar o áudio ou a gravação de tela de uma rotina, achar o gargalo, reduzir tempo de atendimento, automatizar uma rotina operacional, fazer diagnóstico de processo, montar o fluxo AS-IS/TO-BE ou dimensionar quantas pessoas o processo consome. Cobre também 'é assim que a gente faz hoje, o que dá para melhorar'."
 keywords: [mapeamento de processo, mapear processo, processo, fluxograma, bpmn, as is, to be, gargalo, diagnostico de processo, melhoria de processo, automacao de processo, lean, desperdicio, lead time, sop, procedimento operacional, retrabalho, sla]
-version: 1.2.0
+version: 1.3.0
 license: MIT
 ---
 
@@ -72,7 +72,7 @@ Os **frames da gravação de tela são a melhor fonte de sistema e campo**: é o
    node "$SKILL_DIR/../terras-excalidraw/scripts/render.mjs" as-is.mmd --out as-is   # cena editável (.excalidraw)
    ```
 
-   **Qual usar.** O `render_fluxo.py` é o desenho que vai para o cliente: raias horizontais com ícone do ator, ícone e **ID do passo** (P1, P2…) dentro do nó, decisão em losango, espera tracejada, setas condicionais verde/vermelha e quebra de faixa quando o fluxo é longo. Sai `.svg` e, com `--png`, o PNG por navegador headless (escala 2). O Mermaid é o artefato portátil e versionável: abre no mermaid.live, no VS Code e em qualquer visualizador; para documento e impressão, renderize com o `render_mermaid.mjs`. O `render.mjs` da terras-excalidraw serve para **editar** a cena, e a imagem dele sai pequena porque segue o tamanho da cena (não use para o PNG final).
+   **Saída padrão.** Todo mapa entregue sai pelo `render_fluxo.py` — é o desenho que vai para o cliente: raias horizontais com ícone do ator, ícone e **ID do passo** (P1, P2…) dentro do nó, decisão em losango, espera tracejada, setas condicionais verde/vermelha e quebra de faixa quando o fluxo é longo. Sai `.svg` e, com `--png`, o PNG por navegador headless (escala 2). O Mermaid é o **artefato portátil** e versionável, que acompanha a entrega: abre no mermaid.live, no VS Code e em qualquer visualizador; para documento e impressão, renderize com o `render_mermaid.mjs`. O `render.mjs` da terras-excalidraw serve para **editar** a cena, e a imagem dele sai pequena porque segue o tamanho da cena (não use para o PNG final).
 
    O desenho é dirigido pelo bloco `layout` do JSON:
 
@@ -100,7 +100,18 @@ Os **frames da gravação de tela são a melhor fonte de sistema e campo**: é o
 
    A ordem de intervenção é fixa: **eliminar → simplificar → padronizar → automatizar → realocar → monitorar**. Escolha da tecnologia (regra, integração, RPA, IA, workflow): `$SKILL_DIR/references/automacao.md`. Priorize por impacto × esforço e destaque 3 quick wins.
 
-6. **Escreva o relatório** preenchendo `$SKILL_DIR/templates/relatorio-processo.md`: sumário executivo com os três números que doem, AS-IS, diagnóstico, melhorias, TO-BE, plano 30/60/90 e as premissas. Entregue o `.md` com os diagramas ao lado.
+6. **Escreva o relatório** preenchendo `$SKILL_DIR/templates/relatorio-processo.md`: sumário executivo com os três números que doem, AS-IS, diagnóstico, melhorias, TO-BE, plano 30/60/90 e as premissas.
+
+   **O pacote de entrega é sempre o mesmo:** o relatório `.md`, os dois desenhos (`as-is.png`/`as-is.svg` e `to-be.png`/`to-be.svg`, feitos com `render_fluxo.py`) e os dois Mermaid portáteis (`.mmd`). Os identificadores do desenho (P1, P2…) são os mesmos citados nas tabelas do relatório — se renumerar um, renumeire o outro.
+
+7. **Anonimize quando o material sair do cliente ou quando pedirem.**
+
+   ```bash
+   python3 "$SKILL_DIR/scripts/anonimizar.py" --pasta processos/<slug> \
+     --mapa "NomeDoCliente=Cliente X;NomeDoAgente=Agente de IA;NomeDaPessoa=o responsável" --regerar-png
+   ```
+
+   Troca nos artefatos de texto (`.md`, `.json`, `.mmd`, `.svg`, `.vtt`…), **renomeia** o que carrega o nome no filename (`relatorio-acme.md` → `relatorio-cliente-x.md`) e regera os PNG com `--regerar-png` — o nome do cliente está **desenhado no título**, então trocar só o texto não resolve. Convenção padrão: empresa → **Cliente X**; assistente de IA → **Agente de IA** (sem nome próprio); pessoa → **papel** ("a analista", "o responsável"). Preserve o timestamp da citação e troque o nome dentro dela pelo rótulo. Sistemas (ERP, CRM, WhatsApp) ficam: é o que dá valor ao diagnóstico — se o cliente pedir, inclua-os no `--mapa`.
 
 Trabalhe numa pasta do processo (ex.: `processos/<slug>/`), nunca solto na raiz.
 
@@ -124,6 +135,8 @@ Trabalhe numa pasta do processo (ex.: `processos/<slug>/`), nunca solto na raiz.
 | Entregar só o Mermaid quando o pedido é o desenho de apresentação | Use `render_fluxo.py`: raias com ícone do ator, ID do passo e seta condicional |
 | Faixa órfã no fim do diagrama (um nó sozinho embaixo) | Ajuste `layout.colunas` para o fluxo fechar em duas faixas |
 | Entregar PNG pequeno ou texto borrado | Renderize com `render_mermaid.mjs` (escala 3, texto vetorial); o render do Excalidraw é para editar, não para a imagem final |
+| Entregar o material sem anonimizar quando ele sai do cliente | Nome do cliente está no título do desenho e no corpo do relatório: rode `anonimizar.py --regerar-png` antes de enviar |
+| Anonimizar só o relatório e esquecer o PNG/SVG | O texto vive dentro da imagem; sem regerar, o nome continua desenhado no título |
 
 ## Arquivos
 
@@ -131,6 +144,7 @@ Trabalhe numa pasta do processo (ex.: `processos/<slug>/`), nunca solto na raiz.
 - `scripts/extrair_processo.py` — transcrição → `processo.json` (LLM com schema estrito).
 - `scripts/gerar_mermaid.py` — JSON → Mermaid AS-IS/TO-BE com raias.
 - `scripts/render_fluxo.py` — JSON → diagrama de raias (SVG + PNG) para apresentação, com `layout` no JSON.
+- `scripts/anonimizar.py` — troca nomes por rótulos genéricos em toda a pasta, renomeia arquivos e regera os PNG.
 - `scripts/render_mermaid.mjs` — Mermaid → SVG vetorial + PNG em alta (escala 3), sem passar pelo Excalidraw.
 - `scripts/metricas.py` — JSON → tabela de métricas e alertas.
 - `references/frameworks-analise.md` — métricas, 8 desperdícios, 5 Porquês, Ishikawa, riscos, KPIs.
