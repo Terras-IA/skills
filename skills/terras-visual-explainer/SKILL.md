@@ -1,7 +1,7 @@
 ---
 name: terras-visual-explainer
-description: "Gera páginas HTML autocontidas que explicam visualmente sistemas, mudanças de código, planos, dados e conceitos técnicos: diagramas (inclusive Mermaid), visões de arquitetura, revisão de diff ou de plano, recapitulações de projeto, tabelas comparativas e decks de slides. Use quando o pedido for explicar algo visualmente, diagrama, arquitetura, revisão visual de mudança, ou quando uma tabela tiver 4+ linhas ou 3+ colunas. Visual explainer, diagramas, arquitetura, HTML."
-keywords: [diagrama, explicacao visual, arquitetura, html, mermaid, tabela, diff, slides, visual]
+description: "Gera páginas HTML autocontidas que explicam visualmente sistemas, mudanças de código, planos, dados e conceitos técnicos: diagramas (inclusive Mermaid), visões de arquitetura, revisão de diff ou de plano, recapitulações de projeto, tabelas comparativas e decks de slides. Faz também versão ANIMADA de diagrama (fluxo nas arestas, etapas acendendo em sequência, pulso viajando pela rota), com MP4 gravado quadro a quadro, quando pedido. Use quando o pedido for explicar algo visualmente, diagrama, arquitetura, revisão visual de mudança, ou quando uma tabela tiver 4+ linhas ou 3+ colunas. Visual explainer, diagramas, arquitetura, HTML."
+keywords: [diagrama, explicacao visual, arquitetura, html, mermaid, tabela, diff, slides, visual, animacao, diagrama animado]
 homepage: https://github.com/nicobailon/visual-explainer
 license: MIT
 ---
@@ -124,6 +124,17 @@ Slides rules:
 ## Optional generated images
 
 If `surf` is available, generated images may be embedded as base64 for hero banners, conceptual illustrations, or educational visuals. Skip images for data-heavy, structural, or Mermaid/CSS-suitable content. Pages must stand on CSS, typography, and diagrams without images.
+
+## Modo animado (opcional)
+
+Só quando pedido ("versão animada", "o processo passando pelas etapas"). Animar POR CIMA do diagrama estático aprovado, sem mudar geometria — a versão estática continua sendo a fonte da verdade.
+
+- **Fluxo nas arestas:** cópia do mesmo `d` por cima da linha sólida (classe própria, ex. `.puls`), tracejada, animando `stroke-dashoffset` em loop CSS. Em arestas já tracejadas (escritas de dado), animar o `stroke-dashoffset` da própria aresta. Leituras e controle ficam paradas — movimento é semântica: só anima o que flui de verdade.
+- **Etapas acendendo em ordem:** cada forma de nó ganha `class="… no"` e `style="--d:Ns"`; keyframes de glow (`filter: drop-shadow`) com um período comum (ex. 14s) e delay escalonado seguindo a ordem do fluxo.
+- **Pulso viajando:** rota invisível (`fill="none" stroke="none"`) que concatena os segmentos e ATRAVESSA os nós (é o "processo passando pelas etapas"), com `<animateMotion>` + `<mpath>`. Prender o pulso no início até a janela dele abrir (`keyPoints="0;0;1;1" keyTimes="0;início;fim;1"`) + janela de `<animate attributeName="opacity">` no MESMO período do loop CSS — os dois relógios (CSS e SMIL) começam no load e ficam em fase. Sem a trava inicial de `keyPoints`, o pulso aparece no MEIO da rota quando a janela abre.
+- **`prefers-reduced-motion: reduce`:** desliga as animações CSS (media query) e pausa o SMIL (`svg.pauseAnimations()` via script).
+- **Entrega:** o HTML animado é a fonte. Rede social não anima PNG/GIF no feed — para postar, gravar MP4 varrendo o relógio POR QUADRO via CDP: `document.getAnimations().forEach(a => a.currentTime = t)` + `svg.setCurrentTime(t)`, `Page.captureScreenshot` por quadro, ffmpeg montando (`-framerate`, libx264, `yuv420p`). Quadro a quadro, nunca captura em tempo real.
+- **Gate visual:** stills de 2–3 quadros do próprio render varrido; julga artefatos (linha dupla desalinhada, pulso fora da rota, glow cortado, geometria alterada), não suavidade.
 
 ## Final checklist
 
