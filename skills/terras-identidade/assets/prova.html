@@ -71,8 +71,8 @@
   .aviso-substituta { font-size: 12px; color: #a15c00; background: #fff5e6; border-radius: 6px; padding: 7px 10px; margin-top: 12px; }
 
   .aplicacao { display: grid; grid-template-columns: 1.15fr 1fr 1fr; gap: 18px; }
-  .peca { border-radius: 14px; overflow: hidden; border: 1px solid var(--linha); }
-  .peca .miolo { padding: 22px; min-height: 210px; display: flex; flex-direction: column; justify-content: space-between; }
+  .peca { border-radius: 14px; overflow: hidden; border: 1px solid var(--linha); display: flex; flex-direction: column; }
+  .peca .miolo { padding: 22px; min-height: 210px; display: flex; flex-direction: column; justify-content: space-between; flex: 1; }
   .peca .kicker { font-size: 11px; letter-spacing: .16em; text-transform: uppercase; font-weight: 700; }
   .peca h3 { font-family: var(--fonte-titulo); font-weight: 800; font-size: 27px; line-height: 1.1; margin: 10px 0 8px; }
   .peca p { font-size: 13px; line-height: 1.5; margin: 0; opacity: .85; }
@@ -234,9 +234,21 @@ folha.appendChild(el("div", { class: "aplicacao" }, [pecaEscura, pecaClara, doc]
 if (D.ativos.length) {
   folha.appendChild(el("h2", { class: "secao", texto: "Marca" }));
   const bloco = el("div", { class: "marca-bloco" });
+  // o fundo de amostra do ativo claro (marca de letra clara) acompanha o escuro
+  // da propria marca quando ele existe; marca de base clara segue no neutro
+  // fixo do CSS, que e o unico que serve nos dois casos
+  const lum = (hex) => {
+    const m = /^#?([0-9a-f]{6})$/i.exec(hex || "");
+    if (!m) return 255;
+    const n = parseInt(m[1], 16);
+    return 0.2126 * (n >> 16 & 255) + 0.7152 * (n >> 8 & 255) + 0.0722 * (n & 255);
+  };
+  const fundoAmostra = lum(D.base) < 140 ? D.base : null;
   for (const a of D.ativos) {
     const escuro = a.fundo === "escuro";
-    bloco.appendChild(el("div", { class: "ativo" + (escuro ? " escuro" : "") }, [
+    const attrs = { class: "ativo" + (escuro ? " escuro" : "") };
+    if (escuro && fundoAmostra) attrs.estilo = `background:${fundoAmostra}`;
+    bloco.appendChild(el("div", attrs, [
       el("img", { src: a.caminho, alt: a.papel }),
       el("div", { class: "legenda", texto: a.rotulo }),
     ]));
