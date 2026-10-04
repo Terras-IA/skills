@@ -215,6 +215,32 @@
       ]
     },
     {
+      "name": "terras-banner-design",
+      "description": "Banners para redes sociais, anúncios, heros de site e impressão: 22 estilos de direção de arte, tamanhos por plataforma, com visuais gerados ou fornecidos. Use quando o pedido for banner de rede social, criativo de anúncio, capa, header ou peça para print.",
+      "version": "1.0.0",
+      "source": "./skills/terras-banner-design",
+      "strict": false,
+      "skills": [
+        "./"
+      ],
+      "category": "productivity",
+      "license": "MIT",
+      "author": {
+        "name": "Everton Lima"
+      },
+      "keywords": [
+        "banner",
+        "banners",
+        "anúncio",
+        "ads",
+        "social media",
+        "capa",
+        "header",
+        "criativo",
+        "print"
+      ]
+    },
+    {
       "name": "terras-bar-raiser-de-cultura",
       "description": "Estrutura entrevistas de fit cultural com critérios observáveis, scoring e recomendação; use em processos seletivos que exigem avaliação consistente de valores.",
       "version": "1.0.0",
@@ -235,6 +261,32 @@
         "avaliar valores",
         "veto de contratação",
         "scorecard de entrevista"
+      ]
+    },
+    {
+      "name": "terras-brand",
+      "description": "Marca: voz e tom, identidade visual, frameworks de mensagem, paleta e tipografia, organização/validação de ativos e auditoria de consistência; sincroniza as diretrizes com os tokens de design.",
+      "version": "1.0.0",
+      "source": "./skills/terras-brand",
+      "strict": false,
+      "skills": [
+        "./"
+      ],
+      "category": "productivity",
+      "license": "MIT",
+      "author": {
+        "name": "Everton Lima"
+      },
+      "keywords": [
+        "marca",
+        "brand",
+        "voz",
+        "tom de voz",
+        "identidade visual",
+        "mensagem",
+        "auditoria de marca",
+        "ativos",
+        "paleta"
       ]
     },
     {
@@ -526,6 +578,59 @@
         "tendencias",
         "triangulacao",
         "estado da arte"
+      ]
+    },
+    {
+      "name": "terras-design",
+      "description": "Skill guarda-chuva de design: identidade de marca, tokens, UI, geração de logo com IA, programa de identidade corporativa (CIP, 50 entregáveis), apresentações HTML, banners, fotos para redes e ícones; roteia para as irmãs terras-brand, terras-design-system e terras-ui-styling e usa a terras-ui-ux-pr",
+      "version": "1.0.0",
+      "source": "./skills/terras-design",
+      "strict": false,
+      "skills": [
+        "./"
+      ],
+      "category": "productivity",
+      "license": "MIT",
+      "author": {
+        "name": "Everton Lima"
+      },
+      "keywords": [
+        "design",
+        "logo",
+        "identidade corporativa",
+        "cip",
+        "papelaria",
+        "mockup",
+        "apresentação",
+        "banner",
+        "social media",
+        "ícones",
+        "roteamento"
+      ]
+    },
+    {
+      "name": "terras-design-system",
+      "description": "Arquitetura de design tokens em três camadas (primitivo, semântico, componente), especificações de componentes e estados, variáveis CSS, escalas de espaçamento/tipografia, integração com Tailwind e busca de slides (estratégia, layout, copy) por BM25.",
+      "version": "1.0.0",
+      "source": "./skills/terras-design-system",
+      "strict": false,
+      "skills": [
+        "./"
+      ],
+      "category": "productivity",
+      "license": "MIT",
+      "author": {
+        "name": "Everton Lima"
+      },
+      "keywords": [
+        "design tokens",
+        "tokens",
+        "css variables",
+        "tailwind",
+        "componentes",
+        "specs",
+        "escalas",
+        "handoff"
       ]
     },
     {
@@ -1983,6 +2088,31 @@
       ]
     },
     {
+      "name": "terras-slides",
+      "description": "Apresentações HTML estratégicas e persuasivas com Chart.js: estratégias por contexto, padrões de layout, fórmulas de copywriting e design tokens; inclui base de busca própria para estratégia/layout/copy. Use quando o pedido for criar slides, pitch deck ou apresentação em HTML (não PPTX).",
+      "version": "1.0.0",
+      "source": "./skills/terras-slides",
+      "strict": false,
+      "skills": [
+        "./"
+      ],
+      "category": "productivity",
+      "license": "MIT",
+      "author": {
+        "name": "Everton Lima"
+      },
+      "keywords": [
+        "slides",
+        "apresentação",
+        "pitch deck",
+        "html",
+        "chart.js",
+        "copywriting",
+        "storytelling",
+        "deck"
+      ]
+    },
+    {
       "name": "terras-standards",
       "description": "Aplica os Padrões Agnósticos de Engenharia e Produto v4.0 (arquitetura, segurança, privacidade e IA) com lastro em evidência real de cliente quando disponível.",
       "version": "1.0.0",
@@ -2142,6 +2272,62 @@
         "burnout na equipe",
         "horas extras recorrentes",
         "rotatividade"
+      ]
+    },
+    {
+      "name": "terras-ui-styling",
+      "description": "Implementação de interface com shadcn/ui e Tailwind CSS: adicionar componentes, theming, acessibilidade, utilitários e responsividade, customização de tema e design visual em canvas.",
+      "version": "1.0.0",
+      "source": "./skills/terras-ui-styling",
+      "strict": false,
+      "skills": [
+        "./"
+      ],
+      "category": "productivity",
+      "license": "MIT",
+      "author": {
+        "name": "Everton Lima"
+      },
+      "keywords": [
+        "shadcn",
+        "shadcn/ui",
+        "tailwind",
+        "componentes",
+        "theming",
+        "tema",
+        "acessibilidade",
+        "canvas",
+        "responsivo",
+        "ui"
+      ]
+    },
+    {
+      "name": "terras-ui-ux-pro-max",
+      "description": "Base de consulta local de UI/UX com motor de busca próprio (BM25 + regex): 79 estilos, 192 paletas por tipo de produto, 74 pares tipográficos, 119 diretrizes de UX, 105 ícones, 25 tipos de gráfico, presets de GSAP e guias de 22 stacks; gera o design system do produto (padrão de página, estilo, cores",
+      "version": "1.0.0",
+      "source": "./skills/terras-ui-ux-pro-max",
+      "strict": false,
+      "skills": [
+        "./"
+      ],
+      "category": "productivity",
+      "license": "MIT",
+      "author": {
+        "name": "Everton Lima"
+      },
+      "keywords": [
+        "ui",
+        "ux",
+        "design system",
+        "estilos",
+        "paletas",
+        "tipografia",
+        "cores",
+        "diretrizes de ux",
+        "acessibilidade",
+        "gráficos",
+        "stacks",
+        "gsap"
       ]
     },
     {
