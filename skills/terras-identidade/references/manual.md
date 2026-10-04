@@ -4,8 +4,8 @@ Quando o pedido e "monta a identidade" e nao "aplica a identidade", o entregavel
 que ja foi aprovado nesta casa e um manual de 8 paginas em 16:9 (2560x1440), uma
 secao por pagina, com uma capa de indice.
 
-O modelo existe e foi usado no IECSJC: `~/Downloads/Manual de Identidade Visual -
-8 Paginas Completas.pdf` (9 paginas, 2560x1440, imagens). Vale olhar antes de
+O modelo existe e ja foi usado num cliente: um manual de 9 paginas em 2560x1440,
+feito de imagens. Vale olhar antes de
 montar, porque o desenho das paginas ja esta resolvido.
 
 ## As 8 secoes
@@ -42,9 +42,9 @@ a grafica de fachada perguntam.
 ## O que separa manual bom de enfeite
 
 - **Regra aplicavel, nao adjetivo.** "Nunca esticar, alterar fontes ou aplicar cores
-  fora do manual" (restricao do manual do IECSJC) e util; "design moderno e limpo"
+  fora do manual" (restricao de um manual real) e util; "design moderno e limpo"
   nao e.
-- **Area de respiro com numero.** O manual do IECSJC define o modulo X como a altura
+- **Area de respiro com numero.** Um manual real define o modulo X como a altura
   da cruz do emblema e a reducao minima em 32 mm impresso e 120 px digital, com a
   instrucao de usar o icone isolado abaixo disso. Isso e o que impede a marca de
   sair apertada num cartao.

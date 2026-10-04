@@ -65,43 +65,6 @@
       ]
     },
     {
-      "name": "terras-agenda",
-      "description": "Agenda unificada do Everton: junta os calendários do Microsoft 365/Teams (Sousa Lima, ISO, THG — cada um num tenant) e qualquer feed .ics (Google Agenda, calendário publicado) numa agenda só, com detecção de choque de horário e criação de evento.",
-      "version": "1.0.0",
-      "source": "./skills/terras-agenda",
-      "strict": false,
-      "skills": [
-        "./"
-      ],
-      "category": "productivity",
-      "license": "MIT",
-      "author": {
-        "name": "Everton Lima"
-      },
-      "keywords": [
-        "agenda",
-        "calendário",
-        "calendario",
-        "calendar",
-        "reunião",
-        "reuniao",
-        "compromisso",
-        "evento",
-        "teams",
-        "outlook",
-        "google agenda",
-        "unificar",
-        "centralizar",
-        "conflito",
-        "horário",
-        "ics",
-        "ical",
-        "marcar",
-        "convite",
-        "graph"
-      ]
-    },
-    {
       "name": "terras-agenda-de-touchpoints",
       "description": "Estrutura 1:1s recorrentes com pautas, histórico de feedback, decisões e loops abertos.",
       "version": "1.0.0",
@@ -1355,31 +1318,6 @@
       ]
     },
     {
-      "name": "terras-iecsjc-escalas",
-      "description": "Transformar planilhas de atividades da Igreja Evangélica Congregacional de São José dos Campos em artes individuais por assunto e uma escala geral em página única, usando a identidade visual disponível no diretório local.",
-      "version": "1.0.0",
-      "source": "./skills/terras-iecsjc-escalas",
-      "strict": false,
-      "skills": [
-        "./"
-      ],
-      "category": "productivity",
-      "license": "MIT",
-      "author": {
-        "name": "Everton Lima"
-      },
-      "keywords": [
-        "igreja",
-        "escala",
-        "iecsjc",
-        "planilha",
-        "arte",
-        "culto",
-        "santa ceia",
-        "identidade visual"
-      ]
-    },
-    {
       "name": "terras-image-to-code",
       "description": "Pipeline imagem-primeiro para site: gera a própria imagem de referência, analisa em detalhe e implementa o frontend fiel a ela, seção a seção, evitando sub-geração e excesso de cartões aninhados.",
       "version": "1.0.0",
@@ -1473,34 +1411,6 @@
         "terminal",
         "blueprint",
         "UI"
-      ]
-    },
-    {
-      "name": "terras-instagram",
-      "description": "Escrever legendas e hashtags para o Instagram do IECSJC a partir das imagens geradas (timeline/ e stories/), validar imagens e registrar o que foi publicado; a publicação é manual, feita pelo usuário no app/navegador.",
-      "version": "1.0.0",
-      "source": "./skills/terras-instagram",
-      "strict": false,
-      "skills": [
-        "./"
-      ],
-      "category": "productivity",
-      "license": "MIT",
-      "author": {
-        "name": "Everton Lima"
-      },
-      "keywords": [
-        "instagram",
-        "post",
-        "legenda",
-        "hashtags",
-        "story",
-        "carrossel",
-        "publicar",
-        "registrar",
-        "fila",
-        "iecsjc",
-        "igreja"
       ]
     },
     {
@@ -1739,38 +1649,6 @@
         "linear",
         "bento",
         "clean"
-      ]
-    },
-    {
-      "name": "terras-notas",
-      "description": "Analisa NFS-e (nota fiscal de serviço) recebidas da contabilidade Fênix Assessoria, confere o tomador/destinatário contra um de-para de clientes e envia cada nota por e-mail pelo Outlook do Office 365 (Microsoft Graph).",
-      "version": "1.0.0",
-      "source": "./skills/terras-notas",
-      "strict": false,
-      "skills": [
-        "./"
-      ],
-      "category": "productivity",
-      "license": "MIT",
-      "author": {
-        "name": "Everton Lima"
-      },
-      "keywords": [
-        "nfse",
-        "nota fiscal",
-        "nfs-e",
-        "fenix",
-        "felix",
-        "contabilidade",
-        "assessoria",
-        "tomador",
-        "destinatario",
-        "de-para",
-        "outlook",
-        "office 365",
-        "graph",
-        "enviar nota",
-        "emitir nota"
       ]
     },
     {

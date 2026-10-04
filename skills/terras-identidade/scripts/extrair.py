@@ -6,8 +6,8 @@ perfil, fotos de papelaria, paginas de um manual. Uma peca so mente (o JPEG ting
 o fundo da foto nao e o fundo da marca), entao o script le **varias** e so elege
 como cor da marca o que aparece em mais de uma.
 
-    python3 extrair.py pecas/*.jpeg --nome "Avancei Educacao" --destino ./identidade
-    python3 extrair.py pecas/ --nome "Avancei" --fonte manual.pdf --fonte site.css
+    python3 extrair.py pecas/*.jpeg --nome "Cliente Exemplo" --destino ./identidade
+    python3 extrair.py pecas/ --nome "Cliente Exemplo" --fonte manual.pdf --fonte site.css
 
 Saida: `<destino>/identidade.json` com status de rascunho, um relatorio no terminal
 e, com `--swatch`, uma folha de amostras em PNG para conferir cor na tela.
@@ -37,7 +37,7 @@ from PIL import Image, ImageFilter
 EXT_IMAGEM = (".png", ".jpg", ".jpeg", ".webp", ".bmp", ".tif", ".tiff")
 
 # Distancia RGB para juntar dois clusters na mesma cor. O JPEG e a quantizacao
-# quebram a mesma cor chapada em varios vizinhos (o amarelo do Avancei saiu
+# quebram a mesma cor chapada em varios vizinhos (o amarelo de um cliente multicolor saiu
 # #f1d323, #ead027 e #e4d533); sem a juncao, a paleta vira uma lista de variacoes
 # e a cor de verdade perde peso.
 DIST_CLUSTER = 48
@@ -256,8 +256,8 @@ def classificar(grupos: list[dict], n_pecas: int, texto_claro: str, texto_escuro
 
     fortes = [g for g in grupos if len(g["pecas"]) >= 2 or g["peso"] / n_pecas >= 0.10]
     confiaveis = [g for g in fortes if limpa(g) and g["planura"] >= FLAT_MIN]
-    # Um fundo escuro chapado e fundo mesmo com saturacao media: o navy #172956 do
-    # IECSJC mede saturacao 63 e caia fora por "tom misto", que e a regra feita para
+    # Um fundo escuro chapado e fundo mesmo com saturacao media: um navy #172956 de
+    # marca real mede saturacao 63 e caia fora por "tom misto", que e a regra feita para
     # acento misturado com fundo. Papel de FUNDO se decide por ser escuro e chapado,
     # nao por ser neutro; a peneira de limpeza continua valendo para os acentos.
     chapados = [g for g in fortes if g["planura"] >= FLAT_MIN]
@@ -265,7 +265,7 @@ def classificar(grupos: list[dict], n_pecas: int, texto_claro: str, texto_escuro
     vivos_todos = sorted([g for g in confiaveis if saturacao(g["cor"]) > SAT_ACENTO],
                          key=lambda g: -(g["peso"] * g["planura"]))
     # Duas cores vivas da mesma matiz, uma mais escura, sao a mesma cor em fundos
-    # diferentes (o magenta do Avancei sobre o azul le #a61d68, quase 30% mais
+    # diferentes (o magenta de um cliente multicolor sobre o azul le #a61d68, quase 30% mais
     # escuro que o magenta puro): a mais presente e a cor de marca, a outra e
     # variante. Sem isso, a sombra entra como quinta cor da identidade.
     vivos, variantes = [], []

@@ -11,7 +11,7 @@ minuto. Preencha a partir das pecas, com o vocabulario de quem desenha.
 
 ## O que observar em cada peca
 
-| Campo | Pergunta | Exemplo (Avancei) |
+| Campo | Pergunta | Exemplo (de um cliente multicolor) |
 |---|---|---|
 | `formas` | que geometria a marca usa como elemento? | explosao/estrela de 16 pontas, barra reta, retangulo chapado |
 | `tratamento_de_foto` | como a foto entra? | duotone em meio-tom (retícula visível), gente recortada com contorno duro |
@@ -53,7 +53,7 @@ A linguagem entra em tres lugares:
 
 ## Tratamento de imagem: a receita do meio-tom
 
-O duotone de retícula do Avancei e o tipo de tratamento que aparece em marca de
+O duotone de retícula de um cliente multicolor e o tipo de tratamento que aparece em marca de
 educacao, esporte e varejo. A receita, em PIL:
 
 1. Converter para tons de cinza e aumentar o contraste (o meio-tom come o contraste

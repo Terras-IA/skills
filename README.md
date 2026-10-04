@@ -151,6 +151,11 @@ ao lado do que o projeto já carrega.
 5. **Sem marca de origem** de catálogo importado de outra empresa.
 6. **Sem segredo e sem credencial.** `config.json`, `.env`, tokens e caches
    não entram; `*.example.json` entra.
+7. **Sem dado pessoal.** O repositório é público: CNPJ, CPF e e-mail real
+   reprovam, inclusive em arquivo de exemplo (`*.example.*`, `.csv`). Exemplo
+   usa dado fictício (`@example.com`); licença de fonte e código em `.vendor`
+   ficam fora da regra de e-mail. Skill que só faz sentido com dado de cliente
+   ou conta pessoal mora no repositório privado `skills-internas`.
 
 ## Comandos
 
