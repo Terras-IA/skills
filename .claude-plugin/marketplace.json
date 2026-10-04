@@ -40,6 +40,31 @@
       }
     },
     {
+      "name": "terras-accessibility",
+      "description": "Projetar, implementar e auditar interface acessível no nível AA da WCAG 2.2 em Web, iOS e Android: papéis e rótulos ARIA, foco, contraste, tamanho de alvo e leitor de tela. Use ao construir ou auditar UI para acessibilidade, navegação por teclado ou leitor de tela. Accessibility, a11y.",
+      "version": "1.0.0",
+      "source": "./skills/terras-accessibility",
+      "strict": false,
+      "skills": [
+        "./"
+      ],
+      "category": "productivity",
+      "license": "MIT",
+      "author": {
+        "name": "Everton Lima"
+      },
+      "keywords": [
+        "acessibilidade",
+        "accessibility",
+        "a11y",
+        "wcag",
+        "aria",
+        "leitor de tela",
+        "screen reader",
+        "contraste"
+      ]
+    },
+    {
       "name": "terras-agenda",
       "description": "Agenda unificada do Everton: junta os calendários do Microsoft 365/Teams (Sousa Lima, ISO, THG — cada um num tenant) e qualquer feed .ics (Google Agenda, calendário publicado) numa agenda só, com detecção de choque de horário e criação de evento.",
       "version": "1.0.0",
@@ -540,6 +565,32 @@
       ]
     },
     {
+      "name": "terras-database-migrations",
+      "description": "Migrations de banco seguras e reversíveis: mudanças só para frente em produção, expand-contract para renomear sem downtime, índices concorrentes, backfill em lotes, e fluxo por ferramenta (PostgreSQL, Prisma, Drizzle, Kysely, Django, golang-migrate).",
+      "version": "1.0.0",
+      "source": "./skills/terras-database-migrations",
+      "strict": false,
+      "skills": [
+        "./"
+      ],
+      "category": "productivity",
+      "license": "MIT",
+      "author": {
+        "name": "Everton Lima"
+      },
+      "keywords": [
+        "migration",
+        "migracao",
+        "migracoes",
+        "expand-contract",
+        "zero downtime",
+        "backfill",
+        "rollback",
+        "alter table",
+        "create index concurrently"
+      ]
+    },
+    {
       "name": "terras-decisor",
       "description": "Use para tomar decisões estruturadas a partir de um contexto, retornando exclusivamente um YAML válido. Ideal para integração como motor de decisão em pipelines, sem chat ou texto extra. Use apenas quando o output precisa ser um YAML estruturado.",
       "version": "1.0.0",
@@ -678,6 +729,30 @@
       ]
     },
     {
+      "name": "terras-e2e-testing",
+      "description": "Testes end-to-end com Playwright: Page Object Model, configuração, integração com CI, artefatos (trace, vídeo, screenshot) e estratégia para teste instável. Use ao escrever teste Playwright, estruturar page objects ou consertar e2e flaky no CI. Playwright E2E testing.",
+      "version": "1.0.0",
+      "source": "./skills/terras-e2e-testing",
+      "strict": false,
+      "skills": [
+        "./"
+      ],
+      "category": "productivity",
+      "license": "MIT",
+      "author": {
+        "name": "Everton Lima"
+      },
+      "keywords": [
+        "playwright",
+        "e2e",
+        "end-to-end",
+        "page object",
+        "teste flaky",
+        "flaky test",
+        "teste de ponta a ponta"
+      ]
+    },
+    {
       "name": "terras-ebook",
       "description": "Cria e-book e audiolivro para vender: estrutura, diagramação, EPUB e PDF A5 diagramado como livro, capa, ISBN, escolha de plataforma, royalties, preço e lançamento — e transforma acervo de YouTube em e-book.",
       "version": "1.0.0",
@@ -747,6 +822,31 @@
         "orcamento para cliente",
         "contraproposta comercial",
         "contraproposta do cliente"
+      ]
+    },
+    {
+      "name": "terras-eval-harness",
+      "description": "Desenvolvimento guiado por eval para trabalho com agentes e prompts: definir evals de capacidade e de regressão antes de codar, corrigir por código, modelo, regra ou humano, e medir confiabilidade com pass@k e pass^k.",
+      "version": "1.0.0",
+      "source": "./skills/terras-eval-harness",
+      "strict": false,
+      "skills": [
+        "./"
+      ],
+      "category": "productivity",
+      "license": "MIT",
+      "author": {
+        "name": "Everton Lima"
+      },
+      "keywords": [
+        "eval",
+        "evals",
+        "eval harness",
+        "pass@k",
+        "regressao de prompt",
+        "prompt regression",
+        "llm judge",
+        "benchmark de modelo"
       ]
     },
     {
@@ -1559,6 +1659,29 @@
       ]
     },
     {
+      "name": "terras-mcp-server",
+      "description": "Construção de servidor MCP com o SDK Node/TypeScript: tools, resources, prompts, validação com Zod e escolha de transporte (stdio ou Streamable HTTP). Use ao criar ou depurar um servidor MCP. MCP server patterns.",
+      "version": "1.0.0",
+      "source": "./skills/terras-mcp-server",
+      "strict": false,
+      "skills": [
+        "./"
+      ],
+      "category": "productivity",
+      "license": "MIT",
+      "author": {
+        "name": "Everton Lima"
+      },
+      "keywords": [
+        "mcp server",
+        "servidor mcp",
+        "model context protocol",
+        "mcp sdk",
+        "streamable http",
+        "json-rpc"
+      ]
+    },
+    {
       "name": "terras-miniapp-builder",
       "description": "Cria um miniapp do zero — recebe o assunto, entrevista as lacunas, decide arquitetura e LGPD, escolhe e dosa a paleta, escreve a copy (promessa, objeções, crenças limitantes), constrói o app local-first, verifica e publica na Vercel (preview e depois produção).",
       "version": "1.0.0",
@@ -1898,6 +2021,54 @@
       ]
     },
     {
+      "name": "terras-react-patterns",
+      "description": "Padrões de React 18/19: disciplina de hooks, fronteira entre server e client component, Suspense e error boundary, form actions, busca de dados, árvore de decisão de estado e composição acessível. Use ao escrever ou revisar componente React. React patterns.",
+      "version": "1.0.0",
+      "source": "./skills/terras-react-patterns",
+      "strict": false,
+      "skills": [
+        "./"
+      ],
+      "category": "productivity",
+      "license": "MIT",
+      "author": {
+        "name": "Everton Lima"
+      },
+      "keywords": [
+        "react",
+        "hooks",
+        "useeffect",
+        "suspense",
+        "error boundary",
+        "server component",
+        "componente react"
+      ]
+    },
+    {
+      "name": "terras-react-testing",
+      "description": "Testes de componente React com React Testing Library, Vitest ou Jest, MSW para simular rede, asserções de acessibilidade com axe, e quando usar teste de componente em vez de e2e. Use ao escrever ou consertar teste de componente, hook ou página React. React testing.",
+      "version": "1.0.0",
+      "source": "./skills/terras-react-testing",
+      "strict": false,
+      "skills": [
+        "./"
+      ],
+      "category": "productivity",
+      "license": "MIT",
+      "author": {
+        "name": "Everton Lima"
+      },
+      "keywords": [
+        "react testing library",
+        "testing library",
+        "vitest",
+        "jest",
+        "msw",
+        "teste de componente",
+        "jsdom"
+      ]
+    },
+    {
       "name": "terras-redesign-existing-projects",
       "description": "Redesign de projeto existente: audita a UI atual, identifica padrões genéricos de IA e aplica padrão premium sem quebrar funcionalidade, em qualquer framework CSS ou CSS puro. Use quando o pedido for melhorar, repaginar, modernizar ou deixar bonito um site/app que já existe.",
       "version": "1.0.0",
@@ -2012,6 +2183,33 @@
       ]
     },
     {
+      "name": "terras-security-review",
+      "description": "Checklist e padrões de segurança para código: autenticação, entrada do usuário, segredos, endpoints de API, pagamento e dados sensíveis, com anexo de segurança de infraestrutura em nuvem. Use ao mexer em login, input, segredo, rota nova ou fluxo sensível. Security review checklist.",
+      "version": "1.0.0",
+      "source": "./skills/terras-security-review",
+      "strict": false,
+      "skills": [
+        "./"
+      ],
+      "category": "productivity",
+      "license": "MIT",
+      "author": {
+        "name": "Everton Lima"
+      },
+      "keywords": [
+        "security review",
+        "revisao de seguranca",
+        "autenticacao",
+        "authentication",
+        "xss",
+        "sql injection",
+        "csrf",
+        "owasp",
+        "secrets",
+        "segredos"
+      ]
+    },
+    {
       "name": "terras-seed",
       "description": "Use sempre que o pedido for sobre criar, revisar, avaliar ou ajustar um PROMPT (o texto de instrução dado a uma IA como ChatGPT, Claude ou Gemini), e não sobre executar a tarefa que esse prompt descreve.",
       "version": "1.0.0",
@@ -2035,6 +2233,31 @@
         "monta um prompt",
         "esse prompt tá bom",
         "Lyra"
+      ]
+    },
+    {
+      "name": "terras-seo",
+      "description": "Auditar, planejar e implementar SEO: SEO técnico, otimização on-page, dados estruturados (schema.org), Core Web Vitals e estratégia de conteúdo. Use quando o pedido for melhorar visibilidade em busca, corrigir SEO, schema markup, sitemap, robots.txt ou mapa de palavras-chave. SEO audit.",
+      "version": "1.0.0",
+      "source": "./skills/terras-seo",
+      "strict": false,
+      "skills": [
+        "./"
+      ],
+      "category": "productivity",
+      "license": "MIT",
+      "author": {
+        "name": "Everton Lima"
+      },
+      "keywords": [
+        "seo",
+        "schema markup",
+        "dados estruturados",
+        "sitemap",
+        "robots.txt",
+        "core web vitals",
+        "palavras-chave",
+        "otimizacao para buscadores"
       ]
     },
     {
@@ -2426,6 +2649,29 @@
         "visual",
         "animacao",
         "diagrama animado"
+      ]
+    },
+    {
+      "name": "terras-vite",
+      "description": "Padrões do Vite: config, plugins, HMR, variáveis de ambiente (e o que vaza no bundle), proxy, SSR, modo biblioteca, pré-bundling de dependências e otimização de build. Use ao mexer em vite.config.ts, plugin do Vite ou projeto baseado em Vite. Vite patterns.",
+      "version": "1.0.0",
+      "source": "./skills/terras-vite",
+      "strict": false,
+      "skills": [
+        "./"
+      ],
+      "category": "productivity",
+      "license": "MIT",
+      "author": {
+        "name": "Everton Lima"
+      },
+      "keywords": [
+        "vite",
+        "vite.config",
+        "hmr",
+        "import.meta.env",
+        "variaveis vite",
+        "vite plugin"
       ]
     },
     {
