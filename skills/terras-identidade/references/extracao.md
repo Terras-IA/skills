@@ -16,7 +16,7 @@ O ideal e um conjunto com: identidade aplicada (peca institucional), formato
 diferente (feed e story), e momento diferente (campanha e aviso). Tres ja bastam —
 **nao feche a paleta com pecas de um formato so.**
 
-**O caso do Avancei, que custou uma correcao:** as 10 pecas eram todas anuncio de feed
+**O caso de um cliente multicolor, que custou uma correcao:** as 10 pecas eram todas anuncio de feed
 e story, todas de fundo colorido chapado, e a extracao concluiu que a marca nao tinha
 fundo escuro — o papel de `base` ficou com a cor mais presente, marcado como provisorio.
 Quando o banner institucional chegou, o fundo era navy `#061534`. As quatro cores
@@ -30,7 +30,7 @@ anuncio. Cinco pecas do mesmo formato valem menos que uma de outro.
 Duas peneiras, nessa ordem:
 
 1. **Mistura.** Saturacao entre 60 e 120 e quase sempre cor da marca misturada com
-   o fundo, com a foto ou com a sombra. O magenta do Avancei mede saturacao 222; o
+   o fundo, com a foto ou com a sombra. O magenta de um cliente multicolor mede saturacao 222; o
    magenta dele sobre o azul mede 92. So o primeiro e cor da marca. Foi um tom
    misto desses (#347596, ciano com navy) que virou "o acento" num guia de marca
    escrito a partir de um rascunho automatico — a partir dai o limite foi para 120.
@@ -41,8 +41,8 @@ Duas peneiras, nessa ordem:
 
 ## Papel nao e o mesmo que presenca
 
-O modelo "fundo escuro + um acento" nao serve para toda marca. O Avancei tem
-quatro cores saturadas e fundo colorido; o IECSJC tem navy + ouro; o terras tem
+O modelo "fundo escuro + um acento" nao serve para toda marca. Uma marca pode ter
+quatro cores saturadas e fundo colorido; outra, navy + ouro; o terras tem
 fundo preto e ciano. O script tenta o modelo escuro e, quando nao ha fundo escuro
 limpo, elege a cor mais presente como base e **avisa que o papel e provisorio**.
 Isso e de proposito: quem decide qual cor manda e o dono da marca, nao a contagem
@@ -50,7 +50,7 @@ de pixels.
 
 Quando duas cores vivas tem a mesma matiz e uma e mais escura, elas sao a mesma
 cor em fundos diferentes — a mais presente e a cor, a outra entra em
-`variantes_de_cor` com a nota. Sem essa regra, o magenta do Avancei sobre o azul
+`variantes_de_cor` com a nota. Sem essa regra, o magenta de um cliente multicolor sobre o azul
 entrou como quinta cor da identidade.
 
 ## Cor de texto nas duas pontas
@@ -58,19 +58,19 @@ entrou como quinta cor da identidade.
 Texto fino (traco de 2-3 px) desaparece na quantizacao, entao a cor do texto sai da
 media dos pixels extremos, nao de um pixel escolhido a dedo. Sempre nas duas
 pontas: claro (texto sobre fundo) e escuro (tinta sobre papel). Marca que vive em
-fundo colorido precisa das duas — o Avancei escreve branco sobre a cor e quase
+fundo colorido precisa das duas — um cliente multicolor escreve branco sobre a cor e quase
 preto sobre o amarelo.
 
 ## Contraste, sempre
 
-Nenhum acento vivo sobrevive ao papel branco: o ciano #07d4ec mede 2:1, o amarelo
-do Avancei 1.5:1, o ouro do IECSJC 2.4:1. O acento continua sendo o acento para
+Nenhum acento vivo sobrevive ao papel branco: o ciano #07d4ec mede 2:1, um amarelo
+saturado 1.5:1, um ouro 2.4:1. O acento continua sendo o acento para
 preenchimento, barra e icone; **para texto sobre claro entra a versao escurecida**,
 que o `tokens.py` deriva mantendo a matiz e chama de `-sobre-papel`. Sem isso, a
 identidade aplicada em site, documento ou peca impressa nasce ilegivel.
 
 O mesmo vale ao contrario: cor de texto da marca sobre a base pode nao ler (o apoio
-#646d99 do Avancei mede 1.3:1 sobre o azul). O guia mostra as duas razoes lado a
+#646d99 de um cliente multicolor mede 1.3:1 sobre o azul). O guia mostra as duas razoes lado a
 lado justamente para isso aparecer antes do material.
 
 ## O que nao sai de pixel
@@ -95,7 +95,7 @@ Diga isso em voz alta quando acontecer, em vez de inventar:
   JSON; **nao apague esse campo antes da conferencia humana**.
 - **Media em vez do tom.** O representante do cluster e o tom mais frequente, nao a
   media: media de azul com a borda suavizada puxa a cor para longe do azul chapado.
-- **Quantizacao quebrando a mesma cor.** O amarelo do Avancei apareceu como
+- **Quantizacao quebrando a mesma cor.** O amarelo de um cliente multicolor apareceu como
   #f1d323, #ead027 e #e4d533. Sem juntar clusters proximos, a paleta vira lista de
   variacoes e a cor de verdade perde peso.
 - **Peca com interface por cima.** Print de story costuma ter barra de status e

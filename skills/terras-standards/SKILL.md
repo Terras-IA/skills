@@ -14,7 +14,7 @@ vez de responder só com o texto teórico da norma.
 - `standard://...` — norma agnóstica (v3/v4), sempre presente, vendorizada
   em `mcp/terras-standards/norma/` no repo `terrasia`.
 - `cliente://<slug>/<arquivo>` — política REAL de um cliente específico
-  (ex. `dimastec`), presente **somente se** existir
+  (ex. `cliente-x`), presente **somente se** existir
   `mcp/terras-standards/clientes/<slug>/` — pasta gitignored, nunca no
   histórico do git.
 
@@ -65,7 +65,7 @@ de onde esta skill foi portada.
 ## 5. Converter política real nova
 
 Quando houver política nova de um cliente (ex. atualização no
-`dimastec-10-1`):
+`cliente-x-10-1`):
 
 ```bash
 cd mcp/terras-standards

@@ -5,7 +5,8 @@
 // terrasia-), cabeçalho que
 // o parser do motor recusa, skill do catálogo sem keywords (liberada e muda),
 // dependência de um harness específico, marca de terceiro que sobrou de
-// importação, segredo e arquivo de credencial ou cache.
+// importação, segredo, dado pessoal (CNPJ, CPF, e-mail real) e arquivo de
+// credencial ou cache.
 //
 //   node scripts/verificar.mjs            # verifica o repositório
 //   node scripts/verificar.mjs <raiz>     # verifica outra raiz (testes)
@@ -16,7 +17,7 @@ import { fileURLToPath } from "node:url";
 const NOME_RE = /^(terras|terrasia)-[a-z0-9]+(-[a-z0-9]+)*$/;
 const MAX_CABECALHO = 1024; // teto de frontmatter de skill de agente
 const MAX_DESCRICAO_CATALOGO = 280; // teto do parser do motor
-const TEXTO = /\.(md|py|sh|mjs|js|cjs|ts|json|txt|html|css|toml|ya?ml)$/i;
+const TEXTO = /\.(md|py|sh|mjs|js|cjs|ts|json|txt|html|css|toml|ya?ml|csv|tsv)$/i;
 
 // Dependência de harness: caminho de instalação de um agente específico, nome
 // de ferramenta de um agente específico, variável de ambiente de um agente.
@@ -42,6 +43,17 @@ const SEGREDO = [
   /-----BEGIN [A-Z ]*PRIVATE KEY-----/,
   /"(api_?key|apiKey|access_token|refresh_token|client_secret)"\s*:\s*"[^"<.]{16,}"/,
 ];
+// Dado pessoal: o repositório é público. Cliente, contato e conta pessoal ficam
+// na máquina (~/.config/<skill>/) ou no repositório privado de skills internas;
+// o exemplo versionado usa dado fictício. E-mail passa só com domínio ou nome de
+// exemplo; licença de fonte e código vendorizado citam autor e ficam de fora.
+const DOCUMENTO = [
+  [/\b\d{2}\.\d{3}\.\d{3}\/\d{4}-\d{2}\b/, "CNPJ"],
+  [/\b\d{3}\.\d{3}\.\d{3}-\d{2}\b/, "CPF"],
+];
+const EMAIL = /[A-Za-z0-9._%+-]+@[A-Za-z0-9-]+(\.[A-Za-z0-9-]+)*\.[a-z]{2,}/g;
+const EMAIL_EXEMPLO = /(@(.+\.)?example\.(com|org|net)$|@[^@]*\.(example|test|invalid)$|^(you|your_email|user|usuario|seu_email)@)/i;
+const LICENCA = /(^|\/)[^/]*(OFL|LICENSE|NOTICE)[^/]*$/i;
 const LIXO = [/(^|\/)__pycache__\//, /\.pyc$/, /(^|\/)\.env$/, /(^|\/)config\.json$/, /(^|\/)\.venv\//, /(^|\/)node_modules\//];
 
 function arquivos(dir) {
@@ -117,6 +129,11 @@ export function verificar(raiz) {
         txt.split("\n").forEach((linha, i) => {
           for (const [re, tipo] of HARNESS) if (re.test(linha)) acusa("harness", `${caminho}:${i + 1}`, `${tipo}: ${linha.trim().slice(0, 120)}`);
         });
+      }
+      for (const [re, tipo] of DOCUMENTO) if (re.test(txt)) acusa("dado-pessoal", caminho, `contém ${tipo}`);
+      if (!vendor.some((v) => rel.startsWith(v)) && !LICENCA.test(rel)) {
+        const reais = (txt.match(EMAIL) ?? []).filter((e) => !EMAIL_EXEMPLO.test(e));
+        if (reais.length) acusa("dado-pessoal", caminho, `e-mail real: ${[...new Set(reais)].slice(0, 3).join(", ")}`);
       }
       if (!vendor.some((v) => rel.startsWith(v))) for (const [re, marca] of ORIGEM) if (re.test(txt)) acusa("origem", caminho, `cita "${marca}"`);
     }

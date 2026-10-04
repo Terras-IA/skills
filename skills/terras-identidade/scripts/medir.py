@@ -20,7 +20,7 @@ o pixel cru: JPEG de WhatsApp tinge o pixel isolado (um branco puro pode ler
 
     # as duas versoes da marca de uma vez (fundo escuro e fundo claro)
     python3 medir.py marca peca.jpg --caixa 112,1185,330,84 --cor "#f1d323" \
-        --cortar-faixa 60,84 --pasta identidade/ativos --nome avancei
+        --cortar-faixa 60,84 --pasta identidade/ativos --nome cliente-exemplo
 
 O `recortar` existe porque logo de peca rasterizada quase nunca vem em arquivo: o
 que da e recortar do material. A mascara e por canal minimo (branco tem os tres

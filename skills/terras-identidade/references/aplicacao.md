@@ -33,7 +33,7 @@ O `tokens.css` sai com o tema escuro no `:root` e o claro em
 - filete e borda: `var(--cor-linha)`.
 
 Para virar tema claro, `document.documentElement.dataset.tema = "claro"`. Marca de
-fundo colorido (Avancei) normalmente nao tem tema escuro: ela ja vive em cor, e o
+fundo colorido (de um cliente multicolor) normalmente nao tem tema escuro: ela ja vive em cor, e o
 "claro" dela e o papel.
 
 **Atencao ao acento como texto de link.** Link e texto: sobre fundo claro use
@@ -107,8 +107,8 @@ Receita que ja funciona nesta casa: **HTML + tokens + Chrome headless**.
 - **Fundo colorido some** sem `print-color-adjust: exact` — que o `render.py` injeta.
   Numa marca que vive de faixa chapada, o PDF sairia branco com texto solto.
 
-Para uma pagina inteira (landing), o exemplo pronto e o do Avancei em
-`~/Documents/Avancei/layout/`: as faixas de cor trocam por secao, cada uma com a grade
+Para uma pagina inteira (landing), o exemplo pronto e o de um cliente multicolor em
+`~/Documents/<cliente>/layout/`: as faixas de cor trocam por secao, cada uma com a grade
 fina no fundo, e o texto sempre na cor que le sobre aquela faixa (branco sobre o azul e o
 magenta, tinta sobre o amarelo e o papel).
 
@@ -126,7 +126,7 @@ identidade extraida aqui entra la direto:
 
 ```bash
 ~/.config/terras-ebook/venv/bin/python $SKILL_DIR/../terras-ebook/scripts/build_ebook.py manuscrito.json \
-    --identidade ~/Documents/Avancei/identidade/identidade.json --saida livro.pdf
+    --identidade ~/Documents/<cliente>/identidade/identidade.json --saida livro.pdf
 ```
 
 **Sempre com caminho absoluto.** A identidade mora no diretorio do projeto; passada

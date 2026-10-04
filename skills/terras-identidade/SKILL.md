@@ -46,7 +46,7 @@ Ja aconteceu: um livro foi montado de outro diretorio e saiu na identidade errad
 Duas convencoes convivem, e elas nao se misturam:
 
 - `<projeto>/identidade/identidade.json` — identidade de cliente ou de projeto
-  (IECSJC, Sousa Lima, Avancei). E o que esta skill cria.
+  (uma por cliente ou projeto). E o que esta skill cria.
 - `~/Documents/Diversos/terras-brand/brand.json` com `temas` — a identidade terras
   (pessoal, terrasia, youtube), consumida por `terras-banner` e `terras-video`.
   Para mexer nela, editar la; esta skill so aponta o caminho.
@@ -109,7 +109,7 @@ comprimida nao serve — pedir o vetor de origem.
 - Acento vivo **nunca** le sobre papel branco (o ciano `#07d4ec` mede 2:1). O
   `tokens.py` deriva a versao `-sobre-papel`; sem ela, site e documento nascem
   ilegiveis.
-- Nao ha "fundo escuro + acento" em toda marca: identidade multicolor (Avancei) tem
+- Nao ha "fundo escuro + acento" em toda marca: identidade multicolor (como a de um cliente) tem
   quatro cores de marca e fundo colorido. Quando nao ha base escura limpa, o script
   elege a cor mais presente e **avisa que o papel e provisorio** — quem decide qual
   cor manda e o dono da marca, nao a contagem de pixels.
@@ -170,7 +170,7 @@ nele que nao esteja no JSON.
 ## Armadilhas (cada uma ja custou um material errado)
 
 - **Nao feche a paleta com pecas de um formato so.** Cinco anuncios de feed valem menos que
-  um banner institucional: o Avancei teve o papel de `base` corrigido (de cor chapada para
+  um banner institucional: um cliente multicolor teve o papel de `base` corrigido (de cor chapada para
   navy) quando o banner chegou depois das 10 pecas. Se existir manual, banner, site ou
   papelaria, entra na extracao antes de declarar papel de fundo.
 - Nunca escrever hex na mao em material novo: se falta valor, falta no

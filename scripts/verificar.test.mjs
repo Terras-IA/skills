@@ -141,3 +141,28 @@ test("marca de origem em script também é recusada", () => {
   });
   assert.ok(regras(raiz).includes("origem"));
 });
+
+test("CNPJ ou CPF no conteúdo é recusado, inclusive em CSV de exemplo", () => {
+  for (const [arq, txt] of [
+    ["depara.example.csv", "cnpj,nome\n12.345.678/0001-90,Empresa\n"],
+    ["references/x.md", "CPF do titular: 123.456.789-09\n"],
+  ]) {
+    const raiz = repo({ "skills/terras-exemplo/SKILL.md": SKILL_OK, [`skills/terras-exemplo/${arq}`]: txt });
+    assert.ok(regras(raiz).includes("dado-pessoal"), arq);
+  }
+});
+
+test("e-mail real no conteúdo é recusado", () => {
+  const raiz = repo({ "skills/terras-exemplo/SKILL.md": `${SKILL_OK}\nEnvie para fulano@empresa.com.br.\n` });
+  assert.ok(regras(raiz).includes("dado-pessoal"));
+});
+
+test("e-mail de exemplo, licença de fonte e código vendorizado passam", () => {
+  const raiz = repo({
+    "skills/terras-exemplo/SKILL.md": `${SKILL_OK}\nEx.: user@example.com, you@example.org, your_email@gmail.com.\n`,
+    "skills/terras-exemplo/fonts/Fonte-OFL.txt": "Copyright 2011 autor@fundidora.com\n",
+    "skills/terras-exemplo/.vendor": "scripts/\n",
+    "skills/terras-exemplo/scripts/x.py": "contato = 'hello@upstream.ai'\n",
+  });
+  assert.deepEqual(verificar(raiz), []);
+});
