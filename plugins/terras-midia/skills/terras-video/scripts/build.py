@@ -599,6 +599,7 @@ def build_html(cfg, block, index, total, html_path):
         "COR_LINHA": cores.get("linha") or "#1e293b",
         "COR_RODAPE": cores.get("rodape") or cores.get("texto_apoio") or "#64748b",
         "LAYOUT": block.get("layout", "abertura"),
+        "FONTS_DIR": FONTS_DIR,
         "KICKER": block.get("kick", cfg.get("kick", "")),
         "HEADLINE": block.get("headline", ""),
         "SUB": block.get("sub", ""),
