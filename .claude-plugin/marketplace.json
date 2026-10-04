@@ -1546,6 +1546,37 @@
       ]
     },
     {
+      "name": "terras-noticias",
+      "description": "Lê boletins e roundups de notícias (ratos de IA e afins), tria por criticidade e prioridade, resume todos os itens rápido e escreve o rascunho do post de digest para o LinkedIn.",
+      "version": "1.0.0",
+      "source": "./skills/terras-noticias",
+      "strict": false,
+      "skills": [
+        "./"
+      ],
+      "category": "productivity",
+      "license": "MIT",
+      "author": {
+        "name": "Everton Lima"
+      },
+      "keywords": [
+        "notícias",
+        "noticias",
+        "news",
+        "boletim",
+        "roundup",
+        "digest",
+        "ratos de ia",
+        "ratos",
+        "triagem",
+        "prioridade",
+        "criticidade",
+        "resumo semanal",
+        "news digest",
+        "weekly recap"
+      ]
+    },
+    {
       "name": "terras-paper-diario",
       "description": "Lê papers (arXiv e afins) sobre estudos que afetam o trabalho de quem desenvolve — agentes de IA em PRs, qualidade de código gerado, produtividade, mercado de trabalho — e produz uma análise com resumo honesto (com números), aplicação prática e aviso específico para JÚNIOR, PLENO e SÊNIOR, fechando",
       "version": "1.0.0",
