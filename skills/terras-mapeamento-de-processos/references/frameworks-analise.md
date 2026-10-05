@@ -47,9 +47,14 @@ Pare quando chegar a uma causa **acionável** (sistema, regra, cadastro, treinam
 
 Método · Mão de obra · Máquina (sistema) · Material (dado/documento) · Medida (indicador/parâmetro) · Meio ambiente (política, prazo, cultura).
 
-## 6. SIPOC (para fechar o escopo em 5 linhas)
+## 6. SIPOC — o corte do escopo (use ANTES do mapa)
 
-Suppliers · Inputs · Process (5–7 macro passos) · Outputs · Customers. Use no sumário executivo quando o processo for grande e o leitor for a diretoria.
+- **S**uppliers (quem fornece) · **I**nputs (o que entra) · **P**rocess (5–7 macro passos, verbo + objeto) · **O**utputs (o que sai) · **C**ustomers (quem recebe cada saída).
+- Use **antes de desenhar** quando o processo for grande: é o SIPOC que decide onde o processo começa e termina — sem ele, o mapa cresce sem critério. No relatório, vira o sumário executivo para diretoria (uma linha por coluna).
+- **SIPOC-R**: acrescente a linha **Requisitos** — o que cada Customer considera "pronto" (aceitação por saída). Sem ela, o quadro vira caixas sem critério de qualidade; com ela, o TO-BE ganha meta verificável.
+- **COPIS** (de trás pra frente): quando o valor é definido pelo cliente, preencha Customers → Outputs primeiro e derive o resto. Suppliers que não alimentam nenhum requisito de saída estão no processo por costume — candidato a corte.
+- Regras: no máximo 5–7 passos; passo é verbo + objeto, sistema não é passo ("lança no ERP" é, "ERP" não); quem só aprova é Customer da aprovação, não do uso.
+- Ponte com o `processo.json`: Suppliers/Customers vêm de `atores`, Inputs/Outputs de `entradas`/`saidas` dos passos, e o Process é o caminho principal agregado em 5–7 macro passos.
 
 ## 7. Riscos e controles — checklist
 
@@ -67,7 +72,29 @@ Para cada risco: probabilidade, impacto, controle sugerido, esforço.
 
 Sempre 3 a 5, ligados aos gargalos encontrados: lead time por tipo de demanda, % concluído no prazo (SLA), % first-time-right, backlog em aberto, horas de retrabalho, % de transações sem toque manual. Defina dono, fonte de dados e frequência — KPI sem dono não sobrevive.
 
-## 9. Matriz impacto × esforço
+## 9. GUT — priorizar PROBLEMAS (antes de escolher soluções)
+
+Gravidade × Urgência × Tendência, notas 1–5 com âncoras, score = produto (1–125). GUT ordena **problemas**; a matriz impacto × esforço (§10) ordena **intervenções**. A ordem do método é esta: primeiro o que mais dói, depois o que fazer com ele.
+
+Âncoras (definidas ANTES de pontuar; nota sem evidência é premissa e vira `lacunas`):
+
+| Nota | Gravidade — dano se nada for feito | Urgência — prazo real | Tendência — sem intervenção |
+| --- | --- | --- | --- |
+| 1 | incômodo individual, sem efeito em resultado | pode esperar um trimestre ou mais | diminui sozinha |
+| 2 | retrabalho local; cliente não percebe | pode esperar no mês | estável |
+| 3 | atrasa entrega ou afeta um cliente | semanas, prazo conhecido | cresce devagar (ao mês) |
+| 4 | afeta o resultado do mês ou vários clientes | dias; compromisso assumido | cresce por semana, já reincidiu |
+| 5 | parada de operação, risco de perder cliente/contrato ou risco legal | hoje; cada dia custa ou bloqueia outros | efeito bola de neve comprovado |
+
+- **Faixa de leitura** declarada antes de pontuar: ≥ 60 atacar agora · 27–59 planejar · < 27 fila.
+- **Desempate** na ordem G > U > T: dano fala mais alto que pressa.
+- **Variante ponderada** só com justificativa registrada (ex.: risco legal → peso 3 na Gravidade). Peso implícito é vício.
+- Quem pontua: quem sente o problema **e** quem paga a conta, juntos; notas individuais comparadas, nunca média silenciosa.
+- **GUT é foto**: repontue a cada ciclo; problema resolvido sai.
+
+Depois do ranking: causa raiz (§4 e §5) nos 2–3 primeiros, então a matriz de intervenções (§10).
+
+## 10. Matriz impacto × esforço (priorizar SOLUÇÕES)
 
 |  | Esforço baixo | Esforço alto |
 | --- | --- | --- |

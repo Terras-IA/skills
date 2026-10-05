@@ -2,7 +2,7 @@
 name: terras-mapeamento-de-processos
 description: "Mapeia um processo a partir de áudio, gravação de tela, transcrição ou relato falado e devolve o mapa visual (AS-IS e TO-BE), o diagnóstico com números e o plano de melhoria priorizado com as oportunidades de automação. Use quando o pedido for mapear ou desenhar um processo, analisar o áudio ou a gravação de tela de uma rotina, achar o gargalo, reduzir tempo de atendimento, automatizar uma rotina operacional, fazer diagnóstico de processo, montar o fluxo AS-IS/TO-BE ou dimensionar quantas pessoas o processo consome. Cobre também 'é assim que a gente faz hoje, o que dá para melhorar'."
 keywords: [mapeamento de processo, mapear processo, processo, fluxograma, bpmn, as is, to be, gargalo, diagnostico de processo, melhoria de processo, automacao de processo, lean, desperdicio, lead time, sop, procedimento operacional, retrabalho, sla]
-version: 1.3.0
+version: 1.4.0
 license: MIT
 ---
 
@@ -98,7 +98,7 @@ Os **frames da gravação de tela são a melhor fonte de sistema e campo**: é o
 
 5. **Desenhe o TO-BE e priorize.** Parta de `processo.json`, aplique as melhorias e salve `processo-to-be.json` **no mesmo schema** (inclusive o bloco `layout`, com o título trocado), com a origem da mudança no campo `evidencia` (ex.: "melhoria 3 — integração CRM/ERP"). Renderize como no AS-IS: `render_fluxo.py` para o desenho e `gerar_mermaid.py --tipo to-be` para o Mermaid. No TO-BE, o `render_fluxo.py` marca em verde os nós que viraram sistema/automação — é o contraste visual com o AS-IS.
 
-   A ordem de intervenção é fixa: **eliminar → simplificar → padronizar → automatizar → realocar → monitorar**. Escolha da tecnologia (regra, integração, RPA, IA, workflow): `$SKILL_DIR/references/automacao.md`. Priorize por impacto × esforço e destaque 3 quick wins.
+   A ordem de intervenção é fixa: **eliminar → simplificar → padronizar → automatizar → realocar → monitorar**. Escolha da tecnologia (regra, integração, RPA, IA, workflow): `$SKILL_DIR/references/automacao.md`. A priorização é em duas etapas (`$SKILL_DIR/references/frameworks-analise.md`): primeiro os **problemas** achados no diagnóstico por GUT (§9), depois as **intervenções** por impacto × esforço (§10). Destaque 3 quick wins.
 
 6. **Escreva o relatório** preenchendo `$SKILL_DIR/templates/relatorio-processo.md`: sumário executivo com os três números que doem, AS-IS, diagnóstico, melhorias, TO-BE, plano 30/60/90 e as premissas.
 
@@ -147,7 +147,7 @@ Trabalhe numa pasta do processo (ex.: `processos/<slug>/`), nunca solto na raiz.
 - `scripts/anonimizar.py` — troca nomes por rótulos genéricos em toda a pasta, renomeia arquivos e regera os PNG.
 - `scripts/render_mermaid.mjs` — Mermaid → SVG vetorial + PNG em alta (escala 3), sem passar pelo Excalidraw.
 - `scripts/metricas.py` — JSON → tabela de métricas e alertas.
-- `references/frameworks-analise.md` — métricas, 8 desperdícios, 5 Porquês, Ishikawa, riscos, KPIs.
+- `references/frameworks-analise.md` — métricas, 8 desperdícios, 5 Porquês, Ishikawa, SIPOC-R de escopo, GUT de priorização de problemas, riscos, KPIs.
 - `references/automacao.md` — como escolher entre regra, API, RPA, IA e workflow.
 - `references/notacao-bpmn.md` — BPMN ↔ Mermaid, raias, boas práticas de diagrama.
 - `references/roteiro-entrevista.md` — perguntas para completar lacuna quando o relato é raso.
