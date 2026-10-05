@@ -19,6 +19,12 @@
       "nome": "terras-analise-de-inadimplentes"
     },
     {
+      "nome": "terras-analise-swot"
+    },
+    {
+      "nome": "terras-animacao"
+    },
+    {
       "nome": "terras-api-sync"
     },
     {
@@ -125,6 +131,9 @@
       "nome": "terras-last30days"
     },
     {
+      "nome": "terras-matriz-gut"
+    },
+    {
       "nome": "terras-people-dashboard-automatico",
       "antigo": "people-dashboard-automatico"
     },
@@ -188,6 +197,9 @@
     },
     {
       "nome": "terras-vercel"
+    },
+    {
+      "nome": "terrasia-post-empresa"
     }
   ]
 }
