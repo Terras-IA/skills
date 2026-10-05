@@ -763,6 +763,43 @@
       ]
     },
     {
+      "name": "terras-educacao-corporativa",
+      "description": "Aplica 26 prompts de educação corporativa (derivados do ebook da Alun Business) para gerar estratégia de T&D, diagnóstico de necessidades, mapa de competências, trilhas, programas, planos de aula e indicadores de impacto.",
+      "version": "1.0.0",
+      "source": "./skills/terras-educacao-corporativa",
+      "strict": false,
+      "skills": [
+        "./"
+      ],
+      "category": "productivity",
+      "license": "MIT",
+      "author": {
+        "name": "Everton Lima"
+      },
+      "keywords": [
+        "educação corporativa",
+        "educacao corporativa",
+        "treinamento",
+        "t&d",
+        "trilha de aprendizagem",
+        "jornada de aprendizagem",
+        "competências",
+        "competencias",
+        "diagnóstico de necessidades",
+        "design instrucional",
+        "plano de aula",
+        "workshop",
+        "avaliação de treinamento",
+        "kirkpatrick",
+        "bloom",
+        "onboarding",
+        "blended",
+        "corporate education",
+        "learning and development",
+        "training design"
+      ]
+    },
+    {
       "name": "terras-elaboracao-proposta-comercial",
       "description": "Estrutura a minuta de uma proposta a partir do que foi levantado na conversa, separando escopo de expectativa e marcando cada número que ainda precisa de confirmação antes de sair.",
       "version": "1.0.0",
