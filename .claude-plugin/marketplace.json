@@ -165,6 +165,37 @@
       ]
     },
     {
+      "name": "terras-animacao",
+      "description": "Produz peça animada em loop a partir de uma cena HTML dirigida por tempo: o HTML determinístico (contrato ?t=), o render quadro a quadro no Chrome headless e a montagem do GIF (loop, para o feed) e do MP4 (silencioso), com capa estática e preview de celular.",
+      "version": "1.0.0",
+      "source": "./skills/terras-animacao",
+      "strict": false,
+      "skills": [
+        "./"
+      ],
+      "category": "productivity",
+      "license": "MIT",
+      "author": {
+        "name": "Everton Lima"
+      },
+      "keywords": [
+        "animacao",
+        "animado",
+        "gif",
+        "gif animado",
+        "loop",
+        "video curto",
+        "mp4",
+        "movimento",
+        "motion",
+        "banner animado",
+        "peca animada",
+        "diagrama animado",
+        "bpmn animado",
+        "quadro a quadro"
+      ]
+    },
+    {
       "name": "terras-apuracao-retencoes-federais",
       "description": "Confere se as retenções federais na fonte de uma nota de serviço foram aplicadas, dispensadas ou esquecidas, usando as alíquotas e limites informados pela empresa, nunca de memória.",
       "version": "1.0.0",

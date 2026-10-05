@@ -10,6 +10,8 @@ design, mídia e desenvolvimento. Cada skill é um plugin independente: instale 
 
 ## Instalar
 
+**No Claude Code**, pelo marketplace:
+
 ```bash
 /plugin marketplace add Terras-IA/skills
 /plugin install terras-linkedin@terras
@@ -18,9 +20,18 @@ design, mídia e desenvolvimento. Cada skill é um plugin independente: instale 
 Dentro do Claude Code, `/plugin` mostra o catálogo inteiro e instala o que você marcar. Depois,
 para atualizar: `/plugin marketplace update terras`.
 
-Fora do Claude Code, as mesmas skills funcionam em qualquer agente que leia pastas com `SKILL.md`
-(Codex, opencode, ZCode e afins): clone este repositório e rode `bash scripts/instalar.sh --aplicar`,
-que cria um link simbólico em cada pasta de agente que já existir na sua máquina.
+**No ZCode, no Codex (GPT) e no opencode**, por link simbólico, com o repositório como fonte:
+
+```bash
+git clone https://github.com/Terras-IA/skills.git ~/terras-skills
+bash ~/terras-skills/scripts/instalar.sh --aplicar
+```
+
+O script cria um link por skill em cada pasta de agente que já existir na sua máquina
+(`~/.zcode/skills`, `~/.codex/skills`, `~/.config/opencode/skills`, `~/.claude/skills`); pasta que
+não existe não é criada. Como o link aponta para o repositório, `git -C ~/terras-skills pull`
+atualiza tudo. Para instalar só algumas skills, copie a pasta `skills/<nome>/` para a pasta de
+skills do agente.
 
 ## O que tem dentro
 
@@ -52,10 +63,10 @@ Revisão pelo risco que a mudança cria, segurança, testes ponta a ponta, banco
 <!-- catalogo:inicio -->
 <!-- gerado por `npm run readme` a partir do catálogo — não edite à mão -->
 
-**111 skills instaláveis** entre as 122 deste repositório; as demais ficam fora do marketplace — 8 skills de processo do motor (`.nao-instalar`) e 3 skills ligadas a projeto de cliente (`marketplace-fora.json`).
+**112 skills instaláveis** entre as 123 deste repositório; as demais ficam fora do marketplace — 8 skills de processo do motor (`.nao-instalar`) e 3 skills ligadas a projeto de cliente (`marketplace-fora.json`).
 
 <details>
-<summary><b>Ver a lista completa (111 skills)</b></summary>
+<summary><b>Ver a lista completa (112 skills)</b></summary>
 
 | Skill | O que faz |
 |---|---|
@@ -64,6 +75,7 @@ Revisão pelo risco que a mudança cria, segurança, testes ponta a ponta, banco
 | [`terras-analisador-de-linguagem-inclusiva`](skills/terras-analisador-de-linguagem-inclusiva) | Revisa vagas, avaliações e comunicados em busca de linguagem enviesada, excludente ou pouco acessível. |
 | [`terras-analisador-de-pulse-semanal`](skills/terras-analisador-de-pulse-semanal) | Processa respostas de pulse survey semanal e transforma temas recorrentes em insights acionáveis para lideranças. |
 | [`terras-analise-swot`](skills/terras-analise-swot) | Faz análise SWOT rastreável e terminada em ação: cada item cita a fonte (dado, documento, métrica), o que não tem fonte vira hipótese marcada com o teste… |
+| [`terras-animacao`](skills/terras-animacao) | Produz peça animada em loop a partir de uma cena HTML dirigida por tempo: o HTML determinístico (contrato ?t=), o render quadro a quadro no Chrome headless e a montagem… |
 | [`terras-apuracao-retencoes-federais`](skills/terras-apuracao-retencoes-federais) | Confere se as retenções federais na fonte de uma nota de serviço foram aplicadas, dispensadas ou esquecidas, usando as alíquotas e limites informados pela empresa, nunca… |
 | [`terras-astro`](skills/terras-astro) | Publica site estático multilíngue de graça no Cloudflare Pages com Astro e conteúdo em markdown. |
 | [`terras-audio`](skills/terras-audio) | Voz, pronúncia e cadeia de áudio para narração: vídeo, audiolivro comum e técnico, nota de voz, capítulo. · Instale com o plugin `terras-midia`. |

@@ -2,22 +2,30 @@
 
 > **Arquivo gerado.** Rode `node scripts/manual.mjs` para regravar; não edite à mão.
 
-**122 skills** neste repositório: **111 instaláveis** pelo marketplace, **8 de processo do motor** e **3 ligadas a projeto de cliente**.
+**123 skills** neste repositório: **112 instaláveis** pelo marketplace, **8 de processo do motor** e **3 ligadas a projeto de cliente**.
 
-## Como usar
+## Instalar e usar
 
-**Pelo marketplace**, quando o agente instala plugins:
+**No Claude Code**, pelo marketplace de plugins:
 
 ```bash
 /plugin marketplace add Terras-IA/skills
 /plugin install terras-linkedin@terras
 ```
 
-**Por link**, para qualquer agente que leia uma pasta com `SKILL.md`:
+Dentro do Claude Code, `/plugin` mostra o catálogo inteiro e instala o que você marcar; depois, `/plugin marketplace update terras` atualiza.
+
+**No ZCode, no Codex (GPT) e no opencode**, por link simbólico, com o repositório como fonte:
 
 ```bash
-bash scripts/instalar.sh --aplicar
+git clone https://github.com/Terras-IA/skills.git ~/terras-skills
+bash ~/terras-skills/scripts/instalar.sh            # simulação: mostra o que faria
+bash ~/terras-skills/scripts/instalar.sh --aplicar  # executa
 ```
+
+O script cria um link por skill em cada pasta de agente que já existir na máquina: `~/.zcode/skills` (ZCode), `~/.codex/skills` (Codex/GPT), `~/.config/opencode/skills` (opencode) e `~/.claude/skills` (Claude Code). Pasta de agente que não existe não é criada, e o que já estiver no lugar vai para backup antes de ser substituído. Como o link aponta para o repositório, atualizar tudo depois é `git -C ~/terras-skills pull`.
+
+**Sem link simbólico** (Windows, ou agente que não segue link): copie a pasta `skills/<nome>/` para a pasta de skills do agente. É também o caminho para instalar apenas algumas skills, em vez do conjunto inteiro.
 
 **Como pedir.** A skill certa casa pelas palavras do seu pedido, então citar o termo forte ajuda mais do que pedir genérico: "revisa esse post do LinkedIn", "erro de fila no Laravel", "monta a matriz GUT disso". Cada skill abaixo lista as palavras-chave que a acionam.
 
@@ -953,6 +961,18 @@ Cria, revisa e mantém skills no padrão da casa terras-: inventário, frontmatt
 `/plugin install terras-skill-factory@terras`
 
 Palavras-chave: `skill`, `skills`, `criar skill`, `skill factory`, `padrão terras`, `SKILL.md`, `frontmatter`, `progressive disclosure`, `agent skills`
+
+## Outras
+
+*Ainda sem área no manual: classifique cada uma em `scripts/manual-areas.json`.*
+
+### terras-animacao
+
+Produz peça animada em loop a partir de uma cena HTML dirigida por tempo: o HTML determinístico (contrato ?t=), o render quadro a quadro no Chrome headless e a montagem do GIF (loop, para o feed) e do MP4 (silencioso), com capa estática e preview de celular. Use quando o pedido for animação, gif animado, vídeo curto sem narração, banner animado, diagrama que se desenha, peça em movimento, ou quando a peça pedir mais vida que o estático. Não é para banner estático (terras-banner), vídeo narrado (terras-video), edição e conversão de vídeo (terras-ffmpeg) nem página de explicação técnica (terras-visual-explainer).
+
+`/plugin install terras-animacao@terras` · v1.0.0
+
+Palavras-chave: `animacao`, `animado`, `gif`, `gif animado`, `loop`, `video curto`, `mp4`, `movimento`, `motion`, `banner animado`, `peca animada`, `diagrama animado`, `bpmn animado`, `quadro a quadro`
 
 ## Fora do marketplace: projeto de cliente
 
