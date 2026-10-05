@@ -1,0 +1,176 @@
+{
+  "_nota": "Curadoria das áreas do MANUAL.md. Skill nova que não estiver aqui aparece na seção 'Outras' do manual até ser classificada. Skill de processo (.nao-instalar) e de projeto de cliente não entram aqui — o gerador as separa sozinho.",
+  "areas": [
+    {
+      "nome": "Conteúdo, marca e publicação",
+      "descricao": "Escrever, revisar e publicar na voz certa: LinkedIn, Substack, ebooks e a marca.",
+      "skills": [
+        "terras-brand",
+        "terras-brandkit",
+        "terras-canal-whatsapp",
+        "terras-comentarios",
+        "terras-ebook",
+        "terras-historias-infantis",
+        "terras-humanizer",
+        "terras-humanizer-dev",
+        "terras-identidade",
+        "terras-linkedin",
+        "terras-linkedin-metricas",
+        "terras-pauta-mercado",
+        "terras-seo",
+        "terras-substack",
+        "terrasia-post-empresa"
+      ]
+    },
+    {
+      "nome": "Pessoas, RH e carreira",
+      "descricao": "Do anúncio da vaga ao ciclo de desenvolvimento: seleção, liderança, folha e carreira.",
+      "skills": [
+        "terras-agenda-de-touchpoints",
+        "terras-analisador-de-linguagem-inclusiva",
+        "terras-analisador-de-pulse-semanal",
+        "terras-bar-raiser-de-cultura",
+        "terras-briefing-pre-reuniao-de-lideranca",
+        "terras-care-to-dare-coach",
+        "terras-conferencia-fechamento-folha",
+        "terras-construtor-de-job-description",
+        "terras-cover-letter",
+        "terras-dashboard-de-utilizacao-de-beneficios",
+        "terras-educacao-corporativa",
+        "terras-gerador-de-all-hands",
+        "terras-gerador-de-comunicacao-de-rh",
+        "terras-gerador-de-matriz-9-box",
+        "terras-gerador-de-okrs-de-pessoas",
+        "terras-gerador-de-pdi",
+        "terras-gerador-de-plano-de-entrevista-estruturada",
+        "terras-gerador-de-politica-de-beneficios",
+        "terras-gestao-de-ferias-e-escalas",
+        "terras-people-dashboard-automatico",
+        "terras-robo-de-atendimento-de-rh",
+        "terras-roteirizador-de-onboarding",
+        "terras-screenador-de-curriculos-com-ia",
+        "terras-simulador-de-oferta",
+        "terras-triagem-riscos-psicossociais",
+        "terrasia-vagas-coders"
+      ]
+    },
+    {
+      "nome": "Financeiro e fiscal",
+      "descricao": "Contas a pagar, conciliação, notas fiscais, retenções e inadimplência.",
+      "skills": [
+        "terras-apuracao-retencoes-federais",
+        "terras-conciliacao-bancaria-ofx",
+        "terras-conferencia-nfe-tomador-prestador",
+        "terras-fluxo-de-contas-a-pagar",
+        "terras-gestao-de-inadimplencia-cobranca",
+        "terras-validacao-regularidade-cadastral"
+      ]
+    },
+    {
+      "nome": "Comercial e vendas",
+      "descricao": "Proposta, qualificação de lead e resposta a objeção.",
+      "skills": [
+        "terras-elaboracao-proposta-comercial",
+        "terras-playbook-quebra-objecoes",
+        "terras-qualificacao-icp-bant"
+      ]
+    },
+    {
+      "nome": "Gestão, processos e decisão",
+      "descricao": "Mapear processo, priorizar problema e decidir com rastro.",
+      "skills": [
+        "terras-analise-swot",
+        "terras-mapeamento-de-processos",
+        "terras-matriz-gut",
+        "terras-pipeline-de-automacao"
+      ]
+    },
+    {
+      "nome": "Desenvolvimento de software",
+      "descricao": "Stack, banco de dados, testes, segurança e padrões de engenharia.",
+      "skills": [
+        "terras-astro",
+        "terras-azure-devops",
+        "terras-database-migrations",
+        "terras-e2e-testing",
+        "terras-governanca-padroes",
+        "terras-laravel",
+        "terras-mcp-server",
+        "terras-miniapp-builder",
+        "terras-php",
+        "terras-ponytail",
+        "terras-postgres",
+        "terras-react-patterns",
+        "terras-react-testing",
+        "terras-revisao-de-codigo",
+        "terras-security-review",
+        "terras-standards",
+        "terras-tech-debt",
+        "terras-vercel",
+        "terras-vite"
+      ]
+    },
+    {
+      "nome": "Design e front-end",
+      "descricao": "Identidade, UI, design system e geração de telas.",
+      "skills": [
+        "terras-accessibility",
+        "terras-design",
+        "terras-design-system",
+        "terras-design-taste-frontend",
+        "terras-design-taste-frontend-v1",
+        "terras-gpt-taste",
+        "terras-high-end-visual-design",
+        "terras-image-to-code",
+        "terras-imagegen-frontend-mobile",
+        "terras-imagegen-frontend-web",
+        "terras-industrial-brutalist-ui",
+        "terras-minimalist-ui",
+        "terras-redesign-existing-projects",
+        "terras-stitch-design-taste",
+        "terras-ui-styling",
+        "terras-ui-ux-pro-max"
+      ]
+    },
+    {
+      "nome": "Mídia e apresentação",
+      "descricao": "Áudio, vídeo, banner, slides e diagramas.",
+      "skills": [
+        "terras-audio",
+        "terras-banner",
+        "terras-banner-design",
+        "terras-excalidraw",
+        "terras-ffmpeg",
+        "terras-frontend-slides",
+        "terras-slides",
+        "terras-transcription",
+        "terras-video",
+        "terras-visual-explainer"
+      ]
+    },
+    {
+      "nome": "Pesquisa e radar",
+      "descricao": "O radar do que está acontecendo: papers, boletins, redes sociais e mercado.",
+      "skills": [
+        "terras-deep-research",
+        "terras-last30days",
+        "terras-noticias",
+        "terras-paper-diario",
+        "terras-user-research",
+        "terrasia-pauta-youtube"
+      ]
+    },
+    {
+      "nome": "IA, prompts e agentes",
+      "descricao": "Prompts, skills, evals e o comportamento do agente.",
+      "skills": [
+        "terras-decisor",
+        "terras-eval-harness",
+        "terras-full-output-enforcement",
+        "terras-prompt",
+        "terras-seed",
+        "terras-skill-factory"
+      ]
+    }
+  ]
+}
