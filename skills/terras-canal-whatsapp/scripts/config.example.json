@@ -1,0 +1,5 @@
+{
+  "_nota": "copie para ~/.config/terras-canal-whatsapp/config.json e preencha. O JID do canal sai do link de convite (veja references/pareamento-e-problemas.md); o sidecar é a pasta do projeto que tem a sessão pareada em .auth/",
+  "canal": "<id-do-canal>@newsletter",
+  "sidecar": "<pasta-do-sidecar-com-a-sessao-pareada>"
+}

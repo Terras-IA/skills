@@ -134,6 +134,37 @@
       ]
     },
     {
+      "name": "terras-analise-swot",
+      "description": "Faz análise SWOT rastreável e terminada em ação: cada item cita a fonte (dado, documento, métrica), o que não tem fonte vira hipótese marcada com o teste que a confirmaria, os quadrantes são priorizados e a análise fecha em cruzamentos TOWS (SO, WO, ST, WT) com ação, dono e verificação.",
+      "version": "1.0.0",
+      "source": "./skills/terras-analise-swot",
+      "strict": false,
+      "skills": [
+        "./"
+      ],
+      "category": "productivity",
+      "license": "MIT",
+      "author": {
+        "name": "Everton Lima"
+      },
+      "keywords": [
+        "swot",
+        "analise swot",
+        "forcas",
+        "fraquezas",
+        "oportunidades",
+        "ameacas",
+        "tows",
+        "matriz swot",
+        "analise de cenario",
+        "posicao competitiva",
+        "planejamento estrategico",
+        "analise estrategica",
+        "decisao estrategica",
+        "cenario competitivo"
+      ]
+    },
+    {
       "name": "terras-apuracao-retencoes-federais",
       "description": "Confere se as retenções federais na fonte de uma nota de serviço foram aplicadas, dispensadas ou esquecidas, usando as alíquotas e limites informados pela empresa, nunca de memória.",
       "version": "1.0.0",
@@ -323,6 +354,36 @@
         "saúde do time",
         "loops abertos",
         "brief de uma página"
+      ]
+    },
+    {
+      "name": "terras-canal-whatsapp",
+      "description": "Publica texto e/ou imagem no canal (newsletter) do WhatsApp pela sessão pareada do sidecar, com pré-checagem de papel e confirmação explícita. Use quando o pedido for postar ou mandar algo no canal do WhatsApp, publicar card ou texto no canal, ou conferir se o canal está pronto para postar.",
+      "version": "1.0.0",
+      "source": "./skills/terras-canal-whatsapp",
+      "strict": false,
+      "skills": [
+        "./"
+      ],
+      "category": "productivity",
+      "license": "MIT",
+      "author": {
+        "name": "Everton Lima"
+      },
+      "keywords": [
+        "whatsapp",
+        "canal",
+        "channel",
+        "newsletter",
+        "publicar",
+        "publish",
+        "post",
+        "card",
+        "imagem",
+        "legenda",
+        "caption",
+        "baileys",
+        "sidecar"
       ]
     },
     {
@@ -1573,7 +1634,7 @@
     {
       "name": "terras-mapeamento-de-processos",
       "description": "Mapeia um processo a partir de áudio, gravação de tela, transcrição ou relato falado e devolve o mapa visual (AS-IS e TO-BE), o diagnóstico com números e o plano de melhoria priorizado com as oportunidades de automação.",
-      "version": "1.3.0",
+      "version": "1.4.0",
       "source": "./skills/terras-mapeamento-de-processos",
       "strict": false,
       "skills": [
@@ -1603,6 +1664,38 @@
         "procedimento operacional",
         "retrabalho",
         "sla"
+      ]
+    },
+    {
+      "name": "terras-matriz-gut",
+      "description": "Prioriza problemas e demandas concorrentes com a matriz GUT: notas 1-5 ancoradas em Gravidade, Urgência e Tendência, score por produto, faixa de decisão declarada antes de pontuar, desempate fixo e plano de ataque com dono e prazo.",
+      "version": "1.0.0",
+      "source": "./skills/terras-matriz-gut",
+      "strict": false,
+      "skills": [
+        "./"
+      ],
+      "category": "productivity",
+      "license": "MIT",
+      "author": {
+        "name": "Everton Lima"
+      },
+      "keywords": [
+        "gut",
+        "matriz gut",
+        "priorizacao",
+        "priorizar",
+        "gravidade",
+        "urgencia",
+        "tendencia",
+        "prioridade",
+        "criticidade",
+        "ordenar problemas",
+        "fila de demandas",
+        "por onde comecar",
+        "escala de prioridade",
+        "desempate",
+        "backlog priorizado"
       ]
     },
     {
@@ -1745,6 +1838,38 @@
         "carreira dev",
         "análise de paper",
         "digest diário"
+      ]
+    },
+    {
+      "name": "terras-pauta-mercado",
+      "description": "Transforma referência externa (repo, post, anúncio, paper) na análise mercado × TerrasIA com cobre/rejeita/falta e recibo, e no pacote de posts por canal (Company Page, LinkedIn pessoal, canal WhatsApp e Substack).",
+      "version": "1.0.0",
+      "source": "./skills/terras-pauta-mercado",
+      "strict": false,
+      "skills": [
+        "./"
+      ],
+      "category": "productivity",
+      "license": "MIT",
+      "author": {
+        "name": "Everton Lima"
+      },
+      "keywords": [
+        "pauta",
+        "mercado",
+        "análise de mercado",
+        "comparação",
+        "concorrente",
+        "referência",
+        "cobertura",
+        "cobre",
+        "rejeita",
+        "falta",
+        "recibo",
+        "post",
+        "linkedin",
+        "whatsapp",
+        "substack"
       ]
     },
     {
@@ -2616,6 +2741,34 @@
         "thumbnail",
         "pesquisa",
         "roteiro",
+        "terrasia"
+      ]
+    },
+    {
+      "name": "terrasia-post-empresa",
+      "description": "Produz a peça da Company Page do TerrasIA: o post na voz de produto e a imagem na identidade da marca, com aceite de leitura no celular.",
+      "version": "1.0.0",
+      "source": "./skills/terrasia-post-empresa",
+      "strict": false,
+      "skills": [
+        "./"
+      ],
+      "category": "productivity",
+      "license": "MIT",
+      "author": {
+        "name": "Everton Lima"
+      },
+      "keywords": [
+        "post da empresa",
+        "linkedin da empresa",
+        "company page",
+        "peca da empresa",
+        "imagem da empresa",
+        "banner da empresa",
+        "card",
+        "identidade do produto",
+        "publicacao",
+        "marca",
         "terrasia"
       ]
     },
