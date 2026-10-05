@@ -1,0 +1,96 @@
+<!-- Peça de feed 1200x628 na identidade do produto (não é a marca pessoal).
+     Exemplo real aprovado em 2026-10-05: troque os textos (título, rótulos do
+     grafo e vereditos) mantendo a densidade; a geometria é o que não se mexe
+     sem medir de novo.
+     Render: python3 ../scripts/peca.py render peca-feed.html --saida banner-feed --tamanho 1200x628
+     Ajuste os caminhos de fonte e logo se a máquina mudar. -->
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<style>
+  @font-face {
+    font-family: "JetBrains Mono";
+    src: url("file:///home/support/Documents/Diversos/terras-brand/fonts/jetbrains-mono-latin.woff2") format("woff2");
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { width: 1200px; height: 628px; overflow: hidden;
+    background: #060a12; color: #e8edf2;
+    font-family: "Ubuntu Sans", Ubuntu, Roboto, sans-serif;
+    -webkit-font-smoothing: antialiased; position: relative; }
+  .motivo { position: absolute; inset: 0; opacity: .07; }
+  .miolo { position: absolute; inset: 0; padding: 42px 56px 26px; display: flex; flex-direction: column; }
+  .topo { display: flex; justify-content: space-between; align-items: center; }
+  .logo { height: 38px; display: block; }
+  .tag { font-family: "JetBrains Mono", monospace; font-size: 14px; letter-spacing: .28em;
+    color: #22d3ee; text-transform: uppercase; padding-bottom: 7px;
+    border-bottom: 2px solid #22d3ee; }
+  h1 { margin-top: 34px; font-weight: 600; letter-spacing: -0.022em;
+    font-size: 76px; line-height: 1.12; }
+  h1 .ciano { color: #22d3ee; }
+  .grafo { margin-top: auto; margin-bottom: 38px; position: relative; height: 208px; }
+  .grafo svg { position: absolute; top: 0; left: 0; }
+  .rotulos { position: absolute; top: 132px; left: 0; width: 1088px; }
+  .rotulo { position: absolute; transform: translateX(-50%); text-align: center;
+    font-family: "JetBrains Mono", monospace; white-space: nowrap; }
+  .rotulo .nome { font-size: 30px; letter-spacing: .14em; color: #e8edf2; }
+  .rotulo .veredito { margin-top: 8px; font-size: 24px; letter-spacing: .1em; }
+  .veredito.coberto { color: #94a3b8; }
+  .veredito.novo { color: #22d3ee; }
+  .veredito.recusado { color: #94a3b8; }
+  .assinatura { position: absolute; right: 56px; bottom: 14px; text-align: right;
+    font-family: "JetBrains Mono", monospace; color: #94a3b8; }
+  .pontos { font-size: 12px; letter-spacing: .5em; margin-bottom: 3px; }
+  .site { font-size: 14px; letter-spacing: .06em; }
+</style>
+</head>
+<body>
+  <svg class="motivo" width="1200" height="628" viewBox="0 0 1200 628" fill="none">
+    <polyline points="-40,530 220,400 480,510 740,360 1000,480 1260,320"
+      stroke="#22d3ee" stroke-width="2.5"/>
+    <circle cx="220" cy="400" r="9" fill="#22d3ee"/>
+    <circle cx="740" cy="360" r="9" fill="#22d3ee"/>
+    <circle cx="480" cy="510" r="9" fill="#22d3ee"/>
+  </svg>
+  <div class="miolo">
+    <div class="topo">
+      <img class="logo" src="file:///srv/harness/terrasia-site/identidade/ativos/logo-claro.png" alt="terrasIA">
+      <div class="tag">Tema</div>
+    </div>
+    <h1>Título em duas linhas.<br>Palavra <span class="ciano">chave</span>.</h1>
+    <div class="grafo">
+      <svg width="1088" height="118" viewBox="0 0 1088 118" fill="none">
+        <line x1="85" y1="88" x2="395" y2="30" stroke="#0e7490" stroke-width="3.5"/>
+        <line x1="395" y1="30" x2="705" y2="88" stroke="#0e7490" stroke-width="3.5"/>
+        <line x1="705" y1="88" x2="1008" y2="30" stroke="#0e7490" stroke-width="3.5"/>
+        <circle cx="85" cy="88" r="12" fill="#0e7490"/>
+        <circle cx="395" cy="30" r="12" fill="#22d3ee"/>
+        <circle cx="705" cy="88" r="12" fill="#22d3ee"/>
+        <circle cx="1008" cy="30" r="12" fill="#171b23" stroke="#94a3b8" stroke-width="3"/>
+      </svg>
+      <div class="rotulos">
+        <div class="rotulo" style="left: 85px;">
+          <div class="nome">ITEM 1</div>
+          <div class="veredito coberto">COBERTO</div>
+        </div>
+        <div class="rotulo" style="left: 395px;">
+          <div class="nome">ITEM 2</div>
+          <div class="veredito novo">NOVO</div>
+        </div>
+        <div class="rotulo" style="left: 705px;">
+          <div class="nome">ITEM 3</div>
+          <div class="veredito novo">NOVO</div>
+        </div>
+        <div class="rotulo" style="left: 1008px;">
+          <div class="nome">ITEM 4</div>
+          <div class="veredito recusado">RECUSADO</div>
+        </div>
+      </div>
+    </div>
+    <div class="assinatura">
+      <div class="pontos">&middot;&nbsp;&middot;&nbsp;&middot;&nbsp;&middot;</div>
+      <div class="site">terrasia.app</div>
+    </div>
+  </div>
+</body>
+</html>

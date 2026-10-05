@@ -1,0 +1,110 @@
+<!-- Card em pé 1080x1350 na identidade do produto (não é a marca pessoal).
+     Exemplo real aprovado em 2026-10-05: troque os textos (título, itens,
+     chips e provas) mantendo a densidade; a geometria é o que não se mexe
+     sem medir de novo.
+     Render: python3 ../scripts/peca.py render peca-card.html --saida card-pe --tamanho 1080x1350
+     Ajuste os caminhos de fonte e logo se a máquina mudar. -->
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<style>
+  @font-face {
+    font-family: "JetBrains Mono";
+    src: url("file:///home/support/Documents/Diversos/terras-brand/fonts/jetbrains-mono-latin.woff2") format("woff2");
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { width: 1080px; height: 1350px; overflow: hidden;
+    background: #060a12; color: #e8edf2;
+    font-family: "Ubuntu Sans", Ubuntu, Roboto, sans-serif;
+    -webkit-font-smoothing: antialiased; position: relative; }
+  .motivo { position: absolute; inset: 0; opacity: .06; }
+  .miolo { position: absolute; inset: 0; padding: 64px 72px 48px; display: flex; flex-direction: column; }
+  .topo { display: flex; justify-content: space-between; align-items: center; }
+  .logo { height: 42px; display: block; }
+  .tag { font-family: "JetBrains Mono", monospace; font-size: 14px; letter-spacing: .28em;
+    color: #22d3ee; text-transform: uppercase; padding-bottom: 8px;
+    border-bottom: 2px solid #22d3ee; }
+  h1 { margin-top: 44px; font-weight: 600; letter-spacing: -0.022em;
+    font-size: 74px; line-height: 1.12; }
+  h1 .ciano { color: #22d3ee; }
+  .lista { margin-top: 34px; display: flex; flex-direction: column; }
+  .item { display: flex; gap: 26px; padding: 26px 0; border-top: 1px solid #1a2433; }
+  .num { font-family: "JetBrains Mono", monospace; font-size: 30px; color: #22d3ee;
+    padding-top: 6px; min-width: 52px; }
+  .corpo { flex: 1; }
+  .linha1 { display: flex; justify-content: space-between; align-items: center; gap: 18px; }
+  .nome { font-weight: 600; font-size: 44px; letter-spacing: -0.01em; }
+  .chip { font-family: "JetBrains Mono", monospace; font-size: 22px; letter-spacing: .08em;
+    text-transform: uppercase; padding: 8px 16px; border-radius: 2px; white-space: nowrap; }
+  .chip.novo { color: #22d3ee; border: 2px solid rgba(34, 211, 238, .55); }
+  .chip.coberto { color: #94a3b8; border: 2px solid #1a2433; }
+  .chip.recusado { color: #94a3b8; border: 2px dashed #1a2433; }
+  .prova { margin-top: 10px; font-size: 29px; line-height: 1.45; color: #94a3b8; }
+  .base { margin-top: auto; display: flex; justify-content: space-between; align-items: flex-end; }
+  .assinatura { font-family: "JetBrains Mono", monospace; color: #94a3b8; }
+  .pontos { font-size: 15px; letter-spacing: .5em; margin-bottom: 5px; }
+  .site { font-size: 18px; letter-spacing: .06em; }
+</style>
+</head>
+<body>
+  <svg class="motivo" width="1080" height="1350" viewBox="0 0 1080 1350" fill="none">
+    <polyline points="-60,1150 260,980 560,1120 860,940 1160,1080"
+      stroke="#22d3ee" stroke-width="2.5"/>
+    <circle cx="260" cy="980" r="9" fill="#22d3ee"/>
+    <circle cx="860" cy="940" r="9" fill="#22d3ee"/>
+  </svg>
+  <div class="miolo">
+    <div class="topo">
+      <img class="logo" src="file:///srv/harness/terrasia-site/identidade/ativos/logo-claro.png" alt="terrasIA">
+      <div class="tag">Tema</div>
+    </div>
+    <h1>Título em duas linhas.<br>Subtítulo com <span class="ciano">destaque</span>.</h1>
+    <div class="lista">
+      <div class="item">
+        <div class="num">01</div>
+        <div class="corpo">
+          <div class="linha1"><div class="nome">Item um</div><div class="chip coberto">Coberto</div></div>
+          <div class="prova">Prova em no máximo duas linhas, com o recibo do veredito.</div>
+        </div>
+      </div>
+      <div class="item">
+        <div class="num">02</div>
+        <div class="corpo">
+          <div class="linha1"><div class="nome">Item dois</div><div class="chip novo">Novo no catálogo</div></div>
+          <div class="prova">Prova em no máximo duas linhas, com o recibo do veredito.</div>
+        </div>
+      </div>
+      <div class="item">
+        <div class="num">03</div>
+        <div class="corpo">
+          <div class="linha1"><div class="nome">Item três</div><div class="chip novo">Novo no catálogo</div></div>
+          <div class="prova">Prova em no máximo duas linhas, com o recibo do veredito.</div>
+        </div>
+      </div>
+      <div class="item">
+        <div class="num">04</div>
+        <div class="corpo">
+          <div class="linha1"><div class="nome">Item quatro</div><div class="chip recusado">Recusado, por ora</div></div>
+          <div class="prova">Prova em no máximo duas linhas, com o recibo do veredito.</div>
+        </div>
+      </div>
+    </div>
+    <div class="base">
+      <div class="assinatura">
+        <div class="pontos">&middot;&nbsp;&middot;&nbsp;&middot;&nbsp;&middot;</div>
+        <div class="site">terrasia.app</div>
+      </div>
+      <svg width="64" height="34" viewBox="0 0 64 34" fill="none">
+        <line x1="4" y1="24" x2="22" y2="8" stroke="#0e7490" stroke-width="2.5"/>
+        <line x1="22" y1="8" x2="40" y2="24" stroke="#0e7490" stroke-width="2.5"/>
+        <line x1="40" y1="24" x2="58" y2="8" stroke="#0e7490" stroke-width="2.5"/>
+        <circle cx="4" cy="24" r="5" fill="#0e7490"/>
+        <circle cx="22" cy="8" r="5" fill="#22d3ee"/>
+        <circle cx="40" cy="24" r="5" fill="#22d3ee"/>
+        <circle cx="58" cy="8" r="5" fill="#171b23" stroke="#94a3b8" stroke-width="2"/>
+      </svg>
+    </div>
+  </div>
+</body>
+</html>
