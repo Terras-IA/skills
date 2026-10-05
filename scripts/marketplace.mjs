@@ -23,7 +23,7 @@ import { fileURLToPath } from "node:url";
 
 const MAX_DESCRICAO = 300;
 
-function cabecalho(txt) {
+export function cabecalho(txt) {
   const m = /^---\n([\s\S]*?)\n---(\n|$)/.exec(txt);
   if (!m) return null;
   const campos = {};
@@ -50,7 +50,7 @@ function cabecalho(txt) {
   return campos;
 }
 
-const semAspas = (v) => (v ?? "").replace(/^["']|["']$/g, "");
+export const semAspas = (v) => (v ?? "").replace(/^["']|["']$/g, "");
 
 /** Descrição para o manifesto: inteira se cabe, senão cortada no fim de uma frase. */
 function descricaoCurta(texto) {
