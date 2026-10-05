@@ -1,0 +1,114 @@
+<!-- Template de animação (terras-animacao): cena HTML dirigida por tempo.
+     Contrato: o JS lê ?t=<ms> e o render(t) desenha o frame daquele instante;
+     nada depende de relógio real, então o mesmo t rende sempre o mesmo quadro.
+     Trocar: textos, formas e a linha do tempo no fim do <script>.
+     Render: python3 ../scripts/render-anim.py quadro este.html 2400 q.png
+             python3 ../scripts/render-anim.py animar este.html --saida peca --capa 5000
+     Ajustar os caminhos de fonte e logo se a máquina mudar (identidade do produto). -->
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<style>
+  @font-face {
+    font-family: "JetBrains Mono";
+    src: url("file:///home/support/Documents/Diversos/terras-brand/fonts/jetbrains-mono-latin.woff2") format("woff2");
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { width: 1200px; height: 628px; overflow: hidden; position: relative;
+    background: #060a12; color: #e8edf2;
+    font-family: "Ubuntu Sans", Ubuntu, Roboto, sans-serif;
+    -webkit-font-smoothing: antialiased; }
+  .cabecalho { position: absolute; top: 42px; left: 56px; right: 56px;
+    display: flex; justify-content: space-between; align-items: center; }
+  .logo { height: 38px; display: block; }
+  .tag { font-family: "JetBrains Mono", monospace; font-size: 14px; letter-spacing: .28em;
+    color: #22d3ee; text-transform: uppercase; padding-bottom: 7px;
+    border-bottom: 2px solid #22d3ee; }
+  h1 { position: absolute; left: 56px; top: 100px; font-weight: 600;
+    font-size: 50px; letter-spacing: -0.022em; }
+  h1 .ciano { color: #22d3ee; }
+  #palco { position: absolute; left: 56px; top: 200px; width: 1088px; height: 380px; }
+  #legenda { position: absolute; left: 56px; bottom: 20px; font-size: 30px;
+    font-weight: 600; letter-spacing: -0.01em; }
+  .assinatura { position: absolute; right: 56px; bottom: 14px; text-align: right;
+    font-family: "JetBrains Mono", monospace; color: #94a3b8; }
+  .pontos { font-size: 12px; letter-spacing: .5em; margin-bottom: 3px; }
+  .site { font-size: 14px; letter-spacing: .06em; }
+
+  /* estilos do SVG */
+  .forma { fill: none; stroke: #22d3ee; stroke-width: 3; }
+  .seta { stroke: #22d3ee; stroke-width: 3; fill: none; stroke-linecap: round; }
+  .red { stroke: #ff2a2a; stroke-width: 2.5; fill: none; }
+  .traco { stroke-dasharray: 10 8; }
+  .ponta-c { fill: #22d3ee; }
+  .ponta-r { fill: #ff2a2a; }
+</style>
+</head>
+<body>
+  <div class="cabecalho">
+    <img class="logo" src="file:///srv/harness/terrasia-site/identidade/ativos/logo-claro.png" alt="terrasIA">
+    <div class="tag">Tema da peça</div>
+  </div>
+  <h1 id="manchete">Manchete com <span class="ciano">destaque</span>.</h1>
+
+  <svg id="palco" viewBox="0 0 1088 380">
+    <circle id="bolha" class="forma" cx="160" cy="190" r="34" style="opacity:0"/>
+    <rect id="caixa" class="forma" x="300" y="148" width="260" height="84" rx="12" style="opacity:0"/>
+    <path id="liga" class="red traco" d="M460 190 H760" style="opacity:0"/>
+    <polygon id="ponta" class="ponta-r" points="0,0 -13,-6 -13,6" transform="translate(760 190)" style="opacity:0"/>
+  </svg>
+
+  <div id="legenda" style="opacity:0">A legenda entra no fim e segura o loop.</div>
+  <div class="assinatura">
+    <div class="pontos">&middot;&nbsp;&middot;&nbsp;&middot;&nbsp;&middot;</div>
+    <div class="site">terrasia.app</div>
+  </div>
+
+<script>
+// ---- helpers: mantenha, é o jeito de amarrar tudo ao t ----
+const params = new URLSearchParams(location.search);
+const t = params.has("t") ? parseFloat(params.get("t")) : 5200;
+const $ = (id) => document.getElementById(id);
+const clamp01 = (x) => Math.max(0, Math.min(1, x));
+const eOut = (p) => 1 - Math.pow(1 - p, 3);
+const eBack = (p) => { const c1 = 1.70158, c3 = c1 + 1;
+  return 1 + c3 * Math.pow(p - 1, 3) + c1 * Math.pow(p - 1, 2); };
+const prog = (a, b, f) => t <= a ? 0 : t >= b ? 1 : (f || eOut)(clamp01((t - a) / (b - a)));
+
+function some(id, a, b) { $(id).style.opacity = prog(a, b); }
+function pop(id, a, b, cx, cy) {
+  const el = $(id), p = prog(a, b, eBack);
+  el.setAttribute("transform",
+    `translate(${cx} ${cy}) scale(${(0.55 + 0.45 * p).toFixed(3)}) translate(${-cx} ${-cy})`);
+  el.style.opacity = clamp01(prog(a, b) * 1.8);
+}
+function seta(linha, ponta, a, b) {
+  const el = $(linha), L = el.getTotalLength(), p = prog(a, b);
+  el.style.strokeDasharray = `${L}`;
+  el.style.strokeDashoffset = `${L * (1 - p)}`;
+  el.style.opacity = t >= a ? 1 : 0;
+  some(ponta, b - 120, b + 80);
+}
+function formigas(id, periodo = 18) { $(id).style.strokeDashoffset = `${-((t / 28) % periodo)}`; }
+
+// ---- linha do tempo: trocar pela cena real ----
+function render() {
+  const h = $("manchete"), ph = prog(0, 320);
+  h.style.opacity = ph;
+  h.style.transform = `translateY(${(1 - ph) * 16}px)`;
+
+  pop("bolha", 400, 700, 160, 190);
+  pop("caixa", 700, 1000, 430, 190);
+  some("liga", 1100, 1400);
+  some("ponta", 1280, 1480);
+  formigas("liga");
+
+  const c = $("legenda"), pc = prog(3000, 3400);
+  c.style.opacity = pc;
+  c.style.transform = `translateY(${(1 - pc) * 14}px)`;
+}
+document.fonts.ready.then(render);
+</script>
+</body>
+</html>

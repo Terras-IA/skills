@@ -35,6 +35,7 @@ A ênfase desta skill é a **produção da peça visual**, que é onde o caso re
 | Medição do canal pessoal | `terras-linkedin-metricas` |
 | Análise da referência (cobre, rejeita, falta, com recibo) e pacote por canal | `terras-pauta-mercado` |
 | Publicação no canal WhatsApp | `terras-canal-whatsapp` |
+| Peça animada (gif em loop, mp4) | `terras-animacao` |
 | **Esta skill** | Peça da **Company Page** (`linkedin.com/company/terrasia`, página no ar desde 2026-10-05), voz de produto/marca, identidade do **produto** (`terrasia-site/identidade/`) |
 
 Kit da página (nome, tagline, descrição, capa, logo): `docs/comercial/EMPRESA-LINKEDIN-2026-10-03.md` no repo `terrasia`.
