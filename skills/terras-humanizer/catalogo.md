@@ -1,6 +1,6 @@
 ---
 name: terras-humanizer
-version: 1.0.0
+version: 1.1.0
 access: free
 category: conteudo
 description: Reescreve texto com cara de IA para soar humano, sem mudar o que diz e sem inventar nada, com critério declarado para cada edição e self-check antes de entregar.

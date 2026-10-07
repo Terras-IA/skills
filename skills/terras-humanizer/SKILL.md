@@ -1,6 +1,7 @@
 ---
 name: terras-humanizer
-description: "Reescreve texto com cara de IA para soar humano, sem mudar o que ele diz e sem inventar nada. Use para revisar ou editar prosa com marcas de IA em português ou inglês: contraste 'não é X, é Y', frase de efeito de uma linha, abertura encenada, trio forçado, travessão em excesso, hipérbole, linguagem de venda, jargão de IA, negrito decorativo, gerúndio pendurado; e para resposta que re-explica o que o leitor já sabe antes de chegar à decisão. Humanize text, remove AI writing tells, edit AI-sounding prose."
+version: 1.1.0
+description: "Reescreve texto com cara de IA para soar humano, sem mudar o que ele diz e sem inventar nada. Use para revisar ou editar prosa com marcas de IA em português ou inglês: contraste 'não é X, é Y', frase de efeito de uma linha, abertura encenada, trio forçado, travessão em excesso, hipérbole, linguagem de venda, jargão de IA, negrito decorativo, gerúndio pendurado; e para resposta que re-explica o que o leitor já sabe antes de chegar à decisão. Humanize text, remove AI writing signs, edit AI-sounding prose."
 keywords: [humanizar, humanizer, texto de IA, AI writing, marcas de IA, revisão, edição, prosa, resposta, reply, português, inglês]
 ---
 
@@ -55,7 +56,7 @@ Estes cinco justificam edição com um único avistamento. Ação imediata, sem 
 4. **Aquecimento antes do ponto.** "Vamos mergulhar", "vale destacar", "antes de mais nada", "sem mais delongas", "olha só". O texto anuncia que vai dizer em vez de dizer. Corte a corrida de aproximação inteira, não só o tom.
 5. **Briga com ninguém.** "Não estou dizendo que", "para deixar claro", "não me entenda mal", "alguém poderia argumentar que". O texto responde a objeção que não existe no texto. Se a defesa carrega afirmação real, afirme-a direto.
 
-O catálogo completo, com os 25 padrões e exemplos em português, está em `references/padroes-pt.md`. O guia original em inglês, com exemplos em inglês, está em `references/upstream-en.md`.
+O catálogo completo, com os 26 padrões e exemplos em português, está em `references/padroes-pt.md`. A versão em inglês, com exemplos em inglês, está em `references/upstream-en.md`, com o inglês simplificado para nível B1-B2.
 
 ## Regras duras para texto seu
 
@@ -77,4 +78,4 @@ Lista de palavras e construções que mais denunciam texto de IA em português, 
 
 ## Créditos
 
-Padrões baseados em ["Signs of AI writing"](https://en.wikipedia.org/wiki/Wikipedia:Signs_of_AI_writing), da WikiProject AI Cleanup, e na skill `blader/humanizer` (MIT), cujo guia em inglês está vendorizado em `references/upstream-en.md`. O catálogo em português, as regras duras e o self-check foram escritos para este uso.
+Padrões baseados em ["Signs of AI writing"](https://en.wikipedia.org/wiki/Wikipedia:Signs_of_AI_writing), da WikiProject AI Cleanup, e na skill `blader/humanizer` (MIT), cujo guia em inglês, vendorizado em `references/upstream-en.md`, foi reescrito em nível B1-B2. O catálogo em português, as regras duras e o self-check foram escritos para este uso.

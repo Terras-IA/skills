@@ -94,9 +94,9 @@ Cria histórias infantis ilustradas em quadrinhos e o LIVRO DE COLORIR da mesma 
 
 ### terras-humanizer
 
-Reescreve texto com cara de IA para soar humano, sem mudar o que ele diz e sem inventar nada. Use para revisar ou editar prosa com marcas de IA em português ou inglês: contraste 'não é X, é Y', frase de efeito de uma linha, abertura encenada, trio forçado, travessão em excesso, hipérbole, linguagem de venda, jargão de IA, negrito decorativo, gerúndio pendurado; e para resposta que re-explica o que o leitor já sabe antes de chegar à decisão. Humanize text, remove AI writing tells, edit AI-sounding prose.
+Reescreve texto com cara de IA para soar humano, sem mudar o que ele diz e sem inventar nada. Use para revisar ou editar prosa com marcas de IA em português ou inglês: contraste 'não é X, é Y', frase de efeito de uma linha, abertura encenada, trio forçado, travessão em excesso, hipérbole, linguagem de venda, jargão de IA, negrito decorativo, gerúndio pendurado; e para resposta que re-explica o que o leitor já sabe antes de chegar à decisão. Humanize text, remove AI writing signs, edit AI-sounding prose.
 
-`/plugin install terras-humanizer@terras`
+`/plugin install terras-humanizer@terras` · v1.1.0
 
 Palavras-chave: `humanizar`, `humanizer`, `texto de IA`, `AI writing`, `marcas de IA`, `revisão`, `edição`, `prosa`, `resposta`, `reply`, `português`, `inglês`
 

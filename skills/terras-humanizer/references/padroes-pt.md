@@ -402,4 +402,4 @@ Mantenha os detalhes que carregam a voz, a menos que atrapalhem o sentido:
 
 ## Fonte
 
-Padrões derivados de ["Signs of AI writing"](https://en.wikipedia.org/wiki/Wikipedia:Signs_of_AI_writing), da WikiProject AI Cleanup, e da skill `blader/humanizer` v3.1.0 (MIT). Exemplos e lista de vocabulário adaptados para o português.
+Padrões derivados de ["Signs of AI writing"](https://en.wikipedia.org/wiki/Wikipedia:Signs_of_AI_writing), da WikiProject AI Cleanup, e da skill `blader/humanizer` v3.1.0 (MIT). Exemplos e lista de vocabulário adaptados para o português; o guia em inglês de `references/upstream-en.md` foi reescrito em nível B1-B2.

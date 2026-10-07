@@ -1367,7 +1367,7 @@
     {
       "name": "terras-humanizer",
       "description": "Reescreve texto com cara de IA para soar humano, sem mudar o que ele diz e sem inventar nada.",
-      "version": "1.0.0",
+      "version": "1.1.0",
       "source": "./skills/terras-humanizer",
       "strict": false,
       "skills": [
