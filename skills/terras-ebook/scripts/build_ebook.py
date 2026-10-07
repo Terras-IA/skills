@@ -912,6 +912,32 @@ def _ativo(identidade: dict, chave: str) -> Path | None:
     return caminho if caminho.exists() else None
 
 
+def decor_de_miolo(identidade: dict) -> dict:
+    """
+    Marca d'água e marca de rodapé do miolo, declaradas no bloco `pagina` da
+    identidade:
+
+        "pagina": {
+          "marca_dagua": {"ativo": "monograma_escuro", "largura": 0.62, "opacidade": 0.08},
+          "rodape": {"ativo": "monograma_escuro", "altura_mm": 5}
+        }
+
+    `largura` é a fração da largura da página e `ativo` é uma chave de `ativos`.
+    Sem o bloco — ou sem o ativo — o miolo sai como sempre saiu: identidade que
+    não declara nada não ganha marca.
+    """
+    bloco = identidade.get("pagina") or {}
+    decor: dict = {}
+    for papel in ("marca_dagua", "rodape"):
+        cfg = bloco.get(papel) or {}
+        if not cfg:
+            continue
+        caminho = _ativo(identidade, cfg.get("ativo") or "monograma_escuro")
+        if caminho:
+            decor[papel] = dict(cfg, caminho=caminho)
+    return decor
+
+
 def _imagem_cobrindo(c, caminho: Path | None, largura, altura, x=0, y=0):
     """Desenha a imagem cobrindo a area, cortada pelo centro e sem distorcer."""
     if not caminho:
@@ -1240,6 +1266,7 @@ class CanvasNumerado(canvas.Canvas):
     estilo_nota = None
     fonte_forte = None                        # face do termo dentro da nota
     largura_notas = PAGE_W - 32 * mm
+    decor: dict = {}                          # marca d'água e marca do rodapé
 
     def __init__(self, *args, **kwargs):
         canvas.Canvas.__init__(self, *args, **kwargs)
@@ -1268,17 +1295,42 @@ class CanvasNumerado(canvas.Canvas):
         self.drawString(16 * mm, PAGE_H - 10.4 * mm, self.header_left)
         self.drawRightString(PAGE_W - 16 * mm, PAGE_H - 10.4 * mm, self.header_right)
 
-        # rodape: filete em gradiente (assinatura da identidade) e o folio
+        # rodape: filete em gradiente (assinatura da identidade), a marca da
+        # igreja no centro e o folio — que vai para a margem direita quando a
+        # marca ocupa o centro, para os dois não disputarem o mesmo espaço
         regra_gradiente(
             self, 16 * mm, 13.6 * mm, PAGE_W - 16 * mm, 13.6 * mm,
             cor["acento"], cor["acento_2"], espessura=0.6,
         )
         self.setFillColor(cor["acento_texto"])
         self.setFont("CorpoNegrito", 8)
-        self.drawCentredString(PAGE_W / 2, 8.4 * mm, str(self._pageNumber))
+        if self.marca_do_rodape():
+            self.drawRightString(PAGE_W - 16 * mm, 8.4 * mm, str(self._pageNumber))
+        else:
+            self.drawCentredString(PAGE_W / 2, 8.4 * mm, str(self._pageNumber))
         self.restoreState()
 
         self.desenhar_notas()
+
+    def marca_do_rodape(self) -> bool:
+        """
+        Símbolo da identidade no pé da página. Devolve False quando a identidade
+        não declara `pagina.rodape` — e aí o folio volta ao centro, como sempre.
+        """
+        cfg = self.decor.get("rodape")
+        if not cfg:
+            return False
+        from reportlab.lib.utils import ImageReader
+
+        try:
+            img = ImageReader(str(cfg["caminho"]))
+            iw, ih = img.getSize()
+        except Exception:
+            return False
+        altura = float(cfg.get("altura_mm", 5)) * mm
+        largura = altura * iw / ih
+        self.drawImage(img, (PAGE_W - largura) / 2, 7.0 * mm, largura, altura, mask="auto")
+        return True
 
     def desenhar_notas(self):
         """
@@ -1344,17 +1396,49 @@ class MioloDoc(SimpleDocTemplate):
 
     reservas: dict[int, float] = {}
     registro: "RegistroNotas | None" = None
+    decor: dict = {}
 
     def handle_pageBegin(self):
         SimpleDocTemplate.handle_pageBegin(self)
+        # O quadro é UM objeto só, reaproveitado em todas as páginas: quem não o
+        # reconfigura herda a geometria da página anterior. Sem o `else`, a faixa
+        # de uma página de nota encolhia todas as páginas seguintes — e é o vão
+        # que se mede no PDF (o texto para ~30-75 pt antes do pé). Por isso a
+        # geometria é reescrita em toda página, com reserva zero quando não há nota.
         reserva = self.reservas.get(self.page, 0)
-        if not reserva:
-            return
         quadro = self.frame
         quadro._y1 = self.bottomMargin + reserva
         quadro._height = self.height - reserva
         quadro._geom()
         quadro._reset()
+        self.marca_dagua()
+
+    def marca_dagua(self):
+        """
+        O símbolo da identidade ao fundo da página, atrás do texto.
+
+        Desenhada aqui, no começo da página, e não junto do rodapé: o `save()`
+        do canvas pinta a decoração DEPOIS do conteúdo, e uma marca d'água
+        aplicada por cima lavaria a tinta do texto.
+        """
+        cfg = self.decor.get("marca_dagua")
+        if not cfg:
+            return
+        from reportlab.lib.utils import ImageReader
+
+        try:
+            img = ImageReader(str(cfg["caminho"]))
+            iw, ih = img.getSize()
+        except Exception:
+            return
+        largura = float(cfg.get("largura", 0.62)) * PAGE_W
+        altura = largura * ih / iw
+        c = self.canv
+        c.saveState()
+        c.setFillAlpha(float(cfg.get("opacidade", 0.08)))
+        c.drawImage(img, (PAGE_W - largura) / 2, (PAGE_H - altura) / 2,
+                    largura, altura, mask="auto")
+        c.restoreState()
 
     def handle_pageEnd(self):
         # Onde o texto parou nesta página: é o que deixa a nota de pé de página
@@ -1365,18 +1449,22 @@ class MioloDoc(SimpleDocTemplate):
         SimpleDocTemplate.handle_pageEnd(self)
 
 
-def make_interior(path, livro, cor, f, numeros=None, reservas=None, registro=None):
+def make_interior(path, livro, cor, f, numeros=None, reservas=None, registro=None, decor=None):
     """
     Monta o miolo. Com `numeros`, o sumário imprime o folio de cada capítulo —
     é a segunda passada, depois que a paginação da primeira já é conhecida.
     `reservas` é quanto cada página precisa reservar para as notas de rodapé, e
     `registro` é onde as notas se registram ao serem desenhadas.
+    `decor` é o que a identidade declara para o miolo (marca d'água e marca do
+    rodapé) — ver `decor_de_miolo`.
     """
     st = estilos(cor, f)
     registro = registro or RegistroNotas()
     registro.limpar()
     MioloDoc.reservas = dict(reservas or {})
     MioloDoc.registro = registro
+    MioloDoc.decor = dict(decor or {})
+    CanvasNumerado.decor = dict(decor or {})
 
     def P(texto, estilo="Corpo", **kwargs):
         return paragrafo(texto, st[estilo], **kwargs)
@@ -1937,6 +2025,7 @@ def main():
         escolhido = "sem-marca" if args.marca == "sem-logo" else args.marca
         identidade.setdefault("marca", {})["estilo"] = escolhido
     cor = paleta(identidade["cores"], identidade.get("capa_estilo", "terras"))
+    decor = decor_de_miolo(identidade)
     fontes = preparar_fontes(identidade)
     titulo_fonte = fontes.get("display") or fontes["_nomes"]["forte"]
     print(
@@ -1976,12 +2065,13 @@ def main():
         # o folio) e quanto cada página precisa reservar para as notas de pé de
         # página. Cada passada parte do que a anterior mediu, e a última é a que
         # fica — o laço só sai quando as duas medidas não mudam mais.
-        make_interior(interior, livro, cor, fontes, registro=registro, reservas=reservas)
+        make_interior(interior, livro, cor, fontes, registro=registro,
+                      reservas=reservas, decor=decor)
         paginas = paginas_de_inicio(interior, livro)
 
         for _ in range(8):
             make_interior(interior, livro, cor, fontes, numeros=paginas,
-                          registro=registro, reservas=reservas)
+                          registro=registro, reservas=reservas, decor=decor)
             novas = paginas_de_inicio(interior, livro)
             medido = dict(registro.reservas)
             # A conta que decide a última passada é a SEGURANÇA, não a igualdade:
@@ -2011,7 +2101,7 @@ def main():
                 total_miolo = len(PdfReader(str(interior)).pages)
                 reservas = {p: uniforme for p in range(1, total_miolo + 1)}
                 make_interior(interior, livro, cor, fontes, numeros=paginas,
-                              registro=registro, reservas=reservas)
+                              registro=registro, reservas=reservas, decor=decor)
                 paginas = paginas_de_inicio(interior, livro)
             print(
                 "  aviso: a paginação não estabilizou; confira o sumário impresso",

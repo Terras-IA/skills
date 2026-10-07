@@ -1,8 +1,8 @@
 ---
 name: terras-humanizer
 version: 1.1.0
-description: "Reescreve texto com cara de IA para soar humano, sem mudar o que ele diz e sem inventar nada. Use para revisar ou editar prosa com marcas de IA em português ou inglês: contraste 'não é X, é Y', frase de efeito de uma linha, abertura encenada, trio forçado, travessão em excesso, hipérbole, linguagem de venda, jargão de IA, negrito decorativo, gerúndio pendurado; e para resposta que re-explica o que o leitor já sabe antes de chegar à decisão. Humanize text, remove AI writing signs, edit AI-sounding prose."
-keywords: [humanizar, humanizer, texto de IA, AI writing, marcas de IA, revisão, edição, prosa, resposta, reply, português, inglês]
+description: "Reescreve texto com cara de IA para soar humano, sem mudar o que ele diz e sem inventar nada. Use para revisar ou editar prosa com marcas de IA em português ou inglês: contraste 'não é X, é Y', frase de efeito de uma linha, abertura encenada, trio forçado, travessão em excesso, hipérbole, linguagem de venda, jargão de IA, negrito decorativo, gerúndio pendurado; para texto em inglês, baixar o vocabulário para o nível B1/B2, trocando palavra difícil por palavra comum; e para resposta que re-explica o que o leitor já sabe antes de chegar à decisão. Humanize text, remove AI writing signs, lower English vocabulary to B1/B2, plain English, edit AI-sounding prose."
+keywords: [humanizar, humanizer, texto de IA, AI writing, marcas de IA, revisão, edição, prosa, resposta, reply, português, inglês, inglês B1 B2, vocabulário simples, simplificar inglês, plain English]
 ---
 
 # Humanizer: tirar as marcas de texto de IA
@@ -56,7 +56,7 @@ Estes cinco justificam edição com um único avistamento. Ação imediata, sem 
 4. **Aquecimento antes do ponto.** "Vamos mergulhar", "vale destacar", "antes de mais nada", "sem mais delongas", "olha só". O texto anuncia que vai dizer em vez de dizer. Corte a corrida de aproximação inteira, não só o tom.
 5. **Briga com ninguém.** "Não estou dizendo que", "para deixar claro", "não me entenda mal", "alguém poderia argumentar que". O texto responde a objeção que não existe no texto. Se a defesa carrega afirmação real, afirme-a direto.
 
-O catálogo completo, com os 26 padrões e exemplos em português, está em `references/padroes-pt.md`. A versão em inglês, com exemplos em inglês, está em `references/upstream-en.md`, com o inglês simplificado para nível B1-B2.
+O catálogo completo, com os 26 padrões e exemplos em português, está em `references/padroes-pt.md`. O guia em inglês, com exemplos em inglês, está em `references/upstream-en.md`, reescrito em nível B1-B2; a régua abaixo governa o vocabulário da sua própria escrita.
 
 ## Regras duras para texto seu
 
@@ -68,6 +68,15 @@ O catálogo completo, com os 26 padrões e exemplos em português, está em `ref
 
 Lista de palavras e construções que mais denunciam texto de IA em português, com substituto para cada uma, em `references/padroes-pt.md`, seção C.
 
+## Nível de inglês (B1/B2)
+
+Vale para texto escrito em inglês para leitor geral: a palavra comum ganha da palavra bonita. É a segunda régua, separada da lista de vícios, e as duas não se confundem: uma palavra pode ser boa prosa e continuar acima do nível, e palavra comum não vira problema por estar na lista de vício.
+
+- Marque a palavra que não apareceria numa conversa nem numa manchete, e troque pela comum que mantém o sentido.
+- Precisão ganha de simplicidade. Termo técnico que é o nome exato da coisa (função, formato, medida, conceito jurídico ou contábil) fica, e o texto jurídico fica como está.
+- Não mexa em citação, título, nome próprio nem na amostra de voz do autor.
+- Régua, tabelas de troca e exemplo em `references/ingles-b1b2.md`.
+
 ## Self-check antes de entregar
 
 1. Algum fato, nome, número, data ou citação apareceu que não estava no original?
@@ -75,7 +84,8 @@ Lista de palavras e construções que mais denunciam texto de IA em português, 
 3. Sobrou "não é apenas X, mas Y", fecho de uma linha, trio forçado ou negrito decorativo?
 4. O texto ainda soa como uma pessoa, ou ficou na voz neutra de manual?
 5. Se havia amostra de voz, o resultado bate com ela?
+6. Se o texto é em inglês, sobrou palavra acima de B1/B2 que não seja o termo exato da coisa? Contou quantas.
 
 ## Créditos
 
-Padrões baseados em ["Signs of AI writing"](https://en.wikipedia.org/wiki/Wikipedia:Signs_of_AI_writing), da WikiProject AI Cleanup, e na skill `blader/humanizer` (MIT), cujo guia em inglês, vendorizado em `references/upstream-en.md`, foi reescrito em nível B1-B2. O catálogo em português, as regras duras e o self-check foram escritos para este uso.
+Padrões baseados em ["Signs of AI writing"](https://en.wikipedia.org/wiki/Wikipedia:Signs_of_AI_writing), da WikiProject AI Cleanup, e na skill `blader/humanizer` (MIT), cujo guia em inglês, vendorizado em `references/upstream-en.md`, foi reescrito em nível B1-B2. O catálogo em português, as regras duras, a régua de nível B1/B2 do inglês e o self-check foram escritos para este uso.

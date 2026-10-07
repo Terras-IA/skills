@@ -183,9 +183,9 @@ O fato embaixo costuma ser verdadeiro. Mantenha o fato e tire a roupa.
 | testemunho de, um marco para | diga o fato e a data |
 | vem ganhando destaque, tem se tornado cada vez mais | diga o número |
 | rico, vibrante, profundo (figurado) | diga o que tem |
-| meticuloso, intricado, vibrante (texto EN: meticulous, intricate) | palavra simples |
+| meticuloso, intricado, vibrante (texto EN: meticulous, intricate) | palavra simples (`ingles-b1b2.md`) |
 
-**Problema:** modelo usa estas palavras muito mais que pessoas, sobretudo em grupo. Esta é a única lista de vocabulário do catálogo: palavra formal fora dela não é vício por si.
+**Problema:** modelo usa estas palavras muito mais que pessoas, sobretudo em grupo. Palavra formal fora desta tabela não é vício por si. Ela ainda pode pesar na outra régua: em texto em inglês, o nível B1/B2 tem lista própria em `ingles-b1b2.md`, onde a conta é dificuldade, não vício.
 
 **Antes:**
 > Adicionalmente, um aspecto crucial da culinária local é o consumo de carne de camelo, um testemunho duradouro da influência histórica da região, demonstrando como esses pratos se integraram ao panorama gastronômico.

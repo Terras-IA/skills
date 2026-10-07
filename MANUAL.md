@@ -94,11 +94,11 @@ Cria histórias infantis ilustradas em quadrinhos e o LIVRO DE COLORIR da mesma 
 
 ### terras-humanizer
 
-Reescreve texto com cara de IA para soar humano, sem mudar o que ele diz e sem inventar nada. Use para revisar ou editar prosa com marcas de IA em português ou inglês: contraste 'não é X, é Y', frase de efeito de uma linha, abertura encenada, trio forçado, travessão em excesso, hipérbole, linguagem de venda, jargão de IA, negrito decorativo, gerúndio pendurado; e para resposta que re-explica o que o leitor já sabe antes de chegar à decisão. Humanize text, remove AI writing signs, edit AI-sounding prose.
+Reescreve texto com cara de IA para soar humano, sem mudar o que ele diz e sem inventar nada. Use para revisar ou editar prosa com marcas de IA em português ou inglês: contraste 'não é X, é Y', frase de efeito de uma linha, abertura encenada, trio forçado, travessão em excesso, hipérbole, linguagem de venda, jargão de IA, negrito decorativo, gerúndio pendurado; para texto em inglês, baixar o vocabulário para o nível B1/B2, trocando palavra difícil por palavra comum; e para resposta que re-explica o que o leitor já sabe antes de chegar à decisão. Humanize text, remove AI writing signs, lower English vocabulary to B1/B2, plain English, edit AI-sounding prose.
 
 `/plugin install terras-humanizer@terras` · v1.1.0
 
-Palavras-chave: `humanizar`, `humanizer`, `texto de IA`, `AI writing`, `marcas de IA`, `revisão`, `edição`, `prosa`, `resposta`, `reply`, `português`, `inglês`
+Palavras-chave: `humanizar`, `humanizer`, `texto de IA`, `AI writing`, `marcas de IA`, `revisão`, `edição`, `prosa`, `resposta`, `reply`, `português`, `inglês`, `inglês B1 B2`, `vocabulário simples`, `simplificar inglês`, `plain English`
 
 ### terras-humanizer-dev
 

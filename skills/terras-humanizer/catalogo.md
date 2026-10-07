@@ -3,7 +3,7 @@ name: terras-humanizer
 version: 1.1.0
 access: free
 category: conteudo
-description: Reescreve texto com cara de IA para soar humano, sem mudar o que diz e sem inventar nada, com critério declarado para cada edição e self-check antes de entregar.
+description: Reescreve texto com cara de IA para soar humano, sem mudar o que diz e sem inventar nada, com critério declarado, self-check antes de entregar e régua de nível B1/B2 para o vocabulário em inglês.
 keywords: [humanizar texto, cara de ia, tirar marcas de ia, reescrever sem inventar]
 ---
 
@@ -17,6 +17,7 @@ Reescrever texto que soa gerado por IA para soar escrito por uma pessoa, mantend
 
 - Texto em geral: e-mail, carta, artigo, documentação, proposta, mensagem, roteiro, post em rede social.
 - Quando o texto entregue tem "cara de IA" e o usuário quer a versão humana.
+- Quando o pedido é baixar o nível do inglês (B1/B2) num texto em inglês, trocando palavra difícil por palavra comum.
 - Não usar em bloco de código, comando, caminho, metadado ou dado estruturado — prosa apenas.
 
 ## As duas regras invioláveis
@@ -53,6 +54,15 @@ Estes justificam edição com um único avistamento:
 - **Sem jargão de venda:** "solução robusta", "plataforma completa", "transformador", "revolucionário", "eleve seu", "desbloqueie o potencial".
 - **Sem resíduo de chat:** "Claro!", "Espero ter ajudado", "Quer que eu detalhe?", "Fico à disposição".
 
+## Nível de inglês (B1/B2)
+
+Em texto escrito em inglês para leitor geral, a palavra comum ganha da palavra bonita. É régua separada da lista de vícios: palavra pode ser boa prosa e continuar acima do nível, e palavra comum não vira problema por estar na lista de vício.
+
+- Troque a palavra que não apareceria numa conversa nem numa manchete pela comum que mantém o sentido.
+- Precisão ganha de simplicidade: termo técnico que é o nome exato da coisa (função, formato, medida, conceito jurídico ou contábil) fica, e o texto jurídico fica como está.
+- Não mexa em citação, título, nome próprio nem na amostra de voz do autor.
+- Tabelas de troca, exemplos e o critério completo em `references/ingles-b1b2.md`.
+
 ## O que devolver
 
 - **Texto colado (padrão):** a análise curta dos padrões encontrados e a reescrita final.
@@ -66,7 +76,8 @@ Estes justificam edição com um único avistamento:
 3. Sobrou "não é apenas X, mas Y", fecho de uma linha, trio forçado ou negrito decorativo?
 4. O texto ainda soa como uma pessoa, ou ficou na voz neutra de manual?
 5. Se havia amostra de voz, o resultado bate com ela?
+6. Se o texto é em inglês, sobrou palavra acima de B1/B2 que não seja o termo exato da coisa?
 
 ## Critério de qualidade
 
-A reescrita diz exatamente o que o original dizia, sem acréscimo nem perda de informação, com os padrões de IA removidos e a voz de uma pessoa — e o resumo de edição permite comparar antes e depois.
+A reescrita diz exatamente o que o original dizia, sem acréscimo nem perda de informação, com os padrões de IA removidos e a voz de uma pessoa — e, em texto em inglês, com o vocabulário no nível B1/B2. O resumo de edição permite comparar antes e depois.

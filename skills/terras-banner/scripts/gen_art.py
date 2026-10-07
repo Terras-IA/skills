@@ -106,9 +106,20 @@ def generate(prompt, out_path, size, model, key, endpoint, timeout=180, send_siz
     if primeiro.get("b64_json"):
         img = base64.b64decode(primeiro["b64_json"])
     else:
-        # A URL do OSS (ou do x.ai) expira; baixar já.
-        with urllib.request.urlopen(primeiro["url"], timeout=timeout) as resp:
-            img = resp.read()
+        # A URL do OSS (ou do x.ai) expira; baixar já. O UA evita 403 de hosts
+        # que bloqueiam cliente sem cabeçalho (visto no OSS do Model Studio).
+        pedido = urllib.request.Request(
+            primeiro["url"], headers={"User-Agent": "Mozilla/5.0 (terras-banner/1.0)"}
+        )
+        try:
+            with urllib.request.urlopen(pedido, timeout=timeout) as resp:
+                img = resp.read()
+        except urllib.error.HTTPError as exc:
+            raise RuntimeError(
+                f"HTTP {exc.code} ao baixar a imagem gerada: {primeiro['url'][:120]}"
+            )
+        except urllib.error.URLError as exc:
+            raise RuntimeError(f"falha de rede ao baixar a imagem: {exc}")
 
     os.makedirs(os.path.dirname(os.path.abspath(out_path)), exist_ok=True)
     with open(out_path, "wb") as fh:
