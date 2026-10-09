@@ -1,0 +1,111 @@
+---
+name: terras-brand
+description: Marca: voz e tom, identidade visual, frameworks de mensagem, paleta, tipografia e auditoria de consistência, sincronizando diretrizes com tokens. Use para definir voz da marca, escrever ou validar guia de marca ou auditar consistência. Quadro visual é a terras-brandkit.
+keywords: [marca, brand, voz, tom de voz, identidade visual, mensagem, auditoria de marca, ativos, paleta]
+license: MIT
+---
+
+# Brand
+
+Brand identity, voice, messaging, asset management, and consistency frameworks.
+
+## When to Use
+
+- Brand voice definition and content tone guidance
+- Visual identity standards and style guide development
+- Messaging framework creation
+- Brand consistency review and audit
+- Asset organization, naming, and approval
+- Color palette management and typography specs
+
+## Script Paths
+
+Script paths in this skill and its `references/` are relative to the directory that contains this SKILL.md, not to the project: `scripts/<file>` is this skill's own `scripts/` folder, and `../<skill>/scripts/<file>` is a sibling sub-skill installed alongside it. Build the full path from that directory (the agent reports the skill's base directory when the skill loads) and keep the working directory at the project root — the scripts read and write project files such as `docs/brand-guidelines.md`, `assets/design-tokens.json` or `src/` relative to it.
+
+## Quick Start
+
+**Inject brand context into prompts:**
+```bash
+node scripts/inject-brand-context.cjs
+node scripts/inject-brand-context.cjs --json
+```
+
+**Validate an asset:**
+```bash
+node scripts/validate-asset.cjs <asset-path>
+```
+
+**Extract/compare colors:**
+```bash
+node scripts/extract-colors.cjs --palette
+node scripts/extract-colors.cjs <image-path>
+```
+
+## Brand Sync Workflow
+
+```bash
+# 1. Edit docs/brand-guidelines.md (or use /brand update)
+# 2. Sync to design tokens
+node scripts/sync-brand-to-tokens.cjs
+# 3. Verify
+node scripts/inject-brand-context.cjs --json | head -20
+```
+
+The sync stops when it detects existing token files, `:root` custom properties
+or Tailwind v4 `@theme` variables in common CSS entry points and their local
+CSS imports, or Tailwind theme colors and presets. Review the reported source
+before proceeding. If the detected files are the managed
+`assets/design-tokens.*` outputs from an earlier sync and replacing them is
+intentional, re-run with `--force`.
+
+**Files synced:**
+- `docs/brand-guidelines.md` → Source of truth
+- `assets/design-tokens.json` → Token definitions
+- `assets/design-tokens.css` → CSS variables
+
+## Subcommands
+
+| Subcommand | Description | Reference |
+|------------|-------------|-----------|
+| `update` | Update brand identity and sync to all design systems | `references/update.md` |
+
+## References
+
+| Topic | File |
+|-------|------|
+| Voice Framework | `references/voice-framework.md` |
+| Visual Identity | `references/visual-identity.md` |
+| Messaging | `references/messaging-framework.md` |
+| Consistency | `references/consistency-checklist.md` |
+| Guidelines Template | `references/brand-guideline-template.md` |
+| Asset Organization | `references/asset-organization.md` |
+| Color Management | `references/color-palette-management.md` |
+| Typography | `references/typography-specifications.md` |
+| Logo Usage | `references/logo-usage-rules.md` |
+| Approval Checklist | `references/approval-checklist.md` |
+
+## Scripts
+
+| Script | Purpose |
+|--------|---------|
+| `scripts/inject-brand-context.cjs` | Extract brand context for prompt injection |
+| `scripts/sync-brand-to-tokens.cjs` | Sync brand-guidelines.md → design-tokens.json/css |
+| `scripts/validate-asset.cjs` | Validate asset naming, size, format |
+| `scripts/extract-colors.cjs` | Extract and compare colors against palette |
+
+## Templates
+
+| Template | Purpose |
+|----------|---------|
+| `templates/brand-guidelines-starter.md` | Complete starter template for new brands |
+
+## Routing
+
+1. Parse subcommand from `$ARGUMENTS` (first word)
+2. Load corresponding `references/{subcommand}.md`
+3. Execute with remaining arguments
+
+
+## Fonte
+
+Conteúdo derivado da skill `brand` do repositório [nextlevelbuilder/ui-ux-pro-max-skill](https://github.com/nextlevelbuilder/ui-ux-pro-max-skill) (MIT, © 2024 Next Level Builder; cópia do commit `477bcb2`, de 03/10/2026), renomeada como `terras-brand` no padrão da casa. Licença em `references/LICENSE-ui-ux-pro-max-skill.txt`.

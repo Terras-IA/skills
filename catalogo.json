@@ -1,6 +1,9 @@
 {
   "skills": [
     {
+      "nome": "terras-accessibility"
+    },
+    {
       "nome": "terras-adr"
     },
     {
@@ -34,11 +37,20 @@
       "nome": "terras-astro"
     },
     {
+      "nome": "terras-audio"
+    },
+    {
       "nome": "terras-azure-devops"
     },
     {
       "nome": "terras-backreview",
       "antigo": "backreview"
+    },
+    {
+      "nome": "terras-banner"
+    },
+    {
+      "nome": "terras-banner-design"
     },
     {
       "nome": "terras-bar-raiser-de-cultura",
@@ -51,8 +63,17 @@
       "nome": "terras-boundary"
     },
     {
+      "nome": "terras-brand"
+    },
+    {
+      "nome": "terras-brandkit"
+    },
+    {
       "nome": "terras-briefing-pre-reuniao-de-lideranca",
       "antigo": "briefing-pre-reuniao-de-lideranca"
+    },
+    {
+      "nome": "terras-canal-whatsapp"
     },
     {
       "nome": "terras-care-to-dare-coach",
@@ -60,6 +81,9 @@
     },
     {
       "nome": "terras-cobranca-hubspot"
+    },
+    {
+      "nome": "terras-comentarios"
     },
     {
       "nome": "terras-conciliacao-bancaria-ofx"
@@ -75,17 +99,65 @@
       "antigo": "construtor-de-job-description"
     },
     {
+      "nome": "terras-cover-letter"
+    },
+    {
       "nome": "terras-dashboard-de-utilizacao-de-beneficios",
       "antigo": "dashboard-de-utilizacao-de-beneficios"
+    },
+    {
+      "nome": "terras-database-migrations"
+    },
+    {
+      "nome": "terras-decisor"
+    },
+    {
+      "nome": "terras-deep-research"
+    },
+    {
+      "nome": "terras-design"
+    },
+    {
+      "nome": "terras-design-system"
+    },
+    {
+      "nome": "terras-design-taste-frontend"
+    },
+    {
+      "nome": "terras-design-taste-frontend-v1"
     },
     {
       "nome": "terras-drift"
     },
     {
+      "nome": "terras-e2e-testing"
+    },
+    {
+      "nome": "terras-ebook"
+    },
+    {
+      "nome": "terras-educacao-corporativa"
+    },
+    {
       "nome": "terras-elaboracao-proposta-comercial"
     },
     {
+      "nome": "terras-eval-harness"
+    },
+    {
+      "nome": "terras-excalidraw"
+    },
+    {
+      "nome": "terras-ffmpeg"
+    },
+    {
       "nome": "terras-fluxo-de-contas-a-pagar"
+    },
+    {
+      "nome": "terras-frontend-slides"
+    },
+    {
+      "nome": "terras-full-output-enforcement"
     },
     {
       "nome": "terras-gerador-de-all-hands",
@@ -122,7 +194,37 @@
       "nome": "terras-gestao-de-inadimplencia-cobranca"
     },
     {
+      "nome": "terras-governanca-padroes"
+    },
+    {
+      "nome": "terras-gpt-taste"
+    },
+    {
+      "nome": "terras-high-end-visual-design"
+    },
+    {
+      "nome": "terras-historias-infantis"
+    },
+    {
       "nome": "terras-humanizer"
+    },
+    {
+      "nome": "terras-humanizer-dev"
+    },
+    {
+      "nome": "terras-identidade"
+    },
+    {
+      "nome": "terras-image-to-code"
+    },
+    {
+      "nome": "terras-imagegen-frontend-mobile"
+    },
+    {
+      "nome": "terras-imagegen-frontend-web"
+    },
+    {
+      "nome": "terras-industrial-brutalist-ui"
     },
     {
       "nome": "terras-laravel"
@@ -131,7 +233,34 @@
       "nome": "terras-last30days"
     },
     {
+      "nome": "terras-linkedin"
+    },
+    {
+      "nome": "terras-linkedin-metricas"
+    },
+    {
+      "nome": "terras-mapeamento-de-processos"
+    },
+    {
       "nome": "terras-matriz-gut"
+    },
+    {
+      "nome": "terras-mcp-server"
+    },
+    {
+      "nome": "terras-miniapp-builder"
+    },
+    {
+      "nome": "terras-minimalist-ui"
+    },
+    {
+      "nome": "terras-noticias"
+    },
+    {
+      "nome": "terras-paper-diario"
+    },
+    {
+      "nome": "terras-pauta-mercado"
     },
     {
       "nome": "terras-people-dashboard-automatico",
@@ -139,6 +268,9 @@
     },
     {
       "nome": "terras-php"
+    },
+    {
+      "nome": "terras-pipeline-de-automacao"
     },
     {
       "nome": "terras-playbook-quebra-objecoes"
@@ -159,7 +291,16 @@
       "nome": "terras-qualificacao-icp-bant"
     },
     {
+      "nome": "terras-react-patterns"
+    },
+    {
+      "nome": "terras-react-testing"
+    },
+    {
       "nome": "terras-reconstrucao"
+    },
+    {
+      "nome": "terras-redesign-existing-projects"
     },
     {
       "nome": "terras-revisao-de-codigo"
@@ -177,17 +318,50 @@
       "antigo": "screenador-de-curriculos-com-ia"
     },
     {
+      "nome": "terras-security-review"
+    },
+    {
       "nome": "terras-seed"
+    },
+    {
+      "nome": "terras-seo"
     },
     {
       "nome": "terras-simulador-de-oferta",
       "antigo": "simulador-de-oferta"
     },
     {
+      "nome": "terras-skill-factory"
+    },
+    {
+      "nome": "terras-slides"
+    },
+    {
+      "nome": "terras-standards"
+    },
+    {
+      "nome": "terras-stitch-design-taste"
+    },
+    {
+      "nome": "terras-substack"
+    },
+    {
       "nome": "terras-tech-debt"
     },
     {
+      "nome": "terras-transcription"
+    },
+    {
       "nome": "terras-triagem-riscos-psicossociais"
+    },
+    {
+      "nome": "terras-ui-styling"
+    },
+    {
+      "nome": "terras-ui-ux-pro-max"
+    },
+    {
+      "nome": "terras-user-research"
     },
     {
       "nome": "terras-validacao"
@@ -199,7 +373,22 @@
       "nome": "terras-vercel"
     },
     {
+      "nome": "terras-video"
+    },
+    {
+      "nome": "terras-visual-explainer"
+    },
+    {
+      "nome": "terras-vite"
+    },
+    {
+      "nome": "terrasia-pauta-youtube"
+    },
+    {
       "nome": "terrasia-post-empresa"
+    },
+    {
+      "nome": "terrasia-vagas-coders"
     }
   ]
 }
