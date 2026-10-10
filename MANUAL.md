@@ -2,7 +2,7 @@
 
 > **Arquivo gerado.** Rode `node scripts/manual.mjs` para regravar; não edite à mão.
 
-**127 skills** neste repositório: **116 instaláveis** pelo marketplace, **8 de processo do motor** e **3 ligadas a projeto de cliente**.
+**128 skills** neste repositório: **117 instaláveis** pelo marketplace, **8 de processo do motor** e **3 ligadas a projeto de cliente**.
 
 ## Instalar e usar
 
@@ -36,7 +36,7 @@ O script cria um link por skill em cada pasta de agente que já existir na máqu
 - [Financeiro e fiscal](#financeiro-e-fiscal) — 6 skills
 - [Comercial e vendas](#comercial-e-vendas) — 3 skills
 - [Gestão, processos e decisão](#gestão-processos-e-decisão) — 4 skills
-- [Desenvolvimento de software](#desenvolvimento-de-software) — 23 skills
+- [Desenvolvimento de software](#desenvolvimento-de-software) — 24 skills
 - [Design e front-end](#design-e-front-end) — 16 skills
 - [Mídia e apresentação](#mídia-e-apresentação) — 10 skills
 - [Pesquisa e radar](#pesquisa-e-radar) — 6 skills
@@ -621,6 +621,14 @@ Testes de componente React com React Testing Library, Vitest ou Jest, MSW para s
 `/plugin install terras-react-testing@terras`
 
 Palavras-chave: `react testing library`, `testing library`, `vitest`, `jest`, `msw`, `teste de componente`, `jsdom`
+
+### terras-reverse-engineer
+
+Investiga como uma feature funciona em software empacotado (app Electron/JS, site, APK, binário nativo, .NET, firmware, HAR) com o REA por MCP ou CLI, cada conclusão presa a uma evidência. Use quando o pedido for "como esse app faz X", "quero uma feature igual à do app Y", engenharia reversa, decompilar, inspecionar ASAR, APK, DLL, ELF, bundle de site ou comparar versões de um app. Não use para repositório de código-fonte aberto. Reverse engineering, decompile, binary analysis, feature investigation.
+
+`/plugin install terras-reverse-engineer@terras` · v6.3.0
+
+Palavras-chave: `engenharia reversa`, `reverse engineering`, `rea`, `decompilar`, `electron`, `asar`, `apk`, `binario`, `elf`, `dotnet`, `har`, `feature`
 
 ### terras-revisao-cruzada
 

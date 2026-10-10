@@ -2242,6 +2242,35 @@
       ]
     },
     {
+      "name": "terras-reverse-engineer",
+      "description": "Investiga como uma feature funciona em software empacotado (app Electron/JS, site, APK, binário nativo, .NET, firmware, HAR) com o REA por MCP ou CLI, cada conclusão presa a uma evidência.",
+      "version": "6.3.0",
+      "source": "./skills/terras-reverse-engineer",
+      "strict": false,
+      "skills": [
+        "./"
+      ],
+      "category": "productivity",
+      "license": "MIT",
+      "author": {
+        "name": "Everton Lima"
+      },
+      "keywords": [
+        "engenharia reversa",
+        "reverse engineering",
+        "rea",
+        "decompilar",
+        "electron",
+        "asar",
+        "apk",
+        "binario",
+        "elf",
+        "dotnet",
+        "har",
+        "feature"
+      ]
+    },
+    {
       "name": "terras-revisao-cruzada",
       "description": "Manda uma spec ou um diff, em paralelo, para agentes de linha de comando de outros fornecedores (Codex, opencode) e junta os vereditos num revisao.md único, com concordâncias, divergências e a próxima ação. Pega o ponto cego que um modelo só não vê.",
       "version": "1.0.0",
