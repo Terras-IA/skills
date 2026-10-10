@@ -2,7 +2,7 @@
 
 > **Arquivo gerado.** Rode `node scripts/manual.mjs` para regravar; não edite à mão.
 
-**123 skills** neste repositório: **112 instaláveis** pelo marketplace, **8 de processo do motor** e **3 ligadas a projeto de cliente**.
+**127 skills** neste repositório: **116 instaláveis** pelo marketplace, **8 de processo do motor** e **3 ligadas a projeto de cliente**.
 
 ## Instalar e usar
 
@@ -36,7 +36,7 @@ O script cria um link por skill em cada pasta de agente que já existir na máqu
 - [Financeiro e fiscal](#financeiro-e-fiscal) — 6 skills
 - [Comercial e vendas](#comercial-e-vendas) — 3 skills
 - [Gestão, processos e decisão](#gestão-processos-e-decisão) — 4 skills
-- [Desenvolvimento de software](#desenvolvimento-de-software) — 19 skills
+- [Desenvolvimento de software](#desenvolvimento-de-software) — 23 skills
 - [Design e front-end](#design-e-front-end) — 16 skills
 - [Mídia e apresentação](#mídia-e-apresentação) — 10 skills
 - [Pesquisa e radar](#pesquisa-e-radar) — 6 skills
@@ -510,6 +510,22 @@ List Azure DevOps projects, repositories, and branches; create pull requests; ma
 
 Palavras-chave: `azure devops`, `azure repos`, `azure pipelines`, `azure boards`, `work item`
 
+### terras-consolidacao-de-memoria
+
+Mantém a memória de um repositório pequena e verdadeira: ao fechar uma spec, registra o que foi entregue e funde os requisitos num doc por domínio; compacta o histórico de decisões antigo em temas; audita convenção que o código já não segue. Só propõe, o dono aprova.
+
+`/plugin install terras-consolidacao-de-memoria@terras` · v1.0.0
+
+Palavras-chave: `consolidar specs`, `compactar historico`, `memoria do projeto`, `docs por dominio`, `fechar spec`, `changelog da spec`, `drift de convencao`, `documentacao inchada`
+
+### terras-critica-de-spec
+
+Critica uma spec antes da implementação (critério de aceite que não dá para testar, caso de borda faltando, escopo ambíguo, contradição, regra do repositório violada) e conduz a revisão com o autor, inclusive a divergência entre spec e código.
+
+`/plugin install terras-critica-de-spec@terras` · v1.0.0
+
+Palavras-chave: `critica de spec`, `revisar spec`, `revisao de especificacao`, `criterio de aceite`, `casos de borda`, `escopo ambiguo`, `spec drift`, `refinar spec`
+
 ### terras-database-migrations
 
 Migrations de banco seguras e reversíveis: mudanças só para frente em produção, expand-contract para renomear sem downtime, índices concorrentes, backfill em lotes, e fluxo por ferramenta (PostgreSQL, Prisma, Drizzle, Kysely, Django, golang-migrate). Use ao escrever migration de schema ou de dados, adicionar coluna ou índice em tabela grande ou planejar rollback. Database migrations.
@@ -566,6 +582,14 @@ Write solid PHP avoiding type juggling traps, array quirks, and common security 
 
 Palavras-chave: `php`, `composer`
 
+### terras-plano-tdd
+
+Transforma uma spec revisada em plano test-first (RED, GREEN, REFACTOR) com arquivo e nome de teste concretos, e uma lista de tarefas em que cada uma diz por comando o que é estar pronta. Use para planejar a implementação de uma feature com TDD.
+
+`/plugin install terras-plano-tdd@terras` · v1.0.0
+
+Palavras-chave: `plano tdd`, `plano de implementacao`, `test-first`, `red green refactor`, `tarefas`, `definicao de pronto`, `done`, `checklist de tarefas`, `planejar feature`
+
 ### terras-ponytail
 
 Lazy senior dev mode for any coding task (write, refactor, fix, review): YAGNI, stdlib first, no unrequested abstractions. Not for non-coding requests.
@@ -597,6 +621,14 @@ Testes de componente React com React Testing Library, Vitest ou Jest, MSW para s
 `/plugin install terras-react-testing@terras`
 
 Palavras-chave: `react testing library`, `testing library`, `vitest`, `jest`, `msw`, `teste de componente`, `jsdom`
+
+### terras-revisao-cruzada
+
+Manda uma spec ou um diff, em paralelo, para agentes de linha de comando de outros fornecedores (Codex, opencode) e junta os vereditos num revisao.md único, com concordâncias, divergências e a próxima ação. Pega o ponto cego que um modelo só não vê.
+
+`/plugin install terras-revisao-cruzada@terras` · v1.0.0
+
+Palavras-chave: `revisao cruzada`, `segunda opiniao`, `codex`, `opencode`, `outro modelo`, `revisar diff`, `revisar spec`, `quorum`, `multi-modelo`
 
 ### terras-revisao-de-codigo
 

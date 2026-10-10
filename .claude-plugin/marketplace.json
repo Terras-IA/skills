@@ -545,6 +545,31 @@
       ]
     },
     {
+      "name": "terras-consolidacao-de-memoria",
+      "description": "Mantém a memória de um repositório pequena e verdadeira: ao fechar uma spec, registra o que foi entregue e funde os requisitos num doc por domínio; compacta o histórico de decisões antigo em temas; audita convenção que o código já não segue. Só propõe, o dono aprova.",
+      "version": "1.0.0",
+      "source": "./skills/terras-consolidacao-de-memoria",
+      "strict": false,
+      "skills": [
+        "./"
+      ],
+      "category": "desenvolvimento",
+      "license": "MIT",
+      "author": {
+        "name": "Everton Lima"
+      },
+      "keywords": [
+        "consolidar specs",
+        "compactar historico",
+        "memoria do projeto",
+        "docs por dominio",
+        "fechar spec",
+        "changelog da spec",
+        "drift de convencao",
+        "documentacao inchada"
+      ]
+    },
+    {
       "name": "terras-construtor-de-job-description",
       "description": "Gera descrições de cargo claras, inclusivas e alinhadas à cultura e ao modelo de competências da organização.",
       "version": "1.0.0",
@@ -592,6 +617,31 @@
         "inmail",
         "recrutador",
         "job application"
+      ]
+    },
+    {
+      "name": "terras-critica-de-spec",
+      "description": "Critica uma spec antes da implementação (critério de aceite que não dá para testar, caso de borda faltando, escopo ambíguo, contradição, regra do repositório violada) e conduz a revisão com o autor, inclusive a divergência entre spec e código.",
+      "version": "1.0.0",
+      "source": "./skills/terras-critica-de-spec",
+      "strict": false,
+      "skills": [
+        "./"
+      ],
+      "category": "desenvolvimento",
+      "license": "MIT",
+      "author": {
+        "name": "Everton Lima"
+      },
+      "keywords": [
+        "critica de spec",
+        "revisar spec",
+        "revisao de especificacao",
+        "criterio de aceite",
+        "casos de borda",
+        "escopo ambiguo",
+        "spec drift",
+        "refinar spec"
       ]
     },
     {
@@ -1981,6 +2031,32 @@
       ]
     },
     {
+      "name": "terras-plano-tdd",
+      "description": "Transforma uma spec revisada em plano test-first (RED, GREEN, REFACTOR) com arquivo e nome de teste concretos, e uma lista de tarefas em que cada uma diz por comando o que é estar pronta. Use para planejar a implementação de uma feature com TDD.",
+      "version": "1.0.0",
+      "source": "./skills/terras-plano-tdd",
+      "strict": false,
+      "skills": [
+        "./"
+      ],
+      "category": "desenvolvimento",
+      "license": "MIT",
+      "author": {
+        "name": "Everton Lima"
+      },
+      "keywords": [
+        "plano tdd",
+        "plano de implementacao",
+        "test-first",
+        "red green refactor",
+        "tarefas",
+        "definicao de pronto",
+        "done",
+        "checklist de tarefas",
+        "planejar feature"
+      ]
+    },
+    {
       "name": "terras-playbook-quebra-objecoes",
       "description": "Classifica a objeção real por trás do que o cliente disse e devolve caminhos de resposta apoiados no que a empresa consegue sustentar, sem prometer preço, prazo ou funcionalidade que não existem.",
       "version": "1.0.0",
@@ -2163,6 +2239,32 @@
         "melhorar design",
         "repaginar",
         "upgrade visual"
+      ]
+    },
+    {
+      "name": "terras-revisao-cruzada",
+      "description": "Manda uma spec ou um diff, em paralelo, para agentes de linha de comando de outros fornecedores (Codex, opencode) e junta os vereditos num revisao.md único, com concordâncias, divergências e a próxima ação. Pega o ponto cego que um modelo só não vê.",
+      "version": "1.0.0",
+      "source": "./skills/terras-revisao-cruzada",
+      "strict": false,
+      "skills": [
+        "./"
+      ],
+      "category": "desenvolvimento",
+      "license": "MIT",
+      "author": {
+        "name": "Everton Lima"
+      },
+      "keywords": [
+        "revisao cruzada",
+        "segunda opiniao",
+        "codex",
+        "opencode",
+        "outro modelo",
+        "revisar diff",
+        "revisar spec",
+        "quorum",
+        "multi-modelo"
       ]
     },
     {

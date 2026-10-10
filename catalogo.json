@@ -95,11 +95,17 @@
       "nome": "terras-conferencia-nfe-tomador-prestador"
     },
     {
+      "nome": "terras-consolidacao-de-memoria"
+    },
+    {
       "nome": "terras-construtor-de-job-description",
       "antigo": "construtor-de-job-description"
     },
     {
       "nome": "terras-cover-letter"
+    },
+    {
+      "nome": "terras-critica-de-spec"
     },
     {
       "nome": "terras-dashboard-de-utilizacao-de-beneficios",
@@ -273,6 +279,9 @@
       "nome": "terras-pipeline-de-automacao"
     },
     {
+      "nome": "terras-plano-tdd"
+    },
+    {
       "nome": "terras-playbook-quebra-objecoes"
     },
     {
@@ -301,6 +310,9 @@
     },
     {
       "nome": "terras-redesign-existing-projects"
+    },
+    {
+      "nome": "terras-revisao-cruzada"
     },
     {
       "nome": "terras-revisao-de-codigo"
