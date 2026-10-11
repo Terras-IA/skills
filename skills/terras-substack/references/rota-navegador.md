@@ -10,7 +10,7 @@ Use quando:
 Ferramenta: a skill `browser-use` (navegador embutido do ZCode). O agente
 controla a aba; o usuario ve a sessao acontecer na tela.
 
-## Estado atual desta maquina (2026-09-15)
+## Estado observado na maquina de validacao (2026-09-15)
 
 - O navegador embutido do ZCode **nao tem sessao** na Substack (mostra
   "Log in or sign up").

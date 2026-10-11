@@ -1,7 +1,7 @@
 ---
 name: terras-substack
 description: Publica, agenda e gerencia posts na Substack pela API interna do editor: rascunho, post, Note, agendamento, despublicar e envio de imagem. Use quando o pedido envolver Substack, newsletter, publicar ou agendar post, ou conferir rascunhos.
-keywords: [substack, publicar, publish, newsletter, rascunho, draft, note, nota, agendar, schedule, unpublish, prosemirror, eolimabr]
+keywords: [substack, publicar, publish, newsletter, rascunho, draft, note, nota, agendar, schedule, unpublish, prosemirror]
 ---
 
 # Publicar na Substack
@@ -66,16 +66,14 @@ Antes de qualquer coisa, rode `check`. Ele diz o que falta:
 python3 $SKILL_DIR/scripts/terras_substack.py check
 ```
 
-### Estado desta maquina (2026-09-15)
+### Estado da validacao (2026-09-17)
 
-Ja configurado e validado ao vivo:
+A conta, a publicacao e o `user_id` de cada maquina ficam na config local
+(`check` mostra o que esta configurado), nunca neste arquivo. Se o cookie
+expirar, reimporte com
+`chrome_cookie.py substack.com --profile <perfil-do-navegador> --save-config --user-id <SEU_USER_ID>`.
 
-- publicacao: `https://eolimabr.substack.com` (id 11119659, perfil `@eolimabr`)
-- `user_id`: 534570112 (Everton Lima)
-- cookie: importado do navegador embutido do ZCode; se expirar, reimporte com
-  `chrome_cookie.py substack.com --profile ~/.config/ZCode --save-config --user-id 534570112`
-
-Validado de ponta a ponta: upload de imagem, criacao de rascunho com tags,
+Validado de ponta a ponta numa conta real: upload de imagem, criacao de rascunho com tags,
 leitura e remocao de rascunho, e o rascunho renderizado no editor (titulo,
 subtitulo, negrito, heading, lista, citacao, imagem com legenda, paywall e bloco
 de codigo). `publish` foi validado em 2026-09-17, publicando so na web (sem

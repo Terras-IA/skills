@@ -4,7 +4,7 @@ Nao existe API publica de escrita. Tudo abaixo e o que o **editor web** usa.
 
 Proveniencia das informacoes:
 
-1. **Validado ao vivo nesta conta** (2026-09-15, publicacao `eolimabr.substack.com`):
+1. **Validado ao vivo numa conta real** (2026-09-15):
    criacao de rascunho, aplicacao de tags, upload de imagem, leitura e remocao de
    rascunho — todos executados com sucesso, e o resultado conferido dentro do
    editor.
@@ -63,7 +63,7 @@ ProseMirror serializado), nao um objeto:
   "draft_title": "Titulo",
   "draft_subtitle": "Linha de apoio",
   "draft_body": "{\"type\":\"doc\",\"content\":[...]}",
-  "draft_bylines": [{ "id": 534570112, "is_guest": false }],
+  "draft_bylines": [{ "id": <SEU_USER_ID>, "is_guest": false }],
   "audience": "everyone",
   "write_comment_permissions": "everyone",
   "draft_section_id": null,
@@ -138,7 +138,7 @@ Diferenca pratica: `403` = "existe, mas sem autorizacao"; `404` com HTML =
 ## Publicacao existente mas ausente no perfil
 
 `GET /api/v1/user/profile/self` pode devolver `publicationUsers: []` mesmo quando
-a publicacao existe (foi o caso desta conta: `eolimabr.substack.com` apareceu
+a publicacao existe (aconteceu na conta de validacao: o subdominio apareceu
 primeiro no editor, em `/publish/post`). Se `publications` vier vazio, abra o
 menu **Create → Article** no navegador: a URL do editor revela o subdominio.
 

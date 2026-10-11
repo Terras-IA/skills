@@ -176,7 +176,7 @@ Publica, agenda e gerencia posts e Notes na Substack pela API interna do editor,
 
 `/plugin install terras-substack@terras`
 
-Palavras-chave: `substack`, `publicar`, `publish`, `newsletter`, `rascunho`, `draft`, `note`, `nota`, `agendar`, `schedule`, `unpublish`, `prosemirror`, `eolimabr`
+Palavras-chave: `substack`, `publicar`, `publish`, `newsletter`, `rascunho`, `draft`, `note`, `nota`, `agendar`, `schedule`, `unpublish`, `prosemirror`
 
 ### terrasia-post-empresa
 
