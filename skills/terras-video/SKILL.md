@@ -153,8 +153,13 @@ passou pelo check e pelo gate da `terras-banner`.
 
 ### Narração em inglês
 
-O vídeo do carrossel em inglês (o par EN do post) precisa de três coisas que o roteiro
+O vídeo do carrossel em inglês (o par EN do post) precisa do que o roteiro
 em português não pede:
+
+- **Texto passado pela `terras-humanizer` antes do `plan`.** Fala, título e descrição
+  em inglês seguem os padrões de IA e a régua B1/B2 de
+  `terras-humanizer/references/ingles-b1b2.md`. Palavra comum também é palavra que o
+  TTS lê melhor. Termo técnico exato fica.
 
 - **`"sotaque": "nenhum"`, obrigatório.** O dicionário da `terras-audio` existe para
   achar termo inglês dentro de frase portuguesa (`cache` -> `kêsh`, `queue` -> `kiu`) e

@@ -80,7 +80,9 @@ aprovar"). O usuário escolhe da lista A (ou aprova na hora); para cada vaga:
    `references/aplicacao.md`); reclassificou, diga antes de seguir.
 2. **Monte o kit**: respostas de screening + carta curta EN no padrão da
    `terras-cover-letter` com o ângulo da vaga. Falta fato (pretensão, notice
-   period)? Pergunte uma vez e grave no kit do `perfil.md`.
+   period)? Pergunte uma vez e grave no kit do `perfil.md`. Resposta e carta em
+   inglês passam pela `terras-humanizer` (padrões de IA e régua B1/B2) antes do
+   portão final; termo da JD e termo técnico exato ficam.
 3. **Siga o playbook da fonte** até o formulário, preencha texto/radio/seleção
    e **pare nos portões** (login, captcha, upload de currículo, submit).
 4. **Portão final**: tabela campo→valor do que será enviado → "aprovado" →

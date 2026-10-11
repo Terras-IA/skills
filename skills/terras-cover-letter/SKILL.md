@@ -33,7 +33,7 @@ repositório, então a edição se faz lá e vale para todos. Nos comandos abaix
 2. Da vaga, extraia: título literal do anúncio, nome da empresa e o problema atual dela (2 minutos de pesquisa bastam).
 3. Escolha o ângulo do banco que casa com o anúncio, ou escreva um novo no mesmo formato: 1 a 2 linhas conectando a experiência ao problema daquela empresa.
 4. Escreva a carta trocando [Vaga], [Empresa], [ÂNGULO] e o nome do recrutador. A base longa atual tem ~400 palavras: aperte para 250 a 300 sem perder as três provas mais fortes.
-5. Rode o checklist do `base.md` antes de entregar.
+5. Rode o checklist do `base.md` e passe a carta pela `terras-humanizer` (modo embutido): padrões de IA e régua B1/B2 de `terras-humanizer/references/ingles-b1b2.md`. As palavras-chave literais do anúncio (regra 7) e o termo técnico exato ficam como estão.
 6. Entregue em arquivo `carta-<empresa>-en.md` (ou `-pt.md` se pedir português), texto puro pronto para colar. Se a plataforma pedir um único campo de mensagem de candidatura, entregue a versão curta.
 
 ## Fontes das regras

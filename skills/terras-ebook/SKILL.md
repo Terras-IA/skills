@@ -288,6 +288,13 @@ As etapas também rodam separadas (`get_videos.py --json` →
 `get_transcripts.py` → `write_articles.py --entrada ... --saida ...` →
 `export_epub.py` / `build_ebook.py`), o que ajuda a testar sem gastar API.
 
+## Livro em inglês
+
+Com `TERRAS_EBOOK_IDIOMA=en`, cada capítulo e o `termos.md` passam pela
+`terras-humanizer` em modo arquivo antes da montagem: padrões de IA e régua B1/B2 de
+`terras-humanizer/references/ingles-b1b2.md`. O modo arquivo não toca em código,
+link nem frontmatter; termo técnico exato e termo do glossário ficam.
+
 ## Conferir antes de entregar
 
 Sempre, e com a ferramenta certa:

@@ -56,4 +56,4 @@ Ao terminar o plano, ofereça os próximos passos de condução do estudo (recru
 - **Evidência antes de conclusão:** todo achado sai dos dados; anote a fala ou o trecho que o sustenta.
 - **Sem invenção de respondente:** persona e citação precisam existir no material coletado.
 - **Entregável estruturado:** relatório com resumo executivo, método, achados priorizados, oportunidades e apêndice de evidências.
-- **Idioma:** escreva no idioma do pedido.
+- **Idioma:** escreva no idioma do pedido. Relatório ou roteiro em inglês passa pela `terras-humanizer` (padrões de IA e régua B1/B2 de `terras-humanizer/references/ingles-b1b2.md`); citação de respondente fica como foi dita.

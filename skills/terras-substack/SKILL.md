@@ -92,6 +92,9 @@ Se `publications` voltar vazio mesmo com a publicacao existindo, abra o menu
    `publications`.
 2. **Escrever**: salve o texto em `$posts_dir/drafts/<slug>.md` com frontmatter
    (`title`, `subtitle`, `audience`, `tags`) ou tenha o markdown em maos.
+   Texto em ingles passa pela `terras-humanizer` em modo arquivo antes de subir
+   (padroes de IA e regua B1/B2 de `terras-humanizer/references/ingles-b1b2.md`);
+   o modo arquivo nao toca em codigo, link nem frontmatter.
 3. **Conferir a conversao** antes de subir:
    `md2json arq.md` mostra o doc ProseMirror e `payload arq.md` mostra os campos
    da requisicao, com o `draft_body` resumido (o doc completo sai ao lado, no

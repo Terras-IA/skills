@@ -63,6 +63,12 @@ Quando o usuário não especificar objetivo/voz/tom, usar estes defaults:
 - Variar tamanho e início das frases. Nunca repetir o mesmo molde em parágrafos seguidos.
 - Preferir palavras do dia a dia, voz ativa e precisão em vez de adornos. Se uma
   frase curta resolve, usar a frase curta.
+- **Todo texto em inglês passa pela `terras-humanizer`** (modo embutido) antes de
+  entregar: os padrões de IA e a régua B1/B2 de
+  `terras-humanizer/references/ingles-b1b2.md`. Vale para `-en-long`, `-en-short`,
+  comentário e resposta em inglês. Termo técnico que é o nome exato da coisa fica.
+  Formato, bandas de caracteres, hook e CTA continuam sendo desta skill: a humanizer
+  limpa a prosa, não muda o formato.
 
 ## Revisão de texto existente
 
@@ -239,6 +245,7 @@ texto, é aqui. O que a medição confirmar volta para cá como formato a repeti
 - CTA coerente com a tese: sem verbo de ensinar/treinar quando o argumento é "não treinamos o modelo"
 - Compartimentalização de conhecimento sempre espelhada por governança (quem vê o quê)
 - Zero travessões "—" no texto do post
+- Texto em inglês passou pela `terras-humanizer`: nenhuma palavra acima de B1/B2 que não seja o termo exato da coisa
 - Frases com tamanho e início variados (não parece template)
 - Quando o objetivo incluir alcance: o tema tem data ou fato verificável, e o post entrega algo que o leitor salva (checklist, passo a passo, comparativo)?
 - Motor de alcance: data verificável, consequência operacional e material salvável, nessa ordem de prioridade

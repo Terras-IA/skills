@@ -32,6 +32,7 @@ As regras de fundo (ângulo, checagem de fato, idioma, tom humano) são as mesma
    - Máximo 100 caracteres por comentário, contando tudo que vai colar. Contar e entregar a contagem junto.
    - Idioma do post original, mesmo que o pedido chegue em português.
    - Zero travessão "—".
+   - Comentário em inglês passa pela `terras-humanizer` (modo embutido, padrões de IA e régua B1/B2 de `terras-humanizer/references/ingles-b1b2.md`) antes da contagem final. Termo técnico exato fica.
    - Sem elogio genérico ("great post", "concordo demais") e sem devolver o vocabulário do autor em espelho. O comentário acrescenta, não parafraseia.
    - Não endossar número, data ou versão sem checar. Em lote o caminho prático é comentar o argumento, não o fato; se algum fato do post parecer errado, avisar no chat e não no comentário.
    - O começo do comentário precisa fazer sentido sozinho, porque comentário também corta atrás do "ver mais".
@@ -81,3 +82,4 @@ A skill só escreve; publicar é ação externa em nome dele, então exige autor
 4. Zero travessão no texto dos comentários.
 5. Idioma de cada comentário igual ao do post correspondente.
 6. Nenhum número, data ou versão endossado sem checagem.
+7. Comentário em inglês passou pela `terras-humanizer`: sem palavra acima de B1/B2 que não seja o termo exato da coisa.

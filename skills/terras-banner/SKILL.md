@@ -123,7 +123,7 @@ No deck, basta o mesmo campo em cada slide do manifest.
 5. **Gate visual.** Passar o PNG pelo agente `documents:visual-judge` antes de entregar, olhando legibilidade sobre a arte (o ponto que mais costuma falhar) e se a manchete lê no tamanho de feed. Corrigir e repetir até passar; o gate é o que separa "ficou pronto" de "ficou bom".
 6. **Entrega por canal.** LinkedIn: gravar `banner-<slug>-<lang>.png` ao lado dos três arquivos do post, em texto puro no chat. Substack: subir com `upload-image` da `terras-substack` e inserir `![alt](url)` como primeiro nó do corpo, logo depois do frontmatter, porque o primeiro nó é o que a Substack usa como og:image.
 
-Cada idioma tem o próprio banner, com a manchete acompanhando o gancho daquele idioma, não tradução literal.
+Cada idioma tem o próprio banner, com a manchete acompanhando o gancho daquele idioma, não tradução literal. Texto em inglês do spec (`kick`, `headline`, `sub`, `foot`) passa pela `terras-humanizer` antes do render: padrões de IA e régua B1/B2 de `terras-humanizer/references/ingles-b1b2.md`.
 
 ## Marca
 

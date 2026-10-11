@@ -85,7 +85,7 @@ Escreva `TECH_DEBT_AUDIT.md` com esta estrutura:
 - **Parece ruim mas está certo**: decisões que você considerou apontar e escolheu não apontar, com o motivo. **Seção obrigatória.** Se ficou vazia, você não olhou direito.
 - **Perguntas abertas para o mantenedor**: o que não deu para saber se é dívida ou intenção.
 
-**Idioma do relatório**: português por padrão. Se o usuário estiver escrevendo em inglês ou o cliente for internacional, entregue em inglês.
+**Idioma do relatório**: português por padrão. Se o usuário estiver escrevendo em inglês ou o cliente for internacional, entregue em inglês, e a prosa em inglês passa pela `terras-humanizer` em modo arquivo (padrões de IA e régua B1/B2 de `terras-humanizer/references/ingles-b1b2.md`). Termo técnico, `arquivo:linha` e código ficam intactos.
 
 ## Modo repetição
 
@@ -120,6 +120,7 @@ Ferramenta ausente: registre em limitações e siga. Não bloqueie a auditoria p
 4. Algum achado recomenda reescrever em vez de mudar de forma específica?
 5. Existe elogio de cortesia, enchimento ou categoria vazia sem "nada material"?
 6. Nenhum valor de credencial foi copiado para o relatório?
+7. Relatório em inglês passou pela `terras-humanizer`?
 
 ## Limites
 
