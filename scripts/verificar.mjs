@@ -60,7 +60,10 @@ const DOCUMENTO = [
 const EMAIL = /[A-Za-z0-9._%+-]+@[A-Za-z0-9-]+(\.[A-Za-z0-9-]+)*\.[a-z]{2,}/g;
 const EMAIL_EXEMPLO = /(@(.+\.)?example\.(com|org|net)$|@[^@]*\.(example|test|invalid)$|^(you|your_email|user|usuario|seu_email)@)/i;
 const LICENCA = /(^|\/)[^/]*(OFL|LICENSE|NOTICE)[^/]*$/i;
-const LIXO = [/(^|\/)__pycache__\//, /\.pyc$/, /(^|\/)\.env$/, /(^|\/)config\.json$/, /(^|\/)\.venv\//, /(^|\/)node_modules\//];
+const LIXO = [/(^|\/)\.env$/, /(^|\/)config\.json$/, /(^|\/)\.venv\//, /(^|\/)node_modules\//];
+// Cache de bytecode do Python: o interpretador recria a cada uso da skill e o
+// .gitignore já o barra. Acusar aqui só fazia o gate falhar com a skill em uso.
+const CACHE_PY = /(^|\/)__pycache__(\/|$)|\.pyc$/;
 
 function arquivos(dir) {
   const saida = [];
@@ -127,6 +130,7 @@ export function verificar(raiz) {
     const vendor = vendorizados(dir);
     for (const caminho of arquivos(dir)) {
       const rel = relative(dir, caminho);
+      if (CACHE_PY.test(rel)) continue;
       if (LIXO.some((re) => re.test(rel)) && !/\.example\./.test(rel)) {
         acusa("lixo", caminho, "credencial, ambiente ou cache não entram no repositório");
         continue;

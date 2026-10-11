@@ -132,8 +132,13 @@ test("segredo no conteúdo é recusado", () => {
   assert.ok(regras(raiz).includes("segredo"));
 });
 
-test("arquivo de credencial ou cache é recusado", () => {
-  for (const arq of ["config.json", ".env", "scripts/__pycache__/x.pyc"]) {
+test("cache de Python é ignorado: o .gitignore barra e a skill em uso recria", () => {
+  const raiz = repo({ "skills/terras-exemplo/SKILL.md": SKILL_OK, "skills/terras-exemplo/scripts/__pycache__/x.cpython-314.pyc": "x" }, ["terras-exemplo"]);
+  assert.deepEqual(verificar(raiz), []);
+});
+
+test("arquivo de credencial ou ambiente é recusado", () => {
+  for (const arq of ["config.json", ".env", ".venv/bin/python"]) {
     const raiz = repo({ "skills/terras-exemplo/SKILL.md": SKILL_OK, [`skills/terras-exemplo/${arq}`]: "x" });
     assert.ok(regras(raiz).includes("lixo"), arq);
   }

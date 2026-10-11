@@ -85,6 +85,7 @@ function resumoDaPasta(dir) {
   const h = createHash("sha256");
   const andar = (d, rel) => {
     for (const nome of readdirSync(d).sort()) {
+      if (nome === "__pycache__") continue; // cache recriado pelo uso da skill; o .gitignore barra
       const p = join(d, nome);
       const r = rel ? `${rel}/${nome}` : nome;
       if (statSync(p).isDirectory()) andar(p, r);
@@ -133,7 +134,8 @@ export function sincronizarGrupos(raiz) {
     rmSync(base, { recursive: true, force: true });
     mkdirSync(join(base, ".claude-plugin"), { recursive: true });
     writeFileSync(join(base, ".claude-plugin/plugin.json"), JSON.stringify(manifestoDoGrupo(grupo, g, atual.owner?.name), null, 2) + "\n");
-    for (const nome of g.skills) cpSync(join(raiz, "skills", nome), join(base, "skills", nome), { recursive: true });
+    for (const nome of g.skills)
+      cpSync(join(raiz, "skills", nome), join(base, "skills", nome), { recursive: true, filter: (origem) => !/(^|\/)__pycache__(\/|$)/.test(origem) });
   }
   return Object.keys(grupos);
 }
