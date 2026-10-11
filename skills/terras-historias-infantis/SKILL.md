@@ -1,6 +1,6 @@
 ---
 name: terras-historias-infantis
-description: Cria histórias infantis ilustradas em quadrinhos e o LIVRO DE COLORIR da mesma história e das mesmas imagens — recebe um tema ou a história pronta, escreve o roteiro página a página (capa, cenas com balões, versículo se houver, aplicação), gera as imagens como arte vetorial infantil e deriva a versão para colorir. Serve para qualquer história infantil (cristã, escolar, cotidiana); use SEMPRE que o usuário mencionar quadrinhos, gibi, HQ, historinha, história ilustrada, livro de colorir, colorir, desenho para pintar, personagens e capa de história, Escola Dominical, história bíblica para crianças — mesmo sem a palavra "quadrinhos".
+description: "Histórias infantis ilustradas em quadrinhos e o livro de colorir da mesma história: roteiro página a página, arte vetorial infantil e versão para pintar. Use para gibi, HQ, historinha, livro de colorir, Escola Dominical ou história bíblica para crianças."
 ---
 
 # Histórias Infantis Ilustradas

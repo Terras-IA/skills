@@ -1,6 +1,6 @@
 ---
 name: terras-ebook
-description: "Cria e-book e audiolivro para vender: estrutura, diagramação, EPUB e PDF A5 diagramado como livro, capa, ISBN, escolha de plataforma, royalties, preço e lançamento — e transforma acervo de YouTube em e-book. Use quando o pedido envolver e-book, ebook, livro digital, EPUB, PDF de livro, Kindle, Amazon KDP, Kobo, Apple Books, Gumroad, Payhip, Draft2Digital, IngramSpark, ISBN, capa de livro, diagramação, sumário clicável, folio, glossário, nota de rodapé, lead magnet, playbook, apostila, material didático, audiolivro de e-book, precificação de produto digital, estratégia de lançamento, ou 'transformar meus vídeos em livro'. Publish, sell, self-publish, ebook, glossary, royalty."
+description: "Cria e-book e audiolivro para vender: estrutura, diagramação EPUB e PDF A5, capa, ISBN, plataforma, royalties, preço e lançamento, e transforma acervo de YouTube em livro. Use para e-book, EPUB, Kindle/KDP, apostila, lead magnet ou 'transformar meus vídeos em livro'."
 keywords: [ebook, e-book, epub, pdf, livro, kdp, kindle, amazon, gumroad, payhip, kobo, apple-books, draft2digital, isbn, capa, diagramacao, sumario, folio, royalties, preco, lancamento, lead-magnet, playbook, apostila, audiolivro, youtube, transcricao, self-publishing, glossario, nota-de-rodape]
 ---
 

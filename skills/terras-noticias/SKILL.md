@@ -1,6 +1,6 @@
 ---
 name: terras-noticias
-description: "Lê boletins e roundups de notícias (ratos de IA e afins), tria por criticidade e prioridade, resume todos os itens rápido e escreve o rascunho do post de digest para o LinkedIn. Use quando o usuário mandar um link de boletim semanal (ratos.link/epNN), pedir 'le as notícias', 'resumo das notícias', 'o que saiu essa semana', 'triagem de notícias', 'digest', ou julgar prioridade e criticidade de notícias de IA e tecnologia. News digest, news roundup, weekly recap, news triage, priority and criticality."
+description: "Lê boletins e roundups de notícias de IA e tecnologia, tria por criticidade e prioridade, resume os itens e escreve o rascunho do digest para o LinkedIn. Use para link de boletim semanal, 'resumo das notícias', 'o que saiu essa semana' ou triagem de notícias."
 keywords: [notícias, noticias, news, boletim, roundup, digest, ratos de ia, ratos, triagem, prioridade, criticidade, resumo semanal, news digest, weekly recap]
 ---
 

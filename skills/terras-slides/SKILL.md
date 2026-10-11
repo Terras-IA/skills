@@ -1,6 +1,6 @@
 ---
 name: terras-slides
-description: "Apresentações HTML estratégicas e persuasivas com Chart.js: estratégias por contexto, padrões de layout, fórmulas de copywriting e design tokens; inclui base de busca própria para estratégia/layout/copy. Use quando o pedido for criar slides, pitch deck ou apresentação em HTML (não PPTX). HTML slides, pitch deck, Chart.js, presentation."
+description: "Deck HTML estratégico e persuasivo com Chart.js: estratégia por contexto, layouts, fórmulas de copy e design tokens. Use para pitch deck ou apresentação de negócio em HTML (não PPTX). Para slides com animação ou converter PPT, use terras-frontend-slides."
 keywords: [slides, apresentação, pitch deck, html, chart.js, copywriting, storytelling, deck]
 license: MIT
 ---

@@ -15,6 +15,7 @@ Falhas e armadilhas observadas ao executar o fluxo sem a skill, na sessão de 20
 | 8 | Nome e slug do usuário estavam fixos no código | Quebra para qualquer outro membro | `me()` lê de `/bootstrap` |
 | 9 | Ao buscar "mais 30 posts", 11 já tinham curtida e comentário do usuário feitos à mão | Comentário duplicado em post já engajado | Passo 2: `commented()` e descarte explícito |
 | 10 | Rascunho atribuía experiência pessoal ao usuário ("changed it for me too") | Afirmação falsa publicada no nome dele | `estilo-comentarios.md`: sinalizar na aprovação |
+| 11 | Comentários EN de 2026-10-07 saíram sem passar pela `terras-humanizer`, com palavra acima de B1/B2 que não era termo técnico ("cutover", "throttling cliff", "guardrail") | Inglês mais difícil que o necessário para leitor de segunda língua | Passo 4 e `estilo-comentarios.md`: EN passa pela humanizer antes da tabela |
 
 ## Cenários para o teste de aderência
 

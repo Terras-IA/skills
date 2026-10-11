@@ -1,6 +1,6 @@
 ---
 name: terras-high-end-visual-design
-description: "Design visual de alto padrão: define fontes, espaçamento, sombras, cartões e animações que fazem o site parecer caro, e bloqueia os padrões que deixam design de IA com cara de barato. Use quando o pedido for algo sofisticado, com cara de agência, Apple-like/Linear-tier, premium ou de alto valor. High-end, premium design, agency-level."
+description: "Design visual de alto padrão: fontes, espaçamento, sombras, cartões e animações que fazem o site parecer caro, bloqueando o visual barato de IA. Use para algo premium, com cara de agência ou Apple/Linear. High-end, premium design."
 keywords: [premium, alto padrão, sofisticado, agência, animação, tipografia]
 license: MIT
 ---

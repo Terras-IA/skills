@@ -1,6 +1,6 @@
 ---
 name: terras-industrial-brutalist-ui
-description: "Interface brutalista industrial: grade suíça rígida, tipografia mecânica com contraste extremo, paleta utilitária e degradação analógica (halftone, scanline, dither). Use quando o pedido for UI crua e industrial, painel técnico denso, dashboard de telemetria, portfólio ou editorial com cara de blueprint/terminal militar. Industrial brutalism, Swiss typography, tactical UI."
+description: "Interface brutalista industrial: grade suíça rígida, tipografia mecânica de contraste extremo, paleta utilitária e textura analógica. Use para UI crua, painel técnico denso, dashboard de telemetria ou editorial com cara de blueprint. Industrial brutalism."
 keywords: [brutalista, industrial, swiss, tipografia, dashboard, terminal, blueprint, UI]
 license: MIT
 ---

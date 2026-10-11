@@ -1,6 +1,6 @@
 ---
 name: terras-video
-description: "Monta vídeo para YouTube e Shorts a partir de um roteiro: cartelas na identidade da marca, narração por voz neural, movimento fluido e mp4 pronto para publicar. Faz vídeo horizontal 1920x1080 e vídeo vertical 1080x1920, com área segura para a interface dos Shorts. Use quando o pedido envolver vídeo, vídeo vertical, YouTube, Shorts, Reels, TikTok, cartela, narração, locução, voz, trilha, mp4, 'faz um vídeo disso', 'faz um short', 'gera conteúdo em vídeo', ou quando o assunto for transformar um post, um digest ou um projeto em vídeo."
+description: "Monta vídeo para YouTube e Shorts a partir de roteiro: cartelas na identidade da marca, narração por voz neural e mp4 horizontal (1920x1080) ou vertical (1080x1920). Use para vídeo, Shorts, Reels, TikTok, 'faz um vídeo disso' ou transformar post em vídeo."
 keywords: [video, youtube, shorts, reels, tiktok, vertical, 1080x1920, cartela, narracao, locucao, voz, tts, mp4, ffmpeg, edge-tts, roteiro, terrasia]
 ---
 

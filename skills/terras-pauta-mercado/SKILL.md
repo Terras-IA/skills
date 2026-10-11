@@ -1,6 +1,6 @@
 ---
 name: terras-pauta-mercado
-description: "Transforma referência externa (repo, post, anúncio, paper) na análise mercado × TerrasIA com cobre/rejeita/falta e recibo, e no pacote de posts por canal (Company Page, LinkedIn pessoal, canal WhatsApp e Substack). Use quando mandarem um link para virar análise ou post, perguntarem o que o TerrasIA já cobre de algo, ou pedirem pauta de mercado ou comparação com concorrente. Market-vs-product content pipeline."
+description: "Transforma referência externa (repo, post, anúncio, paper) na análise mercado × TerrasIA com cobre/rejeita/falta e no pacote de posts por canal. Use para link que deve virar análise ou post, comparação com concorrente ou pauta de mercado."
 keywords: [pauta, mercado, análise de mercado, comparação, concorrente, referência, cobertura, cobre, rejeita, falta, recibo, post, linkedin, whatsapp, substack]
 ---
 

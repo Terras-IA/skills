@@ -1,6 +1,6 @@
 ---
 name: terras-miniapp-builder
-description: "Cria um miniapp do zero — recebe o assunto, entrevista as lacunas, decide arquitetura e LGPD, escolhe e dosa a paleta, escreve a copy (promessa, objeções, crenças limitantes), constrói o app local-first, verifica e publica na Vercel (preview e depois produção). Usa identidade visual já estabelecida no repositório quando existir, e o Google Stitch quando estiver acessível. Use sempre que o pedido for criar/gerar/fazer um app ou miniapp novo, um PWA, um app de bolso, um instrumento para um público, 'transforma esse conteúdo em app', 'quero um app pra isso', ou quando alguém entregar um assunto e esperar um app funcionando no ar. Trigger on: miniapp, mini-app, criar app, novo app, gerar aplicativo, app de bolso, PWA, publicar na vercel."
+description: "Cria miniapp do zero: entrevista as lacunas, decide arquitetura e LGPD, escreve a copy, constrói local-first e publica na Vercel. Use para criar app, miniapp ou PWA novo, ou 'transforma esse conteúdo em app'. Miniapp, PWA, publicar na Vercel."
 keywords: [miniapp, mini-app, criar app, novo app, gerar app, aplicativo, pwa, app de bolso, publicar app, vercel, google stitch, lgpd, psicologia das cores, paleta, copy, objecao, crenca limitante, pitch, local-first]
 ---
 

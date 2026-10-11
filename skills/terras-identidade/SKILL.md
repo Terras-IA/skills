@@ -1,6 +1,6 @@
 ---
 name: terras-identidade
-description: "Le a identidade visual de uma marca a partir de imagens (pecas de anuncio, prints, manual, papelaria, site) e entrega ela pronta para reusar: cores com papel medido, tipografia, marca recortada em PNG, linguagem visual e tokens de CSS/JSON/Tailwind para site, sistema, documento e peca de marketing. Use quando o pedido envolver identidade visual, marca, manual de marca, paleta, 'quais sao as cores', 'pega essas imagens e faz a identidade', tipografia de uma peca, 'deixa no visual da marca', 'aplica a identidade no site/documento', logo/ativo de marca, ou quando chegarem fotos de material de cliente por WhatsApp e for preciso extrair o visual dele. Cobre extracao, medicao de cor, recorte de logo e equivalencia de fonte livre."
+description: "Lê a identidade visual de uma marca a partir de imagens (anúncio, print, manual, site) e entrega cores medidas, tipografia, logo recortado e tokens CSS/JSON/Tailwind. Use para extrair paleta e identidade de material existente ou aplicar o visual da marca."
 keywords: [identidade, identidade visual, marca, branding, brand, paleta, cores, tipografia, fonte, logo, ativo, manual de marca, design system, tokens, css, tailwind, extracao, whatsapp, peca, anuncio, cliente]
 ---
 

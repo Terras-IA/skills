@@ -13,17 +13,19 @@ bash scripts/instalar.sh --aplicar
 ```yaml
 ---
 name: terras-<nome>          # kebab-case, prefixo terras-
-description: >-              # 1-3 frases: o que faz + "use quando" com gatilhos
-  PT-BR com os gatilhos específicos e termos-chave em inglês no final,
-  para acionamento bilíngue.
+description: "O que faz. Use quando <gatilhos>. Não é para X (terras-y). Termos EN."
+                             # uma linha entre aspas, no máximo 300 caracteres
 keywords: [termo1, termo2]   # descoberta
 version: "x.y.z"             # quando vendoriza upstream ou mantém changelog
 license: ...                 # quando deriva de upstream
 metadata: ...                # env vars opcionais/obrigatórias, requisitos
+disable-model-invocation: true  # só quando a skill repete o trabalho de outra: roda apenas por chamada
 ---
 ```
 
 Únicos campos que toda skill usa: `name` e `description`. O resto é opcional e deve justificar a existência.
+
+A `description` é o único texto que o agente lê para escolher entre as skills, e a lista inteira tem orçamento de contexto. Por isso: uma linha, no máximo 300 caracteres (o gate barra), o trabalho e os gatilhos primeiro, e a fronteira com a skill vizinha quando houver uma parecida.
 
 ## Corpo do SKILL.md
 
@@ -43,7 +45,7 @@ O agente já é inteligente; a skill existe para as decisões em que ele erra se
 
 Descrição boa (específica, com gatilho):
 
-> Extrai, guarda e diagnostica as estatísticas dos posts do LinkedIn do Everton: impressões, alcance... Use quando o pedido envolver métricas, performance de post, reach.
+> Extrai, guarda e diagnostica as estatísticas dos posts do LinkedIn do usuário: impressões, alcance na e fora da rede, reações e demografia. Use para analisar desempenho de post, comparar posts ou decidir o que repetir.
 
 Descrição ruim (genérica):
 

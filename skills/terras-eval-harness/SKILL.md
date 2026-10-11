@@ -1,6 +1,6 @@
 ---
 name: terras-eval-harness
-description: "Desenvolvimento guiado por eval para trabalho com agentes e prompts: definir evals de capacidade e de regressão antes de codar, corrigir por código, modelo, regra ou humano, e medir confiabilidade com pass@k e pass^k. Use ao definir critério de passa/falha, montar suíte de regressão de prompt ou comparar versões de modelo. Eval-driven development."
+description: "Desenvolvimento guiado por eval para agentes e prompts: evals de capacidade e regressão antes de codar e confiabilidade com pass@k e pass^k. Use ao definir critério de passa/falha, montar suíte de regressão de prompt ou comparar versões de modelo."
 keywords: [eval, evals, eval harness, pass@k, regressao de prompt, prompt regression, llm judge, benchmark de modelo]
 license: MIT
 homepage: https://github.com/affaan-m/ECC/tree/ef648e01899ba3e8dc6371642deaaf64b4477775/skills/eval-harness

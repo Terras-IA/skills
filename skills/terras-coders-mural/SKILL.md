@@ -1,13 +1,6 @@
 ---
 name: terras-coders-mural
-description: >-
-  Engajamento em lote no Mural de Posts da comunidade COD3RS (app.coders.com.br): lista os posts
-  novos ou mais antigos, curte no mural, lê cada post linkado no LinkedIn, escreve um comentário
-  curto e específico, publica em inglês no LinkedIn e o mesmo comentário em português no mural,
-  e opcionalmente publica o post do dia do usuário. Use quando o pedido envolver mural da COD3RS,
-  coders.com.br, "curtir e comentar os posts do coders", SSI do dia, post do dia, engajamento na
-  comunidade, "pega mais posts do mural", ou agendar essa rotina. COD3RS community wall, batch
-  like and comment, LinkedIn engagement.
+description: "Engajamento em lote no Mural de Posts da COD3RS: curte, lê o post linkado no LinkedIn e comenta em inglês lá e em português no mural, só com aprovação. Use para mural da COD3RS, coders.com.br, SSI do dia, post do dia ou agendar essa rotina."
 keywords: [cod3rs, coders, mural, linkedin, engajamento, ssi, comentario, curtir]
 version: "1.0.0"
 metadata:
@@ -52,7 +45,9 @@ comentário que prova leitura, e publica nos dois lugares só depois da aprovaç
    bastam). Leia o texto do autor, não o título do mural. Post sem link: comentário só no mural,
    baseado no texto do mural.
 4. **Escrever os comentários.** Ver `references/estilo-comentarios.md`. Um par por post: EN para o
-   LinkedIn, PT para o mural, mesma ideia. Salve num JSON (`id, autor, link, en, pt`). Se um
+   LinkedIn, PT para o mural, mesma ideia. Passe o EN pela `terras-humanizer` (modo embutido:
+   padrões de IA e régua B1/B2 de `terras-humanizer/references/ingles-b1b2.md`) antes de
+   montar a tabela; termo técnico exato fica. Salve num JSON (`id, autor, link, en, pt`). Se um
    comentário afirmar algo sobre a experiência pessoal do usuário, sinalize na tabela.
 5. **Aprovação.** Mostre a tabela completa e espere o "aprovado". Aceite exclusões ("menos 8452") e
    trocas de texto.

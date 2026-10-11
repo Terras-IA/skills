@@ -1,6 +1,6 @@
 ---
 name: terras-substack
-description: "Publica, agenda e gerencia posts na Substack (newsletter) usando a API interna do editor. Use quando o pedido envolver Substack, publicar post, subir newsletter, criar rascunho, publicar nota/Note, agendar publicacao, despublicar, enviar imagem para o Substack, ou conferir rascunhos existentes. Publish post, draft, newsletter, schedule, unpublish on Substack. Sem APIs pagas e sem instalar nada: apenas requests do Python do sistema."
+description: "Publica, agenda e gerencia posts e Notes na Substack pela API interna do editor, só com Python do sistema. Use para publicar ou agendar newsletter, criar rascunho, despublicar, subir imagem ou conferir rascunhos. Substack publish, draft, schedule."
 keywords: [substack, publicar, publish, newsletter, rascunho, draft, note, nota, agendar, schedule, unpublish, prosemirror, eolimabr]
 ---
 

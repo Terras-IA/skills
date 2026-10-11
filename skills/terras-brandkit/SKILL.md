@@ -1,6 +1,6 @@
 ---
 name: terras-brandkit
-description: "Gera a imagem do brand kit de uma marca: quadro de identidade visual com direção de logo, paleta, tipografia, aplicações em mockup e apresentação para cliente. Use quando o pedido for criar/gerar o quadro de marca, brand book visual, logo system, moodboard ou rebranding visual. Não é para ler identidade de imagens existentes (isso é a terras-identidade). Brand kit, brand guidelines, identity deck, logo system."
+description: "Gera a imagem do brand kit: quadro de identidade com direção de logo, paleta, tipografia e aplicações em mockup. Use para quadro de marca, brand book visual, logo system ou moodboard. Não lê identidade de imagens existentes (terras-identidade)."
 keywords: [brand kit, identidade visual, brand guidelines, logo, marca, rebranding, mockup]
 license: MIT
 ---

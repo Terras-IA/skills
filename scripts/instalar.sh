@@ -9,6 +9,11 @@
 # O que já estiver no lugar de um link (pasta real, ou link para outro lugar)
 # vai para ~/.terras-skills-backup/<data-hora>/<agente>/ antes. Pasta de agente
 # que não existe não é criada: instalar não decide quais agentes você usa.
+#
+# Um caminho por agente: quem instala por aqui não instala também pelo
+# marketplace (/plugin install ...@terras), senão a mesma skill aparece duas
+# vezes e o modelo escolhe uma sem avisar qual. O script avisa quando acha
+# plugin @terras instalado no Claude Code.
 set -euo pipefail
 
 APLICAR=0
@@ -79,6 +84,16 @@ for alvo in "${ALVOS[@]}"; do
     alterados=$((alterados + 1))
   done
 done
+
+# Plugin @terras no Claude Code duplica a skill que o link entrega.
+PLUGINS_CLAUDE="$HOME/.claude/plugins/installed_plugins.json"
+if [ -d "$HOME/.claude/skills" ] && [ -f "$PLUGINS_CLAUDE" ]; then
+  duplicados="$(grep -o '"terras[a-z0-9-]*@terras"' "$PLUGINS_CLAUDE" | tr -d '"' | sort -u | tr '\n' ' ')" || true
+  if [ -n "$duplicados" ]; then
+    echo "aviso: plugin(s) do marketplace instalado(s) no Claude Code junto com os links: $duplicados"
+    echo "       use um caminho só; para ficar com os links: claude plugin uninstall <plugin>"
+  fi
+fi
 
 if [ "$APLICAR" = 1 ]; then
   echo "$alterados alterado(s)."

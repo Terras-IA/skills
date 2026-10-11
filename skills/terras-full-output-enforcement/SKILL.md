@@ -1,6 +1,6 @@
 ---
 name: terras-full-output-enforcement
-description: "Força saída completa em qualquer tarefa: proíbe truncamento, placeholders e abreviações tipo 'resto igual', e trata quebra por limite de token. Use quando o modelo estiver entregando trabalho pela metade, código cortado ou quando o pedido exigir arquivo inteiro sem omissões. Full output, no placeholders, complete code."
+description: "Força saída completa: proíbe truncamento, placeholders e 'resto igual', e trata corte por limite de token. Use quando o modelo entregar trabalho pela metade ou código cortado, ou quando o pedido exigir arquivo inteiro. Full output, no placeholders."
 keywords: [output completo, truncamento, placeholder, código completo, sem omissões]
 license: MIT
 ---

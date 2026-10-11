@@ -1,6 +1,6 @@
 ---
 name: terras-brand
-description: "Marca: voz e tom, identidade visual, frameworks de mensagem, paleta e tipografia, organização/validação de ativos e auditoria de consistência; sincroniza as diretrizes com os tokens de design. Use quando o pedido for definir voz/tom da marca, escrever ou validar guia de marca, auditar consistência, extrair cores de uma peça ou organizar ativos. Brand voice, messaging framework, brand audit. Não é para gerar o quadro visual do brand kit (terras-brandkit)."
+description: "Marca: voz e tom, frameworks de mensagem, paleta, tipografia, organização de ativos e auditoria de consistência, sincronizadas com os tokens de design. Use para guia de marca, voz da marca ou auditoria. Não gera o quadro visual (terras-brandkit)."
 keywords: [marca, brand, voz, tom de voz, identidade visual, mensagem, auditoria de marca, ativos, paleta]
 license: MIT
 ---

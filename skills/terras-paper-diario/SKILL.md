@@ -1,6 +1,6 @@
 ---
 name: terras-paper-diario
-description: "Lê papers (arXiv e afins) sobre estudos que afetam o trabalho de quem desenvolve — agentes de IA em PRs, qualidade de código gerado, produtividade, mercado de trabalho — e produz uma análise com resumo honesto (com números), aplicação prática e aviso específico para JÚNIOR, PLENO e SÊNIOR, fechando com um recado PARA TODOS. Use quando o usuário mandar um link de paper, pedir 'analisar paper', 'paper do dia', ou na verificação diária do arXiv. Daily arXiv digest for developers with per-level (junior/mid/senior) analysis and warnings."
+description: "Analisa papers (arXiv e afins) que afetam quem desenvolve: resumo honesto com números, o que não significa, e aplicação e aviso para júnior, pleno e sênior. Use para link de paper, 'analisar paper', 'paper do dia' ou a verificação diária do arXiv."
 keywords: [paper, arxiv, estudo, pesquisa, paper do dia, paper-diario, agentes de ia, code review, carreira dev, análise de paper, digest diário]
 ---
 

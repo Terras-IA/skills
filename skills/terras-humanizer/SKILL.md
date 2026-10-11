@@ -1,7 +1,7 @@
 ---
 name: terras-humanizer
 version: 1.1.0
-description: "Reescreve texto com cara de IA para soar humano, sem mudar o que ele diz e sem inventar nada. Use para revisar ou editar prosa com marcas de IA em português ou inglês: contraste 'não é X, é Y', frase de efeito de uma linha, abertura encenada, trio forçado, travessão em excesso, hipérbole, linguagem de venda, jargão de IA, negrito decorativo, gerúndio pendurado; para texto em inglês, baixar o vocabulário para o nível B1/B2, trocando palavra difícil por palavra comum; e para resposta que re-explica o que o leitor já sabe antes de chegar à decisão. Humanize text, remove AI writing signs, lower English vocabulary to B1/B2, plain English, edit AI-sounding prose."
+description: "Reescreve texto com cara de IA para soar humano, sem mudar o que ele diz nem inventar nada; remove marcas de IA em português e inglês e baixa o inglês para nível B1/B2. Use para humanizar ou revisar prosa com cara de IA. Humanize text, plain English."
 keywords: [humanizar, humanizer, texto de IA, AI writing, marcas de IA, revisão, edição, prosa, resposta, reply, português, inglês, inglês B1 B2, vocabulário simples, simplificar inglês, plain English]
 ---
 

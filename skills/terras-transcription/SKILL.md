@@ -1,6 +1,6 @@
 ---
 name: terras-transcription
-description: "Transcreve áudio em texto fiel, localmente e sem API: reunião gravada, export do Otter/Zoom/Meet/Teams, nota de voz, entrevista, aula, podcast. Use quando o pedido envolver transcrição, transcrever, 'o que foi dito nessa reunião', ata, resumo de reunião, legenda, ou quando alguém mandar um .mp3/.m4a/.wav/.ogg e pedir o conteúdo em texto. Também cobre conferir transcrição recebida (inclusive quando veio traduzida), separar quem falou, e marcar trechos duvidosos em vez de inventar."
+description: "Transcreve áudio localmente e sem API (reunião, export do Otter/Zoom/Meet/Teams, nota de voz, entrevista, aula), separa quem falou e marca trecho duvidoso. Use para transcrever, ata, 'o que foi dito', ou quando chegar um .mp3/.m4a/.wav/.ogg."
 keywords: [transcricao, transcrição, transcrever, audio, mp3, m4a, wav, ogg, reuniao, reunião, ata, resumo, resumo de reuniao, otter, zoom, meet, teams, nota de voz, entrevista, aula, podcast, legenda, diarizacao, locutor, faster-whisper, whisper]
 ---
 

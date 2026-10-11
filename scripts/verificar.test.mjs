@@ -40,6 +40,16 @@ test("name do SKILL.md diferente da pasta é recusado", () => {
   assert.ok(regras(raiz).includes("nome"));
 });
 
+test("description de agente acima de 300 caracteres é recusada", () => {
+  const raiz = repo({ "skills/terras-exemplo/SKILL.md": SKILL_OK.replace("Faz uma coisa util.", "x".repeat(301)) });
+  assert.ok(regras(raiz).includes("descricao"));
+});
+
+test("description de agente em bloco YAML é recusada", () => {
+  const raiz = repo({ "skills/terras-exemplo/SKILL.md": SKILL_OK.replace("description: Faz uma coisa util.", "description: >-\n  Faz uma coisa util.") });
+  assert.ok(regras(raiz).includes("descricao"));
+});
+
 test("CRLF no cabeçalho é recusado", () => {
   const raiz = repo({ "skills/terras-exemplo/SKILL.md": SKILL_OK.replace(/\n/g, "\r\n") });
   assert.ok(regras(raiz).includes("crlf"));

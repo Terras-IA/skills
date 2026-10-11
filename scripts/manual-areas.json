@@ -8,6 +8,7 @@
         "terras-brand",
         "terras-brandkit",
         "terras-canal-whatsapp",
+        "terras-coders-mural",
         "terras-comentarios",
         "terras-ebook",
         "terras-historias-infantis",
@@ -15,6 +16,7 @@
         "terras-humanizer-dev",
         "terras-identidade",
         "terras-linkedin",
+        "terras-linkedin-alvos",
         "terras-linkedin-metricas",
         "terras-pauta-mercado",
         "terras-seo",
@@ -141,6 +143,7 @@
       "nome": "Mídia e apresentação",
       "descricao": "Áudio, vídeo, banner, slides e diagramas.",
       "skills": [
+        "terras-animacao",
         "terras-audio",
         "terras-banner",
         "terras-banner-design",

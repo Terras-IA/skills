@@ -1,6 +1,6 @@
 ---
 name: terras-design-taste-frontend
-description: "Anti-slop de frontend para landing pages, portfólios e redesigns: lê o briefing, infere a direção de design e entrega interface que não parece template, com design system real quando couber e auditoria primeiro em redesign. Use quando o pedido for criar ou redesenhar página web com qualidade de design. Anti-slop, landing page, portfolio, frontend design."
+description: "Anti-slop de frontend: lê o briefing, infere a direção de design e entrega landing page, portfólio ou redesign que não parece template. É a padrão da casa para página web com qualidade de design. Anti-slop, landing page, frontend design."
 keywords: [anti-slop, landing page, portfólio, design, frontend, redesenho]
 license: MIT
 ---

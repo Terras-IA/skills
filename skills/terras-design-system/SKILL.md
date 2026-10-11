@@ -1,6 +1,6 @@
 ---
 name: terras-design-system
-description: "Arquitetura de design tokens em três camadas (primitivo, semântico, componente), especificações de componentes e estados, variáveis CSS, escalas de espaçamento/tipografia, integração com Tailwind e busca de slides (estratégia, layout, copy) por BM25. Use quando o pedido for criar ou validar tokens, definir estados de componente, montar tema Tailwind ou preparar specs para handoff. Design tokens, token architecture, component specs, CSS variables."
+description: "Design tokens em três camadas (primitivo, semântico, componente), specs e estados de componente, variáveis CSS e tema Tailwind. Use para criar ou validar tokens, definir estados de componente, montar tema Tailwind ou preparar handoff. Design tokens, component specs."
 keywords: [design tokens, tokens, css variables, tailwind, componentes, specs, escalas, handoff]
 license: MIT
 ---

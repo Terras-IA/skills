@@ -1,6 +1,6 @@
 ---
 name: terras-design
-description: "Skill guarda-chuva de design: identidade de marca, tokens, UI, geração de logo com IA, programa de identidade corporativa (CIP, 50 entregáveis), apresentações HTML, banners, fotos para redes e ícones; roteia para as irmãs terras-brand, terras-design-system e terras-ui-styling e usa a terras-ui-ux-pro-max para estilo e paleta. Use quando o pedido for um pacote de design amplo, logo, identidade corporativa/papelaria ou quando não estiver claro qual peça de design se quer. Não é para capa do LinkedIn/Substack (terras-banner) nem leitura de identidade a partir de imagens (terras-identidade). Unified design skill, logo design, corporate identity program."
+description: "Guarda-chuva de design: logo com IA, identidade corporativa (CIP), pacote amplo de peças; roteia para terras-brand, terras-design-system e terras-ui-styling. Use quando o pedido de design for amplo ou não estiver claro qual peça se quer. Logo design, corporate identity."
 keywords: [design, logo, identidade corporativa, cip, papelaria, mockup, apresentação, banner, social media, ícones, roteamento]
 license: MIT
 ---

@@ -2,7 +2,7 @@
 
 > **Arquivo gerado.** Rode `node scripts/manual.mjs` para regravar; não edite à mão.
 
-**128 skills** neste repositório: **117 instaláveis** pelo marketplace, **8 de processo do motor** e **3 ligadas a projeto de cliente**.
+**130 skills** neste repositório: **119 instaláveis** pelo marketplace, **8 de processo do motor** e **3 ligadas a projeto de cliente**.
 
 ## Instalar e usar
 
@@ -27,18 +27,24 @@ O script cria um link por skill em cada pasta de agente que já existir na máqu
 
 **Sem link simbólico** (Windows, ou agente que não segue link): copie a pasta `skills/<nome>/` para a pasta de skills do agente. É também o caminho para instalar apenas algumas skills, em vez do conjunto inteiro.
 
+**Um caminho por agente.** O marketplace e o `instalar.sh` entregam a mesma skill por dois caminhos. Num mesmo agente, use só um: com os dois, a skill aparece duas vezes, o modelo escolhe uma pelo nome e pela descrição e não avisa qual rodou.
+
+**Muitas skills instaladas.** O Claude Code entrega ao modelo a lista de skills com orçamento de cerca de 1% da janela de contexto. Com o catálogo inteiro, a descrição que não cabe é cortada e a skill aparece só pelo nome: aí ela quase só roda quando chamada por ele (`/terras-video`). Instale só o que usa, ou aumente o orçamento em `~/.claude/settings.json` com `"env": { "SLASH_COMMAND_TOOL_CHAR_BUDGET": "40000" }` (cerca de 10 mil tokens a mais por sessão).
+
+**Skills só por chamada.** `terras-design-taste-frontend-v1`, `terras-gpt-taste` e `terras-humanizer-dev` repetem o trabalho de outra skill da casa e têm `disable-model-invocation: true`: o modelo não as escolhe sozinho, elas rodam quando você chama pelo nome.
+
 **Como pedir.** A skill certa casa pelas palavras do seu pedido, então citar o termo forte ajuda mais do que pedir genérico: "revisa esse post do LinkedIn", "erro de fila no Laravel", "monta a matriz GUT disso". Cada skill abaixo lista as palavras-chave que a acionam.
 
 ## Índice
 
-- [Conteúdo, marca e publicação](#conteúdo-marca-e-publicação) — 15 skills
+- [Conteúdo, marca e publicação](#conteúdo-marca-e-publicação) — 17 skills
 - [Pessoas, RH e carreira](#pessoas-rh-e-carreira) — 26 skills
 - [Financeiro e fiscal](#financeiro-e-fiscal) — 6 skills
 - [Comercial e vendas](#comercial-e-vendas) — 3 skills
 - [Gestão, processos e decisão](#gestão-processos-e-decisão) — 4 skills
 - [Desenvolvimento de software](#desenvolvimento-de-software) — 24 skills
 - [Design e front-end](#design-e-front-end) — 16 skills
-- [Mídia e apresentação](#mídia-e-apresentação) — 10 skills
+- [Mídia e apresentação](#mídia-e-apresentação) — 11 skills
 - [Pesquisa e radar](#pesquisa-e-radar) — 6 skills
 - [IA, prompts e agentes](#ia-prompts-e-agentes) — 6 skills
 
@@ -48,7 +54,7 @@ O script cria um link por skill em cada pasta de agente que já existir na máqu
 
 ### terras-brand
 
-Marca: voz e tom, identidade visual, frameworks de mensagem, paleta e tipografia, organização/validação de ativos e auditoria de consistência; sincroniza as diretrizes com os tokens de design. Use quando o pedido for definir voz/tom da marca, escrever ou validar guia de marca, auditar consistência, extrair cores de uma peça ou organizar ativos. Brand voice, messaging framework, brand audit. Não é para gerar o quadro visual do brand kit (terras-brandkit).
+Marca: voz e tom, frameworks de mensagem, paleta, tipografia, organização de ativos e auditoria de consistência, sincronizadas com os tokens de design. Use para guia de marca, voz da marca ou auditoria. Não gera o quadro visual (terras-brandkit).
 
 `/plugin install terras-brand@terras`
 
@@ -56,7 +62,7 @@ Palavras-chave: `marca`, `brand`, `voz`, `tom de voz`, `identidade visual`, `men
 
 ### terras-brandkit
 
-Gera a imagem do brand kit de uma marca: quadro de identidade visual com direção de logo, paleta, tipografia, aplicações em mockup e apresentação para cliente. Use quando o pedido for criar/gerar o quadro de marca, brand book visual, logo system, moodboard ou rebranding visual. Não é para ler identidade de imagens existentes (isso é a terras-identidade). Brand kit, brand guidelines, identity deck, logo system.
+Gera a imagem do brand kit: quadro de identidade com direção de logo, paleta, tipografia e aplicações em mockup. Use para quadro de marca, brand book visual, logo system ou moodboard. Não lê identidade de imagens existentes (terras-identidade).
 
 `/plugin install terras-brandkit@terras`
 
@@ -64,15 +70,23 @@ Palavras-chave: `brand kit`, `identidade visual`, `brand guidelines`, `logo`, `m
 
 ### terras-canal-whatsapp
 
-Publica texto e/ou imagem no canal (newsletter) do WhatsApp pela sessão pareada do sidecar, com pré-checagem de papel e confirmação explícita. Use quando o pedido for postar ou mandar algo no canal do WhatsApp, publicar card ou texto no canal, ou conferir se o canal está pronto para postar. Publish to a WhatsApp channel (newsletter JID).
+Publica texto ou imagem no canal (newsletter) do WhatsApp pela sessão pareada do sidecar, com pré-checagem e confirmação explícita. Use para postar no canal do WhatsApp ou conferir se o canal está pronto. WhatsApp channel publishing.
 
 `/plugin install terras-canal-whatsapp@terras`
 
 Palavras-chave: `whatsapp`, `canal`, `channel`, `newsletter`, `publicar`, `publish`, `post`, `card`, `imagem`, `legenda`, `caption`, `baileys`, `sidecar`
 
+### terras-coders-mural
+
+Engajamento em lote no Mural de Posts da COD3RS: curte, lê o post linkado no LinkedIn e comenta em inglês lá e em português no mural, só com aprovação. Use para mural da COD3RS, coders.com.br, SSI do dia, post do dia ou agendar essa rotina.
+
+`/plugin install terras-coders-mural@terras` · v1.0.0
+
+Palavras-chave: `cod3rs`, `coders`, `mural`, `linkedin`, `engajamento`, `ssi`, `comentario`, `curtir`
+
 ### terras-comentarios
 
-Comenta em lote posts do LinkedIn de terceiros: o usuário manda uma lista de posts colados, a skill lê cada texto e devolve um comentário curto de até 100 caracteres, pronto para colar. Use sempre que o pedido tiver 2 ou mais posts para comentar, 'comenta esses posts', 'gera comentário para cada um', 'me dá comentários rápidos pra essa lista', comentar o feed, engajamento em lote. Não use para um post único com 'post a responder' (três arquivos) nem 'queria comentar' sozinho (comentário de ~450 caracteres): esses casos são da skill terras-linkedin.
+Comenta em lote posts do LinkedIn colados pelo usuário: um comentário de até 100 caracteres por post, pronto para colar. Use quando houver 2 ou mais posts para comentar. Post único para responder ou comentar é da terras-linkedin.
 
 `/plugin install terras-comentarios@terras`
 
@@ -80,7 +94,7 @@ Palavras-chave: `comentar`, `comentario`, `comentarios`, `lista de posts`, `lote
 
 ### terras-ebook
 
-Cria e-book e audiolivro para vender: estrutura, diagramação, EPUB e PDF A5 diagramado como livro, capa, ISBN, escolha de plataforma, royalties, preço e lançamento — e transforma acervo de YouTube em e-book. Use quando o pedido envolver e-book, ebook, livro digital, EPUB, PDF de livro, Kindle, Amazon KDP, Kobo, Apple Books, Gumroad, Payhip, Draft2Digital, IngramSpark, ISBN, capa de livro, diagramação, sumário clicável, folio, glossário, nota de rodapé, lead magnet, playbook, apostila, material didático, audiolivro de e-book, precificação de produto digital, estratégia de lançamento, ou 'transformar meus vídeos em livro'. Publish, sell, self-publish, ebook, glossary, royalty.
+Cria e-book e audiolivro para vender: estrutura, diagramação EPUB e PDF A5, capa, ISBN, plataforma, royalties, preço e lançamento, e transforma acervo de YouTube em livro. Use para e-book, EPUB, Kindle/KDP, apostila, lead magnet ou 'transformar meus vídeos em livro'.
 
 `/plugin install terras-ebook@terras`
 
@@ -88,13 +102,13 @@ Palavras-chave: `ebook`, `e-book`, `epub`, `pdf`, `livro`, `kdp`, `kindle`, `ama
 
 ### terras-historias-infantis
 
-Cria histórias infantis ilustradas em quadrinhos e o LIVRO DE COLORIR da mesma história e das mesmas imagens — recebe um tema ou a história pronta, escreve o roteiro página a página (capa, cenas com balões, versículo se houver, aplicação), gera as imagens como arte vetorial infantil e deriva a versão para colorir. Serve para qualquer história infantil (cristã, escolar, cotidiana); use SEMPRE que o usuário mencionar quadrinhos, gibi, HQ, historinha, história ilustrada, livro de colorir, colorir, desenho para pintar, personagens e capa de história, Escola Dominical, história bíblica para crianças — mesmo sem a palavra "quadrinhos".
+Histórias infantis ilustradas em quadrinhos e o livro de colorir da mesma história: roteiro página a página, arte vetorial infantil e versão para pintar. Use para gibi, HQ, historinha, livro de colorir, Escola Dominical ou história bíblica para crianças.
 
 `/plugin install terras-historias-infantis@terras`
 
 ### terras-humanizer
 
-Reescreve texto com cara de IA para soar humano, sem mudar o que ele diz e sem inventar nada. Use para revisar ou editar prosa com marcas de IA em português ou inglês: contraste 'não é X, é Y', frase de efeito de uma linha, abertura encenada, trio forçado, travessão em excesso, hipérbole, linguagem de venda, jargão de IA, negrito decorativo, gerúndio pendurado; para texto em inglês, baixar o vocabulário para o nível B1/B2, trocando palavra difícil por palavra comum; e para resposta que re-explica o que o leitor já sabe antes de chegar à decisão. Humanize text, remove AI writing signs, lower English vocabulary to B1/B2, plain English, edit AI-sounding prose.
+Reescreve texto com cara de IA para soar humano, sem mudar o que ele diz nem inventar nada; remove marcas de IA em português e inglês e baixa o inglês para nível B1/B2. Use para humanizar ou revisar prosa com cara de IA. Humanize text, plain English.
 
 `/plugin install terras-humanizer@terras` · v1.1.0
 
@@ -102,13 +116,15 @@ Palavras-chave: `humanizar`, `humanizer`, `texto de IA`, `AI writing`, `marcas d
 
 ### terras-humanizer-dev
 
-Reescreve ou revisa texto para soar natural e humano, preservando a voz, as opiniões e o ritmo do autor, sem deixar o texto errado ou informal demais. Use quando pedirem para humanizar texto, revisar prosa com cara de IA, tirar o tom de chatbot, deixar um texto mais natural e autor, ou analisar se um trecho parece escrito por IA, mesmo que a palavra "humanizar" não apareça.
+Variante da terras-humanizer que prioriza preservar a voz, as opiniões e o ritmo do autor, aceitando imperfeição natural. Só roda por chamada explícita (/terras-humanizer-dev); para humanizar texto, a padrão é a terras-humanizer. Author voice, natural prose.
 
 `/plugin install terras-humanizer-dev@terras`
 
+Palavras-chave: `humanizar`, `voz do autor`, `escrita natural`, `revisao de texto`
+
 ### terras-identidade
 
-Le a identidade visual de uma marca a partir de imagens (pecas de anuncio, prints, manual, papelaria, site) e entrega ela pronta para reusar: cores com papel medido, tipografia, marca recortada em PNG, linguagem visual e tokens de CSS/JSON/Tailwind para site, sistema, documento e peca de marketing. Use quando o pedido envolver identidade visual, marca, manual de marca, paleta, 'quais sao as cores', 'pega essas imagens e faz a identidade', tipografia de uma peca, 'deixa no visual da marca', 'aplica a identidade no site/documento', logo/ativo de marca, ou quando chegarem fotos de material de cliente por WhatsApp e for preciso extrair o visual dele. Cobre extracao, medicao de cor, recorte de logo e equivalencia de fonte livre.
+Lê a identidade visual de uma marca a partir de imagens (anúncio, print, manual, site) e entrega cores medidas, tipografia, logo recortado e tokens CSS/JSON/Tailwind. Use para extrair paleta e identidade de material existente ou aplicar o visual da marca.
 
 `/plugin install terras-identidade@terras`
 
@@ -116,15 +132,23 @@ Palavras-chave: `identidade`, `identidade visual`, `marca`, `branding`, `brand`,
 
 ### terras-linkedin
 
-Ajuda a escrever posts para LinkedIn. Use quando o usuário pedir para escrever, redigir, revisar ou melhorar um post/texto para LinkedIn, e também quando perguntar sobre alcance, impressões, views ou por que um post rendeu pouco. Use também quando ele colar o post de outra pessoa para responder ou comentar (post a responder, queria comentar, resposta curta ao post dele), mesmo que ele não use a palavra post. Cobre estrutura, hook, tom, CTA, hashtags, distribuição fora da rede, boas práticas da plataforma, resposta a post de terceiro e a regra de zero travessão (em dash), marcador de texto gerado por IA.
+Escreve e revisa posts de LinkedIn (hook, estrutura, CTA, hashtags, zero travessão) e explica alcance e impressões. Use para post de LinkedIn, por que um post rendeu pouco, ou responder/comentar um post colado de outra pessoa. Lote de posts é da terras-comentarios.
 
 `/plugin install terras-linkedin@terras`
 
 Palavras-chave: `linkedin`, `post`, `escrever`, `redigir`, `revisar`, `comentar`, `comentário`, `responder post`, `post de terceiro`, `resposta curta`, `hook`, `cta`, `hashtags`, `travessao`, `em dash`, `carrossel`, `alcance`, `impressoes`, `distribuição`, `views`, `fora da rede`
 
+### terras-linkedin-alvos
+
+Acompanha perfis-alvo do LinkedIn (executivos, gestores, recrutadores), acha os posts recentes, curte e prepara comentários que acrescentam, publicados só com aprovação. Use para networking com pessoas-chave, 'vê se fulano postou' ou agendar essa rotina.
+
+`/plugin install terras-linkedin-alvos@terras` · v1.0.0
+
+Palavras-chave: `linkedin`, `networking`, `alvos`, `perfis`, `recrutador`, `gestor`, `ceo`, `comentario`, `curtir`, `vaga`
+
 ### terras-linkedin-metricas
 
-Extrai, guarda e diagnostica as estatisticas dos posts do LinkedIn do Everton: impressoes, usuarios alcancados, divisao na rede e fora da rede, reacoes, comentarios, compartilhamentos, salvamentos, envios, visualizacoes de perfil, seguidores ganhos e os dados demograficos do publico alcancado. Use quando o pedido for analisar desempenho de post, entender por que um post rendeu ou nao rendeu, medir alcance, ver quem foi alcancado, comparar posts, montar relatorio de metricas do LinkedIn ou decidir o que repetir no proximo post.
+Extrai, guarda e diagnostica as estatísticas dos posts do LinkedIn do usuário: impressões, alcance na e fora da rede, reações, salvamentos, seguidores e demografia. Use para analisar desempenho de post, comparar posts ou decidir o que repetir.
 
 `/plugin install terras-linkedin-metricas@terras`
 
@@ -132,7 +156,7 @@ Palavras-chave: `linkedin`, `metricas`, `estatisticas`, `desempenho`, `impressoe
 
 ### terras-pauta-mercado
 
-Transforma referência externa (repo, post, anúncio, paper) na análise mercado × TerrasIA com cobre/rejeita/falta e recibo, e no pacote de posts por canal (Company Page, LinkedIn pessoal, canal WhatsApp e Substack). Use quando mandarem um link para virar análise ou post, perguntarem o que o TerrasIA já cobre de algo, ou pedirem pauta de mercado ou comparação com concorrente. Market-vs-product content pipeline.
+Transforma referência externa (repo, post, anúncio, paper) na análise mercado × TerrasIA com cobre/rejeita/falta e no pacote de posts por canal. Use para link que deve virar análise ou post, comparação com concorrente ou pauta de mercado.
 
 `/plugin install terras-pauta-mercado@terras`
 
@@ -148,7 +172,7 @@ Palavras-chave: `seo`, `schema markup`, `dados estruturados`, `sitemap`, `robots
 
 ### terras-substack
 
-Publica, agenda e gerencia posts na Substack (newsletter) usando a API interna do editor. Use quando o pedido envolver Substack, publicar post, subir newsletter, criar rascunho, publicar nota/Note, agendar publicacao, despublicar, enviar imagem para o Substack, ou conferir rascunhos existentes. Publish post, draft, newsletter, schedule, unpublish on Substack. Sem APIs pagas e sem instalar nada: apenas requests do Python do sistema.
+Publica, agenda e gerencia posts e Notes na Substack pela API interna do editor, só com Python do sistema. Use para publicar ou agendar newsletter, criar rascunho, despublicar, subir imagem ou conferir rascunhos. Substack publish, draft, schedule.
 
 `/plugin install terras-substack@terras`
 
@@ -156,7 +180,7 @@ Palavras-chave: `substack`, `publicar`, `publish`, `newsletter`, `rascunho`, `dr
 
 ### terrasia-post-empresa
 
-Produz a peça da Company Page do TerrasIA: o post na voz de produto e a imagem na identidade da marca, com aceite de leitura no celular. Traz a régua de texto da página (banda de 1.300 a 1.500, gancho no corte de ~210, link no primeiro comentário, humanizer aplicado), os templates das duas peças (banner 1200x628 e card 1080x1350), o script de render e medição de vãos, os tamanhos mínimos aprendidos em px e o checklist de publicação. Use quando o pedido for post da empresa, LinkedIn da empresa, Company Page, peça ou imagem de marca, ou fechar a publicação de uma análise. A análise de referência e o pacote por canal são da skill irmã terras-pauta-mercado.
+Produz a peça da Company Page do TerrasIA: post na voz de produto e imagem na identidade da marca (1200x628 e 1080x1350), com régua de texto e aceite no celular. Use para post da empresa ou Company Page. A análise de referência é da terras-pauta-mercado.
 
 `/plugin install terrasia-post-empresa@terras` · v1.0.0
 
@@ -232,7 +256,7 @@ Palavras-chave: `descrição de vaga`, `job description`, `descrição de cargo`
 
 ### terras-cover-letter
 
-Escreve e revisa cartas de apresentação (cover letters) para vagas internacionais e remotas. Use quando o usuário pedir carta de apresentação, cover letter, mensagem de candidatura para empresa de fora, InMail para recrutador, texto para vaga na gringa, ou revisar uma carta existente. Cobre tamanho, estrutura, personalização, tradução de experiência brasileira para valor global e remote readiness.
+Escreve e revisa cartas de apresentação para vagas internacionais e remotas, traduzindo experiência brasileira em valor global. Use para cover letter, carta de apresentação, InMail para recrutador ou mensagem de candidatura para empresa de fora.
 
 `/plugin install terras-cover-letter@terras`
 
@@ -248,7 +272,7 @@ Palavras-chave: `utilização de benefícios`, `dashboard de benefícios`, `ades
 
 ### terras-educacao-corporativa
 
-Aplica 26 prompts de educação corporativa (derivados do ebook da Alun Business) para gerar estratégia de T&D, diagnóstico de necessidades, mapa de competências, trilhas, programas, planos de aula e indicadores de impacto. Use quando o pedido envolver educação corporativa, treinamento corporativo, T&D, L&D, trilha de aprendizagem, mapa de competências, ROI de treinamento, workshop ou plano de aula corporativo. Corporate education, learning and development, training design.
+Educação corporativa com 26 prompts guiados: estratégia de T&D, diagnóstico de necessidades, mapa de competências, trilhas, planos de aula e indicadores de impacto. Use para T&D, L&D, trilha de aprendizagem, ROI de treinamento ou workshop corporativo.
 
 `/plugin install terras-educacao-corporativa@terras`
 
@@ -368,7 +392,7 @@ Palavras-chave: `risco psicossocial`, `riscos psicossociais`, `sobrecarga cronic
 
 ### terrasia-vagas-coders
 
-Filtra as vagas do board da comunidade COD3RS (app.coders.com.br/comunidade#vagas) contra o currículo do usuário e devolve só o que faz sentido real: balde A (recomendar), B (talvez) e C (descarte com motivo) — e, com aprovação por vaga, avança para a aplicação no site de cada uma (carta, formulário, portões de upload/login). Use quando o pedido envolver vagas da COD3RS, vagas do coders, 'o que tem de vaga pra mim', triagem de vagas no currículo, vagas que combinam comigo, board de vagas, candidatura nas vagas, 'aplica pra mim', aplicar nas vagas aprovadas, ou agendar essa triagem. Job board triage against resume, COD3RS community jobs, assisted job applications.
+Filtra as vagas do board da COD3RS contra o currículo do usuário em baldes A (recomendar), B (talvez) e C (descarte com motivo) e, com aprovação por vaga, avança na candidatura. Use para vagas da COD3RS, 'o que tem de vaga pra mim' ou aplicar nas aprovadas.
 
 `/plugin install terrasia-vagas-coders@terras` · v1.0.0
 
@@ -460,7 +484,7 @@ Palavras-chave: `qualificacao de lead`, `bant`, `icp`, `lead qualificado`, `disc
 
 ### terras-analise-swot
 
-Faz análise SWOT rastreável e terminada em ação: cada item cita a fonte (dado, documento, métrica), o que não tem fonte vira hipótese marcada com o teste que a confirmaria, os quadrantes são priorizados e a análise fecha em cruzamentos TOWS (SO, WO, ST, WT) com ação, dono e verificação. Use quando o pedido for SWOT, análise de cenário, posição competitiva, preparo de decisão estratégica ou 'forças, fraquezas, oportunidades e ameaças'.
+Análise SWOT rastreável: cada item cita a fonte, o que não tem fonte vira hipótese com teste, e fecha em cruzamentos TOWS com ação, dono e verificação. Use para SWOT, análise de cenário, posição competitiva ou preparo de decisão estratégica.
 
 `/plugin install terras-analise-swot@terras` · v1.0.0
 
@@ -468,7 +492,7 @@ Palavras-chave: `swot`, `analise swot`, `forcas`, `fraquezas`, `oportunidades`, 
 
 ### terras-mapeamento-de-processos
 
-Mapeia um processo a partir de áudio, gravação de tela, transcrição ou relato falado e devolve o mapa visual (AS-IS e TO-BE), o diagnóstico com números e o plano de melhoria priorizado com as oportunidades de automação. Use quando o pedido for mapear ou desenhar um processo, analisar o áudio ou a gravação de tela de uma rotina, achar o gargalo, reduzir tempo de atendimento, automatizar uma rotina operacional, fazer diagnóstico de processo, montar o fluxo AS-IS/TO-BE ou dimensionar quantas pessoas o processo consome. Cobre também 'é assim que a gente faz hoje, o que dá para melhorar'.
+Mapeia um processo a partir de áudio, gravação de tela ou relato e devolve o fluxo AS-IS/TO-BE, diagnóstico com números e plano de melhoria com oportunidades de automação. Use para mapear processo, achar gargalo ou automatizar rotina operacional.
 
 `/plugin install terras-mapeamento-de-processos@terras` · v1.4.0
 
@@ -476,7 +500,7 @@ Palavras-chave: `mapeamento de processo`, `mapear processo`, `processo`, `fluxog
 
 ### terras-matriz-gut
 
-Prioriza problemas e demandas concorrentes com a matriz GUT: notas 1-5 ancoradas em Gravidade, Urgência e Tendência, score por produto, faixa de decisão declarada antes de pontuar, desempate fixo e plano de ataque com dono e prazo. Use quando o pedido for priorizar, ordenar uma fila, decidir por onde começar, comparar problemas ou demandas de naturezas diferentes, ou quando 'tudo é urgente' e falta critério comum. Cobre também 'qual eu resolvo primeiro'.
+Prioriza problemas concorrentes com a matriz GUT: notas ancoradas de Gravidade, Urgência e Tendência, faixa de decisão antes de pontuar e plano de ataque com dono e prazo. Use para priorizar fila, decidir por onde começar ou quando 'tudo é urgente'.
 
 `/plugin install terras-matriz-gut@terras` · v1.0.0
 
@@ -484,7 +508,7 @@ Palavras-chave: `gut`, `matriz gut`, `priorizacao`, `priorizar`, `gravidade`, `u
 
 ### terras-pipeline-de-automacao
 
-Projeta e monta pipelines de automação em que scripts determinísticos executam o trabalho e o agente decide só em pontos de revisão fechados. Pipes and Filters com rastro de hashes (etapa se recusa a rodar sobre dado velho), recibos de execução (sucesso, falha sem deixar metade, já-estava-feito) e manuais em vez de leitura de código. Use quando pedirem automatizar de ponta a ponta um processo repetitivo (áudio, vídeo, documentos, relatórios, lotes de arquivos), projetar um pipeline com agente de código, ou consertar um pipeline que refaz trabalho, deixa artefato pela metade, perde a trilha de versão ou põe o modelo decidindo o que devia ser medido. Production pipeline, pipes and filters, provenance, receipts, idempotency, agentic workflow.
+Projeta pipelines de automação em que scripts determinísticos fazem o trabalho e o agente só decide em pontos de revisão, com rastro de hashes e recibos de execução. Use para automatizar processo repetitivo de ponta a ponta ou consertar pipeline que refaz ou perde trabalho.
 
 `/plugin install terras-pipeline-de-automacao@terras` · v1.0.0
 
@@ -528,7 +552,7 @@ Palavras-chave: `critica de spec`, `revisar spec`, `revisao de especificacao`, `
 
 ### terras-database-migrations
 
-Migrations de banco seguras e reversíveis: mudanças só para frente em produção, expand-contract para renomear sem downtime, índices concorrentes, backfill em lotes, e fluxo por ferramenta (PostgreSQL, Prisma, Drizzle, Kysely, Django, golang-migrate). Use ao escrever migration de schema ou de dados, adicionar coluna ou índice em tabela grande ou planejar rollback. Database migrations.
+Migrations seguras e reversíveis: expand-contract sem downtime, índice concorrente, backfill em lotes e fluxo por ferramenta (PostgreSQL, Prisma, Drizzle, Kysely, Django, golang-migrate). Use ao escrever migration, mexer em tabela grande ou planejar rollback.
 
 `/plugin install terras-database-migrations@terras`
 
@@ -544,7 +568,7 @@ Palavras-chave: `playwright`, `e2e`, `end-to-end`, `page object`, `teste flaky`,
 
 ### terras-governanca-padroes
 
-Audita onde as convenções de um projeto vivem (CLAUDE.md, AGENTS.md, lint, CI, docs, cabeça do time) e transforma padrão em governance rule: arquivo Markdown versionado, com dono, data de revisão, "quando NÃO usar" e ciclo de deprecação — legível e acionável por agente de IA. Use quando pedirem para avaliar/auditar padrões ou convenções de um repositório, padronizar um projeto, criar ou versionar regras do time, ou quando as regras vivem só em wiki/Notion/conversa. EN: governance rules, conventions as skills, standards audit, AGENTS.md.
+Audita onde as convenções de um projeto vivem e as transforma em regra versionada, com dono, revisão e deprecação, legível por agente. Use para auditar ou padronizar convenções de um repositório ou tirar regras da wiki. Governance rules, AGENTS.md.
 
 `/plugin install terras-governanca-padroes@terras`
 
@@ -568,7 +592,7 @@ Palavras-chave: `mcp server`, `servidor mcp`, `model context protocol`, `mcp sdk
 
 ### terras-miniapp-builder
 
-Cria um miniapp do zero — recebe o assunto, entrevista as lacunas, decide arquitetura e LGPD, escolhe e dosa a paleta, escreve a copy (promessa, objeções, crenças limitantes), constrói o app local-first, verifica e publica na Vercel (preview e depois produção). Usa identidade visual já estabelecida no repositório quando existir, e o Google Stitch quando estiver acessível. Use sempre que o pedido for criar/gerar/fazer um app ou miniapp novo, um PWA, um app de bolso, um instrumento para um público, 'transforma esse conteúdo em app', 'quero um app pra isso', ou quando alguém entregar um assunto e esperar um app funcionando no ar. Trigger on: miniapp, mini-app, criar app, novo app, gerar aplicativo, app de bolso, PWA, publicar na vercel.
+Cria miniapp do zero: entrevista as lacunas, decide arquitetura e LGPD, escreve a copy, constrói local-first e publica na Vercel. Use para criar app, miniapp ou PWA novo, ou 'transforma esse conteúdo em app'. Miniapp, PWA, publicar na Vercel.
 
 `/plugin install terras-miniapp-builder@terras`
 
@@ -624,7 +648,7 @@ Palavras-chave: `react testing library`, `testing library`, `vitest`, `jest`, `m
 
 ### terras-reverse-engineer
 
-Investiga como uma feature funciona em software empacotado (app Electron/JS, site, APK, binário nativo, .NET, firmware, HAR) com o REA por MCP ou CLI, cada conclusão presa a uma evidência. Use quando o pedido for "como esse app faz X", "quero uma feature igual à do app Y", engenharia reversa, decompilar, inspecionar ASAR, APK, DLL, ELF, bundle de site ou comparar versões de um app. Não use para repositório de código-fonte aberto. Reverse engineering, decompile, binary analysis, feature investigation.
+Investiga como uma feature funciona em software empacotado (Electron, site, APK, binário nativo, .NET, firmware) com o REA, cada conclusão presa a uma evidência. Use para 'como esse app faz X', decompilar ou comparar versões. Não é para código-fonte aberto.
 
 `/plugin install terras-reverse-engineer@terras` · v6.3.0
 
@@ -656,13 +680,13 @@ Palavras-chave: `security review`, `revisao de seguranca`, `autenticacao`, `auth
 
 ### terras-standards
 
-Aplica os Padrões Agnósticos de Engenharia e Produto v4.0 (arquitetura, segurança, privacidade e IA) com lastro em evidência real de cliente quando disponível. Use sempre que o usuário mencionar "padrões de engenharia", "v4.0", "Bloco G", "gate de produção", "AIP/RIPD/ROPA", "ISO 27001", "conformidade", "evidência de auditoria", ou pedir para avaliar conformidade, classificar perfil, criar um ADR, responder o questionário de adoção, ou buscar evidência real de um cliente.
+Aplica os Padrões Agnósticos de Engenharia e Produto v4.0 (arquitetura, segurança, privacidade e IA) com evidência real quando houver. Use para 'padrões de engenharia', gate de produção, AIP/RIPD/ROPA, ISO 27001, conformidade, evidência de auditoria ou ADR.
 
 `/plugin install terras-standards@terras`
 
 ### terras-tech-debt
 
-Auditoria de dívida técnica e arquitetura de um repositório, com achados citando arquivo:linha, severidade, esforço e a seção obrigatória 'parece ruim mas está certo'. Use quando o pedido for auditoria de dívida técnica, diagnóstico de codebase, revisão de arquitetura, health check de repositório ou avaliação de qualidade de código de um repo inteiro. Tech debt audit, codebase health check, architecture review, legacy assessment.
+Auditoria de dívida técnica e arquitetura de um repositório inteiro, com achados em arquivo:linha, severidade, esforço e a seção 'parece ruim mas está certo'. Use para diagnóstico de codebase, health check ou revisão de arquitetura. Tech debt audit.
 
 `/plugin install terras-tech-debt@terras`
 
@@ -698,7 +722,7 @@ Palavras-chave: `acessibilidade`, `accessibility`, `a11y`, `wcag`, `aria`, `leit
 
 ### terras-design
 
-Skill guarda-chuva de design: identidade de marca, tokens, UI, geração de logo com IA, programa de identidade corporativa (CIP, 50 entregáveis), apresentações HTML, banners, fotos para redes e ícones; roteia para as irmãs terras-brand, terras-design-system e terras-ui-styling e usa a terras-ui-ux-pro-max para estilo e paleta. Use quando o pedido for um pacote de design amplo, logo, identidade corporativa/papelaria ou quando não estiver claro qual peça de design se quer. Não é para capa do LinkedIn/Substack (terras-banner) nem leitura de identidade a partir de imagens (terras-identidade). Unified design skill, logo design, corporate identity program.
+Guarda-chuva de design: logo com IA, identidade corporativa (CIP), pacote amplo de peças; roteia para terras-brand, terras-design-system e terras-ui-styling. Use quando o pedido de design for amplo ou não estiver claro qual peça se quer. Logo design, corporate identity.
 
 `/plugin install terras-design@terras`
 
@@ -706,7 +730,7 @@ Palavras-chave: `design`, `logo`, `identidade corporativa`, `cip`, `papelaria`, 
 
 ### terras-design-system
 
-Arquitetura de design tokens em três camadas (primitivo, semântico, componente), especificações de componentes e estados, variáveis CSS, escalas de espaçamento/tipografia, integração com Tailwind e busca de slides (estratégia, layout, copy) por BM25. Use quando o pedido for criar ou validar tokens, definir estados de componente, montar tema Tailwind ou preparar specs para handoff. Design tokens, token architecture, component specs, CSS variables.
+Design tokens em três camadas (primitivo, semântico, componente), specs e estados de componente, variáveis CSS e tema Tailwind. Use para criar ou validar tokens, definir estados de componente, montar tema Tailwind ou preparar handoff. Design tokens, component specs.
 
 `/plugin install terras-design-system@terras`
 
@@ -714,7 +738,7 @@ Palavras-chave: `design tokens`, `tokens`, `css variables`, `tailwind`, `compone
 
 ### terras-design-taste-frontend
 
-Anti-slop de frontend para landing pages, portfólios e redesigns: lê o briefing, infere a direção de design e entrega interface que não parece template, com design system real quando couber e auditoria primeiro em redesign. Use quando o pedido for criar ou redesenhar página web com qualidade de design. Anti-slop, landing page, portfolio, frontend design.
+Anti-slop de frontend: lê o briefing, infere a direção de design e entrega landing page, portfólio ou redesign que não parece template. É a padrão da casa para página web com qualidade de design. Anti-slop, landing page, frontend design.
 
 `/plugin install terras-design-taste-frontend@terras`
 
@@ -722,7 +746,7 @@ Palavras-chave: `anti-slop`, `landing page`, `portfólio`, `design`, `frontend`,
 
 ### terras-design-taste-frontend-v1
 
-Versão 1 legada do design-taste-frontend (a v2 é a padrão da casa). Preservada para projetos que dependem do comportamento exato da v1. Use apenas quando a v2 quebrar algo específico do fluxo. Legacy v1, compatibilidade.
+Versão 1 legada da terras-design-taste-frontend, preservada para projetos que dependem do comportamento exato da v1. Só roda por chamada explícita (/terras-design-taste-frontend-v1); para frontend novo, use a terras-design-taste-frontend. Legacy v1.
 
 `/plugin install terras-design-taste-frontend-v1@terras`
 
@@ -730,7 +754,7 @@ Palavras-chave: `v1`, `legado`, `compatibilidade`, `frontend design`
 
 ### terras-gpt-taste
 
-Variante estrita do design-taste para GPT/Codex: variância de layout com randomização real, estrutura AIDA, bento sem buracos, GSAP (pinning, stacking, scrubbing) e anti-slop agressivo. Use quando o alvo for GPT/Codex e o pedido for landing page de nível Awwwards com motion avançado. Awwwards, landing page, GSAP, bento grid.
+Variante estrita do design-taste para GPT/Codex: layout com randomização real, AIDA, bento sem buracos, GSAP e anti-slop agressivo. Só roda por chamada explícita (/terras-gpt-taste); a padrão da casa é a terras-design-taste-frontend. Awwwards, GSAP.
 
 `/plugin install terras-gpt-taste@terras`
 
@@ -738,7 +762,7 @@ Palavras-chave: `gpt`, `codex`, `awwwards`, `landing page`, `gsap`, `bento`, `mo
 
 ### terras-high-end-visual-design
 
-Design visual de alto padrão: define fontes, espaçamento, sombras, cartões e animações que fazem o site parecer caro, e bloqueia os padrões que deixam design de IA com cara de barato. Use quando o pedido for algo sofisticado, com cara de agência, Apple-like/Linear-tier, premium ou de alto valor. High-end, premium design, agency-level.
+Design visual de alto padrão: fontes, espaçamento, sombras, cartões e animações que fazem o site parecer caro, bloqueando o visual barato de IA. Use para algo premium, com cara de agência ou Apple/Linear. High-end, premium design.
 
 `/plugin install terras-high-end-visual-design@terras`
 
@@ -746,7 +770,7 @@ Palavras-chave: `premium`, `alto padrão`, `sofisticado`, `agência`, `animaçã
 
 ### terras-image-to-code
 
-Pipeline imagem-primeiro para site: gera a própria imagem de referência, analisa em detalhe e implementa o frontend fiel a ela, seção a seção, evitando sub-geração e excesso de cartões aninhados. Use quando o pedido for transformar design/mockup em código ou reproduzir uma página com alta fidelidade. Image to code, design to code, screenshot to code.
+Pipeline imagem-primeiro: gera a imagem de referência, analisa e implementa o frontend fiel a ela, seção a seção. Use para transformar design, mockup ou screenshot em código ou reproduzir uma página com alta fidelidade. Image to code.
 
 `/plugin install terras-image-to-code@terras`
 
@@ -770,7 +794,7 @@ Palavras-chave: `imagem`, `site`, `landing`, `hero`, `comps`, `referência visua
 
 ### terras-industrial-brutalist-ui
 
-Interface brutalista industrial: grade suíça rígida, tipografia mecânica com contraste extremo, paleta utilitária e degradação analógica (halftone, scanline, dither). Use quando o pedido for UI crua e industrial, painel técnico denso, dashboard de telemetria, portfólio ou editorial com cara de blueprint/terminal militar. Industrial brutalism, Swiss typography, tactical UI.
+Interface brutalista industrial: grade suíça rígida, tipografia mecânica de contraste extremo, paleta utilitária e textura analógica. Use para UI crua, painel técnico denso, dashboard de telemetria ou editorial com cara de blueprint. Industrial brutalism.
 
 `/plugin install terras-industrial-brutalist-ui@terras`
 
@@ -786,7 +810,7 @@ Palavras-chave: `minimalista`, `minimal`, `editorial`, `notion`, `linear`, `bent
 
 ### terras-redesign-existing-projects
 
-Redesign de projeto existente: audita a UI atual, identifica padrões genéricos de IA e aplica padrão premium sem quebrar funcionalidade, em qualquer framework CSS ou CSS puro. Use quando o pedido for melhorar, repaginar, modernizar ou deixar bonito um site/app que já existe. Redesign, audit-first, upgrade UI.
+Redesign de projeto existente: audita a UI atual, identifica padrões genéricos de IA e aplica padrão premium sem quebrar funcionalidade. Use para melhorar, repaginar ou modernizar site ou app que já existe. Audit-first redesign.
 
 `/plugin install terras-redesign-existing-projects@terras`
 
@@ -794,7 +818,7 @@ Palavras-chave: `redesign`, `auditar UI`, `melhorar design`, `repaginar`, `upgra
 
 ### terras-stitch-design-taste
 
-Design system semântico para Google Stitch: gera DESIGN.md que impõe padrão premium anti-genérico (tipografia estrita, cor calibrada, layout assimétrico, micro-motion perpétuo, performance acelerada). Use quando o alvo for o Stitch ou quando o projeto precisar de um DESIGN.md como contrato de design. Stitch, design system, DESIGN.md.
+Gera o DESIGN.md para o Google Stitch: contrato de design premium anti-genérico (tipografia estrita, cor calibrada, layout assimétrico, micro-motion). Use quando o alvo for o Stitch ou o projeto precisar de DESIGN.md como contrato de design.
 
 `/plugin install terras-stitch-design-taste@terras`
 
@@ -802,7 +826,7 @@ Palavras-chave: `stitch`, `design system`, `DESIGN.md`, `micro-motion`, `tipogra
 
 ### terras-ui-styling
 
-Implementação de interface com shadcn/ui e Tailwind CSS: adicionar componentes, theming, acessibilidade, utilitários e responsividade, customização de tema e design visual em canvas. Use quando o pedido for implementar UI em código com shadcn/Tailwind, configurar tema, componentes acessíveis ou desenhar em canvas. shadcn/ui, Tailwind CSS, canvas, acessibilidade.
+Implementa interface com shadcn/ui e Tailwind CSS: componentes, tema, acessibilidade, responsividade e design em canvas. Use para implementar UI em código com shadcn/Tailwind ou configurar tema e componentes acessíveis. shadcn/ui, Tailwind.
 
 `/plugin install terras-ui-styling@terras`
 
@@ -810,7 +834,7 @@ Palavras-chave: `shadcn`, `shadcn/ui`, `tailwind`, `componentes`, `theming`, `te
 
 ### terras-ui-ux-pro-max
 
-Base de consulta local de UI/UX com motor de busca próprio (BM25 + regex): 79 estilos, 192 paletas por tipo de produto, 74 pares tipográficos, 119 diretrizes de UX, 105 ícones, 25 tipos de gráfico, presets de GSAP e guias de 22 stacks; gera o design system do produto (padrão de página, estilo, cores, tipografia, efeitos) e persiste em MASTER.md com overrides por página. Use quando o pedido for definir direção visual, escolher estilo/paleta/tipografia, gerar design system, checar regra de UX/acessibilidade ou buscar orientação de stack (React, Next, Vue, Tailwind, SwiftUI, Flutter...). UI/UX design intelligence, design system generator, style and palette search.
+Base local de UI/UX com busca própria: estilos, paletas por produto, pares tipográficos, diretrizes de UX e guias de stack; gera o design system do produto em MASTER.md. Use para definir direção visual, escolher estilo, paleta e tipografia ou checar regra de UX.
 
 `/plugin install terras-ui-ux-pro-max@terras`
 
@@ -820,9 +844,17 @@ Palavras-chave: `ui`, `ux`, `design system`, `estilos`, `paletas`, `tipografia`,
 
 *Áudio, vídeo, banner, slides e diagramas.*
 
+### terras-animacao
+
+Peça animada em loop (GIF e MP4 sem som) a partir de cena HTML dirigida por tempo, renderizada quadro a quadro. Use para animação, gif, banner animado ou diagrama que se desenha. Não é banner estático (terras-banner), vídeo narrado (terras-video) nem edição (terras-ffmpeg).
+
+`/plugin install terras-animacao@terras` · v1.0.0
+
+Palavras-chave: `animacao`, `animado`, `gif`, `gif animado`, `loop`, `video curto`, `mp4`, `movimento`, `motion`, `banner animado`, `peca animada`, `diagrama animado`, `bpmn animado`, `quadro a quadro`
+
 ### terras-audio
 
-Voz, pronúncia e cadeia de áudio para narração: vídeo, audiolivro comum e técnico, nota de voz, capítulo. Use quando o pedido envolver narração, locução, voz, TTS, áudio, audiolivro, audiobook, m4b, capítulo narrado, pronúncia de termo em inglês, sotaque, loudness, normalização, ou quando alguém reclamar que uma palavra soa errada ou que o áudio ficou baixo.
+Voz, pronúncia e cadeia de áudio para narração de vídeo, audiolivro, nota de voz e capítulo. Use para narração, locução, TTS, audiolivro, m4b, pronúncia de termo em inglês, loudness, ou quando uma palavra soa errada ou o áudio ficou baixo.
 
 Sai no plugin do grupo: `/plugin install terras-midia@terras`
 
@@ -830,7 +862,7 @@ Palavras-chave: `audio`, `voz`, `narracao`, `locucao`, `tts`, `edge-tts`, `audio
 
 ### terras-banner
 
-Cria a imagem que acompanha um post, newsletter ou nota: banner 1200x628 para LinkedIn e og:image da Substack, card em pé 1080x1350, capa. Use quando o pedido envolver imagem, banner, capa, thumbnail, card, 'post com imagem', 'faz a imagem disso', og:image, ou quando ele disser que o visual ficou padrão ou simples. Gera a arte por modelo (qwen-image na chave que ele já tem), monta a tipografia em HTML com a fonte da marca e renderiza em PNG no tamanho exato, com conferência de encaixe e gate visual antes de entregar.
+Imagem que acompanha post, newsletter ou nota: banner 1200x628 (LinkedIn, og:image da Substack), card 1080x1350 e capa, com arte gerada, tipografia da marca e gate visual. Use para imagem, banner, capa, thumbnail, card ou 'faz a imagem disso'.
 
 Sai no plugin do grupo: `/plugin install terras-midia@terras`
 
@@ -838,7 +870,7 @@ Palavras-chave: `banner`, `imagem`, `capa`, `thumbnail`, `card`, `og:image`, `su
 
 ### terras-banner-design
 
-Banners para redes sociais, anúncios, heros de site e impressão: 22 estilos de direção de arte, tamanhos por plataforma, com visuais gerados ou fornecidos. Use quando o pedido for banner de rede social, criativo de anúncio, capa, header ou peça para print. Não é para as capas do LinkedIn/Substack da casa (terras-banner). Social banners, ad creatives, print design.
+Banners para redes sociais, anúncios, heros de site e impressão, com 22 estilos de direção de arte e tamanhos por plataforma. Use para criativo de anúncio, header ou peça para print. Não é para as capas de LinkedIn/Substack da casa (terras-banner).
 
 `/plugin install terras-banner-design@terras`
 
@@ -854,7 +886,7 @@ Palavras-chave: `excalidraw`, `diagrama editavel`, `esboco`, `quadro branco`, `w
 
 ### terras-ffmpeg
 
-Edita vídeo e áudio com FFmpeg local a partir de pedidos em linguagem natural: cortar, aparar, juntar, redimensionar (9:16, 1:1), acelerar, legendas (SRT/ASS, animadas, karaokê), logos e textos sobrepostos, remoção de silêncio, sincronização multicâmera e de microfone externo, normalização de loudness, HDR/Dolby Vision para SDR, LUTs, música de fundo com ducking, exportação por plataforma (YouTube, Reels, TikTok, X, LinkedIn, podcast), checagem de conformidade, detecção de cenas e cortes de destaque. Use quando o pedido mencionar vídeo ou áudio (mp4, mov, mkv, wav, m4a), corte, legenda, reel, short, ffmpeg, transcodificação, ou pedir algo 'vertical', 'mais alto', 'legendado', '60 segundos'. 42 scripts em Python stdlib, sem nuvem e sem chave de API. Edit video, ffmpeg, captions, transcode.
+Edita vídeo e áudio com FFmpeg local por pedido em linguagem natural: cortar, juntar, 9:16, legendas, loudness, música com ducking, exportar por plataforma. Use para mp4/mov/wav, corte, legenda, reel, transcodificação ou 'deixa vertical'. Sem nuvem e sem chave de API.
 
 `/plugin install terras-ffmpeg@terras`
 
@@ -862,7 +894,7 @@ Palavras-chave: `ffmpeg`, `video`, `audio`, `edicao`, `cortar`, `legenda`, `reel
 
 ### terras-frontend-slides
 
-Cria apresentações HTML ricas em animação, sem dependência nenhuma, do zero ou convertendo PowerPoint. Use quando o pedido for apresentação, slides, palestra, pitch, ou converter PPT/PPTX para web. Palco 16:9 fixo (1920x1080) em um único arquivo HTML com CSS/JS embutidos, pacotes de estilo prontos (bold-template-pack) e exploração visual em vez de escolhas abstratas. HTML presentation, slides, pitch deck, palestra.
+Apresentação HTML com animação, sem dependências, em arquivo único 16:9, do zero ou convertendo PPT/PPTX. Use para slides, palestra, pitch ou converter PowerPoint para web. Para deck persuasivo com gráficos Chart.js, use terras-slides.
 
 `/plugin install terras-frontend-slides@terras`
 
@@ -870,7 +902,7 @@ Palavras-chave: `slides`, `apresentacao`, `palestra`, `pitch`, `html`, `pptx`, `
 
 ### terras-slides
 
-Apresentações HTML estratégicas e persuasivas com Chart.js: estratégias por contexto, padrões de layout, fórmulas de copywriting e design tokens; inclui base de busca própria para estratégia/layout/copy. Use quando o pedido for criar slides, pitch deck ou apresentação em HTML (não PPTX). HTML slides, pitch deck, Chart.js, presentation.
+Deck HTML estratégico e persuasivo com Chart.js: estratégia por contexto, layouts, fórmulas de copy e design tokens. Use para pitch deck ou apresentação de negócio em HTML (não PPTX). Para slides com animação ou converter PPT, use terras-frontend-slides.
 
 `/plugin install terras-slides@terras`
 
@@ -878,7 +910,7 @@ Palavras-chave: `slides`, `apresentação`, `pitch deck`, `html`, `chart.js`, `c
 
 ### terras-transcription
 
-Transcreve áudio em texto fiel, localmente e sem API: reunião gravada, export do Otter/Zoom/Meet/Teams, nota de voz, entrevista, aula, podcast. Use quando o pedido envolver transcrição, transcrever, 'o que foi dito nessa reunião', ata, resumo de reunião, legenda, ou quando alguém mandar um .mp3/.m4a/.wav/.ogg e pedir o conteúdo em texto. Também cobre conferir transcrição recebida (inclusive quando veio traduzida), separar quem falou, e marcar trechos duvidosos em vez de inventar.
+Transcreve áudio localmente e sem API (reunião, export do Otter/Zoom/Meet/Teams, nota de voz, entrevista, aula), separa quem falou e marca trecho duvidoso. Use para transcrever, ata, 'o que foi dito', ou quando chegar um .mp3/.m4a/.wav/.ogg.
 
 `/plugin install terras-transcription@terras`
 
@@ -886,7 +918,7 @@ Palavras-chave: `transcricao`, `transcrição`, `transcrever`, `audio`, `mp3`, `
 
 ### terras-video
 
-Monta vídeo para YouTube e Shorts a partir de um roteiro: cartelas na identidade da marca, narração por voz neural, movimento fluido e mp4 pronto para publicar. Faz vídeo horizontal 1920x1080 e vídeo vertical 1080x1920, com área segura para a interface dos Shorts. Use quando o pedido envolver vídeo, vídeo vertical, YouTube, Shorts, Reels, TikTok, cartela, narração, locução, voz, trilha, mp4, 'faz um vídeo disso', 'faz um short', 'gera conteúdo em vídeo', ou quando o assunto for transformar um post, um digest ou um projeto em vídeo.
+Monta vídeo para YouTube e Shorts a partir de roteiro: cartelas na identidade da marca, narração por voz neural e mp4 horizontal (1920x1080) ou vertical (1080x1920). Use para vídeo, Shorts, Reels, TikTok, 'faz um vídeo disso' ou transformar post em vídeo.
 
 Sai no plugin do grupo: `/plugin install terras-midia@terras`
 
@@ -894,7 +926,7 @@ Palavras-chave: `video`, `youtube`, `shorts`, `reels`, `tiktok`, `vertical`, `10
 
 ### terras-visual-explainer
 
-Gera páginas HTML autocontidas que explicam visualmente sistemas, mudanças de código, planos, dados e conceitos técnicos: diagramas (inclusive Mermaid), visões de arquitetura, revisão de diff ou de plano, recapitulações de projeto, tabelas comparativas e decks de slides. Faz também versão ANIMADA de diagrama (fluxo nas arestas, etapas acendendo em sequência, pulso viajando pela rota), com MP4 gravado quadro a quadro, quando pedido. Use quando o pedido for explicar algo visualmente, diagrama, arquitetura, revisão visual de mudança, ou quando uma tabela tiver 4+ linhas ou 3+ colunas. Visual explainer, diagramas, arquitetura, HTML.
+Páginas HTML autocontidas que explicam visualmente sistemas, diffs, planos, dados e conceitos: diagramas, arquitetura, tabelas comparativas, inclusive diagrama animado com MP4. Use para explicar algo visualmente ou quando uma tabela tiver 4+ linhas ou 3+ colunas.
 
 `/plugin install terras-visual-explainer@terras`
 
@@ -906,7 +938,7 @@ Palavras-chave: `diagrama`, `explicacao visual`, `arquitetura`, `html`, `mermaid
 
 ### terras-deep-research
 
-Pesquisa em profundidade com rastreamento de citações: pipeline de 3 a 8 fases (escopo, plano, recuperação, triangulação, síntese, crítica, refinamento e empacotamento), registro persistente de evidências e relatório estruturado com bibliografia completa. Use quando o pedido for pesquisa profunda, análise abrangente, relatório de pesquisa, comparar X vs Y, analisar tendências ou estado da arte. Não use para buscas simples, debug ou perguntas respondíveis com 1-2 buscas. Deep research, research report, citations.
+Pesquisa em profundidade com citações rastreadas: pipeline de fases, registro de evidências e relatório com bibliografia. Use para pesquisa profunda, relatório de pesquisa, comparar X vs Y ou estado da arte. Não use para busca simples de 1 ou 2 consultas.
 
 `/plugin install terras-deep-research@terras`
 
@@ -914,7 +946,7 @@ Palavras-chave: `deep research`, `pesquisa profunda`, `relatorio`, `citacoes`, `
 
 ### terras-last30days
 
-Pesquisa o que se falou sobre um tema nos últimos 30 dias em Reddit, X, YouTube, Hacker News, Polymarket, GitHub e web, com motor local vendorizado. Use quando o pedido for descobrir pauta, medir se um assunto está circulando, checar o que a comunidade está discutindo ou comparar dois temas antes de escrever um post. Descoberta, não fonte: o resultado orienta, a verificação vem da fonte primária. last30days, trending topics, o que estão falando, pesquisa de pauta.
+Pesquisa o que se falou de um tema nos últimos 30 dias em Reddit, X, YouTube, Hacker News, GitHub e web. Use para descobrir pauta, medir se um assunto circula ou comparar temas antes de um post. Descoberta, não fonte: confirme na fonte primária.
 
 `/plugin install terras-last30days@terras` · v3.25.0
 
@@ -922,7 +954,7 @@ Palavras-chave: `last30days`, `pesquisa de pauta`, `trending`, `reddit`, `hacker
 
 ### terras-noticias
 
-Lê boletins e roundups de notícias (ratos de IA e afins), tria por criticidade e prioridade, resume todos os itens rápido e escreve o rascunho do post de digest para o LinkedIn. Use quando o usuário mandar um link de boletim semanal (ratos.link/epNN), pedir 'le as notícias', 'resumo das notícias', 'o que saiu essa semana', 'triagem de notícias', 'digest', ou julgar prioridade e criticidade de notícias de IA e tecnologia. News digest, news roundup, weekly recap, news triage, priority and criticality.
+Lê boletins e roundups de notícias de IA e tecnologia, tria por criticidade e prioridade, resume os itens e escreve o rascunho do digest para o LinkedIn. Use para link de boletim semanal, 'resumo das notícias', 'o que saiu essa semana' ou triagem de notícias.
 
 `/plugin install terras-noticias@terras`
 
@@ -930,7 +962,7 @@ Palavras-chave: `notícias`, `noticias`, `news`, `boletim`, `roundup`, `digest`,
 
 ### terras-paper-diario
 
-Lê papers (arXiv e afins) sobre estudos que afetam o trabalho de quem desenvolve — agentes de IA em PRs, qualidade de código gerado, produtividade, mercado de trabalho — e produz uma análise com resumo honesto (com números), aplicação prática e aviso específico para JÚNIOR, PLENO e SÊNIOR, fechando com um recado PARA TODOS. Use quando o usuário mandar um link de paper, pedir 'analisar paper', 'paper do dia', ou na verificação diária do arXiv. Daily arXiv digest for developers with per-level (junior/mid/senior) analysis and warnings.
+Analisa papers (arXiv e afins) que afetam quem desenvolve: resumo honesto com números, o que não significa, e aplicação e aviso para júnior, pleno e sênior. Use para link de paper, 'analisar paper', 'paper do dia' ou a verificação diária do arXiv.
 
 `/plugin install terras-paper-diario@terras`
 
@@ -938,7 +970,7 @@ Palavras-chave: `paper`, `arxiv`, `estudo`, `pesquisa`, `paper do dia`, `paper-d
 
 ### terras-user-research
 
-Pesquisa com usuários de ponta a ponta: planejar estudo qualitativo (roteiro de entrevista, guia de discussão, questionário de triagem, plano de pesquisa), sintetizar entrevistas em relatório com achados priorizados, personas e oportunidades, e planejar pesquisa quantitativa (survey, design de questionário, análise). Use quando o pedido mencionar pesquisa com usuários, entrevistas, roteiro de entrevista, plano de pesquisa, survey, análise de transcrições ou relatório de pesquisa. User research, user interviews, survey.
+Pesquisa com usuários de ponta a ponta: plano, roteiro de entrevista, triagem, síntese em achados, personas e oportunidades, e survey quantitativo. Use para pesquisa com usuários, entrevistas, survey ou análise de transcrições. User research.
 
 `/plugin install terras-user-research@terras`
 
@@ -946,7 +978,7 @@ Palavras-chave: `user research`, `pesquisa com usuarios`, `entrevista`, `roteiro
 
 ### terrasia-pauta-youtube
 
-Pesquisa de demanda (envelope) no YouTube antes de escrever o roteiro: compara consultas de tema pela mediana de views dos resultados, acha outliers (video muito acima da media do proprio canal) e colhe frases recorrentes dos titulos de melhor desempenho. Use quando o pedido envolver escolher tema de video, 'dar o passo atras', pauta de video, qual assunto rende mais, medir demanda de titulo, modelar o que funciona, outliers do YouTube, banco de frases de titulo e capa, ou antes de montar um roteiro com a terras-video.
+Pesquisa de demanda no YouTube antes do roteiro: compara temas pela mediana de views, acha outliers por canal e colhe frases recorrentes dos títulos que performam. Use para escolher tema de vídeo, medir demanda de título ou antes da terras-video.
 
 `/plugin install terrasia-pauta-youtube@terras`
 
@@ -964,7 +996,7 @@ Use para tomar decisões estruturadas a partir de um contexto, retornando exclus
 
 ### terras-eval-harness
 
-Desenvolvimento guiado por eval para trabalho com agentes e prompts: definir evals de capacidade e de regressão antes de codar, corrigir por código, modelo, regra ou humano, e medir confiabilidade com pass@k e pass^k. Use ao definir critério de passa/falha, montar suíte de regressão de prompt ou comparar versões de modelo. Eval-driven development.
+Desenvolvimento guiado por eval para agentes e prompts: evals de capacidade e regressão antes de codar e confiabilidade com pass@k e pass^k. Use ao definir critério de passa/falha, montar suíte de regressão de prompt ou comparar versões de modelo.
 
 `/plugin install terras-eval-harness@terras`
 
@@ -972,7 +1004,7 @@ Palavras-chave: `eval`, `evals`, `eval harness`, `pass@k`, `regressao de prompt`
 
 ### terras-full-output-enforcement
 
-Força saída completa em qualquer tarefa: proíbe truncamento, placeholders e abreviações tipo 'resto igual', e trata quebra por limite de token. Use quando o modelo estiver entregando trabalho pela metade, código cortado ou quando o pedido exigir arquivo inteiro sem omissões. Full output, no placeholders, complete code.
+Força saída completa: proíbe truncamento, placeholders e 'resto igual', e trata corte por limite de token. Use quando o modelo entregar trabalho pela metade ou código cortado, ou quando o pedido exigir arquivo inteiro. Full output, no placeholders.
 
 `/plugin install terras-full-output-enforcement@terras`
 
@@ -988,7 +1020,7 @@ Palavras-chave: `prompt`, `otimizar prompt`, `reescrever prompt`, `avaliar promp
 
 ### terras-seed
 
-Use sempre que o pedido for sobre criar, revisar, avaliar ou ajustar um PROMPT (o texto de instrução dado a uma IA como ChatGPT, Claude ou Gemini), e não sobre executar a tarefa que esse prompt descreve. Dispara em: pedir um prompt pronto para outra IA a partir de ideia vaga; mostrar, colar ou citar um prompt (seu ou de outra pessoa) pedindo opinião, revisão ou conserto; pedir ajuste num prompt de turno anterior (mais curto, outro tom, outra IA-alvo); e qualquer chamado a "Lyra" pedindo ação ligada a IA ou prompt. Ative mesmo se a frase citar uma tarefa final: se o pedido real é sobre o texto-instrução, use esta skill. NÃO ative para pedido direto de executar a tarefa sem menção a "prompt" nem a "Lyra", nem para "Lyra" fora de contexto de IA.
+Cria, revisa e ajusta PROMPTS para outra IA (ChatGPT, Claude, Gemini), sem executar a tarefa que o prompt descreve; também atende por 'Lyra'. Use quando o pedido for sobre o texto-instrução: prompt pronto a partir de ideia vaga, revisão ou conserto de prompt.
 
 `/plugin install terras-seed@terras`
 
@@ -996,23 +1028,11 @@ Palavras-chave: `prompt`, `otimizar prompt`, `revisar prompt`, `avaliar prompt`,
 
 ### terras-skill-factory
 
-Cria, revisa e mantém skills no padrão da casa terras-: inventário, frontmatter, catálogo de gatilhos, progressive disclosure e teste de aderência antes de fechar. Use quando pedirem para criar uma skill nova, transformar prompt recorrente em skill, revisar ou atualizar uma skill existente, ou auditar se uma skill segue o padrão. Também usa quando alguém perguntar como as skills terras- são estruturadas ou como exportá-las para os servidores.
+Cria, revisa e mantém skills no padrão da casa terras-: frontmatter, descrição que dispara, progressive disclosure, checagem de colisão com skill parecida e teste de aderência. Use para criar skill nova, transformar prompt recorrente em skill ou auditar uma skill.
 
 `/plugin install terras-skill-factory@terras`
 
 Palavras-chave: `skill`, `skills`, `criar skill`, `skill factory`, `padrão terras`, `SKILL.md`, `frontmatter`, `progressive disclosure`, `agent skills`
-
-## Outras
-
-*Ainda sem área no manual: classifique cada uma em `scripts/manual-areas.json`.*
-
-### terras-animacao
-
-Produz peça animada em loop a partir de uma cena HTML dirigida por tempo: o HTML determinístico (contrato ?t=), o render quadro a quadro no Chrome headless e a montagem do GIF (loop, para o feed) e do MP4 (silencioso), com capa estática e preview de celular. Use quando o pedido for animação, gif animado, vídeo curto sem narração, banner animado, diagrama que se desenha, peça em movimento, ou quando a peça pedir mais vida que o estático. Não é para banner estático (terras-banner), vídeo narrado (terras-video), edição e conversão de vídeo (terras-ffmpeg) nem página de explicação técnica (terras-visual-explainer).
-
-`/plugin install terras-animacao@terras` · v1.0.0
-
-Palavras-chave: `animacao`, `animado`, `gif`, `gif animado`, `loop`, `video curto`, `mp4`, `movimento`, `motion`, `banner animado`, `peca animada`, `diagrama animado`, `bpmn animado`, `quadro a quadro`
 
 ## Fora do marketplace: projeto de cliente
 

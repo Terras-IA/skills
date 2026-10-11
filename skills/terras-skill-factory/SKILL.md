@@ -1,6 +1,6 @@
 ---
 name: terras-skill-factory
-description: "Cria, revisa e mantém skills no padrão da casa terras-: inventário, frontmatter, catálogo de gatilhos, progressive disclosure e teste de aderência antes de fechar. Use quando pedirem para criar uma skill nova, transformar prompt recorrente em skill, revisar ou atualizar uma skill existente, ou auditar se uma skill segue o padrão. Também usa quando alguém perguntar como as skills terras- são estruturadas ou como exportá-las para os servidores."
+description: "Cria, revisa e mantém skills no padrão da casa terras-: frontmatter, descrição que dispara, progressive disclosure, checagem de colisão com skill parecida e teste de aderência. Use para criar skill nova, transformar prompt recorrente em skill ou auditar uma skill."
 keywords: [skill, skills, criar skill, skill factory, padrão terras, SKILL.md, frontmatter, progressive disclosure, agent skills]
 ---
 
@@ -40,6 +40,9 @@ Fonte única: `skills/<terras-nome>/` no repositório `terrasia-skills`; cada ag
 ## Checklist de fechamento
 
 - [ ] Frontmatter: `name` e `description` obrigatórios; `description` em PT-BR com gatilhos específicos ("use quando...") + termos EN para acionamento bilíngue; `keywords` para descoberta.
+- [ ] `description` com no máximo 300 caracteres, numa linha entre aspas. O agente escolhe a skill só por nome e descrição, e a lista de skills tem orçamento: descrição longa empurra as outras para fora e elas viram só um nome.
+- [ ] Colisão conferida: procure no catálogo skill que faça o mesmo trabalho. Com duas instaladas, o modelo escolhe uma, as regras exclusivas da outra se perdem, a tarefa continua passando e ninguém avisa qual rodou. Se houver vizinha, diga na descrição quando NÃO usar (`Não é para X (terras-y)`); se a nova repete o trabalho de outra, use `disable-model-invocation: true` para que só rode quando chamada pelo nome.
+- [ ] Regra que não pode falhar (segurança, git, publicação) não depende só de skill: o agente pode trocar a skill por uma parecida. Reforce com permissão ou hook do agente.
 - [ ] Nome: gerúndio ou substantivo objetivo, kebab-case, prefixo `terras-`.
 - [ ] Corpo: objetivo primeiro, regra dura em destaque, sem seção que não mude a decisão do agente.
 - [ ] Detalhe pesado (catálogos, protocolos longos, licenças de upstream) em `references/`, citado pelo nome do arquivo.

@@ -1,6 +1,9 @@
 ---
 name: terras-humanizer-dev
-description: Reescreve ou revisa texto para soar natural e humano, preservando a voz, as opiniões e o ritmo do autor, sem deixar o texto errado ou informal demais. Use quando pedirem para humanizar texto, revisar prosa com cara de IA, tirar o tom de chatbot, deixar um texto mais natural e autor, ou analisar se um trecho parece escrito por IA, mesmo que a palavra "humanizar" não apareça.
+description: "Variante da terras-humanizer que prioriza preservar a voz, as opiniões e o ritmo do autor, aceitando imperfeição natural. Só roda por chamada explícita (/terras-humanizer-dev); para humanizar texto, a padrão é a terras-humanizer. Author voice, natural prose."
+keywords: [humanizar, voz do autor, escrita natural, revisao de texto]
+license: MIT
+disable-model-invocation: true
 ---
 
 # Skill: Escrita Natural e Humana

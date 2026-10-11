@@ -1,6 +1,6 @@
 ---
 name: terras-mapeamento-de-processos
-description: "Mapeia um processo a partir de áudio, gravação de tela, transcrição ou relato falado e devolve o mapa visual (AS-IS e TO-BE), o diagnóstico com números e o plano de melhoria priorizado com as oportunidades de automação. Use quando o pedido for mapear ou desenhar um processo, analisar o áudio ou a gravação de tela de uma rotina, achar o gargalo, reduzir tempo de atendimento, automatizar uma rotina operacional, fazer diagnóstico de processo, montar o fluxo AS-IS/TO-BE ou dimensionar quantas pessoas o processo consome. Cobre também 'é assim que a gente faz hoje, o que dá para melhorar'."
+description: "Mapeia um processo a partir de áudio, gravação de tela ou relato e devolve o fluxo AS-IS/TO-BE, diagnóstico com números e plano de melhoria com oportunidades de automação. Use para mapear processo, achar gargalo ou automatizar rotina operacional."
 keywords: [mapeamento de processo, mapear processo, processo, fluxograma, bpmn, as is, to be, gargalo, diagnostico de processo, melhoria de processo, automacao de processo, lean, desperdicio, lead time, sop, procedimento operacional, retrabalho, sla]
 version: 1.4.0
 license: MIT

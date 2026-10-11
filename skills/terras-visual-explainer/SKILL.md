@@ -1,6 +1,6 @@
 ---
 name: terras-visual-explainer
-description: "Gera páginas HTML autocontidas que explicam visualmente sistemas, mudanças de código, planos, dados e conceitos técnicos: diagramas (inclusive Mermaid), visões de arquitetura, revisão de diff ou de plano, recapitulações de projeto, tabelas comparativas e decks de slides. Faz também versão ANIMADA de diagrama (fluxo nas arestas, etapas acendendo em sequência, pulso viajando pela rota), com MP4 gravado quadro a quadro, quando pedido. Use quando o pedido for explicar algo visualmente, diagrama, arquitetura, revisão visual de mudança, ou quando uma tabela tiver 4+ linhas ou 3+ colunas. Visual explainer, diagramas, arquitetura, HTML."
+description: "Páginas HTML autocontidas que explicam visualmente sistemas, diffs, planos, dados e conceitos: diagramas, arquitetura, tabelas comparativas, inclusive diagrama animado com MP4. Use para explicar algo visualmente ou quando uma tabela tiver 4+ linhas ou 3+ colunas."
 keywords: [diagrama, explicacao visual, arquitetura, html, mermaid, tabela, diff, slides, visual, animacao, diagrama animado]
 homepage: https://github.com/nicobailon/visual-explainer
 license: MIT

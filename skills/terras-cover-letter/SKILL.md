@@ -1,6 +1,6 @@
 ---
 name: terras-cover-letter
-description: "Escreve e revisa cartas de apresentação (cover letters) para vagas internacionais e remotas. Use quando o usuário pedir carta de apresentação, cover letter, mensagem de candidatura para empresa de fora, InMail para recrutador, texto para vaga na gringa, ou revisar uma carta existente. Cobre tamanho, estrutura, personalização, tradução de experiência brasileira para valor global e remote readiness."
+description: "Escreve e revisa cartas de apresentação para vagas internacionais e remotas, traduzindo experiência brasileira em valor global. Use para cover letter, carta de apresentação, InMail para recrutador ou mensagem de candidatura para empresa de fora."
 keywords: [cover letter, carta de apresentação, candidatura, vaga internacional, gringa, remoto, remote, inmail, recrutador, job application]
 ---
 

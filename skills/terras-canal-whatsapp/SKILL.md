@@ -1,6 +1,6 @@
 ---
 name: terras-canal-whatsapp
-description: "Publica texto e/ou imagem no canal (newsletter) do WhatsApp pela sessão pareada do sidecar, com pré-checagem de papel e confirmação explícita. Use quando o pedido for postar ou mandar algo no canal do WhatsApp, publicar card ou texto no canal, ou conferir se o canal está pronto para postar. Publish to a WhatsApp channel (newsletter JID)."
+description: "Publica texto ou imagem no canal (newsletter) do WhatsApp pela sessão pareada do sidecar, com pré-checagem e confirmação explícita. Use para postar no canal do WhatsApp ou conferir se o canal está pronto. WhatsApp channel publishing."
 keywords: [whatsapp, canal, channel, newsletter, publicar, publish, post, card, imagem, legenda, caption, baileys, sidecar]
 ---
 

@@ -1,6 +1,6 @@
 ---
 name: terras-audio
-description: "Voz, pronúncia e cadeia de áudio para narração: vídeo, audiolivro comum e técnico, nota de voz, capítulo. Use quando o pedido envolver narração, locução, voz, TTS, áudio, audiolivro, audiobook, m4b, capítulo narrado, pronúncia de termo em inglês, sotaque, loudness, normalização, ou quando alguém reclamar que uma palavra soa errada ou que o áudio ficou baixo."
+description: "Voz, pronúncia e cadeia de áudio para narração de vídeo, audiolivro, nota de voz e capítulo. Use para narração, locução, TTS, audiolivro, m4b, pronúncia de termo em inglês, loudness, ou quando uma palavra soa errada ou o áudio ficou baixo."
 keywords: [audio, voz, narracao, locucao, tts, edge-tts, audiolivro, audiobook, m4b, capitulo, pronuncia, sotaque, respelling, loudness, lufs, normalizacao, mp3]
 ---
 

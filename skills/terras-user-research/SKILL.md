@@ -1,6 +1,6 @@
 ---
 name: terras-user-research
-description: "Pesquisa com usuários de ponta a ponta: planejar estudo qualitativo (roteiro de entrevista, guia de discussão, questionário de triagem, plano de pesquisa), sintetizar entrevistas em relatório com achados priorizados, personas e oportunidades, e planejar pesquisa quantitativa (survey, design de questionário, análise). Use quando o pedido mencionar pesquisa com usuários, entrevistas, roteiro de entrevista, plano de pesquisa, survey, análise de transcrições ou relatório de pesquisa. User research, user interviews, survey."
+description: "Pesquisa com usuários de ponta a ponta: plano, roteiro de entrevista, triagem, síntese em achados, personas e oportunidades, e survey quantitativo. Use para pesquisa com usuários, entrevistas, survey ou análise de transcrições. User research."
 keywords: [user research, pesquisa com usuarios, entrevista, roteiro, survey, sintese, personas, descoberta, qualitativa, quantitativa]
 homepage: https://github.com/cookiy-ai/user-research-skill
 license: MIT

@@ -1,6 +1,6 @@
 ---
 name: terras-ui-styling
-description: "Implementação de interface com shadcn/ui e Tailwind CSS: adicionar componentes, theming, acessibilidade, utilitários e responsividade, customização de tema e design visual em canvas. Use quando o pedido for implementar UI em código com shadcn/Tailwind, configurar tema, componentes acessíveis ou desenhar em canvas. shadcn/ui, Tailwind CSS, canvas, acessibilidade."
+description: "Implementa interface com shadcn/ui e Tailwind CSS: componentes, tema, acessibilidade, responsividade e design em canvas. Use para implementar UI em código com shadcn/Tailwind ou configurar tema e componentes acessíveis. shadcn/ui, Tailwind."
 keywords: [shadcn, shadcn/ui, tailwind, componentes, theming, tema, acessibilidade, canvas, responsivo, ui]
 license: Apache-2.0
 ---

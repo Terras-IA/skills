@@ -1,6 +1,6 @@
 ---
 name: terrasia-vagas-coders
-description: "Filtra as vagas do board da comunidade COD3RS (app.coders.com.br/comunidade#vagas) contra o currículo do usuário e devolve só o que faz sentido real: balde A (recomendar), B (talvez) e C (descarte com motivo) — e, com aprovação por vaga, avança para a aplicação no site de cada uma (carta, formulário, portões de upload/login). Use quando o pedido envolver vagas da COD3RS, vagas do coders, 'o que tem de vaga pra mim', triagem de vagas no currículo, vagas que combinam comigo, board de vagas, candidatura nas vagas, 'aplica pra mim', aplicar nas vagas aprovadas, ou agendar essa triagem. Job board triage against resume, COD3RS community jobs, assisted job applications."
+description: "Filtra as vagas do board da COD3RS contra o currículo do usuário em baldes A (recomendar), B (talvez) e C (descarte com motivo) e, com aprovação por vaga, avança na candidatura. Use para vagas da COD3RS, 'o que tem de vaga pra mim' ou aplicar nas aprovadas."
 keywords: [cod3rs, coders, vagas, board, curriculo, triagem, emprego, remote, senior, fit]
 version: "1.0.0"
 metadata:

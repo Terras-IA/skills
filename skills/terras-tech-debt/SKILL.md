@@ -1,6 +1,6 @@
 ---
 name: terras-tech-debt
-description: "Auditoria de dívida técnica e arquitetura de um repositório, com achados citando arquivo:linha, severidade, esforço e a seção obrigatória 'parece ruim mas está certo'. Use quando o pedido for auditoria de dívida técnica, diagnóstico de codebase, revisão de arquitetura, health check de repositório ou avaliação de qualidade de código de um repo inteiro. Tech debt audit, codebase health check, architecture review, legacy assessment."
+description: "Auditoria de dívida técnica e arquitetura de um repositório inteiro, com achados em arquivo:linha, severidade, esforço e a seção 'parece ruim mas está certo'. Use para diagnóstico de codebase, health check ou revisão de arquitetura. Tech debt audit."
 keywords: [auditoria, dívida técnica, tech debt, arquitetura, codebase, revisão de código, refatoração, legado, severidade, relatório técnico]
 ---
 

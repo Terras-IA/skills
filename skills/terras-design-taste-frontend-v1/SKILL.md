@@ -1,8 +1,9 @@
 ---
 name: terras-design-taste-frontend-v1
-description: "Versão 1 legada do design-taste-frontend (a v2 é a padrão da casa). Preservada para projetos que dependem do comportamento exato da v1. Use apenas quando a v2 quebrar algo específico do fluxo. Legacy v1, compatibilidade."
+description: "Versão 1 legada da terras-design-taste-frontend, preservada para projetos que dependem do comportamento exato da v1. Só roda por chamada explícita (/terras-design-taste-frontend-v1); para frontend novo, use a terras-design-taste-frontend. Legacy v1."
 keywords: [v1, legado, compatibilidade, frontend design]
 license: MIT
+disable-model-invocation: true
 ---
 
 # High-Agency Frontend Skill

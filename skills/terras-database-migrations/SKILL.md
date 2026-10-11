@@ -1,6 +1,6 @@
 ---
 name: terras-database-migrations
-description: "Migrations de banco seguras e reversíveis: mudanças só para frente em produção, expand-contract para renomear sem downtime, índices concorrentes, backfill em lotes, e fluxo por ferramenta (PostgreSQL, Prisma, Drizzle, Kysely, Django, golang-migrate). Use ao escrever migration de schema ou de dados, adicionar coluna ou índice em tabela grande ou planejar rollback. Database migrations."
+description: "Migrations seguras e reversíveis: expand-contract sem downtime, índice concorrente, backfill em lotes e fluxo por ferramenta (PostgreSQL, Prisma, Drizzle, Kysely, Django, golang-migrate). Use ao escrever migration, mexer em tabela grande ou planejar rollback."
 keywords: [migration, migracao, migracoes, expand-contract, zero downtime, backfill, rollback, alter table, create index concurrently]
 license: MIT
 homepage: https://github.com/affaan-m/ECC/tree/ef648e01899ba3e8dc6371642deaaf64b4477775/skills/database-migrations

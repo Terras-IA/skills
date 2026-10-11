@@ -33,6 +33,34 @@ não existe não é criada. Como o link aponta para o repositório, `git -C ~/te
 atualiza tudo. Para instalar só algumas skills, copie a pasta `skills/<nome>/` para a pasta de
 skills do agente.
 
+**No claude.ai e no ChatGPT**, por upload: `npm run pacotes` gera um `.zip` por skill em
+`dist/pacotes/`, no formato que as duas telas de upload aceitam.
+
+### Antes de instalar muitas skills
+
+- **Um caminho por agente.** O marketplace e o `instalar.sh` entregam a mesma skill por dois
+  caminhos. Num mesmo agente, use só um: com os dois, a skill aparece duas vezes, o modelo escolhe
+  uma pelo nome e pela descrição e não avisa qual rodou. O mesmo vale para uma cópia antiga
+  subida no claude.ai: apague-a lá quando passar a usar a deste repositório.
+- **O orçamento da lista de skills.** O Claude Code entrega ao modelo a lista de skills com
+  orçamento de cerca de 1% da janela de contexto. Com o catálogo inteiro, a descrição que não cabe
+  é cortada e a skill aparece só pelo nome: aí ela quase só roda quando chamada por ele
+  (`/terras-video`). Instale só o que usa, ou aumente o orçamento em `~/.claude/settings.json`:
+
+  ```json
+  { "env": { "SLASH_COMMAND_TOOL_CHAR_BUDGET": "40000" } }
+  ```
+
+  São cerca de 10 mil tokens a mais por sessão. Por isso toda descrição deste repositório tem
+  no máximo 300 caracteres (regra 8, abaixo).
+- **Skills só por chamada.** `terras-design-taste-frontend-v1`, `terras-gpt-taste` e
+  `terras-humanizer-dev` repetem o trabalho de outra skill da casa e têm
+  `disable-model-invocation: true`: o modelo não as escolhe sozinho, elas rodam quando você chama
+  pelo nome.
+- **Plugin que não carrega.** Se `/plugin` mostrar *failed to load: conflicting manifests* num
+  plugin `@terras`, a instalação é anterior ao manifesto atual: rode
+  `/plugin marketplace update terras`, desinstale o plugin e instale de novo.
+
 ## O que tem dentro
 
 Um recorte por área — o catálogo completo está logo abaixo.
@@ -63,10 +91,10 @@ Revisão pelo risco que a mudança cria, segurança, testes ponta a ponta, banco
 <!-- catalogo:inicio -->
 <!-- gerado por `npm run readme` a partir do catálogo — não edite à mão -->
 
-**117 skills instaláveis** entre as 128 deste repositório; as demais ficam fora do marketplace — 8 skills de processo do motor (`.nao-instalar`) e 3 skills ligadas a projeto de cliente (`marketplace-fora.json`).
+**119 skills instaláveis** entre as 130 deste repositório; as demais ficam fora do marketplace — 8 skills de processo do motor (`.nao-instalar`) e 3 skills ligadas a projeto de cliente (`marketplace-fora.json`).
 
 <details>
-<summary><b>Ver a lista completa (117 skills)</b></summary>
+<summary><b>Ver a lista completa (119 skills)</b></summary>
 
 | Skill | O que faz |
 |---|---|
@@ -74,46 +102,47 @@ Revisão pelo risco que a mudança cria, segurança, testes ponta a ponta, banco
 | [`terras-agenda-de-touchpoints`](skills/terras-agenda-de-touchpoints) | Estrutura 1:1s recorrentes com pautas, histórico de feedback, decisões e loops abertos. |
 | [`terras-analisador-de-linguagem-inclusiva`](skills/terras-analisador-de-linguagem-inclusiva) | Revisa vagas, avaliações e comunicados em busca de linguagem enviesada, excludente ou pouco acessível. |
 | [`terras-analisador-de-pulse-semanal`](skills/terras-analisador-de-pulse-semanal) | Processa respostas de pulse survey semanal e transforma temas recorrentes em insights acionáveis para lideranças. |
-| [`terras-analise-swot`](skills/terras-analise-swot) | Faz análise SWOT rastreável e terminada em ação: cada item cita a fonte (dado, documento, métrica), o que não tem fonte vira hipótese marcada com o teste… |
-| [`terras-animacao`](skills/terras-animacao) | Produz peça animada em loop a partir de uma cena HTML dirigida por tempo: o HTML determinístico (contrato ?t=), o render quadro a quadro no Chrome headless e a montagem… |
+| [`terras-analise-swot`](skills/terras-analise-swot) | Análise SWOT rastreável: cada item cita a fonte, o que não tem fonte vira hipótese com teste, e fecha em cruzamentos TOWS com ação, dono e verificação. |
+| [`terras-animacao`](skills/terras-animacao) | Peça animada em loop (GIF e MP4 sem som) a partir de cena HTML dirigida por tempo, renderizada quadro a quadro. |
 | [`terras-apuracao-retencoes-federais`](skills/terras-apuracao-retencoes-federais) | Confere se as retenções federais na fonte de uma nota de serviço foram aplicadas, dispensadas ou esquecidas, usando as alíquotas e limites informados pela empresa, nunca… |
 | [`terras-astro`](skills/terras-astro) | Publica site estático multilíngue de graça no Cloudflare Pages com Astro e conteúdo em markdown. |
-| [`terras-audio`](skills/terras-audio) | Voz, pronúncia e cadeia de áudio para narração: vídeo, audiolivro comum e técnico, nota de voz, capítulo. · Instale com o plugin `terras-midia`. |
+| [`terras-audio`](skills/terras-audio) | Voz, pronúncia e cadeia de áudio para narração de vídeo, audiolivro, nota de voz e capítulo. · Instale com o plugin `terras-midia`. |
 | [`terras-azure-devops`](skills/terras-azure-devops) | List Azure DevOps projects, repositories, and branches; create pull requests; manage work items; check build status. |
-| [`terras-banner`](skills/terras-banner) | Cria a imagem que acompanha um post, newsletter ou nota: banner 1200x628 para LinkedIn e og:image da Substack, card em pé 1080x1350, capa. · Instale com o plugin `terras-midia`. |
-| [`terras-banner-design`](skills/terras-banner-design) | Banners para redes sociais, anúncios, heros de site e impressão: 22 estilos de direção de arte, tamanhos por plataforma, com visuais gerados ou fornecidos. |
+| [`terras-banner`](skills/terras-banner) | Imagem que acompanha post, newsletter ou nota: banner 1200x628 (LinkedIn, og:image da Substack), card 1080x1350 e capa, com arte gerada, tipografia da marca e gate… · Instale com o plugin `terras-midia`. |
+| [`terras-banner-design`](skills/terras-banner-design) | Banners para redes sociais, anúncios, heros de site e impressão, com 22 estilos de direção de arte e tamanhos por plataforma. |
 | [`terras-bar-raiser-de-cultura`](skills/terras-bar-raiser-de-cultura) | Estrutura entrevistas de fit cultural com critérios observáveis, scoring e recomendação; use em processos seletivos que exigem avaliação consistente de valores. |
-| [`terras-brand`](skills/terras-brand) | Marca: voz e tom, identidade visual, frameworks de mensagem, paleta e tipografia, organização/validação de ativos e auditoria de consistência; sincroniza as diretrizes… |
-| [`terras-brandkit`](skills/terras-brandkit) | Gera a imagem do brand kit de uma marca: quadro de identidade visual com direção de logo, paleta, tipografia, aplicações em mockup e apresentação para cliente. |
+| [`terras-brand`](skills/terras-brand) | Marca: voz e tom, frameworks de mensagem, paleta, tipografia, organização de ativos e auditoria de consistência, sincronizadas com os tokens de design. |
+| [`terras-brandkit`](skills/terras-brandkit) | Gera a imagem do brand kit: quadro de identidade com direção de logo, paleta, tipografia e aplicações em mockup. |
 | [`terras-briefing-pre-reuniao-de-lideranca`](skills/terras-briefing-pre-reuniao-de-lideranca) | Prepara briefings para líderes com saúde do time, feedbacks recentes, loops abertos, riscos e perguntas para a reunião. |
-| [`terras-canal-whatsapp`](skills/terras-canal-whatsapp) | Publica texto e/ou imagem no canal (newsletter) do WhatsApp pela sessão pareada do sidecar, com pré-checagem de papel e confirmação explícita. |
+| [`terras-canal-whatsapp`](skills/terras-canal-whatsapp) | Publica texto ou imagem no canal (newsletter) do WhatsApp pela sessão pareada do sidecar, com pré-checagem e confirmação explícita. |
 | [`terras-care-to-dare-coach`](skills/terras-care-to-dare-coach) | Gera prompts de coaching, scripts de feedback e planos de desafio com base no framework Care to Dare. |
-| [`terras-comentarios`](skills/terras-comentarios) | Comenta em lote posts do LinkedIn de terceiros: o usuário manda uma lista de posts colados, a skill lê cada texto e devolve um comentário curto de até 100 caracteres… |
+| [`terras-coders-mural`](skills/terras-coders-mural) | Engajamento em lote no Mural de Posts da COD3RS: curte, lê o post linkado no LinkedIn e comenta em inglês lá e em português no mural, só com aprovação. |
+| [`terras-comentarios`](skills/terras-comentarios) | Comenta em lote posts do LinkedIn colados pelo usuário: um comentário de até 100 caracteres por post, pronto para colar. Use quando houver 2 ou mais posts para comentar. |
 | [`terras-conciliacao-bancaria-ofx`](skills/terras-conciliacao-bancaria-ofx) | Concilia extrato bancário com os lançamentos internos e separa o que casou, o que divergiu, o que é tarifa e o que ficou sem par. |
 | [`terras-conferencia-fechamento-folha`](skills/terras-conferencia-fechamento-folha) | Confere o fechamento da folha antes do envio — horas extras, adicional noturno, faltas e encargos — apontando o que não fecha por matrícula, sem afirmar alíquota nem… |
 | [`terras-conferencia-nfe-tomador-prestador`](skills/terras-conferencia-nfe-tomador-prestador) | Confere uma nota fiscal recebida ou emitida campo a campo e separa o que está consistente do que precisa de decisão humana, sem afirmar alíquota nem enquadramento… |
 | [`terras-consolidacao-de-memoria`](skills/terras-consolidacao-de-memoria) | Mantém a memória de um repositório pequena e verdadeira: ao fechar uma spec, registra o que foi entregue e funde os requisitos num doc por domínio; compacta o histórico… |
 | [`terras-construtor-de-job-description`](skills/terras-construtor-de-job-description) | Gera descrições de cargo claras, inclusivas e alinhadas à cultura e ao modelo de competências da organização. |
-| [`terras-cover-letter`](skills/terras-cover-letter) | Escreve e revisa cartas de apresentação (cover letters) para vagas internacionais e remotas. |
+| [`terras-cover-letter`](skills/terras-cover-letter) | Escreve e revisa cartas de apresentação para vagas internacionais e remotas, traduzindo experiência brasileira em valor global. |
 | [`terras-critica-de-spec`](skills/terras-critica-de-spec) | Critica uma spec antes da implementação (critério de aceite que não dá para testar, caso de borda faltando, escopo ambíguo, contradição, regra do repositório violada)… |
 | [`terras-dashboard-de-utilizacao-de-beneficios`](skills/terras-dashboard-de-utilizacao-de-beneficios) | Analisa adesão, utilização, custo e satisfação dos benefícios por tipo de saldo, período e público permitido. |
-| [`terras-database-migrations`](skills/terras-database-migrations) | Migrations de banco seguras e reversíveis: mudanças só para frente em produção, expand-contract para renomear sem downtime, índices concorrentes, backfill em lotes,… |
+| [`terras-database-migrations`](skills/terras-database-migrations) | Migrations seguras e reversíveis: expand-contract sem downtime, índice concorrente, backfill em lotes e fluxo por ferramenta (PostgreSQL, Prisma, Drizzle, Kysely… |
 | [`terras-decisor`](skills/terras-decisor) | Use para tomar decisões estruturadas a partir de um contexto, retornando exclusivamente um YAML válido. |
-| [`terras-deep-research`](skills/terras-deep-research) | Pesquisa em profundidade com rastreamento de citações: pipeline de 3 a 8 fases (escopo, plano, recuperação, triangulação, síntese, crítica, refinamento e empacotamento)… |
-| [`terras-design`](skills/terras-design) | Skill guarda-chuva de design: identidade de marca, tokens, UI, geração de logo com IA, programa de identidade corporativa (CIP, 50 entregáveis), apresentações HTML… |
-| [`terras-design-system`](skills/terras-design-system) | Arquitetura de design tokens em três camadas (primitivo, semântico, componente), especificações de componentes e estados, variáveis CSS, escalas… |
-| [`terras-design-taste-frontend`](skills/terras-design-taste-frontend) | Anti-slop de frontend para landing pages, portfólios e redesigns: lê o briefing, infere a direção de design e entrega interface que não parece template, com design… |
-| [`terras-design-taste-frontend-v1`](skills/terras-design-taste-frontend-v1) | Versão 1 legada do design-taste-frontend (a v2 é a padrão da casa). Preservada para projetos que dependem do comportamento exato da v1. |
+| [`terras-deep-research`](skills/terras-deep-research) | Pesquisa em profundidade com citações rastreadas: pipeline de fases, registro de evidências e relatório com bibliografia. |
+| [`terras-design`](skills/terras-design) | Guarda-chuva de design: logo com IA, identidade corporativa (CIP), pacote amplo de peças; roteia para terras-brand, terras-design-system e terras-ui-styling. |
+| [`terras-design-system`](skills/terras-design-system) | Design tokens em três camadas (primitivo, semântico, componente), specs e estados de componente, variáveis CSS e tema Tailwind. |
+| [`terras-design-taste-frontend`](skills/terras-design-taste-frontend) | Anti-slop de frontend: lê o briefing, infere a direção de design e entrega landing page, portfólio ou redesign que não parece template. |
+| [`terras-design-taste-frontend-v1`](skills/terras-design-taste-frontend-v1) | Versão 1 legada da terras-design-taste-frontend, preservada para projetos que dependem do comportamento exato da v1. |
 | [`terras-e2e-testing`](skills/terras-e2e-testing) | Testes end-to-end com Playwright: Page Object Model, configuração, integração com CI, artefatos (trace, vídeo, screenshot) e estratégia para teste instável. |
-| [`terras-ebook`](skills/terras-ebook) | Cria e-book e audiolivro para vender: estrutura, diagramação, EPUB e PDF A5 diagramado como livro, capa, ISBN, escolha de plataforma, royalties, preço e lançamento —… |
-| [`terras-educacao-corporativa`](skills/terras-educacao-corporativa) | Aplica 26 prompts de educação corporativa (derivados do ebook da Alun Business) para gerar estratégia de T&D, diagnóstico de necessidades, mapa de competências, trilhas… |
+| [`terras-ebook`](skills/terras-ebook) | Cria e-book e audiolivro para vender: estrutura, diagramação EPUB e PDF A5, capa, ISBN, plataforma, royalties, preço e lançamento, e transforma acervo de YouTube… |
+| [`terras-educacao-corporativa`](skills/terras-educacao-corporativa) | Educação corporativa com 26 prompts guiados: estratégia de T&D, diagnóstico de necessidades, mapa de competências, trilhas, planos de aula e indicadores de impacto. |
 | [`terras-elaboracao-proposta-comercial`](skills/terras-elaboracao-proposta-comercial) | Estrutura a minuta de uma proposta a partir do que foi levantado na conversa, separando escopo de expectativa e marcando cada número que ainda precisa de confirmação… |
-| [`terras-eval-harness`](skills/terras-eval-harness) | Desenvolvimento guiado por eval para trabalho com agentes e prompts: definir evals de capacidade e de regressão antes de codar, corrigir por código, modelo, regra… |
+| [`terras-eval-harness`](skills/terras-eval-harness) | Desenvolvimento guiado por eval para agentes e prompts: evals de capacidade e regressão antes de codar e confiabilidade com pass@k e pass^k. |
 | [`terras-excalidraw`](skills/terras-excalidraw) | Use quando o pedido for um desenho Excalidraw, diagrama editável, esboço à mão, quadro branco, wireframe rascunho, ou imagem de diagrama (PNG/SVG) para post, slide… |
-| [`terras-ffmpeg`](skills/terras-ffmpeg) | Edita vídeo e áudio com FFmpeg local a partir de pedidos em linguagem natural: cortar, aparar, juntar, redimensionar (9:16, 1:1), acelerar, legendas (SRT/ASS, animadas… |
+| [`terras-ffmpeg`](skills/terras-ffmpeg) | Edita vídeo e áudio com FFmpeg local por pedido em linguagem natural: cortar, juntar, 9:16, legendas, loudness, música com ducking, exportar por plataforma. |
 | [`terras-fluxo-de-contas-a-pagar`](skills/terras-fluxo-de-contas-a-pagar) | Leva uma conta a pagar da chegada do documento até a liberação: autenticidade do boleto, alçada por valor e escalonamento. |
-| [`terras-frontend-slides`](skills/terras-frontend-slides) | Cria apresentações HTML ricas em animação, sem dependência nenhuma, do zero ou convertendo PowerPoint. |
-| [`terras-full-output-enforcement`](skills/terras-full-output-enforcement) | Força saída completa em qualquer tarefa: proíbe truncamento, placeholders e abreviações tipo 'resto igual', e trata quebra por limite de token. |
+| [`terras-frontend-slides`](skills/terras-frontend-slides) | Apresentação HTML com animação, sem dependências, em arquivo único 16:9, do zero ou convertendo PPT/PPTX. |
+| [`terras-full-output-enforcement`](skills/terras-full-output-enforcement) | Força saída completa: proíbe truncamento, placeholders e 'resto igual', e trata corte por limite de token. |
 | [`terras-gerador-de-all-hands`](skills/terras-gerador-de-all-hands) | Prepara o encontro mensal de toda a empresa com resumo de resultados, perguntas votadas e talking points. |
 | [`terras-gerador-de-comunicacao-de-rh`](skills/terras-gerador-de-comunicacao-de-rh) | Redige comunicados internos claros sobre políticas, mudanças organizacionais, benefícios e atualizações de People. |
 | [`terras-gerador-de-matriz-9-box`](skills/terras-gerador-de-matriz-9-box) | Organiza performance e potencial em uma matriz 9-Box com critérios, evidências e planos de ação por quadrante. |
@@ -123,32 +152,33 @@ Revisão pelo risco que a mudança cria, segurança, testes ponta a ponta, banco
 | [`terras-gerador-de-politica-de-beneficios`](skills/terras-gerador-de-politica-de-beneficios) | Redige políticas de benefícios claras, aplicáveis e alinhadas ao PAT e ao orçamento informado pela empresa. |
 | [`terras-gestao-de-ferias-e-escalas`](skills/terras-gestao-de-ferias-e-escalas) | Organiza períodos aquisitivo e concessivo, abono e fracionamento por equipe, e mostra onde a escala não se sustenta — com os prazos informados pela empresa, não… |
 | [`terras-gestao-de-inadimplencia-cobranca`](skills/terras-gestao-de-inadimplencia-cobranca) | Monta a régua de cobrança de D-3 a D+15 com o tom de cada contato, os encargos do contrato e o ponto de decisão. |
-| [`terras-governanca-padroes`](skills/terras-governanca-padroes) | Audita onde as convenções de um projeto vivem (CLAUDE.md, AGENTS.md, lint, CI, docs, cabeça do time) e transforma padrão em governance rule: arquivo Markdown versionado… |
-| [`terras-gpt-taste`](skills/terras-gpt-taste) | Variante estrita do design-taste para GPT/Codex: variância de layout com randomização real, estrutura AIDA, bento sem buracos, GSAP (pinning, stacking, scrubbing)… |
-| [`terras-high-end-visual-design`](skills/terras-high-end-visual-design) | Design visual de alto padrão: define fontes, espaçamento, sombras, cartões e animações que fazem o site parecer caro, e bloqueia os padrões que deixam design de IA… |
-| [`terras-historias-infantis`](skills/terras-historias-infantis) | Cria histórias infantis ilustradas em quadrinhos e o LIVRO DE COLORIR da mesma história e das mesmas imagens — recebe um tema ou a história pronta, escreve o roteiro… |
-| [`terras-humanizer`](skills/terras-humanizer) | Reescreve texto com cara de IA para soar humano, sem mudar o que ele diz e sem inventar nada. |
-| [`terras-humanizer-dev`](skills/terras-humanizer-dev) | Reescreve ou revisa texto para soar natural e humano, preservando a voz, as opiniões e o ritmo do autor, sem deixar o texto errado ou informal demais. |
-| [`terras-identidade`](skills/terras-identidade) | Le a identidade visual de uma marca a partir de imagens (pecas de anuncio, prints, manual, papelaria, site) e entrega ela pronta para reusar: cores com papel medido… |
-| [`terras-image-to-code`](skills/terras-image-to-code) | Pipeline imagem-primeiro para site: gera a própria imagem de referência, analisa em detalhe e implementa o frontend fiel a ela, seção a seção, evitando sub-geração… |
+| [`terras-governanca-padroes`](skills/terras-governanca-padroes) | Audita onde as convenções de um projeto vivem e as transforma em regra versionada, com dono, revisão e deprecação, legível por agente. |
+| [`terras-gpt-taste`](skills/terras-gpt-taste) | Variante estrita do design-taste para GPT/Codex: layout com randomização real, AIDA, bento sem buracos, GSAP e anti-slop agressivo. |
+| [`terras-high-end-visual-design`](skills/terras-high-end-visual-design) | Design visual de alto padrão: fontes, espaçamento, sombras, cartões e animações que fazem o site parecer caro, bloqueando o visual barato de IA. |
+| [`terras-historias-infantis`](skills/terras-historias-infantis) | Histórias infantis ilustradas em quadrinhos e o livro de colorir da mesma história: roteiro página a página, arte vetorial infantil e versão para pintar. |
+| [`terras-humanizer`](skills/terras-humanizer) | Reescreve texto com cara de IA para soar humano, sem mudar o que ele diz nem inventar nada; remove marcas de IA em português e inglês e baixa o inglês para nível B1/B2. |
+| [`terras-humanizer-dev`](skills/terras-humanizer-dev) | Variante da terras-humanizer que prioriza preservar a voz, as opiniões e o ritmo do autor, aceitando imperfeição natural. |
+| [`terras-identidade`](skills/terras-identidade) | Lê a identidade visual de uma marca a partir de imagens (anúncio, print, manual, site) e entrega cores medidas, tipografia, logo recortado e tokens CSS/JSON/Tailwind. |
+| [`terras-image-to-code`](skills/terras-image-to-code) | Pipeline imagem-primeiro: gera a imagem de referência, analisa e implementa o frontend fiel a ela, seção a seção. |
 | [`terras-imagegen-frontend-mobile`](skills/terras-imagegen-frontend-mobile) | Gera imagens de telas e fluxos de app mobile (iOS, Android, cross-platform) com mockup de celular, tipografia legível, paleta controlada e consistência entre telas. |
 | [`terras-imagegen-frontend-web`](skills/terras-imagegen-frontend-web) | Gera as imagens de referência de um site — uma imagem horizontal por seção, nunca comprimidas — com variedade de composição, escala de hero, CTA e paleta única. |
-| [`terras-industrial-brutalist-ui`](skills/terras-industrial-brutalist-ui) | Interface brutalista industrial: grade suíça rígida, tipografia mecânica com contraste extremo, paleta utilitária e degradação analógica (halftone, scanline, dither). |
+| [`terras-industrial-brutalist-ui`](skills/terras-industrial-brutalist-ui) | Interface brutalista industrial: grade suíça rígida, tipografia mecânica de contraste extremo, paleta utilitária e textura analógica. |
 | [`terras-laravel`](skills/terras-laravel) | Build robust Laravel apps avoiding Eloquent traps, queue failures, and auth pitfalls. |
-| [`terras-last30days`](skills/terras-last30days) | Pesquisa o que se falou sobre um tema nos últimos 30 dias em Reddit, X, YouTube, Hacker News, Polymarket, GitHub e web, com motor local vendorizado. |
-| [`terras-linkedin`](skills/terras-linkedin) | Ajuda a escrever posts para LinkedIn. |
-| [`terras-linkedin-metricas`](skills/terras-linkedin-metricas) | Extrai, guarda e diagnostica as estatisticas dos posts do LinkedIn do Everton: impressoes, usuarios alcancados, divisao na rede e fora da rede, reacoes, comentarios… |
-| [`terras-mapeamento-de-processos`](skills/terras-mapeamento-de-processos) | Mapeia um processo a partir de áudio, gravação de tela, transcrição ou relato falado e devolve o mapa visual (AS-IS e TO-BE), o diagnóstico com números e o plano… |
-| [`terras-matriz-gut`](skills/terras-matriz-gut) | Prioriza problemas e demandas concorrentes com a matriz GUT: notas 1-5 ancoradas em Gravidade, Urgência e Tendência, score por produto, faixa de decisão declarada antes… |
+| [`terras-last30days`](skills/terras-last30days) | Pesquisa o que se falou de um tema nos últimos 30 dias em Reddit, X, YouTube, Hacker News, GitHub e web. |
+| [`terras-linkedin`](skills/terras-linkedin) | Escreve e revisa posts de LinkedIn (hook, estrutura, CTA, hashtags, zero travessão) e explica alcance e impressões. |
+| [`terras-linkedin-alvos`](skills/terras-linkedin-alvos) | Acompanha perfis-alvo do LinkedIn (executivos, gestores, recrutadores), acha os posts recentes, curte e prepara comentários que acrescentam, publicados só com aprovação. |
+| [`terras-linkedin-metricas`](skills/terras-linkedin-metricas) | Extrai, guarda e diagnostica as estatísticas dos posts do LinkedIn do usuário: impressões, alcance na e fora da rede, reações, salvamentos, seguidores e demografia. |
+| [`terras-mapeamento-de-processos`](skills/terras-mapeamento-de-processos) | Mapeia um processo a partir de áudio, gravação de tela ou relato e devolve o fluxo AS-IS/TO-BE, diagnóstico com números e plano de melhoria com oportunidades… |
+| [`terras-matriz-gut`](skills/terras-matriz-gut) | Prioriza problemas concorrentes com a matriz GUT: notas ancoradas de Gravidade, Urgência e Tendência, faixa de decisão antes de pontuar e plano de ataque com dono… |
 | [`terras-mcp-server`](skills/terras-mcp-server) | Construção de servidor MCP com o SDK Node/TypeScript: tools, resources, prompts, validação com Zod e escolha de transporte (stdio ou Streamable HTTP). |
-| [`terras-miniapp-builder`](skills/terras-miniapp-builder) | Cria um miniapp do zero — recebe o assunto, entrevista as lacunas, decide arquitetura e LGPD, escolhe e dosa a paleta, escreve a copy (promessa, objeções, crenças… |
+| [`terras-miniapp-builder`](skills/terras-miniapp-builder) | Cria miniapp do zero: entrevista as lacunas, decide arquitetura e LGPD, escreve a copy, constrói local-first e publica na Vercel. |
 | [`terras-minimalist-ui`](skills/terras-minimalist-ui) | UI minimalista editorial: paleta monocromática quente, hierarquia tipográfica, bento grid flat e pastéis discretos; sem gradientes nem sombras pesadas. |
-| [`terras-noticias`](skills/terras-noticias) | Lê boletins e roundups de notícias (ratos de IA e afins), tria por criticidade e prioridade, resume todos os itens rápido e escreve o rascunho do post de digest… |
-| [`terras-paper-diario`](skills/terras-paper-diario) | Lê papers (arXiv e afins) sobre estudos que afetam o trabalho de quem desenvolve — agentes de IA em PRs, qualidade de código gerado, produtividade, mercado de trabalho —… |
-| [`terras-pauta-mercado`](skills/terras-pauta-mercado) | Transforma referência externa (repo, post, anúncio, paper) na análise mercado × TerrasIA com cobre/rejeita/falta e recibo, e no pacote de posts por canal (Company Page… |
+| [`terras-noticias`](skills/terras-noticias) | Lê boletins e roundups de notícias de IA e tecnologia, tria por criticidade e prioridade, resume os itens e escreve o rascunho do digest para o LinkedIn. |
+| [`terras-paper-diario`](skills/terras-paper-diario) | Analisa papers (arXiv e afins) que afetam quem desenvolve: resumo honesto com números, o que não significa, e aplicação e aviso para júnior, pleno e sênior. |
+| [`terras-pauta-mercado`](skills/terras-pauta-mercado) | Transforma referência externa (repo, post, anúncio, paper) na análise mercado × TerrasIA com cobre/rejeita/falta e no pacote de posts por canal. |
 | [`terras-people-dashboard-automatico`](skills/terras-people-dashboard-automatico) | Monta um dashboard mensal de liderança com headcount, retenção, remuneração, contratação e DEI. |
 | [`terras-php`](skills/terras-php) | Write solid PHP avoiding type juggling traps, array quirks, and common security pitfalls. |
-| [`terras-pipeline-de-automacao`](skills/terras-pipeline-de-automacao) | Projeta e monta pipelines de automação em que scripts determinísticos executam o trabalho e o agente decide só em pontos de revisão fechados. |
+| [`terras-pipeline-de-automacao`](skills/terras-pipeline-de-automacao) | Projeta pipelines de automação em que scripts determinísticos fazem o trabalho e o agente só decide em pontos de revisão, com rastro de hashes e recibos de execução. |
 | [`terras-plano-tdd`](skills/terras-plano-tdd) | Transforma uma spec revisada em plano test-first (RED, GREEN, REFACTOR) com arquivo e nome de teste concretos, e uma lista de tarefas em que cada uma diz por comando… |
 | [`terras-playbook-quebra-objecoes`](skills/terras-playbook-quebra-objecoes) | Classifica a objeção real por trás do que o cliente disse e devolve caminhos de resposta apoiados no que a empresa consegue sustentar, sem prometer preço, prazo… |
 | [`terras-ponytail`](skills/terras-ponytail) | Lazy senior dev mode for any coding task (write, refactor, fix, review): YAGNI, stdlib first, no unrequested abstractions. Not for non-coding requests. |
@@ -157,48 +187,53 @@ Revisão pelo risco que a mudança cria, segurança, testes ponta a ponta, banco
 | [`terras-qualificacao-icp-bant`](skills/terras-qualificacao-icp-bant) | Qualifica um lead a partir do que foi dito na conversa — orçamento, autoridade, necessidade e timing — separando o que o cliente afirmou do que o vendedor supôs,… |
 | [`terras-react-patterns`](skills/terras-react-patterns) | Padrões de React 18/19: disciplina de hooks, fronteira entre server e client component, Suspense e error boundary, form actions, busca de dados, árvore de decisão… |
 | [`terras-react-testing`](skills/terras-react-testing) | Testes de componente React com React Testing Library, Vitest ou Jest, MSW para simular rede, asserções de acessibilidade com axe, e quando usar teste de componente… |
-| [`terras-redesign-existing-projects`](skills/terras-redesign-existing-projects) | Redesign de projeto existente: audita a UI atual, identifica padrões genéricos de IA e aplica padrão premium sem quebrar funcionalidade, em qualquer framework CSS ou CSS… |
-| [`terras-reverse-engineer`](skills/terras-reverse-engineer) | Investiga como uma feature funciona em software empacotado (app Electron/JS, site, APK, binário nativo, .NET, firmware, HAR) com o REA por MCP ou CLI, cada conclusão… |
+| [`terras-redesign-existing-projects`](skills/terras-redesign-existing-projects) | Redesign de projeto existente: audita a UI atual, identifica padrões genéricos de IA e aplica padrão premium sem quebrar funcionalidade. |
+| [`terras-reverse-engineer`](skills/terras-reverse-engineer) | Investiga como uma feature funciona em software empacotado (Electron, site, APK, binário nativo, .NET, firmware) com o REA, cada conclusão presa a uma evidência. |
 | [`terras-revisao-cruzada`](skills/terras-revisao-cruzada) | Manda uma spec ou um diff, em paralelo, para agentes de linha de comando de outros fornecedores (Codex, opencode) e junta os vereditos num revisao.md único,… |
 | [`terras-revisao-de-codigo`](skills/terras-revisao-de-codigo) | Revisa uma mudança de código pelo risco que ela cria, com foco em integração que movimenta dinheiro ou dado de cliente: correção, idempotência, falha parcial, segredo… |
 | [`terras-robo-de-atendimento-de-rh`](skills/terras-robo-de-atendimento-de-rh) | Estrutura um atendimento de auto serviço para dúvidas de férias, benefícios, políticas e folha, com encaminhamento seguro para casos complexos. |
 | [`terras-roteirizador-de-onboarding`](skills/terras-roteirizador-de-onboarding) | Monta um plano de onboarding de 30, 60 e 90 dias com check-ins, tarefas e expectativas claras para a nova pessoa. |
 | [`terras-screenador-de-curriculos-com-ia`](skills/terras-screenador-de-curriculos-com-ia) | Ranqueia currículos por requisitos da vaga e anonimiza dados sensíveis para apoiar uma triagem mais justa e auditável. |
 | [`terras-security-review`](skills/terras-security-review) | Checklist e padrões de segurança para código: autenticação, entrada do usuário, segredos, endpoints de API, pagamento e dados sensíveis, com anexo de segurança… |
-| [`terras-seed`](skills/terras-seed) | Use sempre que o pedido for sobre criar, revisar, avaliar ou ajustar um PROMPT (o texto de instrução dado a uma IA como ChatGPT, Claude ou Gemini), e não sobre executar… |
+| [`terras-seed`](skills/terras-seed) | Cria, revisa e ajusta PROMPTS para outra IA (ChatGPT, Claude, Gemini), sem executar a tarefa que o prompt descreve; também atende por 'Lyra'. |
 | [`terras-seo`](skills/terras-seo) | Auditar, planejar e implementar SEO: SEO técnico, otimização on-page, dados estruturados (schema.org), Core Web Vitals e estratégia de conteúdo. |
 | [`terras-simulador-de-oferta`](skills/terras-simulador-de-oferta) | Simula propostas de remuneração considerando benchmark de mercado, equidade interna e cenários de negociação. |
-| [`terras-skill-factory`](skills/terras-skill-factory) | Cria, revisa e mantém skills no padrão da casa terras-: inventário, frontmatter, catálogo de gatilhos, progressive disclosure e teste de aderência antes de fechar. |
-| [`terras-slides`](skills/terras-slides) | Apresentações HTML estratégicas e persuasivas com Chart.js: estratégias por contexto, padrões de layout, fórmulas de copywriting e design tokens; inclui base de busca… |
-| [`terras-standards`](skills/terras-standards) | Aplica os Padrões Agnósticos de Engenharia e Produto v4.0 (arquitetura, segurança, privacidade e IA) com lastro em evidência real de cliente quando disponível. |
-| [`terras-stitch-design-taste`](skills/terras-stitch-design-taste) | Design system semântico para Google Stitch: gera DESIGN.md que impõe padrão premium anti-genérico (tipografia estrita, cor calibrada, layout assimétrico, micro-motion… |
-| [`terras-substack`](skills/terras-substack) | Publica, agenda e gerencia posts na Substack (newsletter) usando a API interna do editor. |
-| [`terras-tech-debt`](skills/terras-tech-debt) | Auditoria de dívida técnica e arquitetura de um repositório, com achados citando arquivo:linha, severidade, esforço e a seção obrigatória 'parece ruim mas está certo'. |
-| [`terras-transcription`](skills/terras-transcription) | Transcreve áudio em texto fiel, localmente e sem API: reunião gravada, export do Otter/Zoom/Meet/Teams, nota de voz, entrevista, aula, podcast. |
+| [`terras-skill-factory`](skills/terras-skill-factory) | Cria, revisa e mantém skills no padrão da casa terras-: frontmatter, descrição que dispara, progressive disclosure, checagem de colisão com skill parecida e teste… |
+| [`terras-slides`](skills/terras-slides) | Deck HTML estratégico e persuasivo com Chart.js: estratégia por contexto, layouts, fórmulas de copy e design tokens. |
+| [`terras-standards`](skills/terras-standards) | Aplica os Padrões Agnósticos de Engenharia e Produto v4.0 (arquitetura, segurança, privacidade e IA) com evidência real quando houver. |
+| [`terras-stitch-design-taste`](skills/terras-stitch-design-taste) | Gera o DESIGN.md para o Google Stitch: contrato de design premium anti-genérico (tipografia estrita, cor calibrada, layout assimétrico, micro-motion). |
+| [`terras-substack`](skills/terras-substack) | Publica, agenda e gerencia posts e Notes na Substack pela API interna do editor, só com Python do sistema. |
+| [`terras-tech-debt`](skills/terras-tech-debt) | Auditoria de dívida técnica e arquitetura de um repositório inteiro, com achados em arquivo:linha, severidade, esforço e a seção 'parece ruim mas está certo'. |
+| [`terras-transcription`](skills/terras-transcription) | Transcreve áudio localmente e sem API (reunião, export do Otter/Zoom/Meet/Teams, nota de voz, entrevista, aula), separa quem falou e marca trecho duvidoso. |
 | [`terras-triagem-riscos-psicossociais`](skills/terras-triagem-riscos-psicossociais) | Lê sinais agregados de sobrecarga e atrito de uma equipe e entrega indícios com evidência para a gestão avaliar, sem diagnosticar pessoa, sem dado de saúde… |
-| [`terras-ui-styling`](skills/terras-ui-styling) | Implementação de interface com shadcn/ui e Tailwind CSS: adicionar componentes, theming, acessibilidade, utilitários e responsividade, customização de tema e design… |
-| [`terras-ui-ux-pro-max`](skills/terras-ui-ux-pro-max) | Base de consulta local de UI/UX com motor de busca próprio (BM25 + regex): 79 estilos, 192 paletas por tipo de produto, 74 pares tipográficos, 119 diretrizes de UX, 105… |
-| [`terras-user-research`](skills/terras-user-research) | Pesquisa com usuários de ponta a ponta: planejar estudo qualitativo (roteiro de entrevista, guia de discussão, questionário de triagem, plano de pesquisa), sintetizar… |
+| [`terras-ui-styling`](skills/terras-ui-styling) | Implementa interface com shadcn/ui e Tailwind CSS: componentes, tema, acessibilidade, responsividade e design em canvas. |
+| [`terras-ui-ux-pro-max`](skills/terras-ui-ux-pro-max) | Base local de UI/UX com busca própria: estilos, paletas por produto, pares tipográficos, diretrizes de UX e guias de stack; gera o design system do produto em MASTER.md. |
+| [`terras-user-research`](skills/terras-user-research) | Pesquisa com usuários de ponta a ponta: plano, roteiro de entrevista, triagem, síntese em achados, personas e oportunidades, e survey quantitativo. |
 | [`terras-validacao-regularidade-cadastral`](skills/terras-validacao-regularidade-cadastral) | Organiza a checagem de idoneidade de um fornecedor ou parceiro — o que precisa ser verificado, onde, com que validade — e registra o que ficou sem comprovação. |
 | [`terras-vercel`](skills/terras-vercel) | Deploy applications and manage projects with complete CLI reference. Commands for deployments, projects, domains, environment variables, and live documentation access. |
-| [`terras-video`](skills/terras-video) | Monta vídeo para YouTube e Shorts a partir de um roteiro: cartelas na identidade da marca, narração por voz neural, movimento fluido e mp4 pronto para publicar. · Instale com o plugin `terras-midia`. |
-| [`terras-visual-explainer`](skills/terras-visual-explainer) | Gera páginas HTML autocontidas que explicam visualmente sistemas, mudanças de código, planos, dados e conceitos técnicos: diagramas (inclusive Mermaid), visões… |
+| [`terras-video`](skills/terras-video) | Monta vídeo para YouTube e Shorts a partir de roteiro: cartelas na identidade da marca, narração por voz neural e mp4 horizontal (1920x1080) ou vertical (1080x1920). · Instale com o plugin `terras-midia`. |
+| [`terras-visual-explainer`](skills/terras-visual-explainer) | Páginas HTML autocontidas que explicam visualmente sistemas, diffs, planos, dados e conceitos: diagramas, arquitetura, tabelas comparativas, inclusive diagrama animado… |
 | [`terras-vite`](skills/terras-vite) | Padrões do Vite: config, plugins, HMR, variáveis de ambiente (e o que vaza no bundle), proxy, SSR, modo biblioteca, pré-bundling de dependências e otimização de build. |
-| [`terrasia-pauta-youtube`](skills/terrasia-pauta-youtube) | Pesquisa de demanda (envelope) no YouTube antes de escrever o roteiro: compara consultas de tema pela mediana de views dos resultados, acha outliers (video muito acima… |
-| [`terrasia-post-empresa`](skills/terrasia-post-empresa) | Produz a peça da Company Page do TerrasIA: o post na voz de produto e a imagem na identidade da marca, com aceite de leitura no celular. |
-| [`terrasia-vagas-coders`](skills/terrasia-vagas-coders) | Filtra as vagas do board da comunidade COD3RS (app.coders.com.br/comunidade#vagas) contra o currículo do usuário e devolve só o que faz sentido real: balde… |
+| [`terrasia-pauta-youtube`](skills/terrasia-pauta-youtube) | Pesquisa de demanda no YouTube antes do roteiro: compara temas pela mediana de views, acha outliers por canal e colhe frases recorrentes dos títulos que performam. |
+| [`terrasia-post-empresa`](skills/terrasia-post-empresa) | Produz a peça da Company Page do TerrasIA: post na voz de produto e imagem na identidade da marca (1200x628 e 1080x1350), com régua de texto e aceite no celular. |
+| [`terrasia-vagas-coders`](skills/terrasia-vagas-coders) | Filtra as vagas do board da COD3RS contra o currículo do usuário em baldes A (recomendar), B (talvez) e C (descarte com motivo) e, com aprovação por vaga, avança… |
 
 </details>
 <!-- catalogo:fim -->
 
-## Os plugins que empacotam mais de uma coisa
+## Plugin que empacota mais de uma skill
 
 `terras-audio`, `terras-banner` e `terras-video` usam scripts umas das outras e saem juntas no
-plugin `terras-midia`. Os dois abaixo são escritos à mão, com fluxo próprio de aprovação.
+plugin `terras-midia` (`/plugin install terras-midia@terras`). Pelo `instalar.sh`, as três já
+ficam lado a lado e funcionam sem o plugin.
+
+## Skills que publicam por você
+
+As duas abaixo agem em sites com a sua conta. Nada é publicado sem o seu "aprovado" no chat.
 
 ### terras-coders-mural
 
-Faz a rodada de engajamento do **Mural de Posts**:
+Faz a rodada de engajamento do **Mural de Posts** da comunidade COD3RS:
 
 1. lista os posts novos (ou mais antigos, como quando você rola a tela);
 2. lê cada post linkado no LinkedIn;
@@ -273,12 +308,12 @@ Skill nova segue a `terras-skill-factory` (padrão da casa: frontmatter, catálo
 progressive disclosure). Depois de criar ou editar em `skills/`:
 
 1. `npm run gate` (regras + testes) e `npm run marketplace` (regera o manifesto);
-2. `npm run readme` (regera a seção do catálogo neste arquivo);
+2. `npm run readme` (regera a seção do catálogo neste arquivo) e `node scripts/manual.mjs` (regera o `MANUAL.md`);
 3. commit e push no `main` — quem já instalou atualiza com `/plugin marketplace update terras`.
 
-O gate reprova manifesto **e** README desatualizados: são dois arquivos gerados, regravados pelos
+O gate reprova manifesto, README **e** MANUAL desatualizados: são arquivos gerados, regravados pelos
 comandos acima. O marketplace e os links do `instalar.sh` entregam a MESMA skill por dois caminhos:
-num mesmo agente, use um ou outro, senão ela aparece duas vezes.
+num mesmo agente, use um ou outro (ver "Antes de instalar muitas skills").
 
 Editar uma skill do catálogo aqui não muda o motor: o `aplica-bundles.mjs` do `terrasia` importa o
 que falta no catálogo de lá e concede as liberações do `skills/bundles.json` (que continua no core,
@@ -298,7 +333,7 @@ catalogo.json     # skills que entram no catálogo do motor (e nome antigo, se m
 .claude-plugin/marketplace.json   # GERADO (npm run marketplace); não edite os plugins de ./skills/ à mão
 marketplace-fora.json             # skills que não vão para o marketplace, com o motivo
 marketplace-grupos.json           # skills que dependem da pasta vizinha e saem juntas num plugin só
-plugins/          # plugins escritos à mão, e a cópia GERADA dos plugins de grupo (plugins/terras-midia)
+plugins/          # só a cópia GERADA dos plugins de grupo (plugins/terras-midia); toda skill mora em skills/
 evals/            # cenários de avaliação de algumas skills
 scripts/          # verificador, instalador, geradores do marketplace e do README, e seus testes
 ```
@@ -346,6 +381,12 @@ ao lado do que o projeto já carrega.
    usa dado fictício (`@example.com`); licença de fonte e código em `.vendor`
    ficam fora da regra de e-mail. Skill que só faz sentido com dado de cliente
    ou conta pessoal mora no repositório privado `skills-internas`.
+8. **Descrição que cabe na lista.** A `description` do `SKILL.md` tem no máximo 300
+   caracteres, numa linha entre aspas (sem bloco YAML). O agente escolhe a skill só por nome e
+   descrição, e a lista inteira tem orçamento: descrição longa empurra as outras para fora.
+   Diga o que a skill faz, quando usar e, se houver vizinha parecida, quando NÃO usar (`Não é
+   para X (terras-y)`). Skill que repete o trabalho de outra entra com
+   `disable-model-invocation: true`, para rodar só quando chamada pelo nome.
 
 ## Comandos
 
@@ -353,6 +394,8 @@ ao lado do que o projeto já carrega.
 npm run gate                       # verificar + testes (rodar antes de commit)
 npm run marketplace                # regrava o manifesto do marketplace a partir do catálogo
 npm run readme                     # regrava a seção do catálogo no README
+node scripts/manual.mjs            # regrava o MANUAL.md
+npm run pacotes                    # um .zip por skill em dist/pacotes/ (upload no claude.ai e no ChatGPT)
 npm run verificar                  # só as regras acima
 npm test                           # testes do verificador, dos geradores e do instalador
 bash scripts/instalar.sh           # simulação da instalação
@@ -369,6 +412,7 @@ Ele usa `readlink -f`: Linux, ou macOS 12.3 em diante.
 |---|---|
 | `TERRAS_SKILLS_DIR` | raiz das skills quando não for a pasta vizinha (scripts que chamam outra skill) |
 | `TERRAS_IMAGE_KEY` / `TERRAS_IMAGE_ENDPOINT` | chave e endpoint do Model Studio para `terras-banner/scripts/gen_art.py` |
+| `SLASH_COMMAND_TOOL_CHAR_BUDGET` | do Claude Code, não do repositório: orçamento em caracteres da lista de skills (ver "Antes de instalar muitas skills") |
 
 `MIGRACAO.md` registra de onde cada skill veio quando o repositório nasceu.
 

@@ -1,6 +1,6 @@
 ---
 name: terras-linkedin
-description: "Ajuda a escrever posts para LinkedIn. Use quando o usuário pedir para escrever, redigir, revisar ou melhorar um post/texto para LinkedIn, e também quando perguntar sobre alcance, impressões, views ou por que um post rendeu pouco. Use também quando ele colar o post de outra pessoa para responder ou comentar (post a responder, queria comentar, resposta curta ao post dele), mesmo que ele não use a palavra post. Cobre estrutura, hook, tom, CTA, hashtags, distribuição fora da rede, boas práticas da plataforma, resposta a post de terceiro e a regra de zero travessão (em dash), marcador de texto gerado por IA."
+description: "Escreve e revisa posts de LinkedIn (hook, estrutura, CTA, hashtags, zero travessão) e explica alcance e impressões. Use para post de LinkedIn, por que um post rendeu pouco, ou responder/comentar um post colado de outra pessoa. Lote de posts é da terras-comentarios."
 keywords: [linkedin, post, escrever, redigir, revisar, comentar, comentário, responder post, post de terceiro, resposta curta, hook, cta, hashtags, travessao, em dash, carrossel, alcance, impressoes, distribuição, views, fora da rede]
 ---
 

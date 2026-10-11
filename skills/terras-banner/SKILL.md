@@ -1,6 +1,6 @@
 ---
 name: terras-banner
-description: "Cria a imagem que acompanha um post, newsletter ou nota: banner 1200x628 para LinkedIn e og:image da Substack, card em pé 1080x1350, capa. Use quando o pedido envolver imagem, banner, capa, thumbnail, card, 'post com imagem', 'faz a imagem disso', og:image, ou quando ele disser que o visual ficou padrão ou simples. Gera a arte por modelo (qwen-image na chave que ele já tem), monta a tipografia em HTML com a fonte da marca e renderiza em PNG no tamanho exato, com conferência de encaixe e gate visual antes de entregar."
+description: "Imagem que acompanha post, newsletter ou nota: banner 1200x628 (LinkedIn, og:image da Substack), card 1080x1350 e capa, com arte gerada, tipografia da marca e gate visual. Use para imagem, banner, capa, thumbnail, card ou 'faz a imagem disso'."
 keywords: [banner, imagem, capa, thumbnail, card, og:image, substack, linkedin, arte, visual, png, 1200x628, 1080x1350, qwen-image, design, render]
 ---
 

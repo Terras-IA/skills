@@ -115,3 +115,16 @@ test("link para skill que saiu do repositório é removido; link alheio fica", (
 function lstatExiste(p) {
   try { lstatSync(p); return true; } catch { return false; }
 }
+
+test("plugin @terras instalado no Claude Code junto com os links gera aviso", () => {
+  const h = home();
+  mkdirSync(join(h, ".claude/plugins"), { recursive: true });
+  writeFileSync(join(h, ".claude/plugins/installed_plugins.json"), JSON.stringify({ version: 2, plugins: { [`${A}@terras`]: [{ scope: "user" }], "outro@x": [] } }));
+  const saida = roda(h);
+  assert.match(saida, new RegExp(`aviso: .*${A}@terras`));
+  assert.doesNotMatch(saida, /outro@x/);
+});
+
+test("sem plugin @terras não há aviso", () => {
+  assert.doesNotMatch(roda(home()), /aviso:/);
+});

@@ -51,7 +51,9 @@ test("skill de processo do motor (.nao-instalar) e skill da lista de fora não s
 test("plugin escrito à mão (source em ./plugins/) é preservado como está; os gerados são refeitos", () => {
   const manual = { name: "terras-manual", description: "à mão", version: "2.0.0", source: "./plugins/terras-manual" };
   const velho = { name: "terras-sumiu", description: "skill apagada", source: "./skills/terras-sumiu", strict: false, skills: ["./"] };
-  const m = montarManifesto(repo({ "skills/terras-a/SKILL.md": skill("terras-a") }, { ...BASE, description: "fica", plugins: [manual, velho] }));
+  const m = montarManifesto(
+    repo({ "skills/terras-a/SKILL.md": skill("terras-a"), "plugins/terras-manual/.claude-plugin/plugin.json": "{}" }, { ...BASE, description: "fica", plugins: [manual, velho] }),
+  );
   assert.deepEqual(nomes(m), ["terras-manual", "terras-a"], "manuais primeiro, gerados depois; o que sumiu do catálogo sai");
   assert.deepEqual(m.plugins[0], manual);
   assert.equal(m.description, "fica", "o topo do manifesto é preservado");
@@ -59,7 +61,15 @@ test("plugin escrito à mão (source em ./plugins/) é preservado como está; os
 
 test("nome repetido entre plugin à mão e skill do catálogo é erro, não sobrescrita silenciosa", () => {
   const manual = { name: "terras-a", description: "à mão", source: "./plugins/terras-a" };
-  assert.throws(() => montarManifesto(repo({ "skills/terras-a/SKILL.md": skill("terras-a") }, { ...BASE, plugins: [manual] })), /terras-a/);
+  const arquivos = { "skills/terras-a/SKILL.md": skill("terras-a"), "plugins/terras-a/.claude-plugin/plugin.json": "{}" };
+  assert.throws(() => montarManifesto(repo(arquivos, { ...BASE, plugins: [manual] })), /terras-a/);
+});
+
+test("plugin escrito à mão cuja pasta sumiu sai do manifesto e a skill de mesmo nome em skills/ assume", () => {
+  const manual = { name: "terras-a", description: "à mão", source: "./plugins/terras-a" };
+  const m = montarManifesto(repo({ "skills/terras-a/SKILL.md": skill("terras-a") }, { ...BASE, plugins: [manual] }));
+  assert.deepEqual(nomes(m), ["terras-a"]);
+  assert.equal(m.plugins[0].source, "./skills/terras-a");
 });
 
 test("descrição longa é cortada em frase inteira para o manifesto, sem reticências no meio da palavra", () => {

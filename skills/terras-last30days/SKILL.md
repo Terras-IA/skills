@@ -1,7 +1,7 @@
 ---
 name: terras-last30days
 version: "3.25.0"
-description: "Pesquisa o que se falou sobre um tema nos últimos 30 dias em Reddit, X, YouTube, Hacker News, Polymarket, GitHub e web, com motor local vendorizado. Use quando o pedido for descobrir pauta, medir se um assunto está circulando, checar o que a comunidade está discutindo ou comparar dois temas antes de escrever um post. Descoberta, não fonte: o resultado orienta, a verificação vem da fonte primária. last30days, trending topics, o que estão falando, pesquisa de pauta."
+description: "Pesquisa o que se falou de um tema nos últimos 30 dias em Reddit, X, YouTube, Hacker News, GitHub e web. Use para descobrir pauta, medir se um assunto circula ou comparar temas antes de um post. Descoberta, não fonte: confirme na fonte primária."
 keywords: [last30days, pesquisa de pauta, trending, reddit, hacker news, youtube, x, sentimento, descoberta, tópicos recentes]
 ---
 

@@ -5,8 +5,9 @@
 // terrasia-), cabeçalho que
 // o parser do motor recusa, skill do catálogo sem keywords (liberada e muda),
 // dependência de um harness específico, marca de terceiro que sobrou de
-// importação, segredo, dado pessoal (CNPJ, CPF, e-mail real) e arquivo de
-// credencial ou cache.
+// importação, segredo, dado pessoal (CNPJ, CPF, e-mail real), arquivo de
+// credencial ou cache, e description de agente longa demais para a lista de
+// skills que o modelo recebe.
 //
 //   node scripts/verificar.mjs            # verifica o repositório
 //   node scripts/verificar.mjs <raiz>     # verifica outra raiz (testes)
@@ -17,6 +18,11 @@ import { fileURLToPath } from "node:url";
 const NOME_RE = /^(terras|terrasia)-[a-z0-9]+(-[a-z0-9]+)*$/;
 const MAX_CABECALHO = 1024; // teto de frontmatter de skill de agente
 const MAX_DESCRICAO_CATALOGO = 280; // teto do parser do motor
+// Teto da description de agente. O agente escolhe a skill só por nome e
+// description, e a lista inteira tem orçamento de contexto: description longa
+// empurra as outras para fora da lista (a skill vira só um nome) e o manifesto
+// do marketplace corta em 300.
+const MAX_DESCRICAO_AGENTE = 300;
 const TEXTO = /\.(md|py|sh|mjs|js|cjs|ts|json|txt|html|css|toml|ya?ml|csv|tsv)$/i;
 
 // Dependência de harness: caminho de instalação de um agente específico, nome
@@ -110,7 +116,10 @@ export function verificar(raiz) {
       if (!cab) acusa("nome", skill, "sem cabeçalho entre ---");
       else {
         if (semAspas(cab.campos.name) !== nome) acusa("nome", skill, `name "${cab.campos.name}" diferente da pasta`);
-        if (!semAspas(cab.campos.description)) acusa("nome", skill, "description vazia");
+        const desc = semAspas(cab.campos.description);
+        if (!desc) acusa("nome", skill, "description vazia");
+        if (/^description:\s*[|>]/m.test(cab.bruto)) acusa("descricao", skill, "description em bloco YAML: use uma linha entre aspas");
+        else if (desc.length > MAX_DESCRICAO_AGENTE) acusa("descricao", skill, `description com ${desc.length} caracteres (teto ${MAX_DESCRICAO_AGENTE}): o agente escolhe a skill por ela e a lista tem orçamento`);
         if (cab.bruto.length > MAX_CABECALHO) acusa("nome", skill, `cabeçalho com ${cab.bruto.length} caracteres (teto ${MAX_CABECALHO})`);
       }
     }

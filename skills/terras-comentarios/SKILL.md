@@ -1,6 +1,6 @@
 ---
 name: terras-comentarios
-description: "Comenta em lote posts do LinkedIn de terceiros: o usuário manda uma lista de posts colados, a skill lê cada texto e devolve um comentário curto de até 100 caracteres, pronto para colar. Use sempre que o pedido tiver 2 ou mais posts para comentar, 'comenta esses posts', 'gera comentário para cada um', 'me dá comentários rápidos pra essa lista', comentar o feed, engajamento em lote. Não use para um post único com 'post a responder' (três arquivos) nem 'queria comentar' sozinho (comentário de ~450 caracteres): esses casos são da skill terras-linkedin."
+description: "Comenta em lote posts do LinkedIn colados pelo usuário: um comentário de até 100 caracteres por post, pronto para colar. Use quando houver 2 ou mais posts para comentar. Post único para responder ou comentar é da terras-linkedin."
 keywords: [comentar, comentario, comentarios, lista de posts, lote, em lote, feed, engajamento, linkedin, resposta curta, comentar posts]
 ---
 

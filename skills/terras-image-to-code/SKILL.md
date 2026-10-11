@@ -1,6 +1,6 @@
 ---
 name: terras-image-to-code
-description: "Pipeline imagem-primeiro para site: gera a própria imagem de referência, analisa em detalhe e implementa o frontend fiel a ela, seção a seção, evitando sub-geração e excesso de cartões aninhados. Use quando o pedido for transformar design/mockup em código ou reproduzir uma página com alta fidelidade. Image to code, design to code, screenshot to code."
+description: "Pipeline imagem-primeiro: gera a imagem de referência, analisa e implementa o frontend fiel a ela, seção a seção. Use para transformar design, mockup ou screenshot em código ou reproduzir uma página com alta fidelidade. Image to code."
 keywords: [image to code, design to code, mockup, frontend, implementação, fidelidade]
 license: MIT
 ---

@@ -1,18 +1,7 @@
 ---
 name: terras-pipeline-de-automacao
 version: "1.0.0"
-description: >-
-  Projeta e monta pipelines de automação em que scripts determinísticos executam
-  o trabalho e o agente decide só em pontos de revisão fechados. Pipes and
-  Filters com rastro de hashes (etapa se recusa a rodar sobre dado velho),
-  recibos de execução (sucesso, falha sem deixar metade, já-estava-feito) e
-  manuais em vez de leitura de código. Use quando pedirem automatizar de ponta
-  a ponta um processo repetitivo (áudio, vídeo, documentos, relatórios, lotes
-  de arquivos), projetar um pipeline com agente de código, ou consertar um
-  pipeline que refaz trabalho, deixa artefato pela metade, perde a trilha de
-  versão ou põe o modelo decidindo o que devia ser medido. Production
-  pipeline, pipes and filters, provenance, receipts, idempotency, agentic
-  workflow.
+description: "Projeta pipelines de automação em que scripts determinísticos fazem o trabalho e o agente só decide em pontos de revisão, com rastro de hashes e recibos de execução. Use para automatizar processo repetitivo de ponta a ponta ou consertar pipeline que refaz ou perde trabalho."
 keywords: [pipeline, pipes and filters, rastro, recibo, idempotencia, provenance, receipts, hash, acervo, automacao, producao, revisao, agentic]
 ---
 

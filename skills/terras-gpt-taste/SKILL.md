@@ -1,8 +1,9 @@
 ---
 name: terras-gpt-taste
-description: "Variante estrita do design-taste para GPT/Codex: variância de layout com randomização real, estrutura AIDA, bento sem buracos, GSAP (pinning, stacking, scrubbing) e anti-slop agressivo. Use quando o alvo for GPT/Codex e o pedido for landing page de nível Awwwards com motion avançado. Awwwards, landing page, GSAP, bento grid."
+description: "Variante estrita do design-taste para GPT/Codex: layout com randomização real, AIDA, bento sem buracos, GSAP e anti-slop agressivo. Só roda por chamada explícita (/terras-gpt-taste); a padrão da casa é a terras-design-taste-frontend. Awwwards, GSAP."
 keywords: [gpt, codex, awwwards, landing page, gsap, bento, motion, anti-slop]
 license: MIT
+disable-model-invocation: true
 ---
 
 # CORE DIRECTIVE: AWWWARDS-LEVEL DESIGN ENGINEERING

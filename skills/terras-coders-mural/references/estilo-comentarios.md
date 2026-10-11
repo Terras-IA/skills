@@ -9,6 +9,9 @@ for sharing") não gera conversa e todo mundo percebe que é automação.
 - **Um acréscimo**: experiência, nuance, contraponto educado ou a resposta à pergunta que o autor fez.
 - **Curto**: 1 a 2 frases, até ~150 caracteres. Sem hashtags, sem emoji, sem travessão (—).
 - **Nome do autor** só às vezes, e só o primeiro nome.
+- **EN passa pela `terras-humanizer`** antes da tabela de aprovação: padrões de IA e régua B1/B2
+  (`terras-humanizer/references/ingles-b1b2.md`). Palavra comum ganha da bonita; termo técnico que
+  é o nome exato da coisa (`container_cpu_cfs_throttled_seconds_total`, CDC, idempotent) fica.
 - **EN no LinkedIn, PT no mural**, mesma ideia. O PT não precisa ser tradução literal; precisa soar
   natural em português.
 - **Não invente experiência do usuário.** Frases como "saved me more than once" ou "changed it for me

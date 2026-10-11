@@ -1,6 +1,6 @@
 ---
 name: terras-educacao-corporativa
-description: "Aplica 26 prompts de educação corporativa (derivados do ebook da Alun Business) para gerar estratégia de T&D, diagnóstico de necessidades, mapa de competências, trilhas, programas, planos de aula e indicadores de impacto. Use quando o pedido envolver educação corporativa, treinamento corporativo, T&D, L&D, trilha de aprendizagem, mapa de competências, ROI de treinamento, workshop ou plano de aula corporativo. Corporate education, learning and development, training design."
+description: "Educação corporativa com 26 prompts guiados: estratégia de T&D, diagnóstico de necessidades, mapa de competências, trilhas, planos de aula e indicadores de impacto. Use para T&D, L&D, trilha de aprendizagem, ROI de treinamento ou workshop corporativo."
 keywords: [educação corporativa, educacao corporativa, treinamento, t&d, trilha de aprendizagem, jornada de aprendizagem, competências, competencias, diagnóstico de necessidades, design instrucional, plano de aula, workshop, avaliação de treinamento, kirkpatrick, bloom, onboarding, blended, corporate education, learning and development, training design]
 ---
 

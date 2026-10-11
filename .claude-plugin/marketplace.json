@@ -7,28 +7,6 @@
   },
   "plugins": [
     {
-      "name": "terras-coders-mural",
-      "description": "Engajamento em lote no Mural de Posts da COD3RS e no LinkedIn, com aprovação humana antes de publicar.",
-      "version": "1.0.0",
-      "author": {
-        "name": "Everton Lima"
-      },
-      "source": "./plugins/terras-coders-mural",
-      "category": "productivity",
-      "license": "MIT"
-    },
-    {
-      "name": "terras-linkedin-alvos",
-      "description": "Comentários de qualidade, cedo, nos posts de perfis-alvo do LinkedIn, com aprovação antes de publicar.",
-      "version": "1.0.0",
-      "author": {
-        "name": "Everton Lima"
-      },
-      "source": "./plugins/terras-linkedin-alvos",
-      "category": "productivity",
-      "license": "MIT"
-    },
-    {
       "name": "terras-midia",
       "description": "Áudio, vídeo e banner: narração com voz e pronúncia cuidadas, vídeo a partir de roteiro e arte de capa. As três skills usam scripts umas das outras, por isso saem juntas.",
       "version": "1.0.0",
@@ -135,7 +113,7 @@
     },
     {
       "name": "terras-analise-swot",
-      "description": "Faz análise SWOT rastreável e terminada em ação: cada item cita a fonte (dado, documento, métrica), o que não tem fonte vira hipótese marcada com o teste que a confirmaria, os quadrantes são priorizados e a análise fecha em cruzamentos TOWS (SO, WO, ST, WT) com ação, dono e verificação.",
+      "description": "Análise SWOT rastreável: cada item cita a fonte, o que não tem fonte vira hipótese com teste, e fecha em cruzamentos TOWS com ação, dono e verificação. Use para SWOT, análise de cenário, posição competitiva ou preparo de decisão estratégica.",
       "version": "1.0.0",
       "source": "./skills/terras-analise-swot",
       "strict": false,
@@ -166,7 +144,7 @@
     },
     {
       "name": "terras-animacao",
-      "description": "Produz peça animada em loop a partir de uma cena HTML dirigida por tempo: o HTML determinístico (contrato ?t=), o render quadro a quadro no Chrome headless e a montagem do GIF (loop, para o feed) e do MP4 (silencioso), com capa estática e preview de celular.",
+      "description": "Peça animada em loop (GIF e MP4 sem som) a partir de cena HTML dirigida por tempo, renderizada quadro a quadro. Use para animação, gif, banner animado ou diagrama que se desenha. Não é banner estático (terras-banner), vídeo narrado (terras-video) nem edição (terras-ffmpeg).",
       "version": "1.0.0",
       "source": "./skills/terras-animacao",
       "strict": false,
@@ -266,7 +244,7 @@
     },
     {
       "name": "terras-banner-design",
-      "description": "Banners para redes sociais, anúncios, heros de site e impressão: 22 estilos de direção de arte, tamanhos por plataforma, com visuais gerados ou fornecidos. Use quando o pedido for banner de rede social, criativo de anúncio, capa, header ou peça para print.",
+      "description": "Banners para redes sociais, anúncios, heros de site e impressão, com 22 estilos de direção de arte e tamanhos por plataforma. Use para criativo de anúncio, header ou peça para print. Não é para as capas de LinkedIn/Substack da casa (terras-banner).",
       "version": "1.0.0",
       "source": "./skills/terras-banner-design",
       "strict": false,
@@ -315,7 +293,7 @@
     },
     {
       "name": "terras-brand",
-      "description": "Marca: voz e tom, identidade visual, frameworks de mensagem, paleta e tipografia, organização/validação de ativos e auditoria de consistência; sincroniza as diretrizes com os tokens de design.",
+      "description": "Marca: voz e tom, frameworks de mensagem, paleta, tipografia, organização de ativos e auditoria de consistência, sincronizadas com os tokens de design. Use para guia de marca, voz da marca ou auditoria. Não gera o quadro visual (terras-brandkit).",
       "version": "1.0.0",
       "source": "./skills/terras-brand",
       "strict": false,
@@ -341,7 +319,7 @@
     },
     {
       "name": "terras-brandkit",
-      "description": "Gera a imagem do brand kit de uma marca: quadro de identidade visual com direção de logo, paleta, tipografia, aplicações em mockup e apresentação para cliente. Use quando o pedido for criar/gerar o quadro de marca, brand book visual, logo system, moodboard ou rebranding visual.",
+      "description": "Gera a imagem do brand kit: quadro de identidade com direção de logo, paleta, tipografia e aplicações em mockup. Use para quadro de marca, brand book visual, logo system ou moodboard. Não lê identidade de imagens existentes (terras-identidade).",
       "version": "1.0.0",
       "source": "./skills/terras-brandkit",
       "strict": false,
@@ -389,7 +367,7 @@
     },
     {
       "name": "terras-canal-whatsapp",
-      "description": "Publica texto e/ou imagem no canal (newsletter) do WhatsApp pela sessão pareada do sidecar, com pré-checagem de papel e confirmação explícita. Use quando o pedido for postar ou mandar algo no canal do WhatsApp, publicar card ou texto no canal, ou conferir se o canal está pronto para postar.",
+      "description": "Publica texto ou imagem no canal (newsletter) do WhatsApp pela sessão pareada do sidecar, com pré-checagem e confirmação explícita. Use para postar no canal do WhatsApp ou conferir se o canal está pronto. WhatsApp channel publishing.",
       "version": "1.0.0",
       "source": "./skills/terras-canal-whatsapp",
       "strict": false,
@@ -441,8 +419,33 @@
       ]
     },
     {
+      "name": "terras-coders-mural",
+      "description": "Engajamento em lote no Mural de Posts da COD3RS: curte, lê o post linkado no LinkedIn e comenta em inglês lá e em português no mural, só com aprovação. Use para mural da COD3RS, coders.com.br, SSI do dia, post do dia ou agendar essa rotina.",
+      "version": "1.0.0",
+      "source": "./skills/terras-coders-mural",
+      "strict": false,
+      "skills": [
+        "./"
+      ],
+      "category": "productivity",
+      "license": "MIT",
+      "author": {
+        "name": "Everton Lima"
+      },
+      "keywords": [
+        "cod3rs",
+        "coders",
+        "mural",
+        "linkedin",
+        "engajamento",
+        "ssi",
+        "comentario",
+        "curtir"
+      ]
+    },
+    {
       "name": "terras-comentarios",
-      "description": "Comenta em lote posts do LinkedIn de terceiros: o usuário manda uma lista de posts colados, a skill lê cada texto e devolve um comentário curto de até 100 caracteres, pronto para colar.",
+      "description": "Comenta em lote posts do LinkedIn colados pelo usuário: um comentário de até 100 caracteres por post, pronto para colar. Use quando houver 2 ou mais posts para comentar. Post único para responder ou comentar é da terras-linkedin.",
       "version": "1.0.0",
       "source": "./skills/terras-comentarios",
       "strict": false,
@@ -594,7 +597,7 @@
     },
     {
       "name": "terras-cover-letter",
-      "description": "Escreve e revisa cartas de apresentação (cover letters) para vagas internacionais e remotas. Use quando o usuário pedir carta de apresentação, cover letter, mensagem de candidatura para empresa de fora, InMail para recrutador, texto para vaga na gringa, ou revisar uma carta existente.",
+      "description": "Escreve e revisa cartas de apresentação para vagas internacionais e remotas, traduzindo experiência brasileira em valor global. Use para cover letter, carta de apresentação, InMail para recrutador ou mensagem de candidatura para empresa de fora.",
       "version": "1.0.0",
       "source": "./skills/terras-cover-letter",
       "strict": false,
@@ -671,7 +674,7 @@
     },
     {
       "name": "terras-database-migrations",
-      "description": "Migrations de banco seguras e reversíveis: mudanças só para frente em produção, expand-contract para renomear sem downtime, índices concorrentes, backfill em lotes, e fluxo por ferramenta (PostgreSQL, Prisma, Drizzle, Kysely, Django, golang-migrate).",
+      "description": "Migrations seguras e reversíveis: expand-contract sem downtime, índice concorrente, backfill em lotes e fluxo por ferramenta (PostgreSQL, Prisma, Drizzle, Kysely, Django, golang-migrate). Use ao escrever migration, mexer em tabela grande ou planejar rollback.",
       "version": "1.0.0",
       "source": "./skills/terras-database-migrations",
       "strict": false,
@@ -712,7 +715,7 @@
     },
     {
       "name": "terras-deep-research",
-      "description": "Pesquisa em profundidade com rastreamento de citações: pipeline de 3 a 8 fases (escopo, plano, recuperação, triangulação, síntese, crítica, refinamento e empacotamento), registro persistente de evidências e relatório estruturado com bibliografia completa.",
+      "description": "Pesquisa em profundidade com citações rastreadas: pipeline de fases, registro de evidências e relatório com bibliografia. Use para pesquisa profunda, relatório de pesquisa, comparar X vs Y ou estado da arte. Não use para busca simples de 1 ou 2 consultas.",
       "version": "1.0.0",
       "source": "./skills/terras-deep-research",
       "strict": false,
@@ -738,7 +741,7 @@
     },
     {
       "name": "terras-design",
-      "description": "Skill guarda-chuva de design: identidade de marca, tokens, UI, geração de logo com IA, programa de identidade corporativa (CIP, 50 entregáveis), apresentações HTML, banners, fotos para redes e ícones; roteia para as irmãs terras-brand, terras-design-system e terras-ui-styling e usa a terras-ui-ux-pr",
+      "description": "Guarda-chuva de design: logo com IA, identidade corporativa (CIP), pacote amplo de peças; roteia para terras-brand, terras-design-system e terras-ui-styling. Use quando o pedido de design for amplo ou não estiver claro qual peça se quer. Logo design, corporate identity.",
       "version": "1.0.0",
       "source": "./skills/terras-design",
       "strict": false,
@@ -766,7 +769,7 @@
     },
     {
       "name": "terras-design-system",
-      "description": "Arquitetura de design tokens em três camadas (primitivo, semântico, componente), especificações de componentes e estados, variáveis CSS, escalas de espaçamento/tipografia, integração com Tailwind e busca de slides (estratégia, layout, copy) por BM25.",
+      "description": "Design tokens em três camadas (primitivo, semântico, componente), specs e estados de componente, variáveis CSS e tema Tailwind. Use para criar ou validar tokens, definir estados de componente, montar tema Tailwind ou preparar handoff. Design tokens, component specs.",
       "version": "1.0.0",
       "source": "./skills/terras-design-system",
       "strict": false,
@@ -791,7 +794,7 @@
     },
     {
       "name": "terras-design-taste-frontend",
-      "description": "Anti-slop de frontend para landing pages, portfólios e redesigns: lê o briefing, infere a direção de design e entrega interface que não parece template, com design system real quando couber e auditoria primeiro em redesign.",
+      "description": "Anti-slop de frontend: lê o briefing, infere a direção de design e entrega landing page, portfólio ou redesign que não parece template. É a padrão da casa para página web com qualidade de design. Anti-slop, landing page, frontend design.",
       "version": "1.0.0",
       "source": "./skills/terras-design-taste-frontend",
       "strict": false,
@@ -814,7 +817,7 @@
     },
     {
       "name": "terras-design-taste-frontend-v1",
-      "description": "Versão 1 legada do design-taste-frontend (a v2 é a padrão da casa). Preservada para projetos que dependem do comportamento exato da v1. Use apenas quando a v2 quebrar algo específico do fluxo. Legacy v1, compatibilidade.",
+      "description": "Versão 1 legada da terras-design-taste-frontend, preservada para projetos que dependem do comportamento exato da v1. Só roda por chamada explícita (/terras-design-taste-frontend-v1); para frontend novo, use a terras-design-taste-frontend. Legacy v1.",
       "version": "1.0.0",
       "source": "./skills/terras-design-taste-frontend-v1",
       "strict": false,
@@ -859,7 +862,7 @@
     },
     {
       "name": "terras-ebook",
-      "description": "Cria e-book e audiolivro para vender: estrutura, diagramação, EPUB e PDF A5 diagramado como livro, capa, ISBN, escolha de plataforma, royalties, preço e lançamento — e transforma acervo de YouTube em e-book.",
+      "description": "Cria e-book e audiolivro para vender: estrutura, diagramação EPUB e PDF A5, capa, ISBN, plataforma, royalties, preço e lançamento, e transforma acervo de YouTube em livro. Use para e-book, EPUB, Kindle/KDP, apostila, lead magnet ou 'transformar meus vídeos em livro'.",
       "version": "1.0.0",
       "source": "./skills/terras-ebook",
       "strict": false,
@@ -906,7 +909,7 @@
     },
     {
       "name": "terras-educacao-corporativa",
-      "description": "Aplica 26 prompts de educação corporativa (derivados do ebook da Alun Business) para gerar estratégia de T&D, diagnóstico de necessidades, mapa de competências, trilhas, programas, planos de aula e indicadores de impacto.",
+      "description": "Educação corporativa com 26 prompts guiados: estratégia de T&D, diagnóstico de necessidades, mapa de competências, trilhas, planos de aula e indicadores de impacto. Use para T&D, L&D, trilha de aprendizagem, ROI de treinamento ou workshop corporativo.",
       "version": "1.0.0",
       "source": "./skills/terras-educacao-corporativa",
       "strict": false,
@@ -968,7 +971,7 @@
     },
     {
       "name": "terras-eval-harness",
-      "description": "Desenvolvimento guiado por eval para trabalho com agentes e prompts: definir evals de capacidade e de regressão antes de codar, corrigir por código, modelo, regra ou humano, e medir confiabilidade com pass@k e pass^k.",
+      "description": "Desenvolvimento guiado por eval para agentes e prompts: evals de capacidade e regressão antes de codar e confiabilidade com pass@k e pass^k. Use ao definir critério de passa/falha, montar suíte de regressão de prompt ou comparar versões de modelo.",
       "version": "1.0.0",
       "source": "./skills/terras-eval-harness",
       "strict": false,
@@ -1020,7 +1023,7 @@
     },
     {
       "name": "terras-ffmpeg",
-      "description": "Edita vídeo e áudio com FFmpeg local a partir de pedidos em linguagem natural: cortar, aparar, juntar, redimensionar (9:16, 1:1), acelerar, legendas (SRT/ASS, animadas, karaokê), logos e textos sobrepostos, remoção de silêncio, sincronização multicâmera e de microfone externo, normalização de loudne",
+      "description": "Edita vídeo e áudio com FFmpeg local por pedido em linguagem natural: cortar, juntar, 9:16, legendas, loudness, música com ducking, exportar por plataforma. Use para mp4/mov/wav, corte, legenda, reel, transcodificação ou 'deixa vertical'. Sem nuvem e sem chave de API.",
       "version": "1.0.0",
       "source": "./skills/terras-ffmpeg",
       "strict": false,
@@ -1072,7 +1075,7 @@
     },
     {
       "name": "terras-frontend-slides",
-      "description": "Cria apresentações HTML ricas em animação, sem dependência nenhuma, do zero ou convertendo PowerPoint. Use quando o pedido for apresentação, slides, palestra, pitch, ou converter PPT/PPTX para web.",
+      "description": "Apresentação HTML com animação, sem dependências, em arquivo único 16:9, do zero ou convertendo PPT/PPTX. Use para slides, palestra, pitch ou converter PowerPoint para web. Para deck persuasivo com gráficos Chart.js, use terras-slides.",
       "version": "1.0.0",
       "source": "./skills/terras-frontend-slides",
       "strict": false,
@@ -1098,7 +1101,7 @@
     },
     {
       "name": "terras-full-output-enforcement",
-      "description": "Força saída completa em qualquer tarefa: proíbe truncamento, placeholders e abreviações tipo 'resto igual', e trata quebra por limite de token. Use quando o modelo estiver entregando trabalho pela metade, código cortado ou quando o pedido exigir arquivo inteiro sem omissões.",
+      "description": "Força saída completa: proíbe truncamento, placeholders e 'resto igual', e trata corte por limite de token. Use quando o modelo entregar trabalho pela metade ou código cortado, ou quando o pedido exigir arquivo inteiro. Full output, no placeholders.",
       "version": "1.0.0",
       "source": "./skills/terras-full-output-enforcement",
       "strict": false,
@@ -1327,7 +1330,7 @@
     },
     {
       "name": "terras-governanca-padroes",
-      "description": "Audita onde as convenções de um projeto vivem (CLAUDE.md, AGENTS.md, lint, CI, docs, cabeça do time) e transforma padrão em governance rule: arquivo Markdown versionado, com dono, data de revisão, \"quando NÃO usar\" e ciclo de deprecação — legível e acionável por agente de IA.",
+      "description": "Audita onde as convenções de um projeto vivem e as transforma em regra versionada, com dono, revisão e deprecação, legível por agente. Use para auditar ou padronizar convenções de um repositório ou tirar regras da wiki. Governance rules, AGENTS.md.",
       "version": "1.0.0",
       "source": "./skills/terras-governanca-padroes",
       "strict": false,
@@ -1353,7 +1356,7 @@
     },
     {
       "name": "terras-gpt-taste",
-      "description": "Variante estrita do design-taste para GPT/Codex: variância de layout com randomização real, estrutura AIDA, bento sem buracos, GSAP (pinning, stacking, scrubbing) e anti-slop agressivo. Use quando o alvo for GPT/Codex e o pedido for landing page de nível Awwwards com motion avançado.",
+      "description": "Variante estrita do design-taste para GPT/Codex: layout com randomização real, AIDA, bento sem buracos, GSAP e anti-slop agressivo. Só roda por chamada explícita (/terras-gpt-taste); a padrão da casa é a terras-design-taste-frontend. Awwwards, GSAP.",
       "version": "1.0.0",
       "source": "./skills/terras-gpt-taste",
       "strict": false,
@@ -1378,7 +1381,7 @@
     },
     {
       "name": "terras-high-end-visual-design",
-      "description": "Design visual de alto padrão: define fontes, espaçamento, sombras, cartões e animações que fazem o site parecer caro, e bloqueia os padrões que deixam design de IA com cara de barato. Use quando o pedido for algo sofisticado, com cara de agência, Apple-like/Linear-tier, premium ou de alto valor.",
+      "description": "Design visual de alto padrão: fontes, espaçamento, sombras, cartões e animações que fazem o site parecer caro, bloqueando o visual barato de IA. Use para algo premium, com cara de agência ou Apple/Linear. High-end, premium design.",
       "version": "1.0.0",
       "source": "./skills/terras-high-end-visual-design",
       "strict": false,
@@ -1401,7 +1404,7 @@
     },
     {
       "name": "terras-historias-infantis",
-      "description": "Cria histórias infantis ilustradas em quadrinhos e o LIVRO DE COLORIR da mesma história e das mesmas imagens — recebe um tema ou a história pronta, escreve o roteiro página a página (capa, cenas com balões, versículo se houver, aplicação), gera as imagens como arte vetorial infantil e deriva a versã",
+      "description": "Histórias infantis ilustradas em quadrinhos e o livro de colorir da mesma história: roteiro página a página, arte vetorial infantil e versão para pintar. Use para gibi, HQ, historinha, livro de colorir, Escola Dominical ou história bíblica para crianças.",
       "version": "1.0.0",
       "source": "./skills/terras-historias-infantis",
       "strict": false,
@@ -1416,7 +1419,7 @@
     },
     {
       "name": "terras-humanizer",
-      "description": "Reescreve texto com cara de IA para soar humano, sem mudar o que ele diz e sem inventar nada.",
+      "description": "Reescreve texto com cara de IA para soar humano, sem mudar o que ele diz nem inventar nada; remove marcas de IA em português e inglês e baixa o inglês para nível B1/B2. Use para humanizar ou revisar prosa com cara de IA. Humanize text, plain English.",
       "version": "1.1.0",
       "source": "./skills/terras-humanizer",
       "strict": false,
@@ -1449,7 +1452,7 @@
     },
     {
       "name": "terras-humanizer-dev",
-      "description": "Reescreve ou revisa texto para soar natural e humano, preservando a voz, as opiniões e o ritmo do autor, sem deixar o texto errado ou informal demais.",
+      "description": "Variante da terras-humanizer que prioriza preservar a voz, as opiniões e o ritmo do autor, aceitando imperfeição natural. Só roda por chamada explícita (/terras-humanizer-dev); para humanizar texto, a padrão é a terras-humanizer. Author voice, natural prose.",
       "version": "1.0.0",
       "source": "./skills/terras-humanizer-dev",
       "strict": false,
@@ -1460,11 +1463,17 @@
       "license": "MIT",
       "author": {
         "name": "Everton Lima"
-      }
+      },
+      "keywords": [
+        "humanizar",
+        "voz do autor",
+        "escrita natural",
+        "revisao de texto"
+      ]
     },
     {
       "name": "terras-identidade",
-      "description": "Le a identidade visual de uma marca a partir de imagens (pecas de anuncio, prints, manual, papelaria, site) e entrega ela pronta para reusar: cores com papel medido, tipografia, marca recortada em PNG, linguagem visual e tokens de CSS/JSON/Tailwind para site, sistema, documento e peca de marketing.",
+      "description": "Lê a identidade visual de uma marca a partir de imagens (anúncio, print, manual, site) e entrega cores medidas, tipografia, logo recortado e tokens CSS/JSON/Tailwind. Use para extrair paleta e identidade de material existente ou aplicar o visual da marca.",
       "version": "1.0.0",
       "source": "./skills/terras-identidade",
       "strict": false,
@@ -1502,7 +1511,7 @@
     },
     {
       "name": "terras-image-to-code",
-      "description": "Pipeline imagem-primeiro para site: gera a própria imagem de referência, analisa em detalhe e implementa o frontend fiel a ela, seção a seção, evitando sub-geração e excesso de cartões aninhados.",
+      "description": "Pipeline imagem-primeiro: gera a imagem de referência, analisa e implementa o frontend fiel a ela, seção a seção. Use para transformar design, mockup ou screenshot em código ou reproduzir uma página com alta fidelidade. Image to code.",
       "version": "1.0.0",
       "source": "./skills/terras-image-to-code",
       "strict": false,
@@ -1573,7 +1582,7 @@
     },
     {
       "name": "terras-industrial-brutalist-ui",
-      "description": "Interface brutalista industrial: grade suíça rígida, tipografia mecânica com contraste extremo, paleta utilitária e degradação analógica (halftone, scanline, dither).",
+      "description": "Interface brutalista industrial: grade suíça rígida, tipografia mecânica de contraste extremo, paleta utilitária e textura analógica. Use para UI crua, painel técnico denso, dashboard de telemetria ou editorial com cara de blueprint. Industrial brutalism.",
       "version": "1.0.0",
       "source": "./skills/terras-industrial-brutalist-ui",
       "strict": false,
@@ -1618,7 +1627,7 @@
     },
     {
       "name": "terras-last30days",
-      "description": "Pesquisa o que se falou sobre um tema nos últimos 30 dias em Reddit, X, YouTube, Hacker News, Polymarket, GitHub e web, com motor local vendorizado.",
+      "description": "Pesquisa o que se falou de um tema nos últimos 30 dias em Reddit, X, YouTube, Hacker News, GitHub e web. Use para descobrir pauta, medir se um assunto circula ou comparar temas antes de um post. Descoberta, não fonte: confirme na fonte primária.",
       "version": "3.25.0",
       "source": "./skills/terras-last30days",
       "strict": false,
@@ -1645,7 +1654,7 @@
     },
     {
       "name": "terras-linkedin",
-      "description": "Ajuda a escrever posts para LinkedIn. Use quando o usuário pedir para escrever, redigir, revisar ou melhorar um post/texto para LinkedIn, e também quando perguntar sobre alcance, impressões, views ou por que um post rendeu pouco.",
+      "description": "Escreve e revisa posts de LinkedIn (hook, estrutura, CTA, hashtags, zero travessão) e explica alcance e impressões. Use para post de LinkedIn, por que um post rendeu pouco, ou responder/comentar um post colado de outra pessoa. Lote de posts é da terras-comentarios.",
       "version": "1.0.0",
       "source": "./skills/terras-linkedin",
       "strict": false,
@@ -1682,8 +1691,35 @@
       ]
     },
     {
+      "name": "terras-linkedin-alvos",
+      "description": "Acompanha perfis-alvo do LinkedIn (executivos, gestores, recrutadores), acha os posts recentes, curte e prepara comentários que acrescentam, publicados só com aprovação. Use para networking com pessoas-chave, 'vê se fulano postou' ou agendar essa rotina.",
+      "version": "1.0.0",
+      "source": "./skills/terras-linkedin-alvos",
+      "strict": false,
+      "skills": [
+        "./"
+      ],
+      "category": "productivity",
+      "license": "MIT",
+      "author": {
+        "name": "Everton Lima"
+      },
+      "keywords": [
+        "linkedin",
+        "networking",
+        "alvos",
+        "perfis",
+        "recrutador",
+        "gestor",
+        "ceo",
+        "comentario",
+        "curtir",
+        "vaga"
+      ]
+    },
+    {
       "name": "terras-linkedin-metricas",
-      "description": "Extrai, guarda e diagnostica as estatisticas dos posts do LinkedIn do Everton: impressoes, usuarios alcancados, divisao na rede e fora da rede, reacoes, comentarios, compartilhamentos, salvamentos, envios, visualizacoes de perfil, seguidores ganhos e os dados demograficos do publico alcancado.",
+      "description": "Extrai, guarda e diagnostica as estatísticas dos posts do LinkedIn do usuário: impressões, alcance na e fora da rede, reações, salvamentos, seguidores e demografia. Use para analisar desempenho de post, comparar posts ou decidir o que repetir.",
       "version": "1.0.0",
       "source": "./skills/terras-linkedin-metricas",
       "strict": false,
@@ -1718,7 +1754,7 @@
     },
     {
       "name": "terras-mapeamento-de-processos",
-      "description": "Mapeia um processo a partir de áudio, gravação de tela, transcrição ou relato falado e devolve o mapa visual (AS-IS e TO-BE), o diagnóstico com números e o plano de melhoria priorizado com as oportunidades de automação.",
+      "description": "Mapeia um processo a partir de áudio, gravação de tela ou relato e devolve o fluxo AS-IS/TO-BE, diagnóstico com números e plano de melhoria com oportunidades de automação. Use para mapear processo, achar gargalo ou automatizar rotina operacional.",
       "version": "1.4.0",
       "source": "./skills/terras-mapeamento-de-processos",
       "strict": false,
@@ -1753,7 +1789,7 @@
     },
     {
       "name": "terras-matriz-gut",
-      "description": "Prioriza problemas e demandas concorrentes com a matriz GUT: notas 1-5 ancoradas em Gravidade, Urgência e Tendência, score por produto, faixa de decisão declarada antes de pontuar, desempate fixo e plano de ataque com dono e prazo.",
+      "description": "Prioriza problemas concorrentes com a matriz GUT: notas ancoradas de Gravidade, Urgência e Tendência, faixa de decisão antes de pontuar e plano de ataque com dono e prazo. Use para priorizar fila, decidir por onde começar ou quando 'tudo é urgente'.",
       "version": "1.0.0",
       "source": "./skills/terras-matriz-gut",
       "strict": false,
@@ -1808,7 +1844,7 @@
     },
     {
       "name": "terras-miniapp-builder",
-      "description": "Cria um miniapp do zero — recebe o assunto, entrevista as lacunas, decide arquitetura e LGPD, escolhe e dosa a paleta, escreve a copy (promessa, objeções, crenças limitantes), constrói o app local-first, verifica e publica na Vercel (preview e depois produção).",
+      "description": "Cria miniapp do zero: entrevista as lacunas, decide arquitetura e LGPD, escreve a copy, constrói local-first e publica na Vercel. Use para criar app, miniapp ou PWA novo, ou 'transforma esse conteúdo em app'. Miniapp, PWA, publicar na Vercel.",
       "version": "1.0.0",
       "source": "./skills/terras-miniapp-builder",
       "strict": false,
@@ -1868,7 +1904,7 @@
     },
     {
       "name": "terras-noticias",
-      "description": "Lê boletins e roundups de notícias (ratos de IA e afins), tria por criticidade e prioridade, resume todos os itens rápido e escreve o rascunho do post de digest para o LinkedIn.",
+      "description": "Lê boletins e roundups de notícias de IA e tecnologia, tria por criticidade e prioridade, resume os itens e escreve o rascunho do digest para o LinkedIn. Use para link de boletim semanal, 'resumo das notícias', 'o que saiu essa semana' ou triagem de notícias.",
       "version": "1.0.0",
       "source": "./skills/terras-noticias",
       "strict": false,
@@ -1899,7 +1935,7 @@
     },
     {
       "name": "terras-paper-diario",
-      "description": "Lê papers (arXiv e afins) sobre estudos que afetam o trabalho de quem desenvolve — agentes de IA em PRs, qualidade de código gerado, produtividade, mercado de trabalho — e produz uma análise com resumo honesto (com números), aplicação prática e aviso específico para JÚNIOR, PLENO e SÊNIOR, fechando",
+      "description": "Analisa papers (arXiv e afins) que afetam quem desenvolve: resumo honesto com números, o que não significa, e aplicação e aviso para júnior, pleno e sênior. Use para link de paper, 'analisar paper', 'paper do dia' ou a verificação diária do arXiv.",
       "version": "1.0.0",
       "source": "./skills/terras-paper-diario",
       "strict": false,
@@ -1927,7 +1963,7 @@
     },
     {
       "name": "terras-pauta-mercado",
-      "description": "Transforma referência externa (repo, post, anúncio, paper) na análise mercado × TerrasIA com cobre/rejeita/falta e recibo, e no pacote de posts por canal (Company Page, LinkedIn pessoal, canal WhatsApp e Substack).",
+      "description": "Transforma referência externa (repo, post, anúncio, paper) na análise mercado × TerrasIA com cobre/rejeita/falta e no pacote de posts por canal. Use para link que deve virar análise ou post, comparação com concorrente ou pauta de mercado.",
       "version": "1.0.0",
       "source": "./skills/terras-pauta-mercado",
       "strict": false,
@@ -2002,7 +2038,7 @@
     },
     {
       "name": "terras-pipeline-de-automacao",
-      "description": "Projeta e monta pipelines de automação em que scripts determinísticos executam o trabalho e o agente decide só em pontos de revisão fechados.",
+      "description": "Projeta pipelines de automação em que scripts determinísticos fazem o trabalho e o agente só decide em pontos de revisão, com rastro de hashes e recibos de execução. Use para automatizar processo repetitivo de ponta a ponta ou consertar pipeline que refaz ou perde trabalho.",
       "version": "1.0.0",
       "source": "./skills/terras-pipeline-de-automacao",
       "strict": false,
@@ -2221,7 +2257,7 @@
     },
     {
       "name": "terras-redesign-existing-projects",
-      "description": "Redesign de projeto existente: audita a UI atual, identifica padrões genéricos de IA e aplica padrão premium sem quebrar funcionalidade, em qualquer framework CSS ou CSS puro. Use quando o pedido for melhorar, repaginar, modernizar ou deixar bonito um site/app que já existe.",
+      "description": "Redesign de projeto existente: audita a UI atual, identifica padrões genéricos de IA e aplica padrão premium sem quebrar funcionalidade. Use para melhorar, repaginar ou modernizar site ou app que já existe. Audit-first redesign.",
       "version": "1.0.0",
       "source": "./skills/terras-redesign-existing-projects",
       "strict": false,
@@ -2243,7 +2279,7 @@
     },
     {
       "name": "terras-reverse-engineer",
-      "description": "Investiga como uma feature funciona em software empacotado (app Electron/JS, site, APK, binário nativo, .NET, firmware, HAR) com o REA por MCP ou CLI, cada conclusão presa a uma evidência.",
+      "description": "Investiga como uma feature funciona em software empacotado (Electron, site, APK, binário nativo, .NET, firmware) com o REA, cada conclusão presa a uma evidência. Use para 'como esse app faz X', decompilar ou comparar versões. Não é para código-fonte aberto.",
       "version": "6.3.0",
       "source": "./skills/terras-reverse-engineer",
       "strict": false,
@@ -2417,7 +2453,7 @@
     },
     {
       "name": "terras-seed",
-      "description": "Use sempre que o pedido for sobre criar, revisar, avaliar ou ajustar um PROMPT (o texto de instrução dado a uma IA como ChatGPT, Claude ou Gemini), e não sobre executar a tarefa que esse prompt descreve.",
+      "description": "Cria, revisa e ajusta PROMPTS para outra IA (ChatGPT, Claude, Gemini), sem executar a tarefa que o prompt descreve; também atende por 'Lyra'. Use quando o pedido for sobre o texto-instrução: prompt pronto a partir de ideia vaga, revisão ou conserto de prompt.",
       "version": "1.0.0",
       "source": "./skills/terras-seed",
       "strict": false,
@@ -2492,7 +2528,7 @@
     },
     {
       "name": "terras-skill-factory",
-      "description": "Cria, revisa e mantém skills no padrão da casa terras-: inventário, frontmatter, catálogo de gatilhos, progressive disclosure e teste de aderência antes de fechar.",
+      "description": "Cria, revisa e mantém skills no padrão da casa terras-: frontmatter, descrição que dispara, progressive disclosure, checagem de colisão com skill parecida e teste de aderência. Use para criar skill nova, transformar prompt recorrente em skill ou auditar uma skill.",
       "version": "1.0.0",
       "source": "./skills/terras-skill-factory",
       "strict": false,
@@ -2518,7 +2554,7 @@
     },
     {
       "name": "terras-slides",
-      "description": "Apresentações HTML estratégicas e persuasivas com Chart.js: estratégias por contexto, padrões de layout, fórmulas de copywriting e design tokens; inclui base de busca própria para estratégia/layout/copy. Use quando o pedido for criar slides, pitch deck ou apresentação em HTML (não PPTX).",
+      "description": "Deck HTML estratégico e persuasivo com Chart.js: estratégia por contexto, layouts, fórmulas de copy e design tokens. Use para pitch deck ou apresentação de negócio em HTML (não PPTX). Para slides com animação ou converter PPT, use terras-frontend-slides.",
       "version": "1.0.0",
       "source": "./skills/terras-slides",
       "strict": false,
@@ -2543,7 +2579,7 @@
     },
     {
       "name": "terras-standards",
-      "description": "Aplica os Padrões Agnósticos de Engenharia e Produto v4.0 (arquitetura, segurança, privacidade e IA) com lastro em evidência real de cliente quando disponível.",
+      "description": "Aplica os Padrões Agnósticos de Engenharia e Produto v4.0 (arquitetura, segurança, privacidade e IA) com evidência real quando houver. Use para 'padrões de engenharia', gate de produção, AIP/RIPD/ROPA, ISO 27001, conformidade, evidência de auditoria ou ADR.",
       "version": "1.0.0",
       "source": "./skills/terras-standards",
       "strict": false,
@@ -2558,7 +2594,7 @@
     },
     {
       "name": "terras-stitch-design-taste",
-      "description": "Design system semântico para Google Stitch: gera DESIGN.md que impõe padrão premium anti-genérico (tipografia estrita, cor calibrada, layout assimétrico, micro-motion perpétuo, performance acelerada).",
+      "description": "Gera o DESIGN.md para o Google Stitch: contrato de design premium anti-genérico (tipografia estrita, cor calibrada, layout assimétrico, micro-motion). Use quando o alvo for o Stitch ou o projeto precisar de DESIGN.md como contrato de design.",
       "version": "1.0.0",
       "source": "./skills/terras-stitch-design-taste",
       "strict": false,
@@ -2580,7 +2616,7 @@
     },
     {
       "name": "terras-substack",
-      "description": "Publica, agenda e gerencia posts na Substack (newsletter) usando a API interna do editor. Use quando o pedido envolver Substack, publicar post, subir newsletter, criar rascunho, publicar nota/Note, agendar publicacao, despublicar, enviar imagem para o Substack, ou conferir rascunhos existentes.",
+      "description": "Publica, agenda e gerencia posts e Notes na Substack pela API interna do editor, só com Python do sistema. Use para publicar ou agendar newsletter, criar rascunho, despublicar, subir imagem ou conferir rascunhos. Substack publish, draft, schedule.",
       "version": "1.0.0",
       "source": "./skills/terras-substack",
       "strict": false,
@@ -2610,7 +2646,7 @@
     },
     {
       "name": "terras-tech-debt",
-      "description": "Auditoria de dívida técnica e arquitetura de um repositório, com achados citando arquivo:linha, severidade, esforço e a seção obrigatória 'parece ruim mas está certo'.",
+      "description": "Auditoria de dívida técnica e arquitetura de um repositório inteiro, com achados em arquivo:linha, severidade, esforço e a seção 'parece ruim mas está certo'. Use para diagnóstico de codebase, health check ou revisão de arquitetura. Tech debt audit.",
       "version": "1.0.0",
       "source": "./skills/terras-tech-debt",
       "strict": false,
@@ -2637,7 +2673,7 @@
     },
     {
       "name": "terras-transcription",
-      "description": "Transcreve áudio em texto fiel, localmente e sem API: reunião gravada, export do Otter/Zoom/Meet/Teams, nota de voz, entrevista, aula, podcast.",
+      "description": "Transcreve áudio localmente e sem API (reunião, export do Otter/Zoom/Meet/Teams, nota de voz, entrevista, aula), separa quem falou e marca trecho duvidoso. Use para transcrever, ata, 'o que foi dito', ou quando chegar um .mp3/.m4a/.wav/.ogg.",
       "version": "1.0.0",
       "source": "./skills/terras-transcription",
       "strict": false,
@@ -2705,7 +2741,7 @@
     },
     {
       "name": "terras-ui-styling",
-      "description": "Implementação de interface com shadcn/ui e Tailwind CSS: adicionar componentes, theming, acessibilidade, utilitários e responsividade, customização de tema e design visual em canvas.",
+      "description": "Implementa interface com shadcn/ui e Tailwind CSS: componentes, tema, acessibilidade, responsividade e design em canvas. Use para implementar UI em código com shadcn/Tailwind ou configurar tema e componentes acessíveis. shadcn/ui, Tailwind.",
       "version": "1.0.0",
       "source": "./skills/terras-ui-styling",
       "strict": false,
@@ -2732,7 +2768,7 @@
     },
     {
       "name": "terras-ui-ux-pro-max",
-      "description": "Base de consulta local de UI/UX com motor de busca próprio (BM25 + regex): 79 estilos, 192 paletas por tipo de produto, 74 pares tipográficos, 119 diretrizes de UX, 105 ícones, 25 tipos de gráfico, presets de GSAP e guias de 22 stacks; gera o design system do produto (padrão de página, estilo, cores",
+      "description": "Base local de UI/UX com busca própria: estilos, paletas por produto, pares tipográficos, diretrizes de UX e guias de stack; gera o design system do produto em MASTER.md. Use para definir direção visual, escolher estilo, paleta e tipografia ou checar regra de UX.",
       "version": "1.0.0",
       "source": "./skills/terras-ui-ux-pro-max",
       "strict": false,
@@ -2761,7 +2797,7 @@
     },
     {
       "name": "terras-user-research",
-      "description": "Pesquisa com usuários de ponta a ponta: planejar estudo qualitativo (roteiro de entrevista, guia de discussão, questionário de triagem, plano de pesquisa), sintetizar entrevistas em relatório com achados priorizados, personas e oportunidades, e planejar pesquisa quantitativa (survey, design de quest",
+      "description": "Pesquisa com usuários de ponta a ponta: plano, roteiro de entrevista, triagem, síntese em achados, personas e oportunidades, e survey quantitativo. Use para pesquisa com usuários, entrevistas, survey ou análise de transcrições. User research.",
       "version": "1.0.0",
       "source": "./skills/terras-user-research",
       "strict": false,
@@ -2831,7 +2867,7 @@
     },
     {
       "name": "terras-visual-explainer",
-      "description": "Gera páginas HTML autocontidas que explicam visualmente sistemas, mudanças de código, planos, dados e conceitos técnicos: diagramas (inclusive Mermaid), visões de arquitetura, revisão de diff ou de plano, recapitulações de projeto, tabelas comparativas e decks de slides.",
+      "description": "Páginas HTML autocontidas que explicam visualmente sistemas, diffs, planos, dados e conceitos: diagramas, arquitetura, tabelas comparativas, inclusive diagrama animado com MP4. Use para explicar algo visualmente ou quando uma tabela tiver 4+ linhas ou 3+ colunas.",
       "version": "1.0.0",
       "source": "./skills/terras-visual-explainer",
       "strict": false,
@@ -2882,7 +2918,7 @@
     },
     {
       "name": "terrasia-pauta-youtube",
-      "description": "Pesquisa de demanda (envelope) no YouTube antes de escrever o roteiro: compara consultas de tema pela mediana de views dos resultados, acha outliers (video muito acima da media do proprio canal) e colhe frases recorrentes dos titulos de melhor desempenho.",
+      "description": "Pesquisa de demanda no YouTube antes do roteiro: compara temas pela mediana de views, acha outliers por canal e colhe frases recorrentes dos títulos que performam. Use para escolher tema de vídeo, medir demanda de título ou antes da terras-video.",
       "version": "1.0.0",
       "source": "./skills/terrasia-pauta-youtube",
       "strict": false,
@@ -2912,7 +2948,7 @@
     },
     {
       "name": "terrasia-post-empresa",
-      "description": "Produz a peça da Company Page do TerrasIA: o post na voz de produto e a imagem na identidade da marca, com aceite de leitura no celular.",
+      "description": "Produz a peça da Company Page do TerrasIA: post na voz de produto e imagem na identidade da marca (1200x628 e 1080x1350), com régua de texto e aceite no celular. Use para post da empresa ou Company Page. A análise de referência é da terras-pauta-mercado.",
       "version": "1.0.0",
       "source": "./skills/terrasia-post-empresa",
       "strict": false,
@@ -2940,7 +2976,7 @@
     },
     {
       "name": "terrasia-vagas-coders",
-      "description": "Filtra as vagas do board da comunidade COD3RS (app.coders.com.br/comunidade#vagas) contra o currículo do usuário e devolve só o que faz sentido real: balde A (recomendar), B (talvez) e C (descarte com motivo) — e, com aprovação por vaga, avança para a aplicação no site de cada uma (carta, formulário",
+      "description": "Filtra as vagas do board da COD3RS contra o currículo do usuário em baldes A (recomendar), B (talvez) e C (descarte com motivo) e, com aprovação por vaga, avança na candidatura. Use para vagas da COD3RS, 'o que tem de vaga pra mim' ou aplicar nas aprovadas.",
       "version": "1.0.0",
       "source": "./skills/terrasia-vagas-coders",
       "strict": false,

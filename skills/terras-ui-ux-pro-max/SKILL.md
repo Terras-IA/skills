@@ -1,6 +1,6 @@
 ---
 name: terras-ui-ux-pro-max
-description: "Base de consulta local de UI/UX com motor de busca próprio (BM25 + regex): 79 estilos, 192 paletas por tipo de produto, 74 pares tipográficos, 119 diretrizes de UX, 105 ícones, 25 tipos de gráfico, presets de GSAP e guias de 22 stacks; gera o design system do produto (padrão de página, estilo, cores, tipografia, efeitos) e persiste em MASTER.md com overrides por página. Use quando o pedido for definir direção visual, escolher estilo/paleta/tipografia, gerar design system, checar regra de UX/acessibilidade ou buscar orientação de stack (React, Next, Vue, Tailwind, SwiftUI, Flutter...). UI/UX design intelligence, design system generator, style and palette search."
+description: "Base local de UI/UX com busca própria: estilos, paletas por produto, pares tipográficos, diretrizes de UX e guias de stack; gera o design system do produto em MASTER.md. Use para definir direção visual, escolher estilo, paleta e tipografia ou checar regra de UX."
 keywords: [ui, ux, design system, estilos, paletas, tipografia, cores, diretrizes de ux, acessibilidade, gráficos, stacks, gsap]
 license: MIT
 ---

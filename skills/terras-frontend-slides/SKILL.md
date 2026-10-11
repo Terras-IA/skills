@@ -1,6 +1,6 @@
 ---
 name: terras-frontend-slides
-description: "Cria apresentações HTML ricas em animação, sem dependência nenhuma, do zero ou convertendo PowerPoint. Use quando o pedido for apresentação, slides, palestra, pitch, ou converter PPT/PPTX para web. Palco 16:9 fixo (1920x1080) em um único arquivo HTML com CSS/JS embutidos, pacotes de estilo prontos (bold-template-pack) e exploração visual em vez de escolhas abstratas. HTML presentation, slides, pitch deck, palestra."
+description: "Apresentação HTML com animação, sem dependências, em arquivo único 16:9, do zero ou convertendo PPT/PPTX. Use para slides, palestra, pitch ou converter PowerPoint para web. Para deck persuasivo com gráficos Chart.js, use terras-slides."
 keywords: [slides, apresentacao, palestra, pitch, html, pptx, deck, animacao, apresentacao web]
 homepage: https://github.com/zarazhangrui/frontend-slides
 license: MIT

@@ -1,12 +1,6 @@
 ---
 name: terras-reverse-engineer
-description: >-
-  Investiga como uma feature funciona em software empacotado (app Electron/JS, site, APK,
-  binário nativo, .NET, firmware, HAR) com o REA por MCP ou CLI, cada conclusão presa a
-  uma evidência. Use quando o pedido for "como esse app faz X", "quero uma feature igual
-  à do app Y", engenharia reversa, decompilar, inspecionar ASAR, APK, DLL, ELF, bundle de
-  site ou comparar versões de um app. Não use para repositório de código-fonte aberto.
-  Reverse engineering, decompile, binary analysis, feature investigation.
+description: "Investiga como uma feature funciona em software empacotado (Electron, site, APK, binário nativo, .NET, firmware) com o REA, cada conclusão presa a uma evidência. Use para 'como esse app faz X', decompilar ou comparar versões. Não é para código-fonte aberto."
 keywords: [engenharia reversa, reverse engineering, rea, decompilar, electron, asar, apk, binario, elf, dotnet, har, feature]
 version: "6.3.0"
 license: MIT

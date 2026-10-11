@@ -1,6 +1,6 @@
 ---
 name: terras-standards
-description: Aplica os Padrões Agnósticos de Engenharia e Produto v4.0 (arquitetura, segurança, privacidade e IA) com lastro em evidência real de cliente quando disponível. Use sempre que o usuário mencionar "padrões de engenharia", "v4.0", "Bloco G", "gate de produção", "AIP/RIPD/ROPA", "ISO 27001", "conformidade", "evidência de auditoria", ou pedir para avaliar conformidade, classificar perfil, criar um ADR, responder o questionário de adoção, ou buscar evidência real de um cliente.
+description: "Aplica os Padrões Agnósticos de Engenharia e Produto v4.0 (arquitetura, segurança, privacidade e IA) com evidência real quando houver. Use para 'padrões de engenharia', gate de produção, AIP/RIPD/ROPA, ISO 27001, conformidade, evidência de auditoria ou ADR."
 ---
 
 # Skill terras-standards

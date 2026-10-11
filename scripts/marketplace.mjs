@@ -143,7 +143,12 @@ export function montarManifesto(raiz) {
   const fora = lerJson(join(raiz, "marketplace-fora.json"), {});
   const grupos = lerGrupos(raiz, fora);
   const agrupadas = new Set(Object.values(grupos).flatMap((g) => g.skills));
-  const manuais = (atual.plugins ?? []).filter((p) => !(p.name in grupos) && (typeof p.source !== "string" || !p.source.startsWith("./skills/")));
+  // Plugin escrito à mão cuja pasta local sumiu (ex.: a skill passou para skills/) sai do manifesto.
+  const manuais = (atual.plugins ?? []).filter(
+    (p) =>
+      !(p.name in grupos) &&
+      (typeof p.source !== "string" || (!p.source.startsWith("./skills/") && (!p.source.startsWith("./") || existsSync(join(raiz, p.source))))),
+  );
   const deGrupo = Object.entries(grupos)
     .sort(([a], [b]) => a.localeCompare(b))
     .map(([grupo, g]) => ({

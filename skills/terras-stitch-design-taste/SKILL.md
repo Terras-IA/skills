@@ -1,6 +1,6 @@
 ---
 name: terras-stitch-design-taste
-description: "Design system semântico para Google Stitch: gera DESIGN.md que impõe padrão premium anti-genérico (tipografia estrita, cor calibrada, layout assimétrico, micro-motion perpétuo, performance acelerada). Use quando o alvo for o Stitch ou quando o projeto precisar de um DESIGN.md como contrato de design. Stitch, design system, DESIGN.md."
+description: "Gera o DESIGN.md para o Google Stitch: contrato de design premium anti-genérico (tipografia estrita, cor calibrada, layout assimétrico, micro-motion). Use quando o alvo for o Stitch ou o projeto precisar de DESIGN.md como contrato de design."
 keywords: [stitch, design system, DESIGN.md, micro-motion, tipografia]
 license: MIT
 ---

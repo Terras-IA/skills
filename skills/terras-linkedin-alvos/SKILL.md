@@ -1,13 +1,6 @@
 ---
 name: terras-linkedin-alvos
-description: >-
-  Acompanha uma lista de perfis-alvo do LinkedIn (executivos, gestores, recrutadores de empresas
-  onde o usuário quer trabalhar), acha os posts recentes de cada um, curte e prepara um comentário
-  que acrescenta (experiência, dado ou pergunta real), publicado só com aprovação. Roda na hora ou
-  agendado, para comentar cedo. Use quando o usuário passar perfis para acompanhar, falar em
-  pessoas-chave, networking para vaga, comentar nos posts de um CEO, gestor ou recrutador, "vê se
-  fulano postou", lista de alvos, ou agendar essa rotina. Target profiles, LinkedIn networking,
-  comment early on key people's posts.
+description: "Acompanha perfis-alvo do LinkedIn (executivos, gestores, recrutadores), acha os posts recentes, curte e prepara comentários que acrescentam, publicados só com aprovação. Use para networking com pessoas-chave, 'vê se fulano postou' ou agendar essa rotina."
 keywords: [linkedin, networking, alvos, perfis, recrutador, gestor, ceo, comentario, curtir, vaga]
 version: "1.0.0"
 metadata:
@@ -67,6 +60,8 @@ Tudo fica em `~/.config/terras-linkedin-alvos/`. Formato em `references/config.m
    Se houver muitos, proponha comentar em 3-5 e só curtir o resto.
 5. **Escreva** um comentário por post selecionado, seguindo `references/estilo.md` (se a skill
    `terras-linkedin` estiver instalada, a seção "Responder post de terceiro" dela manda).
+   Comentário em inglês passa pela `terras-humanizer` (modo embutido: padrões de IA e régua B1/B2
+   de `terras-humanizer/references/ingles-b1b2.md`) antes da tabela; termo técnico exato fica.
 6. **Aprovação.** Tabela: alvo, papel, idade do post, trecho do post, comentário proposto, curtir
    (sim/não). Marque linhas que atribuem experiência ao usuário. Espere a resposta.
 7. **Executar o aprovado**, um post por vez:

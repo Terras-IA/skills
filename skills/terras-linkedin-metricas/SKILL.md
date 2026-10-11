@@ -1,6 +1,6 @@
 ---
 name: terras-linkedin-metricas
-description: "Extrai, guarda e diagnostica as estatisticas dos posts do LinkedIn do Everton: impressoes, usuarios alcancados, divisao na rede e fora da rede, reacoes, comentarios, compartilhamentos, salvamentos, envios, visualizacoes de perfil, seguidores ganhos e os dados demograficos do publico alcancado. Use quando o pedido for analisar desempenho de post, entender por que um post rendeu ou nao rendeu, medir alcance, ver quem foi alcancado, comparar posts, montar relatorio de metricas do LinkedIn ou decidir o que repetir no proximo post."
+description: "Extrai, guarda e diagnostica as estatísticas dos posts do LinkedIn do usuário: impressões, alcance na e fora da rede, reações, salvamentos, seguidores e demografia. Use para analisar desempenho de post, comparar posts ou decidir o que repetir."
 keywords: [linkedin, metricas, estatisticas, desempenho, impressoes, alcance, alcancados, fora da rede, engajamento, salvamentos, comentarios, seguidores, publico, demografia, relatorio, diagnostico, post rendeu, analytics]
 ---
 

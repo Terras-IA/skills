@@ -1,6 +1,6 @@
 ---
 name: terras-banner-design
-description: "Banners para redes sociais, anúncios, heros de site e impressão: 22 estilos de direção de arte, tamanhos por plataforma, com visuais gerados ou fornecidos. Use quando o pedido for banner de rede social, criativo de anúncio, capa, header ou peça para print. Não é para as capas do LinkedIn/Substack da casa (terras-banner). Social banners, ad creatives, print design."
+description: "Banners para redes sociais, anúncios, heros de site e impressão, com 22 estilos de direção de arte e tamanhos por plataforma. Use para criativo de anúncio, header ou peça para print. Não é para as capas de LinkedIn/Substack da casa (terras-banner)."
 keywords: [banner, banners, anúncio, ads, social media, capa, header, criativo, print]
 license: MIT
 ---

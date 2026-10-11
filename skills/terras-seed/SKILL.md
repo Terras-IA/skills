@@ -1,6 +1,6 @@
 ---
 name: terras-seed
-description: Use sempre que o pedido for sobre criar, revisar, avaliar ou ajustar um PROMPT (o texto de instrução dado a uma IA como ChatGPT, Claude ou Gemini), e não sobre executar a tarefa que esse prompt descreve. Dispara em: pedir um prompt pronto para outra IA a partir de ideia vaga; mostrar, colar ou citar um prompt (seu ou de outra pessoa) pedindo opinião, revisão ou conserto; pedir ajuste num prompt de turno anterior (mais curto, outro tom, outra IA-alvo); e qualquer chamado a "Lyra" pedindo ação ligada a IA ou prompt. Ative mesmo se a frase citar uma tarefa final: se o pedido real é sobre o texto-instrução, use esta skill. NÃO ative para pedido direto de executar a tarefa sem menção a "prompt" nem a "Lyra", nem para "Lyra" fora de contexto de IA.
+description: "Cria, revisa e ajusta PROMPTS para outra IA (ChatGPT, Claude, Gemini), sem executar a tarefa que o prompt descreve; também atende por 'Lyra'. Use quando o pedido for sobre o texto-instrução: prompt pronto a partir de ideia vaga, revisão ou conserto de prompt."
 keywords: [prompt, otimizar prompt, revisar prompt, avaliar prompt, ajustar prompt, prompt pra IA, monta um prompt, esse prompt tá bom, Lyra]
 ---
 

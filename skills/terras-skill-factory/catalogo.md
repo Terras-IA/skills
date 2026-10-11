@@ -40,6 +40,8 @@ Fonte única: `skills/<terras-nome>/` no repositório `terrasia-skills`; cada ag
 ## Checklist de fechamento
 
 - [ ] Frontmatter: `name` e `description` obrigatórios; `description` em PT-BR com gatilhos específicos ("use quando...") + termos EN para acionamento bilíngue; `keywords` para descoberta.
+- [ ] `description` com no máximo 300 caracteres, numa linha entre aspas: o agente escolhe a skill só por nome e descrição, e a lista de skills tem orçamento.
+- [ ] Colisão conferida: se outra skill faz o mesmo trabalho, a descrição diz quando NÃO usar; se a nova repete o trabalho de outra, ela só roda por chamada explícita.
 - [ ] Nome: gerúndio ou substantivo objetivo, kebab-case, prefixo `terras-`.
 - [ ] Corpo: objetivo primeiro, regra dura em destaque, sem seção que não mude a decisão do agente.
 - [ ] Detalhe pesado (catálogos, protocolos longos, licenças de upstream) em `references/`, citado pelo nome do arquivo.

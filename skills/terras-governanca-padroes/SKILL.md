@@ -1,13 +1,6 @@
 ---
 name: terras-governanca-padroes
-description: >-
-  Audita onde as convenções de um projeto vivem (CLAUDE.md, AGENTS.md, lint, CI,
-  docs, cabeça do time) e transforma padrão em governance rule: arquivo Markdown
-  versionado, com dono, data de revisão, "quando NÃO usar" e ciclo de deprecação —
-  legível e acionável por agente de IA. Use quando pedirem para avaliar/auditar
-  padrões ou convenções de um repositório, padronizar um projeto, criar ou
-  versionar regras do time, ou quando as regras vivem só em wiki/Notion/conversa.
-  EN: governance rules, conventions as skills, standards audit, AGENTS.md.
+description: "Audita onde as convenções de um projeto vivem e as transforma em regra versionada, com dono, revisão e deprecação, legível por agente. Use para auditar ou padronizar convenções de um repositório ou tirar regras da wiki. Governance rules, AGENTS.md."
 keywords: [governança, convenções, padrões, governance rules, conventions, standards, auditoria, versionamento, deprecação]
 ---
 

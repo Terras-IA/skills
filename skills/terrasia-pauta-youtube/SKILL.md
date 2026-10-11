@@ -1,6 +1,6 @@
 ---
 name: terrasia-pauta-youtube
-description: "Pesquisa de demanda (envelope) no YouTube antes de escrever o roteiro: compara consultas de tema pela mediana de views dos resultados, acha outliers (video muito acima da media do proprio canal) e colhe frases recorrentes dos titulos de melhor desempenho. Use quando o pedido envolver escolher tema de video, 'dar o passo atras', pauta de video, qual assunto rende mais, medir demanda de titulo, modelar o que funciona, outliers do YouTube, banco de frases de titulo e capa, ou antes de montar um roteiro com a terras-video."
+description: "Pesquisa de demanda no YouTube antes do roteiro: compara temas pela mediana de views, acha outliers por canal e colhe frases recorrentes dos títulos que performam. Use para escolher tema de vídeo, medir demanda de título ou antes da terras-video."
 keywords: [youtube, pauta, tema, envelope, demanda, views, outlier, titulo, capa, thumbnail, pesquisa, roteiro, terrasia]
 ---
 

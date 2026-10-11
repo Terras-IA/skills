@@ -1,6 +1,6 @@
 ---
 name: terras-ffmpeg
-description: "Edita vídeo e áudio com FFmpeg local a partir de pedidos em linguagem natural: cortar, aparar, juntar, redimensionar (9:16, 1:1), acelerar, legendas (SRT/ASS, animadas, karaokê), logos e textos sobrepostos, remoção de silêncio, sincronização multicâmera e de microfone externo, normalização de loudness, HDR/Dolby Vision para SDR, LUTs, música de fundo com ducking, exportação por plataforma (YouTube, Reels, TikTok, X, LinkedIn, podcast), checagem de conformidade, detecção de cenas e cortes de destaque. Use quando o pedido mencionar vídeo ou áudio (mp4, mov, mkv, wav, m4a), corte, legenda, reel, short, ffmpeg, transcodificação, ou pedir algo 'vertical', 'mais alto', 'legendado', '60 segundos'. 42 scripts em Python stdlib, sem nuvem e sem chave de API. Edit video, ffmpeg, captions, transcode."
+description: "Edita vídeo e áudio com FFmpeg local por pedido em linguagem natural: cortar, juntar, 9:16, legendas, loudness, música com ducking, exportar por plataforma. Use para mp4/mov/wav, corte, legenda, reel, transcodificação ou 'deixa vertical'. Sem nuvem e sem chave de API."
 keywords: [ffmpeg, video, audio, edicao, cortar, legenda, reels, tiktok, youtube, transcodificar, loudness, captions]
 homepage: https://github.com/kajisho5/ffmpeg-skill
 license: MIT

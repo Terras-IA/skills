@@ -1,6 +1,6 @@
 ---
 name: terras-matriz-gut
-description: "Prioriza problemas e demandas concorrentes com a matriz GUT: notas 1-5 ancoradas em Gravidade, Urgência e Tendência, score por produto, faixa de decisão declarada antes de pontuar, desempate fixo e plano de ataque com dono e prazo. Use quando o pedido for priorizar, ordenar uma fila, decidir por onde começar, comparar problemas ou demandas de naturezas diferentes, ou quando 'tudo é urgente' e falta critério comum. Cobre também 'qual eu resolvo primeiro'."
+description: "Prioriza problemas concorrentes com a matriz GUT: notas ancoradas de Gravidade, Urgência e Tendência, faixa de decisão antes de pontuar e plano de ataque com dono e prazo. Use para priorizar fila, decidir por onde começar ou quando 'tudo é urgente'."
 keywords: [gut, matriz gut, priorizacao, priorizar, gravidade, urgencia, tendencia, prioridade, criticidade, ordenar problemas, fila de demandas, por onde comecar, escala de prioridade, desempate, backlog priorizado]
 version: 1.0.0
 license: MIT

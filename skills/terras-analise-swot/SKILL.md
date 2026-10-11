@@ -1,6 +1,6 @@
 ---
 name: terras-analise-swot
-description: "Faz análise SWOT rastreável e terminada em ação: cada item cita a fonte (dado, documento, métrica), o que não tem fonte vira hipótese marcada com o teste que a confirmaria, os quadrantes são priorizados e a análise fecha em cruzamentos TOWS (SO, WO, ST, WT) com ação, dono e verificação. Use quando o pedido for SWOT, análise de cenário, posição competitiva, preparo de decisão estratégica ou 'forças, fraquezas, oportunidades e ameaças'."
+description: "Análise SWOT rastreável: cada item cita a fonte, o que não tem fonte vira hipótese com teste, e fecha em cruzamentos TOWS com ação, dono e verificação. Use para SWOT, análise de cenário, posição competitiva ou preparo de decisão estratégica."
 keywords: [swot, analise swot, forcas, fraquezas, oportunidades, ameacas, tows, matriz swot, analise de cenario, posicao competitiva, planejamento estrategico, analise estrategica, decisao estrategica, cenario competitivo]
 version: 1.0.0
 license: MIT

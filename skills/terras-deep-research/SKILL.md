@@ -1,6 +1,6 @@
 ---
 name: terras-deep-research
-description: "Pesquisa em profundidade com rastreamento de citações: pipeline de 3 a 8 fases (escopo, plano, recuperação, triangulação, síntese, crítica, refinamento e empacotamento), registro persistente de evidências e relatório estruturado com bibliografia completa. Use quando o pedido for pesquisa profunda, análise abrangente, relatório de pesquisa, comparar X vs Y, analisar tendências ou estado da arte. Não use para buscas simples, debug ou perguntas respondíveis com 1-2 buscas. Deep research, research report, citations."
+description: "Pesquisa em profundidade com citações rastreadas: pipeline de fases, registro de evidências e relatório com bibliografia. Use para pesquisa profunda, relatório de pesquisa, comparar X vs Y ou estado da arte. Não use para busca simples de 1 ou 2 consultas."
 keywords: [deep research, pesquisa profunda, relatorio, citacoes, pesquisa, analise, tendencias, triangulacao, estado da arte]
 homepage: https://github.com/199-biotechnologies/claude-deep-research-skill
 license: MIT

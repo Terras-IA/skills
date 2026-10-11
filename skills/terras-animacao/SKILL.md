@@ -1,6 +1,6 @@
 ---
 name: terras-animacao
-description: "Produz peça animada em loop a partir de uma cena HTML dirigida por tempo: o HTML determinístico (contrato ?t=), o render quadro a quadro no Chrome headless e a montagem do GIF (loop, para o feed) e do MP4 (silencioso), com capa estática e preview de celular. Use quando o pedido for animação, gif animado, vídeo curto sem narração, banner animado, diagrama que se desenha, peça em movimento, ou quando a peça pedir mais vida que o estático. Não é para banner estático (terras-banner), vídeo narrado (terras-video), edição e conversão de vídeo (terras-ffmpeg) nem página de explicação técnica (terras-visual-explainer)."
+description: "Peça animada em loop (GIF e MP4 sem som) a partir de cena HTML dirigida por tempo, renderizada quadro a quadro. Use para animação, gif, banner animado ou diagrama que se desenha. Não é banner estático (terras-banner), vídeo narrado (terras-video) nem edição (terras-ffmpeg)."
 keywords: [animacao, animado, gif, gif animado, loop, video curto, mp4, movimento, motion, banner animado, peca animada, diagrama animado, bpmn animado, quadro a quadro]
 version: 1.0.0
 license: MIT

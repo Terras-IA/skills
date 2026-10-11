@@ -1,6 +1,6 @@
 ---
 name: terrasia-post-empresa
-description: "Produz a peça da Company Page do TerrasIA: o post na voz de produto e a imagem na identidade da marca, com aceite de leitura no celular. Traz a régua de texto da página (banda de 1.300 a 1.500, gancho no corte de ~210, link no primeiro comentário, humanizer aplicado), os templates das duas peças (banner 1200x628 e card 1080x1350), o script de render e medição de vãos, os tamanhos mínimos aprendidos em px e o checklist de publicação. Use quando o pedido for post da empresa, LinkedIn da empresa, Company Page, peça ou imagem de marca, ou fechar a publicação de uma análise. A análise de referência e o pacote por canal são da skill irmã terras-pauta-mercado."
+description: "Produz a peça da Company Page do TerrasIA: post na voz de produto e imagem na identidade da marca (1200x628 e 1080x1350), com régua de texto e aceite no celular. Use para post da empresa ou Company Page. A análise de referência é da terras-pauta-mercado."
 keywords: [post da empresa, linkedin da empresa, company page, peca da empresa, imagem da empresa, banner da empresa, card, identidade do produto, publicacao, marca, terrasia]
 version: 1.0.0
 license: MIT
