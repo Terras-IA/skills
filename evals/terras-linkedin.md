@@ -40,4 +40,19 @@ confira o texto entregue.
 
 ## Última rodada
 
-Nenhuma ainda.
+2026-10-11, PASS nos 5 cenários. Cada um rodou num agente de contexto limpo
+que leu a `SKILL.md` da branch e não viu o comportamento esperado. O cenário
+4 simulou a ausência do `perfil.json` por instrução, sem apagar o arquivo.
+
+1. Assumiu perfil pessoal e disse em uma linha; "num projeto meu", decisão
+   (cache do probe), custo e números do perfil. Nenhum item de
+   `nunca_no_perfil`, nada sobre vaga.
+2. Voz de produto, sem problema.
+3. Duas linhas por cima com a decisão e o custo; conferiu a premissa dos 46
+   dias do GPT-4.5 antes de concordar.
+4. Modo genérico declarado, sem cargo nem história inventados; o número que
+   usou veio de fonte do projeto e foi dito de onde.
+5. Primeira pessoa, sem produto, pergunta sobre a prática do autor.
+
+Observação sem reprovar: a versão curta do comentário (cenário 5) ficou em
+~220 caracteres, abaixo do mínimo de ~250 da skill.
