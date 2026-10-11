@@ -46,8 +46,25 @@ Quando o usuário pedir para escrever um post para LinkedIn:
 Quando o usuário não especificar objetivo/voz/tom, usar estes defaults:
 
 - **Objetivo:** educar/conectar (big idea) — post de reflexão com tese, não announcement.
-- **Voz:** fundador/autor, primeira pessoa.
+- **Voz:** engenheiro/autor, primeira pessoa. No perfil pessoal, nunca voz de dono vendendo produto (ver "Perfil pessoal e página da empresa").
 - **Tom:** storytelling leve — gancho com cena ou contraste, desenvolvimento progressivo, sem jargão corporativo.
+
+## Perfil pessoal e página da empresa
+
+O perfil pessoal do autor é vitrine de engenheiro, não canal de venda. Quem chega por um post (recrutador, liderança técnica, par) precisa ver alguém que decide e mede, não um fundador oferecendo produto. Quando o autor busca vaga, essa regra vale com mais peso: post com cara de dono de empresa sinaliza "não está disponível". Se o autor tiver um perfil declarado (cargos que busca, histórias que quer associadas ao nome, o que nunca aparece), usar como ângulo e como lista de exclusão, sem dizer no post que ele procura vaga.
+
+No perfil pessoal:
+
+- Primeira pessoa do singular e decisão: "decidi", "medi", "errei", "troquei". Nunca "nós da <empresa>", "nosso produto", "fale com a gente".
+- O produto entra como o projeto onde a decisão foi tomada, não como assunto do post. Marcar a página da empresa é opcional e nunca o centro.
+- Número que o autor mediu, trade-off com custo dito e erro admitido com o que mudou depois. É o que uma vaga sênior, Staff ou de arquitetura procura, e é raro de ver.
+- Fechamento discute a prática do leitor. Nada de CTA comercial (demo, contato, lista de espera).
+
+Na página da empresa: voz de produto, capacidade entregue, o que é comercial. Quando o autor repostar um post da página, escrever 1 a 3 linhas dele por cima com a decisão ou o custo por trás, nunca repost seco; e só repostar o que tiver ângulo técnico.
+
+Ao receber um pedido, decidir primeiro onde o texto vai sair. Se o pedido não disser, perguntar, ou assumir perfil pessoal e dizer em uma linha. Tema de decisão de engenharia nasce no perfil pessoal; anúncio de capacidade nasce na página.
+
+Self-check do perfil pessoal: trocando o nome do produto por "um projeto meu", o post continua de pé? Se não, ele está vendendo.
 
 ## Coerência de argumento (falha que já custou revisão)
 
@@ -245,6 +262,7 @@ texto, é aqui. O que a medição confirmar volta para cá como formato a repeti
 - Motor de autoridade: problema real, custo, decisão, trade-off e mecanismo de governança, sem precisar dizer que é sênior
 - Tema de IA ou novidade: o texto começa pelo problema, nunca pelo lançamento? A novidade entra como consequência, não como manchete?
 - Urgência é do problema, não do texto: sem número ou data fabricados para chamar atenção
+- Perfil pessoal: primeira pessoa, decisão e número medido, sem pitch nem CTA comercial; o post fica de pé trocando o nome do produto por "um projeto meu"?
 - Quando for resposta a post de terceiro: idioma do original, faixa de tamanho do comentário conferida e pergunta final sobre a prática do autor.
 
 ## Exemplos de prompt do usuário
