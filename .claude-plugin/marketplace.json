@@ -2578,6 +2578,33 @@
       ]
     },
     {
+      "name": "terras-spec-flow",
+      "description": "Conduz uma feature de ponta a ponta por spec (estilo spec-kit): princípios do repo, spec, crítica, plano TDD, análise de consistência, implementação e fechamento, com portão entre as fases. Use para feature spec-driven ou SDD. Não é para só criticar spec (terras-critica-de-spec).",
+      "version": "1.0.0",
+      "source": "./skills/terras-spec-flow",
+      "strict": false,
+      "skills": [
+        "./"
+      ],
+      "category": "desenvolvimento",
+      "license": "MIT",
+      "author": {
+        "name": "Everton Lima"
+      },
+      "keywords": [
+        "spec-driven",
+        "spec driven development",
+        "sdd",
+        "spec-kit",
+        "specify",
+        "fluxo de spec",
+        "feature por spec",
+        "especificar feature",
+        "plano e tarefas",
+        "constitution"
+      ]
+    },
+    {
       "name": "terras-standards",
       "description": "Aplica os Padrões Agnósticos de Engenharia e Produto v4.0 (arquitetura, segurança, privacidade e IA) com evidência real quando houver. Use para 'padrões de engenharia', gate de produção, AIP/RIPD/ROPA, ISO 27001, conformidade, evidência de auditoria ou ADR.",
       "version": "1.0.0",

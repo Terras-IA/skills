@@ -91,10 +91,10 @@ Revisão pelo risco que a mudança cria, segurança, testes ponta a ponta, banco
 <!-- catalogo:inicio -->
 <!-- gerado por `npm run readme` a partir do catálogo — não edite à mão -->
 
-**119 skills instaláveis** entre as 130 deste repositório; as demais ficam fora do marketplace — 8 skills de processo do motor (`.nao-instalar`) e 3 skills ligadas a projeto de cliente (`marketplace-fora.json`).
+**120 skills instaláveis** entre as 131 deste repositório; as demais ficam fora do marketplace — 8 skills de processo do motor (`.nao-instalar`) e 3 skills ligadas a projeto de cliente (`marketplace-fora.json`).
 
 <details>
-<summary><b>Ver a lista completa (119 skills)</b></summary>
+<summary><b>Ver a lista completa (120 skills)</b></summary>
 
 | Skill | O que faz |
 |---|---|
@@ -200,6 +200,7 @@ Revisão pelo risco que a mudança cria, segurança, testes ponta a ponta, banco
 | [`terras-simulador-de-oferta`](skills/terras-simulador-de-oferta) | Simula propostas de remuneração considerando benchmark de mercado, equidade interna e cenários de negociação. |
 | [`terras-skill-factory`](skills/terras-skill-factory) | Cria, revisa e mantém skills no padrão da casa terras-: frontmatter, descrição que dispara, progressive disclosure, checagem de colisão com skill parecida e teste… |
 | [`terras-slides`](skills/terras-slides) | Deck HTML estratégico e persuasivo com Chart.js: estratégia por contexto, layouts, fórmulas de copy e design tokens. |
+| [`terras-spec-flow`](skills/terras-spec-flow) | Conduz uma feature de ponta a ponta por spec (estilo spec-kit): princípios do repo, spec, crítica, plano TDD, análise de consistência, implementação e fechamento,… |
 | [`terras-standards`](skills/terras-standards) | Aplica os Padrões Agnósticos de Engenharia e Produto v4.0 (arquitetura, segurança, privacidade e IA) com evidência real quando houver. |
 | [`terras-stitch-design-taste`](skills/terras-stitch-design-taste) | Gera o DESIGN.md para o Google Stitch: contrato de design premium anti-genérico (tipografia estrita, cor calibrada, layout assimétrico, micro-motion). |
 | [`terras-substack`](skills/terras-substack) | Publica, agenda e gerencia posts e Notes na Substack pela API interna do editor, só com Python do sistema. |
