@@ -40,4 +40,17 @@ iria para o Discord (aponte o script de post para um arquivo local).
 
 ## Última rodada
 
-Nenhuma ainda.
+2026-10-12 — simulada, 6/6 bateram com o esperado depois de um ajuste na skill. Falta a rodada real: o `~/Documents/Desenvolvimento/discord-post.sh` não existe nesta máquina, e a rodada das 8h falharia no post.
+
+Rodada simulada: um agente de contexto limpo leu a `SKILL.md` e o script,
+recebeu o resultado das buscas por instrução (com o texto de cada paper) e
+descreveu comandos, estado, análise e post, sem rede e sem postar.
+
+1. Analisou 2 dos 3 (P2 e P1, pela leitura), deixou o P3 sem marcar para amanhã; template completo.
+2. Uma linha dizendo que rodou e não achou nada; nenhuma análise.
+3. Uma análise só; marca ID e título depois do post. **Reprovou na primeira passada**: converteu 12% em "cerca de 1 em cada 8". A regra "Número só do paper" passou a cobrir número derivado; na segunda passada apareceu "os outros 88%" numa ressalva, e a regra passou a citar o complemento. A terceira passada só usou 19 h, 4 h, 12% e 3 empresas.
+4. Declarou que leu só o abstract e baixou o tom (não decide política com base nele).
+5. HN só como "o que a comunidade está discutindo", com o número marcado como não confirmado.
+6. Seguiu com o arXiv, registrou o aviso da Semantic Scholar no post e não parou.
+
+Observação sem reprovar: na terceira passada o agente marcou também `s2:289114` (corpusId), que não bate com o `paperId` que o script usa. A marcação do título já cobre a cópia, então não há efeito.
