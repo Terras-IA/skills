@@ -55,6 +55,9 @@ Regras de qualidade (invioláveis):
 
 - **Número só do paper.** Se o número não está no texto, não entra. Se a
   memória discordar do paper, prevalece o paper.
+  Isso vale também para número derivado, mesmo dentro de uma ressalva: 12%
+  fica 12%, não vira "1 em cada 8" nem "os outros 88%", e diferença ou
+  razão entre grupos só entra se o paper a calcula.
 - **Separe achado de interpretação.** "O estudo mediu X" ≠ "então Y vai
   acontecer com você".
 - **Correlação não é causalidade** — diga quando o desenho do estudo não
