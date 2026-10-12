@@ -2,7 +2,7 @@
 
 > **Arquivo gerado.** Rode `node scripts/manual.mjs` para regravar; não edite à mão.
 
-**130 skills** neste repositório: **119 instaláveis** pelo marketplace, **8 de processo do motor** e **3 ligadas a projeto de cliente**.
+**131 skills** neste repositório: **120 instaláveis** pelo marketplace, **8 de processo do motor** e **3 ligadas a projeto de cliente**.
 
 ## Instalar e usar
 
@@ -1033,6 +1033,18 @@ Cria, revisa e mantém skills no padrão da casa terras-: frontmatter, descriç�
 `/plugin install terras-skill-factory@terras`
 
 Palavras-chave: `skill`, `skills`, `criar skill`, `skill factory`, `padrão terras`, `SKILL.md`, `frontmatter`, `progressive disclosure`, `agent skills`
+
+## Outras
+
+*Ainda sem área no manual: classifique cada uma em `scripts/manual-areas.json`.*
+
+### terras-spec-flow
+
+Conduz uma feature de ponta a ponta por spec (estilo spec-kit): princípios do repo, spec, crítica, plano TDD, análise de consistência, implementação e fechamento, com portão entre as fases. Use para feature spec-driven ou SDD. Não é para só criticar spec (terras-critica-de-spec).
+
+`/plugin install terras-spec-flow@terras` · v1.0.0
+
+Palavras-chave: `spec-driven`, `spec driven development`, `sdd`, `spec-kit`, `specify`, `fluxo de spec`, `feature por spec`, `especificar feature`, `plano e tarefas`, `constitution`
 
 ## Fora do marketplace: projeto de cliente
 
