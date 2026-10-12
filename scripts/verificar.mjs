@@ -6,8 +6,9 @@
 // o parser do motor recusa, skill do catálogo sem keywords (liberada e muda),
 // dependência de um harness específico, marca de terceiro que sobrou de
 // importação, segredo, dado pessoal (CNPJ, CPF, e-mail real), arquivo de
-// credencial ou cache, e description de agente longa demais para a lista de
-// skills que o modelo recebe.
+// credencial ou cache, description de agente longa demais para a lista de
+// skills que o modelo recebe, e skill que roda agendada sem eval com rodada
+// aprovada: sem ninguém no chat, ninguém vê o erro (regra 9 do README).
 //
 //   node scripts/verificar.mjs            # verifica o repositório
 //   node scripts/verificar.mjs <raiz>     # verifica outra raiz (testes)
@@ -60,6 +61,13 @@ const DOCUMENTO = [
 const EMAIL = /[A-Za-z0-9._%+-]+@[A-Za-z0-9-]+(\.[A-Za-z0-9-]+)*\.[a-z]{2,}/g;
 const EMAIL_EXEMPLO = /(@(.+\.)?example\.(com|org|net)$|@[^@]*\.(example|test|invalid)$|^(you|your_email|user|usuario|seu_email)@)/i;
 const LICENCA = /(^|\/)[^/]*(OFL|LICENSE|NOTICE)[^/]*$/i;
+// Skill que se descreve rodando sozinha: o agendador do agente ou uma seção
+// "Rotina agendada" / "Na hora vs agendado". Pedir para agendar UM post (Substack)
+// não é a skill rodar agendada e não casa.
+const AGENDADA = /(CronCreate|^#{1,4} .*agendad)/im;
+const SECOES_EVAL = ["## Cenário", "## Comportamento esperado", "## Verificação", "## Última rodada"];
+const RODADA_APROVADA = /^## Última rodada\n[\s\S]*?\b\d{4}-\d{2}-\d{2}\b[^\n]*(?<!não )\baprovada\b/im;
+
 const LIXO = [/(^|\/)\.env$/, /(^|\/)config\.json$/, /(^|\/)\.venv\//, /(^|\/)node_modules\//];
 // Cache de bytecode do Python: o interpretador recria a cada uso da skill e o
 // .gitignore já o barra. Acusar aqui só fazia o gate falhar com a skill em uso.
@@ -95,6 +103,31 @@ function vendorizados(dirSkill) {
     .split("\n")
     .map((l) => l.replace(/#.*/, "").trim())
     .filter(Boolean);
+}
+
+// Pasta da skill: skills/<nome>, ou o plugin escrito à mão plugins/<nome>/skills/<nome>.
+function pastaDaSkill(raiz, nome) {
+  for (const dir of [join(raiz, "skills", nome), join(raiz, "plugins", nome, "skills", nome)])
+    if (existsSync(join(dir, "SKILL.md"))) return dir;
+  return null;
+}
+
+function lerAgendaveis(raiz) {
+  const arq = join(raiz, "agendaveis.json");
+  return existsSync(arq) ? JSON.parse(readFileSync(arq, "utf8")).skills ?? [] : [];
+}
+
+function rodadaAprovada(raiz, entrada) {
+  const arq = join(raiz, entrada.eval ?? "");
+  return Boolean(entrada.eval) && existsSync(arq) && RODADA_APROVADA.test(readFileSync(arq, "utf8").replace(/\r\n/g, "\n"));
+}
+
+// Agendáveis sem rodada aprovada que declaram o motivo em `pendente`: não
+// reprovam o gate (o eval existe), mas aparecem em toda verificação até rodar.
+export function pendencias(raiz) {
+  return lerAgendaveis(raiz)
+    .filter((e) => e.pendente && !rodadaAprovada(raiz, e))
+    .map((e) => ({ nome: e.nome, motivo: e.pendente }));
 }
 
 export function verificar(raiz) {
@@ -177,6 +210,37 @@ export function verificar(raiz) {
     const kw = /^\[(.*)\]$/.exec(cab.campos.keywords ?? "")?.[1]?.split(",").map((k) => k.trim()).filter(Boolean) ?? [];
     if (!kw.length) acusa("catalogo", arq, "sem keywords: a skill fica liberada e não dispara");
   }
+  // Regra 8: skill que roda agendada tem eval com rodada aprovada.
+  const agendaveis = lerAgendaveis(raiz);
+  const listadas = new Set(agendaveis.map((e) => e.nome));
+  const candidatas = [
+    ...pastas.map((n) => [n, join(dirSkills, n)]),
+    ...(existsSync(join(raiz, "plugins"))
+      ? readdirSync(join(raiz, "plugins")).map((n) => [n, join(raiz, "plugins", n, "skills", n)])
+      : []),
+  ];
+  for (const [nome, dir] of candidatas) {
+    const skill = join(dir, "SKILL.md");
+    if (existsSync(skill) && AGENDADA.test(readFileSync(skill, "utf8")) && !listadas.has(nome))
+      acusa("agenda", skill, "descreve rodada agendada e não está em agendaveis.json");
+  }
+  for (const entrada of agendaveis) {
+    const ondeAcusa = join(raiz, "agendaveis.json");
+    if (!pastaDaSkill(raiz, entrada.nome)) {
+      acusa("agenda", ondeAcusa, `${entrada.nome}: sem pasta em skills/ ou plugins/`);
+      continue;
+    }
+    const arqEval = entrada.eval ? join(raiz, entrada.eval) : null;
+    if (!arqEval || !existsSync(arqEval)) {
+      acusa("agenda", ondeAcusa, `${entrada.nome}: eval ${entrada.eval ?? "(não informado)"} não existe`);
+      continue;
+    }
+    const txt = readFileSync(arqEval, "utf8").replace(/\r\n/g, "\n");
+    const faltam = SECOES_EVAL.filter((s) => !txt.split("\n").includes(s));
+    if (faltam.length) acusa("agenda", arqEval, `faltam as seções ${faltam.join(", ")}`);
+    else if (!rodadaAprovada(raiz, entrada) && !entrada.pendente)
+      acusa("agenda", arqEval, "sem rodada aprovada (AAAA-MM-DD ... aprovada) em ## Última rodada, nem motivo em pendente");
+  }
   return problemas;
 }
 
@@ -185,6 +249,7 @@ if (process.argv[1] === fileURLToPath(import.meta.url)) {
   const problemas = verificar(raiz);
   for (const p of problemas) console.log(`${p.regra.padEnd(8)} ${p.caminho}  ${p.detalhe}`);
   const pastas = readdirSync(join(raiz, "skills")).length;
+  for (const p of pendencias(raiz)) console.log(`aviso    agendável sem rodada aprovada: ${p.nome} (${p.motivo}) — não agende até rodar o eval`);
   console.log(problemas.length ? `\n${problemas.length} problema(s) em ${pastas} skill(s)` : `ok: ${pastas} skill(s), nenhum problema`);
   process.exit(problemas.length ? 1 : 0);
 }

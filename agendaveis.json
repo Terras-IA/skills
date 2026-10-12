@@ -1,0 +1,8 @@
+{
+  "skills": [
+    { "nome": "terras-paper-diario", "eval": "evals/terras-paper-diario.md", "pendente": "eval escrito em 2026-10-10; falta rodar com fontes reais" },
+    { "nome": "terrasia-vagas-coders", "eval": "evals/terrasia-vagas-coders.md", "pendente": "precisa do navegador logado na COD3RS" },
+    { "nome": "terras-linkedin-alvos", "eval": "evals/terras-linkedin-alvos.md", "pendente": "precisa do navegador logado no LinkedIn" },
+    { "nome": "terras-coders-mural", "eval": "evals/terras-coders-mural.md", "pendente": "precisa do navegador logado na COD3RS" }
+  ]
+}

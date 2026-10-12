@@ -335,7 +335,8 @@ catalogo.json     # skills que entram no catálogo do motor (e nome antigo, se m
 marketplace-fora.json             # skills que não vão para o marketplace, com o motivo
 marketplace-grupos.json           # skills que dependem da pasta vizinha e saem juntas num plugin só
 plugins/          # só a cópia GERADA dos plugins de grupo (plugins/terras-midia); toda skill mora em skills/
-evals/            # cenários de avaliação de algumas skills
+agendaveis.json   # skills que rodam agendadas e o eval de cada uma (regra 9)
+evals/            # cenários de avaliação; obrigatório para as agendáveis
 scripts/          # verificador, instalador, geradores do marketplace e do README, e seus testes
 ```
 
@@ -388,6 +389,21 @@ ao lado do que o projeto já carrega.
    Diga o que a skill faz, quando usar e, se houver vizinha parecida, quando NÃO usar (`Não é
    para X (terras-y)`). Skill que repete o trabalho de outra entra com
    `disable-model-invocation: true`, para rodar só quando chamada pelo nome.
+9. **Eval antes de agendar.** Skill que roda sozinha no agendador, sem
+   ninguém no chat, erra sem ninguém ver. Toda skill ou plugin cujo `SKILL.md`
+   cita o agendador (`CronCreate`) ou tem seção sobre rodada agendada entra em
+   `agendaveis.json` com o caminho do eval. O eval tem `## Cenário`,
+   `## Comportamento esperado`, `## Verificação` e `## Última rodada`, e esta
+   última registra a rodada que passou, numa linha com a data e "aprovada"
+   (`2026-10-10 — 6/6, aprovada.`).
+   - Enquanto não houver rodada aprovada, a entrada leva `pendente` com o
+     motivo. O gate passa, mas avisa em toda verificação: **não agende** (nem
+     reative) a skill até o eval rodar. Sem `pendente` e sem rodada aprovada, o
+     gate reprova.
+   - Mudou o comportamento da skill, rode o eval de novo e atualize a data. O
+     gate não compara datas; é disciplina de quem edita.
+   - Agendar uma publicação (o post da Substack para amanhã) não é a skill
+     rodar agendada e fica fora da regra.
 
 ## Comandos
 

@@ -5,7 +5,7 @@ import assert from "node:assert/strict";
 import { mkdirSync, mkdtempSync, writeFileSync } from "node:fs";
 import { tmpdir } from "node:os";
 import { dirname, join } from "node:path";
-import { verificar } from "./verificar.mjs";
+import { pendencias, verificar } from "./verificar.mjs";
 
 const SKILL_OK = "---\nname: terras-exemplo\ndescription: Faz uma coisa util.\nkeywords: [exemplo, coisa util]\n---\n\n# Exemplo\n";
 
@@ -180,4 +180,97 @@ test("e-mail de exemplo, licença de fonte e código vendorizado passam", () => 
     "skills/terras-exemplo/scripts/x.py": "contato = 'hello@upstream.ai'\n",
   });
   assert.deepEqual(verificar(raiz), []);
+});
+
+// Regra 8: skill que roda agendada precisa de eval com rodada aprovada.
+const SKILL_AGENDADA = SKILL_OK + "\n## Rotina agendada\n\nRoda todo dia às 8h.\n";
+const EVAL = (rodada) =>
+  `# Eval\n\n## Cenário\n\nx\n\n## Comportamento esperado\n\nx\n\n## Verificação\n\nx\n\n## Última rodada\n\n${rodada}\n`;
+const agendaveis = (skills) => JSON.stringify({ skills });
+
+test("skill agendada fora de agendaveis.json é recusada", () => {
+  const raiz = repo({ "skills/terras-exemplo/SKILL.md": SKILL_AGENDADA }, ["terras-exemplo"]);
+  assert.deepEqual(regras(raiz), ["agenda"]);
+});
+
+test("plugin escrito à mão que roda agendado também entra na regra", () => {
+  const raiz = repo({ "plugins/terras-exemplo/skills/terras-exemplo/SKILL.md": SKILL_AGENDADA });
+  assert.deepEqual(regras(raiz), ["agenda"]);
+});
+
+test("agendar uma publicação não é a skill rodar agendada", () => {
+  const raiz = repo({ "skills/terras-exemplo/SKILL.md": SKILL_OK + "\nPublica agora ou agendado para depois.\n" }, ["terras-exemplo"]);
+  assert.deepEqual(verificar(raiz), []);
+});
+
+test("agendável com eval e rodada aprovada passa sem aviso", () => {
+  const raiz = repo(
+    {
+      "skills/terras-exemplo/SKILL.md": SKILL_AGENDADA,
+      "evals/terras-exemplo.md": EVAL("2026-10-10 — 5/5, aprovada."),
+      "agendaveis.json": agendaveis([{ nome: "terras-exemplo", eval: "evals/terras-exemplo.md" }]),
+    },
+    ["terras-exemplo"],
+  );
+  assert.deepEqual(verificar(raiz), []);
+  assert.deepEqual(pendencias(raiz), []);
+});
+
+test("agendável sem arquivo de eval é recusado", () => {
+  const raiz = repo(
+    {
+      "skills/terras-exemplo/SKILL.md": SKILL_AGENDADA,
+      "agendaveis.json": agendaveis([{ nome: "terras-exemplo", eval: "evals/terras-exemplo.md", pendente: "x" }]),
+    },
+    ["terras-exemplo"],
+  );
+  assert.deepEqual(regras(raiz), ["agenda"]);
+});
+
+test("eval sem as seções obrigatórias é recusado", () => {
+  const raiz = repo(
+    {
+      "skills/terras-exemplo/SKILL.md": SKILL_AGENDADA,
+      "evals/terras-exemplo.md": "# Eval\n\n## Cenário\n\nx\n",
+      "agendaveis.json": agendaveis([{ nome: "terras-exemplo", eval: "evals/terras-exemplo.md" }]),
+    },
+    ["terras-exemplo"],
+  );
+  assert.deepEqual(regras(raiz), ["agenda"]);
+});
+
+test("rodada não aprovada e sem motivo pendente é recusada", () => {
+  const raiz = repo(
+    {
+      "skills/terras-exemplo/SKILL.md": SKILL_AGENDADA,
+      "evals/terras-exemplo.md": EVAL("2026-10-10 — 3/5, não aprovada."),
+      "agendaveis.json": agendaveis([{ nome: "terras-exemplo", eval: "evals/terras-exemplo.md" }]),
+    },
+    ["terras-exemplo"],
+  );
+  assert.deepEqual(regras(raiz), ["agenda"]);
+});
+
+test("rodada pendente com motivo passa o gate mas vira aviso", () => {
+  const raiz = repo(
+    {
+      "skills/terras-exemplo/SKILL.md": SKILL_AGENDADA,
+      "evals/terras-exemplo.md": EVAL("Nenhuma ainda."),
+      "agendaveis.json": agendaveis([{ nome: "terras-exemplo", eval: "evals/terras-exemplo.md", pendente: "precisa de navegador logado" }]),
+    },
+    ["terras-exemplo"],
+  );
+  assert.deepEqual(verificar(raiz), []);
+  assert.deepEqual(pendencias(raiz), [{ nome: "terras-exemplo", motivo: "precisa de navegador logado" }]);
+});
+
+test("agendável listado sem pasta é recusado", () => {
+  const raiz = repo(
+    {
+      "skills/terras-exemplo/SKILL.md": SKILL_OK,
+      "agendaveis.json": agendaveis([{ nome: "terras-sumiu", eval: "evals/x.md", pendente: "x" }]),
+    },
+    ["terras-exemplo"],
+  );
+  assert.deepEqual(regras(raiz), ["agenda"]);
 });
