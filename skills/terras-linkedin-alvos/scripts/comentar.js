@@ -15,10 +15,32 @@
   const actionBtn = () =>
     [...document.querySelectorAll('main button')].find((b) =>
       /^(Comentar|Comment)$/.test((b.getAttribute('aria-label') || '').trim()));
+  const byText = (re, sel = '*') =>
+    [...document.querySelectorAll('main ' + sel)].filter((e) => re.test((e.innerText || '').trim()));
+
+  // "Mais relevantes" (padrão) pode esconder um comentário seu antigo; "Mais recentes" mostra todos.
+  // O menu abre fora do <main>, como [role=menuitem].
+  async function sortRecent() {
+    for (let i = 0; i < 10 && !byText(/^(Mais relevantes|Most relevant|Mais recentes|Most recent)$/, '[role=button]').length; i++) await sleep(400);
+    const trigger = () => byText(/^(Mais relevantes|Most relevant)$/, '[role=button]')[0];
+    if (!trigger()) return 'sem seletor de ordem (ou já em Mais recentes)';
+    // O botão chega do servidor antes da hidratação (o nó é trocado e o clique se perde):
+    // busca de novo e clica até o menu abrir.
+    for (let i = 0; i < 15; i++) {
+      const t = trigger();
+      if (t && t.getAttribute('aria-expanded') !== 'true') t.click();
+      await sleep(600);
+      const opt = [...document.querySelectorAll('[role=menuitem]')].find((e) =>
+        /^(Mais recentes|Most recent)$/.test((e.innerText || '').trim().split('\n')[0]));
+      if (opt) { opt.click(); await sleep(2500); return 'Mais recentes'; }
+    }
+    throw new Error('não consegui trocar para "Mais recentes": confira à mão se já há comentário seu');
+  }
 
   async function prep(snip) {
     if (!/linkedin\.com$/.test(location.hostname)) throw new Error('aba errada: ' + location.hostname);
     for (let i = 0; i < 15 && !actionBtn() && !editor(); i++) await sleep(400);
+    await sortRecent();
     if (mainText().includes(snip)) throw new Error('já comentado');
     // Comentário anterior do usuário, com qualquer texto: o LinkedIn marca o autor com "• Você" / "• You".
     if (/•\s*(Você|You)\s*\n/.test(mainText())) throw new Error('já existe comentário seu neste post');

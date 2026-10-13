@@ -23,7 +23,7 @@ de conexão que vem depois. É o oposto do engajamento em massa: qualidade por p
 2. **Curtida automática só se o usuário ativou.** Em rodada agendada, curta sem perguntar apenas se
    `alvos.json` tiver `"curtir_automatico": true`, gravado porque o usuário pediu isso de forma
    explícita. Sem isso, a curtida entra no mesmo pedido de aprovação do comentário.
-3. **Reação é toggle.** Só clique em "Gostei" com `aria-pressed="false"` (o `__alvos.like` garante).
+3. **Reação é toggle.** Só clique em "Gostei" quando o botão disser "nenhuma reação" (o `__alvos.like` garante).
    Nunca troque nem remova reação existente.
 4. **Um comentário por post.** Antes de comentar, confira `engajados.json` e o `prep` do
    `comentar.js` (acusa comentário seu já visível). A página nem sempre mostra comentário antigo seu,
@@ -100,6 +100,8 @@ curtida sozinha quase não gera visibilidade.
 ## Referências
 
 - `scripts/alvos.js`: varredura da página de atividade (`scan`, `like`), com data exata pelo URN.
+  Se `scan` voltar `semUrn` cheio ou zero cards num perfil que posta, o LinkedIn mudou o layout de
+  novo: veja `references/red-baseline.md` (itens 8 a 10) antes de improvisar outra leitura.
 - `scripts/comentar.js`: comentar num post aberto (`prep`, `submit`), PT e EN, bloqueia duplicata.
 - `references/config.md`: formato de `alvos.json` e `engajados.json`.
 - `references/estilo.md`: comentário para perfil-alvo, por papel, e nota de convite.
