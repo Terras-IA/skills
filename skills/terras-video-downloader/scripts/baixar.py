@@ -96,6 +96,15 @@ def linkedin_nome(pagina, url):
     return "linkedin-" + "-".join(partes)
 
 
+def linkedin_texto(pagina):
+    """Texto do post, para dar contexto à análise do vídeo."""
+    m = re.search(r'<p[^>]*attributed-text-segment-list__content[^>]*>(.*?)</p>', pagina, re.S)
+    if not m:
+        return None
+    t = re.sub(r"<br\s*/?>", "\n", m.group(1))
+    return html.unescape(re.sub(r"<[^>]+>", "", t)).strip() or None
+
+
 def rota_linkedin(url, pagina):
     fontes = linkedin_fontes(pagina)
     if not fontes:
@@ -176,6 +185,7 @@ def main():
         rel.update(url_final=final.split("?")[0], plataforma=plataforma(final))
         if rel["plataforma"] == "linkedin":
             fontes, nome = rota_linkedin(final, pagina)
+            rel["texto_post"] = linkedin_texto(pagina)
             rel["opcoes"] = [{k: f[k] for k in ("rotulo", "altura", "bitrate")} for f in fontes]
             if not a.listar:
                 f = fontes[-1] if a.qualidade == "melhor" else fontes[0]
