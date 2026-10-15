@@ -2,7 +2,7 @@
 
 > **Arquivo gerado.** Rode `node scripts/manual.mjs` para regravar; não edite à mão.
 
-**131 skills** neste repositório: **120 instaláveis** pelo marketplace, **8 de processo do motor** e **3 ligadas a projeto de cliente**.
+**132 skills** neste repositório: **121 instaláveis** pelo marketplace, **8 de processo do motor** e **3 ligadas a projeto de cliente**.
 
 ## Instalar e usar
 
@@ -1045,6 +1045,14 @@ Conduz uma feature de ponta a ponta por spec (estilo spec-kit): princípios do r
 `/plugin install terras-spec-flow@terras` · v1.0.0
 
 Palavras-chave: `spec-driven`, `spec driven development`, `sdd`, `spec-kit`, `specify`, `fluxo de spec`, `feature por spec`, `especificar feature`, `plano e tarefas`, `constitution`
+
+### terras-video-downloader
+
+Baixa o vídeo de uma URL (LinkedIn direto do player público, sem login; o resto via yt-dlp) e prepara a análise em folhas de quadros. Use para baixar, salvar ou analisar vídeo de post ou link. Não edita (terras-ffmpeg) nem monta vídeo (terras-video). Download video from URL.
+
+`/plugin install terras-video-downloader@terras`
+
+Palavras-chave: `baixar video`, `download`, `linkedin`, `video do post`, `yt-dlp`, `mp4`, `salvar video`, `lnkd.in`, `analisar video`, `quadros`
 
 ## Fora do marketplace: projeto de cliente
 

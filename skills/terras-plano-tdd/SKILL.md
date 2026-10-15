@@ -25,6 +25,7 @@ Fonte única: `skills/terras-plano-tdd/` no repositório `terrasia-skills`. Adap
 ## Entradas
 
 - A spec revisada (o quê, por quê, critérios de aceite, fora de escopo). Sem critérios de aceite testáveis, pare e peça a revisão da spec antes (skill `terras-critica-de-spec`).
+- O `desenho.md` da spec, quando existir (fase 2b da `terras-spec-flow`): tipos, assinaturas e quem chama quem já aprovados. O plano usa essas assinaturas; se precisar de outra, pare e devolva ao desenho em vez de decidir no GREEN.
 - As regras do repositório: `CLAUDE.md`, `AGENTS.md`, README e convenções de teste.
 - A lista dos testes que já existem nas pastas que a spec toca. Descubra onde o projeto põe os testes olhando o repositório (teste ao lado do arquivo, pasta `__tests__/`, pasta `tests/`, teste no mesmo arquivo como em Rust). Não suponha o padrão de uma linguagem.
 - O comando de teste do projeto. Se houver build antes do teste ou versão mínima de runtime, ela entra no plano.

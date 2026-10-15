@@ -91,10 +91,10 @@ Revisão pelo risco que a mudança cria, segurança, testes ponta a ponta, banco
 <!-- catalogo:inicio -->
 <!-- gerado por `npm run readme` a partir do catálogo — não edite à mão -->
 
-**120 skills instaláveis** entre as 131 deste repositório; as demais ficam fora do marketplace — 8 skills de processo do motor (`.nao-instalar`) e 3 skills ligadas a projeto de cliente (`marketplace-fora.json`).
+**121 skills instaláveis** entre as 132 deste repositório; as demais ficam fora do marketplace — 8 skills de processo do motor (`.nao-instalar`) e 3 skills ligadas a projeto de cliente (`marketplace-fora.json`).
 
 <details>
-<summary><b>Ver a lista completa (120 skills)</b></summary>
+<summary><b>Ver a lista completa (121 skills)</b></summary>
 
 | Skill | O que faz |
 |---|---|
@@ -213,6 +213,7 @@ Revisão pelo risco que a mudança cria, segurança, testes ponta a ponta, banco
 | [`terras-validacao-regularidade-cadastral`](skills/terras-validacao-regularidade-cadastral) | Organiza a checagem de idoneidade de um fornecedor ou parceiro — o que precisa ser verificado, onde, com que validade — e registra o que ficou sem comprovação. |
 | [`terras-vercel`](skills/terras-vercel) | Deploy applications and manage projects with complete CLI reference. Commands for deployments, projects, domains, environment variables, and live documentation access. |
 | [`terras-video`](skills/terras-video) | Monta vídeo para YouTube e Shorts a partir de roteiro: cartelas na identidade da marca, narração por voz neural e mp4 horizontal (1920x1080) ou vertical (1080x1920). · Instale com o plugin `terras-midia`. |
+| [`terras-video-downloader`](skills/terras-video-downloader) | Baixa o vídeo de uma URL (LinkedIn direto do player público, sem login; o resto via yt-dlp) e prepara a análise em folhas de quadros. |
 | [`terras-visual-explainer`](skills/terras-visual-explainer) | Páginas HTML autocontidas que explicam visualmente sistemas, diffs, planos, dados e conceitos: diagramas, arquitetura, tabelas comparativas, inclusive diagrama animado… |
 | [`terras-vite`](skills/terras-vite) | Padrões do Vite: config, plugins, HMR, variáveis de ambiente (e o que vaza no bundle), proxy, SSR, modo biblioteca, pré-bundling de dependências e otimização de build. |
 | [`terrasia-pauta-youtube`](skills/terrasia-pauta-youtube) | Pesquisa de demanda no YouTube antes do roteiro: compara temas pela mediana de views, acha outliers por canal e colhe frases recorrentes dos títulos que performam. |

@@ -2892,6 +2892,33 @@
       ]
     },
     {
+      "name": "terras-video-downloader",
+      "description": "Baixa o vídeo de uma URL (LinkedIn direto do player público, sem login; o resto via yt-dlp) e prepara a análise em folhas de quadros. Use para baixar, salvar ou analisar vídeo de post ou link. Não edita (terras-ffmpeg) nem monta vídeo (terras-video). Download video from URL.",
+      "version": "1.0.0",
+      "source": "./skills/terras-video-downloader",
+      "strict": false,
+      "skills": [
+        "./"
+      ],
+      "category": "productivity",
+      "license": "MIT",
+      "author": {
+        "name": "Everton Lima"
+      },
+      "keywords": [
+        "baixar video",
+        "download",
+        "linkedin",
+        "video do post",
+        "yt-dlp",
+        "mp4",
+        "salvar video",
+        "lnkd.in",
+        "analisar video",
+        "quadros"
+      ]
+    },
+    {
       "name": "terras-visual-explainer",
       "description": "Páginas HTML autocontidas que explicam visualmente sistemas, diffs, planos, dados e conceitos: diagramas, arquitetura, tabelas comparativas, inclusive diagrama animado com MP4. Use para explicar algo visualmente ou quando uma tabela tiver 4+ linhas ou 3+ colunas.",
       "version": "1.0.0",
