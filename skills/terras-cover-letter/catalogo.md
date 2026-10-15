@@ -40,4 +40,4 @@ repositório, então a edição se faz lá e vale para todos. Nos comandos abaix
 
 - Na Prática (tamanho, estrutura, personalização): https://napratica.org.br/noticias/cover-letter-como-escrever-uma-carta-de-apresentacao-atraente-para-vagas-internacionais
 - LatoJobs (LATAM, experiência local, STAR, remote readiness): https://www.latojobs.com/blog/how-to-write-a-compelling-cover-letter
-- Material de origem das versões base: /home/support/linkedin/carta-de-apresentacao.md
+- Material de origem das versões base: /home/support/linkedin/cartas/carta-de-apresentacao.md

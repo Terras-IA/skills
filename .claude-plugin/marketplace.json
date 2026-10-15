@@ -18,6 +18,17 @@
       }
     },
     {
+      "name": "terras-videos-linkedin",
+      "description": "Vídeo de post do LinkedIn: varredura do feed por tema, download em lote com o texto do post e análise em folhas de quadros. A skill do feed usa o motor de download da outra, por isso saem juntas.",
+      "version": "1.0.0",
+      "source": "./plugins/terras-videos-linkedin",
+      "category": "productivity",
+      "license": "MIT",
+      "author": {
+        "name": "Everton Lima"
+      }
+    },
+    {
       "name": "terras-accessibility",
       "description": "Projetar, implementar e auditar interface acessível no nível AA da WCAG 2.2 em Web, iOS e Android: papéis e rótulos ARIA, foco, contraste, tamanho de alvo e leitor de tela. Use ao construir ou auditar UI para acessibilidade, navegação por teclado ou leitor de tela. Accessibility, a11y.",
       "version": "1.0.0",
@@ -2738,6 +2749,36 @@
         "locutor",
         "faster-whisper",
         "whisper"
+      ]
+    },
+    {
+      "name": "terras-treino-ingles",
+      "description": "Treino de inglês falado por recordação ativa: frase em português, o usuário traduz de memória, correção na hora e o erro volta em repetição espaçada, com ouvir e repetir. Use para treinar ou revisar inglês, ou 'me testa em inglês'. English speaking practice, active recall, spaced repetition.",
+      "version": "1.0.0",
+      "source": "./skills/terras-treino-ingles",
+      "strict": false,
+      "skills": [
+        "./"
+      ],
+      "category": "productivity",
+      "license": "MIT",
+      "author": {
+        "name": "Everton Lima"
+      },
+      "keywords": [
+        "ingles",
+        "english",
+        "idioma",
+        "recordacao-ativa",
+        "active-recall",
+        "repeticao-espacada",
+        "spaced-repetition",
+        "traducao",
+        "pronuncia",
+        "fluencia",
+        "entrevista",
+        "vaga-remota",
+        "flashcard"
       ]
     },
     {

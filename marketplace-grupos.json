@@ -1,6 +1,17 @@
 {
   "terras-midia": {
     "description": "Áudio, vídeo e banner: narração com voz e pronúncia cuidadas, vídeo a partir de roteiro e arte de capa. As três skills usam scripts umas das outras, por isso saem juntas.",
-    "skills": ["terras-audio", "terras-banner", "terras-video"]
+    "skills": [
+      "terras-audio",
+      "terras-banner",
+      "terras-video"
+    ]
+  },
+  "terras-videos-linkedin": {
+    "description": "Vídeo de post do LinkedIn: varredura do feed por tema, download em lote com o texto do post e análise em folhas de quadros. A skill do feed usa o motor de download da outra, por isso saem juntas.",
+    "skills": [
+      "terras-linkedin-videos",
+      "terras-video-downloader"
+    ]
   }
 }
