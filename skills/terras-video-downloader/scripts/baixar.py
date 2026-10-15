@@ -86,10 +86,25 @@ def linkedin_atividade(url):
     return m and (("ugcPost" if "ugcPost" in m.group(0) else "activity"), m.group(1))
 
 
+def linkedin_autor(pagina):
+    """Nome do autor. O og:title é 'texto | Autor | N comments': o último pedaço é contagem."""
+    m = re.search(r'public_post_feed-actor-name"[^>]*>\s*([^<]+?)\s*<', pagina)
+    if m:
+        return html.unescape(m.group(1))
+    m = re.search(r'<meta property="og:title" content="([^"]*)"', pagina)
+    if m:
+        partes = [p.strip() for p in html.unescape(m.group(1)).split("|")]
+        if len(partes) > 1 and re.fullmatch(r"[\d.,]+\s+\w+", partes[-1]):
+            partes.pop()
+        if len(partes) > 1:
+            return partes[-1]
+    return None
+
+
 def linkedin_nome(pagina, url):
-    autor = re.search(r'<meta property="og:title" content="[^"]*\|\s*([^"]+)"', pagina)
+    autor = linkedin_autor(pagina)
     base = re.search(r"/posts/([^/?]+?)_", url)
-    partes = [slug(autor.group(1)) if autor else (slug(base.group(1)) if base else "linkedin")]
+    partes = [slug(autor) if autor else (slug(base.group(1)) if base else "linkedin")]
     at = linkedin_atividade(url)
     if at:
         partes.append(at[1][-6:])

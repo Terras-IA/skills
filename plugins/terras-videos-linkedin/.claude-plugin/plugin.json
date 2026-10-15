@@ -1,0 +1,9 @@
+{
+  "name": "terras-videos-linkedin",
+  "version": "1.0.0",
+  "description": "Vídeo de post do LinkedIn: varredura do feed por tema, download em lote com o texto do post e análise em folhas de quadros. A skill do feed usa o motor de download da outra, por isso saem juntas.",
+  "author": {
+    "name": "Everton Lima"
+  },
+  "license": "MIT"
+}

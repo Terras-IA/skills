@@ -1,6 +1,6 @@
 ---
 name: terras-video-downloader
-description: "Baixa o vídeo de uma URL (LinkedIn direto do player público, sem login; o resto via yt-dlp) e prepara a análise em folhas de quadros. Use para baixar, salvar ou analisar vídeo de post ou link. Não edita (terras-ffmpeg) nem monta vídeo (terras-video). Download video from URL."
+description: "Baixa o vídeo de uma URL (LinkedIn pelo player público; o resto via yt-dlp) e prepara a análise em folhas de quadros. Use para baixar ou analisar vídeo de link. Post do LinkedIn colado ou feed: terras-linkedin-videos. Não edita (terras-ffmpeg) nem monta (terras-video). Video download."
 keywords: [baixar video, download, linkedin, video do post, yt-dlp, mp4, salvar video, lnkd.in, analisar video, quadros]
 ---
 
@@ -14,7 +14,7 @@ Cada plataforma esconde o vídeo de um jeito. Sem mapa, o agente perde tempo ins
 
 ## Regra dura
 
-1. **Pergunte antes de baixar.** Rode `--listar` primeiro e mostre: autor ou origem, resolução e tamanho. Baixe só depois do sim. Baixar arquivo é ação que pede permissão.
+1. **Pergunte antes de baixar.** Rode `--listar` primeiro e mostre: autor ou origem, resolução e tamanho. Baixe só depois do sim. Baixar arquivo é ação que pede permissão. Exceção: link de post do LinkedIn colado sozinho é da `terras-linkedin-videos`, onde o próprio link é o sim.
 2. **Nunca entre com login por conta própria.** Se o vídeo só aparece logado, pare e diga isso. Cookie ou senha do usuário quem fornece é o usuário.
 3. **Não sobrescreva.** O script recusa destino existente; não contorne apagando o arquivo.
 4. **O vídeo é do autor.** Ao entregar, lembre em uma linha que repostar pede crédito ou autorização.

@@ -2,7 +2,7 @@
 
 > **Arquivo gerado.** Rode `node scripts/manual.mjs` para regravar; não edite à mão.
 
-**131 skills** neste repositório: **120 instaláveis** pelo marketplace, **8 de processo do motor** e **3 ligadas a projeto de cliente**.
+**134 skills** neste repositório: **123 instaláveis** pelo marketplace, **8 de processo do motor** e **3 ligadas a projeto de cliente**.
 
 ## Instalar e usar
 
@@ -1038,6 +1038,14 @@ Palavras-chave: `skill`, `skills`, `criar skill`, `skill factory`, `padrão terr
 
 *Ainda sem área no manual: classifique cada uma em `scripts/manual-areas.json`.*
 
+### terras-linkedin-videos
+
+Varre o feed do LinkedIn por tema (ex.: arquitetura de software e IA), lista os posts com vídeo e baixa os escolhidos com o texto do post; link de post colado sozinho já baixa direto. Use para 'varre o feed', 'baixa o vídeo desse post' ou link lnkd.in/linkedin colado. LinkedIn feed video scan.
+
+Sai no plugin do grupo: `/plugin install terras-videos-linkedin@terras`
+
+Palavras-chave: `linkedin`, `feed`, `vídeo`, `video`, `baixar`, `download`, `varrer feed`, `arquitetura de software`, `IA`, `lnkd.in`, `post`, `lote`
+
 ### terras-spec-flow
 
 Conduz uma feature de ponta a ponta por spec (estilo spec-kit): princípios do repo, spec, crítica, plano TDD, análise de consistência, implementação e fechamento, com portão entre as fases. Use para feature spec-driven ou SDD. Não é para só criticar spec (terras-critica-de-spec).
@@ -1045,6 +1053,22 @@ Conduz uma feature de ponta a ponta por spec (estilo spec-kit): princípios do r
 `/plugin install terras-spec-flow@terras` · v1.0.0
 
 Palavras-chave: `spec-driven`, `spec driven development`, `sdd`, `spec-kit`, `specify`, `fluxo de spec`, `feature por spec`, `especificar feature`, `plano e tarefas`, `constitution`
+
+### terras-treino-ingles
+
+Treino de inglês falado por recordação ativa: frase em português, o usuário traduz de memória, correção na hora e o erro volta em repetição espaçada, com ouvir e repetir. Use para treinar ou revisar inglês, ou 'me testa em inglês'. English speaking practice, active recall, spaced repetition.
+
+`/plugin install terras-treino-ingles@terras`
+
+Palavras-chave: `ingles`, `english`, `idioma`, `recordacao-ativa`, `active-recall`, `repeticao-espacada`, `spaced-repetition`, `traducao`, `pronuncia`, `fluencia`, `entrevista`, `vaga-remota`, `flashcard`
+
+### terras-video-downloader
+
+Baixa o vídeo de uma URL (LinkedIn pelo player público; o resto via yt-dlp) e prepara a análise em folhas de quadros. Use para baixar ou analisar vídeo de link. Post do LinkedIn colado ou feed: terras-linkedin-videos. Não edita (terras-ffmpeg) nem monta (terras-video). Video download.
+
+Sai no plugin do grupo: `/plugin install terras-videos-linkedin@terras`
+
+Palavras-chave: `baixar video`, `download`, `linkedin`, `video do post`, `yt-dlp`, `mp4`, `salvar video`, `lnkd.in`, `analisar video`, `quadros`
 
 ## Fora do marketplace: projeto de cliente
 
