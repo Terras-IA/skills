@@ -91,10 +91,10 @@ Revisão pelo risco que a mudança cria, segurança, testes ponta a ponta, banco
 <!-- catalogo:inicio -->
 <!-- gerado por `npm run readme` a partir do catálogo — não edite à mão -->
 
-**123 skills instaláveis** entre as 134 deste repositório; as demais ficam fora do marketplace — 8 skills de processo do motor (`.nao-instalar`) e 3 skills ligadas a projeto de cliente (`marketplace-fora.json`).
+**124 skills instaláveis** entre as 135 deste repositório; as demais ficam fora do marketplace — 8 skills de processo do motor (`.nao-instalar`) e 3 skills ligadas a projeto de cliente (`marketplace-fora.json`).
 
 <details>
-<summary><b>Ver a lista completa (123 skills)</b></summary>
+<summary><b>Ver a lista completa (124 skills)</b></summary>
 
 | Skill | O que faz |
 |---|---|
@@ -167,6 +167,7 @@ Revisão pelo risco que a mudança cria, segurança, testes ponta a ponta, banco
 | [`terras-last30days`](skills/terras-last30days) | Pesquisa o que se falou de um tema nos últimos 30 dias em Reddit, X, YouTube, Hacker News, GitHub e web. |
 | [`terras-linkedin`](skills/terras-linkedin) | Escreve e revisa posts de LinkedIn (hook, estrutura, CTA, hashtags, zero travessão) e explica alcance e impressões. |
 | [`terras-linkedin-alvos`](skills/terras-linkedin-alvos) | Acompanha perfis-alvo do LinkedIn (executivos, gestores, recrutadores), acha os posts recentes, curte e prepara comentários que acrescentam, publicados só com aprovação. |
+| [`terras-linkedin-conhecimento`](skills/terras-linkedin-conhecimento) | Baixa texto e imagens de post do LinkedIn (lnkd.in ou linkedin.com) e gera nota de conhecimento: o que diz, o que só a imagem traz, conferência em fonte primária… |
 | [`terras-linkedin-metricas`](skills/terras-linkedin-metricas) | Extrai, guarda e diagnostica as estatísticas dos posts do LinkedIn do usuário: impressões, alcance na e fora da rede, reações, salvamentos, seguidores e demografia. |
 | [`terras-linkedin-videos`](skills/terras-linkedin-videos) | Varre o feed do LinkedIn por tema (ex.: arquitetura de software e IA), lista os posts com vídeo e baixa os escolhidos com o texto do post; link de post colado sozinho já… · Instale com o plugin `terras-videos-linkedin`. |
 | [`terras-mapeamento-de-processos`](skills/terras-mapeamento-de-processos) | Mapeia um processo a partir de áudio, gravação de tela ou relato e devolve o fluxo AS-IS/TO-BE, diagnóstico com números e plano de melhoria com oportunidades… |

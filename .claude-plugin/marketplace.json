@@ -1729,6 +1729,36 @@
       ]
     },
     {
+      "name": "terras-linkedin-conhecimento",
+      "description": "Baixa texto e imagens de post do LinkedIn (lnkd.in ou linkedin.com) e gera nota de conhecimento: o que diz, o que só a imagem traz, conferência em fonte primária, lacunas e revisão. Use para 'estudar/salvar esse post' ou 'gera conhecimento'. Vídeo: terras-linkedin-videos. Comentar: terras-linkedin.",
+      "version": "1.0.0",
+      "source": "./skills/terras-linkedin-conhecimento",
+      "strict": false,
+      "skills": [
+        "./"
+      ],
+      "category": "productivity",
+      "license": "MIT",
+      "author": {
+        "name": "Everton Lima"
+      },
+      "keywords": [
+        "linkedin",
+        "post",
+        "imagem",
+        "infográfico",
+        "texto",
+        "baixar",
+        "conhecimento",
+        "estudo",
+        "nota",
+        "lnkd.in",
+        "aprender",
+        "base de conhecimento",
+        "knowledge"
+      ]
+    },
+    {
       "name": "terras-linkedin-metricas",
       "description": "Extrai, guarda e diagnostica as estatísticas dos posts do LinkedIn do usuário: impressões, alcance na e fora da rede, reações, salvamentos, seguidores e demografia. Use para analisar desempenho de post, comparar posts ou decidir o que repetir.",
       "version": "1.0.0",
@@ -2930,33 +2960,6 @@
       },
       "keywords": [
         "vercel"
-      ]
-    },
-    {
-      "name": "terras-video-downloader",
-      "description": "Baixa o vídeo de uma URL (LinkedIn direto do player público, sem login; o resto via yt-dlp) e prepara a análise em folhas de quadros. Use para baixar, salvar ou analisar vídeo de post ou link. Não edita (terras-ffmpeg) nem monta vídeo (terras-video). Download video from URL.",
-      "version": "1.0.0",
-      "source": "./skills/terras-video-downloader",
-      "strict": false,
-      "skills": [
-        "./"
-      ],
-      "category": "productivity",
-      "license": "MIT",
-      "author": {
-        "name": "Everton Lima"
-      },
-      "keywords": [
-        "baixar video",
-        "download",
-        "linkedin",
-        "video do post",
-        "yt-dlp",
-        "mp4",
-        "salvar video",
-        "lnkd.in",
-        "analisar video",
-        "quadros"
       ]
     },
     {

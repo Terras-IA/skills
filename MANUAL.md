@@ -2,7 +2,7 @@
 
 > **Arquivo gerado.** Rode `node scripts/manual.mjs` para regravar; não edite à mão.
 
-**134 skills** neste repositório: **123 instaláveis** pelo marketplace, **8 de processo do motor** e **3 ligadas a projeto de cliente**.
+**135 skills** neste repositório: **124 instaláveis** pelo marketplace, **8 de processo do motor** e **3 ligadas a projeto de cliente**.
 
 ## Instalar e usar
 
@@ -37,7 +37,7 @@ O script cria um link por skill em cada pasta de agente que já existir na máqu
 
 ## Índice
 
-- [Conteúdo, marca e publicação](#conteúdo-marca-e-publicação) — 17 skills
+- [Conteúdo, marca e publicação](#conteúdo-marca-e-publicação) — 18 skills
 - [Pessoas, RH e carreira](#pessoas-rh-e-carreira) — 26 skills
 - [Financeiro e fiscal](#financeiro-e-fiscal) — 6 skills
 - [Comercial e vendas](#comercial-e-vendas) — 3 skills
@@ -145,6 +145,14 @@ Acompanha perfis-alvo do LinkedIn (executivos, gestores, recrutadores), acha os 
 `/plugin install terras-linkedin-alvos@terras` · v1.0.0
 
 Palavras-chave: `linkedin`, `networking`, `alvos`, `perfis`, `recrutador`, `gestor`, `ceo`, `comentario`, `curtir`, `vaga`
+
+### terras-linkedin-conhecimento
+
+Baixa texto e imagens de post do LinkedIn (lnkd.in ou linkedin.com) e gera nota de conhecimento: o que diz, o que só a imagem traz, conferência em fonte primária, lacunas e revisão. Use para 'estudar/salvar esse post' ou 'gera conhecimento'. Vídeo: terras-linkedin-videos. Comentar: terras-linkedin.
+
+`/plugin install terras-linkedin-conhecimento@terras`
+
+Palavras-chave: `linkedin`, `post`, `imagem`, `infográfico`, `texto`, `baixar`, `conhecimento`, `estudo`, `nota`, `lnkd.in`, `aprender`, `base de conhecimento`, `knowledge`
 
 ### terras-linkedin-metricas
 
