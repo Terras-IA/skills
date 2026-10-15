@@ -1,6 +1,6 @@
 # Versões base e banco de ângulos
 
-Material de Everton Lima, copiado de `/home/support/linkedin/carta-de-apresentacao.md` e ajustado para a regra de tamanho de 250 a 300 palavras.
+Material de Everton Lima, copiado de `/home/support/linkedin/cartas/carta-de-apresentacao.md` e ajustado para a regra de tamanho de 250 a 300 palavras.
 
 ## Como usar
 
