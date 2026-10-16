@@ -13,6 +13,7 @@ Grava em BASE/AAAA-MM-DD/<autor>-<id6>/ (data de publicação do post):
   post.md          link, autor, data, números e texto original
   texto-plano.txt  texto com negrito/itálico Unicode desfeito (NFKC), para busca
   imagem-N.jpg     imagens do post na resolução que o link assinado entrega
+  pagina-NN.jpg    páginas do carrossel PDF (~1000 px) e documento.txt com a transcrição
 Pasta que já existe não é regravada: sai como "ja_baixado".
 Saída 0 = todos ok ou já baixados. 1 = algum falhou. 2 = nada público no post.
 """
@@ -76,7 +77,8 @@ def card_principal(pagina):
 
 def imagens(ld, card):
     urls = [i.get("url") if isinstance(i, dict) else i for i in lista(ld.get("image"))]
-    urls = [u for u in urls if u and "profile-display" not in u]
+    # o JSON-LD às vezes traz o placeholder "Posted on LinkedIn" (static.licdn.com) no lugar da foto
+    urls = [u for u in urls if u and "media.licdn.com/dms/image" in u and "profile-display" not in u]
     if not urls:  # post com várias imagens nem sempre lista todas no JSON-LD
         urls = [html.unescape(u) for u in re.findall(
             r'(?:data-delayed-url|src)="(https://media\.licdn\.com/dms/image/[^"]+)"', card)]
@@ -106,6 +108,28 @@ def numeros(ld):
     if ld.get("commentCount") and "comentarios" not in out:
         out["comentarios"] = ld["commentCount"]
     return out
+
+
+def documento(card):
+    """Carrossel PDF: o manifesto público traz as páginas em imagem e a transcrição."""
+    m = re.search(r'data-native-document-config="([^"]+)"', card)
+    if not m:
+        return None
+    try:
+        doc = json.loads(html.unescape(m.group(1)))["doc"]
+        with abrir(doc["manifestUrl"]) as r:
+            man = json.load(r)
+        res = sorted(man["perResolutions"], key=lambda x: x["width"])
+        alvo = next((x for x in res if x["width"] >= 1000), res[-1])
+        with abrir(alvo["imageManifestUrl"]) as r:
+            paginas = json.load(r)["pages"]
+        transcricao = []
+        if man.get("transcriptManifestUrl"):
+            with abrir(man["transcriptManifestUrl"]) as r:
+                transcricao = json.load(r).get("pages", [])
+        return {"titulo": doc.get("title"), "paginas": paginas, "transcricao": transcricao}
+    except Exception as e:
+        return {"erro": str(e)}
 
 
 def baixar_imagem(src, destino):
@@ -175,6 +199,19 @@ def baixar(url, base):
             salvas.append(baixar_imagem(src, os.path.join(pasta, f"imagem-{n}.jpg")))
         except Exception as e:
             erros.append(f"imagem-{n}: {e}")
+    doc = documento(card)
+    if doc and doc.get("paginas"):
+        for n, src in enumerate(doc["paginas"], 1):
+            try:
+                salvas.append(baixar_imagem(src, os.path.join(pasta, f"pagina-{n:02d}.jpg")))
+            except Exception as e:
+                erros.append(f"pagina-{n}: {e}")
+        if any(t.strip() for t in doc["transcricao"]):  # slide só com imagem vem com transcrição vazia
+            with open(os.path.join(pasta, "documento.txt"), "w", encoding="utf-8") as f:
+                f.write(f"# {doc.get('titulo') or 'Documento'}\n\n" + "\n\n".join(
+                    f"## Página {i}\n\n{plano(t)}" for i, t in enumerate(doc["transcricao"], 1)) + "\n")
+    elif doc:
+        erros.append(f"documento: {doc.get('erro', 'sem páginas')}")
     d = {"url": url, "url_final": final, "autor": autor, "publicado": publicado,
          "texto": texto, "imagens": salvas, "numeros": numeros(ld)}
     gravar_md(pasta, d)
@@ -188,8 +225,8 @@ def baixar(url, base):
         rel["erros"] = erros
     if tem_video:
         rel["aviso"] = "post tem vídeo: baixe com terras-linkedin-videos"
-    if "native-document" in card:
-        rel["aviso"] = "post tem documento (carrossel PDF): esta rota não baixa as páginas"
+    if doc and doc.get("paginas"):
+        rel["documento"] = f"{len(doc['paginas'])} páginas" + (", transcrição em documento.txt" if any(t.strip() for t in doc["transcricao"]) else ", sem texto transcrito: ler as páginas")
     return rel
 
 

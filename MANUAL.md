@@ -148,7 +148,7 @@ Palavras-chave: `linkedin`, `networking`, `alvos`, `perfis`, `recrutador`, `gest
 
 ### terras-linkedin-conhecimento
 
-Baixa texto e imagens de post do LinkedIn (lnkd.in ou linkedin.com) e gera nota de conhecimento: o que diz, o que só a imagem traz, conferência em fonte primária, lacunas e revisão. Use para 'estudar/salvar esse post' ou 'gera conhecimento'. Vídeo: terras-linkedin-videos. Comentar: terras-linkedin.
+Baixa texto e imagens de post do LinkedIn (link colado ou busca por tema) e gera nota de conhecimento: o que diz, o que só a imagem traz, conferência em fonte primária, lacunas e revisão. Use para 'estudar esse post', 'gera conhecimento' ou 'acha posts úteis sobre X'. Vídeo: terras-linkedin-videos.
 
 `/plugin install terras-linkedin-conhecimento@terras`
 
