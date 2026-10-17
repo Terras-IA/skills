@@ -96,8 +96,16 @@ python3 $SKILL_DIR/scripts/verificar_papers.py \
   --marcar arxiv:2609.26847 --marcar-titulo "Who Finishes the Job? A Study of ..."
 ```
 
-Para cada paper novo (no máximo 2 por dia): busque o texto completo, gere a
-análise completa no template, salve em
+**Filtro antes de analisar:** só vira análise completa o paper com
+relevância **Alta ou Máxima**, julgada na leitura do abstract e não pelo
+score `[n]`. Paper de relevância Média (nicho, benchmark, fine-tuning de
+modelo) não vira análise: entra no post do Discord como uma linha ("também
+saiu: título + link + por que é nicho") e é marcado como lido do mesmo
+jeito, para não voltar no dia seguinte. O limite de 2 por dia é teto, não
+meta.
+
+Para cada paper que passou no filtro (no máximo 2 por dia): busque o texto
+completo, gere a análise completa no template, salve em
 `~/Documents/Desenvolvimento/paper-diario/YYYY-MM-DD-<slug>.md` e poste no
 Discord via `~/Documents/Desenvolvimento/discord-post.sh` um resumo curto:
 título + link + assunto/severidade/relevância + os três avisos (um por

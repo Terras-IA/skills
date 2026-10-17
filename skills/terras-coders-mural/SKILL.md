@@ -41,9 +41,25 @@ comentário que prova leitura, e publica nos dois lugares só depois da aprovaç
      até juntar a quantidade pedida.
    - Descarte posts em que o usuário já comentou: `await __mural.commented(ids)`. Diga quantos foram
      pulados e por quê.
+   - **Domains e Stacks** (todos valem ponto): entram em toda rodada, pela mesma API
+     `/spaces/<slug>/messages?kind=post`, janela de 30 dias (decisão do usuário em 16/10: post mais antigo fica de fora; a API pagina com `hasMore` + `before=<createdAt mais antigo>`). Slugs:
+     Domains `system-design, live-coding-leetcode, frontend, backend, devops, qa, produto, cloud,
+     banco-de-dados, dados, cybersecurity`; Stacks `inteligencia-artificial, java, net, react, power-bi,
+     node, ruby-on-rails, python, react-native` (Mobile), `data-science`. A lista de canais está em
+     `bootstrap.channelReads` (`<slug>:post`); se aparecer espaço novo, incluir. Mesma regra de curtir,
+     comentar e aprovar; marque a coluna `espaco` na tabela. Post do próprio usuário: pular.
+     Post sem link do LinkedIn (apresentação, pergunta): comentário só na COD3RS, no idioma do post.
 3. **Ler no LinkedIn.** Para cada post com `link`: navegue e use `get_page_text` (1.500 caracteres
    bastam). Leia o texto do autor, não o título do mural. Post sem link: comentário só no mural,
    baseado no texto do mural.
+3b. **Gerar conhecimento** de cada post que vai receber comentário no LinkedIn, pela skill
+   `terras-linkedin-conhecimento` (baixar com `baixar_post.py`, ler imagens, conferir em fonte primária,
+   `conhecimento.md` + linha no `indice.md`). Acrescente a seção `## Comparar com os nossos`: quais
+   posts do usuário em `~/linkedin/posts/` tratam do mesmo tema (link relativo `../../../posts/...`),
+   o que o post de terceiro traz que o nosso não traz, e pauta possível. Sem post nosso relacionado:
+   dizer isso e sugerir pauta. A nota é local, não precisa de aprovação; ela também alimenta o
+   comentário (ler o post a fundo rende comentário melhor). Pasta já baixada (`ja_baixado`) com nota:
+   reaproveitar. Grave o caminho da nota no JSON da rodada (`conhecimento`).
 4. **Escrever os comentários.** Ver `references/estilo-comentarios.md`. Um par por post: EN para o
    LinkedIn, PT para o mural, mesma ideia. Passe o EN pela `terras-humanizer` (modo embutido:
    padrões de IA e régua B1/B2 de `terras-humanizer/references/ingles-b1b2.md`) antes de
