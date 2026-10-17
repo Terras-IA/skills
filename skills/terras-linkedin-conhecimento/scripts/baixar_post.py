@@ -14,6 +14,9 @@ Grava em BASE/AAAA-MM-DD/<autor>-<id6>/ (data de publicação do post):
   texto-plano.txt  texto com negrito/itálico Unicode desfeito (NFKC), para busca
   imagem-N.jpg     imagens do post na resolução que o link assinado entrega
   pagina-NN.jpg    páginas do carrossel PDF (~1000 px) e documento.txt com a transcrição
+  imagem-N.gif     GIF animado: mais imagem-N-folha.png (8 quadros em grade 4x2)
+                   e imagem-N-final.png (último quadro), feitos com ffmpeg
+Só processar um GIF já salvo: baixar_post.py --gif arquivo.gif
 Pasta que já existe não é regravada: sai como "ja_baixado".
 Saída 0 = todos ok ou já baixados. 1 = algum falhou. 2 = nada público no post.
 """
@@ -23,8 +26,11 @@ import html
 import json
 import os
 import re
+import math
 import shutil
+import subprocess
 import sys
+import time
 import unicodedata
 import urllib.request
 
@@ -149,6 +155,34 @@ def baixar_imagem(src, destino):
             os.remove(tmp)
 
 
+def quadros_gif(gif):
+    """GIF animado vira folha 4x2 de quadros e último quadro, para ler com Read.
+
+    O conteúdo de um GIF de post costuma ser uma demo que se monta: a folha mostra
+    a progressão, o último quadro mostra o estado completo em resolução cheia.
+    """
+    if not shutil.which("ffmpeg") or not shutil.which("ffprobe"):
+        return {"erro": "ffmpeg não instalado: extrair os quadros à mão"}
+    try:
+        n = int(subprocess.run(
+            ["ffprobe", "-v", "error", "-count_frames", "-select_streams", "v:0",
+             "-show_entries", "stream=nb_read_frames", "-of", "csv=p=0", gif],
+            capture_output=True, text=True, check=True, timeout=120).stdout.strip() or 1)
+        if n < 2:
+            return {"quadros": n}
+        base = os.path.splitext(gif)[0]
+        passo = max(1, math.ceil(n / 8))
+        ff = ["ffmpeg", "-v", "error", "-y", "-i", gif]
+        subprocess.run(ff + ["-vf", f"select='not(mod(n\\,{passo}))',scale=540:-1,tile=4x2:padding=4:color=white",
+                             "-frames:v", "1", "-fps_mode", "vfr", base + "-folha.png"],
+                       check=True, timeout=180)
+        subprocess.run(ff + ["-vf", f"select='eq(n\\,{n - 1})'", "-frames:v", "1", "-fps_mode", "vfr",
+                             base + "-final.png"], check=True, timeout=180)
+        return {"quadros": n, "folha": base + "-folha.png", "final": base + "-final.png"}
+    except Exception as e:
+        return {"erro": f"quadros do GIF: {e}"}
+
+
 def gravar_md(pasta, d):
     linhas = [f"# Post de {d['autor']}", "",
               f"- Post: {d['url_final']}",
@@ -181,13 +215,22 @@ def baixar(url, base):
     autor = html.unescape(autor)
     texto = ld.get("articleBody") or texto_html(card)
     imgs = imagens(ld, card)
+    descartada = bool(lista(ld.get("image"))) and not imgs
+    if descartada:  # placeholder "Posted on LinkedIn" no lugar da foto: a 2ª leitura costuma vir certa
+        time.sleep(3)
+        try:
+            with abrir(url) as r:
+                p2 = r.read().decode("utf-8", "replace")
+            imgs = imagens(ld_post(p2), card_principal(p2))
+        except Exception:
+            pass
     tem_video = bool(ld.get("video")) or "data-sources=" in card
     if not texto and not imgs:
         return {"url": url, "status": "falha", "kind": "sem_conteudo",
                 "erro": "página pública sem texto nem imagem: post restrito ou removido"}
 
     publicado = (ld.get("datePublished") or "")[:10]
-    pid = id_post(pagina[:5000] + final) or "000000"
+    pid = id_post(final) or id_post(pagina[:5000]) or "000000"
     pasta = os.path.join(base, publicado or f"{dt.date.today():%Y-%m-%d}", f"{slug(autor)}-{pid[-6:]}")
     if os.path.exists(os.path.join(pasta, "post.md")):
         return {"url": url, "status": "ja_baixado", "pasta": pasta}
@@ -199,6 +242,9 @@ def baixar(url, base):
             salvas.append(baixar_imagem(src, os.path.join(pasta, f"imagem-{n}.jpg")))
         except Exception as e:
             erros.append(f"imagem-{n}: {e}")
+    gifs = {}
+    for g in [s for s in salvas if s.endswith(".gif")]:
+        gifs[os.path.basename(g)] = quadros_gif(g)
     doc = documento(card)
     if doc and doc.get("paginas"):
         for n, src in enumerate(doc["paginas"], 1):
@@ -223,6 +269,10 @@ def baixar(url, base):
            "inicio": plano(texto)[:160]}
     if erros:
         rel["erros"] = erros
+    if descartada and not imgs:
+        rel["aviso_imagem"] = "JSON-LD trouxe só o placeholder: o post pode ter imagem; rodar de novo com --base ou pedir print"
+    if gifs:
+        rel["gif"] = gifs
     if tem_video:
         rel["aviso"] = "post tem vídeo: baixe com terras-linkedin-videos"
     if doc and doc.get("paginas"):
@@ -232,9 +282,16 @@ def baixar(url, base):
 
 def main():
     ap = argparse.ArgumentParser(description=__doc__.split("\n")[0])
-    ap.add_argument("urls", nargs="+")
+    ap.add_argument("urls", nargs="*")
     ap.add_argument("--base", default=BASE_PADRAO)
+    ap.add_argument("--gif", nargs="+", metavar="ARQUIVO", help="só gerar folha e último quadro de GIFs já salvos")
     a = ap.parse_args()
+    if a.gif:
+        res = {g: quadros_gif(g) for g in a.gif}
+        print(json.dumps(res, ensure_ascii=False, indent=2))
+        return 1 if any("erro" in r for r in res.values()) else 0
+    if not a.urls:
+        ap.error("informe URL ou --gif")
     res = [baixar(u, a.base) for u in dict.fromkeys(a.urls)]
     print(json.dumps(res, ensure_ascii=False, indent=2))
     if all(r["status"] == "falha" and r.get("kind") == "sem_conteudo" for r in res):

@@ -1,7 +1,7 @@
 ---
 name: terrasia-vagas-coders
-description: "Filtra as vagas do board da COD3RS contra o currículo do usuário em baldes A (recomendar), B (talvez) e C (descarte com motivo) e, com aprovação por vaga, avança na candidatura. Use para vagas da COD3RS, 'o que tem de vaga pra mim' ou aplicar nas aprovadas."
-keywords: [cod3rs, coders, vagas, board, curriculo, triagem, emprego, remote, senior, fit]
+description: "Filtra as vagas do board da COD3RS e do Rebase Jobs (rebasedev.com.br/vagas) contra o currículo do usuário em baldes A (recomendar), B (talvez) e C (descarte com motivo) e, com aprovação por vaga, avança na candidatura. Use para vagas da COD3RS, 'o que tem de vaga pra mim' ou aplicar nas aprovadas."
+keywords: [cod3rs, coders, rebase, rebasedev, vagas, board, curriculo, triagem, emprego, remote, senior, fit]
 version: "1.0.0"
 metadata:
   requires: navegador controlável pelo agente (browser pane), com o usuário logado na COD3RS e com acesso ao board de vagas (termos aceitos)
@@ -101,6 +101,26 @@ triado. Apagar o arquivo re-tríada tudo — só faça se o usuário pedir.
 `entregue-ao-usuario` quando parou em portão) — é o que impede candidatura
 duplicada e sustenta o relato honesto de "o que foi enviado".
 
+## Fonte Rebase Jobs
+
+Catálogo curado de vagas remotas internacionais que contratam quem mora no
+Brasil (rebasedev.com.br/vagas). Tem API própria, então não usa navegador:
+
+1. `python3 scripts/rebase.py` varre com os filtros do perfil (nível sênior,
+   staff e liderança × skills núcleo e títulos de arquitetura, DevOps e
+   backend), tira as já vistas (`~/.config/terrasia-vagas-coders/rebase-vistas.json`)
+   e devolve JSON ranqueado por `score`. O score só ordena: quem julga é você.
+2. Antes de um A, leia o anúncio: `python3 scripts/rebase.py --anuncio SLUG`.
+   Título "Fullstack .NET/React" muitas vezes é 70% front.
+3. Entregou a tabela: `python3 scripts/rebase.py --marcar SLUG...` com todas as
+   vagas julgadas, para a próxima rodada trazer só as novas.
+4. Mesma vaga na COD3RS e no Rebase: mescle e cite as duas fontes.
+
+Token: `REBASE_JOBS_TOKEN` ou o header do MCP `rebase-jobs` em `~/.claude.json`;
+o script nunca imprime. Limite 60 chamadas/min (a varredura faz ~50). Sem token,
+a API responde 401: peça ao usuário para gerar em
+rebasedev.com.br/vagas/perfil/agentes. O catálogo é beta e deve virar assinatura.
+
 ## Rotina agendada
 
 A tarefa roda os passos 1-8 da triagem inteiros: não há ação pública, então
@@ -128,6 +148,7 @@ baixo, uma vaga por vez e aprovação por envio reduzem o risco, não eliminam.
 
 ## Referências
 
+- `scripts/rebase.py`: varredura do Rebase Jobs pela API (`--anuncio`, `--marcar`, `--todas`) — somente leitura.
 - `scripts/vagas.js`: helper in-page do board (`me, facets, list`) — somente leitura.
 - `references/perfil.md`: currículo destilado + baldes de encaixe + regras de julgamento + preferências + kit de candidatura (local, fora do git; a base vazia é `perfil.example.md`).
 - `references/aplicacao.md`: fase 2 — playbooks de candidatura por fonte, portões e ritmo.

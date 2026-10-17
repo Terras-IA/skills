@@ -26,8 +26,8 @@ O post de LinkedIn é resumo de alguém. Copiar o texto não gera conhecimento; 
    ```bash
    python3 "$SKILL_DIR/scripts/baixar_post.py" URL [URL ...]
    ```
-   Grava em `~/linkedin/conhecimento/AAAA-MM-DD/<autor>-<id6>/` (data de publicação): `post.md` (link, autor, números, texto original), `texto-plano.txt` (negrito Unicode desfeito, 𝗝𝗪𝗧 → JWT) e `imagem-N.jpg`. O JSON de saída diz pasta, imagens e avisos.
-2. **Ler.** `texto-plano.txt` e cada imagem com Read.
+   Grava em `~/linkedin/conhecimento/AAAA-MM-DD/<autor>-<id6>/` (data de publicação): `post.md` (link, autor, números, texto original), `texto-plano.txt` (negrito Unicode desfeito, 𝗝𝗪𝗧 → JWT) e `imagem-N.jpg`. GIF animado sai como `imagem-N.gif` com `imagem-N-folha.png` (8 quadros em grade) e `imagem-N-final.png` (último quadro). O JSON de saída diz pasta, imagens, `gif` e avisos.
+2. **Ler.** `texto-plano.txt` e cada imagem com Read. GIF: ler a folha (a progressão) e o último quadro (o estado completo, em resolução cheia); quadro do meio com detalhe pequeno, recortar e ler.
 3. **Conferir.** Listar as afirmações técnicas do texto e da imagem. Para cada uma relevante, buscar a fonte primária (documentação oficial do fornecedor, como Microsoft Learn para .NET e Azure, RFC, spec). Uma busca bem feita costuma cobrir várias afirmações.
 4. **Escrever** `conhecimento.md` na mesma pasta pelo modelo de `references/modelo-conhecimento.md`.
 5. **Indexar.** Acrescentar a linha no topo de `~/linkedin/conhecimento/indice.md` (criar com `# Conhecimento do LinkedIn` se não existir).
@@ -55,7 +55,8 @@ Pedido como "acha posts úteis sobre X" ou "baseado nas minhas competências":
 | `aviso: post tem vídeo` | O conteúdo principal é vídeo | Vídeo com `terras-linkedin-videos`; a nota usa o texto e a transcrição |
 | `documento: N páginas, transcrição em documento.txt` | Carrossel PDF baixado como `pagina-NN.jpg` | Ler `documento.txt`; abrir as páginas com diagrama ou código |
 | `documento: ..., sem texto transcrito` | Slides só em imagem | Juntar páginas numa folha (ffmpeg `vstack`) e ler com Read |
-| imagem `.gif` | Infográfico animado | Extrair o último quadro (ffmpeg) e ler; costuma ser o quadro completo |
+| `gif: {quadros, folha, final}` | GIF animado (demo, infográfico que se monta) | Ler folha e final; a nota descreve o roteiro da animação. GIF salvo à mão: `baixar_post.py --gif arquivo.gif` |
+| `aviso_imagem` / `imagens: []` com post que tem imagem | JSON-LD veio com o placeholder; o script já tentou 2 vezes | Rodar de novo com `--base` noutra pasta, ou baixar a URL `feedshare` do HTML e rodar `--gif`/Read |
 | `status: parcial` | Alguma imagem não baixou (link assinado expirou) | Rodar de novo em outra pasta (`--base`) ou pedir print |
 | `ja_baixado` | Post já está na base | Ler a pasta; se já tem `conhecimento.md`, mostrar |
 

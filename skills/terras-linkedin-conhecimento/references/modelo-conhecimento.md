@@ -39,6 +39,7 @@ Arquivo: `conhecimento.md` na pasta do post, ao lado de `post.md` e das imagens.
 
 - **Conferência.** Cada afirmação técnica relevante do post e da imagem entra numa linha. Veredito vem de fonte primária (documentação oficial, RFC, spec, paper), não de memória. Sem fonte consultada: `não conferi`. Nunca marcar `certo` só porque soa certo.
 - **O que só a imagem traz.** Tem que vir da leitura da imagem com Read. Texto pequeno ilegível: dizer que estava ilegível, não adivinhar.
+- **GIF animado.** Descrever o roteiro na ordem (estado inicial, o que muda, estado final), com os números e rótulos legíveis, e dizer se é demonstração encenada ou captura real. O conhecimento costuma estar na mudança, não num quadro só.
 - **O que o post não diz.** Não é crítica ao autor. É o que alguém que só leu o post erraria ao aplicar.
 - **Para lembrar.** Pergunta que exige recordar, não reconhecer. Nada de "Verdadeiro ou falso".
 - **Separar fato de opinião.** "O autor recomenda X" é diferente de "X é o padrão".
