@@ -148,11 +148,11 @@ Palavras-chave: `linkedin`, `networking`, `alvos`, `perfis`, `recrutador`, `gest
 
 ### terras-linkedin-conhecimento
 
-Baixa texto e imagens de post do LinkedIn (link colado ou busca por tema) e gera nota de conhecimento: o que diz, o que só a imagem traz, conferência em fonte primária, lacunas e revisão. Use para 'estudar esse post', 'gera conhecimento' ou 'acha posts úteis sobre X'. Vídeo: terras-linkedin-videos.
+Post do LinkedIn vira nota de estudo conferida em fonte primária: link colado, busca por tema ou feed em lote (100+ posts, com índice, síntese e passo a passo para replicar soluções). Use para 'estudar esse post', 'analisa meu feed' ou 'acha posts sobre X'. Vídeo: terras-linkedin-videos.
 
 `/plugin install terras-linkedin-conhecimento@terras`
 
-Palavras-chave: `linkedin`, `post`, `imagem`, `infográfico`, `texto`, `baixar`, `conhecimento`, `estudo`, `nota`, `lnkd.in`, `aprender`, `base de conhecimento`, `knowledge`
+Palavras-chave: `linkedin`, `post`, `imagem`, `infográfico`, `texto`, `baixar`, `conhecimento`, `estudo`, `nota`, `lnkd.in`, `aprender`, `base de conhecimento`, `knowledge`, `feed`, `linha do tempo`, `lote`, `replicar`, `passo a passo`
 
 ### terras-linkedin-metricas
 

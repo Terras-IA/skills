@@ -1,7 +1,7 @@
 ---
 name: terras-linkedin-conhecimento
-description: "Baixa texto e imagens de post do LinkedIn (link colado ou busca por tema) e gera nota de conhecimento: o que diz, o que só a imagem traz, conferência em fonte primária, lacunas e revisão. Use para 'estudar esse post', 'gera conhecimento' ou 'acha posts úteis sobre X'. Vídeo: terras-linkedin-videos."
-keywords: [linkedin, post, imagem, infográfico, texto, baixar, conhecimento, estudo, nota, lnkd.in, aprender, base de conhecimento, knowledge]
+description: "Post do LinkedIn vira nota de estudo conferida em fonte primária: link colado, busca por tema ou feed em lote (100+ posts, com índice, síntese e passo a passo para replicar soluções). Use para 'estudar esse post', 'analisa meu feed' ou 'acha posts sobre X'. Vídeo: terras-linkedin-videos."
+keywords: [linkedin, post, imagem, infográfico, texto, baixar, conhecimento, estudo, nota, lnkd.in, aprender, base de conhecimento, knowledge, feed, linha do tempo, lote, replicar, passo a passo]
 ---
 
 # terras-linkedin-conhecimento
@@ -47,6 +47,22 @@ Pedido como "acha posts úteis sobre X" ou "baseado nas minhas competências":
 5. **Baixar** os escolhidos de uma vez: `https://www.linkedin.com/feed/update/<urn>/` funciona para `share`, `ugcPost` e `activity`.
 6. Seguir "Como trabalhar" do passo 2 em diante, uma nota por post.
 
+## Feed em lote (100+ posts)
+
+Pedido como "analisa minha linha do tempo" ou "pelo menos 100 posts". Saída em `~/linkedin/conhecimento/feed-AAAA-MM-DD/`, ou na pasta que o usuário indicar, pelo `references/modelo-feed.md`.
+
+1. **Exportar.** Feed aberto e logado em "Mais recentes". Com o navegador embutido: colar `scripts/feed_exportar.js` no `javascript_tool` e `await feedExportar({alvo: 120})`; salvar `posts` em `feed-linkedin.json`. Sem ele: entregar o arquivo ao usuário para colar no console (F12) com `await feedExportar({alvo: 120, baixar: true})`, receber o JSON e seguir. O JSON tem nome e texto de terceiros: fica na máquina, fora de repositório.
+2. **Indexar.**
+   ```bash
+   python3 "$SKILL_DIR/scripts/feed_indice.py" feed-linkedin.json --saida PASTA [--minimo 100]
+   ```
+   `0` segue; `1` é abaixo do mínimo: dizer o número e exportar de novo com `alvo` maior, sem sintetizar (salvo o usuário aceitar menos, registrado na síntese); `2` é export inválido, provavelmente o feed mudou de HTML.
+3. **Ler todos** os posts de `posts.json` e classificar tema e tipo. Abrir os links dos posts `solução` e anotar `lido`, `bloqueado` ou `não tentado`.
+4. **Escrever** `INDICE.md` e `SINTESE.md`, e uma pasta `<tema>/` por solução que vale estudo (até 5; acima disso, perguntar quais), com `conhecimento.md` e `replicar.md`.
+5. **Entregar** em poucas linhas: número de posts, os temas que dominam, as soluções escolhidas e a pasta.
+
+Passo de `replicar.md` que não rodou leva `não executado`; vídeo sem transcrição e link que não abriu não são resumidos.
+
 ## Falhas
 
 | Sinal | Significa | Próximo passo |
@@ -58,6 +74,7 @@ Pedido como "acha posts úteis sobre X" ou "baseado nas minhas competências":
 | imagem `.gif` | Infográfico animado | Extrair o último quadro (ffmpeg) e ler; costuma ser o quadro completo |
 | `status: parcial` | Alguma imagem não baixou (link assinado expirou) | Rodar de novo em outra pasta (`--base`) ou pedir print |
 | `ja_baixado` | Post já está na base | Ler a pasta; se já tem `conhecimento.md`, mostrar |
+| `feedExportar` com `total: 0` ou `semUrn` alto | O feed mudou o HTML (título oculto "Publicação no feed" ou botão "..." do card) | Conferir os dois seletores no `feed_exportar.js` contra o feed atual |
 
 ## Limites conhecidos
 
@@ -70,3 +87,4 @@ Pedido como "acha posts úteis sobre X" ou "baseado nas minhas competências":
 ## Referências
 
 - `references/modelo-conhecimento.md` — modelo do `conhecimento.md`, regras de cada seção e formato da linha do índice.
+- `references/modelo-feed.md` — `INDICE.md`, `SINTESE.md` e `replicar.md` da análise do feed em lote.
