@@ -1638,7 +1638,7 @@
     },
     {
       "name": "terras-last30days",
-      "description": "Pesquisa o que se falou de um tema nos últimos 30 dias em Reddit, X, YouTube, Hacker News, GitHub e web. Use para descobrir pauta, medir se um assunto circula ou comparar temas antes de um post. Descoberta, não fonte: confirme na fonte primária.",
+      "description": "Pesquisa o que se falou de um tema nos últimos 30 dias em Reddit, X, YouTube, Hacker News, GitHub e web. Use para descobrir pauta, medir se um assunto circula ou comparar temas antes de um post. Descoberta, não fonte: confirme na fonte primária. Só X e IA: terras-x-ia.",
       "version": "3.25.0",
       "source": "./skills/terras-last30days",
       "strict": false,
@@ -1730,7 +1730,7 @@
     },
     {
       "name": "terras-linkedin-conhecimento",
-      "description": "Baixa texto e imagens de post do LinkedIn (link colado ou busca por tema) e gera nota de conhecimento: o que diz, o que só a imagem traz, conferência em fonte primária, lacunas e revisão. Use para 'estudar esse post', 'gera conhecimento' ou 'acha posts úteis sobre X'. Vídeo: terras-linkedin-videos.",
+      "description": "Baixa texto e imagens de post do LinkedIn (link ou tema) e gera nota de conhecimento: o que diz, o que a imagem traz, conferência em fonte primária e lacunas. Use para 'estudar esse post', 'gera conhecimento' ou 'posts úteis sobre X'. Vídeo: terras-linkedin-videos. Feed: terras-linkedin-varredura.",
       "version": "1.0.0",
       "source": "./skills/terras-linkedin-conhecimento",
       "strict": false,
@@ -1791,6 +1791,35 @@
         "diagnostico",
         "post rendeu",
         "analytics"
+      ]
+    },
+    {
+      "name": "terras-linkedin-varredura",
+      "description": "Varre o feed do LinkedIn desde a última verificação (ou 24 h), tria o que é novo e gera nota de conhecimento de cada post útil (vídeo, imagem ou texto), com checkpoint. Use para 'varre o feed', 'o que saiu desde ontem', 'traz o conhecimento do feed'. Post único ou tema: terras-linkedin-conhecimento.",
+      "version": "1.0.0",
+      "source": "./skills/terras-linkedin-varredura",
+      "strict": false,
+      "skills": [
+        "./"
+      ],
+      "category": "productivity",
+      "license": "MIT",
+      "author": {
+        "name": "Everton Lima"
+      },
+      "keywords": [
+        "linkedin",
+        "feed",
+        "varredura",
+        "checkpoint",
+        "últimas 24 horas",
+        "desde a última verificação",
+        "conhecimento",
+        "nota de estudo",
+        "vídeo",
+        "imagem",
+        "rotina",
+        "digest"
       ]
     },
     {
@@ -3014,6 +3043,36 @@
       ]
     },
     {
+      "name": "terras-x-ia",
+      "description": "Vasculha o X (Twitter) logado por posts de IA (modelos, agentes, papers, ferramentas de dev) numa janela de dias, separa sinal de isca e entrega os que importam com link e métricas. Use para 'o que rolou de IA no X', 'varre o Twitter'. Multi-fonte de 30 dias: terras-last30days. AI on X/Twitter scan.",
+      "version": "1.0.0",
+      "source": "./skills/terras-x-ia",
+      "strict": false,
+      "skills": [
+        "./"
+      ],
+      "category": "productivity",
+      "license": "MIT",
+      "author": {
+        "name": "Everton Lima"
+      },
+      "keywords": [
+        "x",
+        "twitter",
+        "x.com",
+        "ia",
+        "inteligência artificial",
+        "ai",
+        "llm",
+        "agentes",
+        "varredura",
+        "pauta",
+        "tendências",
+        "trending",
+        "posts"
+      ]
+    },
+    {
       "name": "terrasia-pauta-youtube",
       "description": "Pesquisa de demanda no YouTube antes do roteiro: compara temas pela mediana de views, acha outliers por canal e colhe frases recorrentes dos títulos que performam. Use para escolher tema de vídeo, medir demanda de título ou antes da terras-video.",
       "version": "1.0.0",
@@ -3073,7 +3132,7 @@
     },
     {
       "name": "terrasia-vagas-coders",
-      "description": "Filtra as vagas do board da COD3RS contra o currículo do usuário em baldes A (recomendar), B (talvez) e C (descarte com motivo) e, com aprovação por vaga, avança na candidatura. Use para vagas da COD3RS, 'o que tem de vaga pra mim' ou aplicar nas aprovadas.",
+      "description": "Filtra as vagas do board da COD3RS e do Rebase Jobs (rebasedev.com.br/vagas) contra o currículo do usuário em baldes A (recomendar), B (talvez) e C (descarte com motivo) e, com aprovação por vaga, avança na candidatura. Use para vagas da COD3RS, 'o que tem de vaga pra mim' ou aplicar nas aprovadas.",
       "version": "1.0.0",
       "source": "./skills/terrasia-vagas-coders",
       "strict": false,
@@ -3088,6 +3147,8 @@
       "keywords": [
         "cod3rs",
         "coders",
+        "rebase",
+        "rebasedev",
         "vagas",
         "board",
         "curriculo",

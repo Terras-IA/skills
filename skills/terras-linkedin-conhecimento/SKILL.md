@@ -1,6 +1,6 @@
 ---
 name: terras-linkedin-conhecimento
-description: "Baixa texto e imagens de post do LinkedIn (link colado ou busca por tema) e gera nota de conhecimento: o que diz, o que só a imagem traz, conferência em fonte primária, lacunas e revisão. Use para 'estudar esse post', 'gera conhecimento' ou 'acha posts úteis sobre X'. Vídeo: terras-linkedin-videos."
+description: "Baixa texto e imagens de post do LinkedIn (link ou tema) e gera nota de conhecimento: o que diz, o que a imagem traz, conferência em fonte primária e lacunas. Use para 'estudar esse post', 'gera conhecimento' ou 'posts úteis sobre X'. Vídeo: terras-linkedin-videos. Feed: terras-linkedin-varredura."
 keywords: [linkedin, post, imagem, infográfico, texto, baixar, conhecimento, estudo, nota, lnkd.in, aprender, base de conhecimento, knowledge]
 ---
 
