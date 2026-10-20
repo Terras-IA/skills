@@ -91,10 +91,10 @@ Revisão pelo risco que a mudança cria, segurança, testes ponta a ponta, banco
 <!-- catalogo:inicio -->
 <!-- gerado por `npm run readme` a partir do catálogo — não edite à mão -->
 
-**124 skills instaláveis** entre as 135 deste repositório; as demais ficam fora do marketplace — 8 skills de processo do motor (`.nao-instalar`) e 3 skills ligadas a projeto de cliente (`marketplace-fora.json`).
+**126 skills instaláveis** entre as 137 deste repositório; as demais ficam fora do marketplace — 8 skills de processo do motor (`.nao-instalar`) e 3 skills ligadas a projeto de cliente (`marketplace-fora.json`).
 
 <details>
-<summary><b>Ver a lista completa (124 skills)</b></summary>
+<summary><b>Ver a lista completa (126 skills)</b></summary>
 
 | Skill | O que faz |
 |---|---|
@@ -167,9 +167,10 @@ Revisão pelo risco que a mudança cria, segurança, testes ponta a ponta, banco
 | [`terras-last30days`](skills/terras-last30days) | Pesquisa o que se falou de um tema nos últimos 30 dias em Reddit, X, YouTube, Hacker News, GitHub e web. |
 | [`terras-linkedin`](skills/terras-linkedin) | Escreve e revisa posts de LinkedIn (hook, estrutura, CTA, hashtags, zero travessão) e explica alcance e impressões. |
 | [`terras-linkedin-alvos`](skills/terras-linkedin-alvos) | Acompanha perfis-alvo do LinkedIn (executivos, gestores, recrutadores), acha os posts recentes, curte e prepara comentários que acrescentam, publicados só com aprovação. |
-| [`terras-linkedin-conhecimento`](skills/terras-linkedin-conhecimento) | Baixa texto e imagens de post do LinkedIn (link colado ou busca por tema) e gera nota de conhecimento: o que diz, o que só a imagem traz, conferência em fonte primária… |
+| [`terras-linkedin-conhecimento`](skills/terras-linkedin-conhecimento) | Baixa texto e imagens de post do LinkedIn (link ou tema) e gera nota de conhecimento: o que diz, o que a imagem traz, conferência em fonte primária e lacunas. |
 | [`terras-linkedin-metricas`](skills/terras-linkedin-metricas) | Extrai, guarda e diagnostica as estatísticas dos posts do LinkedIn do usuário: impressões, alcance na e fora da rede, reações, salvamentos, seguidores e demografia. |
-| [`terras-linkedin-videos`](skills/terras-linkedin-videos) | Varre o feed do LinkedIn por tema (ex.: arquitetura de software e IA), lista os posts com vídeo e baixa os escolhidos com o texto do post; link de post colado sozinho já… · Instale com o plugin `terras-videos-linkedin`. |
+| [`terras-linkedin-varredura`](skills/terras-linkedin-varredura) | Varre o feed do LinkedIn desde a última verificação (ou 24 h), tria o que é novo e gera nota de conhecimento de cada post útil (vídeo, imagem ou texto), com checkpoint. |
+| [`terras-linkedin-videos`](skills/terras-linkedin-videos) | Varre o feed do LinkedIn por tema atrás de posts com vídeo e baixa os escolhidos com o texto do post; link de post colado sozinho já baixa direto. · Instale com o plugin `terras-videos-linkedin`. |
 | [`terras-mapeamento-de-processos`](skills/terras-mapeamento-de-processos) | Mapeia um processo a partir de áudio, gravação de tela ou relato e devolve o fluxo AS-IS/TO-BE, diagnóstico com números e plano de melhoria com oportunidades… |
 | [`terras-matriz-gut`](skills/terras-matriz-gut) | Prioriza problemas concorrentes com a matriz GUT: notas ancoradas de Gravidade, Urgência e Tendência, faixa de decisão antes de pontuar e plano de ataque com dono… |
 | [`terras-mcp-server`](skills/terras-mcp-server) | Construção de servidor MCP com o SDK Node/TypeScript: tools, resources, prompts, validação com Zod e escolha de transporte (stdio ou Streamable HTTP). |
@@ -219,9 +220,10 @@ Revisão pelo risco que a mudança cria, segurança, testes ponta a ponta, banco
 | [`terras-video-downloader`](skills/terras-video-downloader) | Baixa o vídeo de uma URL (LinkedIn pelo player público; o resto via yt-dlp) e prepara a análise em folhas de quadros. Use para baixar ou analisar vídeo de link. · Instale com o plugin `terras-videos-linkedin`. |
 | [`terras-visual-explainer`](skills/terras-visual-explainer) | Páginas HTML autocontidas que explicam visualmente sistemas, diffs, planos, dados e conceitos: diagramas, arquitetura, tabelas comparativas, inclusive diagrama animado… |
 | [`terras-vite`](skills/terras-vite) | Padrões do Vite: config, plugins, HMR, variáveis de ambiente (e o que vaza no bundle), proxy, SSR, modo biblioteca, pré-bundling de dependências e otimização de build. |
+| [`terras-x-ia`](skills/terras-x-ia) | Vasculha o X (Twitter) logado por posts de IA (modelos, agentes, papers, ferramentas de dev) numa janela de dias, separa sinal de isca e entrega os que importam com link… |
 | [`terrasia-pauta-youtube`](skills/terrasia-pauta-youtube) | Pesquisa de demanda no YouTube antes do roteiro: compara temas pela mediana de views, acha outliers por canal e colhe frases recorrentes dos títulos que performam. |
 | [`terrasia-post-empresa`](skills/terrasia-post-empresa) | Produz a peça da Company Page do TerrasIA: post na voz de produto e imagem na identidade da marca (1200x628 e 1080x1350), com régua de texto e aceite no celular. |
-| [`terrasia-vagas-coders`](skills/terrasia-vagas-coders) | Filtra as vagas do board da COD3RS contra o currículo do usuário em baldes A (recomendar), B (talvez) e C (descarte com motivo) e, com aprovação por vaga, avança… |
+| [`terrasia-vagas-coders`](skills/terrasia-vagas-coders) | Filtra as vagas do board da COD3RS e do Rebase Jobs (rebasedev.com.br/vagas) contra o currículo do usuário em baldes A (recomendar), B (talvez) e C (descarte com motivo)… |
 
 </details>
 <!-- catalogo:fim -->

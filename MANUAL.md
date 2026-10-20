@@ -2,7 +2,7 @@
 
 > **Arquivo gerado.** Rode `node scripts/manual.mjs` para regravar; não edite à mão.
 
-**135 skills** neste repositório: **124 instaláveis** pelo marketplace, **8 de processo do motor** e **3 ligadas a projeto de cliente**.
+**137 skills** neste repositório: **126 instaláveis** pelo marketplace, **8 de processo do motor** e **3 ligadas a projeto de cliente**.
 
 ## Instalar e usar
 
@@ -148,7 +148,7 @@ Palavras-chave: `linkedin`, `networking`, `alvos`, `perfis`, `recrutador`, `gest
 
 ### terras-linkedin-conhecimento
 
-Baixa texto e imagens de post do LinkedIn (link colado ou busca por tema) e gera nota de conhecimento: o que diz, o que só a imagem traz, conferência em fonte primária, lacunas e revisão. Use para 'estudar esse post', 'gera conhecimento' ou 'acha posts úteis sobre X'. Vídeo: terras-linkedin-videos.
+Baixa texto e imagens de post do LinkedIn (link ou tema) e gera nota de conhecimento: o que diz, o que a imagem traz, conferência em fonte primária e lacunas. Use para 'estudar esse post', 'gera conhecimento' ou 'posts úteis sobre X'. Vídeo: terras-linkedin-videos. Feed: terras-linkedin-varredura.
 
 `/plugin install terras-linkedin-conhecimento@terras`
 
@@ -400,11 +400,11 @@ Palavras-chave: `risco psicossocial`, `riscos psicossociais`, `sobrecarga cronic
 
 ### terrasia-vagas-coders
 
-Filtra as vagas do board da COD3RS contra o currículo do usuário em baldes A (recomendar), B (talvez) e C (descarte com motivo) e, com aprovação por vaga, avança na candidatura. Use para vagas da COD3RS, 'o que tem de vaga pra mim' ou aplicar nas aprovadas.
+Filtra as vagas do board da COD3RS e do Rebase Jobs (rebasedev.com.br/vagas) contra o currículo do usuário em baldes A (recomendar), B (talvez) e C (descarte com motivo) e, com aprovação por vaga, avança na candidatura. Use para vagas da COD3RS, 'o que tem de vaga pra mim' ou aplicar nas aprovadas.
 
 `/plugin install terrasia-vagas-coders@terras` · v1.0.0
 
-Palavras-chave: `cod3rs`, `coders`, `vagas`, `board`, `curriculo`, `triagem`, `emprego`, `remote`, `senior`, `fit`
+Palavras-chave: `cod3rs`, `coders`, `rebase`, `rebasedev`, `vagas`, `board`, `curriculo`, `triagem`, `emprego`, `remote`, `senior`, `fit`
 
 ## Financeiro e fiscal
 
@@ -954,7 +954,7 @@ Palavras-chave: `deep research`, `pesquisa profunda`, `relatorio`, `citacoes`, `
 
 ### terras-last30days
 
-Pesquisa o que se falou de um tema nos últimos 30 dias em Reddit, X, YouTube, Hacker News, GitHub e web. Use para descobrir pauta, medir se um assunto circula ou comparar temas antes de um post. Descoberta, não fonte: confirme na fonte primária.
+Pesquisa o que se falou de um tema nos últimos 30 dias em Reddit, X, YouTube, Hacker News, GitHub e web. Use para descobrir pauta, medir se um assunto circula ou comparar temas antes de um post. Descoberta, não fonte: confirme na fonte primária. Só X e IA: terras-x-ia.
 
 `/plugin install terras-last30days@terras` · v3.25.0
 
@@ -1046,9 +1046,17 @@ Palavras-chave: `skill`, `skills`, `criar skill`, `skill factory`, `padrão terr
 
 *Ainda sem área no manual: classifique cada uma em `scripts/manual-areas.json`.*
 
+### terras-linkedin-varredura
+
+Varre o feed do LinkedIn desde a última verificação (ou 24 h), tria o que é novo e gera nota de conhecimento de cada post útil (vídeo, imagem ou texto), com checkpoint. Use para 'varre o feed', 'o que saiu desde ontem', 'traz o conhecimento do feed'. Post único ou tema: terras-linkedin-conhecimento.
+
+`/plugin install terras-linkedin-varredura@terras`
+
+Palavras-chave: `linkedin`, `feed`, `varredura`, `checkpoint`, `últimas 24 horas`, `desde a última verificação`, `conhecimento`, `nota de estudo`, `vídeo`, `imagem`, `rotina`, `digest`
+
 ### terras-linkedin-videos
 
-Varre o feed do LinkedIn por tema (ex.: arquitetura de software e IA), lista os posts com vídeo e baixa os escolhidos com o texto do post; link de post colado sozinho já baixa direto. Use para 'varre o feed', 'baixa o vídeo desse post' ou link lnkd.in/linkedin colado. LinkedIn feed video scan.
+Varre o feed do LinkedIn por tema atrás de posts com vídeo e baixa os escolhidos com o texto do post; link de post colado sozinho já baixa direto. Use para 'vídeos do feed sobre X', 'baixa o vídeo desse post' ou link lnkd.in colado. Feed todo, sem tema: terras-linkedin-varredura.
 
 Sai no plugin do grupo: `/plugin install terras-videos-linkedin@terras`
 
@@ -1077,6 +1085,14 @@ Baixa o vídeo de uma URL (LinkedIn pelo player público; o resto via yt-dlp) e 
 Sai no plugin do grupo: `/plugin install terras-videos-linkedin@terras`
 
 Palavras-chave: `baixar video`, `download`, `linkedin`, `video do post`, `yt-dlp`, `mp4`, `salvar video`, `lnkd.in`, `analisar video`, `quadros`
+
+### terras-x-ia
+
+Vasculha o X (Twitter) logado por posts de IA (modelos, agentes, papers, ferramentas de dev) numa janela de dias, separa sinal de isca e entrega os que importam com link e métricas. Use para 'o que rolou de IA no X', 'varre o Twitter'. Multi-fonte de 30 dias: terras-last30days. AI on X/Twitter scan.
+
+`/plugin install terras-x-ia@terras`
+
+Palavras-chave: `x`, `twitter`, `x.com`, `ia`, `inteligência artificial`, `ai`, `llm`, `agentes`, `varredura`, `pauta`, `tendências`, `trending`, `posts`
 
 ## Fora do marketplace: projeto de cliente
 

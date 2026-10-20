@@ -65,9 +65,15 @@
     return !dialogoIncorporar();
   }
 
+  // Quem rola o feed é <main id="workspace">, não a janela: window.scrollBy não carrega card novo.
+  // O javascript_tool corta a chamada em 45 s. Cada rolagem espera 1,5 s (mais 2 s se houver
+  // "Carregar mais"): 8 rolagens cabem; para mais, chame de novo em vez de subir o número.
+  // O prazo de 38 s abaixo é a trava para não estourar mesmo assim.
   window.feedColetar = async ({ rolagens = 8 } = {}) => {
-    for (let i = 0; i < rolagens; i++) {
-      window.scrollBy(0, 2500);
+    const fim = Date.now() + 38000;
+    for (let i = 0; i < rolagens && Date.now() + 3500 < fim; i++) {
+      const el = document.getElementById('workspace') || document.scrollingElement;
+      el.scrollTop = el.scrollHeight;
       await esperar(1500);
       const mais = [...document.querySelectorAll('button')].find((b) => /Carregar mais|Show more/.test(b.innerText));
       if (mais) { mais.click(); await esperar(2000); }

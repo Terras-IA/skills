@@ -1,6 +1,6 @@
 ---
 name: terras-linkedin-videos
-description: "Varre o feed do LinkedIn por tema (ex.: arquitetura de software e IA), lista os posts com vídeo e baixa os escolhidos com o texto do post; link de post colado sozinho já baixa direto. Use para 'varre o feed', 'baixa o vídeo desse post' ou link lnkd.in/linkedin colado. LinkedIn feed video scan."
+description: "Varre o feed do LinkedIn por tema atrás de posts com vídeo e baixa os escolhidos com o texto do post; link de post colado sozinho já baixa direto. Use para 'vídeos do feed sobre X', 'baixa o vídeo desse post' ou link lnkd.in colado. Feed todo, sem tema: terras-linkedin-varredura."
 keywords: [linkedin, feed, vídeo, video, baixar, download, varrer feed, arquitetura de software, IA, lnkd.in, post, lote]
 ---
 
