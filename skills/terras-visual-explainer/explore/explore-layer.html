@@ -1,0 +1,392 @@
+<!--
+  Camada de exploração para diagramas Mermaid (flowchart/graph) da terras-visual-explainer.
+  Colar inteiro antes de </body>, DEPOIS do <script type="module"> do template Mermaid.
+  Liga só em .diagram-shell com o atributo data-explore. Contrato em explore/README.md.
+  Ideia de foco, alcance e caminho adaptada de tt-a1i/archify (MIT).
+-->
+<style>
+  .ve-x-panel {
+    display: grid;
+    gap: 0.75rem;
+    margin-top: 0.75rem;
+    padding: 0.875rem 1rem;
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    background: var(--surface);
+    font-size: 0.875rem;
+  }
+  .ve-x-bar { display: flex; flex-wrap: wrap; gap: 0.5rem; align-items: center; }
+  .ve-x-bar label { font-size: 0.75rem; letter-spacing: 0.04em; text-transform: uppercase; color: var(--text-dim); }
+  .ve-x-panel input, .ve-x-panel select, .ve-x-panel button {
+    font: inherit;
+    font-size: 0.875rem;
+    color: var(--text);
+    background: transparent;
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    padding: 0.3rem 0.55rem;
+    min-width: 0;
+  }
+  .ve-x-panel input { flex: 1 1 10rem; }
+  .ve-x-panel button { cursor: pointer; }
+  .ve-x-panel button[aria-pressed="true"] { background: var(--primary-dim, rgba(0,0,0,.06)); border-color: var(--primary, currentColor); }
+  .ve-x-panel :focus-visible { outline: 2px solid var(--primary, currentColor); outline-offset: 2px; }
+  .ve-x-info { display: grid; gap: 0.4rem; min-height: 1.5rem; }
+  .ve-x-info h4 { margin: 0; font-size: 1rem; }
+  .ve-x-info ul { margin: 0; padding-left: 1.1rem; }
+  .ve-x-info code, .ve-x-src a { font-family: var(--font-mono, monospace); font-size: 0.8125rem; }
+  .ve-x-note { color: var(--text-dim); font-size: 0.75rem; }
+  .ve-x-matches { display: flex; flex-wrap: wrap; gap: 0.35rem; }
+
+  .mermaid-canvas .ve-x-node { cursor: pointer; transition: opacity .18s ease; }
+  .mermaid-canvas .ve-x-node:focus-visible { outline: none; }
+  .mermaid-canvas .ve-x-node:focus-visible > :first-child { stroke-width: 3px !important; }
+  .mermaid-canvas .ve-x-edge { transition: opacity .18s ease; }
+  .mermaid-canvas svg.ve-x-dim .ve-x-node:not(.ve-x-on),
+  .mermaid-canvas svg.ve-x-dim .ve-x-edge:not(.ve-x-on) { opacity: 0.16; }
+  .mermaid-canvas svg.ve-x-dim path.ve-x-edge.ve-x-on { stroke-width: 3px !important; }
+  .mermaid-canvas .ve-x-node.ve-x-pick > :first-child { stroke-width: 3.5px !important; }
+  .mermaid-canvas .ve-x-badge { font-family: var(--font-mono, monospace); font-size: 10px; pointer-events: none; }
+  @media (prefers-reduced-motion: reduce) {
+    .mermaid-canvas .ve-x-node, .mermaid-canvas .ve-x-edge { transition: none; }
+  }
+</style>
+
+<script type="module">
+  import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.esm.min.mjs';
+
+  const NOTE = 'Antes, depois e caminho seguem as setas desenhadas, não tráfego real nem impacto de mudança.';
+  const esc = (s) => String(s ?? '').replace(/[&<>"']/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
+  const plain = (s) => String(s ?? '').replace(/<br\s*\/?>/gi, ' ').replace(/<[^>]+>/g, '').trim();
+
+  // Link de evidência: GitHub e GitLab por padrão; outro forge via urlTemplate; sem repo = só texto.
+  function sourceUrl(ev, src) {
+    if (!ev.repo || ev.linkMode === 'local-only') return null;
+    const [a, b] = String(src.lines || '').split('-').map(Number);
+    const end = b || a;
+    const repo = ev.repo.replace(/\.git$/, '').replace(/\/$/, '');
+    const tpl = ev.urlTemplate
+      || (ev.provider === 'gitlab' || /gitlab/.test(repo)
+        ? '{repo}/-/blob/{commit}/{path}#L{start}-{end}'
+        : '{repo}/blob/{commit}/{path}#L{start}-L{end}');
+    return tpl.replace('{repo}', repo).replace('{commit}', ev.commit).replace('{path}', src.path)
+      .replace('{start}', a || 1).replace('{end}', end || 1);
+  }
+
+  async function readGraph(code) {
+    const diagram = await mermaid.mermaidAPI.getDiagramFromText(code);
+    if (!/^flowchart/.test(diagram.type)) return null;
+    const db = diagram.db;
+    const verts = db.getVertices();
+    const nodes = new Map();
+    for (const [id, v] of verts instanceof Map ? verts : Object.entries(verts)) {
+      nodes.set(id, { id, label: plain(v.text) || id });
+    }
+    const edges = db.getEdges().map((e, i) => ({
+      key: e.id || `L_${e.start}_${e.end}_${i}`, from: e.start, to: e.end, label: plain(e.text)
+    }));
+    return { nodes, edges };
+  }
+
+  function closure(start, edges, dir) {
+    const seen = new Set([start]);
+    const hit = new Set();
+    const queue = [start];
+    while (queue.length) {
+      const cur = queue.shift();
+      edges.forEach((e, i) => {
+        const [a, b] = dir === 'down' ? [e.from, e.to] : [e.to, e.from];
+        if (a !== cur) return;
+        hit.add(i);
+        if (!seen.has(b)) { seen.add(b); queue.push(b); }
+      });
+    }
+    return { nodes: seen, edges: hit };
+  }
+
+  function shortestRoute(from, to, edges) {
+    const prev = new Map([[from, null]]);
+    const queue = [from];
+    while (queue.length) {
+      const cur = queue.shift();
+      if (cur === to) break;
+      edges.forEach((e, i) => {
+        if (e.from === cur && !prev.has(e.to)) { prev.set(e.to, { node: cur, edge: i }); queue.push(e.to); }
+      });
+    }
+    if (!prev.has(to)) return null;
+    const nodes = new Set([to]);
+    const hit = new Set();
+    for (let step = prev.get(to); step; step = prev.get(step.node)) { nodes.add(step.node); hit.add(step.edge); }
+    return { nodes, edges: hit };
+  }
+
+  function readHash(shellId) {
+    const p = new URLSearchParams(location.hash.slice(1));
+    if (p.has('d') && p.get('d') !== shellId) return {};
+    return { focus: p.get('focus'), reach: p.get('reach'), route: p.get('route') };
+  }
+
+  function writeHash(shellId, state) {
+    const p = new URLSearchParams();
+    if (shellId) p.set('d', shellId);
+    Object.entries(state).forEach(([k, v]) => v && p.set(k, v));
+    const str = p.toString();
+    history.replaceState(null, '', str && (state.focus || state.route) ? '#' + str : location.pathname + location.search);
+  }
+
+  function setupShell(shell, index) {
+    const shellId = shell.dataset.explore || (shell.id || (index ? `d${index + 1}` : ''));
+    const canvas = shell.querySelector('.mermaid-canvas');
+    const source = shell.querySelector('.diagram-source');
+    const evBlock = shell.querySelector('script.diagram-evidence');
+    let evidence = { nodes: {} };
+    if (evBlock) {
+      try { evidence = { nodes: {}, ...JSON.parse(evBlock.textContent) }; }
+      catch (err) { console.warn('[ve-explore] diagram-evidence não é JSON válido:', err.message); }
+    }
+
+    const panel = document.createElement('div');
+    panel.className = 've-x-panel';
+    panel.innerHTML = `
+      <div class="ve-x-bar">
+        <label for="ve-x-q-${index}">Buscar</label>
+        <input id="ve-x-q-${index}" type="search" placeholder="nome do bloco ( / )" autocomplete="off">
+      </div>
+      <div class="ve-x-matches" hidden></div>
+      <div class="ve-x-bar">
+        <label>Caminho</label>
+        <select data-r="from" aria-label="Origem do caminho"></select>
+        <span aria-hidden="true">→</span>
+        <select data-r="to" aria-label="Destino do caminho"></select>
+        <button type="button" data-a="route">Mostrar caminho</button>
+        <button type="button" data-a="clear">Limpar (Esc)</button>
+      </div>
+      <div class="ve-x-info" aria-live="polite"><span class="ve-x-note">Clique num bloco para ver o que entra, o que sai e de onde vem no código.</span></div>`;
+    shell.querySelector('.mermaid-wrap').after(panel);
+    const info = panel.querySelector('.ve-x-info');
+    const input = panel.querySelector('input');
+    const matches = panel.querySelector('.ve-x-matches');
+    const selFrom = panel.querySelector('[data-r="from"]');
+    const selTo = panel.querySelector('[data-r="to"]');
+
+    let graph = null;
+    let svg = null;
+    let nodeEls = new Map();
+    let edgeEls = [];
+    let state = {};
+
+    function mapElements() {
+      nodeEls = new Map();
+      svg.querySelectorAll('g.node').forEach((g) => {
+        let id = g.dataset.id;
+        if (!id || !graph.nodes.has(id)) {
+          const m = (g.id || '').match(/flowchart-(.+)-\d+$/);
+          id = m && m[1];
+        }
+        if (!id || !graph.nodes.has(id)) return;
+        nodeEls.set(id, g);
+        g.classList.add('ve-x-node');
+        g.setAttribute('tabindex', '0');
+        g.setAttribute('role', 'button');
+        g.setAttribute('aria-label', graph.nodes.get(id).label);
+        g.addEventListener('click', (e) => { e.stopPropagation(); focusNode(id); });
+        g.addEventListener('keydown', (e) => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); focusNode(id); } });
+      });
+      edgeEls = graph.edges.map((e) => {
+        const els = [...svg.querySelectorAll(`[data-id="${CSS.escape(e.key)}"], [id="${CSS.escape(e.key)}"], [id$="-${CSS.escape(e.key)}"]`)];
+        const labelGroups = els.map((el) => el.closest('g.edgeLabel')).filter(Boolean);
+        const all = [...new Set([...els, ...labelGroups])];
+        all.forEach((el) => el.classList.add('ve-x-edge'));
+        return all;
+      });
+    }
+
+    function addBadges() {
+      for (const [id, srcs] of Object.entries(evidence.nodes || {})) {
+        const g = nodeEls.get(id);
+        if (!g || !srcs?.length) continue;
+        const box = g.getBBox();
+        const t = document.createElementNS('http://www.w3.org/2000/svg', 'text');
+        t.setAttribute('class', 've-x-badge');
+        t.setAttribute('x', box.x + box.width - 4);
+        t.setAttribute('y', box.y + 11);
+        t.setAttribute('text-anchor', 'end');
+        t.setAttribute('fill', 'currentColor');
+        t.textContent = `SRC ${srcs.length}`;
+        g.appendChild(t);
+      }
+    }
+
+    function fillSelects() {
+      const opts = [...graph.nodes.values()].map((n) => `<option value="${esc(n.id)}">${esc(n.label)}</option>`).join('');
+      selFrom.innerHTML = opts;
+      selTo.innerHTML = opts;
+      if (graph.nodes.size > 1) selTo.selectedIndex = graph.nodes.size - 1;
+    }
+
+    function paint(sel) {
+      if (!svg) return;
+      svg.classList.toggle('ve-x-dim', !!sel);
+      nodeEls.forEach((g, id) => {
+        g.classList.toggle('ve-x-on', !!sel && sel.nodes.has(id));
+        g.classList.toggle('ve-x-pick', !!sel && sel.pick === id);
+      });
+      edgeEls.forEach((els, i) => els.forEach((el) => el.classList.toggle('ve-x-on', !!sel && sel.edges.has(i))));
+    }
+
+    function srcList(id) {
+      const srcs = evidence.nodes?.[id];
+      if (!srcs?.length) return '';
+      const items = srcs.map((s) => {
+        const text = `${s.path}${s.lines ? ':' + s.lines : ''}`;
+        const url = sourceUrl(evidence, s);
+        const link = url ? `<a href="${esc(url)}" target="_blank" rel="noopener">${esc(text)}</a>` : `<code>${esc(text)}</code>`;
+        return `<li>${link}${s.note ? ' · ' + esc(s.note) : ''}</li>`;
+      }).join('');
+      const pin = evidence.commit ? ` no commit <code>${esc(String(evidence.commit).slice(0, 10))}</code>` : '';
+      return `<div class="ve-x-src"><strong>No código</strong>${pin}<ul>${items}</ul></div>`;
+    }
+
+    function edgeLine(e, dir) {
+      const other = graph.nodes.get(dir === 'in' ? e.from : e.to)?.label;
+      const lbl = e.label ? ` <em>${esc(e.label)}</em>` : '';
+      return dir === 'in' ? `<li>${esc(other)} →${lbl}</li>` : `<li>→${lbl} ${esc(other)}</li>`;
+    }
+
+    function focusNode(id, reach) {
+      if (!graph?.nodes.has(id)) return;
+      const ins = graph.edges.filter((e) => e.to === id);
+      const outs = graph.edges.filter((e) => e.from === id);
+      let sel;
+      if (reach === 'up' || reach === 'down') {
+        sel = closure(id, graph.edges, reach);
+      } else {
+        sel = { nodes: new Set([id]), edges: new Set() };
+        graph.edges.forEach((e, i) => {
+          if (e.from === id || e.to === id) { sel.edges.add(i); sel.nodes.add(e.from); sel.nodes.add(e.to); }
+        });
+      }
+      sel.pick = id;
+      paint(sel);
+      state = { focus: id, reach: reach || '' };
+      writeHash(shellId, state);
+      const node = graph.nodes.get(id);
+      const reachText = reach ? ` <span class="ve-x-note">(${reach === 'down' ? 'tudo que vem depois' : 'tudo que vem antes'}: ${sel.nodes.size - 1} blocos)</span>` : '';
+      info.innerHTML = `
+        <h4>${esc(node.label)}${reachText}</h4>
+        <div class="ve-x-bar">
+          <button type="button" data-reach="up" aria-pressed="${reach === 'up'}">Tudo antes</button>
+          <button type="button" data-reach="down" aria-pressed="${reach === 'down'}">Tudo depois</button>
+          <button type="button" data-reach="" aria-pressed="${!reach}">Só vizinhos</button>
+          <button type="button" data-a="copy">Copiar link</button>
+        </div>
+        ${ins.length ? `<div><strong>Entra</strong><ul>${ins.map((e) => edgeLine(e, 'in')).join('')}</ul></div>` : ''}
+        ${outs.length ? `<div><strong>Sai</strong><ul>${outs.map((e) => edgeLine(e, 'out')).join('')}</ul></div>` : ''}
+        ${srcList(id)}
+        <span class="ve-x-note">${NOTE}</span>`;
+      info.querySelectorAll('[data-reach]').forEach((b) => b.addEventListener('click', () => focusNode(id, b.dataset.reach)));
+      info.querySelector('[data-a="copy"]').addEventListener('click', (e) => {
+        navigator.clipboard?.writeText(location.href).then(() => { e.target.textContent = 'Link copiado'; }, () => {});
+      });
+    }
+
+    function showRoute(from, to) {
+      if (!graph?.nodes.has(from) || !graph.nodes.has(to)) return;
+      selFrom.value = from;
+      selTo.value = to;
+      const r = shortestRoute(from, to, graph.edges);
+      state = { route: `${from}~${to}` };
+      writeHash(shellId, state);
+      const a = esc(graph.nodes.get(from).label);
+      const b = esc(graph.nodes.get(to).label);
+      if (!r) {
+        paint({ nodes: new Set([from, to]), edges: new Set() });
+        info.innerHTML = `<h4>Sem caminho de ${a} até ${b}</h4><span class="ve-x-note">Nenhuma sequência de setas leva de um ao outro nesse sentido. Tente inverter.</span>`;
+        return;
+      }
+      paint(r);
+      const steps = [];
+      let cur = from;
+      const used = [...r.edges].map((i) => graph.edges[i]);
+      while (cur !== to) {
+        const e = used.find((x) => x.from === cur);
+        steps.push(`<li>${esc(graph.nodes.get(e.from).label)} →${e.label ? ` <em>${esc(e.label)}</em>` : ''} ${esc(graph.nodes.get(e.to).label)}</li>`);
+        cur = e.to;
+      }
+      info.innerHTML = `<h4>Caminho mais curto: ${a} → ${b} (${steps.length} ${steps.length === 1 ? 'passo' : 'passos'})</h4><ol>${steps.join('')}</ol><span class="ve-x-note">${NOTE}</span>`;
+    }
+
+    function clear() {
+      paint(null);
+      state = {};
+      writeHash(shellId, state);
+      info.innerHTML = '<span class="ve-x-note">Clique num bloco para ver o que entra, o que sai e de onde vem no código.</span>';
+    }
+
+    function search(q) {
+      q = q.trim().toLowerCase();
+      if (!q) { matches.hidden = true; matches.innerHTML = ''; return; }
+      const found = [...graph.nodes.values()].filter((n) => n.label.toLowerCase().includes(q) || n.id.toLowerCase().includes(q)).slice(0, 12);
+      matches.hidden = false;
+      matches.innerHTML = found.length
+        ? found.map((n) => `<button type="button" data-id="${esc(n.id)}">${esc(n.label)}</button>`).join('')
+        : '<span class="ve-x-note">Nenhum bloco com esse nome.</span>';
+      matches.querySelectorAll('button').forEach((b) => b.addEventListener('click', () => focusNode(b.dataset.id)));
+    }
+
+    function report() {
+      const unlabeled = graph.edges.filter((e) => !e.label).map((e) => `${e.from}→${e.to}`);
+      const evidenceUnknown = Object.keys(evidence.nodes || {}).filter((id) => !graph.nodes.has(id));
+      const unmappedNodes = [...graph.nodes.keys()].filter((id) => !nodeEls.has(id));
+      const unmappedEdges = graph.edges.filter((_, i) => !edgeEls[i].length).map((e) => `${e.from}→${e.to}`);
+      const r = { id: shellId, nodes: graph.nodes.size, edges: graph.edges.length, unlabeled, evidenceUnknown, unmappedNodes, unmappedEdges };
+      (window.veExploreReport ||= {})[shellId || index] = r;
+      if (unlabeled.length) console.warn('[ve-explore] setas sem rótulo:', unlabeled.join(', '));
+      if (evidenceUnknown.length) console.warn('[ve-explore] evidência para bloco que não existe:', evidenceUnknown.join(', '));
+      if (unmappedNodes.length || unmappedEdges.length) console.warn('[ve-explore] elementos sem par no SVG:', [...unmappedNodes, ...unmappedEdges].join(', '));
+    }
+
+    async function onRender() {
+      svg = canvas.querySelector('svg');
+      if (!svg) return;
+      try {
+        graph = await readGraph(source.textContent.trim());
+      } catch (err) {
+        console.warn('[ve-explore] não consegui ler o grafo:', err.message);
+        graph = null;
+      }
+      if (!graph) { panel.hidden = true; return; }
+      panel.hidden = false;
+      mapElements();
+      addBadges();
+      fillSelects();
+      report();
+      svg.addEventListener('click', (e) => { if (!e.target.closest('.ve-x-node')) clear(); });
+      const h = readHash(shellId);
+      if (h.route && h.route.includes('~')) showRoute(...h.route.split('~'));
+      else if (h.focus) focusNode(h.focus, h.reach === 'up' || h.reach === 'down' ? h.reach : '');
+      else if (state.route) showRoute(...state.route.split('~'));
+      else if (state.focus) focusNode(state.focus, state.reach);
+    }
+
+    input.addEventListener('input', () => search(input.value));
+    panel.querySelector('[data-a="route"]').addEventListener('click', () => showRoute(selFrom.value, selTo.value));
+    panel.querySelector('[data-a="clear"]').addEventListener('click', clear);
+    shell.addEventListener('keydown', (e) => { if (e.key === 'Escape') clear(); });
+    shell.veExplore = { focus: focusNode, route: showRoute, clear, search: (q) => { input.value = q; search(q); } };
+
+    // O template troca o SVG a cada render (tema, resize); reaplica a camada no SVG novo.
+    new MutationObserver(() => { if (canvas.querySelector('svg') !== svg) onRender(); }).observe(canvas, { childList: true });
+    if (canvas.querySelector('svg')) onRender();
+  }
+
+  const shells = [...document.querySelectorAll('.diagram-shell[data-explore]')];
+  shells.forEach(setupShell);
+
+  addEventListener('keydown', (e) => {
+    if (e.key !== '/' || /input|textarea|select/i.test(document.activeElement?.tagName)) return;
+    const input = document.querySelector('.ve-x-panel:not([hidden]) input');
+    if (input) { e.preventDefault(); input.focus(); }
+  });
+</script>

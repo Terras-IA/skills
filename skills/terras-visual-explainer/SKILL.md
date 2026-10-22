@@ -46,6 +46,7 @@ Read only the references needed for the current output:
 |---|---|
 | Text-heavy architecture/cards | `./templates/architecture.html` |
 | Mermaid flowcharts, sequence, ER, state, class, C4, data flow | `./templates/mermaid-flowchart.html`, Mermaid sections in `./references/libraries.md` |
+| Mermaid diagrams to explore (click a node, upstream/downstream, route) or with links to source code | `./explore/README.md` |
 | Data tables, comparisons, audits | `./templates/data-table.html` |
 | Slide decks | `./templates/slide-deck.html`, `./references/slide-patterns.md` |
 | CSS layout, type scale, overflow, depth, collapsibles, SVG connectors, generated images | `./references/css-patterns.md` |
@@ -108,6 +109,15 @@ How to render:
 - Use depth sparingly: hero/elevated only for primary sections; flat/recessed for reference material.
 - Use entrance/hover animation only when it clarifies hierarchy. Respect `prefers-reduced-motion`. Do not use continuous glow, pulse, or breathing effects on static content.
 
+## Explorable diagrams and source evidence (opcional)
+
+Use when the reader needs to explore a flowchart (what feeds this block, everything downstream, the path from A to B) or when the diagram explains a real repository and each block should open the code behind it. Read `./explore/README.md` first.
+
+- Add `data-explore="<id>"` to the `diagram-shell` and paste `./explore/explore-layer.html` before the LAST `</body>`. Flowchart/graph only; the template stays untouched.
+- Source evidence goes in a `diagram-evidence` JSON block: commit pinned to 40 hex chars, credential-free repo URL, at most 3 ranges per block, evidence on blocks, never on arrows. Copy line numbers from a numbered read, not from memory.
+- Before delivery: `node ./explore/check-evidence.mjs <page.html> --repo-dir <repo>` must pass, and `window.veExploreReport` must show empty `unlabeled`, `evidenceUnknown`, `unmappedNodes` and `unmappedEdges`.
+- Wording: upstream, downstream and route follow the drawn arrows. Never present them as runtime traffic, impact or blast radius.
+
 ## Slide deck mode
 
 Use slides only when explicitly requested or when a command asks for slides. Slides are a different medium, not a paginated article. If the user explicitly asks for PPTX or passes `--pptx` to `/generate-slides`, generate the HTML deck first, then use the best-effort static exporter in `./pptx/export.mjs` or the `visual-explainer-pptx` binary when package or checkout dependencies are available. If they are not available, deliver the HTML deck and explain the missing export dependency path. State that HTML remains the source of truth and PPTX does not preserve animations, reader navigation, responsive layout, custom fonts, live Mermaid/Chart.js/SVG/canvas rendering, or JavaScript behavior.
@@ -151,6 +161,7 @@ Before delivery, verify:
 - diagrams sit in `<figure>` with a claim-stating `figcaption`, plus `role="img"` and a matching `aria-label` on the shell wrapper, not the Mermaid SVG (re-renders replace it);
 - both color schemes hold up, or single-theme was deliberate;
 - Mermaid diagrams use `diagram-shell` with zoom/pan/expand;
+- if `data-explore` is present, `check-evidence.mjs` passed and `window.veExploreReport` has no warnings;
 - a runtime picker, if present, swaps palette and font variables and re-renders every diagram;
 - slides fit one viewport, include reader rail plus outline/help navigation, preserve source coverage, and pass the template's overflow/autoFit delivery check under reduced motion; if PPTX was requested, the static `.pptx` was generated after the HTML deck and its fidelity limits were stated;
 - non-slide, scrollable page type uses rem with one root knob and meets the minimum effective sizes (body ≥ 14px, labels ≥ 11px, mono ≥ 12px); Mermaid SVG labels may remain config-driven px, while slide decks retain their `clamp()` typography and `autoFit()` runtime fitting;
