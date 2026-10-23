@@ -16,6 +16,10 @@ Falhas e armadilhas observadas ao executar o fluxo sem a skill, na sessão de 20
 | 9 | Ao buscar "mais 30 posts", 11 já tinham curtida e comentário do usuário feitos à mão | Comentário duplicado em post já engajado | Passo 2: `commented()` e descarte explícito |
 | 10 | Rascunho atribuía experiência pessoal ao usuário ("changed it for me too") | Afirmação falsa publicada no nome dele | `estilo-comentarios.md`: sinalizar na aprovação |
 | 11 | Comentários EN de 2026-10-07 saíram sem passar pela `terras-humanizer`, com palavra acima de B1/B2 que não era termo técnico ("cutover", "throttling cliff", "guardrail") | Inglês mais difícil que o necessário para leitor de segunda língua | Passo 4 e `estilo-comentarios.md`: EN passa pela humanizer antes da tabela |
+| 12 | Em 2026-10-19 o post 9135 trazia 3 links do LinkedIn; `linkOf` pegava só o primeiro e 1 post ficou sem comentário | Rodada declarada "em dia" com post faltando | `list()` devolve `links` (todos); passo 3 trata cada link como linha |
+| 13 | Em 2026-10-19/20 um post trazia o link colado em dobro sem espaço ("https://lnkd.in/p/Xhttps://lnkd.in/p/X") e outro saiu truncado | Navegação para URL inválida; post ficaria sem comentário | `linksOf()` lê o conteúdo inteiro e separa ocorrências coladas; `slim` não corta o texto |
+| 14 | Em 2026-10-19/20 a aba da COD3RS voltou para `/login` (sessão expirada) no meio da rodada | Erro de API confuso; risco de concluir "nada feito" | Regra dura 4; `guard()` falha em `/login` pedindo login ao usuário |
+| 15 | Post do LinkedIn mostrava "Somente suas conexões podem comentar" | Não há caixa de comentário; `prep` falha e o post parece pendente | Passo 7: pular e reportar o motivo no fechamento |
 
 ## Cenários para o teste de aderência
 
