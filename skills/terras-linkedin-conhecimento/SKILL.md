@@ -67,6 +67,7 @@ Pedido como "acha posts úteis sobre X" ou "baseado nas minhas competências":
 - A página pública às vezes vem com o placeholder "Posted on LinkedIn" (static.licdn.com) no JSON-LD; o script descarta qualquer imagem fora de `media.licdn.com/dms/image`. Imagem azul com o logo do LinkedIn na pasta: baixar de novo.
 - A busca carrega poucos cards por consulta (cerca de 3 com filtro de imagem); para volume, fazer mais consultas em vez de rolar mais.
 - A página traz comentários, mas o script ignora: foto e texto de comentário não são do autor.
+- Artigo Pulse (`/pulse/...`): o texto sai dos blocos do artigo no HTML (o JSON-LD só traz um título cortado), com títulos, listas e código preservados; a pasta usa o fim do slug como id (`...-skyjf` → `<autor>-skyjf`). Imagem no meio do artigo só foi conferida no código, não num artigo real.
 
 ## Referências
 
