@@ -9,6 +9,9 @@ não misturar foto de perfil de quem comentou.
 Uso:
   baixar_post.py URL [URL ...] [--base PASTA]
 
+Artigo Pulse (/pulse/...): corpo tirado dos blocos do artigo (títulos, listas e
+código preservados) e id da pasta = fim do slug (.../titulo-autor-skyjf -> skyjf).
+
 Grava em BASE/AAAA-MM-DD/<autor>-<id6>/ (data de publicação do post):
   post.md          link, autor, data, números e texto original
   texto-plano.txt  texto com negrito/itálico Unicode desfeito (NFKC), para busca
@@ -105,6 +108,45 @@ def id_post(url):
     return m and m.group(1)
 
 
+def id_pulse(url):
+    """Artigo Pulse não tem id numérico: usa o fim do slug (/pulse/titulo-autor-skyjf -> skyjf)."""
+    m = re.search(r"/pulse/[^/?#]*-([a-z0-9]+)/?(?:[?#]|$)", url)
+    return m and m.group(1)
+
+
+def artigo(pagina):
+    """Corpo de artigo Pulse: os blocos do conteúdo, com título, lista e código preservados.
+
+    O JSON-LD do artigo não traz articleBody (só um headline cortado), então o texto
+    sai do HTML entre article-content-blocks e o fim do <article>.
+    """
+    ini = pagina.find('data-test-id="article-content-blocks"')
+    if ini < 0:
+        return None, []
+    ini = pagina.find(">", ini) + 1
+    fim = pagina.find("</article>", ini)
+    corpo = pagina[ini:fim if fim > 0 else len(pagina)]
+    imgs = [html.unescape(u) for u in re.findall(
+        r'<img[^>]*(?:data-delayed-url|src)="(https://media\.licdn\.com/dms/image/[^"]+)"', corpo)]
+    imgs = [u for u in imgs if "profile-display" not in u]
+    codigos = []
+
+    def guarda(m):
+        codigos.append(html.unescape(re.sub(r"<[^>]+>", "", m.group(1))).rstrip())
+        return f"\n\n\x00{len(codigos) - 1}\x00\n\n"
+
+    t = re.sub(r"<pre[^>]*>(.*?)</pre>", guarda, corpo, flags=re.S)
+    t = re.sub(r"<h[1-6][^>]*>", "\n\n## ", t)
+    t = re.sub(r"<li[^>]*>", "\n- ", t)
+    t = re.sub(r"<br\s*/?>", "\n", t)
+    t = re.sub(r"</(p|h[1-6]|li|ul|ol|blockquote|div)>", "\n", t)
+    t = html.unescape(re.sub(r"<[^>]+>", "", t))
+    linhas = [re.sub(r"\s+", " ", ln).strip() for ln in t.split("\n")]
+    t = re.sub(r"\n{3,}", "\n\n", "\n".join(linhas)).strip()
+    t = re.sub(r"\x00(\d+)\x00", lambda m: "```\n" + codigos[int(m.group(1))] + "\n```", t)
+    return t or None, list(dict.fromkeys(imgs))
+
+
 def numeros(ld):
     out = {}
     for s in lista(ld.get("interactionStatistic")):
@@ -184,15 +226,15 @@ def quadros_gif(gif):
 
 
 def gravar_md(pasta, d):
-    linhas = [f"# Post de {d['autor']}", "",
-              f"- Post: {d['url_final']}",
+    linhas = [f"# {d['tipo']} de {d['autor']}", "",
+              f"- {d['tipo']}: {d['url_final']}",
               f"- Autor: {d['autor']}",
               f"- Publicado: {d['publicado'] or '(sem data na página)'}",
               f"- Baixado em: {dt.datetime.now():%Y-%m-%d %H:%M}",
               f"- Números: {', '.join(f'{k} {v}' for k, v in d['numeros'].items()) or '(não expostos)'}",
               f"- Imagens: {', '.join(os.path.basename(i) for i in d['imagens']) or 'nenhuma'}",
               "", "O conteúdo é do autor: citar com crédito, não repostar como seu.", "",
-              "## Texto do post (original)", "", d["texto"] or "(a página pública não trouxe o texto)", ""]
+              f"## Texto do {d['tipo'].lower()} (original)", "", d["texto"] or "(a página pública não trouxe o texto)", ""]
     with open(os.path.join(pasta, "post.md"), "w", encoding="utf-8") as f:
         f.write("\n".join(linhas))
 
@@ -215,6 +257,13 @@ def baixar(url, base):
     autor = html.unescape(autor)
     texto = ld.get("articleBody") or texto_html(card)
     imgs = imagens(ld, card)
+    pulse = "/pulse/" in final
+    if pulse and not texto:
+        corpo, inline = artigo(pagina)
+        if corpo:
+            titulo = html.unescape(ld.get("name") or "").strip()
+            texto = f"# {titulo}\n\n{corpo}" if titulo else corpo
+        imgs = list(dict.fromkeys(imgs + inline))
     descartada = bool(lista(ld.get("image"))) and not imgs
     if descartada:  # placeholder "Posted on LinkedIn" no lugar da foto: a 2ª leitura costuma vir certa
         time.sleep(3)
@@ -230,7 +279,7 @@ def baixar(url, base):
                 "erro": "página pública sem texto nem imagem: post restrito ou removido"}
 
     publicado = (ld.get("datePublished") or "")[:10]
-    pid = id_post(final) or id_post(pagina[:5000]) or "000000"
+    pid = id_post(final) or id_pulse(final) or id_post(pagina[:5000]) or "000000"
     pasta = os.path.join(base, publicado or f"{dt.date.today():%Y-%m-%d}", f"{slug(autor)}-{pid[-6:]}")
     if os.path.exists(os.path.join(pasta, "post.md")):
         return {"url": url, "status": "ja_baixado", "pasta": pasta}
@@ -258,7 +307,7 @@ def baixar(url, base):
                     f"## Página {i}\n\n{plano(t)}" for i, t in enumerate(doc["transcricao"], 1)) + "\n")
     elif doc:
         erros.append(f"documento: {doc.get('erro', 'sem páginas')}")
-    d = {"url": url, "url_final": final, "autor": autor, "publicado": publicado,
+    d = {"url": url, "url_final": final, "autor": autor, "publicado": publicado, "tipo": "Artigo" if pulse else "Post",
          "texto": texto, "imagens": salvas, "numeros": numeros(ld)}
     gravar_md(pasta, d)
     with open(os.path.join(pasta, "texto-plano.txt"), "w", encoding="utf-8") as f:
