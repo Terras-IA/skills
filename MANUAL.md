@@ -2,7 +2,7 @@
 
 > **Arquivo gerado.** Rode `node scripts/manual.mjs` para regravar; não edite à mão.
 
-**137 skills** neste repositório: **126 instaláveis** pelo marketplace, **8 de processo do motor** e **3 ligadas a projeto de cliente**.
+**138 skills** neste repositório: **127 instaláveis** pelo marketplace, **8 de processo do motor** e **3 ligadas a projeto de cliente**.
 
 ## Instalar e usar
 
@@ -1045,6 +1045,14 @@ Palavras-chave: `skill`, `skills`, `criar skill`, `skill factory`, `padrão terr
 ## Outras
 
 *Ainda sem área no manual: classifique cada uma em `scripts/manual-areas.json`.*
+
+### terras-karpathy-explainer
+
+Explica um tema nos 4 formatos do truque atribuído ao Karpathy: texto em ~80% do ASD-STE100 com medição, diagrama, página HTML interativa e vídeo narrado. Use para 'explica em STE100', 'modo Karpathy' ou explicação multimodal. Só diagrama: terras-visual-explainer; só vídeo: terras-video.
+
+`/plugin install terras-karpathy-explainer@terras`
+
+Palavras-chave: `asd-ste100`, `ste100`, `simplified technical english`, `ingles tecnico simplificado`, `karpathy`, `explicacao`, `explicar`, `linguagem controlada`, `clareza`, `diagrama`, `html interativo`, `video explicativo`, `multimodal`
 
 ### terras-linkedin-varredura
 

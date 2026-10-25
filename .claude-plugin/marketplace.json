@@ -1617,6 +1617,36 @@
       ]
     },
     {
+      "name": "terras-karpathy-explainer",
+      "description": "Explica um tema nos 4 formatos do truque atribuído ao Karpathy: texto em ~80% do ASD-STE100 com medição, diagrama, página HTML interativa e vídeo narrado. Use para 'explica em STE100', 'modo Karpathy' ou explicação multimodal. Só diagrama: terras-visual-explainer; só vídeo: terras-video.",
+      "version": "1.0.0",
+      "source": "./skills/terras-karpathy-explainer",
+      "strict": false,
+      "skills": [
+        "./"
+      ],
+      "category": "productivity",
+      "license": "MIT",
+      "author": {
+        "name": "Everton Lima"
+      },
+      "keywords": [
+        "asd-ste100",
+        "ste100",
+        "simplified technical english",
+        "ingles tecnico simplificado",
+        "karpathy",
+        "explicacao",
+        "explicar",
+        "linguagem controlada",
+        "clareza",
+        "diagrama",
+        "html interativo",
+        "video explicativo",
+        "multimodal"
+      ]
+    },
+    {
       "name": "terras-laravel",
       "description": "Build robust Laravel apps avoiding Eloquent traps, queue failures, and auth pitfalls.",
       "version": "1.0.1",
