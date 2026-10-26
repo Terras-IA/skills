@@ -232,6 +232,31 @@
       ]
     },
     {
+      "name": "terras-auditoria-ui",
+      "description": "Audita uma tela existente contra o próprio design system do produto, prova até 3 problemas visuais e escreve planos para outra execução, sem tocar no código. Use para revisar UI, drift de design ou handoff. Não aplica redesign (terras-redesign-existing-projects). UI audit.",
+      "version": "1.0.0",
+      "source": "./skills/terras-auditoria-ui",
+      "strict": false,
+      "skills": [
+        "./"
+      ],
+      "category": "productivity",
+      "license": "MIT",
+      "author": {
+        "name": "Everton Lima"
+      },
+      "keywords": [
+        "auditoria de ui",
+        "revisar interface",
+        "drift de design",
+        "design system",
+        "handoff de design",
+        "ui audit",
+        "improve ui",
+        "design review"
+      ]
+    },
+    {
       "name": "terras-azure-devops",
       "description": "List Azure DevOps projects, repositories, and branches; create pull requests; manage work items; check build status. Use when working with Azure DevOps resources, checking PR status, querying project structure, or automating DevOps workflows.",
       "version": "1.0.0",
@@ -2003,6 +2028,31 @@
       ]
     },
     {
+      "name": "terras-motion-performance",
+      "description": "Audita e corrige animação que trava: layout thrashing, propriedade fora do compositor, scroll por JS, rAF sem fim, blur grande, will-change sobrando. Use quando animação engasga ou ao revisar CSS/JS de motion. Não cria peça animada (terras-animacao). Jank, motion perf.",
+      "version": "1.0.0",
+      "source": "./skills/terras-motion-performance",
+      "strict": false,
+      "skills": [
+        "./"
+      ],
+      "category": "productivity",
+      "license": "MIT",
+      "author": {
+        "name": "Everton Lima"
+      },
+      "keywords": [
+        "animação travando",
+        "jank",
+        "performance de animação",
+        "motion performance",
+        "layout thrashing",
+        "will-change",
+        "scroll-timeline",
+        "flip"
+      ]
+    },
+    {
       "name": "terras-noticias",
       "description": "Lê boletins e roundups de notícias de IA e tecnologia, tria por criticidade e prioridade, resume os itens e escreve o rascunho do digest para o LinkedIn. Use para link de boletim semanal, 'resumo das notícias', 'o que saiu essa semana' ou triagem de notícias.",
       "version": "1.0.0",
@@ -2357,7 +2407,7 @@
     },
     {
       "name": "terras-redesign-existing-projects",
-      "description": "Redesign de projeto existente: audita a UI atual, identifica padrões genéricos de IA e aplica padrão premium sem quebrar funcionalidade. Use para melhorar, repaginar ou modernizar site ou app que já existe. Audit-first redesign.",
+      "description": "Redesign de projeto existente: audita a UI atual, identifica padrões genéricos de IA e aplica padrão premium sem quebrar funcionalidade. Use para melhorar, repaginar ou modernizar site ou app que já existe. Só auditar sem mexer: terras-auditoria-ui. Audit-first redesign.",
       "version": "1.0.0",
       "source": "./skills/terras-redesign-existing-projects",
       "strict": false,

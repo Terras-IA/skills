@@ -1,6 +1,6 @@
 ---
 name: terras-redesign-existing-projects
-description: "Redesign de projeto existente: audita a UI atual, identifica padrões genéricos de IA e aplica padrão premium sem quebrar funcionalidade. Use para melhorar, repaginar ou modernizar site ou app que já existe. Audit-first redesign."
+description: "Redesign de projeto existente: audita a UI atual, identifica padrões genéricos de IA e aplica padrão premium sem quebrar funcionalidade. Use para melhorar, repaginar ou modernizar site ou app que já existe. Só auditar sem mexer: terras-auditoria-ui. Audit-first redesign."
 keywords: [redesign, auditar UI, melhorar design, repaginar, upgrade visual]
 license: MIT
 ---
