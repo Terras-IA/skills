@@ -1,8 +1,8 @@
 ---
 name: terras-mapeamento-de-processos
-description: "Mapeia um processo a partir de áudio, gravação de tela ou relato e devolve o fluxo AS-IS/TO-BE, diagnóstico com números e plano de melhoria com oportunidades de automação. Use para mapear processo, achar gargalo ou automatizar rotina operacional."
-keywords: [mapeamento de processo, mapear processo, processo, fluxograma, bpmn, as is, to be, gargalo, diagnostico de processo, melhoria de processo, automacao de processo, lean, desperdicio, lead time, sop, procedimento operacional, retrabalho, sla]
-version: 1.4.0
+description: "Mapeia um processo a partir de áudio, gravação de tela ou relato e devolve o fluxo AS-IS/TO-BE (desenho, Mermaid e .bpmn para Camunda/Bizagi), diagnóstico com números e plano de melhoria com automação. Use para mapear processo, achar gargalo ou automatizar rotina."
+keywords: [mapeamento de processo, mapear processo, processo, fluxograma, bpmn, bpmn 2.0, arquivo .bpmn, camunda, bizagi, as is, to be, gargalo, diagnostico de processo, melhoria de processo, automacao de processo, lean, desperdicio, lead time, sop, procedimento operacional, retrabalho, sla]
+version: 1.5.0
 license: MIT
 ---
 
@@ -25,6 +25,7 @@ O processo real descrito é o que entra no mapa — inclusive a planilha paralel
 | 3 | Diagnóstico quantificado | seção do relatório |
 | 4 | TO-BE + melhorias priorizadas | `processo-to-be.json`, `to-be.mmd` (+ PNG) |
 | 5 | Relatório | `relatorio-<processo>.md` |
+| 6 | BPMN 2.0 XML, **só quando pedirem** `.bpmn` ou ferramenta de modelagem | `as-is.bpmn`, `to-be.bpmn` (+ PNG de conferência) |
 
 ## Entradas
 
@@ -104,14 +105,25 @@ Os **frames da gravação de tela são a melhor fonte de sistema e campo**: é o
 
    **O pacote de entrega é sempre o mesmo:** o relatório `.md`, os dois desenhos (`as-is.png`/`as-is.svg` e `to-be.png`/`to-be.svg`, feitos com `render_fluxo.py`) e os dois Mermaid portáteis (`.mmd`). Os identificadores do desenho (P1, P2…) são os mesmos citados nas tabelas do relatório — se renumerar um, renumeire o outro.
 
-7. **Anonimize quando o material sair do cliente ou quando pedirem.**
+7. **Exporte o `.bpmn` quando o cliente pedir** BPMN, Camunda, Bizagi, bpmn.io, Signavio ou "arquivo para a ferramenta de modelagem". Não escreva o XML à mão nem invente gerador novo a cada projeto: o script lê o mesmo `processo.json` (e o `processo-to-be.json`).
+
+   ```bash
+   python3 "$SKILL_DIR/scripts/gerar_bpmn.py" --json processo.json --saida as-is.bpmn
+   node "$SKILL_DIR/scripts/render_bpmn.mjs" as-is.bpmn      # abre no bpmn-js e salva as-is.bpmn.png
+   ```
+
+   Sai um pool com uma lane por ator, `startEvent`/`endEvent`, tarefa como `userTask` (com sistema), `serviceTask` (tipo `sistema`) ou `task`, decisão como `exclusiveGateway`, espera como evento de timer (`PT<n>M`) e o bloco `bpmndi` com coordenadas — sem ele o Camunda e o Bizagi abrem a tela vazia. Evidência, tempos e exceções vão no `documentation` de cada elemento. Caminho alternativo, retrabalho, paralelo e ator externo (pool próprio com `messageFlow`) entram por campos opcionais do JSON, descritos em `$SKILL_DIR/templates/processo-json.md`.
+
+   **Só entra desvio que o relato sustenta.** Decisão sem a outra saída descrita fica com uma saída só e a dúvida vai para `lacunas[]`; nada de "Recusado → fim (destino não mapeado)" para fechar o losango. **XML bem formado não prova que abre:** rode o `render_bpmn.mjs` (sai com erro se o bpmn-js recusar o arquivo ou se algum elemento ficar sem coordenada) e abra o PNG antes de entregar.
+
+8. **Anonimize quando o material sair do cliente ou quando pedirem.**
 
    ```bash
    python3 "$SKILL_DIR/scripts/anonimizar.py" --pasta processos/<slug> \
      --mapa "NomeDoCliente=Cliente X;NomeDoAgente=Agente de IA;NomeDaPessoa=o responsável" --regerar-png
    ```
 
-   Troca nos artefatos de texto (`.md`, `.json`, `.mmd`, `.svg`, `.vtt`…), **renomeia** o que carrega o nome no filename (`relatorio-acme.md` → `relatorio-cliente-x.md`) e regera os PNG com `--regerar-png` — o nome do cliente está **desenhado no título**, então trocar só o texto não resolve. Convenção padrão: empresa → **Cliente X**; assistente de IA → **Agente de IA** (sem nome próprio); pessoa → **papel** ("a analista", "o responsável"). Preserve o timestamp da citação e troque o nome dentro dela pelo rótulo. Sistemas (ERP, CRM, WhatsApp) ficam: é o que dá valor ao diagnóstico — se o cliente pedir, inclua-os no `--mapa`.
+   Troca nos artefatos de texto (`.md`, `.json`, `.mmd`, `.bpmn`, `.svg`, `.vtt`…), **renomeia** o que carrega o nome no filename (`relatorio-acme.md` → `relatorio-cliente-x.md`) e regera os PNG com `--regerar-png` — o nome do cliente está **desenhado no título**, então trocar só o texto não resolve. O PNG de conferência do `.bpmn` não é regerado: rode de novo o `render_bpmn.mjs` depois de anonimizar. Convenção padrão: empresa → **Cliente X**; assistente de IA → **Agente de IA** (sem nome próprio); pessoa → **papel** ("a analista", "o responsável"). Preserve o timestamp da citação e troque o nome dentro dela pelo rótulo. Sistemas (ERP, CRM, WhatsApp) ficam: é o que dá valor ao diagnóstico — se o cliente pedir, inclua-os no `--mapa`.
 
 Trabalhe numa pasta do processo (ex.: `processos/<slug>/`), nunca solto na raiz.
 
@@ -136,6 +148,9 @@ Trabalhe numa pasta do processo (ex.: `processos/<slug>/`), nunca solto na raiz.
 | Faixa órfã no fim do diagrama (um nó sozinho embaixo) | Ajuste `layout.colunas` para o fluxo fechar em duas faixas |
 | Entregar PNG pequeno ou texto borrado | Renderize com `render_mermaid.mjs` (escala 3, texto vetorial); o render do Excalidraw é para editar, não para a imagem final |
 | Entregar o material sem anonimizar quando ele sai do cliente | Nome do cliente está no título do desenho e no corpo do relatório: rode `anonimizar.py --regerar-png` antes de enviar |
+| Escrever o `.bpmn` à mão ou num script avulso | `gerar_bpmn.py` a partir do `processo.json`; o diagrama (`bpmndi`) sai junto |
+| Inventar saída de gateway para "fechar" a decisão | Desvio só com evidência (`desvios` no passo); o resto vai para `lacunas[]` |
+| Entregar `.bpmn` validado só como XML | `render_bpmn.mjs` abre no bpmn-js e gera o PNG; olhe o PNG |
 | Anonimizar só o relatório e esquecer o PNG/SVG | O texto vive dentro da imagem; sem regerar, o nome continua desenhado no título |
 
 ## Arquivos
@@ -144,12 +159,14 @@ Trabalhe numa pasta do processo (ex.: `processos/<slug>/`), nunca solto na raiz.
 - `scripts/extrair_processo.py` — transcrição → `processo.json` (LLM com schema estrito).
 - `scripts/gerar_mermaid.py` — JSON → Mermaid AS-IS/TO-BE com raias.
 - `scripts/render_fluxo.py` — JSON → diagrama de raias (SVG + PNG) para apresentação, com `layout` no JSON.
+- `scripts/gerar_bpmn.py` — JSON → BPMN 2.0 XML (`.bpmn`) com diagrama, para Camunda Modeler, Bizagi e bpmn.io.
+- `scripts/render_bpmn.mjs` — abre o `.bpmn` no bpmn-js (versão fixa) e salva o PNG de conferência; falha se o arquivo não abrir.
 - `scripts/anonimizar.py` — troca nomes por rótulos genéricos em toda a pasta, renomeia arquivos e regera os PNG.
 - `scripts/render_mermaid.mjs` — Mermaid → SVG vetorial + PNG em alta (escala 3), sem passar pelo Excalidraw.
 - `scripts/metricas.py` — JSON → tabela de métricas e alertas.
 - `references/frameworks-analise.md` — métricas, 8 desperdícios, 5 Porquês, Ishikawa, SIPOC-R de escopo, GUT de priorização de problemas, riscos, KPIs.
 - `references/automacao.md` — como escolher entre regra, API, RPA, IA e workflow.
-- `references/notacao-bpmn.md` — BPMN ↔ Mermaid, raias, boas práticas de diagrama.
+- `references/notacao-bpmn.md` — BPMN ↔ Mermaid ↔ `.bpmn`, raias, boas práticas de diagrama.
 - `references/roteiro-entrevista.md` — perguntas para completar lacuna quando o relato é raso.
 - `templates/processo-json.md` — schema do `processo.json` (escrita manual, sem LLM).
 - `templates/relatorio-processo.md` — esqueleto do relatório final.
