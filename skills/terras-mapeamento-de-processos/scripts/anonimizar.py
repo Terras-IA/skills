@@ -16,7 +16,7 @@ Regras:
                   por padrão, ignora maiúsculas/minúsculas (use --sensivel-maiuscula
                   para casar exatamente como escrito).
   --mapa-arquivo  JSON {"Acme": "Cliente X", "Maya": "Agente de IA"}.
-  Arquivos de texto: .md .json .mmd .svg .txt .csv .log .vtt .srt .html .d2 .yaml .yml
+  Arquivos de texto: .md .json .mmd .bpmn .svg .txt .csv .log .vtt .srt .html .d2 .yaml .yml
   Arquivos com o nome no filename são renomeados ("relatorio-acme.md" -> "relatorio-cliente-x.md").
   PNG/PDF não são editáveis: regenere com render_fluxo.py (use --regerar-png) e re-renderize o PDF.
 """
@@ -28,7 +28,7 @@ import subprocess
 import sys
 import unicodedata
 
-EXTENSOES_TEXTO = {".md", ".json", ".mmd", ".svg", ".txt", ".csv", ".log", ".vtt", ".srt",
+EXTENSOES_TEXTO = {".md", ".json", ".mmd", ".bpmn", ".svg", ".txt", ".csv", ".log", ".vtt", ".srt",
                    ".html", ".htm", ".d2", ".yaml", ".yml", ".tex", ".py", ".sh"}
 EXTENSOES_BINARIAS = {".png", ".jpg", ".jpeg", ".pdf", ".mp4", ".mp3", ".wav", ".webm", ".zip"}
 IGNORAR_PASTAS = {"node_modules", ".git", "__pycache__", ".venv", "venv"}

@@ -1879,8 +1879,8 @@
     },
     {
       "name": "terras-mapeamento-de-processos",
-      "description": "Mapeia um processo a partir de áudio, gravação de tela ou relato e devolve o fluxo AS-IS/TO-BE, diagnóstico com números e plano de melhoria com oportunidades de automação. Use para mapear processo, achar gargalo ou automatizar rotina operacional.",
-      "version": "1.4.0",
+      "description": "Mapeia um processo a partir de áudio, gravação de tela ou relato e devolve o fluxo AS-IS/TO-BE (desenho, Mermaid e .bpmn para Camunda/Bizagi), diagnóstico com números e plano de melhoria com automação. Use para mapear processo, achar gargalo ou automatizar rotina.",
+      "version": "1.5.0",
       "source": "./skills/terras-mapeamento-de-processos",
       "strict": false,
       "skills": [
@@ -1897,6 +1897,10 @@
         "processo",
         "fluxograma",
         "bpmn",
+        "bpmn 2.0",
+        "arquivo .bpmn",
+        "camunda",
+        "bizagi",
         "as is",
         "to be",
         "gargalo",
