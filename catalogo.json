@@ -40,6 +40,9 @@
       "nome": "terras-audio"
     },
     {
+      "nome": "terras-auditoria-ui"
+    },
+    {
       "nome": "terras-azure-devops"
     },
     {
@@ -258,6 +261,9 @@
     },
     {
       "nome": "terras-minimalist-ui"
+    },
+    {
+      "nome": "terras-motion-performance"
     },
     {
       "nome": "terras-noticias"

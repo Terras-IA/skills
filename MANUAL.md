@@ -2,7 +2,7 @@
 
 > **Arquivo gerado.** Rode `node scripts/manual.mjs` para regravar; não edite à mão.
 
-**138 skills** neste repositório: **127 instaláveis** pelo marketplace, **8 de processo do motor** e **3 ligadas a projeto de cliente**.
+**140 skills** neste repositório: **129 instaláveis** pelo marketplace, **8 de processo do motor** e **3 ligadas a projeto de cliente**.
 
 ## Instalar e usar
 
@@ -43,7 +43,7 @@ O script cria um link por skill em cada pasta de agente que já existir na máqu
 - [Comercial e vendas](#comercial-e-vendas) — 3 skills
 - [Gestão, processos e decisão](#gestão-processos-e-decisão) — 4 skills
 - [Desenvolvimento de software](#desenvolvimento-de-software) — 24 skills
-- [Design e front-end](#design-e-front-end) — 16 skills
+- [Design e front-end](#design-e-front-end) — 18 skills
 - [Mídia e apresentação](#mídia-e-apresentação) — 11 skills
 - [Pesquisa e radar](#pesquisa-e-radar) — 6 skills
 - [IA, prompts e agentes](#ia-prompts-e-agentes) — 6 skills
@@ -728,6 +728,14 @@ Projetar, implementar e auditar interface acessível no nível AA da WCAG 2.2 em
 
 Palavras-chave: `acessibilidade`, `accessibility`, `a11y`, `wcag`, `aria`, `leitor de tela`, `screen reader`, `contraste`
 
+### terras-auditoria-ui
+
+Audita uma tela existente contra o próprio design system do produto, prova até 3 problemas visuais e escreve planos para outra execução, sem tocar no código. Use para revisar UI, drift de design ou handoff. Não aplica redesign (terras-redesign-existing-projects). UI audit.
+
+`/plugin install terras-auditoria-ui@terras`
+
+Palavras-chave: `auditoria de ui`, `revisar interface`, `drift de design`, `design system`, `handoff de design`, `ui audit`, `improve ui`, `design review`
+
 ### terras-design
 
 Guarda-chuva de design: logo com IA, identidade corporativa (CIP), pacote amplo de peças; roteia para terras-brand, terras-design-system e terras-ui-styling. Use quando o pedido de design for amplo ou não estiver claro qual peça se quer. Logo design, corporate identity.
@@ -816,9 +824,17 @@ UI minimalista editorial: paleta monocromática quente, hierarquia tipográfica,
 
 Palavras-chave: `minimalista`, `minimal`, `editorial`, `notion`, `linear`, `bento`, `clean`
 
+### terras-motion-performance
+
+Audita e corrige animação que trava: layout thrashing, propriedade fora do compositor, scroll por JS, rAF sem fim, blur grande, will-change sobrando. Use quando animação engasga ou ao revisar CSS/JS de motion. Não cria peça animada (terras-animacao). Jank, motion perf.
+
+`/plugin install terras-motion-performance@terras`
+
+Palavras-chave: `animação travando`, `jank`, `performance de animação`, `motion performance`, `layout thrashing`, `will-change`, `scroll-timeline`, `flip`
+
 ### terras-redesign-existing-projects
 
-Redesign de projeto existente: audita a UI atual, identifica padrões genéricos de IA e aplica padrão premium sem quebrar funcionalidade. Use para melhorar, repaginar ou modernizar site ou app que já existe. Audit-first redesign.
+Redesign de projeto existente: audita a UI atual, identifica padrões genéricos de IA e aplica padrão premium sem quebrar funcionalidade. Use para melhorar, repaginar ou modernizar site ou app que já existe. Só auditar sem mexer: terras-auditoria-ui. Audit-first redesign.
 
 `/plugin install terras-redesign-existing-projects@terras`
 

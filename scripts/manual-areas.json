@@ -123,6 +123,7 @@
       "descricao": "Identidade, UI, design system e geração de telas.",
       "skills": [
         "terras-accessibility",
+        "terras-auditoria-ui",
         "terras-design",
         "terras-design-system",
         "terras-design-taste-frontend",
@@ -134,6 +135,7 @@
         "terras-imagegen-frontend-web",
         "terras-industrial-brutalist-ui",
         "terras-minimalist-ui",
+        "terras-motion-performance",
         "terras-redesign-existing-projects",
         "terras-stitch-design-taste",
         "terras-ui-styling",
