@@ -2,7 +2,7 @@
 
 > **Arquivo gerado.** Rode `node scripts/manual.mjs` para regravar; não edite à mão.
 
-**140 skills** neste repositório: **129 instaláveis** pelo marketplace, **8 de processo do motor** e **3 ligadas a projeto de cliente**.
+**141 skills** neste repositório: **130 instaláveis** pelo marketplace, **8 de processo do motor** e **3 ligadas a projeto de cliente**.
 
 ## Instalar e usar
 
@@ -44,7 +44,7 @@ O script cria um link por skill em cada pasta de agente que já existir na máqu
 - [Gestão, processos e decisão](#gestão-processos-e-decisão) — 4 skills
 - [Desenvolvimento de software](#desenvolvimento-de-software) — 24 skills
 - [Design e front-end](#design-e-front-end) — 18 skills
-- [Mídia e apresentação](#mídia-e-apresentação) — 11 skills
+- [Mídia e apresentação](#mídia-e-apresentação) — 12 skills
 - [Pesquisa e radar](#pesquisa-e-radar) — 6 skills
 - [IA, prompts e agentes](#ia-prompts-e-agentes) — 6 skills
 
@@ -902,7 +902,7 @@ Palavras-chave: `banner`, `banners`, `anúncio`, `ads`, `social media`, `capa`, 
 
 ### terras-excalidraw
 
-Use quando o pedido for um desenho Excalidraw, diagrama editável, esboço à mão, quadro branco, wireframe rascunho, ou imagem de diagrama (PNG/SVG) para post, slide ou documento que a pessoa queira poder editar depois. Também para converter Mermaid em Excalidraw ou reexportar um .excalidraw editado.
+Desenho Excalidraw editável: diagrama, esboço à mão, quadro branco, wireframe e PNG/SVG para post, slide ou documento. Use para diagrama editável, converter Mermaid ou reexportar .excalidraw. Mapa mental é da terras-mapa-mental.
 
 `/plugin install terras-excalidraw@terras`
 
@@ -923,6 +923,14 @@ Apresentação HTML com animação, sem dependências, em arquivo único 16:9, d
 `/plugin install terras-frontend-slides@terras`
 
 Palavras-chave: `slides`, `apresentacao`, `palestra`, `pitch`, `html`, `pptx`, `deck`, `animacao`, `apresentacao web`
+
+### terras-mapa-mental
+
+Mapa mental a partir de texto, reunião, livro ou tema: roteiro em Markdown com rótulos curtos, imagem PNG/SVG, HTML interativo e cena Excalidraw editável. Use para mapa mental, mind map, resumo visual ou revisar um assunto. Fluxo e arquitetura: terras-excalidraw. Mind map.
+
+`/plugin install terras-mapa-mental@terras`
+
+Palavras-chave: `mapa mental`, `mind map`, `mindmap`, `resumo visual`, `markmap`, `brainstorm`, `estudo`, `revisão de assunto`
 
 ### terras-slides
 

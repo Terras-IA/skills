@@ -1,6 +1,6 @@
 ---
 name: terras-excalidraw
-description: Desenhos Excalidraw editáveis: diagrama, esboço à mão, quadro branco, wireframe e exportação PNG/SVG para post, slide ou documento. Use quando quiserem um diagrama que possam editar depois, converter Mermaid em Excalidraw ou reexportar um .excalidraw.
+description: Desenhos Excalidraw editáveis: diagrama, esboço à mão, quadro branco, wireframe e PNG/SVG para post, slide ou documento. Use para diagrama editável, converter Mermaid ou reexportar .excalidraw. Mapa mental: terras-mapa-mental.
 keywords: [excalidraw, diagrama editavel, esboco, quadro branco, whiteboard, wireframe, fluxograma, png, svg, mermaid]
 license: MIT
 ---
