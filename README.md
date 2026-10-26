@@ -5,6 +5,8 @@
 **Skills de agente para o Claude Code** — escrita, LinkedIn, RH, financeiro, fiscal, vendas,
 design, mídia e desenvolvimento. Cada skill é um plugin independente: instale só as que quiser.
 
+Para navegar pelo catálogo com busca e filtro por área: **[www.terrasia.app/skills](https://www.terrasia.app/skills)**.
+
 [![Licença: MIT](https://img.shields.io/badge/licen%C3%A7a-MIT-0e7490?style=flat-square)](LICENSE)
 ![Claude Code](https://img.shields.io/badge/Claude%20Code-plugin%20marketplace-22d3ee?style=flat-square)
 
@@ -80,8 +82,11 @@ Qualificação de lead, resposta à objeção real, proposta, priorização com 
 **Design e UI** — `terras-design`, `terras-design-system`, `terras-brand`, `terras-brandkit`, `terras-ui-ux-pro-max`, `terras-image-to-code`, `terras-minimalist-ui`, `terras-industrial-brutalist-ui`.
 Identidade, tokens, componentes e direção de arte — com o anti-genérico do design-taste.
 
-**Mídia: áudio, vídeo e imagem** — `terras-audio`, `terras-video`, `terras-banner`, `terras-ffmpeg`, `terras-transcription`, `terras-slides`, `terras-visual-explainer`.
-Narração com pronúncia cuidada, vídeo para YouTube e Shorts, banner, transcrição local sem API, slides e páginas que explicam visualmente.
+**Mídia: áudio, vídeo e imagem** — `terras-audio`, `terras-video`, `terras-banner`, `terras-ffmpeg`, `terras-transcription`, `terras-slides`, `terras-visual-explainer`, `terras-karpathy-explainer`.
+Narração com pronúncia cuidada, vídeo para YouTube e Shorts, banner, transcrição local sem API, slides, páginas que explicam visualmente e o mesmo tema em quatro formatos (texto em inglês controlado, diagrama, página interativa e vídeo).
+
+**Pesquisa e conhecimento**: `terras-deep-research`, `terras-last30days`, `terras-x-ia`, `terras-linkedin-varredura`, `terras-linkedin-conhecimento`.
+Pesquisa com citação rastreada, o que circulou nos últimos 30 dias, o que saiu de IA no X e o feed do LinkedIn transformado em nota de conhecimento, com conferência na fonte primária e sem curtir nem comentar nada.
 
 **Desenvolvimento** — `terras-revisao-de-codigo`, `terras-security-review`, `terras-e2e-testing`, `terras-react-patterns`, `terras-postgres`, `terras-mcp-server`, `terras-database-migrations`, `terras-tech-debt`, `terras-standards`.
 Revisão pelo risco que a mudança cria, segurança, testes ponta a ponta, banco, migrations e o padrão de engenharia da casa.
