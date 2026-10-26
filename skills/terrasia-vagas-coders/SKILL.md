@@ -116,8 +116,8 @@ Brasil (rebasedev.com.br/vagas). Tem API própria, então não usa navegador:
    vagas julgadas, para a próxima rodada trazer só as novas.
 4. Mesma vaga na COD3RS e no Rebase: mescle e cite as duas fontes.
 
-Token: `REBASE_JOBS_TOKEN` ou o header do MCP `rebase-jobs` em `~/.claude.json`;
-o script nunca imprime. Limite 60 chamadas/min (a varredura faz ~50). Sem token,
+Token: `REBASE_JOBS_TOKEN` ou o arquivo `~/.config/terrasia-vagas-coders/rebase-token`
+(uma linha, com ou sem "Bearer "); o script nunca imprime. Limite 60 chamadas/min (a varredura faz ~50). Sem token,
 a API responde 401: peça ao usuário para gerar em
 rebasedev.com.br/vagas/perfil/agentes. O catálogo é beta e deve virar assinatura.
 

@@ -8,13 +8,15 @@ Somente leitura. O script lista e pontua; o agente julga com references/perfil.m
   python3 rebase.py --marcar SLUG...   # marca como vistas (depois de entregar a triagem)
   python3 rebase.py --anuncio SLUG     # anúncio completo em texto
 
-Token: REBASE_JOBS_TOKEN ou o header do MCP rebase-jobs em ~/.claude.json.
-Nunca imprime o token.
+Token: REBASE_JOBS_TOKEN ou o arquivo ~/.config/terrasia-vagas-coders/rebase-token (uma linha,
+com ou sem o prefixo "Bearer "). Nunca imprime o token.
 """
 import html, json, os, re, sys, time, urllib.parse, urllib.request
 
 API = 'https://rebasedev.com.br/api/v1/'
-ESTADO = os.path.expanduser('~/.config/terrasia-vagas-coders/rebase-vistas.json')
+CONFIG = os.path.expanduser('~/.config/terrasia-vagas-coders')
+ESTADO = os.path.join(CONFIG, 'rebase-vistas.json')
+ARQUIVO_TOKEN = os.path.join(CONFIG, 'rebase-token')
 
 NIVEIS = ['senior', 'staff', 'lideranca']
 SKILLS = ['csharp', 'devops', 'kubernetes', 'azure', 'microservices', 'system-design', 'sre', 'php']
@@ -30,15 +32,13 @@ RUIM = (r'front|mobile|android|ios|data (engineer|scien|analy)|analytics|machine
 
 
 def token():
-    t = os.environ.get('REBASE_JOBS_TOKEN')
-    if t:
-        return 'Bearer ' + t
-    cfg = json.load(open(os.path.expanduser('~/.claude.json')))
-    for p in [cfg, *cfg.get('projects', {}).values()]:
-        h = p.get('mcpServers', {}).get('rebase-jobs', {}).get('headers', {}).get('Authorization')
-        if h:
-            return h
-    sys.exit('Sem token: gere em rebasedev.com.br/vagas/perfil/agentes e configure o MCP rebase-jobs.')
+    t = os.environ.get('REBASE_JOBS_TOKEN', '').strip()
+    if not t and os.path.exists(ARQUIVO_TOKEN):
+        t = open(ARQUIVO_TOKEN).read().strip()
+    if not t:
+        sys.exit(f'Sem token: gere em rebasedev.com.br/vagas/perfil/agentes e defina REBASE_JOBS_TOKEN '
+                 f'ou grave em {ARQUIVO_TOKEN}.')
+    return t if t.lower().startswith('bearer ') else 'Bearer ' + t
 
 
 def get(path, **q):
