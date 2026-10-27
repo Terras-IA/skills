@@ -500,11 +500,11 @@ Palavras-chave: `swot`, `analise swot`, `forcas`, `fraquezas`, `oportunidades`, 
 
 ### terras-mapeamento-de-processos
 
-Mapeia um processo a partir de áudio, gravação de tela ou relato e devolve o fluxo AS-IS/TO-BE, diagnóstico com números e plano de melhoria com oportunidades de automação. Use para mapear processo, achar gargalo ou automatizar rotina operacional.
+Mapeia um processo a partir de áudio, gravação de tela ou relato e devolve o fluxo AS-IS/TO-BE (desenho, Mermaid e .bpmn para Camunda/Bizagi), diagnóstico com números e plano de melhoria com automação. Use para mapear processo, achar gargalo ou automatizar rotina.
 
-`/plugin install terras-mapeamento-de-processos@terras` · v1.4.0
+`/plugin install terras-mapeamento-de-processos@terras` · v1.5.0
 
-Palavras-chave: `mapeamento de processo`, `mapear processo`, `processo`, `fluxograma`, `bpmn`, `as is`, `to be`, `gargalo`, `diagnostico de processo`, `melhoria de processo`, `automacao de processo`, `lean`, `desperdicio`, `lead time`, `sop`, `procedimento operacional`, `retrabalho`, `sla`
+Palavras-chave: `mapeamento de processo`, `mapear processo`, `processo`, `fluxograma`, `bpmn`, `bpmn 2.0`, `arquivo .bpmn`, `camunda`, `bizagi`, `as is`, `to be`, `gargalo`, `diagnostico de processo`, `melhoria de processo`, `automacao de processo`, `lean`, `desperdicio`, `lead time`, `sop`, `procedimento operacional`, `retrabalho`, `sla`
 
 ### terras-matriz-gut
 

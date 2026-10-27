@@ -116,7 +116,13 @@
         "urgente: aciona técnico de plantão por telefone e resolve na hora, sem passar pela fila"
       ],
       "evidencia": "[00:02:10] Supervisor: Aí ele olha se é urgente. Se for urgente, ele liga pro técnico de plantão e resolve na hora. Se não for urgente, entra na fila normal.",
-      "confianca": "alta"
+      "confianca": "alta",
+      "desvios": [
+        {
+          "para": "P8",
+          "rotulo": "urgente"
+        }
+      ]
     },
     {
       "id": "P5",
@@ -317,5 +323,10 @@
     "Detalhes de integração entre CRM e ERP (atualmente sem integração)",
     "Percentual de OS com material lançado no mesmo dia vs lançadas depois (impacta erros de faturamento)",
     "Custo-hora e custos relacionados por papelada/retrabalho (não informado)"
-  ]
+  ],
+  "layout": {
+    "rotulos": {
+      "P4->P5": "não urgente"
+    }
+  }
 }

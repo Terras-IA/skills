@@ -41,4 +41,8 @@ Use este formato quando não houver LLM de linha de comando disponível: escreva
 - `id` sequencial (P1, P2, ...) **na ordem do caminho principal** (o caso mais comum). Caminho alternativo, urgente ou raro não vira passo: entra em `excecoes` do passo de decisão.
 - `sistema`: sempre o mesmo nome curto para o mesmo sistema ("ERP", nunca "ERP (consulta)" e "ERP (export)").
 - `confianca`: `alta` (dito explicitamente) · `media` (inferido do contexto) · `baixa` (estimativa com tempo ausente).
+- Campos opcionais que só o `.bpmn` usa (os outros scripts ignoram):
+  - `desvios` no passo: `[{"para": "P8", "rotulo": "urgente"}]` (ou `"para": "FIM"`). Saída alternativa ou retrabalho **dita no relato**; o caminho principal continua sendo o próximo passo.
+  - `grupo_paralelo` no passo: mesmo valor em passos consecutivos = rodam em paralelo.
+  - `"bpmn": {"externos": ["Cliente"]}` na raiz: esses atores viram pool próprio e conversam com o processo por mensagem.
 - O `processo-to-be.json` usa o mesmo schema; ali o `evidencia` aponta a melhoria que originou o passo.
