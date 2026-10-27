@@ -3443,6 +3443,33 @@
       ]
     },
     {
+      "name": "terras-zap",
+      "description": "Varre site ou API com o OWASP ZAP local em modo headless (baseline passivo; ativo só com autorização), gera relatório e faz a triagem dos alertas com correção. Use para scan ZAP, DAST, pentest web autorizado ou checar headers. Revisão de código: terras-security-review. DAST scan.",
+      "version": "1.0.0",
+      "source": "./skills/terras-zap",
+      "strict": false,
+      "skills": [
+        "./"
+      ],
+      "category": "productivity",
+      "license": "MIT",
+      "author": {
+        "name": "Everton Lima"
+      },
+      "keywords": [
+        "zap",
+        "zaproxy",
+        "owasp",
+        "dast",
+        "pentest",
+        "varredura",
+        "scan",
+        "vulnerabilidade",
+        "headers",
+        "openapi"
+      ]
+    },
+    {
       "name": "terrasia-pauta-youtube",
       "description": "Pesquisa de demanda no YouTube antes do roteiro: compara temas pela mediana de views, acha outliers por canal e colhe frases recorrentes dos títulos que performam. Use para escolher tema de vídeo, medir demanda de título ou antes da terras-video.",
       "version": "1.0.0",

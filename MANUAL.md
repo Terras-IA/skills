@@ -1198,6 +1198,14 @@ Vasculha o X (Twitter) logado por posts de IA (modelos, agentes, papers, ferrame
 
 Palavras-chave: `x`, `twitter`, `x.com`, `ia`, `inteligência artificial`, `ai`, `llm`, `agentes`, `varredura`, `pauta`, `tendências`, `trending`, `posts`
 
+### terras-zap
+
+Varre site ou API com o OWASP ZAP local em modo headless (baseline passivo; ativo só com autorização), gera relatório e faz a triagem dos alertas com correção. Use para scan ZAP, DAST, pentest web autorizado ou checar headers. Revisão de código: terras-security-review. DAST scan.
+
+`/plugin install terras-zap@terras`
+
+Palavras-chave: `zap`, `zaproxy`, `owasp`, `dast`, `pentest`, `varredura`, `scan`, `vulnerabilidade`, `headers`, `openapi`
+
 ## Fora do marketplace: projeto de cliente
 
 *Skills ligadas a trabalho de cliente, fora do marketplace por decisão (motivo em `marketplace-fora.json`).*
