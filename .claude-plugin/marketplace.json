@@ -1088,7 +1088,7 @@
     },
     {
       "name": "terras-excalidraw",
-      "description": "Use quando o pedido for um desenho Excalidraw, diagrama editável, esboço à mão, quadro branco, wireframe rascunho, ou imagem de diagrama (PNG/SVG) para post, slide ou documento que a pessoa queira poder editar depois. Também para converter Mermaid em Excalidraw ou reexportar um .excalidraw editado.",
+      "description": "Desenho Excalidraw editável: diagrama, esboço à mão, quadro branco, wireframe e PNG/SVG para post, slide ou documento. Use para diagrama editável, converter Mermaid ou reexportar .excalidraw. Mapa mental é da terras-mapa-mental.",
       "version": "1.0.0",
       "source": "./skills/terras-excalidraw",
       "strict": false,
@@ -1991,6 +1991,31 @@
         "imagem",
         "rotina",
         "digest"
+      ]
+    },
+    {
+      "name": "terras-mapa-mental",
+      "description": "Mapa mental a partir de texto, reunião, livro ou tema: roteiro em Markdown com rótulos curtos, imagem PNG/SVG, HTML interativo e cena Excalidraw editável. Use para mapa mental, mind map, resumo visual ou revisar um assunto. Fluxo e arquitetura: terras-excalidraw. Mind map.",
+      "version": "1.0.0",
+      "source": "./skills/terras-mapa-mental",
+      "strict": false,
+      "skills": [
+        "./"
+      ],
+      "category": "productivity",
+      "license": "MIT",
+      "author": {
+        "name": "Everton Lima"
+      },
+      "keywords": [
+        "mapa mental",
+        "mind map",
+        "mindmap",
+        "resumo visual",
+        "markmap",
+        "brainstorm",
+        "estudo",
+        "revisão de assunto"
       ]
     },
     {

@@ -1,6 +1,6 @@
 ---
 name: terras-excalidraw
-description: Use quando o pedido for um desenho Excalidraw, diagrama editável, esboço à mão, quadro branco, wireframe rascunho, ou imagem de diagrama (PNG/SVG) para post, slide ou documento que a pessoa queira poder editar depois. Também para converter Mermaid em Excalidraw ou reexportar um .excalidraw editado.
+description: "Desenho Excalidraw editável: diagrama, esboço à mão, quadro branco, wireframe e PNG/SVG para post, slide ou documento. Use para diagrama editável, converter Mermaid ou reexportar .excalidraw. Mapa mental é da terras-mapa-mental."
 keywords: [excalidraw, diagrama editavel, esboco, quadro branco, whiteboard, wireframe, fluxograma, png, svg, mermaid]
 license: MIT
 ---
@@ -17,6 +17,7 @@ texto, traça as setas entre as formas, liga tudo e aponta os defeitos.
 |---|---|
 | Página HTML que explica um sistema, revisão de diff, deck | `terras-visual-explainer` |
 | Mermaid de ER, estado, C4, Gantt | `terras-visual-explainer` (o conversor só deixa editável flowchart, sequence e class; o resto vira imagem) |
+| Mapa mental (tema no centro, ramos) | `terras-mapa-mental`, que gera também o `.excalidraw` por este script |
 | Desenho editável, visual de esboço, imagem para post | esta skill |
 
 ## Preparação (uma vez por máquina)
