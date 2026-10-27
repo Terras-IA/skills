@@ -80,18 +80,24 @@
     },
     {
       "nome": "Gestão, processos e decisão",
-      "descricao": "Mapear processo, priorizar problema e decidir com rastro.",
+      "descricao": "Mapear processo, priorizar, achar causa, planejar ação, abrir e acompanhar projeto, decidir com rastro.",
       "skills": [
+        "terras-5w2h",
         "terras-analise-swot",
+        "terras-ishikawa-5porques",
         "terras-mapeamento-de-processos",
         "terras-matriz-gut",
-        "terras-pipeline-de-automacao"
+        "terras-pipeline-de-automacao",
+        "terras-prd",
+        "terras-status-report",
+        "terras-tap-charter"
       ]
     },
     {
       "nome": "Desenvolvimento de software",
       "descricao": "Stack, banco de dados, testes, segurança e padrões de engenharia.",
       "skills": [
+        "terras-analise-risco-si",
         "terras-astro",
         "terras-azure-devops",
         "terras-consolidacao-de-memoria",
@@ -99,6 +105,7 @@
         "terras-database-migrations",
         "terras-e2e-testing",
         "terras-governanca-padroes",
+        "terras-iso27001-soa",
         "terras-laravel",
         "terras-mcp-server",
         "terras-miniapp-builder",
@@ -106,11 +113,13 @@
         "terras-plano-tdd",
         "terras-ponytail",
         "terras-postgres",
+        "terras-postmortem",
         "terras-react-patterns",
         "terras-react-testing",
+        "terras-registro-de-decisao",
+        "terras-reverse-engineer",
         "terras-revisao-cruzada",
         "terras-revisao-de-codigo",
-        "terras-reverse-engineer",
         "terras-security-review",
         "terras-standards",
         "terras-tech-debt",

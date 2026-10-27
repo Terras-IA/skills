@@ -96,17 +96,19 @@ Revisão pelo risco que a mudança cria, segurança, testes ponta a ponta, banco
 <!-- catalogo:inicio -->
 <!-- gerado por `npm run readme` a partir do catálogo — não edite à mão -->
 
-**130 skills instaláveis** entre as 141 deste repositório; as demais ficam fora do marketplace — 8 skills de processo do motor (`.nao-instalar`) e 3 skills ligadas a projeto de cliente (`marketplace-fora.json`).
+**138 skills instaláveis** entre as 149 deste repositório; as demais ficam fora do marketplace — 8 skills de processo do motor (`.nao-instalar`) e 3 skills ligadas a projeto de cliente (`marketplace-fora.json`).
 
 <details>
-<summary><b>Ver a lista completa (130 skills)</b></summary>
+<summary><b>Ver a lista completa (138 skills)</b></summary>
 
 | Skill | O que faz |
 |---|---|
+| [`terras-5w2h`](skills/terras-5w2h) | Plano de ação 5W2H que dá para cobrar: uma ação por linha com verbo, um dono nominal, data, custo ou [A ESTIMAR], ligação com a causa e como verificar. |
 | [`terras-accessibility`](skills/terras-accessibility) | Projetar, implementar e auditar interface acessível no nível AA da WCAG 2.2 em Web, iOS e Android: papéis e rótulos ARIA, foco, contraste, tamanho de alvo e leitor… |
 | [`terras-agenda-de-touchpoints`](skills/terras-agenda-de-touchpoints) | Estrutura 1:1s recorrentes com pautas, histórico de feedback, decisões e loops abertos. |
 | [`terras-analisador-de-linguagem-inclusiva`](skills/terras-analisador-de-linguagem-inclusiva) | Revisa vagas, avaliações e comunicados em busca de linguagem enviesada, excludente ou pouco acessível. |
 | [`terras-analisador-de-pulse-semanal`](skills/terras-analisador-de-pulse-semanal) | Processa respostas de pulse survey semanal e transforma temas recorrentes em insights acionáveis para lideranças. |
+| [`terras-analise-risco-si`](skills/terras-analise-risco-si) | Análise de risco de segurança da informação (ISO/IEC 27005 e 27001): critérios aprovados antes de pontuar, dono por risco, P e I justificados, tratamento ligado ao Anexo… |
 | [`terras-analise-swot`](skills/terras-analise-swot) | Análise SWOT rastreável: cada item cita a fonte, o que não tem fonte vira hipótese com teste, e fecha em cruzamentos TOWS com ação, dono e verificação. |
 | [`terras-animacao`](skills/terras-animacao) | Peça animada em loop (GIF e MP4 sem som) a partir de cena HTML dirigida por tempo, renderizada quadro a quadro. |
 | [`terras-apuracao-retencoes-federais`](skills/terras-apuracao-retencoes-federais) | Confere se as retenções federais na fonte de uma nota de serviço foram aplicadas, dispensadas ou esquecidas, usando as alíquotas e limites informados pela empresa, nunca… |
@@ -169,6 +171,8 @@ Revisão pelo risco que a mudança cria, segurança, testes ponta a ponta, banco
 | [`terras-imagegen-frontend-mobile`](skills/terras-imagegen-frontend-mobile) | Gera imagens de telas e fluxos de app mobile (iOS, Android, cross-platform) com mockup de celular, tipografia legível, paleta controlada e consistência entre telas. |
 | [`terras-imagegen-frontend-web`](skills/terras-imagegen-frontend-web) | Gera as imagens de referência de um site — uma imagem horizontal por seção, nunca comprimidas — com variedade de composição, escala de hero, CTA e paleta única. |
 | [`terras-industrial-brutalist-ui`](skills/terras-industrial-brutalist-ui) | Interface brutalista industrial: grade suíça rígida, tipografia mecânica de contraste extremo, paleta utilitária e textura analógica. |
+| [`terras-ishikawa-5porques`](skills/terras-ishikawa-5porques) | Análise de causa raiz com Ishikawa (6M) e 5 porquês: efeito medido, causas como hipóteses com teste, porquês só nas mais prováveis e parada que não culpa pessoa. |
+| [`terras-iso27001-soa`](skills/terras-iso27001-soa) | Declaração de Aplicabilidade (SoA) da ISO/IEC 27001:2022: os 93 controles do Anexo A um por linha, inclusão ligada a risco ou requisito, exclusão justificada e status… |
 | [`terras-karpathy-explainer`](skills/terras-karpathy-explainer) | Explica um tema nos 4 formatos do truque atribuído ao Karpathy: texto em ~80% do ASD-STE100 com medição, diagrama, página HTML interativa e vídeo narrado. |
 | [`terras-laravel`](skills/terras-laravel) | Build robust Laravel apps avoiding Eloquent traps, queue failures, and auth pitfalls. |
 | [`terras-last30days`](skills/terras-last30days) | Pesquisa o que se falou de um tema nos últimos 30 dias em Reddit, X, YouTube, Hacker News, GitHub e web. |
@@ -195,11 +199,14 @@ Revisão pelo risco que a mudança cria, segurança, testes ponta a ponta, banco
 | [`terras-playbook-quebra-objecoes`](skills/terras-playbook-quebra-objecoes) | Classifica a objeção real por trás do que o cliente disse e devolve caminhos de resposta apoiados no que a empresa consegue sustentar, sem prometer preço, prazo… |
 | [`terras-ponytail`](skills/terras-ponytail) | Lazy senior dev mode for any coding task (write, refactor, fix, review): YAGNI, stdlib first, no unrequested abstractions. Not for non-coding requests. |
 | [`terras-postgres`](skills/terras-postgres) | Administra e otimiza banco PostgreSQL pelas tools do postgres-mcp: verificação de saúde, ajuste de índice, análise de plano de consulta, leitura de schema e execução… |
+| [`terras-postmortem`](skills/terras-postmortem) | Postmortem de incidente sem culpados: linha do tempo com horário, impacto medido, tempos de detecção e recuperação, fatores contribuintes em vez de culpado e ações… |
+| [`terras-prd`](skills/terras-prd) | PRD (documento de requisitos de produto): problema com evidência, métricas com linha de base, fora de escopo, requisitos MoSCoW com critério de aceite e perguntas… |
 | [`terras-prompt`](skills/terras-prompt) | Use ao criar, revisar, avaliar ou ajustar um PROMPT (texto para IA), não para executar a tarefa descrita. |
 | [`terras-qualificacao-icp-bant`](skills/terras-qualificacao-icp-bant) | Qualifica um lead a partir do que foi dito na conversa — orçamento, autoridade, necessidade e timing — separando o que o cliente afirmou do que o vendedor supôs,… |
 | [`terras-react-patterns`](skills/terras-react-patterns) | Padrões de React 18/19: disciplina de hooks, fronteira entre server e client component, Suspense e error boundary, form actions, busca de dados, árvore de decisão… |
 | [`terras-react-testing`](skills/terras-react-testing) | Testes de componente React com React Testing Library, Vitest ou Jest, MSW para simular rede, asserções de acessibilidade com axe, e quando usar teste de componente… |
 | [`terras-redesign-existing-projects`](skills/terras-redesign-existing-projects) | Redesign de projeto existente: audita a UI atual, identifica padrões genéricos de IA e aplica padrão premium sem quebrar funcionalidade. |
+| [`terras-registro-de-decisao`](skills/terras-registro-de-decisao) | ADR (Architecture Decision Record) no formato MADR: contexto e forças, opções reais com prós e contras, decisão com critério, consequências negativas, status… |
 | [`terras-reverse-engineer`](skills/terras-reverse-engineer) | Investiga como uma feature funciona em software empacotado (Electron, site, APK, binário nativo, .NET, firmware) com o REA, cada conclusão presa a uma evidência. |
 | [`terras-revisao-cruzada`](skills/terras-revisao-cruzada) | Manda uma spec ou um diff, em paralelo, para agentes de linha de comando de outros fornecedores (Codex, opencode) e junta os vereditos num revisao.md único,… |
 | [`terras-revisao-de-codigo`](skills/terras-revisao-de-codigo) | Revisa uma mudança de código pelo risco que ela cria, com foco em integração que movimenta dinheiro ou dado de cliente: correção, idempotência, falha parcial, segredo… |
@@ -214,8 +221,10 @@ Revisão pelo risco que a mudança cria, segurança, testes ponta a ponta, banco
 | [`terras-slides`](skills/terras-slides) | Deck HTML estratégico e persuasivo com Chart.js: estratégia por contexto, layouts, fórmulas de copy e design tokens. |
 | [`terras-spec-flow`](skills/terras-spec-flow) | Conduz uma feature de ponta a ponta por spec (estilo spec-kit): princípios do repo, spec, crítica, plano TDD, análise de consistência, implementação e fechamento,… |
 | [`terras-standards`](skills/terras-standards) | Aplica os Padrões Agnósticos de Engenharia e Produto v4.0 (arquitetura, segurança, privacidade e IA) com evidência real quando houver. |
+| [`terras-status-report`](skills/terras-status-report) | Status report de projeto com farol de critério fixo: realizado só com o que foi informado, desvio com efeito no caminho crítico, risco com dono e a decisão pedida… |
 | [`terras-stitch-design-taste`](skills/terras-stitch-design-taste) | Gera o DESIGN.md para o Google Stitch: contrato de design premium anti-genérico (tipografia estrita, cor calibrada, layout assimétrico, micro-motion). |
 | [`terras-substack`](skills/terras-substack) | Publica, agenda e gerencia posts e Notes na Substack pela API interna do editor, só com Python do sistema. |
+| [`terras-tap-charter`](skills/terras-tap-charter) | Termo de Abertura do Projeto (TAP, project charter): justificativa, objetivos mensuráveis, escopo dentro e fora, marcos, orçamento, premissas, riscos, patrocinador… |
 | [`terras-tech-debt`](skills/terras-tech-debt) | Auditoria de dívida técnica e arquitetura de um repositório inteiro, com achados em arquivo:linha, severidade, esforço e a seção 'parece ruim mas está certo'. |
 | [`terras-transcription`](skills/terras-transcription) | Transcreve áudio localmente e sem API (reunião, export do Otter/Zoom/Meet/Teams, nota de voz, entrevista, aula), separa quem falou e marca trecho duvidoso. |
 | [`terras-treino-ingles`](skills/terras-treino-ingles) | Treino de inglês falado por recordação ativa: frase em português, o usuário traduz de memória, correção na hora e o erro volta em repetição espaçada, com ouvir… |

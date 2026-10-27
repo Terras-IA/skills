@@ -37,7 +37,7 @@ Quando **não** usar:
 4. **Calcule o score = G × U × T** (produto, não soma): nota baixa em qualquer dimensão derruba a prioridade — problema urgente, mas pouco grave, não chega ao topo.
 5. **Ordene e leia pela faixa** (sugerida; o grupo pode fixar outra, antes de pontuar): ≥ 60 atacar agora · 27–59 planejar · < 27 fila.
 6. **Desempate fixo G > U > T**: dano fala mais alto que pressa, pressa fala mais alto que tendência.
-7. **Plano de ataque**: para os 2–3 primeiros, primeira ação, dono, prazo e como vai ser verificado. A GUT termina aqui — causa raiz e desenho de solução vêm depois (5 Porquês, mapeamento de processos).
+7. **Plano de ataque**: para os 2–3 primeiros, primeira ação, dono, prazo e como vai ser verificado. A GUT termina aqui — causa raiz e desenho de solução vêm depois (`terras-ishikawa-5porques`, `terras-mapeamento-de-processos`) e o plano detalhado sai no `terras-5w2h`.
 8. **Repontue a cada ciclo**: GUT é foto. Problema resolvido sai; tendência mudou, a ordem muda.
 
 ## Âncoras de 1 a 5
