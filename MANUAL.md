@@ -2,7 +2,7 @@
 
 > **Arquivo gerado.** Rode `node scripts/manual.mjs` para regravar; não edite à mão.
 
-**140 skills** neste repositório: **129 instaláveis** pelo marketplace, **8 de processo do motor** e **3 ligadas a projeto de cliente**.
+**141 skills** neste repositório: **130 instaláveis** pelo marketplace, **8 de processo do motor** e **3 ligadas a projeto de cliente**.
 
 ## Instalar e usar
 
@@ -1117,6 +1117,14 @@ Vasculha o X (Twitter) logado por posts de IA (modelos, agentes, papers, ferrame
 `/plugin install terras-x-ia@terras`
 
 Palavras-chave: `x`, `twitter`, `x.com`, `ia`, `inteligência artificial`, `ai`, `llm`, `agentes`, `varredura`, `pauta`, `tendências`, `trending`, `posts`
+
+### terras-zap
+
+Varre site ou API com o OWASP ZAP local em modo headless (baseline passivo; ativo só com autorização), gera relatório e faz a triagem dos alertas com correção. Use para scan ZAP, DAST, pentest web autorizado ou checar headers. Revisão de código: terras-security-review. DAST scan.
+
+`/plugin install terras-zap@terras`
+
+Palavras-chave: `zap`, `zaproxy`, `owasp`, `dast`, `pentest`, `varredura`, `scan`, `vulnerabilidade`, `headers`, `openapi`
 
 ## Fora do marketplace: projeto de cliente
 
