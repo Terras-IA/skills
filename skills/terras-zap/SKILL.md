@@ -50,6 +50,7 @@ Rodar o ZAP sem interface, por plano do Automation Framework, contra um alvo que
    - marque falso positivo provável com motivo (ex.: "Private IP Disclosure" em página de documentação, CSP ausente em arquivo estático de CDN);
    - agrupe os de header num item só com a config pronta (nginx `add_header`, Apache, Cloudflare, Vercel `headers`) do servidor que o alvo usa (`Server:` ou `curl -sI`).
 6. **Relatar:** contagem por risco, itens triados com correção, o que **não** foi coberto (área logada, rotas excluídas, ativo não rodado) e o caminho do `zap.html`.
+7. **Artefato:** publique o relatório como artefato HTML (uma coluna: faixa de risco no topo, as correções com config pronta e botão de copiar, depois a tabela de todos os alertas com a decisão de cada um, e o que ficou fora). É a entrega padrão; o texto no chat resume e aponta o link.
 
 ## Referências
 
