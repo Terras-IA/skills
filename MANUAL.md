@@ -2,7 +2,7 @@
 
 > **Arquivo gerado.** Rode `node scripts/manual.mjs` para regravar; não edite à mão.
 
-**149 skills** neste repositório: **138 instaláveis** pelo marketplace, **8 de processo do motor** e **3 ligadas a projeto de cliente**.
+**151 skills** neste repositório: **140 instaláveis** pelo marketplace, **8 de processo do motor** e **3 ligadas a projeto de cliente**.
 
 ## Instalar e usar
 
