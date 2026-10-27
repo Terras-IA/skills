@@ -3,7 +3,7 @@
 ![Banner do TerrasIA Skills: o logo terrasIA, a palavra SKILLS e "marketplace de skills para agentes" sobre fundo escuro, ao lado do grafo de quatro nós e de uma grade de módulos em ciano](banner-readme.png)
 
 **Skills de agente para o Claude Code** — escrita, LinkedIn, RH, financeiro, fiscal, vendas,
-design, mídia e desenvolvimento. Cada skill é um plugin independente: instale só as que quiser.
+gestão, design, mídia, pesquisa e desenvolvimento. Cada skill é um plugin independente: instale só as que quiser.
 
 Para navegar pelo catálogo com busca e filtro por área: **[www.terrasia.app/skills](https://www.terrasia.app/skills)**.
 
@@ -76,20 +76,23 @@ Da triagem e da entrevista ao PDI, aos OKRs e ao comunicado — com critério e 
 **Financeiro e fiscal** — `terras-conciliacao-bancaria-ofx`, `terras-conferencia-fechamento-folha`, `terras-conferencia-nfe-tomador-prestador`, `terras-apuracao-retencoes-federais`, `terras-fluxo-de-contas-a-pagar`, `terras-gestao-de-inadimplencia-cobranca`.
 Conciliação bancária, fechamento de folha, conferência de nota e retenções: separa o que fecha do que precisa de decisão humana.
 
-**Vendas e mercado** — `terras-qualificacao-icp-bant`, `terras-playbook-quebra-objecoes`, `terras-elaboracao-proposta-comercial`, `terras-analise-swot`, `terras-matriz-gut`, `terras-pauta-mercado`.
-Qualificação de lead, resposta à objeção real, proposta, priorização com GUT e a análise mercado × TerrasIA em formato cobre/rejeita/falta.
+**Vendas e mercado** — `terras-qualificacao-icp-bant`, `terras-playbook-quebra-objecoes`, `terras-elaboracao-proposta-comercial`, `terras-pauta-mercado`, `terras-user-research`.
+Qualificação de lead, resposta à objeção real, proposta, pesquisa com usuário e a análise mercado × TerrasIA em formato cobre/rejeita/falta.
+
+**Gestão, processos e decisão** — `terras-mapeamento-de-processos`, `terras-matriz-gut`, `terras-ishikawa-5porques`, `terras-5w2h`, `terras-analise-swot`, `terras-prd`, `terras-tap-charter`, `terras-status-report`.
+Mapear o processo (até o `.bpmn`), priorizar com GUT, achar a causa raiz, planejar a ação com dono e prazo, abrir o projeto e reportar com farol de critério fixo, sem inventar data nem valor.
 
 **Design e UI** — `terras-design`, `terras-design-system`, `terras-brand`, `terras-brandkit`, `terras-ui-ux-pro-max`, `terras-image-to-code`, `terras-minimalist-ui`, `terras-industrial-brutalist-ui`.
 Identidade, tokens, componentes e direção de arte — com o anti-genérico do design-taste.
 
-**Mídia: áudio, vídeo e imagem** — `terras-audio`, `terras-video`, `terras-banner`, `terras-ffmpeg`, `terras-transcription`, `terras-slides`, `terras-visual-explainer`, `terras-karpathy-explainer`.
-Narração com pronúncia cuidada, vídeo para YouTube e Shorts, banner, transcrição local sem API, slides, páginas que explicam visualmente e o mesmo tema em quatro formatos (texto em inglês controlado, diagrama, página interativa e vídeo).
+**Mídia: áudio, vídeo e imagem** — `terras-audio`, `terras-video`, `terras-banner`, `terras-ffmpeg`, `terras-transcription`, `terras-slides`, `terras-visual-explainer`, `terras-karpathy-explainer`, `terras-excalidraw`, `terras-mapa-mental`.
+Narração com pronúncia cuidada, vídeo para YouTube e Shorts, banner, transcrição local sem API, slides, páginas que explicam visualmente, diagrama editável, mapa mental e o mesmo tema em quatro formatos (texto em inglês controlado, diagrama, página interativa e vídeo).
 
 **Pesquisa e conhecimento**: `terras-deep-research`, `terras-last30days`, `terras-x-ia`, `terras-linkedin-varredura`, `terras-linkedin-conhecimento`.
 Pesquisa com citação rastreada, o que circulou nos últimos 30 dias, o que saiu de IA no X e o feed do LinkedIn transformado em nota de conhecimento, com conferência na fonte primária e sem curtir nem comentar nada.
 
-**Desenvolvimento** — `terras-revisao-de-codigo`, `terras-security-review`, `terras-e2e-testing`, `terras-react-patterns`, `terras-postgres`, `terras-mcp-server`, `terras-database-migrations`, `terras-tech-debt`, `terras-standards`.
-Revisão pelo risco que a mudança cria, segurança, testes ponta a ponta, banco, migrations e o padrão de engenharia da casa.
+**Desenvolvimento** — `terras-revisao-de-codigo`, `terras-security-review`, `terras-e2e-testing`, `terras-react-patterns`, `terras-postgres`, `terras-mcp-server`, `terras-database-migrations`, `terras-tech-debt`, `terras-standards`, `terras-zap`, `terras-analise-risco-si`, `terras-iso27001-soa`, `terras-registro-de-decisao`, `terras-postmortem`.
+Revisão pelo risco que a mudança cria, segurança e scan com o OWASP ZAP, risco de SI e Declaração de Aplicabilidade da ISO 27001, ADR, postmortem sem culpados, testes ponta a ponta, banco, migrations e o padrão de engenharia da casa.
 
 ## O catálogo completo
 
