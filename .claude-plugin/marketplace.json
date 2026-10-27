@@ -29,6 +29,32 @@
       }
     },
     {
+      "name": "terras-5w2h",
+      "description": "Plano de ação 5W2H que dá para cobrar: uma ação por linha com verbo, um dono nominal, data, custo ou [A ESTIMAR], ligação com a causa e como verificar. Use para plano de ação, 5W2H, 'quem faz o quê até quando'. Priorizar: terras-matriz-gut; causa: terras-ishikawa-5porques.",
+      "version": "1.0.0",
+      "source": "./skills/terras-5w2h",
+      "strict": false,
+      "skills": [
+        "./"
+      ],
+      "category": "productivity",
+      "license": "MIT",
+      "author": {
+        "name": "Everton Lima"
+      },
+      "keywords": [
+        "5w2h",
+        "plano de acao",
+        "plano de acoes",
+        "quem faz o que",
+        "what why where when who how how much",
+        "acao corretiva",
+        "cronograma de acoes",
+        "responsavel e prazo",
+        "follow-up de acoes"
+      ]
+    },
+    {
       "name": "terras-accessibility",
       "description": "Projetar, implementar e auditar interface acessível no nível AA da WCAG 2.2 em Web, iOS e Android: papéis e rótulos ARIA, foco, contraste, tamanho de alvo e leitor de tela. Use ao construir ou auditar UI para acessibilidade, navegação por teclado ou leitor de tela. Accessibility, a11y.",
       "version": "1.0.0",
@@ -120,6 +146,36 @@
         "análise de respostas abertas",
         "insights de clima",
         "temas recorrentes"
+      ]
+    },
+    {
+      "name": "terras-analise-risco-si",
+      "description": "Análise de risco de segurança da informação (ISO/IEC 27005 e 27001): critérios aprovados antes de pontuar, dono por risco, P e I justificados, tratamento ligado ao Anexo A e residual aceito. Use para matriz ou análise de risco de SI, SGSI ou LGPD. Information security risk assessment.",
+      "version": "1.0.0",
+      "source": "./skills/terras-analise-risco-si",
+      "strict": false,
+      "skills": [
+        "./"
+      ],
+      "category": "productivity",
+      "license": "MIT",
+      "author": {
+        "name": "Everton Lima"
+      },
+      "keywords": [
+        "analise de risco",
+        "avaliacao de risco",
+        "matriz de risco",
+        "risco de seguranca da informacao",
+        "iso 27005",
+        "iso 27001",
+        "sgsi",
+        "plano de tratamento de riscos",
+        "risco residual",
+        "dono do risco",
+        "apetite a risco",
+        "ameaca vulnerabilidade",
+        "risk assessment"
       ]
     },
     {
@@ -1642,6 +1698,66 @@
       ]
     },
     {
+      "name": "terras-ishikawa-5porques",
+      "description": "Análise de causa raiz com Ishikawa (6M) e 5 porquês: efeito medido, causas como hipóteses com teste, porquês só nas mais prováveis e parada que não culpa pessoa. Use para causa raiz, Ishikawa, espinha de peixe, 5 porquês ou 'por que isso continua acontecendo'. Root cause analysis.",
+      "version": "1.0.0",
+      "source": "./skills/terras-ishikawa-5porques",
+      "strict": false,
+      "skills": [
+        "./"
+      ],
+      "category": "productivity",
+      "license": "MIT",
+      "author": {
+        "name": "Everton Lima"
+      },
+      "keywords": [
+        "ishikawa",
+        "espinha de peixe",
+        "diagrama de causa e efeito",
+        "6m",
+        "5 porques",
+        "cinco porques",
+        "causa raiz",
+        "root cause",
+        "analise de causa",
+        "masp",
+        "problema recorrente",
+        "nao conformidade",
+        "fishbone"
+      ]
+    },
+    {
+      "name": "terras-iso27001-soa",
+      "description": "Declaração de Aplicabilidade (SoA) da ISO/IEC 27001:2022: os 93 controles do Anexo A um por linha, inclusão ligada a risco ou requisito, exclusão justificada e status de implementação só com evidência. Use para SoA, Anexo A, SGSI ou preparo de certificação ISO 27001. Statement of Applicability.",
+      "version": "1.0.0",
+      "source": "./skills/terras-iso27001-soa",
+      "strict": false,
+      "skills": [
+        "./"
+      ],
+      "category": "productivity",
+      "license": "MIT",
+      "author": {
+        "name": "Everton Lima"
+      },
+      "keywords": [
+        "soa",
+        "declaracao de aplicabilidade",
+        "statement of applicability",
+        "iso 27001",
+        "iso/iec 27001:2022",
+        "anexo a",
+        "controles anexo a",
+        "sgsi",
+        "isms",
+        "93 controles",
+        "certificacao iso 27001",
+        "aplicabilidade de controles",
+        "iso 27002"
+      ]
+    },
+    {
       "name": "terras-karpathy-explainer",
       "description": "Explica um tema nos 4 formatos do truque atribuído ao Karpathy: texto em ~80% do ASD-STE100 com medição, diagrama, página HTML interativa e vídeo narrado. Use para 'explica em STE100', 'modo Karpathy' ou explicação multimodal. Só diagrama: terras-visual-explainer; só vídeo: terras-video.",
       "version": "1.0.0",
@@ -1879,8 +1995,8 @@
     },
     {
       "name": "terras-mapeamento-de-processos",
-      "description": "Mapeia um processo a partir de áudio, gravação de tela ou relato e devolve o fluxo AS-IS/TO-BE, diagnóstico com números e plano de melhoria com oportunidades de automação. Use para mapear processo, achar gargalo ou automatizar rotina operacional.",
-      "version": "1.4.0",
+      "description": "Mapeia um processo a partir de áudio, gravação de tela ou relato e devolve o fluxo AS-IS/TO-BE (desenho, Mermaid e .bpmn para Camunda/Bizagi), diagnóstico com números e plano de melhoria com automação. Use para mapear processo, achar gargalo ou automatizar rotina.",
+      "version": "1.5.0",
       "source": "./skills/terras-mapeamento-de-processos",
       "strict": false,
       "skills": [
@@ -1897,6 +2013,10 @@
         "processo",
         "fluxograma",
         "bpmn",
+        "bpmn 2.0",
+        "arquivo .bpmn",
+        "camunda",
+        "bizagi",
         "as is",
         "to be",
         "gargalo",
@@ -2311,6 +2431,65 @@
       ]
     },
     {
+      "name": "terras-postmortem",
+      "description": "Postmortem de incidente sem culpados: linha do tempo com horário, impacto medido, tempos de detecção e recuperação, fatores contribuintes em vez de culpado e ações tipadas com dono e prazo. Use para postmortem, RCA, relatório de incidente ou 'o que aconteceu ontem'. Blameless incident review.",
+      "version": "1.0.0",
+      "source": "./skills/terras-postmortem",
+      "strict": false,
+      "skills": [
+        "./"
+      ],
+      "category": "productivity",
+      "license": "MIT",
+      "author": {
+        "name": "Everton Lima"
+      },
+      "keywords": [
+        "postmortem",
+        "post-mortem",
+        "pos-incidente",
+        "relatorio de incidente",
+        "rca",
+        "analise de incidente",
+        "blameless",
+        "sem culpados",
+        "incidente de producao",
+        "queda do site",
+        "indisponibilidade",
+        "mttr",
+        "licoes aprendidas de incidente"
+      ]
+    },
+    {
+      "name": "terras-prd",
+      "description": "PRD (documento de requisitos de produto): problema com evidência, métricas com linha de base, fora de escopo, requisitos MoSCoW com critério de aceite e perguntas em aberto. Use para PRD, requisitos de produto ou briefing de feature. Spec técnica: terras-spec-flow. Product requirements doc.",
+      "version": "1.0.0",
+      "source": "./skills/terras-prd",
+      "strict": false,
+      "skills": [
+        "./"
+      ],
+      "category": "productivity",
+      "license": "MIT",
+      "author": {
+        "name": "Everton Lima"
+      },
+      "keywords": [
+        "prd",
+        "product requirements",
+        "documento de requisitos",
+        "requisitos de produto",
+        "briefing de feature",
+        "especificacao de produto",
+        "escopo de produto",
+        "fora de escopo",
+        "metricas de sucesso",
+        "moscow",
+        "criterio de aceite",
+        "mvp"
+      ]
+    },
+    {
       "name": "terras-prompt",
       "description": "Use ao criar, revisar, avaliar ou ajustar um PROMPT (texto para IA), não para executar a tarefa descrita. Preserve a intenção original, otimize pela necessidade (não pelo tamanho) e nunca recrie de memória prompt canônico do Prompt Garden (docs/referencia-verbatim).",
       "version": "1.0.0",
@@ -2425,6 +2604,34 @@
         "melhorar design",
         "repaginar",
         "upgrade visual"
+      ]
+    },
+    {
+      "name": "terras-registro-de-decisao",
+      "description": "ADR (Architecture Decision Record) no formato MADR: contexto e forças, opções reais com prós e contras, decisão com critério, consequências negativas, status e substituição sem reescrever o antigo. Use para registrar decisão técnica ou de arquitetura. Gate da norma v4: terras-standards.",
+      "version": "1.0.0",
+      "source": "./skills/terras-registro-de-decisao",
+      "strict": false,
+      "skills": [
+        "./"
+      ],
+      "category": "productivity",
+      "license": "MIT",
+      "author": {
+        "name": "Everton Lima"
+      },
+      "keywords": [
+        "adr",
+        "architecture decision record",
+        "registro de decisao",
+        "decisao de arquitetura",
+        "decisao tecnica",
+        "madr",
+        "registrar decisao",
+        "log de decisoes",
+        "trade-off",
+        "alternativas consideradas",
+        "substituir adr"
       ]
     },
     {
@@ -2770,6 +2977,35 @@
       }
     },
     {
+      "name": "terras-status-report",
+      "description": "Status report de projeto com farol de critério fixo: realizado só com o que foi informado, desvio com efeito no caminho crítico, risco com dono e a decisão pedida ao patrocinador com prazo. Use para status semanal, report de projeto ou farol para diretoria. Abrir projeto: terras-tap-charter.",
+      "version": "1.0.0",
+      "source": "./skills/terras-status-report",
+      "strict": false,
+      "skills": [
+        "./"
+      ],
+      "category": "productivity",
+      "license": "MIT",
+      "author": {
+        "name": "Everton Lima"
+      },
+      "keywords": [
+        "status report",
+        "relatorio de status",
+        "report semanal",
+        "status do projeto",
+        "farol",
+        "rag",
+        "verde amarelo vermelho",
+        "report para diretoria",
+        "acompanhamento de projeto",
+        "desvio de cronograma",
+        "caminho critico",
+        "report executivo"
+      ]
+    },
+    {
       "name": "terras-stitch-design-taste",
       "description": "Gera o DESIGN.md para o Google Stitch: contrato de design premium anti-genérico (tipografia estrita, cor calibrada, layout assimétrico, micro-motion). Use quando o alvo for o Stitch ou o projeto precisar de DESIGN.md como contrato de design.",
       "version": "1.0.0",
@@ -2818,6 +3054,35 @@
         "schedule",
         "unpublish",
         "prosemirror"
+      ]
+    },
+    {
+      "name": "terras-tap-charter",
+      "description": "Termo de Abertura do Projeto (TAP, project charter): justificativa, objetivos mensuráveis, escopo dentro e fora, marcos, orçamento, premissas, riscos, patrocinador e autoridade do gerente, sem inventar data nem valor. Use para abrir projeto, TAP, charter ou kickoff formal. Project charter.",
+      "version": "1.0.0",
+      "source": "./skills/terras-tap-charter",
+      "strict": false,
+      "skills": [
+        "./"
+      ],
+      "category": "productivity",
+      "license": "MIT",
+      "author": {
+        "name": "Everton Lima"
+      },
+      "keywords": [
+        "tap",
+        "termo de abertura",
+        "termo de abertura do projeto",
+        "project charter",
+        "abertura de projeto",
+        "kickoff",
+        "pmbok",
+        "patrocinador",
+        "escopo do projeto",
+        "marcos do projeto",
+        "premissas e restricoes",
+        "gerente de projeto"
       ]
     },
     {

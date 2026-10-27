@@ -2,7 +2,7 @@
 
 > **Arquivo gerado.** Rode `node scripts/manual.mjs` para regravar; não edite à mão.
 
-**141 skills** neste repositório: **130 instaláveis** pelo marketplace, **8 de processo do motor** e **3 ligadas a projeto de cliente**.
+**149 skills** neste repositório: **138 instaláveis** pelo marketplace, **8 de processo do motor** e **3 ligadas a projeto de cliente**.
 
 ## Instalar e usar
 
@@ -41,8 +41,8 @@ O script cria um link por skill em cada pasta de agente que já existir na máqu
 - [Pessoas, RH e carreira](#pessoas-rh-e-carreira) — 26 skills
 - [Financeiro e fiscal](#financeiro-e-fiscal) — 6 skills
 - [Comercial e vendas](#comercial-e-vendas) — 3 skills
-- [Gestão, processos e decisão](#gestão-processos-e-decisão) — 4 skills
-- [Desenvolvimento de software](#desenvolvimento-de-software) — 24 skills
+- [Gestão, processos e decisão](#gestão-processos-e-decisão) — 9 skills
+- [Desenvolvimento de software](#desenvolvimento-de-software) — 28 skills
 - [Design e front-end](#design-e-front-end) — 18 skills
 - [Mídia e apresentação](#mídia-e-apresentação) — 11 skills
 - [Pesquisa e radar](#pesquisa-e-radar) — 6 skills
@@ -488,7 +488,15 @@ Palavras-chave: `qualificacao de lead`, `bant`, `icp`, `lead qualificado`, `disc
 
 ## Gestão, processos e decisão
 
-*Mapear processo, priorizar problema e decidir com rastro.*
+*Mapear processo, priorizar, achar causa, planejar ação, abrir e acompanhar projeto, decidir com rastro.*
+
+### terras-5w2h
+
+Plano de ação 5W2H que dá para cobrar: uma ação por linha com verbo, um dono nominal, data, custo ou [A ESTIMAR], ligação com a causa e como verificar. Use para plano de ação, 5W2H, 'quem faz o quê até quando'. Priorizar: terras-matriz-gut; causa: terras-ishikawa-5porques.
+
+`/plugin install terras-5w2h@terras` · v1.0.0
+
+Palavras-chave: `5w2h`, `plano de acao`, `plano de acoes`, `quem faz o que`, `what why where when who how how much`, `acao corretiva`, `cronograma de acoes`, `responsavel e prazo`, `follow-up de acoes`
 
 ### terras-analise-swot
 
@@ -498,13 +506,21 @@ Análise SWOT rastreável: cada item cita a fonte, o que não tem fonte vira hip
 
 Palavras-chave: `swot`, `analise swot`, `forcas`, `fraquezas`, `oportunidades`, `ameacas`, `tows`, `matriz swot`, `analise de cenario`, `posicao competitiva`, `planejamento estrategico`, `analise estrategica`, `decisao estrategica`, `cenario competitivo`
 
+### terras-ishikawa-5porques
+
+Análise de causa raiz com Ishikawa (6M) e 5 porquês: efeito medido, causas como hipóteses com teste, porquês só nas mais prováveis e parada que não culpa pessoa. Use para causa raiz, Ishikawa, espinha de peixe, 5 porquês ou 'por que isso continua acontecendo'. Root cause analysis.
+
+`/plugin install terras-ishikawa-5porques@terras` · v1.0.0
+
+Palavras-chave: `ishikawa`, `espinha de peixe`, `diagrama de causa e efeito`, `6m`, `5 porques`, `cinco porques`, `causa raiz`, `root cause`, `analise de causa`, `masp`, `problema recorrente`, `nao conformidade`, `fishbone`
+
 ### terras-mapeamento-de-processos
 
-Mapeia um processo a partir de áudio, gravação de tela ou relato e devolve o fluxo AS-IS/TO-BE, diagnóstico com números e plano de melhoria com oportunidades de automação. Use para mapear processo, achar gargalo ou automatizar rotina operacional.
+Mapeia um processo a partir de áudio, gravação de tela ou relato e devolve o fluxo AS-IS/TO-BE (desenho, Mermaid e .bpmn para Camunda/Bizagi), diagnóstico com números e plano de melhoria com automação. Use para mapear processo, achar gargalo ou automatizar rotina.
 
-`/plugin install terras-mapeamento-de-processos@terras` · v1.4.0
+`/plugin install terras-mapeamento-de-processos@terras` · v1.5.0
 
-Palavras-chave: `mapeamento de processo`, `mapear processo`, `processo`, `fluxograma`, `bpmn`, `as is`, `to be`, `gargalo`, `diagnostico de processo`, `melhoria de processo`, `automacao de processo`, `lean`, `desperdicio`, `lead time`, `sop`, `procedimento operacional`, `retrabalho`, `sla`
+Palavras-chave: `mapeamento de processo`, `mapear processo`, `processo`, `fluxograma`, `bpmn`, `bpmn 2.0`, `arquivo .bpmn`, `camunda`, `bizagi`, `as is`, `to be`, `gargalo`, `diagnostico de processo`, `melhoria de processo`, `automacao de processo`, `lean`, `desperdicio`, `lead time`, `sop`, `procedimento operacional`, `retrabalho`, `sla`
 
 ### terras-matriz-gut
 
@@ -522,9 +538,41 @@ Projeta pipelines de automação em que scripts determinísticos fazem o trabalh
 
 Palavras-chave: `pipeline`, `pipes and filters`, `rastro`, `recibo`, `idempotencia`, `provenance`, `receipts`, `hash`, `acervo`, `automacao`, `producao`, `revisao`, `agentic`
 
+### terras-prd
+
+PRD (documento de requisitos de produto): problema com evidência, métricas com linha de base, fora de escopo, requisitos MoSCoW com critério de aceite e perguntas em aberto. Use para PRD, requisitos de produto ou briefing de feature. Spec técnica: terras-spec-flow. Product requirements doc.
+
+`/plugin install terras-prd@terras` · v1.0.0
+
+Palavras-chave: `prd`, `product requirements`, `documento de requisitos`, `requisitos de produto`, `briefing de feature`, `especificacao de produto`, `escopo de produto`, `fora de escopo`, `metricas de sucesso`, `moscow`, `criterio de aceite`, `mvp`
+
+### terras-status-report
+
+Status report de projeto com farol de critério fixo: realizado só com o que foi informado, desvio com efeito no caminho crítico, risco com dono e a decisão pedida ao patrocinador com prazo. Use para status semanal, report de projeto ou farol para diretoria. Abrir projeto: terras-tap-charter.
+
+`/plugin install terras-status-report@terras` · v1.0.0
+
+Palavras-chave: `status report`, `relatorio de status`, `report semanal`, `status do projeto`, `farol`, `rag`, `verde amarelo vermelho`, `report para diretoria`, `acompanhamento de projeto`, `desvio de cronograma`, `caminho critico`, `report executivo`
+
+### terras-tap-charter
+
+Termo de Abertura do Projeto (TAP, project charter): justificativa, objetivos mensuráveis, escopo dentro e fora, marcos, orçamento, premissas, riscos, patrocinador e autoridade do gerente, sem inventar data nem valor. Use para abrir projeto, TAP, charter ou kickoff formal. Project charter.
+
+`/plugin install terras-tap-charter@terras` · v1.0.0
+
+Palavras-chave: `tap`, `termo de abertura`, `termo de abertura do projeto`, `project charter`, `abertura de projeto`, `kickoff`, `pmbok`, `patrocinador`, `escopo do projeto`, `marcos do projeto`, `premissas e restricoes`, `gerente de projeto`
+
 ## Desenvolvimento de software
 
 *Stack, banco de dados, testes, segurança e padrões de engenharia.*
+
+### terras-analise-risco-si
+
+Análise de risco de segurança da informação (ISO/IEC 27005 e 27001): critérios aprovados antes de pontuar, dono por risco, P e I justificados, tratamento ligado ao Anexo A e residual aceito. Use para matriz ou análise de risco de SI, SGSI ou LGPD. Information security risk assessment.
+
+`/plugin install terras-analise-risco-si@terras` · v1.0.0
+
+Palavras-chave: `analise de risco`, `avaliacao de risco`, `matriz de risco`, `risco de seguranca da informacao`, `iso 27005`, `iso 27001`, `sgsi`, `plano de tratamento de riscos`, `risco residual`, `dono do risco`, `apetite a risco`, `ameaca vulnerabilidade`, `risk assessment`
 
 ### terras-astro
 
@@ -582,6 +630,14 @@ Audita onde as convenções de um projeto vivem e as transforma em regra version
 
 Palavras-chave: `governança`, `convenções`, `padrões`, `governance rules`, `conventions`, `standards`, `auditoria`, `versionamento`, `deprecação`
 
+### terras-iso27001-soa
+
+Declaração de Aplicabilidade (SoA) da ISO/IEC 27001:2022: os 93 controles do Anexo A um por linha, inclusão ligada a risco ou requisito, exclusão justificada e status de implementação só com evidência. Use para SoA, Anexo A, SGSI ou preparo de certificação ISO 27001. Statement of Applicability.
+
+`/plugin install terras-iso27001-soa@terras` · v1.0.0
+
+Palavras-chave: `soa`, `declaracao de aplicabilidade`, `statement of applicability`, `iso 27001`, `iso/iec 27001:2022`, `anexo a`, `controles anexo a`, `sgsi`, `isms`, `93 controles`, `certificacao iso 27001`, `aplicabilidade de controles`, `iso 27002`
+
 ### terras-laravel
 
 Build robust Laravel apps avoiding Eloquent traps, queue failures, and auth pitfalls.
@@ -638,6 +694,14 @@ Administra e otimiza banco PostgreSQL pelas tools do postgres-mcp: verificação
 
 Palavras-chave: `postgres`, `postgresql`, `query lenta`, `explain analyze`
 
+### terras-postmortem
+
+Postmortem de incidente sem culpados: linha do tempo com horário, impacto medido, tempos de detecção e recuperação, fatores contribuintes em vez de culpado e ações tipadas com dono e prazo. Use para postmortem, RCA, relatório de incidente ou 'o que aconteceu ontem'. Blameless incident review.
+
+`/plugin install terras-postmortem@terras` · v1.0.0
+
+Palavras-chave: `postmortem`, `post-mortem`, `pos-incidente`, `relatorio de incidente`, `rca`, `analise de incidente`, `blameless`, `sem culpados`, `incidente de producao`, `queda do site`, `indisponibilidade`, `mttr`, `licoes aprendidas de incidente`
+
 ### terras-react-patterns
 
 Padrões de React 18/19: disciplina de hooks, fronteira entre server e client component, Suspense e error boundary, form actions, busca de dados, árvore de decisão de estado e composição acessível. Use ao escrever ou revisar componente React. React patterns.
@@ -653,6 +717,14 @@ Testes de componente React com React Testing Library, Vitest ou Jest, MSW para s
 `/plugin install terras-react-testing@terras`
 
 Palavras-chave: `react testing library`, `testing library`, `vitest`, `jest`, `msw`, `teste de componente`, `jsdom`
+
+### terras-registro-de-decisao
+
+ADR (Architecture Decision Record) no formato MADR: contexto e forças, opções reais com prós e contras, decisão com critério, consequências negativas, status e substituição sem reescrever o antigo. Use para registrar decisão técnica ou de arquitetura. Gate da norma v4: terras-standards.
+
+`/plugin install terras-registro-de-decisao@terras` · v1.0.0
+
+Palavras-chave: `adr`, `architecture decision record`, `registro de decisao`, `decisao de arquitetura`, `decisao tecnica`, `madr`, `registrar decisao`, `log de decisoes`, `trade-off`, `alternativas consideradas`, `substituir adr`
 
 ### terras-reverse-engineer
 
