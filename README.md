@@ -99,10 +99,10 @@ Revisão pelo risco que a mudança cria, segurança e scan com o OWASP ZAP, risc
 <!-- catalogo:inicio -->
 <!-- gerado por `npm run readme` a partir do catálogo — não edite à mão -->
 
-**140 skills instaláveis** entre as 151 deste repositório; as demais ficam fora do marketplace — 8 skills de processo do motor (`.nao-instalar`) e 3 skills ligadas a projeto de cliente (`marketplace-fora.json`).
+**141 skills instaláveis** entre as 152 deste repositório; as demais ficam fora do marketplace — 8 skills de processo do motor (`.nao-instalar`) e 3 skills ligadas a projeto de cliente (`marketplace-fora.json`).
 
 <details>
-<summary><b>Ver a lista completa (140 skills)</b></summary>
+<summary><b>Ver a lista completa (141 skills)</b></summary>
 
 | Skill | O que faz |
 |---|---|
@@ -181,6 +181,7 @@ Revisão pelo risco que a mudança cria, segurança e scan com o OWASP ZAP, risc
 | [`terras-last30days`](skills/terras-last30days) | Pesquisa o que se falou de um tema nos últimos 30 dias em Reddit, X, YouTube, Hacker News, GitHub e web. |
 | [`terras-linkedin`](skills/terras-linkedin) | Escreve e revisa posts de LinkedIn (hook, estrutura, CTA, hashtags, zero travessão) e explica alcance e impressões. |
 | [`terras-linkedin-alvos`](skills/terras-linkedin-alvos) | Acompanha perfis-alvo do LinkedIn (executivos, gestores, recrutadores), acha os posts recentes, curte e prepara comentários que acrescentam, publicados só com aprovação. |
+| [`terras-linkedin-conexoes`](skills/terras-linkedin-conexoes) | Acha no LinkedIn quem contrata acima do nível do usuário numa empresa, prioriza por poder de decisão, escreve a nota do convite e envia só com aprovação. |
 | [`terras-linkedin-conhecimento`](skills/terras-linkedin-conhecimento) | Baixa texto e imagens de post do LinkedIn (link ou tema) e gera nota de conhecimento: o que diz, o que a imagem traz, conferência em fonte primária e lacunas. |
 | [`terras-linkedin-metricas`](skills/terras-linkedin-metricas) | Extrai, guarda e diagnostica as estatísticas dos posts do LinkedIn do usuário: impressões, alcance na e fora da rede, reações, salvamentos, seguidores e demografia. |
 | [`terras-linkedin-varredura`](skills/terras-linkedin-varredura) | Varre o feed do LinkedIn desde a última verificação (ou 24 h), tria o que é novo e gera nota de conhecimento de cada post útil (vídeo, imagem ou texto), com checkpoint. |
