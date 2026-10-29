@@ -1900,6 +1900,33 @@
       ]
     },
     {
+      "name": "terras-linkedin-conexoes",
+      "description": "Acha no LinkedIn quem contrata acima do nível do usuário numa empresa, prioriza por poder de decisão, escreve a nota do convite e envia só com aprovação. Use para 'com quem conectar na empresa X', convite em lote ou busca booleana de vagas. Comentar posts: terras-linkedin-alvos.",
+      "version": "1.0.0",
+      "source": "./skills/terras-linkedin-conexoes",
+      "strict": false,
+      "skills": [
+        "./"
+      ],
+      "category": "productivity",
+      "license": "MIT",
+      "author": {
+        "name": "Everton Lima"
+      },
+      "keywords": [
+        "linkedin",
+        "conexao",
+        "convite",
+        "networking",
+        "recrutador",
+        "contratante",
+        "hiring manager",
+        "latam",
+        "vaga",
+        "busca booleana"
+      ]
+    },
+    {
       "name": "terras-linkedin-conhecimento",
       "description": "Baixa texto e imagens de post do LinkedIn (link ou tema) e gera nota de conhecimento: o que diz, o que a imagem traz, conferência em fonte primária e lacunas. Use para 'estudar esse post', 'gera conhecimento' ou 'posts úteis sobre X'. Vídeo: terras-linkedin-videos. Feed: terras-linkedin-varredura.",
       "version": "1.0.0",

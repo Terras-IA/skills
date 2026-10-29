@@ -2,7 +2,7 @@
 
 > **Arquivo gerado.** Rode `node scripts/manual.mjs` para regravar; não edite à mão.
 
-**151 skills** neste repositório: **140 instaláveis** pelo marketplace, **8 de processo do motor** e **3 ligadas a projeto de cliente**.
+**152 skills** neste repositório: **141 instaláveis** pelo marketplace, **8 de processo do motor** e **3 ligadas a projeto de cliente**.
 
 ## Instalar e usar
 
@@ -37,7 +37,7 @@ O script cria um link por skill em cada pasta de agente que já existir na máqu
 
 ## Índice
 
-- [Conteúdo, marca e publicação](#conteúdo-marca-e-publicação) — 18 skills
+- [Conteúdo, marca e publicação](#conteúdo-marca-e-publicação) — 19 skills
 - [Pessoas, RH e carreira](#pessoas-rh-e-carreira) — 26 skills
 - [Financeiro e fiscal](#financeiro-e-fiscal) — 6 skills
 - [Comercial e vendas](#comercial-e-vendas) — 3 skills
@@ -145,6 +145,14 @@ Acompanha perfis-alvo do LinkedIn (executivos, gestores, recrutadores), acha os 
 `/plugin install terras-linkedin-alvos@terras` · v1.0.0
 
 Palavras-chave: `linkedin`, `networking`, `alvos`, `perfis`, `recrutador`, `gestor`, `ceo`, `comentario`, `curtir`, `vaga`
+
+### terras-linkedin-conexoes
+
+Acha no LinkedIn quem contrata acima do nível do usuário numa empresa, prioriza por poder de decisão, escreve a nota do convite e envia só com aprovação. Use para 'com quem conectar na empresa X', convite em lote ou busca booleana de vagas. Comentar posts: terras-linkedin-alvos.
+
+`/plugin install terras-linkedin-conexoes@terras` · v1.0.0
+
+Palavras-chave: `linkedin`, `conexao`, `convite`, `networking`, `recrutador`, `contratante`, `hiring manager`, `latam`, `vaga`, `busca booleana`
 
 ### terras-linkedin-conhecimento
 
