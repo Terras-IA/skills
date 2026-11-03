@@ -99,10 +99,10 @@ Revisão pelo risco que a mudança cria, segurança e scan com o OWASP ZAP, risc
 <!-- catalogo:inicio -->
 <!-- gerado por `npm run readme` a partir do catálogo — não edite à mão -->
 
-**141 skills instaláveis** entre as 152 deste repositório; as demais ficam fora do marketplace — 8 skills de processo do motor (`.nao-instalar`) e 3 skills ligadas a projeto de cliente (`marketplace-fora.json`).
+**142 skills instaláveis** entre as 153 deste repositório; as demais ficam fora do marketplace — 8 skills de processo do motor (`.nao-instalar`) e 3 skills ligadas a projeto de cliente (`marketplace-fora.json`).
 
 <details>
-<summary><b>Ver a lista completa (141 skills)</b></summary>
+<summary><b>Ver a lista completa (142 skills)</b></summary>
 
 | Skill | O que faz |
 |---|---|
@@ -113,6 +113,7 @@ Revisão pelo risco que a mudança cria, segurança e scan com o OWASP ZAP, risc
 | [`terras-analisador-de-pulse-semanal`](skills/terras-analisador-de-pulse-semanal) | Processa respostas de pulse survey semanal e transforma temas recorrentes em insights acionáveis para lideranças. |
 | [`terras-analise-risco-si`](skills/terras-analise-risco-si) | Análise de risco de segurança da informação (ISO/IEC 27005 e 27001): critérios aprovados antes de pontuar, dono por risco, P e I justificados, tratamento ligado ao Anexo… |
 | [`terras-analise-swot`](skills/terras-analise-swot) | Análise SWOT rastreável: cada item cita a fonte, o que não tem fonte vira hipótese com teste, e fecha em cruzamentos TOWS com ação, dono e verificação. |
+| [`terras-analise-videos`](skills/terras-analise-videos) | Analisa em lote uma pasta de vídeos (Reels, Shorts, TikTok salvos): veracidade, conhecimento embutido e tecnologia para recriar, com relatório HTML. |
 | [`terras-animacao`](skills/terras-animacao) | Peça animada em loop (GIF e MP4 sem som) a partir de cena HTML dirigida por tempo, renderizada quadro a quadro. |
 | [`terras-apuracao-retencoes-federais`](skills/terras-apuracao-retencoes-federais) | Confere se as retenções federais na fonte de uma nota de serviço foram aplicadas, dispensadas ou esquecidas, usando as alíquotas e limites informados pela empresa, nunca… |
 | [`terras-astro`](skills/terras-astro) | Publica site estático multilíngue de graça no Cloudflare Pages com Astro e conteúdo em markdown. |
