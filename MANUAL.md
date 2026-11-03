@@ -2,7 +2,7 @@
 
 > **Arquivo gerado.** Rode `node scripts/manual.mjs` para regravar; não edite à mão.
 
-**152 skills** neste repositório: **141 instaláveis** pelo marketplace, **8 de processo do motor** e **3 ligadas a projeto de cliente**.
+**153 skills** neste repositório: **142 instaláveis** pelo marketplace, **8 de processo do motor** e **3 ligadas a projeto de cliente**.
 
 ## Instalar e usar
 
@@ -44,7 +44,7 @@ O script cria um link por skill em cada pasta de agente que já existir na máqu
 - [Gestão, processos e decisão](#gestão-processos-e-decisão) — 9 skills
 - [Desenvolvimento de software](#desenvolvimento-de-software) — 28 skills
 - [Design e front-end](#design-e-front-end) — 18 skills
-- [Mídia e apresentação](#mídia-e-apresentação) — 12 skills
+- [Mídia e apresentação](#mídia-e-apresentação) — 13 skills
 - [Pesquisa e radar](#pesquisa-e-radar) — 6 skills
 - [IA, prompts e agentes](#ia-prompts-e-agentes) — 6 skills
 
@@ -947,6 +947,14 @@ Palavras-chave: `ui`, `ux`, `design system`, `estilos`, `paletas`, `tipografia`,
 ## Mídia e apresentação
 
 *Áudio, vídeo, banner, slides e diagramas.*
+
+### terras-analise-videos
+
+Analisa em lote uma pasta de vídeos (Reels, Shorts, TikTok salvos): veracidade, conhecimento embutido e tecnologia para recriar, com relatório HTML. Use para 'analisa esses vídeos' ou checar pasta do celular. Um vídeo por link: terras-video-downloader. Batch video fact-check.
+
+`/plugin install terras-analise-videos@terras`
+
+Palavras-chave: `analisar videos`, `lote de videos`, `reels`, `instagram`, `tiktok`, `shorts`, `veracidade`, `checagem`, `fact-check`, `conhecimento`, `como recriar`, `insaver`, `pasta do celular`, `relatorio de videos`
 
 ### terras-animacao
 

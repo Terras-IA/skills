@@ -210,6 +210,37 @@
       ]
     },
     {
+      "name": "terras-analise-videos",
+      "description": "Analisa em lote uma pasta de vídeos (Reels, Shorts, TikTok salvos): veracidade, conhecimento embutido e tecnologia para recriar, com relatório HTML. Use para 'analisa esses vídeos' ou checar pasta do celular. Um vídeo por link: terras-video-downloader. Batch video fact-check.",
+      "version": "1.0.0",
+      "source": "./skills/terras-analise-videos",
+      "strict": false,
+      "skills": [
+        "./"
+      ],
+      "category": "productivity",
+      "license": "MIT",
+      "author": {
+        "name": "Everton Lima"
+      },
+      "keywords": [
+        "analisar videos",
+        "lote de videos",
+        "reels",
+        "instagram",
+        "tiktok",
+        "shorts",
+        "veracidade",
+        "checagem",
+        "fact-check",
+        "conhecimento",
+        "como recriar",
+        "insaver",
+        "pasta do celular",
+        "relatorio de videos"
+      ]
+    },
+    {
       "name": "terras-animacao",
       "description": "Peça animada em loop (GIF e MP4 sem som) a partir de cena HTML dirigida por tempo, renderizada quadro a quadro. Use para animação, gif, banner animado ou diagrama que se desenha. Não é banner estático (terras-banner), vídeo narrado (terras-video) nem edição (terras-ffmpeg).",
       "version": "1.0.0",

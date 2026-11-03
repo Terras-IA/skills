@@ -87,6 +87,11 @@ manchete tem sempre 9,6% dele, ou seja 104px em qualquer canvas. Com a conta ant
 celular não se lê. Para 16:9 as duas contas dão o mesmo número, então o horizontal não
 mudou.
 
+Antes de escolher layout e roteiro de um Short ou Reel, leia
+`references/formatos-que-funcionam.md`. Ele traz os 6 formatos que se repetem em vídeo
+curto, a receita de cada um, as regras de roteiro (número igual na fala e na tela, IA
+declarada, sem isca) e o kit por nível.
+
 Duração: 30 a 90 segundos para Shorts, 3 a 8 minutos para explicativo. Cada bloco
 rende o tempo da própria narração mais 0,6s de respiro, então o roteiro controla a
 duração: uma cartela por ideia, e o corte acompanha a fala.
