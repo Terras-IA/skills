@@ -13,6 +13,7 @@ Rodada real, em 3 de novembro de 2026. Foram 163 Reels salvos por um app de down
 | 7 | A transcrição passou do fim do vídeo ("E aí" depois da duração). | ruído | descarta segmento que começa depois de `duração + 0,5 s` |
 | 8 | O veredito saiu em texto livre ("Não se aplica — é ficção…", "Majoritariamente verdadeiro (fato) + opinião"), com 60 variantes para 7 categorias. | precisei normalizar antes de contar | veredito começa por uma das 7 palavras; `relatorio.py` agrupa pela palavra inicial |
 | 9 | O bloqueio de suspensão (`systemd-inhibit` com teto de 6 h) expirou com o envio ao Drive ainda rodando. | quase suspendeu no meio | inibição presa ao fim real do trabalho, não a um prazo fixo |
+| 9b | A inibição renovada esperava a linha "Total size" no fim do envio. O `rclone size` final caiu por `rateLimitExceeded`, a linha nunca saiu e a inibição ficaria presa para sempre. | o PC não suspenderia mais; foi solto à mão | `systemd-inhibit` envolve o processo (ou espera o PID sair), não um texto da saída |
 | 10 | Um vídeo expunha nome e condição de saúde de um aluno. | dado sensível de terceiro repetido no relatório | não repetir dado de terceiro, só apontar que o vídeo expõe |
 
 ## O que funcionou e vale manter

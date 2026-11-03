@@ -19,7 +19,7 @@ Não é para um vídeo por link (`terras-video-downloader`), nem para montar ví
 1. **Nenhuma lista de arquivos sai de `ls`.** Na máquina da casa, `ls` é um alias do `eza` e imprime permissão e data. Use os scripts (`lotes.py`) ou `command ls`.
 2. **O veredito é uma das 7 palavras**, e a nuance vem entre parênteses: Verdadeiro, Majoritariamente verdadeiro, Misto, Enganoso, Falso, Não verificável, Não se aplica.
 3. **Vídeo sem fala não tem transcrição.** Com `sem_fala: true`, o texto é alucinação do Whisper e não entra na análise.
-4. **O trabalho longo não pode depender da máquina acordada por acaso.** Envolva cada etapa demorada em `systemd-inhibit` preso ao fim real do trabalho, não a um prazo.
+4. **O trabalho longo não pode depender da máquina acordada por acaso.** Envolva cada etapa demorada em `systemd-inhibit` preso ao fim real do trabalho, não a um prazo. Isso quer dizer o próprio processo ou o PID dele, nunca um texto esperado na saída, que pode não sair.
 5. **Saúde, impostos e direito terminam em "confirme com um profissional".** Dado pessoal de terceiro que aparece no vídeo não é repetido: só se aponta que o vídeo o expõe.
 
 ## Onde está instalada
