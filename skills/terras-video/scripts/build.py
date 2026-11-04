@@ -27,6 +27,12 @@ narracao propria. Sem a area segura dos Shorts: o slide nao vive em player de ve
 o destino e o feed. O zoom padrao do slide e menor (ZOOM_SLIDE) porque o texto do deck
 chega perto das margens.
 
+Remotion: um bloco com `remotion: {composicao, props}` no lugar do layout tem o
+quadro desenhado por uma composicao React do projeto Remotion (padrao em
+$TERRAS_VIDEO_HOME/remotion, instalado por scripts/setup-remotion.sh a partir de
+templates/remotion). O build.py manda canvas, 60fps, duracao, tema e faixa segura em
+`props._terras`, renderiza o mp4 mudo e passa os quadros pela mesma montagem.
+
 Uso completo: python3 build.py render roteiro.json [--sem-checagem] [--exportar]
 """
 import argparse
@@ -54,6 +60,7 @@ FONTS_DIR = os.path.join(BRAND_DIR, "fonts")
 BASE_TOOLS = os.path.expanduser(os.environ.get("TERRAS_VIDEO_HOME", "~/.config/terras-video"))
 EDGE = os.path.join(BASE_TOOLS, "venv", "bin", "edge-tts")
 FFMPEG = os.path.join(BASE_TOOLS, "ffmpeg")
+REMOTION_DIR = os.path.join(BASE_TOOLS, "remotion")
 
 FPS = 60
 MOTION_SCALE = 2      # cartela ampliada antes do recorte: passo sub-pixel na saida
@@ -178,6 +185,11 @@ def cmd_plan(cfg, out_dir, roteiro_path=None):
         if b.get("slide"):
             cabeca = [f"## Bloco {i} (slide)", "",
                       f"- **Na tela:** slide `{os.path.basename(str(b['slide']))}`"]
+        elif b.get("remotion"):
+            r = b["remotion"]
+            cabeca = [f"## Bloco {i} (remotion {r.get('composicao', '?')})", "",
+                      f"- **Na tela:** composicao `{r.get('composicao', '?')}` com "
+                      f"`{json.dumps(r.get('props', {}), ensure_ascii=False)}`"]
         else:
             cabeca = [f"## Bloco {i} ({b.get('layout', 'abertura')})", "",
                       f"- **Na tela:** {strip_tags(b.get('headline', ''))}"]
@@ -812,6 +824,99 @@ def fabrica_de_cena(modulo, funcao, duracao, width, height, ajuste="encaixar"):
     return quadro, 0   # sem janela propria de movimento: a medicao nao se aplica
 
 
+def projeto_remotion(caminho=None, base_dir="."):
+    """Pasta do projeto Remotion: a do bloco, ou a padrao instalada pelo setup."""
+    p = os.path.expanduser(str(caminho)) if caminho else REMOTION_DIR
+    if caminho and not os.path.isabs(p):
+        p = os.path.join(base_dir, p)
+    if not os.path.isdir(os.path.join(p, "node_modules", "remotion")):
+        fail(f"projeto Remotion sem dependencias em {p}",
+             "Rode: bash scripts/setup-remotion.sh (projeto padrao) ou npm install no projeto do bloco.")
+    return p
+
+
+def render_remotion(cfg, spec, dur, width, height, saida, base_dir="."):
+    """Renderiza a composicao pedida no bloco num mp4 mudo, no canvas e a 60fps.
+
+    O contrato com a composicao e `props._terras` (ver templates/remotion/src/terras.tsx):
+    tamanho, fps e duracao viram o metadado da composicao via calculateMetadata, e as
+    cores, a fonte e a faixa segura do vertical vem do mesmo tema das cartelas, para a
+    cena Remotion nao destoar delas. A fonte e copiada para public/fonts do projeto,
+    porque o bundle do Remotion so enxerga arquivos de dentro dele.
+    """
+    projeto = projeto_remotion(spec.get("projeto"), base_dir)
+    composicao = spec.get("composicao") or fail("bloco remotion sem `composicao`")
+    _, cores, fonte = tema_do_roteiro(cfg)
+    pasta_fontes = os.path.join(projeto, "public", "fonts")
+    os.makedirs(pasta_fontes, exist_ok=True)
+    arquivos = []
+    for arquivo in fonte.get("arquivos", []):
+        origem = os.path.join(BRAND_DIR, arquivo)
+        if os.path.exists(origem):
+            shutil.copy2(origem, pasta_fontes)
+            arquivos.append(os.path.basename(arquivo))
+    seguro = None
+    if e_vertical(cfg):
+        topo, base = faixa_segura(height)
+        seguro = {"topo": topo, "base": base}
+    props = dict(spec.get("props") or {})
+    props["_terras"] = {"width": width, "height": height, "fps": FPS, "duracao": round(dur, 3),
+                        "cores": cores, "fonte": {"nome": fonte["nome"], "arquivos": arquivos},
+                        "seguro": seguro}
+    props_path = saida + ".props.json"
+    with open(props_path, "w", encoding="utf-8") as fh:
+        json.dump(props, fh, ensure_ascii=False)
+    entrada = spec.get("entrada", "src/index.ts")
+    cmd = ["npx", "--no-install", "remotion", "render", entrada, composicao, saida,
+           f"--props={props_path}", "--codec=h264", "--crf=16", "--muted", "--log=error"]
+    r = subprocess.run(cmd, cwd=projeto, capture_output=True, text=True)
+    if r.returncode != 0 or not os.path.exists(saida):
+        fail(f"o Remotion nao renderizou a composicao {composicao}", (r.stderr or r.stdout)[-3000:])
+    return saida
+
+
+def fabrica_de_video(mp4, width, height, ajuste="encaixar"):
+    """Quadros de um mp4 pronto (o render do Remotion), lidos em sequencia pelo ffmpeg.
+
+    O ffmpeg decodifica a 60fps em rgb24 no tamanho original; quadro de outro tamanho
+    passa pelo encaixe, pelo mesmo motivo da cena externa. Se o video acabar antes do
+    bloco, o ultimo quadro segura a tela ate o fim da fala.
+    """
+    from PIL import Image
+
+    r = subprocess.run([FFMPEG, "-i", mp4], capture_output=True, text=True)
+    m = re.search(r"Video:.*?(\d{2,5})x(\d{2,5})", r.stderr)
+    if not m:
+        fail(f"sem dimensao de video em {mp4}")
+    vw, vh = int(m.group(1)), int(m.group(2))
+    if (vw, vh) != (width, height):
+        print(f"  remotion: quadro {vw}x{vh} encaixado em {width}x{height} ({ajuste})")
+    proc = subprocess.Popen([FFMPEG, "-v", "error", "-i", mp4, "-vf", f"fps={FPS}",
+                             "-f", "rawvideo", "-pix_fmt", "rgb24", "-"],
+                            stdout=subprocess.PIPE, stderr=subprocess.DEVNULL)
+    # stderr calado: o bloco termina antes do fim do mp4 por arredondamento de quadro, e
+    # o decodificador reclama de "Broken pipe" ao ser fechado. Falta de quadro real e
+    # pega abaixo, pelo tamanho lido.
+    tamanho = vw * vh * 3
+    estado = {"ultimo": None, "fim": False}
+
+    def quadro(i, total):
+        dados = b"" if estado["fim"] else proc.stdout.read(tamanho)
+        if len(dados) < tamanho:
+            estado["fim"] = True
+        if len(dados) == tamanho:
+            img = Image.frombytes("RGB", (vw, vh), dados)
+            estado["ultimo"] = ajustar_ao_canvas(img, width, height, ajuste)
+        elif estado["ultimo"] is None:
+            fail(f"o mp4 do Remotion nao tem quadros legiveis: {mp4}")
+        if i == total - 1:
+            proc.stdout.close()
+            proc.wait()
+        return estado["ultimo"]
+
+    return quadro, 0   # animacao da composicao: a medicao de movimento nao se aplica
+
+
 def segment(wav, out, dur, width, height, fabrica, medir_movimento=True, rotulo="trecho"):
     """Escreve os quadros da fabrica no ffmpeg, casados com a narracao.
 
@@ -913,6 +1018,9 @@ def medir_custo(cfg):
         elif b.get("slide"):
             dur = segundos + 0.6
             tipo = f"slide {os.path.basename(str(b['slide']))}"
+        elif b.get("remotion"):
+            dur = max(segundos + 0.6, float(b["remotion"].get("duracao", segundos + 0.6)))
+            tipo = f"remotion {b['remotion'].get('composicao', '?')}"
         else:
             dur = segundos + 0.6
             tipo = b.get("layout", "cartela")
@@ -1036,9 +1144,25 @@ def cmd_render(cfg, out_dir, sem_checagem, exportar=False, base_dir="."):
         falas_lufs.append(loudness(wav)[0])
         cena = block.get("cena")
         slide = block.get("slide")
-        if cena and slide:
-            fail(f"bloco {i}: `cena` e `slide` no mesmo bloco; escolha um dos dois")
-        if slide:
+        remo = block.get("remotion")
+        if sum(1 for x in (cena, slide, remo) if x) > 1:
+            fail(f"bloco {i}: use so um entre `cena`, `slide` e `remotion`")
+        if remo:
+            # Composicao React renderizada pelo Remotion, na duracao do bloco: a fala
+            # manda, e `duracao` no bloco estica quando a animacao precisa de mais tempo.
+            desenhada = float(remo.get("duracao", fala + 0.6))
+            dur = max(fala + 0.6, desenhada)
+            t_remo = time.time()
+            mp4 = render_remotion(cfg, remo, dur, width, height,
+                                  os.path.join(out_dir, f"remotion-{i}.mp4"), base_dir)
+            fabrica = fabrica_de_video(mp4, width, height, remo.get("ajuste", "encaixar"))
+            motion = segment(wav, seg, dur, width, height, fabrica, medir_movimento=False)
+            # cartela-N.png e o quadro do meio: mantem gate visual e --exportar iguais
+            run([FFMPEG, "-y", "-v", "error", "-ss", f"{dur / 2:.2f}", "-i", mp4,
+                 "-frames:v", "1", png])
+            print(f"bloco {i}: remotion {remo['composicao']} | fala {fala:.2f}s | duracao {dur:.2f}s "
+                  f"| render {time.time() - t_remo:.0f}s")
+        elif slide:
             # Slide do deck (terras-banner): a pagina pronta e o quadro inteiro. A copia
             # em cartela-<i>.png mantem a inspecao e o --exportar funcionando igual.
             caminho = resolver_arquivo(slide, base_dir)
