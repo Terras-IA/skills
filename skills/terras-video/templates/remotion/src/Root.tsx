@@ -7,6 +7,7 @@ import {metadados} from './terras';
 import {Numero, NumeroProps} from './Numero';
 import {Barras, BarrasProps} from './Barras';
 import {Legenda, LegendaProps} from './Legenda';
+import {Semaforo, SemaforoProps} from './Semaforo';
 
 const base = {durationInFrames: 360, fps: 60, width: 1080, height: 1920, calculateMetadata: metadados};
 
@@ -37,6 +38,19 @@ export const Root: React.FC = () => (
       component={Legenda}
       {...base}
       defaultProps={{texto: 'O video que se monta sozinho, com uma aprovacao no meio.', destaques: ['sozinho', 'aprovacao']}}
+    />
+    <Composition<any, SemaforoProps>
+      id="Semaforo"
+      component={Semaforo}
+      {...base}
+      defaultProps={{
+        titulo: 'Tres niveis claros',
+        niveis: [
+          {nome: 'VERDE', cor: '#22c55e', rotulo: 'Rotina e linha de base'},
+          {nome: 'AMARELO', cor: '#facc15', rotulo: 'Alerta e atencao previa'},
+          {nome: 'VERMELHO', cor: '#ef4444', rotulo: 'Acao civil imediata'},
+        ],
+      }}
     />
   </>
 );

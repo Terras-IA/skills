@@ -30,8 +30,11 @@ export const TERRAS_PADRAO: Terras = {
   seguro: {topo: 294, base: 1336},
 };
 
-export const metadados: CalculateMetadataFunction<ComTerras> = ({props}) => {
-  const t = {...TERRAS_PADRAO, ...props._terras};
+// `any` de proposito: a mesma funcao serve a todas as composicoes, cada uma com props
+// proprias, e so le `_terras`.
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+export const metadados: CalculateMetadataFunction<any> = ({props}) => {
+  const t = {...TERRAS_PADRAO, ...(props as ComTerras)._terras};
   return {
     width: t.width,
     height: t.height,

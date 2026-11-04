@@ -96,8 +96,11 @@ palavra por palavra, código digitando), um bloco aceita `remotion` no lugar do 
   quando a animação precisa de mais tempo.
 - **Composições prontas:** `Numero` (`valor`, `prefixo`, `sufixo`, `rotulo`, `apoio`,
   `casas`), `Barras` (`titulo`, `itens: [{rotulo, valor, destaque}]`, `sufixo`) e
-  `Legenda` (`texto`, `destaques`). A legenda distribui as palavras por igual em 85% do
-  bloco: não é sincronia com a fala, é ritmo uniforme.
+  `Legenda` (`texto`, `destaques`) e `Semaforo` (`titulo`, `niveis: [{nome, cor,
+  rotulo}]`, `momentos`). A legenda distribui as palavras por igual em 85% do bloco: não
+  é sincronia com a fala, é ritmo uniforme. No semáforo, `momentos` é a fração do bloco
+  em que cada luz acende; a posição da palavra na fala dá uma boa aproximação
+  (`fala.index("verde") / len(fala)`), como no vídeo da Prontidão Civil de 2026-11-04.
 - **Composição nova:** criar em `templates/remotion/src/`, registrar no `Root.tsx` e
   rodar `bash scripts/setup-remotion.sh` (copia para o projeto instalado). Para ver
   enquanto cria: `cd ~/.config/terras-video/remotion && npx remotion studio src/index.ts`.
