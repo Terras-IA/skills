@@ -1,7 +1,7 @@
 ---
 name: terras-paper-diario
-description: "Analisa papers (arXiv e afins) que afetam quem desenvolve: resumo honesto com números, o que não significa, e aplicação e aviso para júnior, pleno e sênior. Use para link de paper, 'analisar paper', 'paper do dia' ou a verificação diária do arXiv."
-keywords: [paper, arxiv, estudo, pesquisa, paper do dia, paper-diario, agentes de ia, code review, carreira dev, análise de paper, digest diário]
+description: "Analisa papers (arXiv e afins) que afetam quem desenvolve, incluindo C#/.NET e gestão de TI: resumo honesto com números, o que não significa, e aplicação e aviso para júnior, pleno e sênior. Use para link de paper, 'analisar paper', 'paper do dia' ou a verificação diária."
+keywords: [paper, arxiv, estudo, pesquisa, paper do dia, paper-diario, agentes de ia, code review, carreira dev, análise de paper, digest diário, c#, .net, gestão de ti, itsm, governança de ti]
 ---
 
 # Paper do dia — papers que afetam quem escreve software
@@ -81,7 +81,7 @@ Regras de qualidade (invioláveis):
 ## Verificação diária (o fluxo)
 
 ```bash
-python3 $SKILL_DIR/scripts/verificar_papers.py --janela 3 --limite 2
+python3 $SKILL_DIR/scripts/verificar_papers.py --janela 3 --limite 5
 ```
 
 Consulta **cinco fontes** (ver seção abaixo), compara com os já vistos e
@@ -140,6 +140,34 @@ Regras das fontes:
 - `--fontes` escolhe o subconjunto; `--pausa-arxiv 45` e `--pausa 5` regulam
   o ritmo. Nesta rede: `export.arxiv.org` é instável — a busca vai pelo site
   `arxiv.org`, em grupos de no máx. 3 frases OR, e todo curl precisa de `-4`.
+
+## Assuntos cobertos pela busca
+
+O script busca e pontua três frentes (listas em `GRUPOS_ARXIV`,
+`QUERIES_S2`, `QUERIES_OPENALEX`, `PALAVRAS_NUCLEO` e
+`PALAVRAS_SECUNDARIA`):
+
+1. **Trabalho de quem desenvolve com IA** — agentes de código, code review,
+   produtividade, carreira, mercado de trabalho (o núcleo original).
+2. **C# / .NET** — paper em que C#, .NET, ASP.NET, Entity Framework, Roslyn
+   ou Blazor é o objeto do estudo (não só uma linguagem entre dez num
+   benchmark).
+3. **Gestão de TI** — governança de TI, ITSM/ITIL, COBIT, decisões de CIO e
+   liderança de TI, outsourcing, operação de TI.
+
+Para C# e gestão de TI, quem pesa é a **S2 e a OpenAlex**: o site do arXiv
+reduz "C#" a "C" e trata "IT" como stopword, então lá só vão termos sem
+símbolo (`csharp`, `dotnet`, `Roslyn`, `ITIL`, `COBIT`). A OpenAlex traz
+muito livro, apostila e treinamento de ITIL: isso não é paper e é descartado
+na leitura. Na relevância, paper de C# ou de gestão de TI conta como **Alta**
+quando muda a prática de quem trabalha nessa stack ou de quem gere TI; se só
+cita C# de passagem, ou é estudo de caso local sem método, é Média ou
+descarte. Nos blocos por nível, em gestão de TI leia "Júnior/Pleno/Sênior"
+como analista, coordenação e gestão/CIO.
+
+Termos são casados no começo de palavra (`it governance` não casa com
+"audit governance"). Para incluir assunto novo, acrescente a frase nas
+quatro listas e teste com `--fontes openalex --janela 30`.
 
 ## Classificação para curadoria (assunto × severidade × relevância)
 

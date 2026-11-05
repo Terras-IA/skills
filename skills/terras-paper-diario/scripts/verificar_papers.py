@@ -41,17 +41,31 @@ GRUPOS_ARXIV = [
     '"code review" OR "pull request" OR "vibe coding"',
     '"developer productivity" OR "software developer" OR "software engineer"',
     '"employment" OR "layoff" OR "labor market"',
+    # C#/.NET: o site do arXiv reduz "C#" a "C", então vão só termos sem símbolo.
+    'csharp OR dotnet OR Roslyn',
+    # Gestão de TI: "IT" é stopword no arXiv; só siglas e frases específicas.
+    'ITIL OR COBIT OR "service management"',
 ]
 # Semantic Scholar: buscas por relevância, filtro de data no cliente.
 QUERIES_S2 = [
     '"coding agent" OR "AI agent" OR "code review"',
     '"software developer" OR "developer productivity" OR "vibe coding"',
     'software developer employment AI layoff "labor market"',
+    '"C#" OR dotnet OR "ASP.NET" OR "Entity Framework"',
+    '"IT governance" OR "IT service management" OR "IT management" OR ITIL',
 ]
-QUERY_OPENALEX = ('coding agent OR "AI agent" OR "code review" OR "pull request" '
-                  'OR "developer productivity" OR "vibe coding" OR '
-                  '"software developer" OR "software engineer" OR layoff OR '
-                  '"labor market"')
+# OpenAlex: uma busca por assunto, cada uma com sua página de 100.
+QUERIES_OPENALEX = [
+    ('coding agent OR "AI agent" OR "code review" OR "pull request" '
+     'OR "developer productivity" OR "vibe coding" OR '
+     '"software developer" OR "software engineer" OR layoff OR '
+     '"labor market"'),
+    # ".NET" sozinho casa com "Net" (redes neurais); por isso as frases.
+    ('"C# code" OR "C# programs" OR "C# developers" OR "ASP.NET" OR '
+     '"Entity Framework" OR Roslyn OR Blazor OR csharp'),
+    ('"IT governance" OR "IT service management" OR "IT management" OR ITIL '
+     'OR COBIT OR "chief information officer" OR "IT outsourcing"'),
+]
 QUERY_HN = '"coding agent" OR "vibe coding" OR "AI agent" OR "AI coding"'
 QUERIES_OPENREVIEW = ["coding agent", "AI code review"]
 
@@ -65,12 +79,27 @@ PALAVRAS_NUCLEO = [
     "programmer", "software development", "program repair", "code generation",
     "technical debt", "code quality", "vibe coding", "employment", "labor market",
     "layoff", "hiring", "job displacement", "workforce", "burnout", "career",
+    # C# / .NET
+    "c#", "csharp", "dotnet", "asp.net", ".net core", ".net framework",
+    "entity framework", "roslyn", "blazor",
+    # Gestão de TI
+    "it governance", "it service management", "itsm", "itil", "cobit",
+    "it management", "chief information officer", "it outsourcing",
+    "it leadership", "it operations",
 ]
 PALAVRAS_SECUNDARIA = [
     "llm", "ai agent", "ai-generated", "autonomous agent", "gpt", "claude",
     "copilot", "devin", "cursor", "job", "labor", "skill", "empirical study",
-    "mining", "github",
+    "mining", "github", "chatgpt",
+    "microsoft", "visual studio", "nuget", "incident management",
+    "service desk", "digital transformation", "project management", "devops",
+    "governance", "outsourcing",
 ]
+
+# Termo só conta no começo de palavra: evita "it governance" dentro de
+# "audit governance", "mining" dentro de "determining", "cursor" em "precursor".
+_PADROES = {p: re.compile(r"(?<![a-z0-9])" + re.escape(p))
+            for p in PALAVRAS_NUCLEO + PALAVRAS_SECUNDARIA}
 
 
 # ---------------------------------------------------------------- estado
@@ -239,20 +268,25 @@ def abstract_openalex(inv):
 
 
 def buscar_openalex(de, ate, pausa):
-    url = ("https://api.openalex.org/works?mailto=curadoria-papers@local"
-           f"&search={quote(QUERY_OPENALEX)}"
-           f"&filter=title_and_abstract.search:{quote(QUERY_OPENALEX, safe='')},"
-           f"from_publication_date:{de},to_publication_date:{ate}"
-           "&sort=publication_date:desc&per-page=100"
-           "&select=id,doi,title,publication_date,authorships,"
-           "abstract_inverted_index,primary_location")
-    try:
-        dados = curl_json(url)
-    except (RuntimeError, json.JSONDecodeError) as exc:
-        print(f"aviso: OpenAlex falhou ({exc}); seguindo", file=sys.stderr)
-        return []
+    resultados = []
+    for i, q in enumerate(QUERIES_OPENALEX):
+        if i:
+            time.sleep(pausa)
+        url = ("https://api.openalex.org/works?mailto=curadoria-papers@local"
+               f"&search={quote(q)}"
+               f"&filter=title_and_abstract.search:{quote(q, safe='')},"
+               f"from_publication_date:{de},to_publication_date:{ate},"
+               # só artigo e preprint: corta release de software, livro e dataset
+               "type:article|preprint"
+               "&sort=publication_date:desc&per-page=100"
+               "&select=id,doi,title,publication_date,authorships,"
+               "abstract_inverted_index,primary_location")
+        try:
+            resultados += curl_json(url).get("results", [])
+        except (RuntimeError, json.JSONDecodeError) as exc:
+            print(f"aviso: OpenAlex falhou ({exc}); seguindo", file=sys.stderr)
     papers = []
-    for w in dados.get("results", []):
+    for w in resultados:
         wid = (w.get("id") or "").rsplit("/", 1)[-1]
         if not wid or not w.get("title"):
             continue
@@ -351,11 +385,11 @@ def pontuar(paper):
     titulo = paper["titulo"].lower()
     pontos, palavras = 0, []
     for p in PALAVRAS_NUCLEO:
-        if p in texto:
-            pontos += 3 if p in titulo else 2
+        if _PADROES[p].search(texto):
+            pontos += 3 if _PADROES[p].search(titulo) else 2
             palavras.append(p)
     for p in PALAVRAS_SECUNDARIA:
-        if p in texto:
+        if _PADROES[p].search(texto):
             pontos += 1
             palavras.append(p)
     return pontos, sorted(set(palavras))
