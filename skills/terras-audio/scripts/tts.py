@@ -33,7 +33,7 @@ EDGE = os.path.join(BASE_TOOLS, "venv", "bin", "edge-tts")
 FFMPEG = os.path.join(BASE_TOOLS, "ffmpeg")
 BRAND_DIR = os.path.expanduser(os.environ.get("TERRAS_BRAND_DIR", "~/Documents/Diversos/terras-brand"))
 
-VOZ_PADRAO = "pt-BR-ThalitaMultilingualNeural"
+VOZ_PADRAO = "pt-BR-FranciscaNeural"
 RITMO_PADRAO = "-8%"
 
 # Alvos de loudness por contexto, em LUFS integrado e pico verdadeiro em dBFS.
