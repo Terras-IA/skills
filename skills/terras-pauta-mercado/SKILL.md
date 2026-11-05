@@ -31,7 +31,7 @@ Receber uma referência externa (repositório, post, anúncio, paper, release) e
 
 ## Onde está instalada
 
-Fonte única: `skills/terras-pauta-mercado/` no repositório `terrasia-skills` (link simbólico criado pelo `scripts/instalar.sh`). Peças irmãs: `terras-linkedin` (régua de texto), `terras-canal-whatsapp` (publicação no canal), `terras-substack` (artigo) e `terras-banner` (quando o desenho pedir banner de verdade). O registro vive no repositório do projeto terrasia, em `docs/comercial/`, `docs/new-features/` e `docs/pesquisas/`.
+Fonte única: `skills/terras-pauta-mercado/` no repositório `terras-skills` (link simbólico criado pelo `scripts/instalar.sh`). Peças irmãs: `terras-linkedin` (régua de texto), `terras-canal-whatsapp` (publicação no canal), `terras-substack` (artigo) e `terras-banner` (quando o desenho pedir banner de verdade). O registro vive no repositório do projeto terrasia, em `docs/comercial/`, `docs/new-features/` e `docs/pesquisas/`.
 
 ## Referências
 

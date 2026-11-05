@@ -1,4 +1,4 @@
-// terrasia-vagas-coders: helper injetado na aba https://app.coders.com.br (logada).
+// terras-vagas-coders: helper injetado na aba https://app.coders.com.br (logada).
 // Uso: cole o arquivo inteiro num javascript_exec; depois chame window.__vagas.<fn>(...)
 // em execuções curtas (a ferramenta de JS corta em ~45s). O token nunca sai da página.
 // SOMENTE LEITURA: nenhuma função aqui envia POST/PUT/DELETE.

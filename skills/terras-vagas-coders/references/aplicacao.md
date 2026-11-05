@@ -31,7 +31,7 @@ registre como `ja-aplicado` e pare.
    "aprovado". Depois do submit, confirme na página (mensagem de sucesso,
    e-mail, "application received"). "Não confirmado" = conferir a página antes
    de qualquer reenvio; nunca reenvie às cegas.
-7. **Registrar** em `~/.config/terrasia-vagas-coders/candidaturas.json`.
+7. **Registrar** em `~/.config/terras-vagas-coders/candidaturas.json`.
 
 ## Playbooks por fonte
 

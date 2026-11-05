@@ -8,7 +8,7 @@ license: MIT
 
 # Frontend Slides
 
-Fonte única: `skills/terras-frontend-slides/` no repositório `terrasia-skills`, adaptada de `zarazhangrui/frontend-slides` (MIT, ver `LICENSE`).
+Fonte única: `skills/terras-frontend-slides/` no repositório `terras-skills`, adaptada de `zarazhangrui/frontend-slides` (MIT, ver `LICENSE`).
 
 Create zero-dependency, animation-rich HTML presentations that run entirely in the browser.
 

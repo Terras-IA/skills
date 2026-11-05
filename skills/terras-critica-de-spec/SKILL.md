@@ -20,7 +20,7 @@ A meta é uma spec melhor, não uma spec bloqueada: proponha a reescrita sempre 
 
 ## Onde está instalada
 
-Fonte única: `skills/terras-critica-de-spec/` no repositório `terrasia-skills`. Adaptada do speccraft (MIT, ver `NOTICE`).
+Fonte única: `skills/terras-critica-de-spec/` no repositório `terras-skills`. Adaptada do speccraft (MIT, ver `NOTICE`).
 
 ## Modo crítica
 

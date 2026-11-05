@@ -8,7 +8,7 @@ license: MIT
 
 # Mapeamento de processos
 
-Fonte única: `skills/terras-mapeamento-de-processos/` no repositório `terrasia-skills`. Abaixo, `$SKILL_DIR` é a pasta onde este `SKILL.md` está.
+Fonte única: `skills/terras-mapeamento-de-processos/` no repositório `terras-skills`. Abaixo, `$SKILL_DIR` é a pasta onde este `SKILL.md` está.
 
 ## Descrição
 

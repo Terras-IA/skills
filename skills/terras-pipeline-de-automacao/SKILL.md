@@ -7,7 +7,7 @@ keywords: [pipeline, pipes and filters, rastro, recibo, idempotencia, provenance
 
 # Pipeline de automação: scripts medem, agente decide
 
-Fonte única: `skills/terras-pipeline-de-automacao/` no repositório `terrasia-skills`. Abaixo, `$SKILL_DIR` é a pasta onde este `SKILL.md` está; `references/…` e `scripts/…` são relativos a ela.
+Fonte única: `skills/terras-pipeline-de-automacao/` no repositório `terras-skills`. Abaixo, `$SKILL_DIR` é a pasta onde este `SKILL.md` está; `references/…` e `scripts/…` são relativos a ela.
 
 ## Objetivo
 

@@ -20,7 +20,7 @@ O plano existe para que ninguém escreva código de produção antes do teste, e
 
 ## Onde está instalada
 
-Fonte única: `skills/terras-plano-tdd/` no repositório `terrasia-skills`. Adaptada do speccraft (MIT, ver `NOTICE`).
+Fonte única: `skills/terras-plano-tdd/` no repositório `terras-skills`. Adaptada do speccraft (MIT, ver `NOTICE`).
 
 ## Entradas
 

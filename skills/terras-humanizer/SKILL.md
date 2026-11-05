@@ -13,7 +13,7 @@ Reescrever texto que soa gerado por IA para soar escrito por uma pessoa, mantend
 
 ## Onde está instalada
 
-Fonte única: `skills/terras-humanizer/` no repositório `terrasia-skills`. Cada agente
+Fonte única: `skills/terras-humanizer/` no repositório `terras-skills`. Cada agente
 enxerga a skill por um link simbólico criado pelo `scripts/instalar.sh` do
 repositório, então a edição se faz lá e vale para todos. Nos comandos abaixo,
 `$SKILL_DIR` é a pasta onde este `SKILL.md` está.

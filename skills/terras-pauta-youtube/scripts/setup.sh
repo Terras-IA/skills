@@ -2,7 +2,7 @@
 # Idempotente, sem sudo: cria o venv com yt-dlp em $TERRAS_PAUTA_HOME.
 set -euo pipefail
 
-HOME_DIR="${TERRAS_PAUTA_HOME:-$HOME/.config/terrasia-pauta-youtube}"
+HOME_DIR="${TERRAS_PAUTA_HOME:-$HOME/.config/terras-pauta-youtube}"
 mkdir -p "$HOME_DIR"
 
 if [ ! -x "$HOME_DIR/venv/bin/yt-dlp" ]; then

@@ -26,7 +26,7 @@ Sem cookie, ele responde com o que falta — não quebra.
 
 ## Instalação
 
-A fonte é `skills/terras-substack/` no repositório `terrasia-skills`. O
+A fonte é `skills/terras-substack/` no repositório `terras-skills`. O
 `scripts/instalar.sh` do repositório cria o link simbólico da skill em cada
 pasta de skills de agente que existir na máquina; sem ele, basta apontar o
 agente para esta pasta. Nunca copie a pasta: cópia diverge em silêncio.

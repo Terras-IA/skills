@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""terrasia-pauta-youtube: pesquisa de envelope (demanda) no YouTube.
+"""terras-pauta-youtube: pesquisa de envelope (demanda) no YouTube.
 
 Mede a demanda de uma consulta pelos resultados da busca do YouTube (views
 de cada vídeo contra a mediana do canal que publicou) e colhe frases
@@ -19,7 +19,7 @@ import time
 from pathlib import Path
 
 HOME_DIR = Path(os.environ.get("TERRAS_PAUTA_HOME",
-                               Path.home() / ".config/terrasia-pauta-youtube"))
+                               Path.home() / ".config/terras-pauta-youtube"))
 YTDLP = HOME_DIR / "venv/bin/yt-dlp"
 CACHE_FILE = HOME_DIR / "cache-canais.json"
 CACHE_TTL_S = 14 * 24 * 3600

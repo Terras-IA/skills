@@ -1,5 +1,5 @@
 ---
-name: terrasia-post-empresa
+name: terras-post-empresa
 version: 1.0.0
 access: free
 category: conteudo

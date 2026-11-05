@@ -22,7 +22,7 @@ A skill é o despachante: os agentes precisam estar instalados e autenticados na
 
 ## Onde está instalada
 
-Fonte única: `skills/terras-revisao-cruzada/` no repositório `terrasia-skills`. Adaptada do speccraft (MIT, ver `NOTICE`).
+Fonte única: `skills/terras-revisao-cruzada/` no repositório `terras-skills`. Adaptada do speccraft (MIT, ver `NOTICE`).
 
 ## Os revisores
 

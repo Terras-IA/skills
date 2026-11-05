@@ -8,7 +8,7 @@ license: MIT
 
 # Pesquisa com usuários, de ponta a ponta
 
-Fonte única: `skills/terras-user-research/` no repositório `terrasia-skills`, adaptada de `cookiy-ai/user-research-skill` (MIT, ver `LICENSE`) — sem a integração com a plataforma Cookiy.
+Fonte única: `skills/terras-user-research/` no repositório `terras-skills`, adaptada de `cookiy-ai/user-research-skill` (MIT, ver `LICENSE`) — sem a integração com a plataforma Cookiy.
 
 Encaminhe para o fluxo certo conforme a intenção do pedido.
 

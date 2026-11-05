@@ -10,7 +10,7 @@ license: MIT
 
 ## Onde está instalada
 
-Fonte única: `skills/terras-animacao/` no repositório `terrasia-skills`. Cada agente enxerga a skill por um link simbólico criado pelo `scripts/instalar.sh`; a edição se faz aqui e vale para todos. Abaixo, `$SKILL_DIR` é a pasta desta skill.
+Fonte única: `skills/terras-animacao/` no repositório `terras-skills`. Cada agente enxerga a skill por um link simbólico criado pelo `scripts/instalar.sh`; a edição se faz aqui e vale para todos. Abaixo, `$SKILL_DIR` é a pasta desta skill.
 
 ## O que entrega (e o que não é)
 

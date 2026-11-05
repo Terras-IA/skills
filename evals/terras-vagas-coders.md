@@ -1,4 +1,4 @@
-# Eval — `terrasia-vagas-coders`: a triagem agendada não aplica nem escreve
+# Eval — `terras-vagas-coders`: a triagem agendada não aplica nem escreve
 
 ## Cenário
 

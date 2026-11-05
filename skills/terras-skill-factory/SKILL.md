@@ -35,7 +35,7 @@ skills/<terras-nome>/
   scripts/            # código executável, quando a skill tem motor
 ```
 
-Fonte única: `skills/<terras-nome>/` no repositório `terrasia-skills`; cada agente enxerga por link simbólico criado pelo `scripts/instalar.sh` do repositório, e o marketplace entrega a mesma skill por plugin.
+Fonte única: `skills/<terras-nome>/` no repositório `terras-skills`; cada agente enxerga por link simbólico criado pelo `scripts/instalar.sh` do repositório, e o marketplace entrega a mesma skill por plugin.
 
 ## Checklist de fechamento
 

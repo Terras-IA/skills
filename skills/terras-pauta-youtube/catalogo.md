@@ -1,6 +1,6 @@
 ---
-name: terrasia-pauta-youtube
-description: "Pesquisa de demanda no YouTube antes do roteiro: compara temas pela mediana de views, acha outliers por canal e colhe frases recorrentes dos títulos que performam. Use para escolher tema de vídeo, medir demanda de título ou antes da terras-video."
+name: terras-pauta-youtube
+description: Pesquisa demanda no YouTube antes do roteiro: compara temas pela mediana de views, acha outliers acima da média do canal e colhe frases dos títulos que rendem. Use para escolher tema de vídeo, pauta, medir demanda de título ou antes de roteirizar com a terras-video.
 keywords: [youtube, pauta, tema, envelope, demanda, views, outlier, titulo, capa, thumbnail, pesquisa, roteiro, terrasia]
 ---
 
@@ -19,7 +19,7 @@ trabalho do script.
 
 ## Onde está instalada
 
-Fonte única: `skills/terrasia-pauta-youtube/` no repositório `terrasia-skills`. Cada agente
+Fonte única: `skills/terras-pauta-youtube/` no repositório `terras-skills`. Cada agente
 enxerga a skill por um link simbólico criado pelo `scripts/instalar.sh` do
 repositório, então a edição se faz lá e vale para todos. Nos comandos abaixo,
 `$SKILL_DIR` é a pasta onde este `SKILL.md` está.
@@ -30,7 +30,7 @@ repositório, então a edição se faz lá e vale para todos. Nos comandos abaix
 bash $SKILL_DIR/scripts/setup.sh
 ```
 
-Cria `~/.config/terrasia-pauta-youtube/venv` com `yt-dlp` (nesta máquina o
+Cria `~/.config/terras-pauta-youtube/venv` com `yt-dlp` (nesta máquina o
 `apt` não funciona; nada aqui depende dele). Sem OAuth, sem chave de API, sem
 cookie de navegador: só busca pública. Bônus: um symlink do
 `venv/bin/yt-dlp` para `~/.local/bin` liga também a pista de YouTube da
@@ -53,7 +53,7 @@ cookie de navegador: só busca pública. Bônus: um symlink do
 Rode com timeout de 300000 ms na ferramenta de shell. Cada consulta é uma
 requisição de busca e cada canal distinto dos primeiros resultados é mais
 uma (mediana dos últimos 20 vídeos), com cache de 14 dias em
-`~/.config/terrasia-pauta-youtube/cache-canais.json`.
+`~/.config/terras-pauta-youtube/cache-canais.json`.
 
 ```bash
 SKILL="$SKILL_DIR/scripts/pesquisa.py"
@@ -101,7 +101,7 @@ python3 "$SKILL" comparar "rag do zero" "o que é RAG" --json
 
 | Skill | Pergunta |
 |---|---|
-| `terrasia-pauta-youtube` (esta) | Que embalagem tem demanda comprovada? |
+| `terras-pauta-youtube` (esta) | Que embalagem tem demanda comprovada? |
 | `terras-last30days` | O que se falou nos últimos 30 dias? |
 | `terras-video` | Como virar vídeo (roteiro, pacote, upload) |
 

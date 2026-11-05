@@ -2,7 +2,7 @@
 
 ## Anatomia
 
-Uma skill terras- é um diretório com `SKILL.md` na raiz e, quando precisa, `references/` e `scripts/`. A fonte única mora em `skills/<terras-nome>/` do repositório `terrasia-skills`; cada runtime enxerga a skill por um link simbólico criado pelo `scripts/instalar.sh` do repositório:
+Uma skill terras- é um diretório com `SKILL.md` na raiz e, quando precisa, `references/` e `scripts/`. A fonte única mora em `skills/<terras-nome>/` do repositório `terras-skills`; cada runtime enxerga a skill por um link simbólico criado pelo `scripts/instalar.sh` do repositório:
 
 ```bash
 bash scripts/instalar.sh --aplicar

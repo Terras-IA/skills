@@ -17,7 +17,7 @@ São quatro modos: **fechar**, **consolidar**, **compactar** e **auditar**.
 
 ## Onde está instalada
 
-Fonte única: `skills/terras-consolidacao-de-memoria/` no repositório `terrasia-skills`. Adaptada do speccraft (MIT, ver `NOTICE`).
+Fonte única: `skills/terras-consolidacao-de-memoria/` no repositório `terras-skills`. Adaptada do speccraft (MIT, ver `NOTICE`).
 
 ## Antes de começar
 

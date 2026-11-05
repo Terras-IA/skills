@@ -1,5 +1,5 @@
 ---
-name: terrasia-post-empresa
+name: terras-post-empresa
 description: "Produz a peça da Company Page do TerrasIA: post na voz de produto e imagem na identidade da marca (1200x628 e 1080x1350), com régua de texto e aceite no celular. Use para post da empresa ou Company Page. A análise de referência é da terras-pauta-mercado."
 keywords: [post da empresa, linkedin da empresa, company page, peca da empresa, imagem da empresa, banner da empresa, card, identidade do produto, publicacao, marca, terrasia]
 version: 1.0.0
@@ -10,7 +10,7 @@ license: MIT
 
 ## Onde está instalada
 
-Fonte única: `skills/terrasia-post-empresa/` no repositório `terrasia-skills`. Cada agente enxerga a skill por um link simbólico criado pelo `scripts/instalar.sh`; a edição se faz aqui e vale para todos. Abaixo, `$SKILL_DIR` é a pasta desta skill.
+Fonte única: `skills/terras-post-empresa/` no repositório `terras-skills`. Cada agente enxerga a skill por um link simbólico criado pelo `scripts/instalar.sh`; a edição se faz aqui e vale para todos. Abaixo, `$SKILL_DIR` é a pasta desta skill.
 
 ## Descrição
 

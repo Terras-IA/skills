@@ -10,7 +10,7 @@ Produz o PNG que acompanha o texto, para LinkedIn e para Substack. Não escreve 
 
 ## Onde está instalada
 
-Fonte única: `skills/terras-banner/` no repositório `terrasia-skills`. Cada agente
+Fonte única: `skills/terras-banner/` no repositório `terras-skills`. Cada agente
 enxerga a skill por um link simbólico criado pelo `scripts/instalar.sh` do
 repositório, então a edição se faz lá e vale para todos. Nos comandos abaixo,
 `$SKILL_DIR` é a pasta onde este `SKILL.md` está.

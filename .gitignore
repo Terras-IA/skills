@@ -9,7 +9,7 @@ config.json
 client_secret*.json
 .auth/
 # Currículo destilado do usuário (a base versionada é perfil.example.md)
-skills/terrasia-vagas-coders/references/perfil.md
+skills/terras-vagas-coders/references/perfil.md
 
 # Saída do npm run pacotes (zips para upload no claude.ai e no ChatGPT).
 dist/

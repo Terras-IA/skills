@@ -194,11 +194,11 @@ Publica, agenda e gerencia posts e Notes na Substack pela API interna do editor,
 
 Palavras-chave: `substack`, `publicar`, `publish`, `newsletter`, `rascunho`, `draft`, `note`, `nota`, `agendar`, `schedule`, `unpublish`, `prosemirror`
 
-### terrasia-post-empresa
+### terras-post-empresa
 
 Produz a peça da Company Page do TerrasIA: post na voz de produto e imagem na identidade da marca (1200x628 e 1080x1350), com régua de texto e aceite no celular. Use para post da empresa ou Company Page. A análise de referência é da terras-pauta-mercado.
 
-`/plugin install terrasia-post-empresa@terras` · v1.0.0
+`/plugin install terras-post-empresa@terras` · v1.0.0
 
 Palavras-chave: `post da empresa`, `linkedin da empresa`, `company page`, `peca da empresa`, `imagem da empresa`, `banner da empresa`, `card`, `identidade do produto`, `publicacao`, `marca`, `terrasia`
 
@@ -406,11 +406,11 @@ Lê sinais agregados de sobrecarga e atrito de uma equipe e entrega indícios co
 
 Palavras-chave: `risco psicossocial`, `riscos psicossociais`, `sobrecarga cronica`, `iso 45003`, `clima organizacional`, `burnout na equipe`, `horas extras recorrentes`, `rotatividade`
 
-### terrasia-vagas-coders
+### terras-vagas-coders
 
 Filtra as vagas do board da COD3RS e do Rebase Jobs (rebasedev.com.br/vagas) contra o currículo do usuário em baldes A (recomendar), B (talvez) e C (descarte com motivo) e, com aprovação por vaga, avança na candidatura. Use para vagas da COD3RS, 'o que tem de vaga pra mim' ou aplicar nas aprovadas.
 
-`/plugin install terrasia-vagas-coders@terras` · v1.0.0
+`/plugin install terras-vagas-coders@terras` · v1.0.0
 
 Palavras-chave: `cod3rs`, `coders`, `rebase`, `rebasedev`, `vagas`, `board`, `curriculo`, `triagem`, `emprego`, `remote`, `senior`, `fit`
 
@@ -1096,11 +1096,11 @@ Pesquisa com usuários de ponta a ponta: plano, roteiro de entrevista, triagem, 
 
 Palavras-chave: `user research`, `pesquisa com usuarios`, `entrevista`, `roteiro`, `survey`, `sintese`, `personas`, `descoberta`, `qualitativa`, `quantitativa`
 
-### terrasia-pauta-youtube
+### terras-pauta-youtube
 
 Pesquisa de demanda no YouTube antes do roteiro: compara temas pela mediana de views, acha outliers por canal e colhe frases recorrentes dos títulos que performam. Use para escolher tema de vídeo, medir demanda de título ou antes da terras-video.
 
-`/plugin install terrasia-pauta-youtube@terras`
+`/plugin install terras-pauta-youtube@terras`
 
 Palavras-chave: `youtube`, `pauta`, `tema`, `envelope`, `demanda`, `views`, `outlier`, `titulo`, `capa`, `thumbnail`, `pesquisa`, `roteiro`, `terrasia`
 

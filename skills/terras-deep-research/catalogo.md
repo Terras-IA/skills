@@ -8,7 +8,7 @@ license: MIT
 
 # Deep Research
 
-Fonte única: `skills/terras-deep-research/` no repositório `terrasia-skills`, adaptada de `199-biotechnologies/claude-deep-research-skill` (MIT, ver `LICENSE`).
+Fonte única: `skills/terras-deep-research/` no repositório `terras-skills`, adaptada de `199-biotechnologies/claude-deep-research-skill` (MIT, ver `LICENSE`).
 
 ## Core Purpose
 

@@ -8,13 +8,13 @@ Somente leitura. O script lista e pontua; o agente julga com references/perfil.m
   python3 rebase.py --marcar SLUG...   # marca como vistas (depois de entregar a triagem)
   python3 rebase.py --anuncio SLUG     # anúncio completo em texto
 
-Token: REBASE_JOBS_TOKEN ou o arquivo ~/.config/terrasia-vagas-coders/rebase-token (uma linha,
+Token: REBASE_JOBS_TOKEN ou o arquivo ~/.config/terras-vagas-coders/rebase-token (uma linha,
 com ou sem o prefixo "Bearer "). Nunca imprime o token.
 """
 import html, json, os, re, sys, time, urllib.parse, urllib.request
 
 API = 'https://rebasedev.com.br/api/v1/'
-CONFIG = os.path.expanduser('~/.config/terrasia-vagas-coders')
+CONFIG = os.path.expanduser('~/.config/terras-vagas-coders')
 ESTADO = os.path.join(CONFIG, 'rebase-vistas.json')
 ARQUIVO_TOKEN = os.path.join(CONFIG, 'rebase-token')
 

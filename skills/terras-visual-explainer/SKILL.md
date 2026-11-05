@@ -8,7 +8,7 @@ license: MIT
 
 # Visual Explainer
 
-Fonte única: `skills/terras-visual-explainer/` no repositório `terrasia-skills`, adaptada de `nicobailon/visual-explainer` (MIT, ver `LICENSE`).
+Fonte única: `skills/terras-visual-explainer/` no repositório `terras-skills`, adaptada de `nicobailon/visual-explainer` (MIT, ver `LICENSE`).
 
 Generate self-contained HTML pages that explain systems, code changes, plans, data, and technical concepts visually. Use this skill for diagram requests, architecture overviews, diff/plan reviews, project recaps, comparison tables, slide decks, and any visual explanation.
 
