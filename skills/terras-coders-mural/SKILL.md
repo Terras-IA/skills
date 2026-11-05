@@ -48,7 +48,9 @@ comentário que prova leitura, e publica nos dois lugares só depois da aprovaç
      coberta, chame de novo). Por baixo é a mesma API `/spaces/<slug>/messages?kind=post`, janela de 30 dias (decisão do usuário em 16/10: post mais antigo fica de fora; a API pagina com `hasMore` + `before=<createdAt mais antigo>`). Slugs:
      Domains `system-design, live-coding-leetcode, frontend, backend, devops, qa, produto, cloud,
      banco-de-dados, dados, cybersecurity`; Stacks `inteligencia-artificial, java, net, react, power-bi,
-     node, ruby-on-rails, python, react-native` (Mobile), `data-science`. A lista de canais está em
+     node, ruby-on-rails, python, react-native` (Mobile), `data-science`. O espaço `geral` também
+     entra (decisão do usuário em 01/11/2026); costuma ser pergunta ou conversa sem link, então o
+     comentário vai só na COD3RS. A lista de canais está em
      `bootstrap.channelReads` (`<slug>:post`); `spaces()` já inclui espaço novo. Mesma regra de curtir,
      comentar e aprovar; marque a coluna `espaco` na tabela. Post do próprio usuário: pular.
      Post sem link do LinkedIn (apresentação, pergunta): comentário só na COD3RS, no idioma do post.
@@ -56,6 +58,10 @@ comentário que prova leitura, e publica nos dois lugares só depois da aprovaç
    LinkedIn e entra na tabela como linha própria (o comentário do mural continua um só). Para cada link: navegue e use `get_page_text` (1.500 caracteres
    bastam). Leia o texto do autor, não o título do mural. Post sem link: comentário só no mural,
    baseado no texto do mural.
+   **Leia também a conversa** com `await __li.comments()` (`scripts/linkedin.js`). Se vier
+   `oculto: true`, troque a ordem para "Mais recentes" com clique real e leia de novo. Anote no
+   rascunho quem já perguntou ou disse o quê e se o autor já respondeu: isso vale também para os
+   colegas da COD3RS, que comentam os mesmos posts horas antes.
 3b. **Gerar conhecimento** de cada post que vai receber comentário no LinkedIn, pela skill
    `terras-linkedin-conhecimento` (baixar com `baixar_post.py`, ler imagens, conferir em fonte primária,
    `conhecimento.md` + linha no `indice.md`). Acrescente a seção `## Comparar com os nossos`: quais
@@ -69,6 +75,9 @@ comentário que prova leitura, e publica nos dois lugares só depois da aprovaç
    padrões de IA e régua B1/B2 de `terras-humanizer/references/ingles-b1b2.md`) antes de
    montar a tabela; termo técnico exato fica. Salve num JSON (`id, autor, link, en, pt`). Se um
    comentário afirmar algo sobre a experiência pessoal do usuário, sinalize na tabela.
+   **Não repita a conversa**: se alguém já fez a mesma pergunta ou o mesmo ponto, troque o ângulo;
+   se o autor já respondeu, construa em cima da resposta em vez de perguntar de novo. Na tabela,
+   marque a linha com "conversa lida" e cite o comentário mais próximo do nosso.
 5. **Aprovação.** Mostre a tabela completa e espere o "aprovado". Aceite exclusões ("menos 8452") e
    trocas de texto.
 6. **Mural.** Na aba da COD3RS (reinjete `mural.js` se a página recarregou):
@@ -117,7 +126,7 @@ baixo e a aprovação humana reduzem o risco, mas não eliminam. A decisão de u
 ## Referências
 
 - `scripts/mural.js`: helper in-page da COD3RS (`me, spaces, list, listSpace, commented, like, likeIn, comment, publish`).
-- `scripts/linkedin.js`: helper in-page do LinkedIn (`prep, submit`), PT e EN.
+- `scripts/linkedin.js`: helper in-page do LinkedIn (`prep, submit, comments`), PT e EN.
 - `references/api-coders.md`: endpoints, payloads e comportamento observado da API do mural.
 - `references/estilo-comentarios.md`: como escrever comentários que provam leitura, com exemplos.
 - `references/red-baseline.md`: falhas reais observadas sem a skill e a regra que fecha cada uma.

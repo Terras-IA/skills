@@ -50,7 +50,8 @@
   }
 
   // Espaços que não valem ponto (ou já são cobertos por list()).
-  const NAO_PONTUAVEIS = ['mural-posts', 'geral', 'avisos', 'career-in-public', 'showcase', 'apresentacoes', 'mural-vagas'];
+  // 'geral' entra na rotina por decisão do usuário em 01/11/2026.
+  const NAO_PONTUAVEIS = ['mural-posts', 'avisos', 'career-in-public', 'showcase', 'apresentacoes', 'mural-vagas'];
 
   // Slugs dos espaços de posts conhecidos (Domains e Stacks), para passar a listSpace().
   async function spaces() {
@@ -94,14 +95,27 @@
 
   // Posts de outras pessoas. Sem argumentos: última página (mais recentes).
   // {hours: N} = desde N horas atrás; {before: ISO} = página anterior (o "rolar a tela").
+  // Não usa `since`: a API devolve no máximo 50 itens a partir do MAIS ANTIGO da janela e responde
+  // hasMore=false mesmo cortando os mais novos (visto em 04/11/2026). Pagina do mais novo para trás.
   async function list({ hours, before } = {}) {
     const { username } = await me();
-    let q = '?kind=post';
-    if (hours) q += '&since=' + encodeURIComponent(new Date(Date.now() - hours * 3600e3).toISOString());
-    else if (before) q += '&before=' + encodeURIComponent(before);
-    const r = await api('/api/community/spaces/' + CHANNEL + '/messages' + q);
-    const items = (r.items || []).filter((p) => p.author !== username).map((p) => slim(p));
-    const oldest = (r.items || []).reduce((a, p) => (!a || p.createdAt < a ? p.createdAt : a), null);
+    const base = '/api/community/spaces/' + CHANNEL + '/messages?kind=post';
+    const since = hours ? new Date(Date.now() - hours * 3600e3).toISOString() : null;
+    let r = await api(base + (before ? '&before=' + encodeURIComponent(before) : ''));
+    let pool = r.items || [];
+    for (let g = 0; since && r.hasMore && g < 10; g++) {
+      const old = pool.reduce((a, p) => (!a || p.createdAt < a ? p.createdAt : a), null);
+      if (old < since) break;
+      await sleep(200);
+      r = await api(base + '&before=' + encodeURIComponent(old));
+      if (!(r.items || []).length) break;
+      pool = pool.concat(r.items);
+    }
+    const seen = new Set();
+    const items = pool
+      .filter((p) => (!since || p.createdAt >= since) && p.author !== username && !seen.has(p.id) && seen.add(p.id))
+      .map((p) => slim(p));
+    const oldest = pool.reduce((a, p) => (!a || p.createdAt < a ? p.createdAt : a), null);
     return { items, oldest, hasMore: !!r.hasMore };
   }
 

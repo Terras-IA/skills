@@ -16,6 +16,9 @@ for sharing") não gera conversa e todo mundo percebe que é automação.
   natural em português.
 - **Não invente experiência do usuário.** Frases como "saved me more than once" ou "changed it for me
   too" atribuem vivência a ele: sinalize na tabela de aprovação para ele confirmar ou trocar.
+- **Não repita quem já comentou.** Leia a conversa antes de escrever (passo 3). Pergunta que outra
+  pessoa já fez, com a resposta do autor logo embaixo, mostra que você não leu a thread. Troque o
+  ângulo ou construa em cima da resposta ("Your answer to Felipe about the blob link covers...").
 - Post comemorativo (certificação, conquista): parabéns + um detalhe do que ele contou.
 - Post de ferramenta/link: diga para que você usaria ou um cuidado ao usar.
 

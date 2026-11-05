@@ -90,15 +90,24 @@ def main():
             print(f"- {p} ([{n['autor']}, {n['dia']}](../{n['rel']}))")
         print()
 
-    perguntas = []
+    # resposta_autor: respondida (já está na nota), sem_resposta, comentario_nao_localizado.
+    # Só "respondida" sai da fila; as outras continuam, marcadas com a data da última conferência.
+    perguntas, respondidas = [], 0
     for f in sorted(glob.glob(f"{raiz}/mural/mural-*.json")):
         for r in json.load(open(f, encoding="utf-8")):
             if "?" in (r.get("en") or "") and r.get("linkedin_comentado"):
-                perguntas.append((os.path.basename(f)[6:16], r["autor"], r["en"], r.get("link", "")))
-    print(f"## Perguntas que deixamos no LinkedIn ({len(perguntas)})\n")
+                if r.get("resposta_autor") == "respondida":
+                    respondidas += 1
+                    continue
+                st = {"sem_resposta": "sem resposta", "comentario_nao_localizado": "comentário não localizado"}
+                conf = r.get("resposta_conferida")
+                perguntas.append((os.path.basename(f)[6:16], r["autor"], r["en"], r.get("link", ""),
+                                  conf and f"{conf}, {st.get(r.get('resposta_autor'), '?')}"))
+    print(f"## Perguntas que deixamos no LinkedIn ({len(perguntas)} na fila, {respondidas} respondidas e anotadas)\n")
     print("Resposta do autor é conhecimento de graça. Conferir a thread e anotar na nota do post.\n")
-    for dia, autor, en, link in perguntas:
-        print(f"- {dia} · {autor}: \"{[x for x in re.split(r'(?<=[.?!]) ', en) if '?' in x][-1]}\" {link}")
+    for dia, autor, en, link, conf in perguntas:
+        marca = f" (conferida em {conf})" if conf else ""
+        print(f"- {dia} · {autor}: \"{[x for x in re.split(r'(?<=[.?!]) ', en) if '?' in x][-1]}\" {link}{marca}")
 
 
 if __name__ == "__main__":
