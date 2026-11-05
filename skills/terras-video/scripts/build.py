@@ -84,7 +84,7 @@ FATOR_AMOSTRA = 0.25
 QUADROS_AQUECIMENTO = 2
 FADE_IN = 0.35
 FADE_OUT = 0.45
-VOZ_PADRAO = "pt-BR-ThalitaMultilingualNeural"
+VOZ_PADRAO = "pt-BR-FranciscaNeural"
 RITMO_PADRAO = "-8%"   # leitura um pouco mais calma que o default da voz
 # Alvo de fala para video. A cadeia de audio e a normalizacao vivem na skill
 # terras-audio, que tem alvos por contexto (video e livro); aqui so se confere.

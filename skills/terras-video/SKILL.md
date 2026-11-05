@@ -276,9 +276,14 @@ para o relatório de pronúncia que o `plan` imprime.
 O que continua sendo decisão daqui: a **voz padrão é `pt-BR-ThalitaMultilingualNeural`
 com ritmo `-8%`**, escolhida pelo Everton em 2026-09-20 ouvindo as três opções em
 pt-BR do `edge-tts` (Antonio, Francisca e Thalita); o roteiro sobrepõe com `voice` e
-`rate`, e o `brand.json` guarda o padrão. O modo `voz-en` (palavra inglesa numa voz
-EN colada na frase) existiu aqui e foi **reprovado pelo ouvido dele**: "não presta,
-misturou". O motivo ficou registrado em `build.py`.
+`rate`, e o `brand.json` guarda o padrão.
+*Aviso de estabilidade:* por ser MultilingualNeural, a Thalita tenta inferir idiomas e
+pode ler palavras ambíguas em espanhol (ex.: "Verde" soando como "bérde", ou "El Niño"),
+além de oscilar o timbre entre blocos gerados separadamente. Para vídeos que exijam
+consistência vocal absoluta e dicção 100% nativa sem risco de sotaque hispânico,
+sobreponha com **`pt-BR-FranciscaNeural`** (feminina) ou **`pt-BR-AntonioNeural`** (masculina).
+O modo `voz-en` (palavra inglesa numa voz EN colada na frase) existiu aqui e foi
+**reprovado pelo ouvido dele**: "não presta, misturou". O motivo ficou registrado em `build.py`.
 
 Detalhes de alvo de loudness, dicionário de pronúncia e calibragem estão em
 `$SKILL_DIR/../terras-audio/SKILL.md`.
@@ -441,6 +446,7 @@ e a lógica continua aqui, num lugar só. Variáveis: `TERRAS_VIDEO_CLI` (defaul
   é a faixa livre encolhida pelo zoom, não a faixa livre. Quem pega isso é o gate
   visual nos quadros do vídeo; a checagem de encaixe olha a cartela parada, que está
   certa. Medido no primeiro teste: cabeçalho em y=230 virava 187 com o zoom completo.
+- **Voz MultilingualNeural (`Thalita`) troca de idioma e oscila timbre:** palavras comuns ao espanhol (como "Verde" ou "El Niño") acionam a fonologia hispânica (lendo "bérde"), e o timbre oscila entre blocos independentes. Em roteiros onde isso ocorrer, use `pt-BR-FranciscaNeural` ou `pt-BR-AntonioNeural`.
 - **Cena externa nunca entra crua no pipe.** Quadro de tamanho diferente do canvas
   desalinha o fluxo e sai vídeo embaralhado, sem erro nenhum: o encaixe é obrigatório
   e o `build.py` avisa quando ele acontece.
