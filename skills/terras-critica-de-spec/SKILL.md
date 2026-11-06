@@ -1,6 +1,6 @@
 ---
 name: terras-critica-de-spec
-version: 1.0.0
+version: 1.1.0
 access: free
 category: desenvolvimento
 description: Critica uma spec antes da implementação (critério de aceite que não dá para testar, caso de borda faltando, escopo ambíguo, contradição, regra do repositório violada) e conduz a revisão com o autor, inclusive a divergência entre spec e código.
@@ -23,6 +23,21 @@ A meta é uma spec melhor, não uma spec bloqueada: proponha a reescrita sempre 
 Fonte única: `skills/terras-critica-de-spec/` no repositório `terras-skills`. Adaptada do speccraft (MIT, ver `NOTICE`).
 
 ## Modo crítica
+
+### Quem critica: um revisor sem a conversa
+
+A sessão que escreveu ou discutiu a spec não faz a crítica. Ela herdou as suposições da conversa e não vê o que ficou só dito, nunca escrito. A crítica roda numa **instância nova do agente, com contexto vazio** (o recurso de delegar tarefa a outro agente que a sua ferramenta oferecer), que recebe só:
+
+- o caminho da spec;
+- os arquivos que a spec cita e que existem no repositório;
+- as regras do repositório (`CLAUDE.md`, `AGENTS.md`, ADRs que a spec toca);
+- este roteiro (a lista abaixo e o formato de saída), por escrito.
+
+Não passe resumo da conversa, intenção do autor nem "o que já combinamos". O que o revisor precisa saber tem que estar na spec; se não está, é exatamente isso que ele deve achar. O revisor é somente leitura: não edita a spec nem o código.
+
+Se não houver como abrir uma instância nova com contexto vazio, **pare** e diga isso ao usuário. Não critique na mesma sessão chamando de crítica: no máximo, ofereça a `terras-revisao-cruzada`, que leva a spec para outro agente com contexto zero. A sessão principal só recebe o veredito, grava e conduz o modo revisão.
+
+A ideia vem do Elephant-Goldfish Model do Google (revisor "goldfish", sem memória da conversa; ficha em `terrasia-principal/docs/new-features/REFERENCIA-EGM-GOOGLE-2026-11-06.md`).
 
 ### O que procurar
 
@@ -77,6 +92,7 @@ Não edite `id`, `status`, `criado` nem `revisao` no cabeçalho da spec: quem co
 - **Sem número inventado.** Meta de desempenho, SLA ou volume que o autor não deu vira pergunta aberta.
 - **Sem edição, sem gravação.** Se a passada inteira não gerou mudança, não reescreva o arquivo.
 - **Crítica não edita.** No modo crítica, o único resultado é o veredito.
+- **Crítica não roda em quem escreveu.** Sem instância nova de contexto vazio, não há crítica: pare e avise.
 
 ## Combina com
 

@@ -77,7 +77,7 @@ Nada de código, nome de função ou número que o autor não deu.
 
 ### 2. Crítica e esclarecimento (o "clarify")
 
-Rode a `terras-critica-de-spec` no modo crítica e grave em `critica.md` o bloco YAML do veredito, uma seção por rodada (`## Rodada 1`, `## Rodada 2`), com a resposta do autor embaixo de cada preocupação. Se vier `pedir-mudancas` ou `rejeitar`, rode o modo revisão com o autor e critique de novo.
+Rode a `terras-critica-de-spec` no modo crítica, **numa instância nova do agente, de contexto vazio, que recebe só a spec, os arquivos citados e as regras do repositório** (nunca a conversa que gerou a spec), e grave em `critica.md` o bloco YAML do veredito, uma seção por rodada (`## Rodada 1`, `## Rodada 2`), com a resposta do autor embaixo de cada preocupação. Se vier `pedir-mudancas` ou `rejeitar`, rode o modo revisão com o autor e critique de novo.
 
 Leve também à `terras-revisao-cruzada` quando a feature tocar dado pessoal, dinheiro, autenticação ou permissão, migration de banco ou contrato público (API, SDK, formato de arquivo).
 **Portão 2:** veredito `aprovar` ou `aprovar-com-comentarios`, nenhuma pergunta `[bloqueante]` aberta e um "aprovado" explícito do autor. Então `status: aprovada`.
