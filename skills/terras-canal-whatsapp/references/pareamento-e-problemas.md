@@ -28,6 +28,7 @@ O link `https://whatsapp.com/channel/<código>` traz o código de convite. Consu
 | status 515 no pareamento | reinício pedido pelo servidor, parte normal do registro | reconectar com o MESMO estado, sem apagar |
 | código "expirado" repetido | a janela do código é curta, e a corrida com o celular come a validade | deixar a tela de digitação aberta e pedir o código com o celular à mão |
 | "número incorreto" ao digitar | o campo do celular já tem o DDI preenchido | digitar só DDD + número |
+| "Não foi possível conectar o dispositivo" ao digitar o código | o celular recusa a identidade de navegador customizada (`["Terrasia","Chrome","1.0.0"]`) no vínculo por código | usar `browser: ["Mac OS","Chrome","14.4.1"]` no socket de pareamento (resolvido assim em 2026-11-06) |
 | "Bad MAC / Failed to decrypt" no início | fila antiga de notificações da sessão recém-pareada | ignorar; para em poucos minutos |
 | leitura de mensagens do canal estoura timeout | limitação do fetch de newsletter nesta versão do Baileys | confirmação visual é do dono, no aplicativo |
 | evento de QR com sessão existente | o pareamento não está mais valendo | reparear |
