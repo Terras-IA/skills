@@ -23,10 +23,17 @@ FRACA = re.compile(r"fraca|gen[ée]ric", re.I)
 def nota(path, raiz):
     txt = open(path, encoding="utf-8").read()
     titulo = re.search(r"^# (.+)", txt, re.M)
-    tags = re.search(r"^> Tags: (.+)", txt, re.M)
-    fonte = re.search(r"^> Fonte: ([^,]+)", txt, re.M)
+    # Cabeçalho em três formatos: "> Tags:" / "> Fonte: Autor, ...", "- Tags:" / "- Autor:",
+    # e "Tags:" / "Autor: X · Pasta: ..." (notas geradas pela rodada do mural).
+    cab = txt.split("\n## ", 1)[0]
+    tags = re.search(r"^(?:> |- )?Tags: (.+)", cab, re.M)
+    fonte = (re.search(r"^> Fonte: ([^,]+)", cab, re.M)
+             or re.search(r"^(?:- )?Autor: ([^·(\n]+)", cab, re.M))
     pautas = [re.sub(r"^\W*pauta( poss[íi]vel)?:?\**\s*", "", l.strip("- *"), flags=re.I)
               for l in txt.splitlines() if re.match(r"^- *\**pauta", l, re.I)]
+    # Formato da rodada: a pauta vem no fim de uma linha corrida em "Comparar com os nossos".
+    pautas += [m.group(1) for l in txt.splitlines() if not l.lstrip().startswith("-")
+               for m in [re.search(r"\bPauta:\s*(.+)", l)] if m]
     rel = os.path.relpath(path, raiz)
     return {
         "rel": rel,
@@ -34,7 +41,8 @@ def nota(path, raiz):
         "pasta": os.path.basename(os.path.dirname(path)),
         "titulo": titulo.group(1).strip() if titulo else rel,
         "autor": fonte.group(1).strip() if fonte else "?",
-        "tags": sorted({ALIAS.get(t.strip(), t.strip()) for t in (tags.group(1) if tags else "").split(",") if t.strip()}),
+        "tags": sorted({ALIAS.get(t.strip().lower(), t.strip().lower())
+                        for t in (tags.group(1) if tags else "").split(",") if t.strip()}),
         "pautas": [p for p in pautas if p and not FRACA.search(p)],
     }
 

@@ -3,6 +3,29 @@
 O objetivo é provar que o post foi lido. Comentário genérico ("Great post!", "Nice topic, thanks
 for sharing") não gera conversa e todo mundo percebe que é automação.
 
+## Tom (decisão do usuário em 11/11/2026)
+
+O comentário fala na primeira pessoa e mostra opinião, não aula. Nada de "One catch: X" ou "Since
+version N, Y does Z" em tom de manual. O tom muda conforme o tema é ou não da área do usuário.
+
+**Na área dele** (.NET/C#, ASP.NET Core, EF Core, arquitetura, microsserviços, APIs, idempotência,
+filas, bancos relacionais/PostgreSQL/SQL Server, Azure DevOps, CI/CD, Docker, agentes de IA,
+carreira e entrevistas): opinião ou prática própria.
+- EN: "I'd do it like this: ...", "What I usually do is ...", "I think the ideal here would be ...",
+  "I've done it this way: ..."
+- PT: "Eu faria assim: ...", "Costumo fazer ...", "Penso que o ideal seria ...", "Já fiz assim: ..."
+
+**Fora da área dele** (geodados/GIS, jogos/Unity, mobile nativo, produto/UX, ciência de dados e ML,
+Go, dbt e afins): curto e humilde, sem ensinar o autor.
+- EN: "Interesting point.", "Nice way to look at it.", "I don't know much about this, but I think ..."
+- PT: "Achei interessante.", "Bom ponto de vista.", "Não conheço muito, mas penso que ..."
+- Um detalhe do post continua obrigatório, para provar leitura. Pergunta curta também vale.
+
+**"Já fiz" e "costumo fazer" afirmam experiência dele.** Use quando for plausível pelo perfil, mas
+sempre sinalize na tabela de aprovação para ele confirmar ou trocar por "eu faria".
+
+Em dúvida se o tema é da área dele, trate como fora.
+
 ## Regras
 
 - **Um detalhe concreto do post**: um número, um termo, uma frase do autor, o exemplo que ele usou.
@@ -26,13 +49,15 @@ for sharing") não gera conversa e todo mundo percebe que é automação.
 
 | Post | Ruim | Bom (EN) |
 |---|---|---|
-| Teste de concorrência com 10 débitos simultâneos | "Great post!" | "Asserting the invariant, not the throughput, is the key shift. A barrier before the write makes it reliable." |
-| 301 vs 302 em encurtador de URL | "Very useful, thanks." | "A cached 301 is almost impossible to take back from users' browsers. 302 keeps control server-side." |
+| Teste de concorrência com 10 débitos simultâneos (área dele) | "Great post!" | "I'd assert the invariant, not the throughput. I usually put a barrier before the write so all 10 start together." |
+| Async/await e EF Core (área dele) | "One DbContext can't run two queries at the same time." (tom de manual) | "Page 4 is the key one for me. With EF Core I'd never run two queries on the same DbContext at once; I'd use one context per query." |
+| Mapa de rodovias do Paraná (fora da área) | "Area weighting assumes even spread, so the 26% is low." (ensina o autor) | "Interesting map. I don't know much about GIS, but I'd guess rural houses sit closer to the roads. Would that change the 26%?" |
 | Certificação em liderança situacional | "Congrats!" | "Congrats, Ana! Adapting the style to the team's phase is the hardest part of leading, and the least taught." |
 
 ## Tabela de aprovação
 
 Mostre sempre as colunas `# | Autor | LinkedIn (EN) | Mural (PT)` e marque linhas que:
 - não têm link (só mural);
-- afirmam algo sobre a experiência do usuário;
+- afirmam algo sobre a experiência do usuário ("já fiz", "costumo fazer");
+- tratam de tema fora da área dele (tom humilde);
 - tratam de tema sensível (política, demissões, saúde).

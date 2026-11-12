@@ -247,7 +247,8 @@ def cmd_indexar(a):
         if not os.path.exists(nota):
             pulos.append({"pasta": pasta, "motivo": "sem conhecimento.md"})
             continue
-        rel = os.path.relpath(os.path.abspath(nota), os.path.abspath(BASE))
+        # realpath: ~/linkedin pode ser link para a pasta real (projetos/linkedin)
+        rel = os.path.relpath(os.path.realpath(nota), os.path.realpath(BASE))
         if rel.startswith(".."):
             pulos.append({"pasta": pasta, "motivo": "fora de " + BASE})
             continue
