@@ -2,7 +2,7 @@
 
 > **Arquivo gerado.** Rode `node scripts/manual.mjs` para regravar; não edite à mão.
 
-**153 skills** neste repositório: **142 instaláveis** pelo marketplace, **8 de processo do motor** e **3 ligadas a projeto de cliente**.
+**155 skills** neste repositório: **144 instaláveis** pelo marketplace, **8 de processo do motor** e **3 ligadas a projeto de cliente**.
 
 ## Instalar e usar
 
@@ -38,13 +38,13 @@ O script cria um link por skill em cada pasta de agente que já existir na máqu
 ## Índice
 
 - [Conteúdo, marca e publicação](#conteúdo-marca-e-publicação) — 19 skills
-- [Pessoas, RH e carreira](#pessoas-rh-e-carreira) — 26 skills
+- [Pessoas, RH e carreira](#pessoas-rh-e-carreira) — 27 skills
 - [Financeiro e fiscal](#financeiro-e-fiscal) — 6 skills
 - [Comercial e vendas](#comercial-e-vendas) — 3 skills
 - [Gestão, processos e decisão](#gestão-processos-e-decisão) — 9 skills
 - [Desenvolvimento de software](#desenvolvimento-de-software) — 28 skills
 - [Design e front-end](#design-e-front-end) — 18 skills
-- [Mídia e apresentação](#mídia-e-apresentação) — 13 skills
+- [Mídia e apresentação](#mídia-e-apresentação) — 14 skills
 - [Pesquisa e radar](#pesquisa-e-radar) — 6 skills
 - [IA, prompts e agentes](#ia-prompts-e-agentes) — 6 skills
 
@@ -178,6 +178,14 @@ Transforma referência externa (repo, post, anúncio, paper) na análise mercado
 
 Palavras-chave: `pauta`, `mercado`, `análise de mercado`, `comparação`, `concorrente`, `referência`, `cobertura`, `cobre`, `rejeita`, `falta`, `recibo`, `post`, `linkedin`, `whatsapp`, `substack`
 
+### terras-post-empresa
+
+Produz a peça da Company Page do TerrasIA: post na voz de produto e imagem na identidade da marca (1200x628 e 1080x1350), com régua de texto e aceite no celular. Use para post da empresa ou Company Page. A análise de referência é da terras-pauta-mercado.
+
+`/plugin install terras-post-empresa@terras` · v1.0.0
+
+Palavras-chave: `post da empresa`, `linkedin da empresa`, `company page`, `peca da empresa`, `imagem da empresa`, `banner da empresa`, `card`, `identidade do produto`, `publicacao`, `marca`, `terrasia`
+
 ### terras-seo
 
 Auditar, planejar e implementar SEO: SEO técnico, otimização on-page, dados estruturados (schema.org), Core Web Vitals e estratégia de conteúdo. Use quando o pedido for melhorar visibilidade em busca, corrigir SEO, schema markup, sitemap, robots.txt ou mapa de palavras-chave. SEO audit.
@@ -193,14 +201,6 @@ Publica, agenda e gerencia posts e Notes na Substack pela API interna do editor,
 `/plugin install terras-substack@terras`
 
 Palavras-chave: `substack`, `publicar`, `publish`, `newsletter`, `rascunho`, `draft`, `note`, `nota`, `agendar`, `schedule`, `unpublish`, `prosemirror`
-
-### terras-post-empresa
-
-Produz a peça da Company Page do TerrasIA: post na voz de produto e imagem na identidade da marca (1200x628 e 1080x1350), com régua de texto e aceite no celular. Use para post da empresa ou Company Page. A análise de referência é da terras-pauta-mercado.
-
-`/plugin install terras-post-empresa@terras` · v1.0.0
-
-Palavras-chave: `post da empresa`, `linkedin da empresa`, `company page`, `peca da empresa`, `imagem da empresa`, `banner da empresa`, `card`, `identidade do produto`, `publicacao`, `marca`, `terrasia`
 
 ## Pessoas, RH e carreira
 
@@ -253,6 +253,14 @@ Gera prompts de coaching, scripts de feedback e planos de desafio com base no fr
 `/plugin install terras-care-to-dare-coach@terras` · v1.0.0
 
 Palavras-chave: `care to dare`, `coaching`, `script de feedback`, `conversa difícil`, `plano de desafio`, `feedback`
+
+### terras-checagem-ats
+
+Confere CV e carta de apresentação em Markdown antes de enviar: leitura por ATS, cobertura das palavras-chave da vaga (corte de 70%), afirmação sem lastro e leitura rápida, com veredito e correções. Use para checar ATS, palavras-chave ou se o CV está pronto para a vaga.
+
+`/plugin install terras-checagem-ats@terras`
+
+Palavras-chave: `ats`, `checagem ats`, `applicant tracking system`, `cv`, `currículo`, `resume`, `carta de apresentação`, `cover letter`, `palavras-chave da vaga`, `keyword`, `filtro de recrutador`, `candidatura`
 
 ### terras-conferencia-fechamento-folha
 
@@ -610,7 +618,7 @@ Palavras-chave: `consolidar specs`, `compactar historico`, `memoria do projeto`,
 
 Critica uma spec antes da implementação (critério de aceite que não dá para testar, caso de borda faltando, escopo ambíguo, contradição, regra do repositório violada) e conduz a revisão com o autor, inclusive a divergência entre spec e código.
 
-`/plugin install terras-critica-de-spec@terras` · v1.0.0
+`/plugin install terras-critica-de-spec@terras` · v1.1.0
 
 Palavras-chave: `critica de spec`, `revisar spec`, `revisao de especificacao`, `criterio de aceite`, `casos de borda`, `escopo ambiguo`, `spec drift`, `refinar spec`
 
@@ -1020,6 +1028,14 @@ Mapa mental a partir de texto, reunião, livro ou tema: roteiro em Markdown com 
 
 Palavras-chave: `mapa mental`, `mind map`, `mindmap`, `resumo visual`, `markmap`, `brainstorm`, `estudo`, `revisão de assunto`
 
+### terras-md-para-pdf
+
+Converte Markdown em PDF A4 com o md-to-pdf e um de três perfis de CSS da skill: denso (CV, carta, cheat sheet), compacto (CV com mais respiro) e confortavel (documento, relatório, plano). Use para gerar, exportar ou imprimir PDF de um .md, CV ou carta.
+
+`/plugin install terras-md-para-pdf@terras`
+
+Palavras-chave: `pdf`, `markdown para pdf`, `md para pdf`, `md-to-pdf`, `exportar pdf`, `imprimir`, `gerar pdf`, `cv em pdf`, `currículo pdf`, `carta em pdf`, `a4`
+
 ### terras-slides
 
 Deck HTML estratégico e persuasivo com Chart.js: estratégia por contexto, layouts, fórmulas de copy e design tokens. Use para pitch deck ou apresentação de negócio em HTML (não PPTX). Para slides com animação ou converter PPT, use terras-frontend-slides.
@@ -1042,7 +1058,7 @@ Monta vídeo para YouTube e Shorts a partir de roteiro: cartelas na identidade d
 
 Sai no plugin do grupo: `/plugin install terras-midia@terras`
 
-Palavras-chave: `video`, `youtube`, `shorts`, `reels`, `tiktok`, `vertical`, `1080x1920`, `cartela`, `narracao`, `locucao`, `voz`, `tts`, `mp4`, `ffmpeg`, `edge-tts`, `roteiro`, `terrasia`
+Palavras-chave: `video`, `youtube`, `remotion`, `shorts`, `reels`, `tiktok`, `vertical`, `1080x1920`, `cartela`, `narracao`, `locucao`, `voz`, `tts`, `mp4`, `ffmpeg`, `edge-tts`, `roteiro`, `terrasia`
 
 ### terras-visual-explainer
 
@@ -1082,19 +1098,11 @@ Palavras-chave: `notícias`, `noticias`, `news`, `boletim`, `roundup`, `digest`,
 
 ### terras-paper-diario
 
-Analisa papers (arXiv e afins) que afetam quem desenvolve: resumo honesto com números, o que não significa, e aplicação e aviso para júnior, pleno e sênior. Use para link de paper, 'analisar paper', 'paper do dia' ou a verificação diária do arXiv.
+Analisa papers (arXiv e afins) que afetam quem desenvolve, incluindo C#/.NET e gestão de TI: resumo honesto com números, o que não significa, e aplicação e aviso para júnior, pleno e sênior. Use para link de paper, 'analisar paper', 'paper do dia' ou a verificação diária.
 
 `/plugin install terras-paper-diario@terras`
 
-Palavras-chave: `paper`, `arxiv`, `estudo`, `pesquisa`, `paper do dia`, `paper-diario`, `agentes de ia`, `code review`, `carreira dev`, `análise de paper`, `digest diário`
-
-### terras-user-research
-
-Pesquisa com usuários de ponta a ponta: plano, roteiro de entrevista, triagem, síntese em achados, personas e oportunidades, e survey quantitativo. Use para pesquisa com usuários, entrevistas, survey ou análise de transcrições. User research.
-
-`/plugin install terras-user-research@terras`
-
-Palavras-chave: `user research`, `pesquisa com usuarios`, `entrevista`, `roteiro`, `survey`, `sintese`, `personas`, `descoberta`, `qualitativa`, `quantitativa`
+Palavras-chave: `paper`, `arxiv`, `estudo`, `pesquisa`, `paper do dia`, `paper-diario`, `agentes de ia`, `code review`, `carreira dev`, `análise de paper`, `digest diário`, `c#`, `.net`, `gestão de ti`, `itsm`, `governança de ti`
 
 ### terras-pauta-youtube
 
@@ -1103,6 +1111,14 @@ Pesquisa de demanda no YouTube antes do roteiro: compara temas pela mediana de v
 `/plugin install terras-pauta-youtube@terras`
 
 Palavras-chave: `youtube`, `pauta`, `tema`, `envelope`, `demanda`, `views`, `outlier`, `titulo`, `capa`, `thumbnail`, `pesquisa`, `roteiro`, `terrasia`
+
+### terras-user-research
+
+Pesquisa com usuários de ponta a ponta: plano, roteiro de entrevista, triagem, síntese em achados, personas e oportunidades, e survey quantitativo. Use para pesquisa com usuários, entrevistas, survey ou análise de transcrições. User research.
+
+`/plugin install terras-user-research@terras`
+
+Palavras-chave: `user research`, `pesquisa com usuarios`, `entrevista`, `roteiro`, `survey`, `sintese`, `personas`, `descoberta`, `qualitativa`, `quantitativa`
 
 ## IA, prompts e agentes
 

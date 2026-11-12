@@ -1,0 +1,183 @@
+/* Perfil compacto: base do denso com um pouco mais de margem embaixo de cada seção.
+   Variante de CV. Não é o padrão de documento (confortavel) nem de CV no máximo de densidade (denso). */
+
+/* ----- Page & base ----- */
+@page {
+  margin: 0 0;
+  size: A4;
+}
+
+html {
+  font-size: 11pt;
+  color: #1a1a1a;
+  background: #faf9f7;
+}
+
+body {
+  max-width: 52rem;
+  margin: 0 auto;
+  padding: 0.5rem 0;
+  font-family: "Segoe UI", "Helvetica Neue", Arial, "Liberation Sans", "DejaVu Sans", sans-serif;
+  line-height: 1.4;
+  background: #fffefc;
+  -webkit-print-color-adjust: exact;
+  print-color-adjust: exact;
+}
+
+/* ----- Headings: clear hierarchy, not washed out ----- */
+h1 {
+  color: #0d2137;
+  font-size: 1.5rem;
+  font-weight: 700;
+  margin: 0.5em 0 0.75em;
+  padding-bottom: 0.3em;
+  border-bottom: 2px solid #2c5282;
+  letter-spacing: -0.02em;
+  page-break-after: avoid;
+}
+
+h2 {
+  color: #1a365d;
+  font-size: 1.2rem;
+  font-weight: 600;
+  margin: 0.85em 0 1.0em;
+  padding-bottom: 0.3em;
+  border-bottom: 1px solid #4a5568;
+  page-break-after: avoid;
+}
+
+h3, h4, h5, h6 {
+  color: #2d3748;
+  font-weight: 600;
+  margin: 0.3em 0 0.45em;
+  page-break-after: avoid;
+}
+
+h3 { font-size: 1.1rem; }
+h4 { font-size: 1.0rem; }
+
+/* ----- Text & blocks ----- */
+p {
+  margin: 0.3em 0 0.45em;
+  color: #2d3748;
+}
+
+strong {
+  color: #1a202c;
+  font-weight: 600;
+}
+
+a {
+  color: #2b6cb0;
+  text-decoration: none;
+  border-bottom: 1px solid rgba(43, 108, 176, 0.35);
+}
+
+a:hover {
+  color: #1a365d;
+  border-bottom-color: #1a365d;
+}
+
+blockquote {
+  margin: 0.75em 0;
+  padding: 0.5em 1em 0.5em 1em;
+  border-left: 4px solid #2c5282;
+  background: #f7fafc;
+  color: #2d3748;
+  font-style: italic;
+}
+
+code {
+  font-family: "Consolas", "Monaco", "Courier New", "Liberation Mono", "DejaVu Sans Mono", monospace;
+  font-size: 0.9em;
+  padding: 0.15em 0.35em;
+  background: #edf2f7;
+  color: #2d3748;
+  border-radius: 3px;
+  border: 1px solid #e2e8f0;
+}
+
+pre {
+  margin: 0.75em 0;
+  padding: 0.75em 1em;
+  background: #2d3748;
+  color: #e2e8f0;
+  border-radius: 4px;
+  overflow-x: auto;
+  font-size: 0.9rem;
+  line-height: 1.45;
+  border: 1px solid #1a202c;
+}
+
+pre code {
+  background: none;
+  color: inherit;
+  padding: 0;
+  border: none;
+}
+
+/* ----- Lists ----- */
+ul, ol {
+  margin: 0.5em 0 0.65em;
+  padding-left: 1.5em;
+  color: #2d3748;
+}
+
+li {
+  margin: 0.25em 0;
+}
+
+li::marker {
+  color: #2c5282;
+}
+
+/* ----- Tables: clear and scannable ----- */
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 0.5em 0;
+  font-size: 0.95rem;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.06);
+  border-radius: 4px;
+  overflow: hidden;
+  page-break-inside: avoid;
+}
+
+thead {
+  background: #2c5282;
+  color: #fff;
+}
+
+th {
+  font-weight: 600;
+  text-align: left;
+  padding: 0.6em 1em;
+  border: 1px solid #2a4365;
+}
+
+td {
+  padding: 0.5em 1em;
+  border: 1px solid #e2e8f0;
+  color: #2d3748;
+}
+
+tbody tr:nth-child(even) {
+  background: #f7fafc;
+}
+
+tbody tr:hover {
+  background: #edf2f7;
+}
+
+/* ----- Horizontal rule (role / block separators) ----- */
+hr {
+  border: none;
+  border-top: 1px solid #cbd5e0;
+  margin: 0.65em 0 0.85em;
+}
+
+/* ----- Optional: section spacing for CV-style docs ----- */
+section + section,
+h2 + * {
+  margin-top: 0.25em;
+}

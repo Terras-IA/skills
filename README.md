@@ -99,10 +99,10 @@ Revisão pelo risco que a mudança cria, segurança e scan com o OWASP ZAP, risc
 <!-- catalogo:inicio -->
 <!-- gerado por `npm run readme` a partir do catálogo — não edite à mão -->
 
-**142 skills instaláveis** entre as 153 deste repositório; as demais ficam fora do marketplace — 8 skills de processo do motor (`.nao-instalar`) e 3 skills ligadas a projeto de cliente (`marketplace-fora.json`).
+**144 skills instaláveis** entre as 155 deste repositório; as demais ficam fora do marketplace — 8 skills de processo do motor (`.nao-instalar`) e 3 skills ligadas a projeto de cliente (`marketplace-fora.json`).
 
 <details>
-<summary><b>Ver a lista completa (142 skills)</b></summary>
+<summary><b>Ver a lista completa (144 skills)</b></summary>
 
 | Skill | O que faz |
 |---|---|
@@ -128,6 +128,7 @@ Revisão pelo risco que a mudança cria, segurança e scan com o OWASP ZAP, risc
 | [`terras-briefing-pre-reuniao-de-lideranca`](skills/terras-briefing-pre-reuniao-de-lideranca) | Prepara briefings para líderes com saúde do time, feedbacks recentes, loops abertos, riscos e perguntas para a reunião. |
 | [`terras-canal-whatsapp`](skills/terras-canal-whatsapp) | Publica texto ou imagem no canal (newsletter) do WhatsApp pela sessão pareada do sidecar, com pré-checagem e confirmação explícita. |
 | [`terras-care-to-dare-coach`](skills/terras-care-to-dare-coach) | Gera prompts de coaching, scripts de feedback e planos de desafio com base no framework Care to Dare. |
+| [`terras-checagem-ats`](skills/terras-checagem-ats) | Confere CV e carta de apresentação em Markdown antes de enviar: leitura por ATS, cobertura das palavras-chave da vaga (corte de 70%), afirmação sem lastro e leitura… |
 | [`terras-coders-mural`](skills/terras-coders-mural) | Engajamento em lote no Mural de Posts da COD3RS: curte, lê o post linkado no LinkedIn e comenta em inglês lá e em português no mural, só com aprovação. |
 | [`terras-comentarios`](skills/terras-comentarios) | Comenta em lote posts do LinkedIn colados pelo usuário: um comentário de até 100 caracteres por post, pronto para colar. Use quando houver 2 ou mais posts para comentar. |
 | [`terras-conciliacao-bancaria-ofx`](skills/terras-conciliacao-bancaria-ofx) | Concilia extrato bancário com os lançamentos internos e separa o que casou, o que divergiu, o que é tarifa e o que ficou sem par. |
@@ -191,18 +192,21 @@ Revisão pelo risco que a mudança cria, segurança e scan com o OWASP ZAP, risc
 | [`terras-mapeamento-de-processos`](skills/terras-mapeamento-de-processos) | Mapeia um processo a partir de áudio, gravação de tela ou relato e devolve o fluxo AS-IS/TO-BE (desenho, Mermaid e .bpmn para Camunda/Bizagi), diagnóstico com números… |
 | [`terras-matriz-gut`](skills/terras-matriz-gut) | Prioriza problemas concorrentes com a matriz GUT: notas ancoradas de Gravidade, Urgência e Tendência, faixa de decisão antes de pontuar e plano de ataque com dono… |
 | [`terras-mcp-server`](skills/terras-mcp-server) | Construção de servidor MCP com o SDK Node/TypeScript: tools, resources, prompts, validação com Zod e escolha de transporte (stdio ou Streamable HTTP). |
+| [`terras-md-para-pdf`](skills/terras-md-para-pdf) | Converte Markdown em PDF A4 com o md-to-pdf e um de três perfis de CSS da skill: denso (CV, carta, cheat sheet), compacto (CV com mais respiro) e confortavel (documento… |
 | [`terras-miniapp-builder`](skills/terras-miniapp-builder) | Cria miniapp do zero: entrevista as lacunas, decide arquitetura e LGPD, escreve a copy, constrói local-first e publica na Vercel. |
 | [`terras-minimalist-ui`](skills/terras-minimalist-ui) | UI minimalista editorial: paleta monocromática quente, hierarquia tipográfica, bento grid flat e pastéis discretos; sem gradientes nem sombras pesadas. |
 | [`terras-motion-performance`](skills/terras-motion-performance) | Audita e corrige animação que trava: layout thrashing, propriedade fora do compositor, scroll por JS, rAF sem fim, blur grande, will-change sobrando. |
 | [`terras-noticias`](skills/terras-noticias) | Lê boletins e roundups de notícias de IA e tecnologia, tria por criticidade e prioridade, resume os itens e escreve o rascunho do digest para o LinkedIn. |
-| [`terras-paper-diario`](skills/terras-paper-diario) | Analisa papers (arXiv e afins) que afetam quem desenvolve: resumo honesto com números, o que não significa, e aplicação e aviso para júnior, pleno e sênior. |
+| [`terras-paper-diario`](skills/terras-paper-diario) | Analisa papers (arXiv e afins) que afetam quem desenvolve, incluindo C#/.NET e gestão de TI: resumo honesto com números, o que não significa, e aplicação e aviso… |
 | [`terras-pauta-mercado`](skills/terras-pauta-mercado) | Transforma referência externa (repo, post, anúncio, paper) na análise mercado × TerrasIA com cobre/rejeita/falta e no pacote de posts por canal. |
+| [`terras-pauta-youtube`](skills/terras-pauta-youtube) | Pesquisa de demanda no YouTube antes do roteiro: compara temas pela mediana de views, acha outliers por canal e colhe frases recorrentes dos títulos que performam. |
 | [`terras-people-dashboard-automatico`](skills/terras-people-dashboard-automatico) | Monta um dashboard mensal de liderança com headcount, retenção, remuneração, contratação e DEI. |
 | [`terras-php`](skills/terras-php) | Write solid PHP avoiding type juggling traps, array quirks, and common security pitfalls. |
 | [`terras-pipeline-de-automacao`](skills/terras-pipeline-de-automacao) | Projeta pipelines de automação em que scripts determinísticos fazem o trabalho e o agente só decide em pontos de revisão, com rastro de hashes e recibos de execução. |
 | [`terras-plano-tdd`](skills/terras-plano-tdd) | Transforma uma spec revisada em plano test-first (RED, GREEN, REFACTOR) com arquivo e nome de teste concretos, e uma lista de tarefas em que cada uma diz por comando… |
 | [`terras-playbook-quebra-objecoes`](skills/terras-playbook-quebra-objecoes) | Classifica a objeção real por trás do que o cliente disse e devolve caminhos de resposta apoiados no que a empresa consegue sustentar, sem prometer preço, prazo… |
 | [`terras-ponytail`](skills/terras-ponytail) | Lazy senior dev mode for any coding task (write, refactor, fix, review): YAGNI, stdlib first, no unrequested abstractions. Not for non-coding requests. |
+| [`terras-post-empresa`](skills/terras-post-empresa) | Produz a peça da Company Page do TerrasIA: post na voz de produto e imagem na identidade da marca (1200x628 e 1080x1350), com régua de texto e aceite no celular. |
 | [`terras-postgres`](skills/terras-postgres) | Administra e otimiza banco PostgreSQL pelas tools do postgres-mcp: verificação de saúde, ajuste de índice, análise de plano de consulta, leitura de schema e execução… |
 | [`terras-postmortem`](skills/terras-postmortem) | Postmortem de incidente sem culpados: linha do tempo com horário, impacto medido, tempos de detecção e recuperação, fatores contribuintes em vez de culpado e ações… |
 | [`terras-prd`](skills/terras-prd) | PRD (documento de requisitos de produto): problema com evidência, métricas com linha de base, fora de escopo, requisitos MoSCoW com critério de aceite e perguntas… |
@@ -237,6 +241,7 @@ Revisão pelo risco que a mudança cria, segurança e scan com o OWASP ZAP, risc
 | [`terras-ui-styling`](skills/terras-ui-styling) | Implementa interface com shadcn/ui e Tailwind CSS: componentes, tema, acessibilidade, responsividade e design em canvas. |
 | [`terras-ui-ux-pro-max`](skills/terras-ui-ux-pro-max) | Base local de UI/UX com busca própria: estilos, paletas por produto, pares tipográficos, diretrizes de UX e guias de stack; gera o design system do produto em MASTER.md. |
 | [`terras-user-research`](skills/terras-user-research) | Pesquisa com usuários de ponta a ponta: plano, roteiro de entrevista, triagem, síntese em achados, personas e oportunidades, e survey quantitativo. |
+| [`terras-vagas-coders`](skills/terras-vagas-coders) | Filtra as vagas do board da COD3RS e do Rebase Jobs (rebasedev.com.br/vagas) contra o currículo do usuário em baldes A (recomendar), B (talvez) e C (descarte com motivo)… |
 | [`terras-validacao-regularidade-cadastral`](skills/terras-validacao-regularidade-cadastral) | Organiza a checagem de idoneidade de um fornecedor ou parceiro — o que precisa ser verificado, onde, com que validade — e registra o que ficou sem comprovação. |
 | [`terras-vercel`](skills/terras-vercel) | Deploy applications and manage projects with complete CLI reference. Commands for deployments, projects, domains, environment variables, and live documentation access. |
 | [`terras-video`](skills/terras-video) | Monta vídeo para YouTube e Shorts a partir de roteiro: cartelas na identidade da marca, narração por voz neural e mp4 horizontal (1920x1080) ou vertical (1080x1920). · Instale com o plugin `terras-midia`. |
@@ -245,9 +250,6 @@ Revisão pelo risco que a mudança cria, segurança e scan com o OWASP ZAP, risc
 | [`terras-vite`](skills/terras-vite) | Padrões do Vite: config, plugins, HMR, variáveis de ambiente (e o que vaza no bundle), proxy, SSR, modo biblioteca, pré-bundling de dependências e otimização de build. |
 | [`terras-x-ia`](skills/terras-x-ia) | Vasculha o X (Twitter) logado por posts de IA (modelos, agentes, papers, ferramentas de dev) numa janela de dias, separa sinal de isca e entrega os que importam com link… |
 | [`terras-zap`](skills/terras-zap) | Varre site ou API com o OWASP ZAP local em modo headless (baseline passivo; ativo só com autorização), gera relatório e faz a triagem dos alertas com correção. |
-| [`terras-pauta-youtube`](skills/terras-pauta-youtube) | Pesquisa de demanda no YouTube antes do roteiro: compara temas pela mediana de views, acha outliers por canal e colhe frases recorrentes dos títulos que performam. |
-| [`terras-post-empresa`](skills/terras-post-empresa) | Produz a peça da Company Page do TerrasIA: post na voz de produto e imagem na identidade da marca (1200x628 e 1080x1350), com régua de texto e aceite no celular. |
-| [`terras-vagas-coders`](skills/terras-vagas-coders) | Filtra as vagas do board da COD3RS e do Rebase Jobs (rebasedev.com.br/vagas) contra o currículo do usuário em baldes A (recomendar), B (talvez) e C (descarte com motivo)… |
 
 </details>
 <!-- catalogo:fim -->

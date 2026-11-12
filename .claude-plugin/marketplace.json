@@ -542,6 +542,35 @@
       ]
     },
     {
+      "name": "terras-checagem-ats",
+      "description": "Confere CV e carta de apresentação em Markdown antes de enviar: leitura por ATS, cobertura das palavras-chave da vaga (corte de 70%), afirmação sem lastro e leitura rápida, com veredito e correções. Use para checar ATS, palavras-chave ou se o CV está pronto para a vaga.",
+      "version": "1.0.0",
+      "source": "./skills/terras-checagem-ats",
+      "strict": false,
+      "skills": [
+        "./"
+      ],
+      "category": "productivity",
+      "license": "MIT",
+      "author": {
+        "name": "Everton Lima"
+      },
+      "keywords": [
+        "ats",
+        "checagem ats",
+        "applicant tracking system",
+        "cv",
+        "currículo",
+        "resume",
+        "carta de apresentação",
+        "cover letter",
+        "palavras-chave da vaga",
+        "keyword",
+        "filtro de recrutador",
+        "candidatura"
+      ]
+    },
+    {
       "name": "terras-coders-mural",
       "description": "Engajamento em lote no Mural de Posts da COD3RS: curte, lê o post linkado no LinkedIn e comenta em inglês lá e em português no mural, só com aprovação. Use para mural da COD3RS, coders.com.br, SSI do dia, post do dia ou agendar essa rotina.",
       "version": "1.0.0",
@@ -748,7 +777,7 @@
     {
       "name": "terras-critica-de-spec",
       "description": "Critica uma spec antes da implementação (critério de aceite que não dá para testar, caso de borda faltando, escopo ambíguo, contradição, regra do repositório violada) e conduz a revisão com o autor, inclusive a divergência entre spec e código.",
-      "version": "1.0.0",
+      "version": "1.1.0",
       "source": "./skills/terras-critica-de-spec",
       "strict": false,
       "skills": [
@@ -2171,6 +2200,34 @@
       ]
     },
     {
+      "name": "terras-md-para-pdf",
+      "description": "Converte Markdown em PDF A4 com o md-to-pdf e um de três perfis de CSS da skill: denso (CV, carta, cheat sheet), compacto (CV com mais respiro) e confortavel (documento, relatório, plano). Use para gerar, exportar ou imprimir PDF de um .md, CV ou carta.",
+      "version": "1.0.0",
+      "source": "./skills/terras-md-para-pdf",
+      "strict": false,
+      "skills": [
+        "./"
+      ],
+      "category": "productivity",
+      "license": "MIT",
+      "author": {
+        "name": "Everton Lima"
+      },
+      "keywords": [
+        "pdf",
+        "markdown para pdf",
+        "md para pdf",
+        "md-to-pdf",
+        "exportar pdf",
+        "imprimir",
+        "gerar pdf",
+        "cv em pdf",
+        "currículo pdf",
+        "carta em pdf",
+        "a4"
+      ]
+    },
+    {
       "name": "terras-miniapp-builder",
       "description": "Cria miniapp do zero: entrevista as lacunas, decide arquitetura e LGPD, escreve a copy, constrói local-first e publica na Vercel. Use para criar app, miniapp ou PWA novo, ou 'transforma esse conteúdo em app'. Miniapp, PWA, publicar na Vercel.",
       "version": "1.0.0",
@@ -2288,7 +2345,7 @@
     },
     {
       "name": "terras-paper-diario",
-      "description": "Analisa papers (arXiv e afins) que afetam quem desenvolve: resumo honesto com números, o que não significa, e aplicação e aviso para júnior, pleno e sênior. Use para link de paper, 'analisar paper', 'paper do dia' ou a verificação diária do arXiv.",
+      "description": "Analisa papers (arXiv e afins) que afetam quem desenvolve, incluindo C#/.NET e gestão de TI: resumo honesto com números, o que não significa, e aplicação e aviso para júnior, pleno e sênior. Use para link de paper, 'analisar paper', 'paper do dia' ou a verificação diária.",
       "version": "1.0.0",
       "source": "./skills/terras-paper-diario",
       "strict": false,
@@ -2311,7 +2368,12 @@
         "code review",
         "carreira dev",
         "análise de paper",
-        "digest diário"
+        "digest diário",
+        "c#",
+        ".net",
+        "gestão de ti",
+        "itsm",
+        "governança de ti"
       ]
     },
     {
@@ -2344,6 +2406,36 @@
         "linkedin",
         "whatsapp",
         "substack"
+      ]
+    },
+    {
+      "name": "terras-pauta-youtube",
+      "description": "Pesquisa de demanda no YouTube antes do roteiro: compara temas pela mediana de views, acha outliers por canal e colhe frases recorrentes dos títulos que performam. Use para escolher tema de vídeo, medir demanda de título ou antes da terras-video.",
+      "version": "1.0.0",
+      "source": "./skills/terras-pauta-youtube",
+      "strict": false,
+      "skills": [
+        "./"
+      ],
+      "category": "productivity",
+      "license": "MIT",
+      "author": {
+        "name": "Everton Lima"
+      },
+      "keywords": [
+        "youtube",
+        "pauta",
+        "tema",
+        "envelope",
+        "demanda",
+        "views",
+        "outlier",
+        "titulo",
+        "capa",
+        "thumbnail",
+        "pesquisa",
+        "roteiro",
+        "terrasia"
       ]
     },
     {
@@ -2490,6 +2582,34 @@
         "over engineering",
         "simplificar o codigo",
         "yagni"
+      ]
+    },
+    {
+      "name": "terras-post-empresa",
+      "description": "Produz a peça da Company Page do TerrasIA: post na voz de produto e imagem na identidade da marca (1200x628 e 1080x1350), com régua de texto e aceite no celular. Use para post da empresa ou Company Page. A análise de referência é da terras-pauta-mercado.",
+      "version": "1.0.0",
+      "source": "./skills/terras-post-empresa",
+      "strict": false,
+      "skills": [
+        "./"
+      ],
+      "category": "productivity",
+      "license": "MIT",
+      "author": {
+        "name": "Everton Lima"
+      },
+      "keywords": [
+        "post da empresa",
+        "linkedin da empresa",
+        "company page",
+        "peca da empresa",
+        "imagem da empresa",
+        "banner da empresa",
+        "card",
+        "identidade do produto",
+        "publicacao",
+        "marca",
+        "terrasia"
       ]
     },
     {
@@ -3377,6 +3497,35 @@
       ]
     },
     {
+      "name": "terras-vagas-coders",
+      "description": "Filtra as vagas do board da COD3RS e do Rebase Jobs (rebasedev.com.br/vagas) contra o currículo do usuário em baldes A (recomendar), B (talvez) e C (descarte com motivo) e, com aprovação por vaga, avança na candidatura. Use para vagas da COD3RS, 'o que tem de vaga pra mim' ou aplicar nas aprovadas.",
+      "version": "1.0.0",
+      "source": "./skills/terras-vagas-coders",
+      "strict": false,
+      "skills": [
+        "./"
+      ],
+      "category": "productivity",
+      "license": "MIT",
+      "author": {
+        "name": "Everton Lima"
+      },
+      "keywords": [
+        "cod3rs",
+        "coders",
+        "rebase",
+        "rebasedev",
+        "vagas",
+        "board",
+        "curriculo",
+        "triagem",
+        "emprego",
+        "remote",
+        "senior",
+        "fit"
+      ]
+    },
+    {
       "name": "terras-validacao-regularidade-cadastral",
       "description": "Organiza a checagem de idoneidade de um fornecedor ou parceiro — o que precisa ser verificado, onde, com que validade — e registra o que ficou sem comprovação.",
       "version": "1.0.0",
@@ -3525,93 +3674,6 @@
         "vulnerabilidade",
         "headers",
         "openapi"
-      ]
-    },
-    {
-      "name": "terras-pauta-youtube",
-      "description": "Pesquisa de demanda no YouTube antes do roteiro: compara temas pela mediana de views, acha outliers por canal e colhe frases recorrentes dos títulos que performam. Use para escolher tema de vídeo, medir demanda de título ou antes da terras-video.",
-      "version": "1.0.0",
-      "source": "./skills/terras-pauta-youtube",
-      "strict": false,
-      "skills": [
-        "./"
-      ],
-      "category": "productivity",
-      "license": "MIT",
-      "author": {
-        "name": "Everton Lima"
-      },
-      "keywords": [
-        "youtube",
-        "pauta",
-        "tema",
-        "envelope",
-        "demanda",
-        "views",
-        "outlier",
-        "titulo",
-        "capa",
-        "thumbnail",
-        "pesquisa",
-        "roteiro",
-        "terrasia"
-      ]
-    },
-    {
-      "name": "terras-post-empresa",
-      "description": "Produz a peça da Company Page do TerrasIA: post na voz de produto e imagem na identidade da marca (1200x628 e 1080x1350), com régua de texto e aceite no celular. Use para post da empresa ou Company Page. A análise de referência é da terras-pauta-mercado.",
-      "version": "1.0.0",
-      "source": "./skills/terras-post-empresa",
-      "strict": false,
-      "skills": [
-        "./"
-      ],
-      "category": "productivity",
-      "license": "MIT",
-      "author": {
-        "name": "Everton Lima"
-      },
-      "keywords": [
-        "post da empresa",
-        "linkedin da empresa",
-        "company page",
-        "peca da empresa",
-        "imagem da empresa",
-        "banner da empresa",
-        "card",
-        "identidade do produto",
-        "publicacao",
-        "marca",
-        "terrasia"
-      ]
-    },
-    {
-      "name": "terras-vagas-coders",
-      "description": "Filtra as vagas do board da COD3RS e do Rebase Jobs (rebasedev.com.br/vagas) contra o currículo do usuário em baldes A (recomendar), B (talvez) e C (descarte com motivo) e, com aprovação por vaga, avança na candidatura. Use para vagas da COD3RS, 'o que tem de vaga pra mim' ou aplicar nas aprovadas.",
-      "version": "1.0.0",
-      "source": "./skills/terras-vagas-coders",
-      "strict": false,
-      "skills": [
-        "./"
-      ],
-      "category": "productivity",
-      "license": "MIT",
-      "author": {
-        "name": "Everton Lima"
-      },
-      "keywords": [
-        "cod3rs",
-        "coders",
-        "rebase",
-        "rebasedev",
-        "vagas",
-        "board",
-        "curriculo",
-        "triagem",
-        "emprego",
-        "remote",
-        "senior",
-        "fit"
       ]
     }
   ]

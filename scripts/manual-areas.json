@@ -36,6 +36,7 @@
         "terras-bar-raiser-de-cultura",
         "terras-briefing-pre-reuniao-de-lideranca",
         "terras-care-to-dare-coach",
+        "terras-checagem-ats",
         "terras-conferencia-fechamento-folha",
         "terras-construtor-de-job-description",
         "terras-cover-letter",
@@ -156,6 +157,7 @@
       "nome": "Mídia e apresentação",
       "descricao": "Áudio, vídeo, banner, slides e diagramas.",
       "skills": [
+        "terras-analise-videos",
         "terras-animacao",
         "terras-audio",
         "terras-banner",
@@ -164,10 +166,10 @@
         "terras-ffmpeg",
         "terras-frontend-slides",
         "terras-mapa-mental",
+        "terras-md-para-pdf",
         "terras-slides",
         "terras-transcription",
         "terras-video",
-        "terras-analise-videos",
         "terras-visual-explainer"
       ]
     },

@@ -1,0 +1,182 @@
+/* Perfil confortavel: A4 com margens folgadas para documento, nota, relatório e plano.
+   As margens da página vêm de confortavel.cjs; mesma paleta do denso. */
+
+/* ----- Page & base ----- */
+html {
+  font-size: 10.5pt;
+  color: #1a1a1a;
+  background: #fff;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  font-family: "Segoe UI", "Helvetica Neue", Arial, "Liberation Sans", "DejaVu Sans", sans-serif;
+  line-height: 1.55;
+  background: #fff;
+  -webkit-print-color-adjust: exact;
+  print-color-adjust: exact;
+}
+
+/* ----- Headings ----- */
+h1, h2, h3, h4, h5, h6 {
+  break-after: avoid;
+  page-break-after: avoid;
+}
+
+h1 {
+  color: #0d2137;
+  font-size: 1.9rem;
+  font-weight: 700;
+  margin: 0 0 0.8em;
+  padding-bottom: 0.3em;
+  border-bottom: 2px solid #2c5282;
+  letter-spacing: -0.02em;
+}
+
+h2 {
+  color: #1a365d;
+  font-size: 1.45rem;
+  font-weight: 600;
+  margin: 1.6em 0 0.6em;
+  padding-bottom: 0.25em;
+  border-bottom: 1px solid #a0aec0;
+}
+
+h3, h4, h5, h6 {
+  color: #2d3748;
+  font-weight: 600;
+  margin: 1.3em 0 0.4em;
+}
+
+h3 { font-size: 1.2rem; }
+h4 { font-size: 1.05rem; }
+
+/* ----- Text & blocks ----- */
+p {
+  margin: 0.6em 0;
+  color: #2d3748;
+  orphans: 3;
+  widows: 3;
+}
+
+strong {
+  color: #1a202c;
+  font-weight: 600;
+}
+
+a {
+  color: #2b6cb0;
+  text-decoration: none;
+  border-bottom: 1px solid rgba(43, 108, 176, 0.35);
+}
+
+blockquote {
+  margin: 1em 0;
+  padding: 0.6em 1em;
+  border-left: 4px solid #2c5282;
+  background: #f7fafc;
+  color: #2d3748;
+  break-inside: avoid;
+}
+
+blockquote p {
+  margin: 0.3em 0;
+}
+
+/* Inline code */
+code {
+  font-family: "Consolas", "Monaco", "Courier New", "Liberation Mono", "DejaVu Sans Mono", monospace;
+  font-size: 0.9em;
+  padding: 0.1em 0.35em;
+  background: #edf2f7;
+  color: #2d3748;
+  border-radius: 3px;
+  border: 1px solid #e2e8f0;
+}
+
+/* Code blocks: light background so the default highlight.js "github" theme stays readable */
+pre {
+  margin: 0.9em 0;
+  padding: 0.8em 1em;
+  background: #f6f8fa;
+  color: #24292e;
+  border: 1px solid #d0d7de;
+  border-radius: 4px;
+  font-size: 0.85rem;
+  line-height: 1.4;
+  white-space: pre-wrap;
+  word-break: break-word;
+  break-inside: avoid;
+}
+
+pre code,
+pre code.hljs {
+  background: transparent;
+  color: inherit;
+  padding: 0;
+  border: none;
+  font-size: inherit;
+}
+
+/* ----- Lists ----- */
+ul, ol {
+  margin: 0.6em 0;
+  padding-left: 1.6em;
+  color: #2d3748;
+}
+
+li {
+  margin: 0.3em 0;
+}
+
+li::marker {
+  color: #2c5282;
+}
+
+/* ----- Tables ----- */
+table {
+  width: 100%;
+  max-width: 100%;
+  border-collapse: collapse;
+  margin: 1em 0;
+  font-size: 0.95rem;
+  break-inside: avoid;
+}
+
+thead {
+  background: #2c5282;
+  color: #fff;
+}
+
+th {
+  font-weight: 600;
+  text-align: left;
+  padding: 0.5em 0.8em;
+  border: 1px solid #2a4365;
+}
+
+td {
+  padding: 0.45em 0.8em;
+  border: 1px solid #e2e8f0;
+  color: #2d3748;
+  vertical-align: top;
+}
+
+tbody tr:nth-child(even) {
+  background: #f7fafc;
+}
+
+/* ----- Media ----- */
+img, svg {
+  max-width: 100%;
+  height: auto;
+  break-inside: avoid;
+}
+
+/* ----- Horizontal rule ----- */
+hr {
+  border: none;
+  border-top: 1px solid #cbd5e0;
+  margin: 1.5em 0;
+}
