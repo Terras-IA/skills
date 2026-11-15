@@ -2,7 +2,7 @@
 
 > **Arquivo gerado.** Rode `node scripts/manual.mjs` para regravar; não edite à mão.
 
-**155 skills** neste repositório: **144 instaláveis** pelo marketplace, **8 de processo do motor** e **3 ligadas a projeto de cliente**.
+**157 skills** neste repositório: **146 instaláveis** pelo marketplace, **8 de processo do motor** e **3 ligadas a projeto de cliente**.
 
 ## Instalar e usar
 
@@ -42,7 +42,7 @@ O script cria um link por skill em cada pasta de agente que já existir na máqu
 - [Financeiro e fiscal](#financeiro-e-fiscal) — 6 skills
 - [Comercial e vendas](#comercial-e-vendas) — 3 skills
 - [Gestão, processos e decisão](#gestão-processos-e-decisão) — 9 skills
-- [Desenvolvimento de software](#desenvolvimento-de-software) — 28 skills
+- [Desenvolvimento de software](#desenvolvimento-de-software) — 29 skills
 - [Design e front-end](#design-e-front-end) — 18 skills
 - [Mídia e apresentação](#mídia-e-apresentação) — 14 skills
 - [Pesquisa e radar](#pesquisa-e-radar) — 6 skills
@@ -605,6 +605,14 @@ List Azure DevOps projects, repositories, and branches; create pull requests; ma
 `/plugin install terras-azure-devops@terras`
 
 Palavras-chave: `azure devops`, `azure repos`, `azure pipelines`, `azure boards`, `work item`
+
+### terras-cloudflare-ddos
+
+Proteção contra DDoS e robôs com Cloudflare: mede de fora se o domínio está atrás do proxy, acha IP de origem vazado e fecha a porta dos fundos. Use quando site cai com 503, 'estamos protegidos?' ou para revisar Cloudflare. DAST é terras-zap. DDoS, origin IP, WAF.
+
+`/plugin install terras-cloudflare-ddos@terras`
+
+Palavras-chave: `cloudflare`, `ddos`, `503`, `robos`, `bots`, `proxy`, `nuvem laranja`, `ip de origem`, `firewall`, `turnstile`, `rate limit`, `under attack`, `waf`, `origin ip`
 
 ### terras-consolidacao-de-memoria
 
@@ -1205,6 +1213,14 @@ Conduz uma feature de ponta a ponta por spec (estilo spec-kit): princípios do r
 `/plugin install terras-spec-flow@terras` · v1.0.0
 
 Palavras-chave: `spec-driven`, `spec driven development`, `sdd`, `spec-kit`, `specify`, `fluxo de spec`, `feature por spec`, `especificar feature`, `plano e tarefas`, `constitution`
+
+### terras-strudel
+
+Analisa uma música (link do YouTube ou áudio) e recria no Strudel o BPM, o tom, os acordes, o baixo e o groove, com pasta e documentação por música. Use para 'reverso de música', 'toca no Strudel', live coding. Só baixar vídeo: terras-video-downloader. Music to Strudel.
+
+`/plugin install terras-strudel@terras`
+
+Palavras-chave: `strudel`, `live coding`, `reverso de musica`, `recriar musica`, `bpm`, `tom`, `acordes`, `groove`, `tidal`, `beat`, `youtube`
 
 ### terras-treino-ingles
 

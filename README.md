@@ -99,10 +99,10 @@ Revisão pelo risco que a mudança cria, segurança e scan com o OWASP ZAP, risc
 <!-- catalogo:inicio -->
 <!-- gerado por `npm run readme` a partir do catálogo — não edite à mão -->
 
-**145 skills instaláveis** entre as 156 deste repositório; as demais ficam fora do marketplace — 8 skills de processo do motor (`.nao-instalar`) e 3 skills ligadas a projeto de cliente (`marketplace-fora.json`).
+**146 skills instaláveis** entre as 157 deste repositório; as demais ficam fora do marketplace — 8 skills de processo do motor (`.nao-instalar`) e 3 skills ligadas a projeto de cliente (`marketplace-fora.json`).
 
 <details>
-<summary><b>Ver a lista completa (145 skills)</b></summary>
+<summary><b>Ver a lista completa (146 skills)</b></summary>
 
 | Skill | O que faz |
 |---|---|
@@ -129,6 +129,7 @@ Revisão pelo risco que a mudança cria, segurança e scan com o OWASP ZAP, risc
 | [`terras-canal-whatsapp`](skills/terras-canal-whatsapp) | Publica texto ou imagem no canal (newsletter) do WhatsApp pela sessão pareada do sidecar, com pré-checagem e confirmação explícita. |
 | [`terras-care-to-dare-coach`](skills/terras-care-to-dare-coach) | Gera prompts de coaching, scripts de feedback e planos de desafio com base no framework Care to Dare. |
 | [`terras-checagem-ats`](skills/terras-checagem-ats) | Confere CV e carta de apresentação em Markdown antes de enviar: leitura por ATS, cobertura das palavras-chave da vaga (corte de 70%), afirmação sem lastro e leitura… |
+| [`terras-cloudflare-ddos`](skills/terras-cloudflare-ddos) | Proteção contra DDoS e robôs com Cloudflare: mede de fora se o domínio está atrás do proxy, acha IP de origem vazado e fecha a porta dos fundos. |
 | [`terras-coders-mural`](skills/terras-coders-mural) | Engajamento em lote no Mural de Posts da COD3RS: curte, lê o post linkado no LinkedIn e comenta em inglês lá e em português no mural, só com aprovação. |
 | [`terras-comentarios`](skills/terras-comentarios) | Comenta em lote posts do LinkedIn colados pelo usuário: um comentário de até 100 caracteres por post, pronto para colar. Use quando houver 2 ou mais posts para comentar. |
 | [`terras-conciliacao-bancaria-ofx`](skills/terras-conciliacao-bancaria-ofx) | Concilia extrato bancário com os lançamentos internos e separa o que casou, o que divergiu, o que é tarifa e o que ficou sem par. |

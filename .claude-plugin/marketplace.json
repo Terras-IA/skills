@@ -571,6 +571,37 @@
       ]
     },
     {
+      "name": "terras-cloudflare-ddos",
+      "description": "Proteção contra DDoS e robôs com Cloudflare: mede de fora se o domínio está atrás do proxy, acha IP de origem vazado e fecha a porta dos fundos. Use quando site cai com 503, 'estamos protegidos?' ou para revisar Cloudflare. DAST é terras-zap. DDoS, origin IP, WAF.",
+      "version": "1.0.0",
+      "source": "./skills/terras-cloudflare-ddos",
+      "strict": false,
+      "skills": [
+        "./"
+      ],
+      "category": "productivity",
+      "license": "MIT",
+      "author": {
+        "name": "Everton Lima"
+      },
+      "keywords": [
+        "cloudflare",
+        "ddos",
+        "503",
+        "robos",
+        "bots",
+        "proxy",
+        "nuvem laranja",
+        "ip de origem",
+        "firewall",
+        "turnstile",
+        "rate limit",
+        "under attack",
+        "waf",
+        "origin ip"
+      ]
+    },
+    {
       "name": "terras-coders-mural",
       "description": "Engajamento em lote no Mural de Posts da COD3RS: curte, lê o post linkado no LinkedIn e comenta em inglês lá e em português no mural, só com aprovação. Use para mural da COD3RS, coders.com.br, SSI do dia, post do dia ou agendar essa rotina.",
       "version": "1.0.0",
@@ -3228,6 +3259,34 @@
         "DESIGN.md",
         "micro-motion",
         "tipografia"
+      ]
+    },
+    {
+      "name": "terras-strudel",
+      "description": "Analisa uma música (link do YouTube ou áudio) e recria no Strudel o BPM, o tom, os acordes, o baixo e o groove, com pasta e documentação por música. Use para 'reverso de música', 'toca no Strudel', live coding. Só baixar vídeo: terras-video-downloader. Music to Strudel.",
+      "version": "1.0.0",
+      "source": "./skills/terras-strudel",
+      "strict": false,
+      "skills": [
+        "./"
+      ],
+      "category": "productivity",
+      "license": "MIT",
+      "author": {
+        "name": "Everton Lima"
+      },
+      "keywords": [
+        "strudel",
+        "live coding",
+        "reverso de musica",
+        "recriar musica",
+        "bpm",
+        "tom",
+        "acordes",
+        "groove",
+        "tidal",
+        "beat",
+        "youtube"
       ]
     },
     {
