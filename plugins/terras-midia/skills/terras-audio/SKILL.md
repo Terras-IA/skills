@@ -71,6 +71,17 @@ colando de volta ("o terceiro mistura idiomas"). A voz é multilíngue e lê o t
 melhor quando ele vem sozinho, mas a troca de fonologia no meio da frase se ouve.
 Sobra o respelling.
 
+**Atenção com vozes MultilingualNeural (Thalita):**
+A voz `pt-BR-ThalitaMultilingualNeural` é um modelo multilíngue do Edge-TTS que
+tenta inferir idioma em tempo de execução. Palavras presentes tanto em português
+quanto em espanhol (como "Verde", "El Niño", etc.) ativam a fonologia espanhola
+(fazendo "Verde" soar como "bérde"). Além disso, o modelo pode variar o timbre e a
+altura entre requisições independentes de blocos de vídeo, dando a nítida sensação
+de que a voz mudou entre um corte e outro.
+Para narração em português que exija uniformidade total e zero falso positivo de
+espanhol, a solução recomendada é usar as vozes estritamente monolíngues em pt-BR:
+**`pt-BR-FranciscaNeural`** (feminina) ou **`pt-BR-AntonioNeural`** (masculina).
+
 **Auditar em contexto, nunca palavra solta.** A primeira auditoria julgou termos
 isolados e o veredito não valia para o vídeo: palavra sozinha a voz lê como inglês,
 dentro da frase não. O `lote` hoje fala o número do item e depois a frase de apoio

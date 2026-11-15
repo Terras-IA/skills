@@ -16,9 +16,10 @@
 //   npm run marketplace -- --check # só confere (sai 1 se estiver desatualizado)
 //
 // A sincronia também é teste do gate (scripts/marketplace.test.mjs).
+import { execFileSync } from "node:child_process";
 import { createHash } from "node:crypto";
 import { cpSync, existsSync, mkdirSync, readFileSync, readdirSync, rmSync, statSync, writeFileSync } from "node:fs";
-import { dirname, join } from "node:path";
+import { dirname, join, resolve } from "node:path";
 import { fileURLToPath } from "node:url";
 
 const MAX_DESCRICAO = 300;
@@ -80,13 +81,31 @@ function lerGrupos(raiz, fora) {
   return grupos;
 }
 
+/**
+ * Arquivos que o .gitignore barra dentro de skills/, em caminho absoluto.
+ * Não podem ir para plugins/: lá o caminho muda e o .gitignore deixa de proteger
+ * (ex.: perfil.md da terras-vagas-coders, com dado pessoal). Fora do git: vazio.
+ */
+export function ignoradosPeloGit(raiz) {
+  try {
+    const saida = execFileSync("git", ["-C", raiz, "ls-files", "-z", "--others", "--ignored", "--exclude-standard", "--", "skills"], {
+      encoding: "utf8",
+      stdio: ["ignore", "pipe", "ignore"],
+    });
+    return new Set(saida.split("\0").filter(Boolean).map((p) => resolve(raiz, p)));
+  } catch {
+    return new Set();
+  }
+}
+
 /** Resumo do conteúdo de uma pasta (caminhos relativos + bytes), para comparar cópia e fonte. */
-function resumoDaPasta(dir) {
+function resumoDaPasta(dir, ignorados = new Set()) {
   const h = createHash("sha256");
   const andar = (d, rel) => {
     for (const nome of readdirSync(d).sort()) {
       if (nome === "__pycache__") continue; // cache recriado pelo uso da skill; o .gitignore barra
       const p = join(d, nome);
+      if (ignorados.has(resolve(p))) continue;
       const r = rel ? `${rel}/${nome}` : nome;
       if (statSync(p).isDirectory()) andar(p, r);
       else h.update(r).update("\0").update(readFileSync(p)).update("\0");
@@ -110,6 +129,7 @@ export function gruposDesatualizados(raiz) {
   const atual = lerJson(join(raiz, ".claude-plugin/marketplace.json"), {});
   const grupos = lerGrupos(raiz, lerJson(join(raiz, "marketplace-fora.json"), {}));
   const ruins = [];
+  const ignorados = ignoradosPeloGit(raiz);
   for (const [grupo, g] of Object.entries(grupos)) {
     const base = join(raiz, "plugins", grupo);
     const pj = join(base, ".claude-plugin/plugin.json");
@@ -119,7 +139,7 @@ export function gruposDesatualizados(raiz) {
       existsSync(pj) &&
       readFileSync(pj, "utf8") === esperado &&
       JSON.stringify(copiadas) === JSON.stringify([...g.skills].sort()) &&
-      g.skills.every((n) => resumoDaPasta(join(base, "skills", n)) === resumoDaPasta(join(raiz, "skills", n)));
+      g.skills.every((n) => resumoDaPasta(join(base, "skills", n)) === resumoDaPasta(join(raiz, "skills", n), ignorados));
     if (!iguais) ruins.push(grupo);
   }
   return ruins;
@@ -129,13 +149,14 @@ export function gruposDesatualizados(raiz) {
 export function sincronizarGrupos(raiz) {
   const atual = lerJson(join(raiz, ".claude-plugin/marketplace.json"), {});
   const grupos = lerGrupos(raiz, lerJson(join(raiz, "marketplace-fora.json"), {}));
+  const ignorados = ignoradosPeloGit(raiz);
   for (const [grupo, g] of Object.entries(grupos)) {
     const base = join(raiz, "plugins", grupo);
     rmSync(base, { recursive: true, force: true });
     mkdirSync(join(base, ".claude-plugin"), { recursive: true });
     writeFileSync(join(base, ".claude-plugin/plugin.json"), JSON.stringify(manifestoDoGrupo(grupo, g, atual.owner?.name), null, 2) + "\n");
     for (const nome of g.skills)
-      cpSync(join(raiz, "skills", nome), join(base, "skills", nome), { recursive: true, filter: (origem) => !/(^|\/)__pycache__(\/|$)/.test(origem) });
+      cpSync(join(raiz, "skills", nome), join(base, "skills", nome), { recursive: true, filter: (origem) => !/(^|\/)__pycache__(\/|$)/.test(origem) && !ignorados.has(resolve(origem)) });
   }
   return Object.keys(grupos);
 }

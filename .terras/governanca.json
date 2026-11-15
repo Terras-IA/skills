@@ -5,8 +5,8 @@
   "justificativa": "Repositório de skills (documentação e scripts locais de apoio a agentes). Não guarda dado pessoal de cliente, credencial, pagamento nem roda em produção. O motivo deste registro foi skills/terras-cloudflare-ddos/scripts/checar.py: só lê DNS público e faz HEAD em IP de origem apenas quando o usuário passa --origem com autorização.",
   "bloco_g": {
     "G1_conflito_legal": "não identificado",
-    "G2_segredo_exposto": "não; o gate do repositório acusa um e-mail real em skills/terras-vagas-coders/references/perfil.md (dado pessoal, ver pendências)",
-    "G3_dado_pessoal_sem_base_legal": "não, fora a pendência acima",
+    "G2_segredo_exposto": "não",
+    "G3_dado_pessoal_sem_base_legal": "não; skills/terras-vagas-coders/references/perfil.md tem currículo e e-mail reais, mas é local e barrado pelo .gitignore. Desde 2026-11-15 o gate e o marketplace pulam arquivo ignorado, então ele também não vai para plugins/",
     "G4_transferencia_internacional": "não",
     "G5_acao_irreversivel_sem_humano": "não; as skills exigem o sim do usuário para mudança em conta, envio ou publicação"
   },
@@ -14,8 +14,5 @@
     "aplica": "não",
     "por_que": "sem ativo de informação de cliente nem ambiente de produção neste repositório"
   },
-  "pendencias": [
-    "Tirar o e-mail real de skills/terras-vagas-coders/references/perfil.md (o gate do repositório falha nisso)",
-    "Regerar plugins/terras-midia com npm run marketplace (teste de marketplace em dia falha)"
-  ]
+  "pendencias": []
 }

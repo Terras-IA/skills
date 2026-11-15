@@ -1,5 +1,6 @@
 // Testes do verificador sobre repositórios de mentira montados em diretório
 // temporário. Roda com: node --test scripts/
+import { execFileSync } from "node:child_process";
 import { test } from "node:test";
 import assert from "node:assert/strict";
 import { mkdirSync, mkdtempSync, writeFileSync } from "node:fs";
@@ -273,4 +274,18 @@ test("agendável listado sem pasta é recusado", () => {
     ["terras-exemplo"],
   );
   assert.deepEqual(regras(raiz), ["agenda"]);
+});
+
+test("arquivo barrado pelo .gitignore não é varrido: perfil local com e-mail real não reprova", () => {
+  const raiz = repo(
+    {
+      "skills/terras-exemplo/SKILL.md": SKILL_OK,
+      "skills/terras-exemplo/references/perfil.md": "contato: fulano.real@gmail.com\n",
+      ".gitignore": "skills/terras-exemplo/references/perfil.md\n",
+    },
+    ["terras-exemplo"],
+  );
+  assert.ok(regras(raiz).includes("dado-pessoal"), "fora do git, varre tudo");
+  execFileSync("git", ["-C", raiz, "init", "-q"]);
+  assert.deepEqual(verificar(raiz), [], "no git, o ignorado fica de fora");
 });

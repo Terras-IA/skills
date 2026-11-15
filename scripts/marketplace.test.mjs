@@ -1,5 +1,6 @@
 // Testes do gerador do marketplace sobre repositórios de mentira, mais a
 // guarda de sincronia do repositório real. Roda com: node --test scripts/
+import { execFileSync } from "node:child_process";
 import { test } from "node:test";
 import assert from "node:assert/strict";
 import { existsSync, mkdirSync, mkdtempSync, readFileSync, writeFileSync } from "node:fs";
@@ -121,6 +122,17 @@ test("grupo: a cópia em plugins/ é gerada do catálogo, lado a lado, e a diver
   assert.deepEqual(gruposDesatualizados(raiz), []);
   writeFileSync(join(raiz, "skills/terras-video/scripts/build.py"), "print('mudou')\n");
   assert.deepEqual(gruposDesatualizados(raiz), ["terras-midia"], "editar a skill sem regerar reprova");
+});
+
+test("grupo: arquivo barrado pelo .gitignore não vai para plugins/ (lá o .gitignore não protege)", () => {
+  const raiz = repoComGrupo();
+  writeFileSync(join(raiz, ".gitignore"), "skills/terras-video/privado.md\n");
+  writeFileSync(join(raiz, "skills/terras-video/privado.md"), "dado pessoal\n");
+  execFileSync("git", ["-C", raiz, "init", "-q"]);
+  sincronizarGrupos(raiz);
+  assert.ok(existsSync(join(raiz, "plugins/terras-midia/skills/terras-video/scripts/build.py")));
+  assert.ok(!existsSync(join(raiz, "plugins/terras-midia/skills/terras-video/privado.md")), "ignorado não é copiado");
+  assert.deepEqual(gruposDesatualizados(raiz), [], "a fonte também é resumida sem o ignorado");
 });
 
 test("grupo que cita skill inexistente ou fora do marketplace é erro", () => {

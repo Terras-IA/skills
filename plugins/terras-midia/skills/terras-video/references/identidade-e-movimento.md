@@ -175,17 +175,19 @@ A voz da primeira versão saiu com média de -19,4 dB e pico de -4,5 dB, ou seja
 baixa e sem tratamento. Com a cadeia, o mesmo texto ficou em -16,1 LUFS
 integrado, dentro do alvo, com pico de -4,5 dBFS.
 
-Vozes em pt-BR disponíveis no `edge-tts`. A padrão é a
-`pt-BR-ThalitaMultilingualNeural`, com ritmo `-8%`, escolhida pelo Everton em
-2026-09-20 ao ouvir o comparador de cinco amostras: ele primeiro pediu o timbre da
-Francisca com a entonação da Thalita, e depois de ouvir as duas lado a lado ficou
-com a Thalita, que era a amostra de referência.
+Vozes em pt-BR disponíveis no `edge-tts`. A padrão adotada para estabilidade
+absoluta é a **`pt-BR-FranciscaNeural`**, com ritmo `-8%`. Em 2026-09-20 havia
+sido testada a `pt-BR-ThalitaMultilingualNeural`, mas em 03/11/2026 foi comprovado
+em produção que a Thalita, por ser modelo `MultilingualNeural`, comete falsos
+positivos graves de idioma: lê palavras comuns ao espanhol (como "Verde") com fonologia
+hispânica ("bérde") e oscila o timbre entre blocos curtos gerados em chamadas
+independentes, parecendo troca de locutor.
 
-| Voz | Perfil |
-|---|---|
-| `pt-BR-ThalitaMultilingualNeural` | mulher, treinada para múltiplos idiomas; **padrão da skill** |
-| `pt-BR-FranciscaNeural` | mulher, timbre mais firme |
-| `pt-BR-AntonioNeural` | homem, leitura padrão de locução |
+| Voz | Perfil | Status |
+|---|---|---|
+| `pt-BR-FranciscaNeural` | mulher, timbre firme, estável e 100% nativa em pt-BR | **Padrão oficial da skill** |
+| `pt-BR-AntonioNeural` | homem, leitura clássica de locução, monolíngue | Alternativa masculina estável |
+| `pt-BR-ThalitaMultilingualNeural` | mulher, multilíngue; **inadequada para blocos independentes** (oscila timbre e ativa espanhol) | Descontinuada para narração |
 
 Para afinar timbre e entonação, as alavancas são `rate` (velocidade) e `pitch`
 (tom). O `edge-tts` **exige sinal explícito** nos dois: `--rate +0%` funciona,

@@ -12,8 +12,9 @@
 //
 //   node scripts/verificar.mjs            # verifica o repositório
 //   node scripts/verificar.mjs <raiz>     # verifica outra raiz (testes)
+import { execFileSync } from "node:child_process";
 import { existsSync, readdirSync, readFileSync, statSync } from "node:fs";
-import { join, relative } from "node:path";
+import { join, relative, resolve } from "node:path";
 import { fileURLToPath } from "node:url";
 
 const NOME_RE = /^(terras|terrasia)-[a-z0-9]+(-[a-z0-9]+)*$/;
@@ -73,11 +74,27 @@ const LIXO = [/(^|\/)\.env$/, /(^|\/)config\.json$/, /(^|\/)\.venv\//, /(^|\/)no
 // .gitignore já o barra. Acusar aqui só fazia o gate falhar com a skill em uso.
 const CACHE_PY = /(^|\/)__pycache__(\/|$)|\.pyc$/;
 
-function arquivos(dir) {
+// Arquivo que o .gitignore barra (perfil.md com currículo, .env local) não entra
+// no repositório nem no pacote: acusar aqui fazia o gate falhar com a skill em uso.
+// Fora de um repositório git (testes), nada é ignorado.
+function ignoradosPeloGit(raiz) {
+  try {
+    const saida = execFileSync("git", ["-C", raiz, "ls-files", "-z", "--others", "--ignored", "--exclude-standard", "--", "skills"], {
+      encoding: "utf8",
+      stdio: ["ignore", "pipe", "ignore"],
+    });
+    return new Set(saida.split("\0").filter(Boolean).map((p) => resolve(raiz, p)));
+  } catch {
+    return new Set();
+  }
+}
+
+function arquivos(dir, ignorados = new Set()) {
   const saida = [];
   for (const e of readdirSync(dir, { withFileTypes: true })) {
     const p = join(dir, e.name);
-    if (e.isDirectory()) saida.push(p + "/", ...arquivos(p));
+    if (ignorados.has(resolve(p))) continue;
+    if (e.isDirectory()) saida.push(p + "/", ...arquivos(p, ignorados));
     else saida.push(p);
   }
   return saida;
@@ -133,6 +150,7 @@ export function pendencias(raiz) {
 export function verificar(raiz) {
   const problemas = [];
   const acusa = (regra, caminho, detalhe) => problemas.push({ regra, caminho: relative(raiz, caminho), detalhe });
+  const ignorados = ignoradosPeloGit(raiz);
   const dirSkills = join(raiz, "skills");
   const pastas = existsSync(dirSkills)
     ? readdirSync(dirSkills, { withFileTypes: true }).filter((e) => e.isDirectory()).map((e) => e.name)
@@ -161,7 +179,7 @@ export function verificar(raiz) {
     }
 
     const vendor = vendorizados(dir);
-    for (const caminho of arquivos(dir)) {
+    for (const caminho of arquivos(dir, ignorados)) {
       const rel = relative(dir, caminho);
       if (CACHE_PY.test(rel)) continue;
       if (LIXO.some((re) => re.test(rel)) && !/\.example\./.test(rel)) {

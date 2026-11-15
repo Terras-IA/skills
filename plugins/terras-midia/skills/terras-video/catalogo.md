@@ -385,6 +385,7 @@ e a lógica continua aqui, num lugar só. Variáveis: `TERRAS_VIDEO_CLI` (defaul
   é a faixa livre encolhida pelo zoom, não a faixa livre. Quem pega isso é o gate
   visual nos quadros do vídeo; a checagem de encaixe olha a cartela parada, que está
   certa. Medido no primeiro teste: cabeçalho em y=230 virava 187 com o zoom completo.
+- **Voz MultilingualNeural (`Thalita`) troca de idioma e oscila timbre:** palavras comuns ao espanhol (como "Verde" ou "El Niño") acionam a fonologia hispânica (lendo "bérde"), e o timbre oscila entre blocos independentes. Em roteiros onde isso ocorrer, use `pt-BR-FranciscaNeural` ou `pt-BR-AntonioNeural`.
 - **Cena externa nunca entra crua no pipe.** Quadro de tamanho diferente do canvas
   desalinha o fluxo e sai vídeo embaralhado, sem erro nenhum: o encaixe é obrigatório
   e o `build.py` avisa quando ele acontece.

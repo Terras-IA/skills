@@ -1,7 +1,7 @@
 ---
 name: terras-video
 description: "Monta vídeo para YouTube e Shorts a partir de roteiro: cartelas na identidade da marca, narração por voz neural e mp4 horizontal (1920x1080) ou vertical (1080x1920). Use para vídeo, Shorts, Reels, TikTok, 'faz um vídeo disso' ou transformar post em vídeo."
-keywords: [video, youtube, shorts, reels, tiktok, vertical, 1080x1920, cartela, narracao, locucao, voz, tts, mp4, ffmpeg, edge-tts, roteiro, terrasia]
+keywords: [video, youtube, remotion, shorts, reels, tiktok, vertical, 1080x1920, cartela, narracao, locucao, voz, tts, mp4, ffmpeg, edge-tts, roteiro, terrasia]
 ---
 
 # Vídeo para YouTube
@@ -69,6 +69,49 @@ com `"ajuste": "preencher"`.
 Quando o pedido for vídeo sobre o terrasia, use as cenas do harness como base, não
 o template de cartelas. Detalhes e as armadilhas de duração em
 `references/identidade-e-movimento.md`.
+
+## Cenas em Remotion (React)
+
+Para animação que a cartela não faz (número contando, gráfico crescendo, legenda
+palavra por palavra, código digitando), um bloco aceita `remotion` no lugar do layout:
+
+```json
+{
+  "remotion": {"composicao": "Numero", "props": {"valor": 87, "sufixo": "%", "rotulo": "menos tempo de montagem"}},
+  "narration": "Aqui o número conta de zero a oitenta e sete por cento."
+}
+```
+
+- **O que o `build.py` faz:** narra o bloco, renderiza a composição com `npx remotion
+  render` num mp4 mudo e passa os quadros pela mesma `segment()` das cartelas (fades,
+  narração, 60fps, loudness). O quadro do meio vira `cartela-N.png`, então o gate visual
+  e o `--exportar` não mudam. Cena Remotion não passa pela checagem de jerk: a animação
+  é da composição.
+- **Contrato (`props._terras`):** o `build.py` manda canvas, 60fps, duração do bloco,
+  cores e fonte do tema do roteiro e, no vertical, a faixa segura do player. A
+  composição usa `calculateMetadata={metadados}` e o `<Palco>` de
+  `templates/remotion/src/terras.tsx`, e assim já nasce no tamanho, no tempo e na
+  identidade certos. A fonte é copiada para `public/fonts` do projeto a cada render.
+- **Duração:** `max(fala + 0,6s, remotion.duracao)`. A fala manda; `duracao` só estica
+  quando a animação precisa de mais tempo.
+- **Composições prontas:** `Numero` (`valor`, `prefixo`, `sufixo`, `rotulo`, `apoio`,
+  `casas`), `Barras` (`titulo`, `itens: [{rotulo, valor, destaque}]`, `sufixo`) e
+  `Legenda` (`texto`, `destaques`) e `Semaforo` (`titulo`, `niveis: [{nome, cor,
+  rotulo}]`, `momentos`). A legenda distribui as palavras por igual em 85% do bloco: não
+  é sincronia com a fala, é ritmo uniforme. No semáforo, `momentos` é a fração do bloco
+  em que cada luz acende; a posição da palavra na fala dá uma boa aproximação
+  (`fala.index("verde") / len(fala)`), como no vídeo da Prontidão Civil de 2026-11-04.
+- **Composição nova:** criar em `templates/remotion/src/`, registrar no `Root.tsx` e
+  rodar `bash scripts/setup-remotion.sh` (copia para o projeto instalado). Para ver
+  enquanto cria: `cd ~/.config/terras-video/remotion && npx remotion studio src/index.ts`.
+- **Outro projeto Remotion:** `"projeto": "caminho"` no bloco (relativo ao roteiro), com
+  `"entrada"` se não for `src/index.ts`. A composição precisa aceitar `_terras` para
+  casar com o canvas; se o tamanho vier diferente, o quadro é encaixado (`ajuste`).
+- **Custo:** cada bloco Remotion abre um Chrome headless. Medido em 2026-11-04 num
+  Short 1080x1920: 16 a 33s de render por bloco de ~6s, contra ~5s de uma cartela.
+- **Licença:** o Remotion é gratuito para pessoa física e empresa de até 3 pessoas;
+  acima disso a empresa precisa da licença paga deles. Conferir antes de usar em
+  vídeo de empresa.
 
 ## Formatos
 
@@ -233,9 +276,14 @@ para o relatório de pronúncia que o `plan` imprime.
 O que continua sendo decisão daqui: a **voz padrão é `pt-BR-ThalitaMultilingualNeural`
 com ritmo `-8%`**, escolhida pelo Everton em 2026-09-20 ouvindo as três opções em
 pt-BR do `edge-tts` (Antonio, Francisca e Thalita); o roteiro sobrepõe com `voice` e
-`rate`, e o `brand.json` guarda o padrão. O modo `voz-en` (palavra inglesa numa voz
-EN colada na frase) existiu aqui e foi **reprovado pelo ouvido dele**: "não presta,
-misturou". O motivo ficou registrado em `build.py`.
+`rate`, e o `brand.json` guarda o padrão.
+*Aviso de estabilidade:* por ser MultilingualNeural, a Thalita tenta inferir idiomas e
+pode ler palavras ambíguas em espanhol (ex.: "Verde" soando como "bérde", ou "El Niño"),
+além de oscilar o timbre entre blocos gerados separadamente. Para vídeos que exijam
+consistência vocal absoluta e dicção 100% nativa sem risco de sotaque hispânico,
+sobreponha com **`pt-BR-FranciscaNeural`** (feminina) ou **`pt-BR-AntonioNeural`** (masculina).
+O modo `voz-en` (palavra inglesa numa voz EN colada na frase) existiu aqui e foi
+**reprovado pelo ouvido dele**: "não presta, misturou". O motivo ficou registrado em `build.py`.
 
 Detalhes de alvo de loudness, dicionário de pronúncia e calibragem estão em
 `$SKILL_DIR/../terras-audio/SKILL.md`.
@@ -335,7 +383,10 @@ Arte de fundo (quando o vídeo pede capa ou cena): usar o `gen_art.py` da skill
 `bash scripts/setup.sh` cria `~/.config/terras-video/` com o ffmpeg estático (via
 npm `ffmpeg-static`) e um venv com `edge-tts`. `bash scripts/setup-brand.sh` cria o
 diretório padrão da identidade, copiando apenas o que estiver faltando das
-sementes em `seed/` das duas skills. Os dois são idempotentes. Nesta máquina o
+sementes em `seed/` das duas skills. `bash scripts/setup-remotion.sh` instala o
+projeto Remotion em `~/.config/terras-video/remotion/` (só para roteiro com bloco
+`remotion`; precisa de Node e baixa um Chrome headless na primeira vez). Os três são
+idempotentes. Nesta máquina o
 `apt` não funciona (flag de no-new-privileges), e por isso nada aqui depende dele.
 
 ## Publicação
@@ -395,6 +446,7 @@ e a lógica continua aqui, num lugar só. Variáveis: `TERRAS_VIDEO_CLI` (defaul
   é a faixa livre encolhida pelo zoom, não a faixa livre. Quem pega isso é o gate
   visual nos quadros do vídeo; a checagem de encaixe olha a cartela parada, que está
   certa. Medido no primeiro teste: cabeçalho em y=230 virava 187 com o zoom completo.
+- **Voz MultilingualNeural (`Thalita`) troca de idioma e oscila timbre:** palavras comuns ao espanhol (como "Verde" ou "El Niño") acionam a fonologia hispânica (lendo "bérde"), e o timbre oscila entre blocos independentes. Em roteiros onde isso ocorrer, use `pt-BR-FranciscaNeural` ou `pt-BR-AntonioNeural`.
 - **Cena externa nunca entra crua no pipe.** Quadro de tamanho diferente do canvas
   desalinha o fluxo e sai vídeo embaralhado, sem erro nenhum: o encaixe é obrigatório
   e o `build.py` avisa quando ele acontece.
