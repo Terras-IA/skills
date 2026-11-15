@@ -99,10 +99,10 @@ Revisão pelo risco que a mudança cria, segurança e scan com o OWASP ZAP, risc
 <!-- catalogo:inicio -->
 <!-- gerado por `npm run readme` a partir do catálogo — não edite à mão -->
 
-**144 skills instaláveis** entre as 155 deste repositório; as demais ficam fora do marketplace — 8 skills de processo do motor (`.nao-instalar`) e 3 skills ligadas a projeto de cliente (`marketplace-fora.json`).
+**145 skills instaláveis** entre as 156 deste repositório; as demais ficam fora do marketplace — 8 skills de processo do motor (`.nao-instalar`) e 3 skills ligadas a projeto de cliente (`marketplace-fora.json`).
 
 <details>
-<summary><b>Ver a lista completa (144 skills)</b></summary>
+<summary><b>Ver a lista completa (145 skills)</b></summary>
 
 | Skill | O que faz |
 |---|---|
@@ -232,6 +232,7 @@ Revisão pelo risco que a mudança cria, segurança e scan com o OWASP ZAP, risc
 | [`terras-standards`](skills/terras-standards) | Aplica os Padrões Agnósticos de Engenharia e Produto v4.0 (arquitetura, segurança, privacidade e IA) com evidência real quando houver. |
 | [`terras-status-report`](skills/terras-status-report) | Status report de projeto com farol de critério fixo: realizado só com o que foi informado, desvio com efeito no caminho crítico, risco com dono e a decisão pedida… |
 | [`terras-stitch-design-taste`](skills/terras-stitch-design-taste) | Gera o DESIGN.md para o Google Stitch: contrato de design premium anti-genérico (tipografia estrita, cor calibrada, layout assimétrico, micro-motion). |
+| [`terras-strudel`](skills/terras-strudel) | Analisa uma música (link do YouTube ou áudio) e recria no Strudel o BPM, o tom, os acordes, o baixo e o groove, com pasta e documentação por música. |
 | [`terras-substack`](skills/terras-substack) | Publica, agenda e gerencia posts e Notes na Substack pela API interna do editor, só com Python do sistema. |
 | [`terras-tap-charter`](skills/terras-tap-charter) | Termo de Abertura do Projeto (TAP, project charter): justificativa, objetivos mensuráveis, escopo dentro e fora, marcos, orçamento, premissas, riscos, patrocinador… |
 | [`terras-tech-debt`](skills/terras-tech-debt) | Auditoria de dívida técnica e arquitetura de um repositório inteiro, com achados em arquivo:linha, severidade, esforço e a seção 'parece ruim mas está certo'. |
