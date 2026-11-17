@@ -1,0 +1,72 @@
+<!doctype html>
+<html lang="__LANG__">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>__TITULO__</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600;700&display=swap" rel="stylesheet">
+<style>
+/*CSS*/
+</style>
+</head>
+<body>
+<header class="topo">
+  <button class="menu" id="bt-menu" aria-label="Menu" aria-expanded="false">☰</button>
+  <div class="marca"><span class="marca-ic" aria-hidden="true">◆</span> <b id="curso-titulo"></b></div>
+  <input id="filtro" class="filtro" type="search" autocomplete="off">
+  <button id="bt-tema" class="bt-ic" aria-label="Tema">◐</button>
+</header>
+<div class="app">
+  <aside class="curso" id="curso" aria-label="Lições">
+    <div class="curso-cab"><b data-t="curso"></b><span id="total-licoes"></span></div>
+    <nav id="arvore"></nav>
+    <div class="progresso"><span data-t="progresso"></span><b id="progresso"></b></div>
+  </aside>
+  <main class="palco">
+    <div class="cab">
+      <div class="trilha" id="trilha"></div>
+      <div class="titulo-linha">
+        <h1 id="licao-titulo"></h1>
+        <div class="chips" id="chips"></div>
+      </div>
+      <p class="resumo" id="licao-resumo"></p>
+    </div>
+    <div class="faixa">
+      <div class="metricas" id="metricas"></div>
+      <div class="controles">
+        <button id="bt-replay" class="bt"><span aria-hidden="true">↺</span> <span data-t="replay"></span></button>
+        <button id="bt-pausa" class="bt"><span aria-hidden="true">❚❚</span> <span data-t="pausa"></span></button>
+      </div>
+    </div>
+    <div class="cena" id="cena"><svg id="svg" role="img" aria-labelledby="licao-titulo"></svg></div>
+    <div class="legenda" id="legenda"></div>
+    <div class="linha-cab"><b data-t="nesta"></b><span id="passo-de"></span></div>
+    <nav class="linha" id="linha" aria-label="Passos"></nav>
+  </main>
+  <section class="painel" aria-live="polite">
+    <div class="cartao">
+      <div class="painel-cab"><span id="passo-num"></span><span class="selo" id="passo-tipo"></span></div>
+      <h2 id="passo-titulo"></h2>
+      <div class="texto" id="passo-texto"></div>
+      <div id="passo-ideia"></div>
+      <div id="passo-mudou"></div>
+      <div id="passo-quiz"></div>
+      <div class="nav">
+        <button id="bt-voltar" class="bt">← <span data-t="voltar"></span></button>
+        <button id="bt-proximo" class="bt bt-pri"></button>
+      </div>
+      <div class="atalhos"><kbd>←</kbd><kbd>→</kbd> <span data-t="passo"></span> · <kbd>R</kbd> <span data-t="replay"></span> · <kbd>Espaço</kbd> <span data-t="pausa"></span></div>
+    </div>
+    <div class="cartao objetivos" id="objetivos-box">
+      <b data-t="aprende"></b>
+      <ul id="objetivos"></ul>
+    </div>
+  </section>
+</div>
+<script>window.__CURSO__ = /*DADOS*/;</script>
+<script>
+/*JS*/
+</script>
+</body>
+</html>

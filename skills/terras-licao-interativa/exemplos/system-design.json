@@ -1,0 +1,182 @@
+{
+  "id": "exemplo-system-design",
+  "titulo": "System design na prática",
+  "idioma": "pt-BR",
+  "modulos": [
+    {
+      "titulo": "Escala",
+      "cor": "laranja",
+      "licoes": [
+        {
+          "id": "load-balancer",
+          "titulo": "Load balancer",
+          "resumo": "Uma porta de entrada para vários servidores, e as regras de quem atende cada pedido.",
+          "nivel": "iniciante",
+          "minutos": 8,
+          "metricas": [
+            { "id": "usuarios", "rotulo": "usuários", "valor": "2.000" },
+            { "id": "rps", "rotulo": "req / s", "valor": "60" },
+            { "id": "p95", "rotulo": "latência p95", "valor": "90 ms" },
+            { "id": "erros", "rotulo": "erros", "valor": "0%" },
+            { "id": "servidores", "rotulo": "servidores ok", "valor": "1 / 1" }
+          ],
+          "legenda": [
+            { "cor": "var(--req)", "texto": "requisição" },
+            { "cor": "var(--pesado)", "texto": "requisição pesada", "forma": "quadrado" },
+            { "cor": "var(--falha)", "texto": "falhou" }
+          ],
+          "objetivos": [
+            { "texto": "Reconhecer o sinal de um servidor sobrecarregado", "passo": 2 },
+            { "texto": "Por que mais servidores não bastam sem uma porta única", "passo": 4 },
+            { "texto": "Round robin x menos conexões", "passo": 6 },
+            { "texto": "Health check tirando servidor caído da roda", "passo": 7 },
+            { "texto": "Evitar que o próprio balanceador vire ponto único de falha", "passo": 8 }
+          ],
+          "cena": {
+            "nos": [
+              { "id": "usuarios", "tipo": "pessoas", "x": -3.2, "y": 0, "quantidade": 6, "rotulo": "2.000 usuários", "icone": "👥" },
+              { "id": "a", "tipo": "caixa", "x": 3, "y": -2.3, "tom": "azul", "icone": "🖥", "rotulo": "Servidor A", "carga": 35 },
+              { "id": "b", "tipo": "caixa", "x": 3, "y": 0, "tom": "azul", "icone": "🖥", "rotulo": "Servidor B", "carga": 0, "oculto": true },
+              { "id": "c", "tipo": "caixa", "x": 3, "y": 2.3, "tom": "azul", "icone": "🖥", "rotulo": "Servidor C", "carga": 0, "oculto": true },
+              { "id": "lb", "tipo": "caixa", "x": 0, "y": 0, "tom": "laranja", "icone": "⑂", "rotulo": "Load Balancer", "tamanho": 1.1, "oculto": true },
+              { "id": "lb2", "tipo": "caixa", "x": -0.6, "y": 2.6, "tom": "laranja", "icone": "⑂", "rotulo": "LB reserva", "estado": "fantasma", "oculto": true }
+            ],
+            "ligacoes": [
+              { "de": "usuarios", "para": "a", "rota": "y", "fluxo": 1 }
+            ]
+          },
+          "passos": [
+            {
+              "rotulo": "Um servidor",
+              "tipo": "contexto",
+              "titulo": "Tudo num servidor só",
+              "texto": "A loja começa assim: cada cliente fala direto com o **Servidor A**, pelo endereço dele.\n\nCom 2.000 usuários, a CPU fica em 35% e a página responde em 90 ms. Ninguém reclama."
+            },
+            {
+              "rotulo": "Pico",
+              "tipo": "problema",
+              "titulo": "A campanha deu certo demais",
+              "texto": "Uma promoção leva 20.000 pessoas ao site ao mesmo tempo. O Servidor A chega a 98% de CPU, os pedidos entram na fila e parte deles **estoura o tempo**.",
+              "ideia": "Latência subindo antes dos erros é o primeiro sinal de sobrecarga. Quando os erros aparecem, a fila já está grande.",
+              "nos": {
+                "usuarios": { "quantidade": 16, "rotulo": "20.000 usuários" },
+                "a": { "carga": 98, "estado": "quente", "selo": "fila: 340" }
+              },
+              "ligacoes": [ { "de": "usuarios", "para": "a", "rota": "y", "fluxo": 3, "falha": 0.3 } ],
+              "metricas": { "usuarios": "20.000", "rps": "600", "p95": { "valor": "2,4 s", "tom": "ruim" }, "erros": { "valor": "12%", "tom": "ruim" } },
+              "mudou": [ "+ 10x mais usuários", "- CPU do A: 35% → 98%", "- 12% dos pedidos falham" ]
+            },
+            {
+              "rotulo": "Mais máquinas",
+              "tipo": "problema",
+              "titulo": "Mais servidores, e nada muda",
+              "texto": "Subimos B e C. Só que os clientes continuam com o endereço do A gravado: B e C ficam parados enquanto A afoga.\n\nO cliente não tem como saber quais servidores existem nem quais estão livres.",
+              "nos": {
+                "b": { "oculto": false, "carga": 2 },
+                "c": { "oculto": false, "carga": 2 }
+              },
+              "metricas": { "servidores": "3 / 3" },
+              "mudou": [ "+ Servidores B e C no ar", "- Tráfego continua todo no A" ]
+            },
+            {
+              "rotulo": "Add LB",
+              "tipo": "solucao",
+              "titulo": "Uma porta da frente",
+              "texto": "O **load balancer** passa a ser o único endereço público. O cliente fala com ele, e ele repassa cada pedido a um servidor do grupo.\n\nServidores podem entrar e sair sem o cliente perceber.",
+              "ideia": "O conjunto de servidores atrás do balanceador se chama pool (ou target group).",
+              "nos": {
+                "lb": { "oculto": false, "selo": "round robin" },
+                "a": { "carga": 34, "estado": "normal", "selo": null },
+                "b": { "carga": 36 },
+                "c": { "carga": 33 }
+              },
+              "ligacoes": [
+                { "de": "usuarios", "para": "lb", "fluxo": 3 },
+                { "de": "lb", "para": "a", "rota": "y", "fluxo": 1 },
+                { "de": "lb", "para": "b", "fluxo": 1 },
+                { "de": "lb", "para": "c", "rota": "y", "fluxo": 1 }
+              ],
+              "metricas": { "p95": { "valor": "95 ms", "tom": "bom" }, "erros": { "valor": "0%", "tom": "bom" } },
+              "mudou": [ "+ Load balancer na frente", "+ CPU 98% → ~35% em cada servidor" ]
+            },
+            {
+              "rotulo": "Pesados",
+              "tipo": "problema",
+              "titulo": "Pedidos não são iguais",
+              "texto": "Round robin entrega um pedido para cada servidor, em rodízio. Mas um relatório leva 5 s e uma página leva 5 ms.\n\nPor azar do rodízio, os pesados caem no B. Ele chega a 97% enquanto A e C folgam.",
+              "nos": { "b": { "carga": 97, "estado": "quente", "selo": "23 na fila" }, "a": { "carga": 24 }, "c": { "carga": 25 } },
+              "ligacoes": [
+                { "de": "usuarios", "para": "lb", "fluxo": 3 },
+                { "de": "lb", "para": "a", "rota": "y", "fluxo": 1 },
+                { "de": "lb", "para": "b", "fluxo": 1.4, "pesados": 0.6 },
+                { "de": "lb", "para": "c", "rota": "y", "fluxo": 1 }
+              ],
+              "metricas": { "p95": { "valor": "1,2 s", "tom": "ruim" }, "erros": { "valor": "3%", "tom": "ruim" } },
+              "mudou": [ "- B: 36% → 97%", "- p95 sobe para 1,2 s" ]
+            },
+            {
+              "rotulo": "Menos conexões",
+              "tipo": "tecnica",
+              "titulo": "Mandar para quem está mais livre",
+              "texto": "Com **least connections**, o balanceador manda o próximo pedido ao servidor com menos conexões abertas. Quem está ocupado com relatório recebe menos.",
+              "ideia": "Round robin é bom quando os pedidos custam parecido. Quando o custo varia muito, olhe a carga real.",
+              "nos": { "lb": { "selo": "menos conexões" }, "b": { "carga": 52, "estado": "normal", "selo": null }, "a": { "carga": 49 }, "c": { "carga": 50 } },
+              "ligacoes": [
+                { "de": "usuarios", "para": "lb", "fluxo": 3 },
+                { "de": "lb", "para": "a", "rota": "y", "fluxo": 1.2, "pesados": 0.2 },
+                { "de": "lb", "para": "b", "fluxo": 0.8, "pesados": 0.3 },
+                { "de": "lb", "para": "c", "rota": "y", "fluxo": 1.2, "pesados": 0.2 }
+              ],
+              "metricas": { "p95": { "valor": "110 ms", "tom": "bom" }, "erros": "0%" },
+              "mudou": [ "+ Carga equilibrada perto de 50%" ]
+            },
+            {
+              "rotulo": "Health check",
+              "tipo": "tecnica",
+              "titulo": "Um servidor cai",
+              "texto": "O B trava. O balanceador consulta `/health` em cada servidor a cada poucos segundos; o B para de responder e sai da roda.\n\nOs clientes não veem erro: A e C absorvem o tráfego.",
+              "nos": { "b": { "estado": "caido", "carga": null }, "a": { "carga": 74 }, "c": { "carga": 76 } },
+              "ligacoes": [
+                { "de": "usuarios", "para": "lb", "fluxo": 3 },
+                { "de": "lb", "para": "a", "rota": "y", "fluxo": 1.5 },
+                { "de": "lb", "para": "b", "fluxo": 0, "tracejada": true, "rotulo": "health ✗" },
+                { "de": "lb", "para": "c", "rota": "y", "fluxo": 1.5 }
+              ],
+              "metricas": { "servidores": { "valor": "2 / 3", "tom": "ruim" } },
+              "mudou": [ "- Servidor B fora", "+ Tráfego redistribuído para A e C", "+ Erros continuam em 0%" ]
+            },
+            {
+              "rotulo": "SPOF",
+              "tipo": "troca",
+              "titulo": "E se o balanceador cair?",
+              "texto": "Agora tudo passa por uma caixa só. Se ela cair, o site cai inteiro: é um **ponto único de falha**.\n\nA saída comum é um par: um balanceador ativo e um reserva que assume o mesmo endereço quando o ativo some. Nuvens gerenciadas fazem isso por você.",
+              "ideia": "Toda peça que você coloca na frente para dar resiliência precisa, ela mesma, ser resiliente.",
+              "nos": { "lb2": { "oculto": false }, "b": { "estado": "normal", "carga": 50 }, "a": { "carga": 50 }, "c": { "carga": 50 } },
+              "ligacoes": [
+                { "de": "usuarios", "para": "lb", "fluxo": 3 },
+                { "de": "lb", "para": "a", "rota": "y", "fluxo": 1 },
+                { "de": "lb", "para": "b", "fluxo": 1 },
+                { "de": "lb", "para": "c", "rota": "y", "fluxo": 1 },
+                { "de": "lb", "para": "lb2", "fluxo": 0.4, "tracejada": true, "rotulo": "heartbeat", "cor": "laranja" }
+              ],
+              "metricas": { "servidores": "3 / 3" },
+              "mudou": [ "+ Balanceador reserva em espera", "· Custo: uma máquina parada esperando" ]
+            },
+            {
+              "rotulo": "Resumo",
+              "tipo": "resumo",
+              "titulo": "O que fica",
+              "texto": "Escalar para fora pede uma porta única. A porta decide quem atende (rodízio ou carga), tira da roda quem caiu e precisa de reserva para não virar o novo ponto fraco.",
+              "quiz": {
+                "pergunta": "Os pedidos da sua API variam de 5 ms a 8 s. Qual algoritmo de balanceamento evita que um servidor afogue?",
+                "opcoes": [ "Round robin", "Menos conexões (least connections)", "Aleatório" ],
+                "certa": 1,
+                "porque": "Ele olha quantas conexões cada servidor tem abertas, então quem está preso num pedido longo recebe menos."
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,737 @@
+{
+ "id": "financeiro-contas-a-pagar",
+ "titulo": "Financeiro na prática",
+ "idioma": "pt-BR",
+ "modulos": [
+  {
+   "titulo": "Contas a pagar",
+   "cor": "verde",
+   "licoes": [
+    {
+     "id": "alcada-e-conferencia",
+     "titulo": "Alçada de aprovação e conferência de boleto",
+     "resumo": "Por que um boleto não sai do financeiro só porque chegou, e quem precisa dizer sim antes do pagamento.",
+     "nivel": "iniciante",
+     "minutos": 8,
+     "metricas": [
+      {
+       "id": "boletos",
+       "rotulo": "boletos / mês",
+       "valor": "80"
+      },
+      {
+       "id": "segunda",
+       "rotulo": "pagos com 2ª pessoa",
+       "valor": "0%"
+      },
+      {
+       "id": "fraude",
+       "rotulo": "perda com golpe",
+       "valor": "R$ 0"
+      },
+      {
+       "id": "atraso",
+       "rotulo": "pagos em atraso",
+       "valor": "0"
+      },
+      {
+       "id": "prazo",
+       "rotulo": "lançar até",
+       "valor": "o dia"
+      }
+     ],
+     "legenda": [
+      {
+       "cor": "var(--req)",
+       "texto": "boleto legítimo"
+      },
+      {
+       "cor": "var(--pesado)",
+       "texto": "boleto de valor alto",
+       "forma": "quadrado"
+      },
+      {
+       "cor": "var(--falha)",
+       "texto": "boleto barrado"
+      }
+     ],
+     "objetivos": [
+      {
+       "texto": "Reconhecer um boleto adulterado",
+       "passo": 2
+      },
+      {
+       "texto": "Os pontos da conferência antes de pagar",
+       "passo": 3
+      },
+      {
+       "texto": "Por que quem lança não deve ser quem aprova",
+       "passo": 4
+      },
+      {
+       "texto": "Alçada por valor em vez de um aprovador para tudo",
+       "passo": 6
+      },
+      {
+       "texto": "Substituto formal quando o aprovador falta",
+       "passo": 7
+      }
+     ],
+     "cena": {
+      "nos": [
+       {
+        "id": "fornecedores",
+        "tipo": "pessoas",
+        "x": -4,
+        "y": 0,
+        "quantidade": 6,
+        "rotulo": "Fornecedores",
+        "icone": "🏭"
+       },
+       {
+        "id": "golpista",
+        "tipo": "pessoas",
+        "x": -0.5,
+        "y": 3.6,
+        "quantidade": 1,
+        "tom": "vermelho",
+        "rotulo": "Golpista",
+        "icone": "🎭",
+        "oculto": true
+       },
+       {
+        "id": "fin",
+        "tipo": "zona",
+        "x": 1.5,
+        "y": 0,
+        "largura": 6.5,
+        "fundo": 3.2,
+        "tom": "verde",
+        "rotulo": "Financeiro"
+       },
+       {
+        "id": "voce",
+        "tipo": "caixa",
+        "x": 0,
+        "y": 0,
+        "tom": "verde",
+        "icone": "👤",
+        "rotulo": "Você",
+        "carga": 40
+       },
+       {
+        "id": "conf",
+        "tipo": "caixa",
+        "x": 3,
+        "y": 0,
+        "tom": "teal",
+        "icone": "🔍",
+        "rotulo": "Conferência",
+        "oculto": true
+       },
+       {
+        "id": "gestor",
+        "tipo": "caixa",
+        "x": 7,
+        "y": -2.6,
+        "tom": "azul",
+        "icone": "✔",
+        "rotulo": "Gestor da área",
+        "oculto": true
+       },
+       {
+        "id": "controller",
+        "tipo": "caixa",
+        "x": 7,
+        "y": 0,
+        "tom": "roxo",
+        "icone": "✔",
+        "rotulo": "Controller",
+        "oculto": true
+       },
+       {
+        "id": "diretor",
+        "tipo": "caixa",
+        "x": 7,
+        "y": 2.6,
+        "tom": "laranja",
+        "icone": "✔",
+        "rotulo": "Diretor",
+        "oculto": true
+       },
+       {
+        "id": "substituto",
+        "tipo": "caixa",
+        "x": 7,
+        "y": -5.2,
+        "tom": "azul",
+        "icone": "✔",
+        "rotulo": "Substituto",
+        "estado": "fantasma",
+        "oculto": true
+       },
+       {
+        "id": "espera",
+        "tipo": "fila",
+        "x": 3.8,
+        "y": 2.6,
+        "quantidade": 4,
+        "tom": "amarelo",
+        "rotulo": "na fila",
+        "oculto": true
+       },
+       {
+        "id": "banco",
+        "tipo": "banco",
+        "x": 11,
+        "y": 0,
+        "tom": "cinza",
+        "icone": "🏦",
+        "rotulo": "Banco: pagamento"
+       },
+       {
+        "id": "tabela",
+        "tipo": "placa",
+        "x": 8.5,
+        "y": -2.5,
+        "tom": "amarelo",
+        "icone": "📋",
+        "rotulo": "Alçada",
+        "linhas": [
+         "até R$ 5 mil → gestor",
+         "até R$ 50 mil → diretor",
+         "acima → diretor + CFO"
+        ],
+        "oculto": true
+       }
+      ],
+      "ligacoes": [
+       {
+        "de": "fornecedores",
+        "para": "voce",
+        "fluxo": 1
+       },
+       {
+        "de": "voce",
+        "para": "banco",
+        "fluxo": 1
+       }
+      ]
+     },
+     "passos": [
+      {
+       "rotulo": "Hoje",
+       "tipo": "contexto",
+       "titulo": "Chegou, lançou, pagou",
+       "texto": "A empresa recebe uns 80 boletos por mês. Eles chegam por e-mail, você lança no banco e paga no vencimento.\n\nNinguém confere nem aprova: é rápido e, até aqui, nada deu errado.",
+       "ideia": "Os números desta lição são ilustração, não estatística."
+      },
+      {
+       "rotulo": "Boleto falso",
+       "tipo": "problema",
+       "titulo": "O boleto tinha o logo certo",
+       "texto": "Alguém invade o e-mail de um fornecedor e manda um boleto com o mesmo logotipo e o mesmo valor, mas com **outro beneficiário**.\n\nVocê paga R$ 18.400. O fornecedor de verdade cobra de novo na semana seguinte, e o dinheiro não volta.",
+       "ideia": "Golpe de boleto não parece golpe: o valor e o assunto batem. O que muda é para quem o dinheiro vai.",
+       "nos": {
+        "golpista": {
+         "oculto": false
+        },
+        "voce": {
+         "selo": "pagou R$ 18.400"
+        }
+       },
+       "ligacoes": [
+        {
+         "de": "fornecedores",
+         "para": "voce",
+         "fluxo": 1
+        },
+        {
+         "de": "golpista",
+         "para": "voce",
+         "rota": "reta",
+         "fluxo": 0.5,
+         "cor": "vermelho",
+         "rotulo": "e-mail falso"
+        },
+        {
+         "de": "voce",
+         "para": "banco",
+         "fluxo": 1
+        }
+       ],
+       "metricas": {
+        "fraude": {
+         "valor": "R$ 18.400",
+         "tom": "ruim"
+        }
+       },
+       "mudou": [
+        "- Boleto adulterado pago",
+        "- R$ 18.400 perdidos"
+       ]
+      },
+      {
+       "rotulo": "Conferir",
+       "tipo": "tecnica",
+       "titulo": "Conferir antes de pagar",
+       "texto": "Todo boleto passa por uma **conferência**: beneficiário e CNPJ iguais aos do cadastro e da nota fiscal; valor e vencimento iguais aos da nota e do pedido; banco da linha digitável igual ao banco impresso.\n\nTroca de dado bancário só vale depois de ligar para o contato já cadastrado, nunca para o telefone do e-mail.",
+       "ideia": "Conferir é comparar o boleto com algo que o golpista não controla: a nota, o pedido e o cadastro.",
+       "nos": {
+        "conf": {
+         "oculto": false,
+         "selo": "boleto x NF x cadastro"
+        },
+        "voce": {
+         "selo": null
+        }
+       },
+       "ligacoes": [
+        {
+         "de": "fornecedores",
+         "para": "voce",
+         "fluxo": 1
+        },
+        {
+         "de": "golpista",
+         "para": "conf",
+         "fluxo": 0.6,
+         "falha": 1,
+         "rotulo": "barrado"
+        },
+        {
+         "de": "voce",
+         "para": "conf",
+         "fluxo": 1
+        },
+        {
+         "de": "conf",
+         "para": "banco",
+         "fluxo": 1
+        }
+       ],
+       "metricas": {
+        "fraude": {
+         "valor": "R$ 0",
+         "tom": "bom"
+        }
+       },
+       "mudou": [
+        "+ Conferência antes do pagamento",
+        "+ Boleto falso barrado"
+       ]
+      },
+      {
+       "rotulo": "Sozinho",
+       "tipo": "problema",
+       "titulo": "Quem lança, confere e paga",
+       "texto": "A conferência existe, mas é você quem lança, confere e paga. Se você errar um dígito, ninguém vê. Se alguém de dentro quiser pagar um fornecedor que não existe, ninguém vê também.\n\nEste mês saiu um pagamento de R$ 95 mil sem que ninguém além de você soubesse.",
+       "ideia": "Segregação de funções: quem prepara o pagamento não é quem autoriza. Não é desconfiança da pessoa, é proteção dela também.",
+       "nos": {
+        "voce": {
+         "carga": 92,
+         "estado": "quente",
+         "selo": "lança, confere e paga"
+        },
+        "conf": {
+         "selo": "feita por você"
+        }
+       },
+       "ligacoes": [
+        {
+         "de": "fornecedores",
+         "para": "voce",
+         "fluxo": 1
+        },
+        {
+         "de": "golpista",
+         "para": "conf",
+         "fluxo": 0.6,
+         "falha": 1,
+         "rotulo": "barrado"
+        },
+        {
+         "de": "voce",
+         "para": "conf",
+         "fluxo": 1
+        },
+        {
+         "de": "conf",
+         "para": "banco",
+         "fluxo": 1,
+         "pesados": 0.35,
+         "rotulo": "R$ 95 mil sem aval"
+        }
+       ],
+       "metricas": {
+        "segunda": {
+         "valor": "0%",
+         "tom": "ruim"
+        }
+       },
+       "mudou": [
+        "- Uma pessoa decide tudo",
+        "- Pagamento alto sem segundo olhar"
+       ]
+      },
+      {
+       "rotulo": "Diretor tudo",
+       "tipo": "solucao",
+       "titulo": "O diretor aprova tudo",
+       "texto": "A resposta óbvia: nada é pago sem o **diretor** aprovar. Agora há uma segunda pessoa em 100% dos casos.\n\nSó que ele aprova de R$ 90 de água a R$ 95 mil de matéria-prima, entre reuniões. A fila cresce, boletos vencem e a empresa paga juros e multa.",
+       "nos": {
+        "voce": {
+         "carga": 45,
+         "estado": "normal",
+         "selo": null
+        },
+        "conf": {
+         "selo": null
+        },
+        "diretor": {
+         "oculto": false,
+         "carga": 97,
+         "estado": "quente",
+         "selo": "aprova os 80"
+        },
+        "espera": {
+         "oculto": false,
+         "quantidade": 5
+        }
+       },
+       "ligacoes": [
+        {
+         "de": "fornecedores",
+         "para": "voce",
+         "fluxo": 1
+        },
+        {
+         "de": "golpista",
+         "para": "conf",
+         "fluxo": 0.6,
+         "falha": 1,
+         "rotulo": "barrado"
+        },
+        {
+         "de": "voce",
+         "para": "conf",
+         "fluxo": 1
+        },
+        {
+         "de": "conf",
+         "para": "diretor",
+         "rota": "y",
+         "fluxo": 1.5,
+         "pesados": 0.2
+        },
+        {
+         "de": "diretor",
+         "para": "banco",
+         "fluxo": 0.5
+        }
+       ],
+       "metricas": {
+        "segunda": {
+         "valor": "100%",
+         "tom": "bom"
+        },
+        "atraso": {
+         "valor": "9",
+         "tom": "ruim"
+        }
+       },
+       "mudou": [
+        "+ Segunda pessoa em todo pagamento",
+        "- Diretor vira gargalo",
+        "- 9 boletos pagos em atraso"
+       ]
+      },
+      {
+       "rotulo": "Alçada",
+       "tipo": "solucao",
+       "titulo": "Cada valor tem seu aprovador",
+       "texto": "A **alçada** divide a aprovação por valor. Neste exemplo: até R$ 5 mil, o gestor da área; até R$ 50 mil, o controller; acima disso, o diretor.\n\nO diretor passa a ver só os poucos pagamentos grandes, e olha cada um com calma.",
+       "ideia": "A tabela de alçada é uma política escrita e aprovada pela empresa. Os limites daqui são ilustração; os da sua empresa estão na política dela.",
+       "nos": {
+        "gestor": {
+         "oculto": false,
+         "carga": 45,
+         "selo": "até R$ 5 mil"
+        },
+        "controller": {
+         "oculto": false,
+         "carga": 40,
+         "selo": "até R$ 50 mil"
+        },
+        "diretor": {
+         "carga": 25,
+         "estado": "normal",
+         "selo": "acima de R$ 50 mil"
+        },
+        "espera": {
+         "quantidade": 1
+        },
+        "tabela": {
+         "oculto": false
+        }
+       },
+       "ligacoes": [
+        {
+         "de": "fornecedores",
+         "para": "voce",
+         "fluxo": 1
+        },
+        {
+         "de": "golpista",
+         "para": "conf",
+         "fluxo": 0.6,
+         "falha": 1,
+         "rotulo": "barrado"
+        },
+        {
+         "de": "voce",
+         "para": "conf",
+         "fluxo": 1
+        },
+        {
+         "de": "conf",
+         "para": "gestor",
+         "rota": "y",
+         "fluxo": 1.2
+        },
+        {
+         "de": "conf",
+         "para": "controller",
+         "fluxo": 0.6
+        },
+        {
+         "de": "conf",
+         "para": "diretor",
+         "rota": "y",
+         "fluxo": 0.4,
+         "pesados": 1
+        },
+        {
+         "de": "gestor",
+         "para": "banco",
+         "fluxo": 1.2
+        },
+        {
+         "de": "controller",
+         "para": "banco",
+         "fluxo": 0.6
+        },
+        {
+         "de": "diretor",
+         "para": "banco",
+         "fluxo": 0.4,
+         "pesados": 1
+        }
+       ],
+       "metricas": {
+        "atraso": {
+         "valor": "0",
+         "tom": "bom"
+        }
+       },
+       "mudou": [
+        "+ Três aprovadores por faixa de valor",
+        "+ Fila do diretor: 12 → 2",
+        "+ Atrasos zerados"
+       ]
+      },
+      {
+       "rotulo": "Férias",
+       "tipo": "tecnica",
+       "titulo": "O gestor saiu de férias",
+       "texto": "O gestor da área tira 20 dias de férias. Sem regra, ou os boletos dele esperam, ou alguém aprova \"no lugar\" sem poder.\n\nA política prevê um **substituto** nomeado antes, com a mesma alçada e por período definido. A aprovação fica registrada no nome dele.",
+       "nos": {
+        "gestor": {
+         "estado": "caido",
+         "carga": null,
+         "selo": "FÉRIAS"
+        },
+        "substituto": {
+         "oculto": false,
+         "estado": "normal",
+         "carga": 50,
+         "selo": "até R$ 5 mil, 20 dias"
+        }
+       },
+       "ligacoes": [
+        {
+         "de": "fornecedores",
+         "para": "voce",
+         "fluxo": 1
+        },
+        {
+         "de": "golpista",
+         "para": "conf",
+         "fluxo": 0.6,
+         "falha": 1,
+         "rotulo": "barrado"
+        },
+        {
+         "de": "voce",
+         "para": "conf",
+         "fluxo": 1
+        },
+        {
+         "de": "conf",
+         "para": "gestor",
+         "rota": "y",
+         "fluxo": 0,
+         "tracejada": true
+        },
+        {
+         "de": "conf",
+         "para": "substituto",
+         "rota": "y",
+         "fluxo": 1.2
+        },
+        {
+         "de": "conf",
+         "para": "controller",
+         "fluxo": 0.6
+        },
+        {
+         "de": "conf",
+         "para": "diretor",
+         "rota": "y",
+         "fluxo": 0.4,
+         "pesados": 1
+        },
+        {
+         "de": "substituto",
+         "para": "banco",
+         "rota": "y",
+         "fluxo": 1.2
+        },
+        {
+         "de": "controller",
+         "para": "banco",
+         "fluxo": 0.6
+        },
+        {
+         "de": "diretor",
+         "para": "banco",
+         "fluxo": 0.4,
+         "pesados": 1
+        }
+       ],
+       "mudou": [
+        "- Gestor ausente",
+        "+ Substituto com a mesma alçada",
+        "+ Nenhum boleto parado"
+       ]
+      },
+      {
+       "rotulo": "Prazo",
+       "tipo": "troca",
+       "titulo": "O preço: tempo",
+       "texto": "Conferir e aprovar leva dias, não minutos. Boleto que chega na véspera do vencimento não dá tempo de passar pelo fluxo.\n\nPor isso a empresa define um prazo: o boleto entra no financeiro **até 3 dias úteis antes** do vencimento. O que chega depois vira exceção, com justificativa.",
+       "ideia": "Controle custa tempo. O prazo de entrada é o que impede que a pressa vire desculpa para pular a conferência.",
+       "nos": {
+        "gestor": {
+         "estado": "normal",
+         "carga": 45,
+         "selo": "até R$ 5 mil"
+        },
+        "substituto": {
+         "estado": "fantasma",
+         "carga": null,
+         "selo": null
+        },
+        "voce": {
+         "selo": "recebe até D-3"
+        }
+       },
+       "ligacoes": [
+        {
+         "de": "fornecedores",
+         "para": "voce",
+         "fluxo": 1,
+         "rotulo": "3 dias antes"
+        },
+        {
+         "de": "golpista",
+         "para": "conf",
+         "fluxo": 0.6,
+         "falha": 1,
+         "rotulo": "barrado"
+        },
+        {
+         "de": "voce",
+         "para": "conf",
+         "fluxo": 1
+        },
+        {
+         "de": "conf",
+         "para": "gestor",
+         "rota": "y",
+         "fluxo": 1.2
+        },
+        {
+         "de": "conf",
+         "para": "controller",
+         "fluxo": 0.6
+        },
+        {
+         "de": "conf",
+         "para": "diretor",
+         "rota": "y",
+         "fluxo": 0.4,
+         "pesados": 1
+        },
+        {
+         "de": "gestor",
+         "para": "banco",
+         "fluxo": 1.2
+        },
+        {
+         "de": "controller",
+         "para": "banco",
+         "fluxo": 0.6
+        },
+        {
+         "de": "diretor",
+         "para": "banco",
+         "fluxo": 0.4,
+         "pesados": 1
+        }
+       ],
+       "metricas": {
+        "prazo": {
+         "valor": "D-3",
+         "tom": "ruim"
+        }
+       },
+       "mudou": [
+        "· Gestor de volta, substituto em espera",
+        "- Fornecedor precisa mandar antes",
+        "+ Ninguém paga correndo"
+       ]
+      },
+      {
+       "rotulo": "Resumo",
+       "tipo": "resumo",
+       "titulo": "O que fica",
+       "texto": "Conferir protege contra o boleto falso: compare com nota, pedido e cadastro. A alçada protege contra o erro e a decisão de uma pessoa só, sem afogar o diretor. Substituto e prazo de entrada mantêm o fluxo de pé no mundo real.",
+       "quiz": {
+        "pergunta": "Chega por e-mail um boleto de R$ 12 mil de um fornecedor antigo, com aviso de que a conta bancária mudou. O que você faz primeiro?",
+        "opcoes": [
+         "Paga, porque o valor bate com a nota fiscal",
+         "Liga para o contato já cadastrado do fornecedor e confirma a mudança antes de seguir",
+         "Manda direto para o diretor aprovar, que ele decide",
+         "Responde o e-mail pedindo confirmação"
+        ],
+        "certa": 1,
+        "porque": "Troca de dado bancário é o sinal clássico de golpe. Confirme por um canal que o golpista não controla; responder o mesmo e-mail pode cair nele. Só depois o boleto segue para o aprovador da faixa (aqui, o controller)."
+       }
+      }
+     ]
+    }
+   ]
+  }
+ ]
+}
