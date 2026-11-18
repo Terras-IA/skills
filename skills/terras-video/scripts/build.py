@@ -655,7 +655,9 @@ def narra(texto, voz, ritmo, saida_wav, sotaque="nenhum"):
     """Delega a narracao para a skill terras-audio (voz, pronuncia e cadeia)."""
     cmd = [sys.executable, cli_de_audio(), "narrar", "--texto", texto,
            "--saida", saida_wav, "--voz", voz, "--ritmo", ritmo, "--alvo", "video"]
-    if sotaque and sotaque != "nenhum":
+    # Sempre repassar: o padrao do tts.py e "aportuguesar", entao omitir "nenhum"
+    # fazia o roteiro em ingles passar pelo dicionario ("patch" virava "petch").
+    if sotaque:
         cmd += ["--sotaque", sotaque]
     run(cmd)
     return saida_wav
