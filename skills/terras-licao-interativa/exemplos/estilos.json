@@ -1,0 +1,898 @@
+{
+ "id": "exemplo-estilos",
+ "titulo": "Galeria de estilos",
+ "idioma": "pt-BR",
+ "estilo": "livre",
+ "modulos": [
+  {
+   "titulo": "Notações",
+   "cor": "teal",
+   "licoes": [
+    {
+     "id": "rede-firewall",
+     "titulo": "Por que o firewall fica na frente",
+     "estilo": "rede",
+     "resumo": "Topologia de rede: internet, firewall, roteador, switch e servidores.",
+     "nivel": "básico",
+     "minutos": 3,
+     "metricas": [
+      {
+       "id": "exp",
+       "rotulo": "Portas expostas",
+       "valor": "todas"
+      },
+      {
+       "id": "ataques",
+       "rotulo": "Tentativas bloqueadas",
+       "valor": "0%"
+      }
+     ],
+     "legenda": [
+      {
+       "cor": "var(--req)",
+       "texto": "tráfego"
+      },
+      {
+       "cor": "var(--falha)",
+       "texto": "ataque"
+      }
+     ],
+     "cena": {
+      "nos": [
+       {
+        "tipo": "zona",
+        "x": 8.4,
+        "y": 1.2,
+        "largura": 6.4,
+        "fundo": 6.4,
+        "tom": "teal",
+        "rotulo": "rede interna",
+        "oculto": true,
+        "id": "lan"
+       },
+       {
+        "tipo": "equipamento",
+        "modelo": "nuvem",
+        "x": 0,
+        "y": 0,
+        "rotulo": "Internet",
+        "id": "net"
+       },
+       {
+        "tipo": "equipamento",
+        "modelo": "firewall",
+        "x": 2.6,
+        "y": 0,
+        "rotulo": "Firewall",
+        "oculto": true,
+        "id": "fw"
+       },
+       {
+        "tipo": "equipamento",
+        "modelo": "roteador",
+        "x": 5.2,
+        "y": 0,
+        "rotulo": "Roteador",
+        "id": "rt"
+       },
+       {
+        "tipo": "equipamento",
+        "modelo": "switch",
+        "x": 7.8,
+        "y": 0,
+        "rotulo": "Switch",
+        "oculto": true,
+        "id": "sw"
+       },
+       {
+        "tipo": "equipamento",
+        "modelo": "servidor",
+        "x": 10.4,
+        "y": -1.8,
+        "rotulo": "Servidor web",
+        "id": "srv"
+       },
+       {
+        "tipo": "banco",
+        "x": 10.4,
+        "y": 1.6,
+        "rotulo": "Banco",
+        "icone": "🗄",
+        "oculto": true,
+        "id": "db"
+       },
+       {
+        "tipo": "equipamento",
+        "modelo": "wifi",
+        "x": 7.8,
+        "y": 2.8,
+        "rotulo": "Wi-Fi",
+        "oculto": true,
+        "id": "ap"
+       },
+       {
+        "tipo": "equipamento",
+        "modelo": "computador",
+        "x": 10.4,
+        "y": 3.8,
+        "rotulo": "Estação",
+        "oculto": true,
+        "id": "pc"
+       }
+      ],
+      "ligacoes": []
+     },
+     "passos": [
+      {
+       "rotulo": "Exposto",
+       "tipo": "problema",
+       "titulo": "Servidor direto na internet",
+       "texto": "Sem filtro, todo tráfego da internet chega ao servidor, inclusive o malicioso. Números ilustrativos.",
+       "nos": {
+        "srv": {
+         "estado": "quente",
+         "selo": "atacado"
+        }
+       },
+       "ligacoes": [
+        {
+         "de": "net",
+         "para": "rt",
+         "fluxo": 2,
+         "falha": 0.4,
+         "falhaEm": 1
+        },
+        {
+         "de": "rt",
+         "para": "srv",
+         "rota": "x",
+         "fluxo": 2,
+         "falha": 0.4,
+         "falhaEm": 1
+        }
+       ],
+       "metricas": {
+        "exp": {
+         "valor": "todas",
+         "tom": "ruim"
+        }
+       }
+      },
+      {
+       "rotulo": "Firewall",
+       "tipo": "solucao",
+       "titulo": "Um filtro na porta",
+       "texto": "O firewall entra entre a internet e o roteador e só deixa passar as portas liberadas. O ataque morre na chegada.",
+       "nos": {
+        "fw": {
+         "oculto": false
+        },
+        "srv": {
+         "estado": null,
+         "selo": null
+        }
+       },
+       "ligacoes": [
+        {
+         "de": "net",
+         "para": "fw",
+         "fluxo": 2,
+         "falha": 0.4,
+         "falhaEm": 0.95
+        },
+        {
+         "de": "fw",
+         "para": "rt"
+        },
+        {
+         "de": "rt",
+         "para": "srv",
+         "rota": "x"
+        }
+       ],
+       "metricas": {
+        "exp": {
+         "valor": "80 e 443",
+         "tom": "bom"
+        },
+        "ataques": {
+         "valor": "100%",
+         "tom": "bom"
+        }
+       }
+      },
+      {
+       "rotulo": "LAN",
+       "tipo": "tecnica",
+       "titulo": "Rede interna atrás do switch",
+       "texto": "O switch distribui a rede interna: servidor, banco, Wi-Fi e estações. O banco nunca fala direto com a internet.",
+       "nos": {
+        "lan": {
+         "oculto": false
+        },
+        "sw": {
+         "oculto": false
+        },
+        "db": {
+         "oculto": false
+        },
+        "ap": {
+         "oculto": false
+        },
+        "pc": {
+         "oculto": false
+        }
+       },
+       "ligacoes": [
+        {
+         "de": "net",
+         "para": "fw",
+         "fluxo": 2,
+         "falha": 0.4,
+         "falhaEm": 0.95
+        },
+        {
+         "de": "fw",
+         "para": "rt"
+        },
+        {
+         "de": "rt",
+         "para": "sw"
+        },
+        {
+         "de": "sw",
+         "para": "srv",
+         "rota": "y"
+        },
+        {
+         "de": "sw",
+         "para": "db",
+         "rota": "y"
+        },
+        {
+         "de": "sw",
+         "para": "ap",
+         "rota": "y",
+         "fluxo": 0.6
+        },
+        {
+         "de": "ap",
+         "para": "pc",
+         "rota": "x",
+         "tracejada": true,
+         "fluxo": 0.6
+        }
+       ],
+       "quiz": {
+        "pergunta": "Qual equipamento decide o que entra vindo da internet?",
+        "opcoes": [
+         "Switch",
+         "Firewall",
+         "Roteador"
+        ],
+        "certa": 1,
+        "porque": "O firewall filtra por regra; o roteador encaminha e o switch distribui dentro da rede."
+       }
+      }
+     ]
+    },
+    {
+     "id": "organograma",
+     "titulo": "Quem responde a quem",
+     "estilo": "organograma",
+     "resumo": "Organograma: cargos, linhas de reporte e vaga em aberto. Nomes fictícios.",
+     "nivel": "básico",
+     "minutos": 2,
+     "metricas": [
+      {
+       "id": "pessoas",
+       "rotulo": "Pessoas",
+       "valor": "1"
+      },
+      {
+       "id": "niveis",
+       "rotulo": "Níveis",
+       "valor": "1"
+      }
+     ],
+     "cena": {
+      "nos": [
+       {
+        "tipo": "cargo",
+        "x": 0,
+        "y": 0,
+        "rotulo": "Ana Souza",
+        "cargo": "Diretora geral",
+        "tom": "roxo",
+        "id": "dir"
+       },
+       {
+        "tipo": "cargo",
+        "x": 3,
+        "y": -2.6,
+        "rotulo": "Bruno Lima",
+        "cargo": "Gerente comercial",
+        "tom": "azul",
+        "oculto": true,
+        "id": "g1"
+       },
+       {
+        "tipo": "cargo",
+        "x": 3,
+        "y": 2.6,
+        "rotulo": "Carla Reis",
+        "cargo": "Gerente de operações",
+        "tom": "verde",
+        "oculto": true,
+        "id": "g2"
+       },
+       {
+        "tipo": "cargo",
+        "x": 6,
+        "y": -2.6,
+        "rotulo": "Diego Alves",
+        "cargo": "Vendas",
+        "tom": "azul",
+        "oculto": true,
+        "id": "a1"
+       },
+       {
+        "tipo": "cargo",
+        "x": 6,
+        "y": 2.6,
+        "rotulo": "Eva Prado",
+        "cargo": "Logística",
+        "tom": "verde",
+        "oculto": true,
+        "id": "a2"
+       },
+       {
+        "tipo": "cargo",
+        "x": 6,
+        "y": 0,
+        "rotulo": "Vaga aberta",
+        "cargo": "Analista financeiro",
+        "tom": "laranja",
+        "estado": "fantasma",
+        "oculto": true,
+        "id": "vaga"
+       }
+      ],
+      "ligacoes": []
+     },
+     "passos": [
+      {
+       "rotulo": "Topo",
+       "tipo": "contexto",
+       "titulo": "A diretoria",
+       "texto": "O organograma começa por quem responde pela empresa inteira.",
+       "nos": {},
+       "ligacoes": []
+      },
+      {
+       "rotulo": "Gerências",
+       "tipo": "contexto",
+       "titulo": "Duas gerências",
+       "texto": "Cada gerente responde à diretora. A linha mostra a quem cada um reporta.",
+       "nos": {
+        "g1": {
+         "oculto": false
+        },
+        "g2": {
+         "oculto": false
+        }
+       },
+       "ligacoes": [
+        {
+         "de": "dir",
+         "para": "g1",
+         "rota": "y",
+         "fluxo": 0
+        },
+        {
+         "de": "dir",
+         "para": "g2",
+         "rota": "y",
+         "fluxo": 0
+        }
+       ],
+       "metricas": {
+        "pessoas": "3",
+        "niveis": "2"
+       }
+      },
+      {
+       "rotulo": "Equipes",
+       "tipo": "problema",
+       "titulo": "E o financeiro?",
+       "texto": "As equipes entram abaixo de cada gerente. A vaga tracejada mostra um cargo previsto e ainda sem dono.",
+       "nos": {
+        "a1": {
+         "oculto": false
+        },
+        "a2": {
+         "oculto": false
+        },
+        "vaga": {
+         "oculto": false
+        }
+       },
+       "ligacoes": [
+        {
+         "de": "dir",
+         "para": "g1",
+         "rota": "y",
+         "fluxo": 0
+        },
+        {
+         "de": "dir",
+         "para": "g2",
+         "rota": "y",
+         "fluxo": 0
+        },
+        {
+         "de": "g1",
+         "para": "a1",
+         "fluxo": 0
+        },
+        {
+         "de": "g2",
+         "para": "a2",
+         "fluxo": 0
+        },
+        {
+         "de": "dir",
+         "para": "vaga",
+         "fluxo": 0,
+         "tracejada": true
+        }
+       ],
+       "metricas": {
+        "pessoas": "5",
+        "niveis": "3"
+       }
+      }
+     ],
+     "legenda": []
+    },
+    {
+     "id": "fluxograma-reembolso",
+     "titulo": "Reembolso em fluxograma",
+     "estilo": "fluxograma",
+     "resumo": "Fluxograma clássico: terminal, entrada de dados, processo, decisão, operação manual, subprocesso e documento.",
+     "nivel": "básico",
+     "minutos": 2,
+     "metricas": [
+      {
+       "id": "etapas",
+       "rotulo": "Etapas",
+       "valor": "1"
+      }
+     ],
+     "cena": {
+      "nos": [
+       {
+        "tipo": "forma",
+        "forma": "terminal",
+        "x": 0,
+        "y": 0,
+        "rotulo": "Início",
+        "tom": "verde",
+        "id": "ini"
+       },
+       {
+        "tipo": "forma",
+        "forma": "dados",
+        "x": 2.6,
+        "y": 0,
+        "rotulo": "Recebe comprovante",
+        "tom": "azul",
+        "oculto": true,
+        "id": "rec"
+       },
+       {
+        "tipo": "forma",
+        "forma": "processo",
+        "x": 5.2,
+        "y": 0,
+        "rotulo": "Confere valor",
+        "tom": "azul",
+        "oculto": true,
+        "id": "conf"
+       },
+       {
+        "tipo": "forma",
+        "forma": "decisao",
+        "x": 7.8,
+        "y": 0,
+        "rotulo": "> R$ 500?",
+        "oculto": true,
+        "id": "dec"
+       },
+       {
+        "tipo": "forma",
+        "forma": "manual",
+        "x": 7.8,
+        "y": -2.8,
+        "rotulo": "Gestor aprova",
+        "tom": "roxo",
+        "oculto": true,
+        "id": "apr"
+       },
+       {
+        "tipo": "forma",
+        "forma": "subprocesso",
+        "x": 10.4,
+        "y": 0,
+        "rotulo": "Pagamento",
+        "tom": "azul",
+        "oculto": true,
+        "id": "pag"
+       },
+       {
+        "tipo": "forma",
+        "forma": "documento",
+        "x": 13,
+        "y": 0,
+        "rotulo": "Recibo",
+        "tom": "branco",
+        "oculto": true,
+        "id": "doc"
+       },
+       {
+        "tipo": "forma",
+        "forma": "terminal",
+        "x": 15.6,
+        "y": 0,
+        "rotulo": "Fim",
+        "tom": "vermelho",
+        "oculto": true,
+        "id": "fim"
+       }
+      ],
+      "ligacoes": []
+     },
+     "passos": [
+      {
+       "rotulo": "Entrada",
+       "tipo": "contexto",
+       "titulo": "Começa com um comprovante",
+       "texto": "O terminal marca o início. O paralelogramo é entrada de dados; o retângulo, um processo.",
+       "nos": {
+        "rec": {
+         "oculto": false
+        },
+        "conf": {
+         "oculto": false
+        }
+       },
+       "ligacoes": [
+        {
+         "de": "ini",
+         "para": "rec"
+        },
+        {
+         "de": "rec",
+         "para": "conf"
+        }
+       ],
+       "metricas": {
+        "etapas": "3"
+       }
+      },
+      {
+       "rotulo": "Decisão",
+       "tipo": "tecnica",
+       "titulo": "Valor alto pede aprovação",
+       "texto": "O losango pergunta; cada saída leva um rótulo. A operação manual (topo inclinado) é feita por uma pessoa. O limite de R$ 500 é ilustrativo.",
+       "nos": {
+        "dec": {
+         "oculto": false
+        },
+        "apr": {
+         "oculto": false
+        }
+       },
+       "ligacoes": [
+        {
+         "de": "ini",
+         "para": "rec"
+        },
+        {
+         "de": "rec",
+         "para": "conf"
+        },
+        {
+         "de": "conf",
+         "para": "dec"
+        },
+        {
+         "de": "dec",
+         "para": "apr",
+         "rotulo": "sim",
+         "estilo": "alerta"
+        }
+       ],
+       "metricas": {
+        "etapas": "5"
+       }
+      },
+      {
+       "rotulo": "Fim",
+       "tipo": "resumo",
+       "titulo": "Paga e registra",
+       "texto": "O retângulo com barras laterais é um subprocesso, detalhado em outro fluxo. O documento é o recibo, e o terminal fecha.",
+       "nos": {
+        "pag": {
+         "oculto": false
+        },
+        "doc": {
+         "oculto": false
+        },
+        "fim": {
+         "oculto": false
+        }
+       },
+       "ligacoes": [
+        {
+         "de": "ini",
+         "para": "rec"
+        },
+        {
+         "de": "rec",
+         "para": "conf"
+        },
+        {
+         "de": "conf",
+         "para": "dec"
+        },
+        {
+         "de": "dec",
+         "para": "apr",
+         "rotulo": "sim",
+         "estilo": "alerta"
+        },
+        {
+         "de": "apr",
+         "para": "pag",
+         "rota": "x"
+        },
+        {
+         "de": "dec",
+         "para": "pag",
+         "rotulo": "não",
+         "estilo": "bom"
+        },
+        {
+         "de": "pag",
+         "para": "doc"
+        },
+        {
+         "de": "doc",
+         "para": "fim"
+        }
+       ],
+       "metricas": {
+        "etapas": "8"
+       },
+       "quiz": {
+        "pergunta": "Qual forma indica uma etapa detalhada em outro fluxograma?",
+        "opcoes": [
+         "Paralelogramo",
+         "Retângulo com barras laterais",
+         "Losango"
+        ],
+        "certa": 1,
+        "porque": "É o símbolo de processo predefinido (subprocesso)."
+       }
+      }
+     ],
+     "legenda": [
+      {
+       "cor": "var(--req)",
+       "texto": "fluxo"
+      }
+     ]
+    },
+    {
+     "id": "caso-de-uso",
+     "titulo": "Casos de uso do portal",
+     "estilo": "caso-de-uso",
+     "resumo": "Diagrama de casos de uso (UML): atores, casos, fronteira do sistema e «include».",
+     "nivel": "básico",
+     "minutos": 2,
+     "metricas": [
+      {
+       "id": "atores",
+       "rotulo": "Atores",
+       "valor": "1"
+      },
+      {
+       "id": "casos",
+       "rotulo": "Casos de uso",
+       "valor": "1"
+      }
+     ],
+     "cena": {
+      "nos": [
+       {
+        "tipo": "zona",
+        "x": 4.8,
+        "y": 0.4,
+        "largura": 6.4,
+        "fundo": 7.4,
+        "tom": "azul",
+        "rotulo": "Portal de inscrição",
+        "id": "sis"
+       },
+       {
+        "tipo": "ator",
+        "x": 0,
+        "y": -1.2,
+        "rotulo": "Candidato",
+        "tom": "azul",
+        "id": "cand"
+       },
+       {
+        "tipo": "ator",
+        "x": 10.4,
+        "y": 1.6,
+        "rotulo": "Secretaria",
+        "tom": "roxo",
+        "oculto": true,
+        "id": "sec"
+       },
+       {
+        "tipo": "caso",
+        "x": 4.6,
+        "y": -2.4,
+        "rotulo": "Fazer inscrição",
+        "tom": "azul",
+        "id": "uc1"
+       },
+       {
+        "tipo": "caso",
+        "x": 4.6,
+        "y": 0.4,
+        "rotulo": "Enviar documentos",
+        "tom": "azul",
+        "oculto": true,
+        "id": "uc2"
+       },
+       {
+        "tipo": "caso",
+        "x": 4.6,
+        "y": 3.2,
+        "rotulo": "Analisar documentos",
+        "tom": "roxo",
+        "oculto": true,
+        "id": "uc3"
+       },
+       {
+        "tipo": "caso",
+        "x": 7,
+        "y": 0.4,
+        "rotulo": "Validar arquivo",
+        "tom": "branco",
+        "oculto": true,
+        "id": "uc4"
+       }
+      ],
+      "ligacoes": []
+     },
+     "passos": [
+      {
+       "rotulo": "Ator",
+       "tipo": "contexto",
+       "titulo": "Quem usa o sistema",
+       "texto": "O boneco é um ator, de fora do sistema. A elipse é o que ele consegue fazer lá dentro. O retângulo é a fronteira do sistema.",
+       "ligacoes": [
+        {
+         "de": "cand",
+         "para": "uc1",
+         "rota": "reta",
+         "fluxo": 0
+        }
+       ]
+      },
+      {
+       "rotulo": "Casos",
+       "tipo": "contexto",
+       "titulo": "Dois atores",
+       "texto": "A secretaria é outro ator, com outro caso de uso.",
+       "nos": {
+        "sec": {
+         "oculto": false
+        },
+        "uc2": {
+         "oculto": false
+        },
+        "uc3": {
+         "oculto": false
+        }
+       },
+       "ligacoes": [
+        {
+         "de": "cand",
+         "para": "uc1",
+         "rota": "reta",
+         "fluxo": 0
+        },
+        {
+         "de": "cand",
+         "para": "uc2",
+         "rota": "reta",
+         "fluxo": 0
+        },
+        {
+         "de": "sec",
+         "para": "uc3",
+         "rota": "reta",
+         "fluxo": 0
+        }
+       ],
+       "metricas": {
+        "atores": "2",
+        "casos": "3"
+       }
+      },
+      {
+       "rotulo": "Include",
+       "tipo": "tecnica",
+       "titulo": "Um caso usa outro",
+       "texto": "Enviar documentos sempre valida o arquivo: a seta tracejada «include» liga o caso que usa ao que é usado.",
+       "nos": {
+        "uc4": {
+         "oculto": false
+        }
+       },
+       "ligacoes": [
+        {
+         "de": "cand",
+         "para": "uc1",
+         "rota": "reta",
+         "fluxo": 0
+        },
+        {
+         "de": "cand",
+         "para": "uc2",
+         "rota": "reta",
+         "fluxo": 0
+        },
+        {
+         "de": "sec",
+         "para": "uc3",
+         "rota": "reta",
+         "fluxo": 0
+        },
+        {
+         "de": "uc2",
+         "para": "uc4",
+         "rota": "reta",
+         "tracejada": true,
+         "rotulo": "«include»",
+         "fluxo": 0,
+         "posRotulo": 0.3
+        }
+       ],
+       "metricas": {
+        "casos": "4"
+       },
+       "quiz": {
+        "pergunta": "O que fica fora da fronteira do sistema?",
+        "opcoes": [
+         "Os casos de uso",
+         "Os atores",
+         "O «include»"
+        ],
+        "certa": 1,
+        "porque": "Ator é quem interage com o sistema, por isso fica do lado de fora."
+       }
+      }
+     ],
+     "legenda": []
+    }
+   ]
+  }
+ ]
+}

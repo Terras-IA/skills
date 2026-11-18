@@ -1,7 +1,7 @@
 ---
 name: terras-licao-interativa
 description: "Curso ou lição interativa em página única: cena isométrica animada (pessoas, serviços, filas, bancos) que muda passo a passo, com métricas, texto de problema e solução, quiz e progresso. Use para 'tela interativa que ensina X' ou simular processo. Página estática: terras-visual-explainer."
-keywords: [licao interativa, curso interativo, simulador, explicacao passo a passo, isometrico, system design, processo, bpmn, fluxograma de processo, cena animada, tutorial visual, interactive lesson, step-by-step explainer]
+keywords: [licao interativa, curso interativo, simulador, explicacao passo a passo, isometrico, system design, processo, bpmn, fluxograma, topologia de rede, organograma, caso de uso, cena animada, tutorial visual, interactive lesson, step-by-step explainer]
 ---
 
 # Lição interativa em cena isométrica
@@ -37,15 +37,30 @@ scripts/    montar.py (valida e monta), capturar.py (foto de cada passo)
 exemplos/   system-design.json               (sistemas: load balancer, 9 passos)
             contas-a-pagar.json              (processo de negócio: alçada e conferência, com placa e golpista)
             processo-seletivo.json           (processo em BPMN: raias, eventos, gateways e documentos)
+            estilos.json                     (galeria: rede, organograma, fluxograma e caso de uso)
 ```
 
 ## Como trabalhar
 
 1. **Entender o assunto e o leitor.** Uma lição é uma pergunta ("por que precisamos de load balancer?", "por que a conta a pagar precisa de alçada?"). Curso é um conjunto de lições em módulos.
-2. **Escolher as metáforas.** A tabela de `references/roteiro.md` diz qual peça representa o quê em cada domínio.
-   Processo de negócio com decisão, prazo ou documento: desenhe em BPMN (evento, gateway, documento, raias), pela seção "Processo em BPMN" de `references/formato.md`.
+2. **Perguntar o estilo antes de gerar.** Antes do roteiro, pergunte ao usuário as duas escolhas abaixo, de uma vez, com opções para escolher quando o agente tiver ferramenta de pergunta e no chat quando não tiver, com a sua recomendação primeiro. Não pergunte o que o pedido já disse ("em BPMN", "com a marca da Avancei") nem ao editar um `curso.json` que já tem `estilo`: mantenha o dele.
+
+   | Escolha | Opções | Quando recomendar |
+   |---------|--------|-------------------|
+   | **Estilo** (`"estilo"` no `curso.json`) | `livre`: metáforas (pessoas, filas, bancos, pacotes andando) | sistema, arquitetura, tráfego, logística, segurança: o leitor precisa *ver* carga, gargalo e falha |
+   | | `bpmn`: eventos, gateways, documentos e raias do BPMN 2.0 | processo de negócio com atores, decisões, prazos e documentos |
+   | | `fluxograma`: terminal, processo, decisão, dados, documento | procedimento passo a passo de um ator só, rotina, algoritmo |
+   | | `rede`: nuvem, firewall, roteador, switch, servidor, estação, Wi-Fi | topologia, segmentação, caminho do tráfego, segurança de rede |
+   | | `organograma`: cartões de cargo e linhas de reporte | estrutura de equipe, quem responde a quem, vagas |
+   | | `caso-de-uso`: atores e casos de uso UML com a fronteira do sistema | o que cada perfil faz num sistema, levantamento de requisitos |
+   | **Aparência** (`"tema"`) | padrão da skill (claro e escuro) | uso interno, rascunho |
+   | | marca: cores, fontes e logo de um cliente (`tema` em `references/formato.md`; identidade com `terras-identidade`) | material que sai para cliente ou público |
+
+   A ferramenta de pergunta costuma aceitar até 4 opções: ofereça as 3 que mais servem ao assunto, com a recomendada primeiro; as outras ficam no "outro". Um curso pode misturar: `estilo` na lição vale sobre o do curso.
+
+   Grave o estilo em `"estilo"`. Depois escolha as peças: em `livre`, pela tabela de metáforas de `references/roteiro.md`; nos outros, pela seção do estilo em `references/formato.md`. Exemplos: `exemplos/processo-seletivo.json` (bpmn) e `exemplos/estilos.json` (rede, organograma, fluxograma e caso de uso).
 3. **Roteirizar** os passos: 6 a 12, pelo arco contexto → problema → solução → limite → troca → resumo com quiz.
-4. **Escrever o `curso.json`** pelo `references/formato.md`. Comece copiando `exemplos/system-design.json`. Declare na `cena` todos os nós que vão aparecer, com `"oculto": true`, e revele nos passos. Deixe 2 unidades de grade entre caixas.
+4. **Escrever o `curso.json`** pelo `references/formato.md`. Comece copiando `exemplos/system-design.json` (livre) ou `exemplos/processo-seletivo.json` (bpmn). Declare na `cena` todos os nós que vão aparecer, com `"oculto": true`, e revele nos passos. Deixe 2 unidades de grade entre caixas.
 5. **Montar** (valida antes; erro sai com código 1 e a lista do que corrigir):
    ```bash
    python3 "$SKILL_DIR/scripts/montar.py" curso.json -o curso.html

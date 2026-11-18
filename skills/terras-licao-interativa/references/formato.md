@@ -10,6 +10,7 @@ Exemplo completo e funcionando: `exemplos/system-design.json`.
   "id": "slug-do-curso",          // chave do progresso salvo no navegador
   "titulo": "Nome do curso",
   "idioma": "pt-BR",              // "pt-BR" ou "en": muda os textos da interface
+  "estilo": "livre",              // livre | bpmn | rede | organograma | fluxograma | caso-de-uso; a lição pode ter o seu
   "modulos": [ { "titulo": "Escala", "cor": "laranja", "licoes": [ ... ] } ]
 }
 ```
@@ -34,7 +35,7 @@ Coordenadas em **unidades de grade isométrica**: `x` cresce para baixo-direita,
 | Campo | Valores |
 |-------|---------|
 | `id` | único na lição |
-| `tipo` | `caixa` (serviço, pessoa-papel, etapa), `banco` (cilindro: dados, arquivo, estoque), `pessoas` (multidão numa plataforma), `fila` (blocos enfileirados: fila, log, lotes), `zona` (área tracejada no chão: rede, departamento, região), `rotulo` (etiqueta solta), `placa` (cartão plano com título e linhas: tabela de alçada, checklist, regra, contrato entre serviços), `evento`, `gateway` e `documento` (notação BPMN, abaixo) |
+| `tipo` | `caixa` (serviço, pessoa-papel, etapa), `banco` (cilindro: dados, arquivo, estoque), `pessoas` (multidão numa plataforma), `fila` (blocos enfileirados: fila, log, lotes), `zona` (área tracejada no chão: rede, departamento, região), `rotulo` (etiqueta solta), `placa` (cartão plano com título e linhas: tabela de alçada, checklist, regra, contrato entre serviços), `evento`, `gateway` e `documento` (BPMN), `equipamento` (rede), `cargo` (organograma), `forma` (fluxograma), `ator` e `caso` (caso de uso); ver as seções de estilo abaixo |
 | `x`, `y`, `z` | posição; `z` em px eleva o nó |
 | `rotulo` | texto. `caixa`: no topo (até ~22 caracteres, quebra em 2 linhas). `banco`: pílula à direita (até ~16). `pessoas` e `fila`: pílula embaixo/acima. `placa`: título |
 | `linhas` | `placa`: até 6 linhas de texto (`["até R$ 5 mil → gestor", "acima → diretor"]`) |
@@ -48,7 +49,7 @@ Coordenadas em **unidades de grade isométrica**: `x` cresce para baixo-direita,
 | `quantidade` | `pessoas`: figuras (1 a 36); `fila`: blocos (1 a 14) |
 | `direcao`, `espaco` | `fila`: `"x"` (padrão) ou `"y"`; `espaco` entre blocos em unidades (padrão 0,6) |
 | `largura`, `fundo` | `zona`: tamanho em unidades |
-| `evento`, `marcador` | só em `evento` e `gateway`; ver "Processo em BPMN" |
+| `evento`, `marcador`, `modelo`, `forma`, `cargo` | campos dos tipos de cada estilo; ver as seções abaixo |
 | `oculto` | `true`: existe mas não aparece. Declare na `cena` todo nó que vai surgir depois, oculto, e revele com `{"oculto": false}`: assim a câmera não pula |
 
 ## Processo em BPMN
@@ -67,6 +68,19 @@ Para processo de negócio (inscrição, aprovação, atendimento), use o vocabul
 | Fluxo de mensagem | ligação | `tracejada: true` entre raias |
 
 Prazo é evento intermediário de tempo; com o prazo vencido, `estado: "quente"`.
+
+Com `"estilo": "bpmn"`, o `montar.py` avisa quando a lição não tem evento de início ou de fim e quando um gateway tem menos de duas saídas. Em qualquer estilo que não seja `livre`, avisa quando a lição usa tipo de nó fora da notação.
+
+## Rede, organograma, fluxograma e caso de uso
+
+| Estilo | Nó | Campos |
+|--------|----|--------|
+| `rede` | `equipamento` | `modelo`: `nuvem` (internet, rótulo dentro), `firewall`, `roteador`, `switch`, `servidor`, `computador`, `wifi`. Tom padrão por modelo; `rotulo` em pílula embaixo. Use `zona` para segmento de rede (DMZ, LAN, VLAN) e `banco` para banco de dados |
+| `organograma` | `cargo` | cartão com avatar: `rotulo` é o nome, `cargo` é a função. Vaga em aberto: `estado: "fantasma"`. Reporte é ligação com `fluxo: 0`; reporte indireto, `tracejada`. Hierarquia descendo em `x`, pares lado a lado em `y` |
+| `fluxograma` | `forma` | `forma`: `terminal` (início e fim), `processo`, `subprocesso` (barras laterais), `decisao` (losango), `dados` (entrada e saída), `documento`, `preparacao` (hexágono), `manual` (operação manual), `conector`. Texto dentro, até ~22 caracteres em 2 linhas |
+| `caso-de-uso` | `ator`, `caso` | `ator`: boneco UML, `rotulo` embaixo, fora da fronteira. `caso`: elipse com o texto dentro. A fronteira do sistema é uma `zona`. Associação é ligação `fluxo: 0`, `rota: "reta"`; `«include»` e `«extend»` são ligações `tracejada` com esse `rotulo` |
+
+Exemplo de cada um: `exemplos/estilos.json`.
 
 ## Ligação
 

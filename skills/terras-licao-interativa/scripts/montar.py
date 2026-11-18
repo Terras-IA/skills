@@ -15,7 +15,20 @@ import sys
 from pathlib import Path
 
 MOTOR = Path(__file__).resolve().parent.parent / "motor"
-TIPOS_NO = {"caixa", "banco", "pessoas", "fila", "zona", "rotulo", "placa", "evento", "gateway", "documento"}
+TIPOS_NO = {"caixa", "banco", "pessoas", "fila", "zona", "rotulo", "placa", "evento", "gateway", "documento",
+            "forma", "ator", "caso", "cargo", "equipamento"}
+FORMAS = {"terminal", "processo", "subprocesso", "decisao", "dados", "documento", "preparacao", "manual", "conector"}
+MODELOS = {"roteador", "switch", "firewall", "servidor", "nuvem", "computador", "wifi"}
+# vocabulário de cada estilo; tipo fora dele gera aviso
+COMUNS = {"zona", "rotulo", "placa"}
+ESTILOS = {
+    "livre": None,
+    "bpmn": COMUNS | {"evento", "gateway", "caixa", "documento", "banco"},
+    "rede": COMUNS | {"equipamento", "banco", "caixa", "pessoas"},
+    "organograma": COMUNS | {"cargo"},
+    "fluxograma": COMUNS | {"forma", "banco"},
+    "caso-de-uso": COMUNS | {"ator", "caso"},
+}
 EVENTOS = {"inicio", "intermediario", "fim"}
 MARCADORES_EVENTO = {"tempo", "mensagem", "erro", "sinal", "condicao", "terminar"}
 MARCADORES_GATEWAY = {"exclusivo", "paralelo", "inclusivo", "complexo", "evento"}
@@ -27,6 +40,9 @@ TIPOS_PASSO = {"contexto", "problema", "solucao", "tecnica", "troca", "resumo"}
 def validar(c):
     erros, avisos = [], []
     validar_tema(c.get("tema"), erros)
+    estilo_curso = c.get("estilo", "livre")
+    if estilo_curso not in ESTILOS:
+        erros.append(f"curso: estilo '{estilo_curso}' inválido ({', '.join(ESTILOS)})")
     if not c.get("titulo"):
         erros.append("curso: falta 'titulo'")
     mods = c.get("modulos") or []
@@ -37,6 +53,10 @@ def validar(c):
         for l in m.get("licoes") or []:
             lid = l.get("id")
             onde = f"lição '{lid or '?'}' (módulo {mi})"
+            estilo = l.get("estilo", estilo_curso)
+            if estilo not in ESTILOS:
+                erros.append(f"{onde}: estilo '{estilo}' inválido ({', '.join(ESTILOS)})")
+                estilo = "livre"
             if not lid:
                 erros.append(f"{onde}: falta 'id'")
             elif lid in ids:
@@ -123,6 +143,10 @@ def validar(c):
                             erros.append(f"{op}: evento '{nid}' com evento '{n['evento']}' inválido ({', '.join(sorted(EVENTOS))})")
                         if n.get("marcador") and n["marcador"] not in MARCADORES_EVENTO:
                             erros.append(f"{op}: evento '{nid}' com marcador '{n['marcador']}' inválido ({', '.join(sorted(MARCADORES_EVENTO))})")
+                    if n.get("tipo") == "forma" and n.get("forma") and n["forma"] not in FORMAS:
+                        erros.append(f"{op}: forma '{nid}' com forma '{n['forma']}' inválida ({', '.join(sorted(FORMAS))})")
+                    if n.get("tipo") == "equipamento" and n.get("modelo") and n["modelo"] not in MODELOS:
+                        erros.append(f"{op}: equipamento '{nid}' com modelo '{n['modelo']}' inválido ({', '.join(sorted(MODELOS))})")
                     if n.get("tipo") == "gateway":
                         if n.get("marcador") and n["marcador"] not in MARCADORES_GATEWAY:
                             erros.append(f"{op}: gateway '{nid}' com marcador '{n['marcador']}' inválido ({', '.join(sorted(MARCADORES_GATEWAY))})")
@@ -132,7 +156,7 @@ def validar(c):
                         avisos.append(f"{op}: placa '{nid}' com mais de 6 linhas; o resto não aparece")
                 # nós encostados no mesmo passo (distância de grade < 1,6)
                 solidos = [(nid, n) for nid, n in nos.items()
-                           if not n.get("oculto") and n.get("tipo", "caixa") in ("caixa", "banco", "pessoas", "fila", "evento", "gateway", "documento")
+                           if not n.get("oculto") and n.get("tipo", "caixa") in ("caixa", "banco", "pessoas", "fila", "evento", "gateway", "documento", "forma", "ator", "caso", "cargo", "equipamento")
                            and isinstance(n.get("x"), (int, float)) and isinstance(n.get("y"), (int, float))]
                 pontos = []
                 for nid, n in solidos:
@@ -147,10 +171,46 @@ def validar(c):
                         if a1 != a2 and (a1, a2) not in ja and ((x1 - x2) ** 2 + (y1 - y2) ** 2) ** 0.5 < 1.6:
                             ja.add((a1, a2))
                             avisos.append(f"{op}: '{a1}' e '{a2}' encostados (distância < 1,6 na grade); afaste para 2")
+            avisos.extend(checar_estilo(onde, l, estilo))
             for o in l.get("objetivos") or []:
                 if o.get("passo") and o["passo"] > len(passos):
                     erros.append(f"{onde}: objetivo '{o.get('texto', '')[:30]}' marca passo {o['passo']} > {len(passos)}")
     return erros, avisos
+
+
+def checar_estilo(onde, l, estilo):
+    """Avisos de notação: tipo fora do vocabulário do estilo e regras do BPMN (estado final da lição)."""
+    avisos = []
+    vocab = ESTILOS.get(estilo)
+    nos = {n["id"]: dict(n) for n in (l.get("cena") or {}).get("nos") or [] if n.get("id")}
+    lig = (l.get("cena") or {}).get("ligacoes") or []
+    usadas = set()
+    for p in l.get("passos") or []:
+        for nid, patch in (p.get("nos") or {}).items():
+            if patch is None:
+                nos.pop(nid, None)
+            else:
+                nos[nid] = {**nos.get(nid, {}), **patch}
+        if p.get("ligacoes") is not None:
+            lig = p["ligacoes"]
+            usadas |= {(g.get("de"), g.get("para")) for g in lig}
+    usadas |= {(g.get("de"), g.get("para")) for g in lig}
+    vis = {k: n for k, n in nos.items() if not n.get("oculto")}
+    if vocab:
+        fora = sorted({n.get("tipo", "caixa") for n in vis.values()} - vocab)
+        if fora:
+            avisos.append(f"{onde}: estilo {estilo} usa {', '.join(fora)}, fora da notação ({', '.join(sorted(vocab))})")
+    if estilo != "bpmn":
+        return avisos
+    eventos = [n.get("evento", "inicio") for n in vis.values() if n.get("tipo") == "evento"]
+    if "inicio" not in eventos:
+        avisos.append(f"{onde}: estilo bpmn sem evento de início")
+    if "fim" not in eventos:
+        avisos.append(f"{onde}: estilo bpmn sem evento de fim")
+    for k, n in vis.items():
+        if n.get("tipo") == "gateway" and sum(1 for de, _ in usadas if de == k) < 2:
+            avisos.append(f"{onde}: gateway '{k}' com menos de duas saídas")
+    return avisos
 
 
 def para_artifact(html):

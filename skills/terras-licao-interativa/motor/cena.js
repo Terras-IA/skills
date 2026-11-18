@@ -107,6 +107,7 @@
       return [Math.min(X, f[0]) - 30, Math.min(Y, f[1]) - 60, Math.max(X, f[0]) + 30, Math.max(Y, f[1]) + 40];
     }
     if (n.tipo === 'rotulo') { var lw = largura(n.rotulo); return [X - lw / 2, Y - 14, X + lw / 2, Y + 14]; }
+    if (MEDIDAS[n.tipo]) { var md = MEDIDAS[n.tipo](n), mw = Math.max(md[0], n.rotulo && n.tipo !== 'caso' && n.tipo !== 'forma' && n.tipo !== 'cargo' && !(n.tipo === 'equipamento' && n.modelo === 'nuvem') ? largura(n.rotulo) / 2 : 0); return [X - mw - 10, Y - md[1] - 40, X + mw + 10, Y + 34]; }
     if (n.tipo === 'evento') { var er = 20 * d.s, ew = Math.max(er, n.rotulo ? largura(n.rotulo) / 2 : 0); return [X - ew - 6, Y - 26 * d.s - er - 40, X + ew + 6, Y + 32]; }
     if (n.tipo === 'gateway') { var gw = 26 * d.s, gl = Math.max(gw, n.rotulo ? largura(n.rotulo) / 2 : 0); return [X - gl - 10, Y - 30 * d.s - gw - 30, X + gl + 10, Y + 30]; }
     if (n.tipo === 'documento') { var dl = Math.max(50, n.rotulo ? largura(n.rotulo) / 2 + 6 : 0); return [X - dl, Y - 40 - (n.quantidade || 1) * 4, X + dl, Y + 48]; }
@@ -303,8 +304,179 @@
     return { svg: s, X: X, topo: topo - 6, base: base + 28 };
   }
 
+  // ---------- rede, organograma, fluxograma e caso de uso ----------
+  function sombraChao(X, Y, rx) { return '<ellipse cx="' + (X + 3) + '" cy="' + (Y + 3) + '" rx="' + rx + '" ry="' + rx * 0.36 + '" fill="var(--sombra)"/>'; }
+  // forma em pé com profundidade: f(dx, dy) devolve o atributo d do contorno
+  function emPe(f, c, extra) {
+    return '<g class="corpo" stroke="' + c[3] + '" stroke-linejoin="round"><path d="' + f(5, 3) + '" fill="' + c[2] + '" stroke-width="1.2"/>' +
+      '<path d="' + f(0, 0) + '" fill="' + c[0] + '" stroke-width="1.6"/>' + (extra || '') + '</g>';
+  }
+  function textoDentro(X, cy, txt, max) {
+    var ls = linhasRotulo(txt), out = '';
+    ls.forEach(function (ln, i) { out += '<text class="rot-no" x="' + X + '" y="' + (cy + 4 - (ls.length - 1) * 6 + i * 12) + '">' + esc(ln) + '</text>'; });
+    return out;
+  }
+  function larguraTexto(txt, min, max) {
+    var ls = linhasRotulo(txt), m = 0; ls.forEach(function (l) { m = Math.max(m, l.length); });
+    return Math.max(min, Math.min(max, m * 6.6 + 26));
+  }
+  var MEDIDAS = {
+    forma: function (n) { var s = n.tamanho || 1, f = n.forma || 'processo';
+      if (f === 'decisao') return [50 * s, 68 * s]; if (f === 'conector') return [16 * s, 40 * s];
+      return [larguraTexto(n.rotulo, 84, 160) / 2 * s, 50 * s]; },
+    ator: function (n) { return [16, 52 * (n.tamanho || 1)]; },
+    caso: function (n) { return [larguraTexto(n.rotulo, 90, 170) / 2 * (n.tamanho || 1), 50]; },
+    cargo: function (n) { return [larguraCargo(n) / 2, 56]; },
+    equipamento: function (n) { var s = n.tamanho || 1, m = n.modelo || 'servidor';
+      if (m === 'nuvem') return [larguraTexto(n.rotulo, 90, 150) / 2 * s, 56 * s];
+      return [46 * s, (m === 'servidor' ? 78 : m === 'computador' ? 56 : m === 'firewall' ? 54 : 40) * s]; }
+  };
+  var TOM_PADRAO = { roteador: 'azul', switch: 'teal', firewall: 'vermelho', servidor: 'cinza', nuvem: 'branco', computador: 'cinza', wifi: 'roxo' };
+
+  function desenhaForma(n, c) {
+    var p = P(n.x, n.y, n.z), X = p[0], Y = p[1], s = n.tamanho || 1, f = n.forma || 'processo';
+    var w = MEDIDAS.forma(n)[0], h = 20 * s, cy = Y - h - 8, out = sombraChao(X, Y, w * 0.8);
+    if (f === 'decisao') { w = 50 * s; h = 30 * s; cy = Y - h - 8; }
+    if (f === 'conector') { w = 16 * s; h = 16 * s; cy = Y - h - 8; }
+    var forma = {
+      terminal: function (dx, dy) { var r = h; return 'M' + (X - w + r + dx) + ',' + (cy - h + dy) + ' H' + (X + w - r + dx) + ' A' + r + ',' + r + ' 0 0 1 ' + (X + w - r + dx) + ',' + (cy + h + dy) + ' H' + (X - w + r + dx) + ' A' + r + ',' + r + ' 0 0 1 ' + (X - w + r + dx) + ',' + (cy - h + dy) + ' Z'; },
+      processo: function (dx, dy) { return 'M' + (X - w + dx) + ',' + (cy - h + dy) + ' H' + (X + w + dx) + ' V' + (cy + h + dy) + ' H' + (X - w + dx) + ' Z'; },
+      dados: function (dx, dy) { var k = 12; return 'M' + (X - w + k + dx) + ',' + (cy - h + dy) + ' H' + (X + w + dx) + ' L' + (X + w - k + dx) + ',' + (cy + h + dy) + ' H' + (X - w + dx) + ' Z'; },
+      decisao: function (dx, dy) { return 'M' + (X + dx) + ',' + (cy - h + dy) + ' L' + (X + w + dx) + ',' + (cy + dy) + ' L' + (X + dx) + ',' + (cy + h + dy) + ' L' + (X - w + dx) + ',' + (cy + dy) + ' Z'; },
+      preparacao: function (dx, dy) { var k = 12; return 'M' + (X - w + k + dx) + ',' + (cy - h + dy) + ' H' + (X + w - k + dx) + ' L' + (X + w + dx) + ',' + (cy + dy) + ' L' + (X + w - k + dx) + ',' + (cy + h + dy) + ' H' + (X - w + k + dx) + ' L' + (X - w + dx) + ',' + (cy + dy) + ' Z'; },
+      manual: function (dx, dy) { return 'M' + (X - w + dx) + ',' + (cy - h + 8 + dy) + ' L' + (X + w + dx) + ',' + (cy - h + dy) + ' V' + (cy + h + dy) + ' H' + (X - w + dx) + ' Z'; },
+      documento: function (dx, dy) { return 'M' + (X - w + dx) + ',' + (cy - h + dy) + ' H' + (X + w + dx) + ' V' + (cy + h - 4 + dy) + ' Q' + (X + w / 2 + dx) + ',' + (cy + h - 14 + dy) + ' ' + (X + dx) + ',' + (cy + h - 2 + dy) + ' T' + (X - w + dx) + ',' + (cy + h + 2 + dy) + ' Z'; },
+      conector: function (dx, dy) { return 'M' + (X - w + dx) + ',' + (cy + dy) + ' A' + w + ',' + w + ' 0 1 0 ' + (X + w + dx) + ',' + (cy + dy) + ' A' + w + ',' + w + ' 0 1 0 ' + (X - w + dx) + ',' + (cy + dy) + ' Z'; }
+    };
+    forma.subprocesso = forma.processo;
+    var extra = f === 'subprocesso' ? '<path d="M' + (X - w + 8) + ',' + (cy - h) + ' V' + (cy + h) + ' M' + (X + w - 8) + ',' + (cy - h) + ' V' + (cy + h) + '" stroke-width="1.4" fill="none"/>' : '';
+    out += emPe(forma[f] || forma.processo, c, extra);
+    if (n.icone && f !== 'conector') out += '<text class="ic-no" x="' + X + '" y="' + (cy - h - 6) + '">' + esc(n.icone) + '</text>';
+    if (n.rotulo) out += f === 'conector' ? '<text class="rot-no" x="' + X + '" y="' + (cy + 4) + '">' + esc(n.rotulo) + '</text>' : textoDentro(X, cy, n.rotulo);
+    return { svg: out, X: X, topo: cy - h, base: Y + 6 };
+  }
+
+  function desenhaAtor(n, c) {
+    var p = P(n.x, n.y, n.z), X = p[0], Y = p[1], k = n.tamanho || 1, t = c[3];
+    var cab = Y - 46 * k, s = sombraChao(X, Y, 14);
+    s += '<g class="corpo" stroke="' + t + '" stroke-width="2.4" stroke-linecap="round" fill="none">' +
+      '<circle cx="' + X + '" cy="' + cab + '" r="' + 7 * k + '" fill="' + c[0] + '"/>' +
+      '<path d="M' + X + ',' + (cab + 7 * k) + ' V' + (Y - 16 * k) + ' M' + (X - 13 * k) + ',' + (Y - 31 * k) + ' H' + (X + 13 * k) +
+      ' M' + (X - 11 * k) + ',' + Y + ' L' + X + ',' + (Y - 16 * k) + ' L' + (X + 11 * k) + ',' + Y + '"/></g>';
+    if (n.rotulo) s += pill(X, Y + 18, (n.icone ? n.icone + ' ' : '') + n.rotulo);
+    return { svg: s, X: X, topo: cab - 8 * k, base: Y + 30 };
+  }
+
+  function desenhaCaso(n, c) {
+    var p = P(n.x, n.y, n.z), X = p[0], Y = p[1], k = n.tamanho || 1, rx = MEDIDAS.caso(n)[0], ry = 20 * k, cy = Y - ry - 8;
+    var el = function (dx, dy) { return 'M' + (X - rx + dx) + ',' + (cy + dy) + ' A' + rx + ',' + ry + ' 0 1 0 ' + (X + rx + dx) + ',' + (cy + dy) + ' A' + rx + ',' + ry + ' 0 1 0 ' + (X - rx + dx) + ',' + (cy + dy) + ' Z'; };
+    var s = sombraChao(X, Y, rx * 0.75) + emPe(el, c) + textoDentro(X, cy, n.rotulo || '');
+    return { svg: s, X: X, topo: cy - ry, base: Y + 6 };
+  }
+
+  function larguraCargo(n) { return Math.max(130, Math.min(220, Math.max(String(n.rotulo || '').length * 7.2, String(n.cargo || '').length * 6.4) + 58)); }
+  function desenhaCargo(n, c) {
+    var p = P(n.x, n.y, n.z), X = p[0], Y = p[1], w = larguraCargo(n), h = 44, x0 = X - w / 2, y0 = Y - h - 6;
+    var s = sombraChao(X, Y, w * 0.4) + '<g class="corpo">' +
+      '<rect x="' + (x0 + 5) + '" y="' + (y0 + 3) + '" width="' + w + '" height="' + h + '" rx="8" fill="' + c[2] + '" stroke="' + c[3] + '" stroke-width="1.2"/>' +
+      '<rect x="' + x0 + '" y="' + y0 + '" width="' + w + '" height="' + h + '" rx="8" fill="var(--cartao)" stroke="' + c[3] + '" stroke-width="1.5"/>' +
+      '<rect x="' + x0 + '" y="' + y0 + '" width="6" height="' + h + '" rx="3" fill="' + c[2] + '"/>' +
+      '<circle cx="' + (x0 + 26) + '" cy="' + (y0 + h / 2) + '" r="14" fill="' + c[0] + '" stroke="' + c[3] + '" stroke-width="1.2"/>' +
+      '<circle cx="' + (x0 + 26) + '" cy="' + (y0 + h / 2 - 4) + '" r="4.6" fill="' + c[3] + '"/>' +
+      '<path d="M' + (x0 + 17) + ',' + (y0 + h / 2 + 10) + ' Q' + (x0 + 26) + ',' + (y0 + h / 2 - 1) + ' ' + (x0 + 35) + ',' + (y0 + h / 2 + 10) + '" fill="' + c[3] + '"/></g>';
+    if (n.icone) s += '<text class="ic-no" x="' + (x0 + 26) + '" y="' + (y0 + h / 2 + 5) + '">' + esc(n.icone) + '</text>';
+    s += '<text class="placa-tit" x="' + (x0 + 48) + '" y="' + (y0 + 19) + '">' + esc(n.rotulo || '') + '</text>';
+    if (n.cargo) s += '<text class="placa-lin" x="' + (x0 + 48) + '" y="' + (y0 + 34) + '">' + esc(n.cargo) + '</text>';
+    return { svg: s, X: X, topo: y0, base: Y + 4 };
+  }
+
+  function caixaIso(X, Y, a, b, h, c) {
+    var top = [X, Y - h - b, X + a, Y - h, X, Y - h + b, X - a, Y - h].join(' ');
+    var esq = [X - a, Y - h, X, Y - h + b, X, Y + b, X - a, Y].join(' ');
+    var dir = [X + a, Y - h, X, Y - h + b, X, Y + b, X + a, Y].join(' ');
+    return '<polygon points="' + [X, Y - b + 6, X + a + 6, Y + 4, X, Y + b + 8, X - a + 2, Y + 4].join(' ') + '" fill="var(--sombra)"/>' +
+      '<g class="corpo" stroke="' + c[3] + '" stroke-width="1.4" stroke-linejoin="round"><polygon points="' + esq + '" fill="' + c[1] + '"/><polygon points="' + dir + '" fill="' + c[2] + '"/><polygon points="' + top + '" fill="' + c[0] + '"/></g>';
+  }
+  // ponto numa face: lado -1 esquerda, 1 direita; t 0 (quina da frente) a 1; v 0 (chão) a 1 (topo)
+  function naFace(X, Y, a, b, h, lado, t, v) { return [X + lado * t * a, Y + b - t * b - v * h]; }
+  function linhaFace(X, Y, a, b, h, lado, t1, t2, v, cor, sw) {
+    var p1 = naFace(X, Y, a, b, h, lado, t1, v), p2 = naFace(X, Y, a, b, h, lado, t2, v);
+    return '<line x1="' + p1[0] + '" y1="' + p1[1] + '" x2="' + p2[0] + '" y2="' + p2[1] + '" stroke="' + cor + '" stroke-width="' + (sw || 1.2) + '" stroke-linecap="round"/>';
+  }
+  function setasTopo(X, yt, a, b, cor) {
+    var s = '', d = [[1, 1], [-1, -1], [1, -1], [-1, 1]];
+    d.forEach(function (k) {
+      var ex = X + k[0] * a * 0.55, ey = yt + k[1] * b * 0.55, sx = X + k[0] * a * 0.12, sy = yt + k[1] * b * 0.12;
+      s += '<line x1="' + sx + '" y1="' + sy + '" x2="' + ex + '" y2="' + ey + '" stroke="' + cor + '" stroke-width="2" stroke-linecap="round"/>' +
+        '<circle cx="' + ex + '" cy="' + ey + '" r="2.2" fill="' + cor + '"/>';
+    });
+    return s;
+  }
+  function desenhaEquipamento(n, c) {
+    var p = P(n.x, n.y, n.z), X = p[0], Y = p[1], k = n.tamanho || 1, m = n.modelo || 'servidor';
+    var a = TW / 2 * 0.8 * k, b = TH / 2 * 0.8 * k, s = '', topo, rotDentro = false;
+    if (m === 'roteador' || m === 'wifi') {
+      var rx = a * 0.85, ry = b * 0.85, h = 16 * k;
+      s += '<ellipse cx="' + (X + 4) + '" cy="' + (Y + 5) + '" rx="' + (rx + 4) + '" ry="' + (ry + 2) + '" fill="var(--sombra)"/>' +
+        '<g class="corpo" stroke="' + c[3] + '" stroke-width="1.4"><path d="M' + (X - rx) + ',' + (Y - h) + ' L' + (X - rx) + ',' + Y + ' A' + rx + ',' + ry + ' 0 0 0 ' + (X + rx) + ',' + Y + ' L' + (X + rx) + ',' + (Y - h) + ' Z" fill="' + c[1] + '"/>' +
+        '<ellipse cx="' + X + '" cy="' + (Y - h) + '" rx="' + rx + '" ry="' + ry + '" fill="' + c[0] + '"/></g>';
+      if (m === 'roteador') { s += setasTopo(X, Y - h, rx, ry, c[3]); topo = Y - h - ry; }
+      else {
+        var cy = Y - h - 6;
+        [10, 18, 26].forEach(function (r) { s += '<path d="M' + (X - r) + ',' + (cy - r * 0.2) + ' A' + r + ',' + r + ' 0 0 1 ' + (X + r) + ',' + (cy - r * 0.2) + '" fill="none" stroke="' + c[3] + '" stroke-width="2.2" stroke-linecap="round"/>'; });
+        s += '<circle cx="' + X + '" cy="' + cy + '" r="3" fill="' + c[3] + '"/>'; topo = cy - 28;
+      }
+    } else if (m === 'switch') {
+      var aw = a * 1.15, bw = b * 1.15, hs = 14 * k;
+      s += caixaIso(X, Y, aw, bw, hs, c);
+      for (var i = 0; i < 6; i++) { var q = naFace(X, Y, aw, bw, hs, 1, 0.12 + i * 0.14, 0.5); s += '<rect x="' + (q[0] - 2.6) + '" y="' + (q[1] - 2.4) + '" width="5.2" height="4.4" fill="' + c[3] + '" opacity=".75"/>'; }
+      s += '<path d="M' + (X - aw * 0.35) + ',' + (Y - hs - 3) + ' h' + aw * 0.7 + ' m-6,-3 l6,3 l-6,3 M' + (X + aw * 0.35) + ',' + (Y - hs + 4) + ' h-' + aw * 0.7 + ' m6,-3 l-6,3 l6,3" fill="none" stroke="' + c[3] + '" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>';
+      topo = Y - hs - bw;
+    } else if (m === 'firewall') {
+      var hf = 34 * k, af = a * 0.95, bf = b * 0.55;
+      s += caixaIso(X, Y, af, bf, hf, c);
+      [-1, 1].forEach(function (lado) {
+        [0.25, 0.5, 0.75].forEach(function (v) { s += linhaFace(X, Y, af, bf, hf, lado, 0, 1, v, c[3], 1); });
+        [[0, 0.25, [0.33, 0.66]], [0.25, 0.5, [0.16, 0.5, 0.83]], [0.5, 0.75, [0.33, 0.66]], [0.75, 1, [0.16, 0.5, 0.83]]].forEach(function (fx) {
+          fx[2].forEach(function (t) { var p1 = naFace(X, Y, af, bf, hf, lado, t, fx[0]), p2 = naFace(X, Y, af, bf, hf, lado, t, fx[1]); s += '<line x1="' + p1[0] + '" y1="' + p1[1] + '" x2="' + p2[0] + '" y2="' + p2[1] + '" stroke="' + c[3] + '" stroke-width="1"/>'; });
+        });
+      });
+      topo = Y - hf - bf;
+    } else if (m === 'servidor') {
+      var hv = 64 * k, as = a * 0.62, bs = b * 0.62;
+      s += caixaIso(X, Y, as, bs, hv, c);
+      [0.82, 0.62, 0.42, 0.22].forEach(function (v) {
+        s += linhaFace(X, Y, as, bs, hv, -1, 0.12, 0.88, v, c[3], 1.6);
+        var led = naFace(X, Y, as, bs, hv, 1, 0.3, v); s += '<circle cx="' + led[0] + '" cy="' + led[1] + '" r="2" fill="#5aa36b"/>';
+      });
+      topo = Y - hv - bs;
+    } else if (m === 'computador') {
+      var sw2 = 30 * k, sh = 21 * k, cy2 = Y - 14 * k - sh;
+      s += sombraChao(X, Y, 22) + '<g class="corpo" stroke="' + c[3] + '" stroke-width="1.4" stroke-linejoin="round">' +
+        '<path d="M' + (X - 10) + ',' + (Y + 2) + ' H' + (X + 10) + ' L' + (X + 4) + ',' + (Y - 14 * k) + ' H' + (X - 4) + ' Z" fill="' + c[2] + '"/>' +
+        '<rect x="' + (X - sw2 + 4) + '" y="' + (cy2 - sh + 3) + '" width="' + 2 * sw2 + '" height="' + 2 * sh + '" rx="3" fill="' + c[2] + '"/>' +
+        '<rect x="' + (X - sw2) + '" y="' + (cy2 - sh) + '" width="' + 2 * sw2 + '" height="' + 2 * sh + '" rx="3" fill="' + c[0] + '"/>' +
+        '<rect x="' + (X - sw2 + 4) + '" y="' + (cy2 - sh + 4) + '" width="' + (2 * sw2 - 8) + '" height="' + (2 * sh - 8) + '" rx="1.5" fill="#cfe0f7"/></g>';
+      if (n.icone) s += '<text class="ic-no" x="' + X + '" y="' + (cy2 + 5) + '">' + esc(n.icone) + '</text>';
+      topo = cy2 - sh;
+    } else { // nuvem
+      var wn = MEDIDAS.equipamento(n)[0], hn = 22 * k, cn = Y - hn - 10;
+      var nuvem = function (dx, dy) {
+        var x0 = X - wn + dx, x1 = X + wn + dx, yb = cn + hn + dy;
+        return 'M' + (x0 + 14) + ',' + yb + ' A14,14 0 0 1 ' + (x0 + 10) + ',' + (cn + 2 + dy) + ' A' + wn * 0.32 + ',' + hn * 0.9 + ' 0 0 1 ' + (X - wn * 0.15 + dx) + ',' + (cn - hn * 0.55 + dy) +
+          ' A' + wn * 0.4 + ',' + hn + ' 0 0 1 ' + (x1 - 16) + ',' + (cn - 2 + dy) + ' A14,14 0 0 1 ' + (x1 - 10) + ',' + yb + ' Z';
+      };
+      s += sombraChao(X, Y, wn * 0.7) + emPe(nuvem, c);
+      rotDentro = true; topo = cn - hn;
+      if (n.rotulo) s += textoDentro(X, cn + 6, n.rotulo);
+    }
+    if (!rotDentro && n.icone && m !== 'computador') s += '<text class="ic-no" x="' + X + '" y="' + (topo - 4) + '">' + esc(n.icone) + '</text>';
+    if (!rotDentro && n.rotulo) s += pill(X, Y + b + 16, n.rotulo);
+    return { svg: s, X: X, topo: topo, base: Y + b + 28 };
+  }
+
   function desenhaNo(n, cls) {
-    var c = tom(n.tom || (n.tipo === 'evento' ? TOM_EVENTO[n.evento || 'inicio'] : n.tipo === 'gateway' ? 'amarelo' : null));
+    var c = tom(n.tom || (n.tipo === 'evento' ? TOM_EVENTO[n.evento || 'inicio'] : n.tipo === 'gateway' ? 'amarelo' : n.tipo === 'equipamento' ? TOM_PADRAO[n.modelo || 'servidor'] : n.tipo === 'forma' && n.forma === 'decisao' ? 'amarelo' : null));
     if (n.estado === 'caido') c = TONS.cinza;
     if (n.estado === 'quente') c = TONS.vermelho;
     var r;
@@ -318,6 +490,11 @@
       case 'evento': r = desenhaEvento(n, c); break;
       case 'gateway': r = desenhaGateway(n, c); break;
       case 'documento': r = desenhaDocumento(n, c); break;
+      case 'forma': r = desenhaForma(n, c); break;
+      case 'ator': r = desenhaAtor(n, c); break;
+      case 'caso': r = desenhaCaso(n, c); break;
+      case 'cargo': r = desenhaCargo(n, c); break;
+      case 'equipamento': r = desenhaEquipamento(n, c); break;
       default: r = desenhaCaixa(n, c);
     }
     var extra = '', y = r.topo - 14;

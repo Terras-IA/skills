@@ -2,6 +2,7 @@
  "id": "sigsena-processo-seletivo",
  "titulo": "Processo seletivo no SIGSENA",
  "idioma": "pt-BR",
+ "estilo": "bpmn",
  "modulos": [
   {
    "titulo": "Processo seletivo em BPMN",

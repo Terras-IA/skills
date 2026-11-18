@@ -1042,7 +1042,7 @@ Curso ou lição interativa em página única: cena isométrica animada (pessoas
 
 `/plugin install terras-licao-interativa@terras`
 
-Palavras-chave: `licao interativa`, `curso interativo`, `simulador`, `explicacao passo a passo`, `isometrico`, `system design`, `processo`, `bpmn`, `fluxograma de processo`, `cena animada`, `tutorial visual`, `interactive lesson`, `step-by-step explainer`
+Palavras-chave: `licao interativa`, `curso interativo`, `simulador`, `explicacao passo a passo`, `isometrico`, `system design`, `processo`, `bpmn`, `fluxograma`, `topologia de rede`, `organograma`, `caso de uso`, `cena animada`, `tutorial visual`, `interactive lesson`, `step-by-step explainer`
 
 ### terras-mapa-mental
 
