@@ -86,3 +86,22 @@ Coordenadas em **unidades de grade isométrica**: `x` cresce para baixo-direita,
 - Estado acumula: o passo 5 herda tudo do 4. Voltar recalcula do zero, então não há efeito colateral.
 - Métrica com `tom` `ruim` fica vermelha, `bom` fica verde; texto puro fica neutro.
 - `ligacoes` não é remendo: repita a lista completa quando algo nela mudar.
+
+## Tema (opcional)
+
+Para vestir o curso com a identidade de uma marca, sem mexer no motor. Tudo é opcional.
+
+```json
+"tema": {
+  "fontes": ["Amatic SC:wght@700", "Open Sans:wght@400;600;700"],   // famílias do Google Fonts
+  "fonteTexto": "\"Open Sans\", Arial, sans-serif",               // corpo, métricas e textos da cena
+  "fonteTitulo": "\"Amatic SC\", cursive",                        // só o h1 da lição
+  "logo": "data:image/png;base64,...", "logoAlt": "Marca",          // troca o ◆ do topo (use data URI: a página é autocontida)
+  "cores": { "bg": "#efebdc", "cartao": "#fff", "acento-forte": "#7c0099" },   // variáveis de cena.css, sem "--"
+  "coresEscuro": { "bg": "#2a0e1e" },                                         // as mesmas, para o tema escuro
+  "tons": { "roxo": ["#ead2f0", "#d3a3df", "#b673c6", "#5d1470"] },           // [topo, face esq., face dir., contorno]
+  "css": "h1{font-size:46px}"                                                 // CSS extra, por último
+}
+```
+
+Variáveis úteis: `bg`, `cartao`, `tinta`, `suave`, `linha`, `grade`, `acento`, `acento-forte`, `acento-borda`, `req`, `resp`, `falha`, `pesado`, os seis tipos de passo (`contexto` … `resumo`), `ideia-bg`, `ideia-borda`, `bom-bg`, `bom-borda`, `sombra`. Confira contraste nos dois temas com `capturar.py` e `--escuro`. Se a marca só tem tema claro, ainda assim preencha `coresEscuro`.

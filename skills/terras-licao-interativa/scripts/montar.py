@@ -23,6 +23,7 @@ TIPOS_PASSO = {"contexto", "problema", "solucao", "tecnica", "troca", "resumo"}
 
 def validar(c):
     erros, avisos = [], []
+    validar_tema(c.get("tema"), erros)
     if not c.get("titulo"):
         erros.append("curso: falta 'titulo'")
     mods = c.get("modulos") or []
@@ -148,6 +149,56 @@ def para_artifact(html):
     return html
 
 
+VAR_CSS = re.compile(r"^[a-z][a-z0-9-]{0,40}$")
+
+
+def validar_tema(t, erros):
+    if t is None:
+        return
+    if not isinstance(t, dict):
+        erros.append("tema: precisa ser um objeto")
+        return
+    for k in ("cores", "coresEscuro"):
+        for nome, v in (t.get(k) or {}).items():
+            if not VAR_CSS.match(nome) or not isinstance(v, str) or any(ch in v for ch in ";{}<>"):
+                erros.append(f"tema.{k}: '{nome}' inválido (nome de variável sem '--' e valor CSS simples)")
+    for nome, v in (t.get("tons") or {}).items():
+        if not (isinstance(v, list) and len(v) == 4 and all(isinstance(x, str) and re.match(r"^#[0-9a-fA-F]{3,8}$", x) for x in v)):
+            erros.append(f"tema.tons: '{nome}' precisa de 4 cores hex [topo, face esq., face dir., contorno]")
+    for f in t.get("fontes") or []:
+        if not isinstance(f, str) or not re.match(r"^[A-Za-z0-9 ]+(:[a-z,@;0-9.]+)?$", f):
+            erros.append(f"tema.fontes: '{f}' não parece família do Google Fonts ('Open Sans:wght@400;700')")
+    if "css" in t and "</" in str(t["css"]):
+        erros.append("tema.css: não pode conter '</'")
+
+
+def css_tema(t):
+    if not t:
+        return "", "", '<span class="marca-ic" aria-hidden="true">◆</span>'
+    fontes = ""
+    if t.get("fontes"):
+        fam = "&".join("family=" + f.replace(" ", "+") for f in t["fontes"])
+        fontes = f'<link href="https://fonts.googleapis.com/css2?{fam}&display=swap" rel="stylesheet">'
+    def bloco(d):
+        return "".join(f"--{k}:{v};" for k, v in d.items())
+    claro = dict(t.get("cores") or {})
+    if t.get("fonteTexto"):
+        claro["texto"] = t["fonteTexto"]
+    if t.get("fonteTitulo"):
+        claro["titulo"] = t["fonteTitulo"]
+    css = f":root{{{bloco(claro)}}}\n" if claro else ""
+    if t.get("coresEscuro"):
+        e = bloco(t["coresEscuro"])
+        css += (f'@media (prefers-color-scheme:dark){{:root:not([data-theme="light"]){{{e}}}}}\n'
+                f':root[data-theme="dark"]{{{e}}}\n')
+    css += str(t.get("css") or "")
+    marca = '<span class="marca-ic" aria-hidden="true">◆</span>'
+    if t.get("logo"):
+        alt = str(t.get("logoAlt", "")).replace('"', "&quot;")
+        marca = f'<img class="marca-logo" src="{t["logo"]}" alt="{alt}">'
+    return fontes, css, marca
+
+
 def montar(c, saida, artifact=False):
     modelo = (MOTOR / "modelo.html").read_text(encoding="utf-8")
     css = (MOTOR / "cena.css").read_text(encoding="utf-8")
@@ -156,6 +207,8 @@ def montar(c, saida, artifact=False):
     titulo = str(c.get("titulo", "Lições")).replace("<", "&lt;")
     html = (modelo.replace("__LANG__", c.get("idioma", "pt-BR")).replace("__TITULO__", titulo)
             .replace("/*CSS*/", css).replace("/*DADOS*/", dados).replace("/*JS*/", js))
+    fontes, tema, marca = css_tema(c.get("tema"))
+    html = html.replace("<!--FONTES-->", fontes, 1).replace("/*TEMA*/", tema, 1).replace("<!--MARCA-->", marca, 1)
     if artifact:
         html = para_artifact(html)
     Path(saida).write_text(html, encoding="utf-8")

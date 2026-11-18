@@ -19,6 +19,9 @@
     vermelho: ['#f6c9c3', '#ec9f95', '#d9786c', '#8e3a30'],
     teal: ['#c9ece6', '#9fd8cf', '#78c0b5', '#2f6f66']
   };
+  // tema.tons do curso substitui ou acrescenta tons (mesma ordem de 4 cores)
+  var TEMA_TONS = (CURSO.tema && CURSO.tema.tons) || {};
+  Object.keys(TEMA_TONS).forEach(function (k) { if (TEMA_TONS[k] && TEMA_TONS[k].length === 4) TONS[k] = TEMA_TONS[k]; });
   var CORES_MOD = ['#e3925a', '#90c47b', '#86a9d9', '#a993d9', '#d78ea3', '#dcc061', '#78c0b5', '#aeaa9f', '#d9786c'];
   var PESSOAS = ['#86a9d9', '#90c47b', '#e3925a', '#a993d9', '#d78ea3', '#dcc061', '#78c0b5'];
 
