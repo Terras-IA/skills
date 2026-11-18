@@ -2,7 +2,7 @@
 
 > **Arquivo gerado.** Rode `node scripts/manual.mjs` para regravar; não edite à mão.
 
-**157 skills** neste repositório: **146 instaláveis** pelo marketplace, **8 de processo do motor** e **3 ligadas a projeto de cliente**.
+**158 skills** neste repositório: **147 instaláveis** pelo marketplace, **8 de processo do motor** e **3 ligadas a projeto de cliente**.
 
 ## Instalar e usar
 
@@ -44,7 +44,7 @@ O script cria um link por skill em cada pasta de agente que já existir na máqu
 - [Gestão, processos e decisão](#gestão-processos-e-decisão) — 9 skills
 - [Desenvolvimento de software](#desenvolvimento-de-software) — 29 skills
 - [Design e front-end](#design-e-front-end) — 18 skills
-- [Mídia e apresentação](#mídia-e-apresentação) — 14 skills
+- [Mídia e apresentação](#mídia-e-apresentação) — 16 skills
 - [Pesquisa e radar](#pesquisa-e-radar) — 6 skills
 - [IA, prompts e agentes](#ia-prompts-e-agentes) — 6 skills
 
@@ -1028,6 +1028,22 @@ Apresentação HTML com animação, sem dependências, em arquivo único 16:9, d
 
 Palavras-chave: `slides`, `apresentacao`, `palestra`, `pitch`, `html`, `pptx`, `deck`, `animacao`, `apresentacao web`
 
+### terras-karpathy-explainer
+
+Explica um tema nos 4 formatos do truque atribuído ao Karpathy: texto em ~80% do ASD-STE100 com medição, diagrama, página HTML interativa e vídeo narrado. Use para 'explica em STE100', 'modo Karpathy' ou explicação multimodal. Só diagrama: terras-visual-explainer; só vídeo: terras-video.
+
+`/plugin install terras-karpathy-explainer@terras`
+
+Palavras-chave: `asd-ste100`, `ste100`, `simplified technical english`, `ingles tecnico simplificado`, `karpathy`, `explicacao`, `explicar`, `linguagem controlada`, `clareza`, `diagrama`, `html interativo`, `video explicativo`, `multimodal`
+
+### terras-licao-interativa
+
+Curso ou lição interativa em página única: cena isométrica animada (pessoas, serviços, filas, bancos) que muda passo a passo, com métricas, texto de problema e solução, quiz e progresso. Use para 'tela interativa que ensina X' ou simular processo. Página estática: terras-visual-explainer.
+
+`/plugin install terras-licao-interativa@terras`
+
+Palavras-chave: `licao interativa`, `curso interativo`, `simulador`, `explicacao passo a passo`, `isometrico`, `system design`, `processo`, `cena animada`, `tutorial visual`, `interactive lesson`, `step-by-step explainer`
+
 ### terras-mapa-mental
 
 Mapa mental a partir de texto, reunião, livro ou tema: roteiro em Markdown com rótulos curtos, imagem PNG/SVG, HTML interativo e cena Excalidraw editável. Use para mapa mental, mind map, resumo visual ou revisar um assunto. Fluxo e arquitetura: terras-excalidraw. Mind map.
@@ -1181,14 +1197,6 @@ Palavras-chave: `skill`, `skills`, `criar skill`, `skill factory`, `padrão terr
 ## Outras
 
 *Ainda sem área no manual: classifique cada uma em `scripts/manual-areas.json`.*
-
-### terras-karpathy-explainer
-
-Explica um tema nos 4 formatos do truque atribuído ao Karpathy: texto em ~80% do ASD-STE100 com medição, diagrama, página HTML interativa e vídeo narrado. Use para 'explica em STE100', 'modo Karpathy' ou explicação multimodal. Só diagrama: terras-visual-explainer; só vídeo: terras-video.
-
-`/plugin install terras-karpathy-explainer@terras`
-
-Palavras-chave: `asd-ste100`, `ste100`, `simplified technical english`, `ingles tecnico simplificado`, `karpathy`, `explicacao`, `explicar`, `linguagem controlada`, `clareza`, `diagrama`, `html interativo`, `video explicativo`, `multimodal`
 
 ### terras-linkedin-varredura
 

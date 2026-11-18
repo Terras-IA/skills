@@ -1926,6 +1926,34 @@
       ]
     },
     {
+      "name": "terras-licao-interativa",
+      "description": "Curso ou lição interativa em página única: cena isométrica animada (pessoas, serviços, filas, bancos) que muda passo a passo, com métricas, texto de problema e solução, quiz e progresso. Use para 'tela interativa que ensina X' ou simular processo. Página estática: terras-visual-explainer.",
+      "version": "1.0.0",
+      "source": "./skills/terras-licao-interativa",
+      "strict": false,
+      "skills": [
+        "./"
+      ],
+      "category": "productivity",
+      "license": "MIT",
+      "author": {
+        "name": "Everton Lima"
+      },
+      "keywords": [
+        "licao interativa",
+        "curso interativo",
+        "simulador",
+        "explicacao passo a passo",
+        "isometrico",
+        "system design",
+        "processo",
+        "cena animada",
+        "tutorial visual",
+        "interactive lesson",
+        "step-by-step explainer"
+      ]
+    },
+    {
       "name": "terras-linkedin",
       "description": "Escreve e revisa posts de LinkedIn (hook, estrutura, CTA, hashtags, zero travessão) e explica alcance e impressões. Use para post de LinkedIn, por que um post rendeu pouco, ou responder/comentar um post colado de outra pessoa. Lote de posts é da terras-comentarios.",
       "version": "1.0.0",

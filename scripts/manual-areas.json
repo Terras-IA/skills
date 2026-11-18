@@ -171,7 +171,9 @@
         "terras-slides",
         "terras-transcription",
         "terras-video",
-        "terras-visual-explainer"
+        "terras-visual-explainer",
+        "terras-licao-interativa",
+        "terras-karpathy-explainer"
       ]
     },
     {

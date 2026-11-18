@@ -85,8 +85,8 @@ Mapear o processo (até o `.bpmn`), priorizar com GUT, achar a causa raiz, plane
 **Design e UI** — `terras-design`, `terras-design-system`, `terras-brand`, `terras-brandkit`, `terras-ui-ux-pro-max`, `terras-image-to-code`, `terras-minimalist-ui`, `terras-industrial-brutalist-ui`.
 Identidade, tokens, componentes e direção de arte — com o anti-genérico do design-taste.
 
-**Mídia: áudio, vídeo e imagem** — `terras-audio`, `terras-video`, `terras-banner`, `terras-ffmpeg`, `terras-transcription`, `terras-slides`, `terras-visual-explainer`, `terras-karpathy-explainer`, `terras-excalidraw`, `terras-mapa-mental`.
-Narração com pronúncia cuidada, vídeo para YouTube e Shorts, banner, transcrição local sem API, slides, páginas que explicam visualmente, diagrama editável, mapa mental e o mesmo tema em quatro formatos (texto em inglês controlado, diagrama, página interativa e vídeo).
+**Mídia: áudio, vídeo e imagem** — `terras-audio`, `terras-video`, `terras-banner`, `terras-ffmpeg`, `terras-transcription`, `terras-slides`, `terras-visual-explainer`, `terras-licao-interativa`, `terras-karpathy-explainer`, `terras-excalidraw`, `terras-mapa-mental`.
+Narração com pronúncia cuidada, vídeo para YouTube e Shorts, banner, transcrição local sem API, slides, páginas que explicam visualmente, lição interativa em que o leitor avança passo a passo e vê a cena isométrica mudar (com métricas e quiz), diagrama editável, mapa mental e o mesmo tema em quatro formatos (texto em inglês controlado, diagrama, página interativa e vídeo).
 
 **Pesquisa e conhecimento**: `terras-deep-research`, `terras-last30days`, `terras-x-ia`, `terras-linkedin-varredura`, `terras-linkedin-conhecimento`.
 Pesquisa com citação rastreada, o que circulou nos últimos 30 dias, o que saiu de IA no X e o feed do LinkedIn transformado em nota de conhecimento, com conferência na fonte primária e sem curtir nem comentar nada.
@@ -99,10 +99,10 @@ Revisão pelo risco que a mudança cria, segurança e scan com o OWASP ZAP, risc
 <!-- catalogo:inicio -->
 <!-- gerado por `npm run readme` a partir do catálogo — não edite à mão -->
 
-**146 skills instaláveis** entre as 157 deste repositório; as demais ficam fora do marketplace — 8 skills de processo do motor (`.nao-instalar`) e 3 skills ligadas a projeto de cliente (`marketplace-fora.json`).
+**147 skills instaláveis** entre as 158 deste repositório; as demais ficam fora do marketplace — 8 skills de processo do motor (`.nao-instalar`) e 3 skills ligadas a projeto de cliente (`marketplace-fora.json`).
 
 <details>
-<summary><b>Ver a lista completa (146 skills)</b></summary>
+<summary><b>Ver a lista completa (147 skills)</b></summary>
 
 | Skill | O que faz |
 |---|---|
@@ -182,6 +182,7 @@ Revisão pelo risco que a mudança cria, segurança e scan com o OWASP ZAP, risc
 | [`terras-karpathy-explainer`](skills/terras-karpathy-explainer) | Explica um tema nos 4 formatos do truque atribuído ao Karpathy: texto em ~80% do ASD-STE100 com medição, diagrama, página HTML interativa e vídeo narrado. |
 | [`terras-laravel`](skills/terras-laravel) | Build robust Laravel apps avoiding Eloquent traps, queue failures, and auth pitfalls. |
 | [`terras-last30days`](skills/terras-last30days) | Pesquisa o que se falou de um tema nos últimos 30 dias em Reddit, X, YouTube, Hacker News, GitHub e web. |
+| [`terras-licao-interativa`](skills/terras-licao-interativa) | Curso ou lição interativa em página única: cena isométrica animada (pessoas, serviços, filas, bancos) que muda passo a passo, com métricas, texto de problema e solução… |
 | [`terras-linkedin`](skills/terras-linkedin) | Escreve e revisa posts de LinkedIn (hook, estrutura, CTA, hashtags, zero travessão) e explica alcance e impressões. |
 | [`terras-linkedin-alvos`](skills/terras-linkedin-alvos) | Acompanha perfis-alvo do LinkedIn (executivos, gestores, recrutadores), acha os posts recentes, curte e prepara comentários que acrescentam, publicados só com aprovação. |
 | [`terras-linkedin-conexoes`](skills/terras-linkedin-conexoes) | Acha no LinkedIn quem contrata acima do nível do usuário numa empresa, prioriza por poder de decisão, escreve a nota do convite e envia só com aprovação. |
