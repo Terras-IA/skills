@@ -1,7 +1,7 @@
 ---
 name: terras-licao-interativa
 description: "Curso ou lição interativa em página única: cena isométrica animada (pessoas, serviços, filas, bancos) que muda passo a passo, com métricas, texto de problema e solução, quiz e progresso. Use para 'tela interativa que ensina X' ou simular processo. Página estática: terras-visual-explainer."
-keywords: [licao interativa, curso interativo, simulador, explicacao passo a passo, isometrico, system design, processo, cena animada, tutorial visual, interactive lesson, step-by-step explainer]
+keywords: [licao interativa, curso interativo, simulador, explicacao passo a passo, isometrico, system design, processo, bpmn, fluxograma de processo, cena animada, tutorial visual, interactive lesson, step-by-step explainer]
 ---
 
 # Lição interativa em cena isométrica
@@ -36,12 +36,14 @@ motor/      modelo.html, cena.css, cena.js   (motor SVG, sem dependências)
 scripts/    montar.py (valida e monta), capturar.py (foto de cada passo)
 exemplos/   system-design.json               (sistemas: load balancer, 9 passos)
             contas-a-pagar.json              (processo de negócio: alçada e conferência, com placa e golpista)
+            processo-seletivo.json           (processo em BPMN: raias, eventos, gateways e documentos)
 ```
 
 ## Como trabalhar
 
 1. **Entender o assunto e o leitor.** Uma lição é uma pergunta ("por que precisamos de load balancer?", "por que a conta a pagar precisa de alçada?"). Curso é um conjunto de lições em módulos.
 2. **Escolher as metáforas.** A tabela de `references/roteiro.md` diz qual peça representa o quê em cada domínio.
+   Processo de negócio com decisão, prazo ou documento: desenhe em BPMN (evento, gateway, documento, raias), pela seção "Processo em BPMN" de `references/formato.md`.
 3. **Roteirizar** os passos: 6 a 12, pelo arco contexto → problema → solução → limite → troca → resumo com quiz.
 4. **Escrever o `curso.json`** pelo `references/formato.md`. Comece copiando `exemplos/system-design.json`. Declare na `cena` todos os nós que vão aparecer, com `"oculto": true`, e revele nos passos. Deixe 2 unidades de grade entre caixas.
 5. **Montar** (valida antes; erro sai com código 1 e a lista do que corrigir):

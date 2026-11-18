@@ -17,7 +17,10 @@
     amarelo: ['#f7ebb5', '#eed98a', '#dcc061', '#86712a'],
     cinza: ['#e7e3db', '#cbc7bd', '#aeaa9f', '#66625a'],
     vermelho: ['#f6c9c3', '#ec9f95', '#d9786c', '#8e3a30'],
-    teal: ['#c9ece6', '#9fd8cf', '#78c0b5', '#2f6f66']
+    teal: ['#c9ece6', '#9fd8cf', '#78c0b5', '#2f6f66'],
+    marrom: ['#e6d3c2', '#cdb097', '#b08d70', '#5e4330'],
+    branco: ['#ffffff', '#ecebe7', '#d6d4ce', '#7a776f'],
+    lilas: ['#ecdcf3', '#dbbfe8', '#c49fd8', '#6f4c84']
   };
   // tema.tons do curso substitui ou acrescenta tons (mesma ordem de 4 cores)
   var TEMA_TONS = (CURSO.tema && CURSO.tema.tons) || {};
@@ -104,6 +107,9 @@
       return [Math.min(X, f[0]) - 30, Math.min(Y, f[1]) - 60, Math.max(X, f[0]) + 30, Math.max(Y, f[1]) + 40];
     }
     if (n.tipo === 'rotulo') { var lw = largura(n.rotulo); return [X - lw / 2, Y - 14, X + lw / 2, Y + 14]; }
+    if (n.tipo === 'evento') { var er = 20 * d.s, ew = Math.max(er, n.rotulo ? largura(n.rotulo) / 2 : 0); return [X - ew - 6, Y - 26 * d.s - er - 40, X + ew + 6, Y + 32]; }
+    if (n.tipo === 'gateway') { var gw = 26 * d.s, gl = Math.max(gw, n.rotulo ? largura(n.rotulo) / 2 : 0); return [X - gl - 10, Y - 30 * d.s - gw - 30, X + gl + 10, Y + 30]; }
+    if (n.tipo === 'documento') { var dl = Math.max(50, n.rotulo ? largura(n.rotulo) / 2 + 6 : 0); return [X - dl, Y - 40 - (n.quantidade || 1) * 4, X + dl, Y + 48]; }
     return [X - d.a - 10, Y - d.h - d.b - 64, X + d.a + 10, Y + d.b + 40];
   }
 
@@ -226,8 +232,79 @@
     return { svg: pill(p[0], p[1], (n.icone ? n.icone + ' ' : '') + n.rotulo, n.estilo), X: p[0], topo: p[1] - 12, base: p[1] + 12 };
   }
 
+  // ---------- elementos BPMN: evento (círculo), gateway (losango), documento (objeto de dados) ----------
+  var TOM_EVENTO = { inicio: 'verde', intermediario: 'amarelo', fim: 'vermelho' };
+  function marcadorEvento(m, X, Y, r, cor) {
+    var k = r * 0.5, sw = ' stroke="' + cor + '" stroke-width="1.8" fill="none" stroke-linecap="round" stroke-linejoin="round"';
+    if (m === 'tempo') {
+      var t = '<circle cx="' + X + '" cy="' + Y + '" r="' + k + '" fill="#fff" stroke="' + cor + '" stroke-width="1.6"/>';
+      for (var i = 0; i < 12; i++) { var ang = i * Math.PI / 6, a1 = k * 0.78, a2 = k * 0.95; t += '<line x1="' + (X + Math.cos(ang) * a1) + '" y1="' + (Y + Math.sin(ang) * a1) + '" x2="' + (X + Math.cos(ang) * a2) + '" y2="' + (Y + Math.sin(ang) * a2) + '" stroke="' + cor + '" stroke-width=".9"/>'; }
+      return t + '<path d="M' + X + ',' + Y + ' L' + X + ',' + (Y - k * 0.7) + ' M' + X + ',' + Y + ' L' + (X + k * 0.5) + ',' + (Y + k * 0.15) + '"' + sw + '/>';
+    }
+    if (m === 'mensagem') return '<rect x="' + (X - k) + '" y="' + (Y - k * 0.68) + '" width="' + 2 * k + '" height="' + 1.36 * k + '" rx="1.5" fill="#fff" stroke="' + cor + '" stroke-width="1.6"/>' +
+      '<path d="M' + (X - k) + ',' + (Y - k * 0.68) + ' L' + X + ',' + (Y + k * 0.1) + ' L' + (X + k) + ',' + (Y - k * 0.68) + '"' + sw + '/>';
+    if (m === 'erro') return '<path d="M' + (X - k) + ',' + (Y + k) + ' L' + (X - k * 0.35) + ',' + (Y - k) + ' L' + (X + k * 0.25) + ',' + (Y + k * 0.1) + ' L' + (X + k) + ',' + (Y - k) + ' L' + (X + k * 0.4) + ',' + (Y + k) + ' L' + (X - k * 0.2) + ',' + (Y - k * 0.05) + ' Z" fill="' + cor + '"/>';
+    if (m === 'sinal') return '<path d="M' + X + ',' + (Y - k) + ' L' + (X + k) + ',' + (Y + k * 0.75) + ' L' + (X - k) + ',' + (Y + k * 0.75) + ' Z" fill="none" stroke="' + cor + '" stroke-width="1.8" stroke-linejoin="round"/>';
+    if (m === 'condicao') { var c2 = '<rect x="' + (X - k * 0.75) + '" y="' + (Y - k) + '" width="' + 1.5 * k + '" height="' + 2 * k + '" fill="#fff" stroke="' + cor + '" stroke-width="1.5"/>'; [-0.5, 0, 0.5].forEach(function (f) { c2 += '<line x1="' + (X - k * 0.45) + '" y1="' + (Y + f * k) + '" x2="' + (X + k * 0.45) + '" y2="' + (Y + f * k) + '" stroke="' + cor + '" stroke-width="1.2"/>'; }); return c2; }
+    if (m === 'terminar') return '<circle cx="' + X + '" cy="' + Y + '" r="' + k * 1.15 + '" fill="' + cor + '"/>';
+    return '';
+  }
+  function desenhaEvento(n, c) {
+    var d = dims(n), p = P(n.x, n.y, n.z), X = p[0], Y = p[1], r = 20 * d.s, cy = Y - 26 * d.s, tipo = n.evento || 'inicio';
+    var s = '<ellipse cx="' + (X + 3) + '" cy="' + (Y + 3) + '" rx="' + r * 0.9 + '" ry="' + r * 0.38 + '" fill="var(--sombra)"/>' +
+      '<g class="corpo"><line x1="' + X + '" y1="' + cy + '" x2="' + X + '" y2="' + Y + '" stroke="' + c[3] + '" stroke-width="3"/>' +
+      '<circle cx="' + (X + 4) + '" cy="' + (cy + 2) + '" r="' + r + '" fill="' + c[2] + '" stroke="' + c[3] + '" stroke-width="1.2"/>';
+    var sw = tipo === 'fim' ? 5 : tipo === 'intermediario' ? 1.8 : 2;
+    s += '<circle cx="' + X + '" cy="' + cy + '" r="' + (tipo === 'fim' ? r - 2 : r) + '" fill="' + c[0] + '" stroke="' + c[3] + '" stroke-width="' + sw + '"' + (n.interrompe === false ? ' stroke-dasharray="5 3"' : '') + '/>';
+    if (tipo === 'intermediario') s += '<circle cx="' + X + '" cy="' + cy + '" r="' + (r - 4) + '" fill="none" stroke="' + c[3] + '" stroke-width="1.6"' + (n.interrompe === false ? ' stroke-dasharray="5 3"' : '') + '/>';
+    s += marcadorEvento(n.marcador, X, cy, r, c[3]) + '</g>';
+    if (!n.marcador && n.icone) s += '<text class="ic-no" x="' + X + '" y="' + (cy + 5) + '">' + esc(n.icone) + '</text>';
+    if (n.rotulo) s += pill(X, Y + 18, n.rotulo);
+    return { svg: s, X: X, topo: cy - r, base: Y + 30 };
+  }
+  function desenhaGateway(n, c) {
+    var d = dims(n), p = P(n.x, n.y, n.z), X = p[0], Y = p[1], w = 26 * d.s, cy = Y - 30 * d.s;
+    function losango(dx, dy) { return [X + dx, cy - w + dy, X + w + dx, cy + dy, X + dx, cy + w + dy, X - w + dx, cy + dy].join(' '); }
+    var s = '<ellipse cx="' + (X + 3) + '" cy="' + (Y + 3) + '" rx="' + w * 0.85 + '" ry="' + w * 0.34 + '" fill="var(--sombra)"/>' +
+      '<g class="corpo" stroke="' + c[3] + '" stroke-linejoin="round"><line x1="' + X + '" y1="' + (cy + w) + '" x2="' + X + '" y2="' + Y + '" stroke-width="3"/>' +
+      '<polygon points="' + losango(5, 3) + '" fill="' + c[2] + '" stroke-width="1.2"/>' +
+      '<polygon points="' + losango(0, 0) + '" fill="' + c[0] + '" stroke-width="1.8"/>';
+    var m = n.marcador || 'exclusivo', k = w * 0.36, lw = ' stroke="' + c[3] + '" stroke-width="4" stroke-linecap="round"';
+    if (m === 'exclusivo' || m === 'complexo') s += '<path d="M' + (X - k) + ',' + (cy - k) + ' L' + (X + k) + ',' + (cy + k) + ' M' + (X + k) + ',' + (cy - k) + ' L' + (X - k) + ',' + (cy + k) + '"' + lw + '/>';
+    if (m === 'paralelo' || m === 'complexo') s += '<path d="M' + X + ',' + (cy - k * 1.25) + ' L' + X + ',' + (cy + k * 1.25) + ' M' + (X - k * 1.25) + ',' + cy + ' L' + (X + k * 1.25) + ',' + cy + '"' + lw + '/>';
+    if (m === 'inclusivo') s += '<circle cx="' + X + '" cy="' + cy + '" r="' + k + '" fill="none" stroke="' + c[3] + '" stroke-width="3.5"/>';
+    if (m === 'evento') s += '<circle cx="' + X + '" cy="' + cy + '" r="' + k * 1.2 + '" fill="none" stroke="' + c[3] + '" stroke-width="1.4"/><circle cx="' + X + '" cy="' + cy + '" r="' + k * 0.9 + '" fill="none" stroke="' + c[3] + '" stroke-width="1.4"/>';
+    s += '</g>';
+    if (n.rotulo) s += pill(X, Y + 16, (n.icone ? n.icone + ' ' : '') + n.rotulo);
+    return { svg: s, X: X, topo: cy - w, base: Y + 28 };
+  }
+  function desenhaDocumento(n, c) {
+    var d = dims(n), p = P(n.x, n.y, n.z), X = p[0], Y = p[1], hw = 0.3 * d.s, hd = 0.38 * d.s, f = 0.13 * d.s, z0 = (n.z || 0) + 3;
+    var qtd = Math.max(1, Math.min(n.quantidade || 1, 5)), s = '', topo = Y;
+    var sombra = [P(n.x - hw, n.y - hd, 0), P(n.x + hw, n.y - hd, 0), P(n.x + hw, n.y + hd, 0), P(n.x - hw, n.y + hd, 0)].map(function (k) { return (k[0] + 4) + ',' + (k[1] + 3); }).join(' ');
+    s += '<polygon points="' + sombra + '" fill="var(--sombra)"/><g class="corpo" stroke="' + c[3] + '" stroke-width="1.2" stroke-linejoin="round">';
+    for (var i = 0; i < qtd; i++) {
+      var z = z0 + i * 4, ult = i === qtd - 1;
+      var pts = [P(n.x - hw, n.y - hd, z), P(n.x + hw - f, n.y - hd, z), P(n.x + hw, n.y - hd + f, z), P(n.x + hw, n.y + hd, z), P(n.x - hw, n.y + hd, z)];
+      s += '<polygon points="' + pts.map(function (k) { return k.join(','); }).join(' ') + '" fill="' + (ult ? '#fffdf8' : '#ece8de') + '"/>';
+      if (ult) {
+        s += '<polygon points="' + [P(n.x + hw - f, n.y - hd, z), P(n.x + hw, n.y - hd + f, z), P(n.x + hw - f, n.y - hd + f, z)].map(function (k) { return k.join(','); }).join(' ') + '" fill="' + c[1] + '"/>';
+        [-0.16, 0.02, 0.2].forEach(function (t, j) {
+          var a = P(n.x - hw * 0.65, n.y + t * d.s, z), b = P(n.x + hw * (j === 0 ? 0.3 : 0.6), n.y + t * d.s, z);
+          s += '<line x1="' + a[0] + '" y1="' + a[1] + '" x2="' + b[0] + '" y2="' + b[1] + '" stroke="' + c[2] + '" stroke-width="2" stroke-linecap="round"/>';
+        });
+        topo = P(n.x - hw, n.y - hd, z)[1];
+      }
+    }
+    s += '</g>';
+    if (n.icone) { var ic = P(n.x, n.y, z0 + (qtd - 1) * 4 + 14); s += '<text class="ic-no" x="' + ic[0] + '" y="' + ic[1] + '">' + esc(n.icone) + '</text>'; }
+    var base = P(n.x + hw, n.y + hd, 0)[1];
+    if (n.rotulo) s += pill(X, base + 16, n.rotulo);
+    return { svg: s, X: X, topo: topo - 6, base: base + 28 };
+  }
+
   function desenhaNo(n, cls) {
-    var c = tom(n.tom);
+    var c = tom(n.tom || (n.tipo === 'evento' ? TOM_EVENTO[n.evento || 'inicio'] : n.tipo === 'gateway' ? 'amarelo' : null));
     if (n.estado === 'caido') c = TONS.cinza;
     if (n.estado === 'quente') c = TONS.vermelho;
     var r;
@@ -238,6 +315,9 @@
       case 'zona': r = desenhaZona(n, c); break;
       case 'rotulo': r = desenhaRotulo(n); break;
       case 'placa': r = desenhaPlaca(n, c); break;
+      case 'evento': r = desenhaEvento(n, c); break;
+      case 'gateway': r = desenhaGateway(n, c); break;
+      case 'documento': r = desenhaDocumento(n, c); break;
       default: r = desenhaCaixa(n, c);
     }
     var extra = '', y = r.topo - 14;

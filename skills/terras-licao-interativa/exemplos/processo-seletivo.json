@@ -1,0 +1,883 @@
+{
+ "id": "sigsena-processo-seletivo",
+ "titulo": "Processo seletivo no SIGSENA",
+ "idioma": "pt-BR",
+ "modulos": [
+  {
+   "titulo": "Processo seletivo em BPMN",
+   "cor": "roxo",
+   "licoes": [
+    {
+     "id": "do-link-a-matricula",
+     "titulo": "Da inscrição à matrícula",
+     "resumo": "O caminho do candidato no SIGSENA, desenhado em BPMN: raias, eventos, gateways e documentos.",
+     "nivel": "básico",
+     "minutos": 6,
+     "metricas": [
+      {
+       "id": "quem",
+       "rotulo": "Quem age",
+       "valor": "Candidato"
+      },
+      {
+       "id": "grava",
+       "rotulo": "Grava em",
+       "valor": "—"
+      },
+      {
+       "id": "caminho",
+       "rotulo": "Ponto do processo",
+       "valor": "início"
+      }
+     ],
+     "legenda": [
+      {
+       "cor": "var(--req)",
+       "texto": "fluxo de sequência"
+      },
+      {
+       "cor": "amarelo",
+       "texto": "mensagem"
+      },
+      {
+       "cor": "var(--falha)",
+       "texto": "não aprovado"
+      },
+      {
+       "cor": "laranja",
+       "texto": "pendência"
+      }
+     ],
+     "objetivos": [
+      {
+       "texto": "Ler raias, eventos e gateways do BPMN",
+       "passo": 4
+      },
+      {
+       "texto": "Saber o que cada forma de ingresso exige",
+       "passo": 5
+      },
+      {
+       "texto": "Seguir uma inscrição até a matrícula",
+       "passo": 8
+      }
+     ],
+     "cena": {
+      "nos": [
+       {
+        "tipo": "zona",
+        "x": 5.8,
+        "y": -0.3,
+        "largura": 13.8,
+        "fundo": 6.4,
+        "tom": "azul",
+        "rotulo": "Candidato · portal",
+        "id": "raiaA"
+       },
+       {
+        "tipo": "zona",
+        "x": 14.8,
+        "y": 5,
+        "largura": 9,
+        "fundo": 3,
+        "tom": "roxo",
+        "rotulo": "Equipe · SIGSENA",
+        "oculto": true,
+        "id": "raiaB"
+       },
+       {
+        "tipo": "evento",
+        "evento": "inicio",
+        "x": 0,
+        "y": 0,
+        "rotulo": "abre a página",
+        "id": "ini"
+       },
+       {
+        "tipo": "caixa",
+        "x": 2,
+        "y": 0,
+        "rotulo": "Inscrição",
+        "icone": "📝",
+        "tom": "azul",
+        "oculto": true,
+        "id": "insc"
+       },
+       {
+        "tipo": "evento",
+        "evento": "intermediario",
+        "marcador": "mensagem",
+        "x": 2,
+        "y": -2.6,
+        "rotulo": "e-mail com link",
+        "oculto": true,
+        "id": "msg"
+       },
+       {
+        "tipo": "evento",
+        "evento": "intermediario",
+        "marcador": "tempo",
+        "x": 4.4,
+        "y": -2.6,
+        "rotulo": "link expira",
+        "oculto": true,
+        "id": "tmr"
+       },
+       {
+        "tipo": "gateway",
+        "x": 4.2,
+        "y": 0,
+        "rotulo": "Forma de ingresso?",
+        "oculto": true,
+        "id": "gwF"
+       },
+       {
+        "tipo": "placa",
+        "x": 3.6,
+        "y": 5.2,
+        "tom": "amarelo",
+        "icone": "⑂",
+        "rotulo": "5 formas de ingresso",
+        "linhas": [
+         "Vestibular → prova online",
+         "ENEM → nota do ENEM",
+         "Portador de diploma → documentos",
+         "Transferência → documentos",
+         "Reingresso → documentos"
+        ],
+        "oculto": true,
+        "id": "formas"
+       },
+       {
+        "tipo": "caixa",
+        "x": 7,
+        "y": -1.8,
+        "rotulo": "Prova online",
+        "icone": "✍",
+        "tom": "azul",
+        "oculto": true,
+        "id": "prova"
+       },
+       {
+        "tipo": "caixa",
+        "x": 7,
+        "y": 0.4,
+        "rotulo": "Nota do ENEM",
+        "icone": "📊",
+        "tom": "azul",
+        "oculto": true,
+        "id": "enem"
+       },
+       {
+        "tipo": "gateway",
+        "x": 9.4,
+        "y": -0.7,
+        "rotulo": "Nota mínima?",
+        "oculto": true,
+        "id": "gwN"
+       },
+       {
+        "tipo": "evento",
+        "evento": "fim",
+        "marcador": "erro",
+        "x": 9.4,
+        "y": -3.1,
+        "rotulo": "não aprovado",
+        "oculto": true,
+        "id": "reprov"
+       },
+       {
+        "tipo": "documento",
+        "x": 11.6,
+        "y": 1.6,
+        "quantidade": 3,
+        "rotulo": "Documentos",
+        "tom": "azul",
+        "oculto": true,
+        "id": "doc"
+       },
+       {
+        "tipo": "caixa",
+        "x": 11.6,
+        "y": 5,
+        "rotulo": "Análise documental",
+        "icone": "🔎",
+        "tom": "roxo",
+        "oculto": true,
+        "id": "analise"
+       },
+       {
+        "tipo": "gateway",
+        "x": 13.8,
+        "y": 5,
+        "rotulo": "Docs ok?",
+        "oculto": true,
+        "id": "gwD"
+       },
+       {
+        "tipo": "caixa",
+        "x": 16,
+        "y": 5,
+        "rotulo": "Matrícula",
+        "icone": "🎓",
+        "tom": "roxo",
+        "oculto": true,
+        "id": "matr"
+       },
+       {
+        "tipo": "evento",
+        "evento": "fim",
+        "x": 18.2,
+        "y": 5,
+        "rotulo": "Aprovado SEI",
+        "tom": "verde",
+        "oculto": true,
+        "id": "fim"
+       }
+      ],
+      "ligacoes": []
+     },
+     "passos": [
+      {
+       "rotulo": "Raias",
+       "tipo": "contexto",
+       "titulo": "Quem faz o quê",
+       "texto": "O processo seletivo tem dois atores: o **candidato**, que age pelo portal público, e a **equipe**, que trabalha dentro do SIGSENA.\n\nEm BPMN cada ator ganha uma **raia**. Tudo o que acontece numa faixa é responsabilidade daquele ator. O círculo verde de borda fina é o **evento de início**: o candidato abre a página do processo.",
+       "ideia": "Desenhe o processo por quem age, não por tela. A raia mostra de quem é a vez.",
+       "nos": {
+        "raiaB": {
+         "oculto": false
+        }
+       },
+       "ligacoes": [],
+       "metricas": {
+        "quem": "Candidato",
+        "grava": "—",
+        "caminho": "início"
+       }
+      },
+      {
+       "rotulo": "Inscrição",
+       "tipo": "contexto",
+       "titulo": "A inscrição e o aceite",
+       "texto": "A primeira tarefa é a inscrição. Ela grava em `sig_ps_inscricoes` a oferta escolhida e o **consentimento**: data e IP do aceite, que é a prova exigida pela LGPD.\n\nA tabela aceita **uma inscrição por pessoa em cada processo**. Uma segunda tentativa da mesma pessoa encontra a inscrição que já existe.",
+       "nos": {
+        "insc": {
+         "oculto": false,
+         "selo": "1 por processo"
+        }
+       },
+       "ligacoes": [
+        {
+         "de": "ini",
+         "para": "insc"
+        }
+       ],
+       "mudou": [
+        "+ inscrição gravada com consentimento",
+        "· etapa inicial: `inscrito`"
+       ],
+       "metricas": {
+        "grava": "sig_ps_inscricoes",
+        "caminho": "inscrição"
+       }
+      },
+      {
+       "rotulo": "Link",
+       "tipo": "tecnica",
+       "titulo": "Volta pelo link do e-mail",
+       "texto": "O candidato não cria senha. Ele recebe um **e-mail com um link** de acesso ao portal. O círculo de borda dupla com envelope é um **evento intermediário de mensagem**.\n\nO link tem prazo: `sig_ps_acessos` guarda só o hash do token, a data em que expira e quando foi usado. O relógio é o **evento intermediário de tempo**. Vencido, o candidato pede outro link.",
+       "ideia": "Prazo em BPMN é evento de tempo, não uma tarefa.",
+       "nos": {
+        "msg": {
+         "oculto": false
+        },
+        "tmr": {
+         "oculto": false
+        }
+       },
+       "ligacoes": [
+        {
+         "de": "ini",
+         "para": "insc"
+        },
+        {
+         "de": "insc",
+         "para": "msg",
+         "rota": "y",
+         "tracejada": true,
+         "fluxo": 0.6,
+         "cor": "amarelo"
+        },
+        {
+         "de": "msg",
+         "para": "tmr",
+         "tracejada": true,
+         "fluxo": 0
+        }
+       ],
+       "mudou": [
+        "+ acesso sem senha",
+        "+ token guardado só como hash",
+        "- link vencido exige novo envio"
+       ],
+       "metricas": {
+        "grava": "sig_ps_acessos",
+        "caminho": "portal"
+       }
+      },
+      {
+       "rotulo": "Forma",
+       "tipo": "tecnica",
+       "titulo": "Uma decisão, um caminho",
+       "texto": "No portal o candidato segue pela **forma de ingresso**. O losango com X é um **gateway exclusivo**: dos caminhos que saem dele, só um é seguido.\n\nO SIGSENA tem 5 formas. Vestibular exige prova, ENEM exige a nota, e as outras três vão direto para os documentos. Quem decide o caminho é o cadastro da forma (`exige_prova`, `exige_nota_enem`), não o código.",
+       "nos": {
+        "gwF": {
+         "oculto": false
+        },
+        "formas": {
+         "oculto": false
+        },
+        "prova": {
+         "oculto": false,
+         "estado": "fantasma"
+        },
+        "enem": {
+         "oculto": false,
+         "estado": "fantasma"
+        },
+        "doc": {
+         "oculto": false,
+         "estado": "fantasma"
+        }
+       },
+       "ligacoes": [
+        {
+         "de": "ini",
+         "para": "insc"
+        },
+        {
+         "de": "insc",
+         "para": "msg",
+         "rota": "y",
+         "tracejada": true,
+         "fluxo": 0.6,
+         "cor": "amarelo"
+        },
+        {
+         "de": "msg",
+         "para": "tmr",
+         "tracejada": true,
+         "fluxo": 0
+        },
+        {
+         "de": "insc",
+         "para": "gwF"
+        },
+        {
+         "de": "gwF",
+         "para": "prova",
+         "rota": "y",
+         "rotulo": "vestibular",
+         "posRotulo": 0.22
+        },
+        {
+         "de": "gwF",
+         "para": "enem",
+         "rota": "y",
+         "rotulo": "ENEM",
+         "posRotulo": 0.55
+        },
+        {
+         "de": "gwF",
+         "para": "doc",
+         "rota": "y",
+         "rotulo": "outras 3",
+         "posRotulo": 0.5
+        }
+       ],
+       "metricas": {
+        "grava": "sig_ps_formas_ingresso",
+        "caminho": "forma de ingresso"
+       },
+       "quiz": {
+        "pergunta": "Um candidato de **Transferência** chega ao gateway. Para onde ele vai?",
+        "opcoes": [
+         "Para a prova online",
+         "Para a prova e para os documentos ao mesmo tempo",
+         "Direto para os documentos"
+        ],
+        "certa": 2,
+        "porque": "Gateway exclusivo segue um caminho só, e Transferência não exige prova nem nota. Ir para dois lugares ao mesmo tempo seria um gateway paralelo (+)."
+       }
+      },
+      {
+       "rotulo": "Nota",
+       "tipo": "problema",
+       "titulo": "Quem não atinge a nota",
+       "texto": "Prova e ENEM terminam no mesmo gateway: **atingiu a nota mínima?** Na prova online a nota mínima vem configurada por prova (padrão 30). No ENEM ela vem da oferta.\n\nQuem não atinge cai num **evento de fim com erro**: o processo daquele candidato termina ali. A equipe pode liberar uma nova tentativa da prova (`prova_tentativa_liberada`), e aí o candidato volta à tarefa.",
+       "nos": {
+        "gwN": {
+         "oculto": false
+        },
+        "reprov": {
+         "oculto": false
+        },
+        "prova": {
+         "estado": null
+        },
+        "enem": {
+         "estado": null
+        },
+        "formas": {
+         "oculto": true
+        }
+       },
+       "ligacoes": [
+        {
+         "de": "ini",
+         "para": "insc"
+        },
+        {
+         "de": "insc",
+         "para": "msg",
+         "rota": "y",
+         "tracejada": true,
+         "fluxo": 0.6,
+         "cor": "amarelo"
+        },
+        {
+         "de": "msg",
+         "para": "tmr",
+         "tracejada": true,
+         "fluxo": 0
+        },
+        {
+         "de": "insc",
+         "para": "gwF"
+        },
+        {
+         "de": "gwF",
+         "para": "prova",
+         "rota": "y",
+         "rotulo": "vestibular",
+         "posRotulo": 0.22
+        },
+        {
+         "de": "gwF",
+         "para": "enem",
+         "rota": "y",
+         "rotulo": "ENEM",
+         "posRotulo": 0.55
+        },
+        {
+         "de": "gwF",
+         "para": "doc",
+         "rota": "y",
+         "rotulo": "outras 3",
+         "posRotulo": 0.5
+        },
+        {
+         "de": "prova",
+         "para": "gwN"
+        },
+        {
+         "de": "enem",
+         "para": "gwN"
+        },
+        {
+         "de": "gwN",
+         "para": "reprov",
+         "rotulo": "não",
+         "estilo": "alerta",
+         "falha": 1,
+         "falhaEm": 1,
+         "fluxo": 0.7
+        }
+       ],
+       "mudou": [
+        "+ nota mínima configurável",
+        "- reprovado encerra o caminho",
+        "· nova tentativa só liberada pela equipe"
+       ],
+       "metricas": {
+        "grava": "sig_ps_tentativas",
+        "caminho": {
+         "valor": "nota abaixo",
+         "tom": "ruim"
+        }
+       }
+      },
+      {
+       "rotulo": "Documentos",
+       "tipo": "solucao",
+       "titulo": "Todos os caminhos chegam aos documentos",
+       "texto": "Quem passou na nota e quem entrou por diploma, transferência ou reingresso chegam ao mesmo ponto: **enviar os documentos**.\n\nA folha com canto dobrado é o **objeto de dados** do BPMN; a pilha mostra que são vários. Cada arquivo vira uma linha em `sig_ps_inscricao_documentos` com status `enviado`.",
+       "nos": {
+        "doc": {
+         "estado": null,
+         "selo": "enviado"
+        }
+       },
+       "ligacoes": [
+        {
+         "de": "ini",
+         "para": "insc"
+        },
+        {
+         "de": "insc",
+         "para": "msg",
+         "rota": "y",
+         "tracejada": true,
+         "fluxo": 0.6,
+         "cor": "amarelo"
+        },
+        {
+         "de": "msg",
+         "para": "tmr",
+         "tracejada": true,
+         "fluxo": 0
+        },
+        {
+         "de": "insc",
+         "para": "gwF"
+        },
+        {
+         "de": "gwF",
+         "para": "prova",
+         "rota": "y",
+         "rotulo": "vestibular",
+         "posRotulo": 0.22
+        },
+        {
+         "de": "gwF",
+         "para": "enem",
+         "rota": "y",
+         "rotulo": "ENEM",
+         "posRotulo": 0.55
+        },
+        {
+         "de": "gwF",
+         "para": "doc",
+         "rota": "y",
+         "rotulo": "outras 3",
+         "posRotulo": 0.5
+        },
+        {
+         "de": "prova",
+         "para": "gwN"
+        },
+        {
+         "de": "enem",
+         "para": "gwN"
+        },
+        {
+         "de": "gwN",
+         "para": "reprov",
+         "rotulo": "não",
+         "estilo": "alerta",
+         "falha": 1,
+         "falhaEm": 1,
+         "fluxo": 0.7
+        },
+        {
+         "de": "gwN",
+         "para": "doc",
+         "rotulo": "sim",
+         "estilo": "bom",
+         "posRotulo": 0.3
+        }
+       ],
+       "metricas": {
+        "grava": "sig_ps_inscricao_documentos",
+        "caminho": {
+         "valor": "documentos",
+         "tom": "bom"
+        }
+       }
+      },
+      {
+       "rotulo": "Análise",
+       "tipo": "tecnica",
+       "titulo": "A vez da equipe",
+       "texto": "Os documentos atravessam para a raia da equipe. Um analista confere e decide no gateway **Docs ok?**\n\nSe falta algo, a inscrição volta ao candidato como **pendência**, por e-mail: a linha tracejada é um **fluxo de mensagem**, que cruza de uma raia para a outra. Se está tudo certo, a inscrição é **liberada**, e o SIGSENA grava quem liberou e quando (`liberado_por`, `liberado_em`).",
+       "ideia": "Linha cheia é a sequência dentro do processo. Linha tracejada é mensagem entre atores.",
+       "nos": {
+        "analise": {
+         "oculto": false
+        },
+        "gwD": {
+         "oculto": false
+        },
+        "doc": {
+         "selo": null
+        }
+       },
+       "ligacoes": [
+        {
+         "de": "ini",
+         "para": "insc"
+        },
+        {
+         "de": "insc",
+         "para": "msg",
+         "rota": "y",
+         "tracejada": true,
+         "fluxo": 0.6,
+         "cor": "amarelo"
+        },
+        {
+         "de": "msg",
+         "para": "tmr",
+         "tracejada": true,
+         "fluxo": 0
+        },
+        {
+         "de": "insc",
+         "para": "gwF"
+        },
+        {
+         "de": "gwF",
+         "para": "prova",
+         "rota": "y",
+         "rotulo": "vestibular",
+         "posRotulo": 0.22
+        },
+        {
+         "de": "gwF",
+         "para": "enem",
+         "rota": "y",
+         "rotulo": "ENEM",
+         "posRotulo": 0.55
+        },
+        {
+         "de": "gwF",
+         "para": "doc",
+         "rota": "y",
+         "rotulo": "outras 3",
+         "posRotulo": 0.5
+        },
+        {
+         "de": "prova",
+         "para": "gwN"
+        },
+        {
+         "de": "enem",
+         "para": "gwN"
+        },
+        {
+         "de": "gwN",
+         "para": "reprov",
+         "rotulo": "não",
+         "estilo": "alerta",
+         "falha": 1,
+         "falhaEm": 1,
+         "fluxo": 0.7
+        },
+        {
+         "de": "gwN",
+         "para": "doc",
+         "rotulo": "sim",
+         "estilo": "bom",
+         "posRotulo": 0.3
+        },
+        {
+         "de": "doc",
+         "para": "analise"
+        },
+        {
+         "de": "analise",
+         "para": "gwD"
+        },
+        {
+         "de": "gwD",
+         "para": "doc",
+         "rota": "y",
+         "tracejada": true,
+         "rotulo": "pendência",
+         "estilo": "alerta",
+         "cor": "laranja",
+         "fluxo": 0.7,
+         "posRotulo": 0.45
+        }
+       ],
+       "mudou": [
+        "+ quem liberou fica registrado",
+        "- pendência devolve ao candidato"
+       ],
+       "metricas": {
+        "quem": "Equipe",
+        "grava": "liberado_em, liberado_por",
+        "caminho": "análise"
+       },
+       "quiz": {
+        "pergunta": "Por que a pendência é desenhada tracejada?",
+        "opcoes": [
+         "Porque é opcional",
+         "Porque é uma mensagem de um ator para outro, não um passo da mesma raia",
+         "Porque ainda não foi implementada"
+        ],
+        "certa": 1,
+        "porque": "Em BPMN, fluxo de mensagem (tracejado) liga raias diferentes; o fluxo de sequência (cheio) fica dentro do processo."
+       }
+      },
+      {
+       "rotulo": "Matrícula",
+       "tipo": "solucao",
+       "titulo": "Sete etapas até a matrícula",
+       "texto": "Com os documentos aprovados, a inscrição entra na **matrícula**. Ela passa por 7 etapas cadastradas em `sig_ps_etapas_matricula`: realização do vestibular, envio de documentos, pagamento da taxa, análise interna, análise da coordenação, Secretaria Acadêmica e **Aprovado SEI**.\n\nCada troca de etapa fica no histórico. O círculo de borda grossa é o **evento de fim**: o candidato virou aluno.",
+       "nos": {
+        "matr": {
+         "oculto": false,
+         "selo": "7 etapas"
+        },
+        "fim": {
+         "oculto": false
+        }
+       },
+       "ligacoes": [
+        {
+         "de": "ini",
+         "para": "insc"
+        },
+        {
+         "de": "insc",
+         "para": "msg",
+         "rota": "y",
+         "tracejada": true,
+         "fluxo": 0.6,
+         "cor": "amarelo"
+        },
+        {
+         "de": "msg",
+         "para": "tmr",
+         "tracejada": true,
+         "fluxo": 0
+        },
+        {
+         "de": "insc",
+         "para": "gwF"
+        },
+        {
+         "de": "gwF",
+         "para": "prova",
+         "rota": "y",
+         "rotulo": "vestibular",
+         "posRotulo": 0.22
+        },
+        {
+         "de": "gwF",
+         "para": "enem",
+         "rota": "y",
+         "rotulo": "ENEM",
+         "posRotulo": 0.55
+        },
+        {
+         "de": "gwF",
+         "para": "doc",
+         "rota": "y",
+         "rotulo": "outras 3",
+         "posRotulo": 0.5
+        },
+        {
+         "de": "prova",
+         "para": "gwN"
+        },
+        {
+         "de": "enem",
+         "para": "gwN"
+        },
+        {
+         "de": "gwN",
+         "para": "reprov",
+         "rotulo": "não",
+         "estilo": "alerta",
+         "falha": 1,
+         "falhaEm": 1,
+         "fluxo": 0.7
+        },
+        {
+         "de": "gwN",
+         "para": "doc",
+         "rotulo": "sim",
+         "estilo": "bom",
+         "posRotulo": 0.3
+        },
+        {
+         "de": "doc",
+         "para": "analise"
+        },
+        {
+         "de": "analise",
+         "para": "gwD"
+        },
+        {
+         "de": "gwD",
+         "para": "doc",
+         "rota": "y",
+         "tracejada": true,
+         "rotulo": "pendência",
+         "estilo": "alerta",
+         "cor": "laranja",
+         "fluxo": 0.7,
+         "posRotulo": 0.45
+        },
+        {
+         "de": "gwD",
+         "para": "matr",
+         "rotulo": "sim",
+         "estilo": "bom"
+        },
+        {
+         "de": "matr",
+         "para": "fim",
+         "cor": "verde"
+        }
+       ],
+       "mudou": [
+        "+ histórico de cada etapa",
+        "· etapas são cadastro, não código"
+       ],
+       "metricas": {
+        "grava": "sig_ps_etapas_matricula",
+        "caminho": {
+         "valor": "matriculado",
+         "tom": "bom"
+        }
+       }
+      },
+      {
+       "rotulo": "Resumo",
+       "tipo": "resumo",
+       "titulo": "O processo inteiro numa folha",
+       "texto": "Dois atores, três decisões, um prazo e dois finais possíveis. Com essa notação, quem nunca viu o SIGSENA lê o processo da esquerda para a direita e sabe de quem é a vez em cada ponto.\n\nFonte: tabelas `sig_ps_*` do módulo (SQL das entregas 1 a 8, 12/11/2026).",
+       "nos": {
+        "insc": {
+         "selo": null
+        },
+        "matr": {
+         "selo": null
+        }
+       },
+       "metricas": {
+        "quem": "os dois",
+        "grava": "19 tabelas sig_ps_*",
+        "caminho": "completo"
+       },
+       "quiz": {
+        "pergunta": "O link de acesso venceu antes de o candidato voltar. Qual elemento BPMN mostra isso?",
+        "opcoes": [
+         "Gateway exclusivo",
+         "Evento intermediário de tempo",
+         "Objeto de dados"
+        ],
+        "certa": 1,
+        "porque": "Prazo e expiração são eventos de tempo (o relógio). Gateway decide caminho; objeto de dados é o que se produz ou consome."
+       }
+      }
+     ]
+    }
+   ]
+  }
+ ]
+}

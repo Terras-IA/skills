@@ -34,12 +34,12 @@ Coordenadas em **unidades de grade isométrica**: `x` cresce para baixo-direita,
 | Campo | Valores |
 |-------|---------|
 | `id` | único na lição |
-| `tipo` | `caixa` (serviço, pessoa-papel, etapa), `banco` (cilindro: dados, arquivo, estoque), `pessoas` (multidão numa plataforma), `fila` (blocos enfileirados: fila, log, lotes), `zona` (área tracejada no chão: rede, departamento, região), `rotulo` (etiqueta solta), `placa` (cartão plano com título e linhas: tabela de alçada, checklist, regra, contrato entre serviços) |
+| `tipo` | `caixa` (serviço, pessoa-papel, etapa), `banco` (cilindro: dados, arquivo, estoque), `pessoas` (multidão numa plataforma), `fila` (blocos enfileirados: fila, log, lotes), `zona` (área tracejada no chão: rede, departamento, região), `rotulo` (etiqueta solta), `placa` (cartão plano com título e linhas: tabela de alçada, checklist, regra, contrato entre serviços), `evento`, `gateway` e `documento` (notação BPMN, abaixo) |
 | `x`, `y`, `z` | posição; `z` em px eleva o nó |
 | `rotulo` | texto. `caixa`: no topo (até ~22 caracteres, quebra em 2 linhas). `banco`: pílula à direita (até ~16). `pessoas` e `fila`: pílula embaixo/acima. `placa`: título |
 | `linhas` | `placa`: até 6 linhas de texto (`["até R$ 5 mil → gestor", "acima → diretor"]`) |
 | `icone` | um emoji ou símbolo (🖥 💳 📦 ⑂ 🔒 👤) |
-| `tom` | em `pessoas`, pinta todas as figuras do mesmo tom (ex.: `vermelho` para golpista ou atacante). Valores: `azul`, `verde`, `laranja`, `roxo`, `rosa`, `amarelo`, `cinza`, `vermelho`, `teal` |
+| `tom` | em `pessoas`, pinta todas as figuras do mesmo tom (ex.: `vermelho` para golpista ou atacante). Valores: `azul`, `verde`, `laranja`, `roxo`, `rosa`, `amarelo`, `cinza`, `vermelho`, `teal`, `marrom`, `branco`, `lilas` |
 | `tamanho`, `altura` | escala (1 = padrão) e altura em px da caixa |
 | `estado` | `normal`, `caido` (cinza, X e selo FORA), `quente` (vermelho pulsando: sobrecarga), `fantasma` (translúcido: planejado, reserva) |
 | `carga` | 0 a 100: medidor acima do nó (verde < 60, âmbar < 85, vermelho) |
@@ -48,7 +48,25 @@ Coordenadas em **unidades de grade isométrica**: `x` cresce para baixo-direita,
 | `quantidade` | `pessoas`: figuras (1 a 36); `fila`: blocos (1 a 14) |
 | `direcao`, `espaco` | `fila`: `"x"` (padrão) ou `"y"`; `espaco` entre blocos em unidades (padrão 0,6) |
 | `largura`, `fundo` | `zona`: tamanho em unidades |
+| `evento`, `marcador` | só em `evento` e `gateway`; ver "Processo em BPMN" |
 | `oculto` | `true`: existe mas não aparece. Declare na `cena` todo nó que vai surgir depois, oculto, e revele com `{"oculto": false}`: assim a câmera não pula |
+
+## Processo em BPMN
+
+Para processo de negócio (inscrição, aprovação, atendimento), use o vocabulário do BPMN 2.0 em vez de inventar forma. O leitor que conhece BPMN reconhece; quem não conhece aprende a notação de graça.
+
+| BPMN | Nó aqui | Campos |
+|------|---------|--------|
+| Evento de início, intermediário, fim | `evento` | `evento`: `inicio` (borda fina, verde), `intermediario` (borda dupla, amarelo), `fim` (borda grossa, vermelho). `marcador`: `tempo` (prazo, expiração), `mensagem` (e-mail, aviso), `erro`, `sinal`, `condicao`, `terminar`. `interrompe: false` deixa a borda tracejada (evento que não interrompe). `rotulo` vai numa pílula embaixo (até ~22) |
+| Gateway | `gateway` | `marcador`: `exclusivo` (X, padrão: um caminho só), `paralelo` (+: todos), `inclusivo` (O: um ou mais), `complexo`, `evento`. `rotulo` é a pergunta, numa pílula abaixo do losango, até ~20 caracteres ("Docs ok?") |
+| Tarefa | `caixa` | `icone` faz o papel do marcador de tarefa (👤 usuário, ⚙ serviço, ✋ manual) |
+| Objeto de dados | `documento` | folha com canto dobrado; `quantidade` 1 a 5 empilha (coleção) |
+| Depósito de dados | `banco` | |
+| Piscina e raia | `zona` | uma `zona` por raia, com o papel no `rotulo` ("CANDIDATO", "SECRETARIA") |
+| Fluxo de sequência | ligação | contínua; `rotulo` na saída do gateway ("sim", "não") com `estilo` `bom` ou `alerta` |
+| Fluxo de mensagem | ligação | `tracejada: true` entre raias |
+
+Prazo é evento intermediário de tempo; com o prazo vencido, `estado: "quente"`.
 
 ## Ligação
 

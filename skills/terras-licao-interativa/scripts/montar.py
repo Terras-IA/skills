@@ -15,8 +15,11 @@ import sys
 from pathlib import Path
 
 MOTOR = Path(__file__).resolve().parent.parent / "motor"
-TIPOS_NO = {"caixa", "banco", "pessoas", "fila", "zona", "rotulo", "placa"}
-TONS = {"azul", "verde", "laranja", "roxo", "rosa", "amarelo", "cinza", "vermelho", "teal"}
+TIPOS_NO = {"caixa", "banco", "pessoas", "fila", "zona", "rotulo", "placa", "evento", "gateway", "documento"}
+EVENTOS = {"inicio", "intermediario", "fim"}
+MARCADORES_EVENTO = {"tempo", "mensagem", "erro", "sinal", "condicao", "terminar"}
+MARCADORES_GATEWAY = {"exclusivo", "paralelo", "inclusivo", "complexo", "evento"}
+TONS = {"azul", "verde", "laranja", "roxo", "rosa", "amarelo", "cinza", "vermelho", "teal", "marrom", "branco", "lilas"}
 ESTADOS = {"normal", "caido", "quente", "fantasma"}
 TIPOS_PASSO = {"contexto", "problema", "solucao", "tecnica", "troca", "resumo"}
 
@@ -115,11 +118,21 @@ def validar(c):
                         avisos.append(f"{op}: selo de '{nid}' com mais de 18 caracteres; detalhe vai melhor numa placa")
                     if n.get("tipo") == "banco" and len(n.get("rotulo") or "") > 16:
                         avisos.append(f"{op}: rótulo do banco '{nid}' longo (vai numa pílula à direita); máx. ~16")
+                    if n.get("tipo") == "evento":
+                        if n.get("evento") and n["evento"] not in EVENTOS:
+                            erros.append(f"{op}: evento '{nid}' com evento '{n['evento']}' inválido ({', '.join(sorted(EVENTOS))})")
+                        if n.get("marcador") and n["marcador"] not in MARCADORES_EVENTO:
+                            erros.append(f"{op}: evento '{nid}' com marcador '{n['marcador']}' inválido ({', '.join(sorted(MARCADORES_EVENTO))})")
+                    if n.get("tipo") == "gateway":
+                        if n.get("marcador") and n["marcador"] not in MARCADORES_GATEWAY:
+                            erros.append(f"{op}: gateway '{nid}' com marcador '{n['marcador']}' inválido ({', '.join(sorted(MARCADORES_GATEWAY))})")
+                        if len(n.get("rotulo") or "") > 20:
+                            avisos.append(f"{op}: pergunta do gateway '{nid}' longa (máx. ~20); detalhe vai no texto do passo")
                     if n.get("tipo") == "placa" and len(n.get("linhas") or []) > 6:
                         avisos.append(f"{op}: placa '{nid}' com mais de 6 linhas; o resto não aparece")
                 # nós encostados no mesmo passo (distância de grade < 1,6)
                 solidos = [(nid, n) for nid, n in nos.items()
-                           if not n.get("oculto") and n.get("tipo", "caixa") in ("caixa", "banco", "pessoas", "fila")
+                           if not n.get("oculto") and n.get("tipo", "caixa") in ("caixa", "banco", "pessoas", "fila", "evento", "gateway", "documento")
                            and isinstance(n.get("x"), (int, float)) and isinstance(n.get("y"), (int, float))]
                 pontos = []
                 for nid, n in solidos:
