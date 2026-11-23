@@ -65,6 +65,15 @@ def validar(c):
             if lid and not re.fullmatch(r"[a-z0-9]+(-[a-z0-9]+)*", str(lid)):
                 erros.append(f"{onde}: id só com letras minúsculas, dígitos e hífen (vira âncora #<id>-p<passo>)")
             mets = {m2.get("id") for m2 in l.get("metricas") or []}
+            vars_ = {v.get("id") for v in l.get("variaveis") or []}
+            if any(not v.get("id") for v in l.get("variaveis") or []):
+                erros.append(f"{onde}: variável sem 'id' em 'variaveis'")
+            cod = l.get("codigo")
+            if cod is not None and not isinstance(cod, (list, dict)):
+                erros.append(f"{onde}: 'codigo' precisa ser lista de linhas ou {{titulo, linhas}}")
+            linhas_cod = (cod if isinstance(cod, list) else (cod or {}).get("linhas") or []) if isinstance(cod, (list, dict)) else []
+            if len(linhas_cod) > 40:
+                avisos.append(f"{onde}: código com {len(linhas_cod)} linhas; o painel rola, mas pseudocódigo curto ensina melhor")
             nos = {}
             for n in (l.get("cena") or {}).get("nos") or []:
                 if not n.get("id"):
@@ -103,6 +112,16 @@ def validar(c):
                 for k in (p.get("metricas") or {}):
                     if k not in mets:
                         erros.append(f"{op}: métrica '{k}' não declarada em 'metricas' da lição")
+                for k in (p.get("variaveis") or {}):
+                    if k not in vars_:
+                        erros.append(f"{op}: variável '{k}' não declarada em 'variaveis' da lição")
+                if "linha" in p:
+                    ls = p["linha"] if isinstance(p["linha"], list) else [p["linha"]]
+                    if not linhas_cod:
+                        erros.append(f"{op}: 'linha' sem 'codigo' na lição")
+                    for k in ls:
+                        if not isinstance(k, int) or not 1 <= k <= len(linhas_cod or [0]):
+                            erros.append(f"{op}: linha {k} fora do código (1 a {len(linhas_cod)})")
                 if p.get("ligacoes") is not None:
                     lig = p["ligacoes"]
                 for g in lig:
@@ -130,7 +149,7 @@ def validar(c):
                         erros.append(f"{op}: nó '{nid}' com tom '{n['tom']}' inválido ({', '.join(sorted(TONS))})")
                     if n.get("estado") and n["estado"] not in ESTADOS:
                         erros.append(f"{op}: nó '{nid}' com estado '{n['estado']}' inválido")
-                    if n.get("tipo", "caixa") in ("caixa", "banco") and not n.get("rotulo"):
+                    if n.get("tipo", "caixa") in ("caixa", "banco") and not n.get("rotulo") and n.get("valor") is None:
                         avisos.append(f"{op}: nó '{nid}' sem rótulo")
                     if n.get("tipo", "caixa") == "caixa" and len(n.get("rotulo") or "") > 22:
                         avisos.append(f"{op}: rótulo de '{nid}' longo demais para o topo da caixa (máx. ~22)")
@@ -159,6 +178,7 @@ def validar(c):
                            if not n.get("oculto") and n.get("tipo", "caixa") in ("caixa", "banco", "pessoas", "fila", "evento", "gateway", "documento", "forma", "ator", "caso", "cargo", "equipamento")
                            and isinstance(n.get("x"), (int, float)) and isinstance(n.get("y"), (int, float))]
                 pontos = []
+                solidos = [(nid, n) for nid, n in solidos if not (n.get("valor") is not None and (n.get("tamanho") or 1) <= 0.8)]
                 for nid, n in solidos:
                     k = n.get("quantidade", 5) if n.get("tipo") == "fila" else 1
                     e = n.get("espaco", 0.6)

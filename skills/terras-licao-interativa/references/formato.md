@@ -24,6 +24,8 @@ Exemplo completo e funcionando: `exemplos/system-design.json`.
 | `nivel`, `minutos` | não | chips do cabeçalho |
 | `metricas` | não | `[{id, rotulo, valor}]`: placas do topo, `valor` é o inicial |
 | `legenda` | não | `[{cor, texto, forma?}]`; `cor` é um tom ou CSS (`var(--req)`, `var(--resp)`, `var(--falha)`, `var(--pesado)`); `forma: "quadrado"` |
+| `codigo` | não | pseudocódigo ao lado da cena: lista de linhas ou `{titulo, linhas}`; o passo destaca a linha com `linha` |
+| `variaveis`, `variaveisTitulo` | não | `[{id, rotulo, valor, vazio?}]`: quadro de estado no painel (pivô, i, j, menores…); `vazio` é o texto quando não há valor ("ainda não") |
 | `objetivos` | não | `[{texto, passo}]`: o item fica marcado a partir daquele passo (1 = primeiro) |
 | `cena` | sim | `{nos: [...], ligacoes: [...]}`: estado antes do passo 1 |
 | `passos` | sim | lista de passos (2 ou mais; o bom é 6 a 12) |
@@ -50,6 +52,8 @@ Coordenadas em **unidades de grade isométrica**: `x` cresce para baixo-direita,
 | `direcao`, `espaco` | `fila`: `"x"` (padrão) ou `"y"`; `espaco` entre blocos em unidades (padrão 0,6) |
 | `largura`, `fundo` | `zona`: tamanho em unidades |
 | `evento`, `marcador`, `modelo`, `forma`, `cargo` | campos dos tipos de cada estilo; ver as seções abaixo |
+| `valor` | `caixa`: número ou texto curto grande no topo (célula de array, contador). Com `valor`, o `rotulo` vira pílula embaixo |
+| `arco` | px de elevação no meio do deslocamento quando o nó muda de `x`/`y`/`z` (padrão: proporcional à distância; `0` = desliza reto) |
 | `oculto` | `true`: existe mas não aparece. Declare na `cena` todo nó que vai surgir depois, oculto, e revele com `{"oculto": false}`: assim a câmera não pula |
 
 ## Processo em BPMN
@@ -82,6 +86,10 @@ Com `"estilo": "bpmn"`, o `montar.py` avisa quando a lição não tem evento de 
 
 Exemplo de cada um: `exemplos/estilos.json`.
 
+## Algoritmos e estruturas de dados
+
+Estilo `livre`. Array é uma fileira de `caixa` com `valor` e `tamanho: 0.8`, uma unidade de grade entre células (`x` = 0, 1, 2…, mesmo `y`); o `montar.py` não reclama de célula encostada. Índice e ponteiro (`i`, `j`, `lo`, `hi`) são nós `rotulo` numa fileira paralela (`y` + 1,2), que deslizam quando mudam de `x`. Troca de elementos é trocar o `x` das duas células: elas passam uma pela outra em arco. Destaque com `tom` (pivô `laranja`, menor `verde`, maior `azul`, fixado `cinza`) e use `altura` proporcional ao valor quando a grandeza importa (barras de ordenação, escada de Big-O). Pseudocódigo em `codigo` com `linha` em cada passo; o que o algoritmo guarda vai em `variaveis`. Exemplo: `exemplos/quick-sort.json`.
+
 ## Ligação
 
 ```json
@@ -110,6 +118,8 @@ Exemplo de cada um: `exemplos/estilos.json`.
   "nos": { "lb": { "oculto": false }, "b": { "carga": 97, "estado": "quente" }, "velho": null },
   "ligacoes": [ ... ],              // se presente, SUBSTITUI a lista inteira
   "metricas": { "p95": { "valor": "1,2 s", "tom": "ruim" }, "erros": "0%" },
+  "linha": [3, 4],                  // linhas do `codigo` destacadas (1 = primeira); não acumula
+  "variaveis": { "pivo": 4, "i": { "valor": 2, "tom": "destaque" }, "j": null },
   "quiz": { "pergunta": "...", "opcoes": ["A", "B", "C"], "certa": 1, "porque": "..." }
 }
 ```
@@ -117,6 +127,8 @@ Exemplo de cada um: `exemplos/estilos.json`.
 - `nos` é **remendo**: só os campos que mudam. `null` no nó remove; `null` num campo (`"selo": null`) apaga o campo.
 - Estado acumula: o passo 5 herda tudo do 4. Voltar recalcula do zero, então não há efeito colateral.
 - Métrica com `tom` `ruim` fica vermelha, `bom` fica verde; texto puro fica neutro.
+- `variaveis` acumula como `metricas`; `null` volta ao vazio. `tom`: `bom`, `ruim` ou `destaque`.
+- Nó que muda de `x`, `y` ou `z` **desliza** da posição antiga para a nova (com arco), em vez de pular. É o que faz troca de posição, ordenação e rebalanceamento lerem bem.
 - `ligacoes` não é remendo: repita a lista completa quando algo nela mudar.
 
 ## Tema (opcional)

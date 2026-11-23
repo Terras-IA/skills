@@ -33,11 +33,13 @@
       voltar: 'Voltar', passo: 'passo', aprende: 'Você vai aprender', proximo: 'Próximo', proxLicao: 'Próxima lição', fim: 'Fim do curso',
       licoes: 'lições', min: 'min', passos: 'passos', ideia: 'Ideia-chave', mudou: 'O que mudou', filtro: 'Buscar lição…',
       req: 'requisição', resp: 'resposta', falha: 'falhou', pesado: 'pesado', certo: 'Certo.', errado: 'Não é essa.', de: 'de',
+      codigo: 'Pseudocódigo', variaveis: 'Estado',
       tipos: { contexto: 'contexto', problema: 'problema', solucao: 'solução', tecnica: 'técnica', troca: 'trade-off', resumo: 'resumo' } },
     en: { curso: 'Course', progresso: 'Progress', replay: 'Replay', pausa: 'Pause', seguir: 'Play', nesta: 'In this lesson',
       voltar: 'Back', passo: 'step', aprende: "You'll learn", proximo: 'Next', proxLicao: 'Next lesson', fim: 'End of course',
       licoes: 'lessons', min: 'min', passos: 'steps', ideia: 'Key idea', mudou: 'What changed', filtro: 'Search lessons…',
       req: 'request', resp: 'response', falha: 'failed', pesado: 'heavy', certo: 'Right.', errado: 'Not that one.', de: 'of',
+      codigo: 'Pseudocode', variaveis: 'State',
       tipos: { contexto: 'setup', problema: 'problem', solucao: 'solution', tecnica: 'technique', troca: 'trade-off', resumo: 'recap' } }
   };
   var T = TXT[(CURSO.idioma || 'pt').slice(0, 2)] || TXT.pt;
@@ -70,6 +72,8 @@
     var lig = (l.cena && l.cena.ligacoes) || [];
     var met = {};
     (l.metricas || []).forEach(function (m) { met[m.id] = m.valor == null ? '—' : m.valor; });
+    var vars = {};
+    (l.variaveis || []).forEach(function (v) { vars[v.id] = v.valor == null ? null : v.valor; });
     return (l.passos || []).map(function (p) {
       var novo = {};
       Object.keys(nos).forEach(function (k) { novo[k] = Object.assign({}, nos[k]); });
@@ -81,7 +85,8 @@
       nos = novo;
       if (p.ligacoes) lig = p.ligacoes;
       met = Object.assign({}, met, p.metricas || {});
-      return { nos: nos, lig: lig, met: met };
+      vars = Object.assign({}, vars, p.variaveis || {});
+      return { nos: nos, lig: lig, met: met, vars: vars };
     });
   }
 
@@ -146,6 +151,12 @@
       '<g class="corpo" stroke="' + c[3] + '" stroke-width="1.5" stroke-linejoin="round">' +
       '<polygon points="' + esq + '" fill="' + c[1] + '"/><polygon points="' + dir + '" fill="' + c[2] + '"/>' +
       '<polygon points="' + top + '" fill="' + c[0] + '"/></g>';
+    if (n.valor != null) {
+      // valor grande no topo (célula de array, contador); o rótulo, se houver, vai numa pílula embaixo
+      s += '<text class="valor-no" x="' + X + '" y="' + (Y - h + 7 * d.s) + '" style="font-size:' + Math.round(20 * d.s) + 'px">' + esc(n.valor) + '</text>';
+      if (n.rotulo) s += pill(X, Y + b + 16, n.rotulo);
+      return { svg: s, X: X, topo: Y - h - b, base: Y + b + (n.rotulo ? 28 : 0) };
+    }
     s += rotuloSobre(X, Y - h, n);
     return { svg: s, X: X, topo: Y - h - b, base: Y + b };
   }
@@ -648,6 +659,25 @@
     s += '</g>';
     svg.innerHTML = s;
     montaPacotes(e.lig, mapa, $('g-pac'));
+    if (antes && !reduz) desliza(svg, nos, antes);
+  }
+  // Nó que mudou de x, y ou z desliza da posição antiga para a nova, num arco (troca de lugar fica legível).
+  function desliza(svg, nos, antes) {
+    var grupos = {};
+    Array.prototype.forEach.call(svg.querySelectorAll('g.no[data-id]'), function (g) { grupos[g.getAttribute('data-id')] = g; });
+    nos.forEach(function (n) {
+      var v = antes[n.id], g = grupos[n.id];
+      if (!v || v.oculto || !g || !g.animate) return;
+      if (v.x === n.x && v.y === n.y && (v.z || 0) === (n.z || 0)) return;
+      var a = P(v.x, v.y, v.z), b = P(n.x, n.y, n.z), dx = a[0] - b[0], dy = a[1] - b[1];
+      var arco = n.arco == null ? Math.min(40, 10 + Math.hypot(dx, dy) * 0.25) : n.arco;
+      g.classList.remove('muda');
+      g.animate([
+        { transform: 'translate(' + dx + 'px,' + dy + 'px)' },
+        { transform: 'translate(' + dx / 2 + 'px,' + (dy / 2 - arco) + 'px)', offset: 0.5 },
+        { transform: 'translate(0px,0px)' }
+      ], { duration: 750, easing: 'cubic-bezier(.45,.05,.35,1)' });
+    });
   }
   function classeMuda(n, antes) {
     if (!antes) return 'entra';
@@ -664,6 +694,39 @@
       var antes = anterior ? anterior.met[m.id] : undefined;
       var mudou = anterior && JSON.stringify(antes) !== JSON.stringify(v);
       return '<div class="metrica ' + cls + (mudou ? ' mudou' : '') + '"><small>' + esc(m.rotulo) + '</small><b>' + esc(valor) + '</b></div>';
+    }).join('');
+  }
+
+  function linhasCodigo(l) {
+    var c = l.codigo;
+    if (!c) return null;
+    if (Array.isArray(c)) return { titulo: '', linhas: c };
+    return { titulo: c.titulo || '', linhas: c.linhas || [] };
+  }
+  function renderCodigo(i) {
+    var l = atual.licao, c = linhasCodigo(l), box = $('codigo-box');
+    if (!c || !c.linhas.length) { box.hidden = true; return; }
+    box.hidden = false;
+    $('codigo-tit').textContent = c.titulo || T.codigo;
+    var marca = l.passos[i].linha, set = {};
+    (Array.isArray(marca) ? marca : marca == null ? [] : [marca]).forEach(function (k) { set[k] = 1; });
+    $('codigo').innerHTML = c.linhas.map(function (ln, k) {
+      return '<div class="ln' + (set[k + 1] ? ' atual' : '') + '"><span class="nl">' + (k + 1) + '</span><span class="cd">' + esc(ln) + '</span></div>';
+    }).join('');
+    var at = $('codigo').querySelector('.atual');
+    if (at) { var cx = $('codigo'); cx.scrollTop = at.offsetTop - cx.clientHeight / 2 + at.offsetHeight / 2; }
+  }
+  function renderVariaveis(i, anterior) {
+    var l = atual.licao, e = atual.est[i], box = $('vars-box');
+    if (!l.variaveis || !l.variaveis.length) { box.hidden = true; return; }
+    box.hidden = false;
+    $('vars-tit').textContent = l.variaveisTitulo || T.variaveis;
+    $('vars').innerHTML = l.variaveis.map(function (v) {
+      var x = e.vars[v.id], valor = x, cls = '';
+      if (x && typeof x === 'object') { valor = x.valor; cls = x.tom || ''; }
+      var vazio = valor == null || valor === '';
+      var mudou = anterior && JSON.stringify(anterior.vars[v.id]) !== JSON.stringify(x);
+      return '<div class="var ' + cls + (vazio ? ' vazio' : '') + (mudou ? ' mudou' : '') + '"><span>' + md(v.rotulo || v.id) + '</span><b>' + (vazio ? (v.vazio ? esc(v.vazio) : '—') : esc(valor)) + '</b></div>';
     }).join('');
   }
 
@@ -787,7 +850,7 @@
     if (!trocou && Math.abs(k - atual.passo) !== 1) anterior = k > 0 ? atual.est[k - 1] : null;
     atual.passo = k;
     if ((visto[l.id] || -1) < k) { visto[l.id] = k; guardar(CHAVE, visto); }
-    renderCena(k, anterior); renderMetricas(k, anterior); renderPainel(k); renderLinha(k);
+    renderCena(k, anterior); renderMetricas(k, anterior); renderPainel(k); renderCodigo(k); renderVariaveis(k, anterior); renderLinha(k);
     renderArvore();
   }
 

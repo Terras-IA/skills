@@ -35,6 +35,7 @@ O desenho é a parte fácil. Lição boa vem do roteiro: cada passo muda **uma**
 | Segurança | firewall, serviço | cofre de segredos | atacantes vs usuários | tentativas | zona de confiança | pacote/login |
 | Finanças pessoais / empresa | conta, investimento | reserva | pessoas | boletos | mês | dinheiro |
 | Igreja / evento | equipe, ministério | inventário | membros, visitantes | escala | salão | pessoa/tarefa |
+| Algoritmos e estruturas de dados | célula de array (`valor`), nó de árvore ou lista | tabela hash, memória | — | pilha, fila | subproblema, partição | comparação, ponteiro |
 
 Ator mal-intencionado (golpista, atacante): `pessoas` com `quantidade: 1` e `tom: "vermelho"`, ligação com `falha: 1` e `falhaEm` perto de 1 quando um controle barra, ou `falhaEm: 1` quando o golpe passa. Regra, política ou tabela de faixas (alçada, SLA, checklist): `placa` ao lado da peça que aplica a regra, em vez de selo comprido.
 

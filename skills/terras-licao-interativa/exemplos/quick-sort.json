@@ -1,0 +1,649 @@
+{
+  "id": "exemplo-algoritmos",
+  "titulo": "Algoritmos que se veem",
+  "idioma": "pt-BR",
+  "estilo": "livre",
+  "modulos": [
+    {
+      "titulo": "Ordenação",
+      "cor": "roxo",
+      "licoes": [
+        {
+          "id": "quick-sort",
+          "titulo": "Quick Sort",
+          "resumo": "Escolher um pivô, partir o array por valor e repetir nas metades.",
+          "nivel": "intermediário",
+          "minutos": 7,
+          "metricas": [
+            {
+              "id": "n",
+              "rotulo": "itens",
+              "valor": "8"
+            },
+            {
+              "id": "comp",
+              "rotulo": "comparações",
+              "valor": "0"
+            },
+            {
+              "id": "trocas",
+              "rotulo": "trocas",
+              "valor": "0"
+            }
+          ],
+          "legenda": [
+            {
+              "cor": "laranja",
+              "texto": "pivô",
+              "forma": "quadrado"
+            },
+            {
+              "cor": "verde",
+              "texto": "menor que o pivô",
+              "forma": "quadrado"
+            },
+            {
+              "cor": "roxo",
+              "texto": "maior que o pivô",
+              "forma": "quadrado"
+            },
+            {
+              "cor": "cinza",
+              "texto": "posição final",
+              "forma": "quadrado"
+            }
+          ],
+          "objetivos": [
+            {
+              "texto": "O papel do pivô na partição",
+              "passo": 2
+            },
+            {
+              "texto": "Como i e j separam menores de maiores",
+              "passo": 6
+            },
+            {
+              "texto": "Por que o pivô termina no lugar final",
+              "passo": 7
+            },
+            {
+              "texto": "Recursão sem etapa de juntar",
+              "passo": 9
+            },
+            {
+              "texto": "O pior caso O(n²) e como evitá-lo",
+              "passo": 10
+            }
+          ],
+          "codigo": {
+            "titulo": "Pseudocódigo",
+            "linhas": [
+              "quick_sort(a, lo, hi):",
+              "  se lo >= hi: retorna",
+              "  p = particiona(a, lo, hi)",
+              "  quick_sort(a, lo, p - 1)",
+              "  quick_sort(a, p + 1, hi)",
+              "",
+              "particiona(a, lo, hi):",
+              "  pivo = a[hi]",
+              "  i = lo",
+              "  para j de lo até hi - 1:",
+              "    se a[j] < pivo:",
+              "      troca(a[i], a[j])",
+              "      i = i + 1",
+              "  troca(a[i], a[hi])",
+              "  retorna i"
+            ]
+          },
+          "variaveisTitulo": "Em torno do pivô",
+          "variaveis": [
+            {
+              "id": "pivo",
+              "rotulo": "pivô",
+              "vazio": "ainda não"
+            },
+            {
+              "id": "i",
+              "rotulo": "`i` (próximo menor)",
+              "vazio": "—"
+            },
+            {
+              "id": "j",
+              "rotulo": "`j` (varredura)",
+              "vazio": "—"
+            },
+            {
+              "id": "menores",
+              "rotulo": "menores, à esquerda",
+              "vazio": "nenhum ainda"
+            },
+            {
+              "id": "maiores",
+              "rotulo": "maiores, à direita",
+              "vazio": "nenhum ainda"
+            }
+          ],
+          "cena": {
+            "nos": [
+              {
+                "id": "v5",
+                "tipo": "caixa",
+                "x": 0,
+                "y": 0,
+                "valor": 5,
+                "tamanho": 0.8,
+                "altura": 44,
+                "tom": "azul"
+              },
+              {
+                "id": "v2",
+                "tipo": "caixa",
+                "x": 1,
+                "y": 0,
+                "valor": 2,
+                "tamanho": 0.8,
+                "altura": 26,
+                "tom": "azul"
+              },
+              {
+                "id": "v8",
+                "tipo": "caixa",
+                "x": 2,
+                "y": 0,
+                "valor": 8,
+                "tamanho": 0.8,
+                "altura": 62,
+                "tom": "azul"
+              },
+              {
+                "id": "v3",
+                "tipo": "caixa",
+                "x": 3,
+                "y": 0,
+                "valor": 3,
+                "tamanho": 0.8,
+                "altura": 32,
+                "tom": "azul"
+              },
+              {
+                "id": "v7",
+                "tipo": "caixa",
+                "x": 4,
+                "y": 0,
+                "valor": 7,
+                "tamanho": 0.8,
+                "altura": 56,
+                "tom": "azul"
+              },
+              {
+                "id": "v1",
+                "tipo": "caixa",
+                "x": 5,
+                "y": 0,
+                "valor": 1,
+                "tamanho": 0.8,
+                "altura": 20,
+                "tom": "azul"
+              },
+              {
+                "id": "v6",
+                "tipo": "caixa",
+                "x": 6,
+                "y": 0,
+                "valor": 6,
+                "tamanho": 0.8,
+                "altura": 50,
+                "tom": "azul"
+              },
+              {
+                "id": "v4",
+                "tipo": "caixa",
+                "x": 7,
+                "y": 0,
+                "valor": 4,
+                "tamanho": 0.8,
+                "altura": 38,
+                "tom": "azul"
+              },
+              {
+                "id": "pi",
+                "tipo": "rotulo",
+                "x": 0.95,
+                "y": 0.95,
+                "rotulo": "i",
+                "estilo": "bom",
+                "oculto": true
+              },
+              {
+                "id": "pj",
+                "tipo": "rotulo",
+                "x": 1.6,
+                "y": 1.6,
+                "rotulo": "j",
+                "estilo": "alerta",
+                "oculto": true
+              },
+              {
+                "id": "esq",
+                "tipo": "rotulo",
+                "x": 2.1,
+                "y": 1.1,
+                "rotulo": "quick_sort(0..2)",
+                "oculto": true
+              },
+              {
+                "id": "dir",
+                "tipo": "rotulo",
+                "x": 6.6,
+                "y": 1.1,
+                "rotulo": "quick_sort(4..7)",
+                "oculto": true
+              }
+            ],
+            "ligacoes": []
+          },
+          "passos": [
+            {
+              "rotulo": "O array",
+              "tipo": "contexto",
+              "linha": 1,
+              "titulo": "Oito números fora de ordem",
+              "texto": "A altura de cada bloco é o valor dele. O objetivo é deixá-los em ordem crescente, da esquerda para a direita.\n\nO **merge sort** divide pela posição e faz o trabalho na hora de juntar. O **quick sort** inverte: faz o trabalho ao dividir, separando **por valor**, e não precisa juntar nada depois."
+            },
+            {
+              "rotulo": "Pivô",
+              "tipo": "tecnica",
+              "linha": 8,
+              "titulo": "Escolha um pivô",
+              "texto": "Pegue um elemento para servir de régua: aqui, o último, **4**.\n\nA meta da partição é deixar tudo que é menor que 4 à esquerda e tudo que é maior à direita. O 4 cai no meio, e nesse lugar ele fica para sempre.",
+              "nos": {
+                "v4": {
+                  "tom": "laranja",
+                  "selo": "pivô"
+                }
+              },
+              "variaveis": {
+                "pivo": 4
+              }
+            },
+            {
+              "rotulo": "Varrer",
+              "tipo": "tecnica",
+              "linha": [
+                9,
+                10,
+                11
+              ],
+              "titulo": "Dois ponteiros andando",
+              "texto": "`j` varre o array da esquerda para a direita. `i` marca **onde entra o próximo menor** que o pivô.\n\nO primeiro é o 5. Ele não é menor que 4, então fica onde está e só `j` anda.",
+              "nos": {
+                "pi": {
+                  "oculto": false
+                },
+                "pj": {
+                  "oculto": false
+                },
+                "v5": {
+                  "tom": "roxo"
+                }
+              },
+              "variaveis": {
+                "i": 0,
+                "j": "0 → a[0] = 5",
+                "menores": null,
+                "maiores": "5"
+              },
+              "metricas": {
+                "comp": "1"
+              }
+            },
+            {
+              "rotulo": "Troca 2",
+              "tipo": "solucao",
+              "linha": [
+                12,
+                13
+              ],
+              "titulo": "2 é menor: troca e avança i",
+              "texto": "`j` chega ao **2**, que é menor que o pivô. Ele troca de lugar com quem está em `i` (o 5), e `i` avança uma casa.\n\nTudo à esquerda de `i` agora é menor que 4.",
+              "nos": {
+                "v5": {
+                  "x": 1,
+                  "arco": 46
+                },
+                "v2": {
+                  "x": 0,
+                  "arco": 6,
+                  "tom": "verde"
+                },
+                "pj": {
+                  "x": 2.6
+                },
+                "pi": {
+                  "x": 1.95
+                }
+              },
+              "variaveis": {
+                "i": 1,
+                "j": "1 → a[1] = 2",
+                "menores": "2",
+                "maiores": "5"
+              },
+              "metricas": {
+                "comp": "2",
+                "trocas": "1"
+              }
+            },
+            {
+              "rotulo": "Troca 3",
+              "tipo": "solucao",
+              "linha": [
+                12,
+                13
+              ],
+              "titulo": "Pula o 8, puxa o 3",
+              "texto": "O **8** é maior: `j` passa por ele sem mexer. Depois vem o **3**, menor que 4: troca com o 5 na posição `i`, e `i` vai para 2.\n\nRepare que os maiores vão sendo empurrados para a direita sem que ninguém os escolha.",
+              "nos": {
+                "v5": {
+                  "x": 3,
+                  "arco": 46
+                },
+                "v3": {
+                  "x": 1,
+                  "arco": 6,
+                  "tom": "verde"
+                },
+                "pj": {
+                  "x": 4.6
+                },
+                "pi": {
+                  "x": 2.95
+                },
+                "v8": {
+                  "tom": "roxo"
+                }
+              },
+              "variaveis": {
+                "i": 2,
+                "j": "3 → a[3] = 3",
+                "menores": "2, 3",
+                "maiores": "5, 8"
+              },
+              "metricas": {
+                "comp": "4",
+                "trocas": "2"
+              }
+            },
+            {
+              "rotulo": "Troca 1",
+              "tipo": "solucao",
+              "linha": [
+                12,
+                13
+              ],
+              "titulo": "O 1 atravessa o array",
+              "texto": "O **7** fica. O **1** é menor e troca com o 8, que estava na posição `i`.\n\nUma troca leva um elemento longe de uma vez só. É por isso que o quick sort costuma ganhar do insertion sort, que anda uma casa por vez.",
+              "nos": {
+                "v8": {
+                  "x": 5,
+                  "arco": 52
+                },
+                "v1": {
+                  "x": 2,
+                  "arco": 6,
+                  "tom": "verde"
+                },
+                "pj": {
+                  "x": 6.6
+                },
+                "pi": {
+                  "x": 3.95
+                },
+                "v7": {
+                  "tom": "roxo"
+                }
+              },
+              "variaveis": {
+                "i": 3,
+                "j": "5 → a[5] = 1",
+                "menores": "2, 3, 1",
+                "maiores": "5, 7, 8"
+              },
+              "metricas": {
+                "comp": "6",
+                "trocas": "3"
+              }
+            },
+            {
+              "rotulo": "Pivô no lugar",
+              "tipo": "solucao",
+              "linha": 14,
+              "titulo": "O pivô vai para o meio",
+              "texto": "O **6** também fica. `j` chegou ao fim. O pivô troca com quem está em `i` (o 5) e cai na posição 3.\n\nAgora tudo à esquerda dele é menor e tudo à direita é maior. O 4 está **no lugar definitivo**: nenhum passo futuro vai movê-lo.",
+              "ideia": "Cada partição fixa pelo menos um elemento para sempre. O resto do trabalho é o mesmo truque nas duas metades.",
+              "nos": {
+                "v5": {
+                  "x": 7,
+                  "arco": 58
+                },
+                "v4": {
+                  "x": 3,
+                  "arco": 6,
+                  "tom": "cinza",
+                  "selo": "lugar final"
+                },
+                "pj": {
+                  "oculto": true
+                },
+                "v6": {
+                  "tom": "roxo"
+                }
+              },
+              "variaveis": {
+                "i": 3,
+                "j": null,
+                "menores": "2, 3, 1",
+                "maiores": "7, 8, 6, 5"
+              },
+              "metricas": {
+                "comp": "7",
+                "trocas": "4"
+              }
+            },
+            {
+              "rotulo": "Recursão",
+              "tipo": "tecnica",
+              "linha": [
+                4,
+                5
+              ],
+              "titulo": "Mesmo truque em cada lado",
+              "texto": "Sobram dois problemas menores e independentes: `[2, 3, 1]` à esquerda e `[7, 8, 6, 5]` à direita. Cada um ganha o seu pivô e a sua partição.\n\nComo os lados não se misturam, não existe a etapa de juntar do merge sort.",
+              "nos": {
+                "v4": {
+                  "selo": null
+                },
+                "pi": {
+                  "oculto": true
+                },
+                "esq": {
+                  "oculto": false
+                },
+                "dir": {
+                  "oculto": false
+                },
+                "v2": {
+                  "tom": "azul"
+                },
+                "v3": {
+                  "tom": "azul"
+                },
+                "v1": {
+                  "tom": "laranja",
+                  "selo": "pivô"
+                },
+                "v7": {
+                  "tom": "azul"
+                },
+                "v8": {
+                  "tom": "azul"
+                },
+                "v6": {
+                  "tom": "azul"
+                },
+                "v5": {
+                  "tom": "laranja",
+                  "selo": "pivô"
+                }
+              },
+              "variaveis": {
+                "pivo": "1 e 5",
+                "i": null,
+                "menores": null,
+                "maiores": null
+              }
+            },
+            {
+              "rotulo": "Ordenado",
+              "tipo": "solucao",
+              "linha": 2,
+              "titulo": "Cada pedaço some no caso base",
+              "texto": "A recursão continua até sobrar pedaço com 0 ou 1 elemento, que já está ordenado (`lo >= hi`).\n\nNo total, este array levou **15 comparações** e **9 trocas**. Para 8 elementos, o caso médio do quick sort fica perto de n log n ≈ 24.",
+              "nos": {
+                "v5": {
+                  "x": 4,
+                  "tom": "cinza",
+                  "selo": null,
+                  "arco": 30
+                },
+                "v2": {
+                  "x": 1,
+                  "tom": "cinza",
+                  "selo": null,
+                  "arco": 30
+                },
+                "v8": {
+                  "x": 7,
+                  "tom": "cinza",
+                  "selo": null,
+                  "arco": 30
+                },
+                "v3": {
+                  "x": 2,
+                  "tom": "cinza",
+                  "selo": null,
+                  "arco": 30
+                },
+                "v7": {
+                  "x": 6,
+                  "tom": "cinza",
+                  "selo": null,
+                  "arco": 30
+                },
+                "v1": {
+                  "x": 0,
+                  "tom": "cinza",
+                  "selo": null,
+                  "arco": 30
+                },
+                "v6": {
+                  "x": 5,
+                  "tom": "cinza",
+                  "selo": null,
+                  "arco": 30
+                },
+                "esq": {
+                  "oculto": true
+                },
+                "dir": {
+                  "oculto": true
+                }
+              },
+              "variaveis": {
+                "pivo": null
+              },
+              "metricas": {
+                "comp": {
+                  "valor": "15",
+                  "tom": "bom"
+                },
+                "trocas": "9"
+              }
+            },
+            {
+              "rotulo": "Pior caso",
+              "tipo": "troca",
+              "linha": 8,
+              "titulo": "Quando o pivô é ruim",
+              "texto": "Rode o mesmo código num array **já ordenado**. O último elemento é sempre o maior, a partição deixa tudo de um lado só e cada rodada fixa apenas um elemento.\n\nSão n − 1 níveis de recursão e n(n − 1)/2 = **28 comparações** para 8 itens: O(n²). Com milhões de itens, isso é a diferença entre um segundo e horas.",
+              "ideia": "Pivô aleatório ou mediana de três quase elimina o pior caso na prática.",
+              "mudou": [
+                "+ caso médio O(n log n), ordena no lugar, sem memória extra",
+                "- pior caso O(n²) com pivô fixo e entrada ordenada",
+                "· não é estável: iguais podem trocar de ordem"
+              ],
+              "nos": {
+                "v8": {
+                  "tom": "vermelho",
+                  "selo": "nada à direita",
+                  "estado": "quente"
+                }
+              },
+              "variaveis": {
+                "pivo": {
+                  "valor": "8 (o maior)",
+                  "tom": "ruim"
+                },
+                "maiores": {
+                  "valor": "nenhum",
+                  "tom": "ruim"
+                }
+              },
+              "metricas": {
+                "comp": {
+                  "valor": "28",
+                  "tom": "ruim"
+                }
+              }
+            },
+            {
+              "rotulo": "Resumo",
+              "tipo": "resumo",
+              "linha": [
+                3,
+                4,
+                5
+              ],
+              "titulo": "Partição faz o trabalho",
+              "texto": "O quick sort escolhe um pivô, empurra menores para um lado e maiores para o outro, fixa o pivô e repete nas metades.\n\nO custo depende de quão bem o pivô divide: metades parecidas dão O(n log n), pivô extremo dá O(n²).",
+              "nos": {
+                "v8": {
+                  "tom": "cinza",
+                  "selo": null,
+                  "estado": "normal"
+                }
+              },
+              "variaveis": {
+                "pivo": null,
+                "maiores": null
+              },
+              "metricas": {
+                "comp": "15"
+              },
+              "quiz": {
+                "pergunta": "Depois de uma partição, o que se pode afirmar com certeza?",
+                "opcoes": [
+                  "As duas metades já estão ordenadas",
+                  "O pivô está na posição final",
+                  "O menor elemento está na posição 0"
+                ],
+                "certa": 1,
+                "porque": "Só o pivô fica garantido: tudo à esquerda é menor e tudo à direita é maior, mas cada lado ainda está fora de ordem."
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

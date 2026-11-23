@@ -38,6 +38,7 @@ exemplos/   system-design.json               (sistemas: load balancer, 9 passos)
             contas-a-pagar.json              (processo de negócio: alçada e conferência, com placa e golpista)
             processo-seletivo.json           (processo em BPMN: raias, eventos, gateways e documentos)
             estilos.json                     (galeria: rede, organograma, fluxograma e caso de uso)
+            quick-sort.json                  (algoritmo: array que se reordena, pseudocódigo e quadro de estado)
 ```
 
 ## Como trabalhar
@@ -77,6 +78,8 @@ exemplos/   system-design.json               (sistemas: load balancer, 9 passos)
 
 - Árvore de módulos e lições com busca, e progresso salvo no navegador.
 - Linha do tempo de passos, Voltar e Próximo, teclado (← → R Espaço) e link direto (`#<lição>-p<passo>`).
+- Nó que muda de posição desliza em arco até o lugar novo (troca, ordenação, rebalanceamento).
+- Painel de pseudocódigo com a linha do passo destacada e quadro de estado das variáveis.
 - Pacotes animados nas ligações: requisição, resposta, pesado e falha. Pausa e `prefers-reduced-motion` são respeitados.
 - Tema claro e escuro, layout de celular e interface em português ou inglês (`idioma`).
 - Ao fim de cada lição, botão para a próxima.

@@ -116,6 +116,21 @@ h2{font-size:16px;margin:8px 0}
 .nav{display:flex;gap:8px;justify-content:space-between;margin-top:12px}
 .nav .bt-pri{flex:1;text-align:right}
 .atalhos{margin-top:8px;font-size:9.5px;color:var(--suave)}
+.codigo-box>b,.vars-box>b{font-size:10.5px;text-transform:uppercase;letter-spacing:.06em}
+.codigo{margin-top:8px;max-height:240px;overflow:auto;position:relative;font:11px/1.6 var(--mono);background:var(--bg);border:1px solid var(--linha);border-radius:8px;padding:6px 0}
+.codigo .ln{display:flex;gap:10px;padding:0 10px;white-space:pre;color:var(--suave);transition:background .3s}
+.codigo .nl{width:18px;flex:none;text-align:right;opacity:.6}
+.codigo .cd{color:var(--tinta)}
+.codigo .ln.atual{background:var(--acento);box-shadow:inset 3px 0 0 var(--acento-forte)}
+.codigo .ln.atual .cd{font-weight:700}
+.vars{margin-top:8px;display:flex;flex-direction:column;gap:4px}
+.var{display:flex;justify-content:space-between;align-items:center;gap:10px;font-size:11.5px;padding:4px 8px;border:1px solid var(--linha);border-radius:8px;background:var(--bg)}
+.var b{font-size:12px;text-align:right}
+.var.vazio b{color:var(--suave);font-weight:400;font-style:italic}
+.var.ruim{border-color:var(--falha)} .var.ruim b{color:var(--falha)}
+.var.bom{border-color:var(--resp)} .var.bom b{color:var(--resp)}
+.var.destaque{background:var(--acento);border-color:var(--acento-borda)}
+.var.mudou{animation:pisca 1s ease}
 .objetivos b{font-size:10.5px;text-transform:uppercase;letter-spacing:.06em}
 .objetivos ul{list-style:none;padding:0;margin:8px 0 0}
 .objetivos li{display:flex;gap:8px;font-size:11px;margin:5px 0;color:var(--suave)}
@@ -142,6 +157,7 @@ h2{font-size:16px;margin:8px 0}
 .pill.bom rect{fill:var(--bom-bg);stroke:var(--bom-borda)}
 .rot-no{font:700 10.5px var(--texto);fill:#2b2a26;text-anchor:middle;pointer-events:none}
 .ic-no{font-size:15px;text-anchor:middle;pointer-events:none}
+.valor-no{font-family:var(--texto);font-weight:700;fill:#2b2a26;text-anchor:middle;pointer-events:none}
 .placa-tit{font:700 11px var(--texto);fill:var(--tinta)}
 .placa-lin{font:500 10.5px var(--texto);fill:var(--suave)}
 .zona-rot{font:600 10px var(--texto);fill:var(--suave);letter-spacing:.12em;text-transform:uppercase}
@@ -164,5 +180,5 @@ h2{font-size:16px;margin:8px 0}
 }
 html.captura *{animation:none!important;transition:none!important}
 @media (prefers-reduced-motion:reduce){
-  .no.entra,.no.muda,.no.quente .corpo,.metrica.mudou{animation:none}
+  .no.entra,.no.muda,.no.quente .corpo,.metrica.mudou,.var.mudou{animation:none}
 }
