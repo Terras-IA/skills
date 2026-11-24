@@ -14,35 +14,142 @@
           "nivel": "iniciante",
           "minutos": 8,
           "metricas": [
-            { "id": "usuarios", "rotulo": "usuários", "valor": "2.000" },
-            { "id": "rps", "rotulo": "req / s", "valor": "60" },
-            { "id": "p95", "rotulo": "latência p95", "valor": "90 ms" },
-            { "id": "erros", "rotulo": "erros", "valor": "0%" },
-            { "id": "servidores", "rotulo": "servidores ok", "valor": "1 / 1" }
+            {
+              "id": "usuarios",
+              "rotulo": "usuários",
+              "valor": "2.000"
+            },
+            {
+              "id": "rps",
+              "rotulo": "req / s",
+              "valor": "60"
+            },
+            {
+              "id": "p95",
+              "rotulo": "latência p95",
+              "valor": "90 ms"
+            },
+            {
+              "id": "erros",
+              "rotulo": "erros",
+              "valor": "0%"
+            },
+            {
+              "id": "servidores",
+              "rotulo": "servidores ok",
+              "valor": "1 / 1"
+            }
           ],
           "legenda": [
-            { "cor": "var(--req)", "texto": "requisição" },
-            { "cor": "var(--pesado)", "texto": "requisição pesada", "forma": "quadrado" },
-            { "cor": "var(--falha)", "texto": "falhou" }
+            {
+              "cor": "var(--req)",
+              "texto": "requisição"
+            },
+            {
+              "cor": "var(--pesado)",
+              "texto": "requisição pesada",
+              "forma": "quadrado"
+            },
+            {
+              "cor": "var(--falha)",
+              "texto": "falhou"
+            }
           ],
           "objetivos": [
-            { "texto": "Reconhecer o sinal de um servidor sobrecarregado", "passo": 2 },
-            { "texto": "Por que mais servidores não bastam sem uma porta única", "passo": 4 },
-            { "texto": "Round robin x menos conexões", "passo": 6 },
-            { "texto": "Health check tirando servidor caído da roda", "passo": 7 },
-            { "texto": "Evitar que o próprio balanceador vire ponto único de falha", "passo": 8 }
+            {
+              "texto": "Reconhecer o sinal de um servidor sobrecarregado",
+              "passo": 2
+            },
+            {
+              "texto": "Por que mais servidores não bastam sem uma porta única",
+              "passo": 4
+            },
+            {
+              "texto": "Round robin x menos conexões",
+              "passo": 6
+            },
+            {
+              "texto": "Health check tirando servidor caído da roda",
+              "passo": 7
+            },
+            {
+              "texto": "Evitar que o próprio balanceador vire ponto único de falha",
+              "passo": 8
+            }
           ],
           "cena": {
             "nos": [
-              { "id": "usuarios", "tipo": "pessoas", "x": -3.2, "y": 0, "quantidade": 6, "rotulo": "2.000 usuários", "icone": "👥" },
-              { "id": "a", "tipo": "caixa", "x": 3, "y": -2.3, "tom": "azul", "icone": "🖥", "rotulo": "Servidor A", "carga": 35 },
-              { "id": "b", "tipo": "caixa", "x": 3, "y": 0, "tom": "azul", "icone": "🖥", "rotulo": "Servidor B", "carga": 0, "oculto": true },
-              { "id": "c", "tipo": "caixa", "x": 3, "y": 2.3, "tom": "azul", "icone": "🖥", "rotulo": "Servidor C", "carga": 0, "oculto": true },
-              { "id": "lb", "tipo": "caixa", "x": 0, "y": 0, "tom": "laranja", "icone": "⑂", "rotulo": "Load Balancer", "tamanho": 1.1, "oculto": true },
-              { "id": "lb2", "tipo": "caixa", "x": -0.6, "y": 2.6, "tom": "laranja", "icone": "⑂", "rotulo": "LB reserva", "estado": "fantasma", "oculto": true }
+              {
+                "id": "usuarios",
+                "tipo": "pessoas",
+                "x": -3.2,
+                "y": 0,
+                "quantidade": 6,
+                "rotulo": "2.000 usuários",
+                "icone": "👥"
+              },
+              {
+                "id": "a",
+                "tipo": "caixa",
+                "x": 3,
+                "y": -2.3,
+                "tom": "azul",
+                "icone": "🖥",
+                "rotulo": "Servidor A",
+                "carga": 35
+              },
+              {
+                "id": "b",
+                "tipo": "caixa",
+                "x": 3,
+                "y": 0,
+                "tom": "azul",
+                "icone": "🖥",
+                "rotulo": "Servidor B",
+                "carga": 0,
+                "oculto": true
+              },
+              {
+                "id": "c",
+                "tipo": "caixa",
+                "x": 3,
+                "y": 2.3,
+                "tom": "azul",
+                "icone": "🖥",
+                "rotulo": "Servidor C",
+                "carga": 0,
+                "oculto": true
+              },
+              {
+                "id": "lb",
+                "tipo": "caixa",
+                "x": 0,
+                "y": 0,
+                "tom": "laranja",
+                "icone": "⑂",
+                "rotulo": "Load Balancer",
+                "tamanho": 1.1,
+                "oculto": true
+              },
+              {
+                "id": "lb2",
+                "tipo": "caixa",
+                "x": -0.6,
+                "y": 2.6,
+                "tom": "laranja",
+                "icone": "⑂",
+                "rotulo": "LB reserva",
+                "estado": "fantasma",
+                "oculto": true
+              }
             ],
             "ligacoes": [
-              { "de": "usuarios", "para": "a", "rota": "y", "fluxo": 1 }
+              {
+                "de": "usuarios",
+                "para": "a",
+                "rota": "y",
+                "fluxo": 1
+              }
             ]
           },
           "passos": [
@@ -59,12 +166,42 @@
               "texto": "Uma promoção leva 20.000 pessoas ao site ao mesmo tempo. O Servidor A chega a 98% de CPU, os pedidos entram na fila e parte deles **estoura o tempo**.",
               "ideia": "Latência subindo antes dos erros é o primeiro sinal de sobrecarga. Quando os erros aparecem, a fila já está grande.",
               "nos": {
-                "usuarios": { "quantidade": 16, "rotulo": "20.000 usuários" },
-                "a": { "carga": 98, "estado": "quente", "selo": "fila: 340" }
+                "usuarios": {
+                  "quantidade": 16,
+                  "rotulo": "20.000 usuários"
+                },
+                "a": {
+                  "carga": 98,
+                  "estado": "quente",
+                  "selo": "fila: 340"
+                }
               },
-              "ligacoes": [ { "de": "usuarios", "para": "a", "rota": "y", "fluxo": 3, "falha": 0.3 } ],
-              "metricas": { "usuarios": "20.000", "rps": "600", "p95": { "valor": "2,4 s", "tom": "ruim" }, "erros": { "valor": "12%", "tom": "ruim" } },
-              "mudou": [ "+ 10x mais usuários", "- CPU do A: 35% → 98%", "- 12% dos pedidos falham" ]
+              "ligacoes": [
+                {
+                  "de": "usuarios",
+                  "para": "a",
+                  "rota": "y",
+                  "fluxo": 3,
+                  "falha": 0.3
+                }
+              ],
+              "metricas": {
+                "usuarios": "20.000",
+                "rps": "600",
+                "p95": {
+                  "valor": "2,4 s",
+                  "tom": "ruim"
+                },
+                "erros": {
+                  "valor": "12%",
+                  "tom": "ruim"
+                }
+              },
+              "mudou": [
+                "+ 10x mais usuários",
+                "- CPU do A: 35% → 98%",
+                "- 12% dos pedidos falham"
+              ]
             },
             {
               "rotulo": "Mais máquinas",
@@ -72,11 +209,22 @@
               "titulo": "Mais servidores, e nada muda",
               "texto": "Subimos B e C. Só que os clientes continuam com o endereço do A gravado: B e C ficam parados enquanto A afoga.\n\nO cliente não tem como saber quais servidores existem nem quais estão livres.",
               "nos": {
-                "b": { "oculto": false, "carga": 2 },
-                "c": { "oculto": false, "carga": 2 }
+                "b": {
+                  "oculto": false,
+                  "carga": 2
+                },
+                "c": {
+                  "oculto": false,
+                  "carga": 2
+                }
               },
-              "metricas": { "servidores": "3 / 3" },
-              "mudou": [ "+ Servidores B e C no ar", "- Tráfego continua todo no A" ]
+              "metricas": {
+                "servidores": "3 / 3"
+              },
+              "mudou": [
+                "+ Servidores B e C no ar",
+                "- Tráfego continua todo no A"
+              ]
             },
             {
               "rotulo": "Add LB",
@@ -85,34 +233,118 @@
               "texto": "O **load balancer** passa a ser o único endereço público. O cliente fala com ele, e ele repassa cada pedido a um servidor do grupo.\n\nServidores podem entrar e sair sem o cliente perceber.",
               "ideia": "O conjunto de servidores atrás do balanceador se chama pool (ou target group).",
               "nos": {
-                "lb": { "oculto": false, "selo": "round robin" },
-                "a": { "carga": 34, "estado": "normal", "selo": null },
-                "b": { "carga": 36 },
-                "c": { "carga": 33 }
+                "lb": {
+                  "oculto": false,
+                  "selo": "round robin"
+                },
+                "a": {
+                  "carga": 34,
+                  "estado": "normal",
+                  "selo": null
+                },
+                "b": {
+                  "carga": 36
+                },
+                "c": {
+                  "carga": 33
+                }
               },
               "ligacoes": [
-                { "de": "usuarios", "para": "lb", "fluxo": 3 },
-                { "de": "lb", "para": "a", "rota": "y", "fluxo": 1 },
-                { "de": "lb", "para": "b", "fluxo": 1 },
-                { "de": "lb", "para": "c", "rota": "y", "fluxo": 1 }
+                {
+                  "de": "usuarios",
+                  "para": "lb",
+                  "fluxo": 3
+                },
+                {
+                  "de": "lb",
+                  "para": "a",
+                  "rota": "y",
+                  "fluxo": 1
+                },
+                {
+                  "de": "lb",
+                  "para": "b",
+                  "fluxo": 1
+                },
+                {
+                  "de": "lb",
+                  "para": "c",
+                  "rota": "y",
+                  "fluxo": 1
+                }
               ],
-              "metricas": { "p95": { "valor": "95 ms", "tom": "bom" }, "erros": { "valor": "0%", "tom": "bom" } },
-              "mudou": [ "+ Load balancer na frente", "+ CPU 98% → ~35% em cada servidor" ]
+              "metricas": {
+                "p95": {
+                  "valor": "95 ms",
+                  "tom": "bom"
+                },
+                "erros": {
+                  "valor": "0%",
+                  "tom": "bom"
+                }
+              },
+              "mudou": [
+                "+ Load balancer na frente",
+                "+ CPU 98% → ~35% em cada servidor"
+              ]
             },
             {
               "rotulo": "Pesados",
               "tipo": "problema",
               "titulo": "Pedidos não são iguais",
               "texto": "Round robin entrega um pedido para cada servidor, em rodízio. Mas um relatório leva 5 s e uma página leva 5 ms.\n\nPor azar do rodízio, os pesados caem no B. Ele chega a 97% enquanto A e C folgam.",
-              "nos": { "b": { "carga": 97, "estado": "quente", "selo": "23 na fila" }, "a": { "carga": 24 }, "c": { "carga": 25 } },
+              "nos": {
+                "b": {
+                  "carga": 97,
+                  "estado": "quente",
+                  "selo": "23 na fila"
+                },
+                "a": {
+                  "carga": 24
+                },
+                "c": {
+                  "carga": 25
+                }
+              },
               "ligacoes": [
-                { "de": "usuarios", "para": "lb", "fluxo": 3 },
-                { "de": "lb", "para": "a", "rota": "y", "fluxo": 1 },
-                { "de": "lb", "para": "b", "fluxo": 1.4, "pesados": 0.6 },
-                { "de": "lb", "para": "c", "rota": "y", "fluxo": 1 }
+                {
+                  "de": "usuarios",
+                  "para": "lb",
+                  "fluxo": 3
+                },
+                {
+                  "de": "lb",
+                  "para": "a",
+                  "rota": "y",
+                  "fluxo": 1
+                },
+                {
+                  "de": "lb",
+                  "para": "b",
+                  "fluxo": 1.4,
+                  "pesados": 0.6
+                },
+                {
+                  "de": "lb",
+                  "para": "c",
+                  "rota": "y",
+                  "fluxo": 1
+                }
               ],
-              "metricas": { "p95": { "valor": "1,2 s", "tom": "ruim" }, "erros": { "valor": "3%", "tom": "ruim" } },
-              "mudou": [ "- B: 36% → 97%", "- p95 sobe para 1,2 s" ]
+              "metricas": {
+                "p95": {
+                  "valor": "1,2 s",
+                  "tom": "ruim"
+                },
+                "erros": {
+                  "valor": "3%",
+                  "tom": "ruim"
+                }
+              },
+              "mudou": [
+                "- B: 36% → 97%",
+                "- p95 sobe para 1,2 s"
+              ]
             },
             {
               "rotulo": "Menos conexões",
@@ -120,30 +352,114 @@
               "titulo": "Mandar para quem está mais livre",
               "texto": "Com **least connections**, o balanceador manda o próximo pedido ao servidor com menos conexões abertas. Quem está ocupado com relatório recebe menos.",
               "ideia": "Round robin é bom quando os pedidos custam parecido. Quando o custo varia muito, olhe a carga real.",
-              "nos": { "lb": { "selo": "menos conexões" }, "b": { "carga": 52, "estado": "normal", "selo": null }, "a": { "carga": 49 }, "c": { "carga": 50 } },
+              "nos": {
+                "lb": {
+                  "selo": "menos conexões"
+                },
+                "b": {
+                  "carga": 52,
+                  "estado": "normal",
+                  "selo": null
+                },
+                "a": {
+                  "carga": 49
+                },
+                "c": {
+                  "carga": 50
+                }
+              },
               "ligacoes": [
-                { "de": "usuarios", "para": "lb", "fluxo": 3 },
-                { "de": "lb", "para": "a", "rota": "y", "fluxo": 1.2, "pesados": 0.2 },
-                { "de": "lb", "para": "b", "fluxo": 0.8, "pesados": 0.3 },
-                { "de": "lb", "para": "c", "rota": "y", "fluxo": 1.2, "pesados": 0.2 }
+                {
+                  "de": "usuarios",
+                  "para": "lb",
+                  "fluxo": 3
+                },
+                {
+                  "de": "lb",
+                  "para": "a",
+                  "rota": "y",
+                  "fluxo": 1.2,
+                  "pesados": 0.2
+                },
+                {
+                  "de": "lb",
+                  "para": "b",
+                  "fluxo": 0.8,
+                  "pesados": 0.3
+                },
+                {
+                  "de": "lb",
+                  "para": "c",
+                  "rota": "y",
+                  "fluxo": 1.2,
+                  "pesados": 0.2
+                }
               ],
-              "metricas": { "p95": { "valor": "110 ms", "tom": "bom" }, "erros": "0%" },
-              "mudou": [ "+ Carga equilibrada perto de 50%" ]
+              "metricas": {
+                "p95": {
+                  "valor": "110 ms",
+                  "tom": "bom"
+                },
+                "erros": "0%"
+              },
+              "mudou": [
+                "+ Carga equilibrada perto de 50%"
+              ]
             },
             {
               "rotulo": "Health check",
               "tipo": "tecnica",
               "titulo": "Um servidor cai",
               "texto": "O B trava. O balanceador consulta `/health` em cada servidor a cada poucos segundos; o B para de responder e sai da roda.\n\nOs clientes não veem erro: A e C absorvem o tráfego.",
-              "nos": { "b": { "estado": "caido", "carga": null }, "a": { "carga": 74 }, "c": { "carga": 76 } },
+              "nos": {
+                "b": {
+                  "estado": "caido",
+                  "carga": null
+                },
+                "a": {
+                  "carga": 74
+                },
+                "c": {
+                  "carga": 76
+                }
+              },
               "ligacoes": [
-                { "de": "usuarios", "para": "lb", "fluxo": 3 },
-                { "de": "lb", "para": "a", "rota": "y", "fluxo": 1.5 },
-                { "de": "lb", "para": "b", "fluxo": 0, "tracejada": true, "rotulo": "health ✗" },
-                { "de": "lb", "para": "c", "rota": "y", "fluxo": 1.5 }
+                {
+                  "de": "usuarios",
+                  "para": "lb",
+                  "fluxo": 3
+                },
+                {
+                  "de": "lb",
+                  "para": "a",
+                  "rota": "y",
+                  "fluxo": 1.5
+                },
+                {
+                  "de": "lb",
+                  "para": "b",
+                  "fluxo": 0,
+                  "tracejada": true,
+                  "rotulo": "health ✗"
+                },
+                {
+                  "de": "lb",
+                  "para": "c",
+                  "rota": "y",
+                  "fluxo": 1.5
+                }
               ],
-              "metricas": { "servidores": { "valor": "2 / 3", "tom": "ruim" } },
-              "mudou": [ "- Servidor B fora", "+ Tráfego redistribuído para A e C", "+ Erros continuam em 0%" ]
+              "metricas": {
+                "servidores": {
+                  "valor": "2 / 3",
+                  "tom": "ruim"
+                }
+              },
+              "mudou": [
+                "- Servidor B fora",
+                "+ Tráfego redistribuído para A e C",
+                "+ Erros continuam em 0%"
+              ]
             },
             {
               "rotulo": "SPOF",
@@ -151,16 +467,60 @@
               "titulo": "E se o balanceador cair?",
               "texto": "Agora tudo passa por uma caixa só. Se ela cair, o site cai inteiro: é um **ponto único de falha**.\n\nA saída comum é um par: um balanceador ativo e um reserva que assume o mesmo endereço quando o ativo some. Nuvens gerenciadas fazem isso por você.",
               "ideia": "Toda peça que você coloca na frente para dar resiliência precisa, ela mesma, ser resiliente.",
-              "nos": { "lb2": { "oculto": false }, "b": { "estado": "normal", "carga": 50 }, "a": { "carga": 50 }, "c": { "carga": 50 } },
+              "nos": {
+                "lb2": {
+                  "oculto": false
+                },
+                "b": {
+                  "estado": "normal",
+                  "carga": 50
+                },
+                "a": {
+                  "carga": 50
+                },
+                "c": {
+                  "carga": 50
+                }
+              },
               "ligacoes": [
-                { "de": "usuarios", "para": "lb", "fluxo": 3 },
-                { "de": "lb", "para": "a", "rota": "y", "fluxo": 1 },
-                { "de": "lb", "para": "b", "fluxo": 1 },
-                { "de": "lb", "para": "c", "rota": "y", "fluxo": 1 },
-                { "de": "lb", "para": "lb2", "fluxo": 0.4, "tracejada": true, "rotulo": "heartbeat", "cor": "laranja" }
+                {
+                  "de": "usuarios",
+                  "para": "lb",
+                  "fluxo": 3
+                },
+                {
+                  "de": "lb",
+                  "para": "a",
+                  "rota": "y",
+                  "fluxo": 1
+                },
+                {
+                  "de": "lb",
+                  "para": "b",
+                  "fluxo": 1
+                },
+                {
+                  "de": "lb",
+                  "para": "c",
+                  "rota": "y",
+                  "fluxo": 1
+                },
+                {
+                  "de": "lb",
+                  "para": "lb2",
+                  "fluxo": 0.4,
+                  "tracejada": true,
+                  "rotulo": "heartbeat",
+                  "cor": "laranja"
+                }
               ],
-              "metricas": { "servidores": "3 / 3" },
-              "mudou": [ "+ Balanceador reserva em espera", "· Custo: uma máquina parada esperando" ]
+              "metricas": {
+                "servidores": "3 / 3"
+              },
+              "mudou": [
+                "+ Balanceador reserva em espera",
+                "· Custo: uma máquina parada esperando"
+              ]
             },
             {
               "rotulo": "Resumo",
@@ -169,9 +529,772 @@
               "texto": "Escalar para fora pede uma porta única. A porta decide quem atende (rodízio ou carga), tira da roda quem caiu e precisa de reserva para não virar o novo ponto fraco.",
               "quiz": {
                 "pergunta": "Os pedidos da sua API variam de 5 ms a 8 s. Qual algoritmo de balanceamento evita que um servidor afogue?",
-                "opcoes": [ "Round robin", "Menos conexões (least connections)", "Aleatório" ],
+                "opcoes": [
+                  "Round robin",
+                  "Menos conexões (least connections)",
+                  "Aleatório"
+                ],
                 "certa": 1,
                 "porque": "Ele olha quantas conexões cada servidor tem abertas, então quem está preso num pedido longo recebe menos."
+              }
+            }
+          ]
+        },
+        {
+          "id": "padroes-de-cache",
+          "titulo": "Padrões de cache",
+          "resumo": "Quem busca no banco quando falta, para onde vai a escrita, e como proteger a chave mais lida.",
+          "nivel": "intermediário",
+          "minutos": 10,
+          "metricas": [
+            {
+              "id": "usuarios",
+              "rotulo": "usuários",
+              "valor": "2.000"
+            },
+            {
+              "id": "p95",
+              "rotulo": "p95 leitura",
+              "valor": "40 ms"
+            },
+            {
+              "id": "banco",
+              "rotulo": "leituras no banco/s",
+              "valor": "500"
+            },
+            {
+              "id": "acerto",
+              "rotulo": "acerto do cache",
+              "valor": "—"
+            },
+            {
+              "id": "velho",
+              "rotulo": "leitura velha",
+              "valor": "—"
+            },
+            {
+              "id": "escrita",
+              "rotulo": "p95 escrita",
+              "valor": "12 ms"
+            },
+            {
+              "id": "perdido",
+              "rotulo": "escrita perdida",
+              "valor": "0"
+            }
+          ],
+          "legenda": [
+            {
+              "cor": "var(--req)",
+              "texto": "leitura"
+            },
+            {
+              "cor": "roxo",
+              "texto": "escrita"
+            },
+            {
+              "cor": "var(--pesado)",
+              "texto": "consulta repetida",
+              "forma": "quadrado"
+            },
+            {
+              "cor": "var(--falha)",
+              "texto": "falta ou perda"
+            }
+          ],
+          "objetivos": [
+            {
+              "texto": "Diferenciar cache-aside de read-through",
+              "passo": 4
+            },
+            {
+              "texto": "Escolher entre write-around, write-through e write-behind",
+              "passo": 7
+            },
+            {
+              "texto": "Saber o que o write-behind arrisca",
+              "passo": 8
+            },
+            {
+              "texto": "Evitar cache stampede com coalescing",
+              "passo": 10
+            },
+            {
+              "texto": "Entender o que o refreshAfterWrite faz de verdade",
+              "passo": 11
+            }
+          ],
+          "cena": {
+            "nos": [
+              {
+                "id": "usuarios",
+                "tipo": "pessoas",
+                "x": -3.2,
+                "y": 0,
+                "quantidade": 6,
+                "rotulo": "2.000 usuários",
+                "icone": "👥"
+              },
+              {
+                "id": "app",
+                "tipo": "caixa",
+                "x": 0,
+                "y": 0,
+                "tom": "azul",
+                "icone": "🖥",
+                "rotulo": "App"
+              },
+              {
+                "id": "cache",
+                "tipo": "banco",
+                "x": 3,
+                "y": -2.3,
+                "tom": "verde",
+                "rotulo": "Cache",
+                "oculto": true
+              },
+              {
+                "id": "db",
+                "tipo": "banco",
+                "x": 3,
+                "y": 2.3,
+                "tom": "roxo",
+                "rotulo": "Banco",
+                "carga": 40
+              },
+              {
+                "id": "fila",
+                "tipo": "fila",
+                "x": 4.8,
+                "y": 0,
+                "direcao": "y",
+                "quantidade": 3,
+                "rotulo": "fila de escrita",
+                "oculto": true
+              }
+            ],
+            "ligacoes": [
+              {
+                "de": "usuarios",
+                "para": "app",
+                "fluxo": 1
+              },
+              {
+                "de": "app",
+                "para": "db",
+                "rota": "y",
+                "fluxo": 1,
+                "sentido": "ambos"
+              }
+            ]
+          },
+          "passos": [
+            {
+              "rotulo": "Sem cache",
+              "tipo": "contexto",
+              "titulo": "Toda leitura vai ao banco",
+              "texto": "A loja mostra o catálogo lendo direto do **banco**. Com 2.000 usuários são 500 leituras por segundo, o banco fica em 40% e a página responde em 40 ms.\n\nQuase todas as leituras pedem os mesmos 200 produtos.",
+              "ideia": "Os números desta lição são ilustração, não medição. O que importa é para onde vai cada seta."
+            },
+            {
+              "rotulo": "Pico",
+              "tipo": "problema",
+              "titulo": "O banco vira o gargalo",
+              "texto": "Na promoção chegam 20.000 usuários. O banco recebe 5.000 leituras por segundo, a maioria repetida, e chega a 97%.\n\nA aplicação até aguenta; quem afoga é o banco respondendo a mesma pergunta milhares de vezes.",
+              "nos": {
+                "usuarios": {
+                  "quantidade": 16,
+                  "rotulo": "20.000 usuários"
+                },
+                "db": {
+                  "carga": 97,
+                  "estado": "quente",
+                  "selo": "5.000 leituras/s"
+                }
+              },
+              "ligacoes": [
+                {
+                  "de": "usuarios",
+                  "para": "app",
+                  "fluxo": 3
+                },
+                {
+                  "de": "app",
+                  "para": "db",
+                  "rota": "y",
+                  "fluxo": 3,
+                  "falha": 0.2,
+                  "sentido": "ambos"
+                }
+              ],
+              "metricas": {
+                "usuarios": "20.000",
+                "p95": {
+                  "valor": "1,8 s",
+                  "tom": "ruim"
+                },
+                "banco": {
+                  "valor": "5.000",
+                  "tom": "ruim"
+                }
+              },
+              "mudou": [
+                "+ 10x mais usuários",
+                "- banco: 40% → 97%",
+                "- p95 de leitura: 40 ms → 1,8 s"
+              ]
+            },
+            {
+              "rotulo": "Cache-aside",
+              "tipo": "solucao",
+              "titulo": "A aplicação consulta o cache primeiro",
+              "texto": "Entra um **cache** na memória. A App olha nele primeiro; se achou (acerto), responde. Se faltou, lê o banco e **ela mesma** grava o resultado no cache.\n\nCom 95% de acerto, o banco só vê as faltas.",
+              "ideia": "O `@Cacheable` do Spring funciona assim: no acerto o método nem roda; na falta, roda e o resultado é gravado (docs do Spring Framework, anotações de cache).",
+              "nos": {
+                "cache": {
+                  "oculto": false,
+                  "selo": "95% de acerto",
+                  "estilo": "bom"
+                },
+                "db": {
+                  "carga": 30,
+                  "estado": "normal",
+                  "selo": "250 leituras/s"
+                }
+              },
+              "ligacoes": [
+                {
+                  "de": "usuarios",
+                  "para": "app",
+                  "fluxo": 3
+                },
+                {
+                  "de": "app",
+                  "para": "cache",
+                  "rota": "y",
+                  "fluxo": 2.6,
+                  "sentido": "ambos",
+                  "rotulo": "1º: cache"
+                },
+                {
+                  "de": "app",
+                  "para": "db",
+                  "rota": "y",
+                  "fluxo": 0.4,
+                  "sentido": "ambos",
+                  "rotulo": "só na falta",
+                  "posRotulo": 0.7
+                }
+              ],
+              "metricas": {
+                "p95": {
+                  "valor": "60 ms",
+                  "tom": "bom"
+                },
+                "banco": {
+                  "valor": "250",
+                  "tom": "bom"
+                },
+                "acerto": {
+                  "valor": "95%",
+                  "tom": "bom"
+                }
+              },
+              "mudou": [
+                "+ banco: 97% → 30%",
+                "+ p95 de leitura: 1,8 s → 60 ms",
+                "· a App decide quando ir ao banco"
+              ]
+            },
+            {
+              "rotulo": "Read-through",
+              "tipo": "tecnica",
+              "titulo": "O cache busca no banco sozinho",
+              "texto": "Variação: a App fala **só com o cache**. Na falta, é o cache que lê o banco e se preenche.\n\nO código que sabe carregar o dado fica num lugar só, em vez de espalhado por cada chamada.",
+              "ideia": "O `LoadingCache` do Caffeine é read-through: o cache nasce com um `CacheLoader` e `get(chave)` carrega se faltar (wiki do Caffeine, Population).",
+              "nos": {
+                "cache": {
+                  "selo": "carrega na falta"
+                }
+              },
+              "ligacoes": [
+                {
+                  "de": "usuarios",
+                  "para": "app",
+                  "fluxo": 3
+                },
+                {
+                  "de": "app",
+                  "para": "cache",
+                  "rota": "y",
+                  "fluxo": 2.6,
+                  "sentido": "ambos"
+                },
+                {
+                  "de": "cache",
+                  "para": "db",
+                  "rota": "y",
+                  "fluxo": 0.4,
+                  "sentido": "ambos",
+                  "rotulo": "o cache busca"
+                }
+              ],
+              "mudou": [
+                "· mesma carga no banco",
+                "+ App não conhece o banco para ler"
+              ]
+            },
+            {
+              "rotulo": "Dado velho",
+              "tipo": "problema",
+              "titulo": "O preço mudou e o cache não viu",
+              "texto": "O gerente baixa o preço de um produto. A escrita vai **só ao banco**: isso é **write-around**. O cache continua com o preço antigo até a chave expirar.\n\nWrite-around é bom para dado muito escrito e pouco lido, como log. Para preço, que é lido logo depois de mudar, o cliente vê o valor errado.",
+              "ideia": "Em cache-aside, toda escrita precisa apagar ou atualizar a chave no cache. Sem isso, o valor velho vive até o TTL.",
+              "nos": {
+                "cache": {
+                  "selo": "preço antigo",
+                  "estilo": "alerta",
+                  "estado": "quente"
+                }
+              },
+              "ligacoes": [
+                {
+                  "de": "usuarios",
+                  "para": "app",
+                  "fluxo": 3
+                },
+                {
+                  "de": "app",
+                  "para": "cache",
+                  "rota": "y",
+                  "fluxo": 2.6,
+                  "sentido": "ambos"
+                },
+                {
+                  "de": "cache",
+                  "para": "db",
+                  "rota": "y",
+                  "fluxo": 0.4,
+                  "sentido": "ambos"
+                },
+                {
+                  "de": "app",
+                  "para": "db",
+                  "rota": "y",
+                  "fluxo": 0.8,
+                  "rotulo": "escrita só no banco",
+                  "estilo": "alerta",
+                  "posRotulo": 0.7,
+                  "cor": "roxo"
+                }
+              ],
+              "metricas": {
+                "velho": {
+                  "valor": "até o TTL",
+                  "tom": "ruim"
+                }
+              },
+              "mudou": [
+                "- leitura devolve o preço antigo",
+                "· escrita não passa pelo cache"
+              ]
+            },
+            {
+              "rotulo": "Write-through",
+              "tipo": "tecnica",
+              "titulo": "Escrever nos dois na mesma chamada",
+              "texto": "Com **write-through**, cada escrita grava no cache e no banco na mesma operação. Quem lê logo depois já vê o valor novo.\n\nO preço é a escrita ficar mais lenta: ela só termina quando os dois confirmam.",
+              "ideia": "Se o banco falhar depois do cache gravar, os dois divergem. Defina a ordem e o que fazer na falha.",
+              "nos": {
+                "cache": {
+                  "selo": "gravado",
+                  "estilo": "bom",
+                  "estado": "normal"
+                },
+                "db": {
+                  "selo": "gravado"
+                }
+              },
+              "ligacoes": [
+                {
+                  "de": "usuarios",
+                  "para": "app",
+                  "fluxo": 3
+                },
+                {
+                  "de": "app",
+                  "para": "cache",
+                  "rota": "y",
+                  "fluxo": 2.6,
+                  "sentido": "ambos"
+                },
+                {
+                  "de": "app",
+                  "para": "cache",
+                  "rota": "x",
+                  "fluxo": 0.8,
+                  "rotulo": "escrita",
+                  "cor": "roxo",
+                  "posRotulo": 0.4
+                },
+                {
+                  "de": "cache",
+                  "para": "db",
+                  "rota": "y",
+                  "fluxo": 0.8,
+                  "rotulo": "mesma chamada",
+                  "cor": "roxo",
+                  "posRotulo": 0.12
+                }
+              ],
+              "metricas": {
+                "velho": {
+                  "valor": "0",
+                  "tom": "bom"
+                },
+                "escrita": {
+                  "valor": "30 ms",
+                  "tom": "ruim"
+                }
+              },
+              "mudou": [
+                "+ leitura vê o valor novo na hora",
+                "- escrita: 12 ms → 30 ms"
+              ]
+            },
+            {
+              "rotulo": "Write-behind",
+              "tipo": "tecnica",
+              "titulo": "Gravar no banco depois, em lote",
+              "texto": "Com **write-behind**, a escrita vai ao cache e volta na hora. Uma fila leva as mudanças ao banco depois, em lotes.\n\nServe para carga de escrita pesada: contadores, carrinho, telemetria.",
+              "nos": {
+                "fila": {
+                  "oculto": false,
+                  "selo": "lote a cada 1 s"
+                },
+                "db": {
+                  "selo": null,
+                  "carga": 20
+                },
+                "cache": {
+                  "selo": "ok na hora",
+                  "estilo": "bom"
+                }
+              },
+              "ligacoes": [
+                {
+                  "de": "usuarios",
+                  "para": "app",
+                  "fluxo": 3
+                },
+                {
+                  "de": "app",
+                  "para": "cache",
+                  "rota": "y",
+                  "fluxo": 2.6,
+                  "sentido": "ambos"
+                },
+                {
+                  "de": "app",
+                  "para": "cache",
+                  "rota": "x",
+                  "fluxo": 1.5,
+                  "rotulo": "escrita",
+                  "cor": "roxo",
+                  "posRotulo": 0.25
+                },
+                {
+                  "de": "cache",
+                  "para": "fila",
+                  "rota": "y",
+                  "fluxo": 1.5,
+                  "cor": "roxo"
+                },
+                {
+                  "de": "fila",
+                  "para": "db",
+                  "rota": "y",
+                  "fluxo": 0.5,
+                  "rotulo": "em lote",
+                  "cor": "roxo"
+                }
+              ],
+              "metricas": {
+                "escrita": {
+                  "valor": "3 ms",
+                  "tom": "bom"
+                },
+                "banco": "200"
+              },
+              "mudou": [
+                "+ escrita: 30 ms → 3 ms",
+                "+ banco recebe lotes, não escrita por escrita"
+              ]
+            },
+            {
+              "rotulo": "Queda",
+              "tipo": "troca",
+              "titulo": "O que estava na fila se perde",
+              "texto": "O processo que esvazia a fila cai. As escritas que ainda não chegaram ao banco **somem**: o cliente viu \"ok\", mas o banco nunca soube.\n\nWrite-behind troca durabilidade por velocidade. Antes de usar, decida onde a fila vive e quanto dado dá para perder.",
+              "nos": {
+                "fila": {
+                  "estado": "caido",
+                  "selo": "37 perdidas",
+                  "estilo": "alerta"
+                }
+              },
+              "ligacoes": [
+                {
+                  "de": "usuarios",
+                  "para": "app",
+                  "fluxo": 3
+                },
+                {
+                  "de": "app",
+                  "para": "cache",
+                  "rota": "y",
+                  "fluxo": 2.6,
+                  "sentido": "ambos"
+                },
+                {
+                  "de": "app",
+                  "para": "cache",
+                  "rota": "x",
+                  "fluxo": 1.5,
+                  "rotulo": "escrita",
+                  "cor": "roxo",
+                  "posRotulo": 0.25
+                },
+                {
+                  "de": "cache",
+                  "para": "fila",
+                  "rota": "y",
+                  "fluxo": 1.5,
+                  "falha": 1,
+                  "falhaEm": 1,
+                  "cor": "roxo"
+                },
+                {
+                  "de": "fila",
+                  "para": "db",
+                  "rota": "y",
+                  "fluxo": 0,
+                  "tracejada": true
+                }
+              ],
+              "metricas": {
+                "perdido": {
+                  "valor": "37 escritas",
+                  "tom": "ruim"
+                }
+              },
+              "mudou": [
+                "- escritas confirmadas que nunca chegaram ao banco",
+                "· durabilidade foi o preço da velocidade"
+              ]
+            },
+            {
+              "rotulo": "Stampede",
+              "tipo": "problema",
+              "titulo": "A chave mais lida expira",
+              "texto": "De volta às leituras. A chave da vitrine expira no meio do pico. Em um instante, 100 requisições dão falta na **mesma chave** e as 100 vão ao banco ao mesmo tempo.\n\nIsso é **cache stampede**. O banco, que estava folgado, volta a 95%.",
+              "ideia": "O `@Cacheable` do Spring, por padrão, não trava nada: o mesmo valor pode ser calculado várias vezes ao mesmo tempo.",
+              "nos": {
+                "fila": {
+                  "oculto": true,
+                  "selo": null,
+                  "estado": "normal",
+                  "estilo": null
+                },
+                "cache": {
+                  "selo": "vitrine expirou",
+                  "estilo": "alerta",
+                  "estado": "fantasma"
+                },
+                "db": {
+                  "carga": 95,
+                  "estado": "quente",
+                  "selo": "100 iguais"
+                }
+              },
+              "ligacoes": [
+                {
+                  "de": "usuarios",
+                  "para": "app",
+                  "fluxo": 3
+                },
+                {
+                  "de": "app",
+                  "para": "cache",
+                  "rota": "y",
+                  "fluxo": 2.6,
+                  "sentido": "ambos",
+                  "falha": 0.6,
+                  "falhaEm": 0.95
+                },
+                {
+                  "de": "app",
+                  "para": "db",
+                  "rota": "y",
+                  "fluxo": 3,
+                  "pesados": 0.5,
+                  "rotulo": "100 faltas",
+                  "estilo": "alerta",
+                  "posRotulo": 0.7
+                }
+              ],
+              "metricas": {
+                "perdido": "0",
+                "p95": {
+                  "valor": "900 ms",
+                  "tom": "ruim"
+                },
+                "banco": {
+                  "valor": "3.000",
+                  "tom": "ruim"
+                },
+                "acerto": {
+                  "valor": "40%",
+                  "tom": "ruim"
+                }
+              },
+              "mudou": [
+                "- 100 consultas iguais no banco",
+                "- p95 de leitura: 60 ms → 900 ms"
+              ]
+            },
+            {
+              "rotulo": "Coalescing",
+              "tipo": "tecnica",
+              "titulo": "Uma vai ao banco, as outras esperam",
+              "texto": "Com **request coalescing**, a primeira falta busca no banco e as outras 99 esperam o resultado dela. O banco vê **uma** consulta.\n\nNo Spring isso é `@Cacheable(sync = true)`: uma thread calcula e as outras ficam bloqueadas até a entrada chegar ao cache.",
+              "ideia": "`sync = true` depende do provedor de cache suportar. Os gerenciadores do próprio Spring suportam.",
+              "nos": {
+                "app": {
+                  "selo": "100 → 1",
+                  "estilo": "bom"
+                },
+                "cache": {
+                  "selo": "vitrine de volta",
+                  "estilo": "bom",
+                  "estado": "normal"
+                },
+                "db": {
+                  "carga": 30,
+                  "estado": "normal",
+                  "selo": "1 consulta"
+                }
+              },
+              "ligacoes": [
+                {
+                  "de": "usuarios",
+                  "para": "app",
+                  "fluxo": 3
+                },
+                {
+                  "de": "app",
+                  "para": "cache",
+                  "rota": "y",
+                  "fluxo": 2.6,
+                  "sentido": "ambos"
+                },
+                {
+                  "de": "app",
+                  "para": "db",
+                  "rota": "y",
+                  "fluxo": 0.3,
+                  "sentido": "ambos",
+                  "rotulo": "1 consulta",
+                  "estilo": "bom",
+                  "posRotulo": 0.7
+                }
+              ],
+              "metricas": {
+                "p95": {
+                  "valor": "70 ms",
+                  "tom": "bom"
+                },
+                "banco": {
+                  "valor": "250",
+                  "tom": "bom"
+                },
+                "acerto": {
+                  "valor": "95%",
+                  "tom": "bom"
+                }
+              },
+              "mudou": [
+                "+ 100 faltas viram 1 consulta",
+                "+ banco: 95% → 30%"
+              ]
+            },
+            {
+              "rotulo": "Refresh",
+              "tipo": "tecnica",
+              "titulo": "Recarregar sem ninguém esperar",
+              "texto": "Com **refresh-ahead**, a chave quente é recarregada enquanto quem lê recebe o valor antigo. Ninguém espera a carga.\n\nCuidado com o `refreshAfterWrite` do Caffeine: ele só deixa a chave **elegível**. A recarga começa quando alguém a consulta; chave que ninguém pede expira normalmente.",
+              "ideia": "Fonte: wiki do Caffeine, página Refresh. Para recarga realmente proativa, agende você mesmo.",
+              "nos": {
+                "app": {
+                  "selo": null
+                },
+                "cache": {
+                  "selo": "recarga no acesso"
+                },
+                "db": {
+                  "selo": null,
+                  "carga": 25
+                }
+              },
+              "ligacoes": [
+                {
+                  "de": "usuarios",
+                  "para": "app",
+                  "fluxo": 3
+                },
+                {
+                  "de": "app",
+                  "para": "cache",
+                  "rota": "y",
+                  "fluxo": 2.6,
+                  "sentido": "ambos",
+                  "rotulo": "valor antigo"
+                },
+                {
+                  "de": "cache",
+                  "para": "db",
+                  "rota": "y",
+                  "fluxo": 0.3,
+                  "sentido": "ambos",
+                  "tracejada": true,
+                  "rotulo": "refresh"
+                }
+              ],
+              "metricas": {
+                "p95": {
+                  "valor": "45 ms",
+                  "tom": "bom"
+                }
+              },
+              "mudou": [
+                "+ leitor nunca espera a carga",
+                "· refreshAfterWrite dispara no acesso, não sozinho"
+              ]
+            },
+            {
+              "rotulo": "Resumo",
+              "tipo": "resumo",
+              "titulo": "Duas perguntas separam os padrões",
+              "texto": "**Quem busca na falta?** A aplicação (cache-aside) ou o cache (read-through).\n\n**Para onde vai a escrita?** Só ao banco (write-around), aos dois juntos (write-through) ou ao cache com o banco depois (write-behind). Coalescing e refresh protegem a chave quente.",
+              "quiz": {
+                "pergunta": "Sua API Spring usa @Cacheable sem mais nada, e a chave do catálogo expira no pico. O que acontece e o que você muda?",
+                "opcoes": [
+                  "Nada acontece: o @Cacheable já deixa só uma thread ir ao banco",
+                  "Várias threads calculam o mesmo valor ao mesmo tempo; use @Cacheable(sync = true)",
+                  "O cache devolve erro até a chave voltar; aumente o TTL"
+                ],
+                "certa": 1,
+                "porque": "Por padrão a abstração de cache do Spring não trava nada e o mesmo valor pode ser calculado várias vezes. Com sync = true, uma thread calcula e as outras esperam."
               }
             }
           ]
