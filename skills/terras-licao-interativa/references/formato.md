@@ -9,7 +9,7 @@ Exemplo completo e funcionando: `exemplos/system-design.json`.
 {
   "id": "slug-do-curso",          // chave do progresso salvo no navegador
   "titulo": "Nome do curso",
-  "idioma": "pt-BR",              // "pt-BR" ou "en": muda os textos da interface
+  "idioma": "pt-BR",              // "pt-BR", "en" ou "es": muda os textos da interface
   "estilo": "livre",              // livre | bpmn | rede | organograma | fluxograma | caso-de-uso; a lição pode ter o seu
   "modulos": [ { "titulo": "Escala", "cor": "laranja", "licoes": [ ... ] } ]
 }

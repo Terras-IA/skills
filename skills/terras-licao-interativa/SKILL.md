@@ -81,7 +81,7 @@ exemplos/   system-design.json               (sistemas: load balancer, 9 passos)
 - Nó que muda de posição desliza em arco até o lugar novo (troca, ordenação, rebalanceamento).
 - Painel de pseudocódigo com a linha do passo destacada e quadro de estado das variáveis.
 - Pacotes animados nas ligações: requisição, resposta, pesado e falha. Pausa e `prefers-reduced-motion` são respeitados.
-- Tema claro e escuro, layout de celular e interface em português ou inglês (`idioma`).
+- Tema claro e escuro, layout de celular e interface em português, inglês ou espanhol (`idioma`).
 - Ao fim de cada lição, botão para a próxima.
 
 Vídeo da página, se pedirem: grave a tela navegando, ou junte as fotos do `capturar.py` com `terras-ffmpeg`.

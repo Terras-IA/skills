@@ -40,7 +40,13 @@
       licoes: 'lessons', min: 'min', passos: 'steps', ideia: 'Key idea', mudou: 'What changed', filtro: 'Search lessons…',
       req: 'request', resp: 'response', falha: 'failed', pesado: 'heavy', certo: 'Right.', errado: 'Not that one.', de: 'of',
       codigo: 'Pseudocode', variaveis: 'State',
-      tipos: { contexto: 'setup', problema: 'problem', solucao: 'solution', tecnica: 'technique', troca: 'trade-off', resumo: 'recap' } }
+      tipos: { contexto: 'setup', problema: 'problem', solucao: 'solution', tecnica: 'technique', troca: 'trade-off', resumo: 'recap' } },
+    es: { curso: 'Curso', progresso: 'Progreso', replay: 'Reiniciar', pausa: 'Pausar', seguir: 'Seguir', nesta: 'En esta lección',
+      voltar: 'Volver', passo: 'paso', aprende: 'Vas a aprender', proximo: 'Siguiente', proxLicao: 'Siguiente lección', fim: 'Fin del curso',
+      licoes: 'lecciones', min: 'min', passos: 'pasos', ideia: 'Idea clave', mudou: 'Qué cambió', filtro: 'Buscar lección…',
+      req: 'solicitud', resp: 'respuesta', falha: 'falló', pesado: 'pesado', certo: 'Correcto.', errado: 'No es esa.', de: 'de',
+      codigo: 'Pseudocódigo', variaveis: 'Estado',
+      tipos: { contexto: 'contexto', problema: 'problema', solucao: 'solución', tecnica: 'técnica', troca: 'compromiso', resumo: 'resumen' } }
   };
   var T = TXT[(CURSO.idioma || 'pt').slice(0, 2)] || TXT.pt;
 
