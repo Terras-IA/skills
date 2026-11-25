@@ -1603,7 +1603,7 @@
     {
       "name": "terras-humanizer",
       "description": "Reescreve texto com cara de IA para soar humano, sem mudar o que ele diz nem inventar nada; remove marcas de IA em português e inglês e baixa o inglês para nível B1/B2. Use para humanizar ou revisar prosa com cara de IA. Humanize text, plain English.",
-      "version": "1.1.0",
+      "version": "1.2.0",
       "source": "./skills/terras-humanizer",
       "strict": false,
       "skills": [

@@ -110,7 +110,7 @@ Histórias infantis ilustradas em quadrinhos e o livro de colorir da mesma hist�
 
 Reescreve texto com cara de IA para soar humano, sem mudar o que ele diz nem inventar nada; remove marcas de IA em português e inglês e baixa o inglês para nível B1/B2. Use para humanizar ou revisar prosa com cara de IA. Humanize text, plain English.
 
-`/plugin install terras-humanizer@terras` · v1.1.0
+`/plugin install terras-humanizer@terras` · v1.2.0
 
 Palavras-chave: `humanizar`, `humanizer`, `texto de IA`, `AI writing`, `marcas de IA`, `revisão`, `edição`, `prosa`, `resposta`, `reply`, `português`, `inglês`, `inglês B1 B2`, `vocabulário simples`, `simplificar inglês`, `plain English`
 
