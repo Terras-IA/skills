@@ -388,6 +388,42 @@ Atua em **resposta**, não em texto solto: comentário, reply, mensagem num tick
 
 ---
 
+## G. Molde que só aparece no lote
+
+Padrões vistos em comentários curtos escritos em série (rodadas do mural da COD3RS, novembro de 2026). Cada texto, sozinho, passa; lidos em sequência, saem da mesma fôrma. São **(fracos sozinhos)**: o problema é a proporção. O `scripts/checar.py --lote` conta por você.
+
+### 27. Contraste no fim
+
+**Sinais:** a última frase fecha com "em vez de", "e não", "não porque", "e sim"; em inglês, "instead of", "rather than", "not because", ", not X". "Quebra um teste em vez de chegar no usuário." "So the CASE comes out because the pipeline asks for it, not because someone remembered."
+
+**Problema:** é o "não é X, é Y" (padrão 1) descido para a cauda da frase. A metade negativa ninguém afirmou; serve para dar estalo ao fecho. Num texto isolado pode ficar. Em um quarto do lote, vira assinatura.
+
+**Antes:**
+> Aí uma regra que mudou no Kotlin e não no Swift quebra um teste em vez de chegar no usuário.
+
+**Depois:**
+> Aí uma regra que mudou só no Kotlin quebra um teste antes de chegar no usuário.
+
+### 28. Dois-pontos de revelação
+
+**Sinais:** frase que monta suspense e solta a resposta depois de dois-pontos, em minúscula: "o detalhe que eu olharia: a janela", "the catch: the record compares by reference". Lista e horário não contam.
+
+**Problema:** um por texto é pontuação. Dois por texto, ou a maioria dos textos de um lote, é tique: o leitor passa a esperar o truque. Troque por frase direta ("Eu olharia a janela") ou por ponto.
+
+### 29. Fecho de moral
+
+**Sinais:** última oração começando com ", so...", ", so that...", ", para que...", ", assim...", que diz o benefício do que acabou de ser dito. "So there's nothing to catch." "Para o Postgres continuar indo direto na página."
+
+**Problema:** o benefício costuma estar implícito na frase anterior. Repetido no lote, cada comentário termina com a mesma pequena lição. Corte quando o leitor já chegou lá; mantenha quando é a informação nova. Não conta "so I'd..." no meio da frase: ali o "so" liga causa e ação, não moral.
+
+### 30. Elogio-ponte na abertura
+
+**Sinais:** "O que eu gostei é que...", "Ótimo post!", "The part I liked is...", "Great breakdown!", "Love this".
+
+**Problema:** elogio genérico que só serve de rampa para o ponto. Se o elogio diz algo específico, ele é o ponto: escreva o específico. Se não diz, corte e comece pelo que você acrescenta.
+
+---
+
 ## Quando não agir
 
 Cada padrão descreve uma escolha padrão, e uma pessoa pode fazer qualquer uma delas de propósito. Aja num vício **(fraco sozinho)** só quando vários aparecerem no mesmo trecho. Deixe a expressão suspeita em paz quando estiver dentro de citação, título, nome próprio, ou num trecho que discute a expressão em vez de usá-la. Saudação e despedida de carta e comentário existem antes de chatbot. Texto escrito antes de 30 de novembro de 2022 não é texto de IA. Quem julga por sensação acerta pouco mais que o acaso, e escrita humana vai absorvendo hábitos de IA: vários vícios juntos são a salvaguarda.

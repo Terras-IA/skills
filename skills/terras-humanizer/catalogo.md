@@ -1,6 +1,6 @@
 ---
 name: terras-humanizer
-version: 1.1.0
+version: 1.2.0
 access: free
 category: conteudo
 description: Reescreve texto com cara de IA para soar humano, sem mudar o que diz e sem inventar nada, com critério declarado, self-check antes de entregar e régua de nível B1/B2 para o vocabulário em inglês.
@@ -77,6 +77,7 @@ Em texto escrito em inglês para leitor geral, a palavra comum ganha da palavra 
 4. O texto ainda soa como uma pessoa, ou ficou na voz neutra de manual?
 5. Se havia amostra de voz, o resultado bate com ela?
 6. Se o texto é em inglês, sobrou palavra acima de B1/B2 que não seja o termo exato da coisa?
+7. Se a skill vier com `scripts/checar.py`, rodou o verificador (em lote, se escreveu vários textos) e saiu sem achado `duro` nem `forte`?
 
 ## Critério de qualidade
 

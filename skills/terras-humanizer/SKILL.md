@@ -1,6 +1,6 @@
 ---
 name: terras-humanizer
-version: 1.1.0
+version: 1.2.0
 description: "Reescreve texto com cara de IA para soar humano, sem mudar o que ele diz nem inventar nada; remove marcas de IA em português e inglês e baixa o inglês para nível B1/B2. Use para humanizar ou revisar prosa com cara de IA. Humanize text, plain English."
 keywords: [humanizar, humanizer, texto de IA, AI writing, marcas de IA, revisão, edição, prosa, resposta, reply, português, inglês, inglês B1 B2, vocabulário simples, simplificar inglês, plain English]
 ---
@@ -56,7 +56,7 @@ Estes cinco justificam edição com um único avistamento. Ação imediata, sem 
 4. **Aquecimento antes do ponto.** "Vamos mergulhar", "vale destacar", "antes de mais nada", "sem mais delongas", "olha só". O texto anuncia que vai dizer em vez de dizer. Corte a corrida de aproximação inteira, não só o tom.
 5. **Briga com ninguém.** "Não estou dizendo que", "para deixar claro", "não me entenda mal", "alguém poderia argumentar que". O texto responde a objeção que não existe no texto. Se a defesa carrega afirmação real, afirme-a direto.
 
-O catálogo completo, com os 26 padrões e exemplos em português, está em `references/padroes-pt.md`. O guia em inglês, com exemplos em inglês, está em `references/upstream-en.md`, reescrito em nível B1-B2; a régua abaixo governa o vocabulário da sua própria escrita.
+O catálogo completo, com os 30 padrões e exemplos em português, está em `references/padroes-pt.md`. O guia em inglês, com exemplos em inglês, está em `references/upstream-en.md`, reescrito em nível B1-B2; a régua abaixo governa o vocabulário da sua própria escrita.
 
 ## Regras duras para texto seu
 
@@ -77,6 +77,22 @@ Vale para texto escrito em inglês para leitor geral: a palavra comum ganha da p
 - Não mexa em citação, título, nome próprio nem na amostra de voz do autor.
 - Régua, tabelas de troca e exemplo em `references/ingles-b1b2.md`.
 
+## Verificador
+
+`scripts/checar.py` acha por regra, sem modelo, o que dá para achar por regra: travessão, resíduo de chat, os cinco padrões fortes, linguagem de venda, palavra acima de B1/B2 (lida das tabelas de `references/ingles-b1b2.md`), palavra de IA em português (seção C do catálogo) e os sinais fracos (dois-pontos de revelação, contraste no fim, fecho de moral, elogio-ponte, trio, aberturas repetidas). Ignora bloco de código, código inline, URL e caminho. Só lê.
+
+```bash
+python3 -I $SKILL_DIR/scripts/checar.py texto.md
+echo "texto" | python3 -I $SKILL_DIR/scripts/checar.py -
+python3 -I $SKILL_DIR/scripts/checar.py --lote comentarios.json --campo en --sem-hashtag
+python3 -I $SKILL_DIR/scripts/checar.py --testar
+```
+
+- **Níveis.** `duro` e `forte` fazem o script sair com código 1: corrija antes de entregar. `atencao` é sinal fraco sozinho; decida pelo contexto e pela seção "Quando não agir" do catálogo.
+- **Lote.** Com três textos ou mais, compara os textos entre si: mesma abertura em um quarto do lote, ou o mesmo tipo de fecho acima do limite. É aí que aparece o molde que cada texto sozinho esconde (padrões 27 a 30 do catálogo). Escreveu vários textos para a mesma tarefa (comentários, respostas, e-mails)? Rode em lote.
+- **O script não reescreve nem decide.** Ele não vê voz, sentido nem fato inventado. A releitura do self-check continua obrigatória.
+- **Casos de teste** em `tests/casos.json`: ao mexer num padrão, acrescente o caso que motivou a mudança (o que deve disparar e o que não deve) e rode `--testar`.
+
 ## Self-check antes de entregar
 
 1. Algum fato, nome, número, data ou citação apareceu que não estava no original?
@@ -85,6 +101,7 @@ Vale para texto escrito em inglês para leitor geral: a palavra comum ganha da p
 4. O texto ainda soa como uma pessoa, ou ficou na voz neutra de manual?
 5. Se havia amostra de voz, o resultado bate com ela?
 6. Se o texto é em inglês, sobrou palavra acima de B1/B2 que não seja o termo exato da coisa? Contou quantas.
+7. Rodou o `scripts/checar.py` (em lote, se escreveu vários textos)? Saiu sem `duro` nem `forte`, e cada `atencao` que ficou tem motivo?
 
 ## Créditos
 

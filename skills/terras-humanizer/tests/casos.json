@@ -1,0 +1,181 @@
+[
+ {
+  "nome": "pt: não é X, é Y",
+  "texto": "Não é sobre ferramenta, é sobre processo. O time precisa mudar a forma de revisar código antes do merge.",
+  "espera": [
+   "não é X, é Y"
+  ]
+ },
+ {
+  "nome": "pt: contraste partido",
+  "texto": "Isso não é falta de teste. É falta de dono para o fluxo inteiro, do pedido até a entrega.",
+  "espera": [
+   "não é X, é Y (partido)"
+  ]
+ },
+ {
+  "nome": "pt: não apenas mas",
+  "texto": "A fila não apenas desacopla os serviços, mas também absorve picos de tráfego no fim do mês.",
+  "espera": [
+   "não é X, é Y"
+  ]
+ },
+ {
+  "nome": "pt: travessão",
+  "texto": "O deploy saiu — e ninguém percebeu a migração pendente.",
+  "espera": [
+   "travessão"
+  ]
+ },
+ {
+  "nome": "pt: resíduo e aquecimento",
+  "texto": "Ótima pergunta! Vale destacar que o cache tem três camadas. Espero ter ajudado.",
+  "espera": [
+   "resíduo de chat",
+   "aquecimento"
+  ]
+ },
+ {
+  "nome": "pt: palavra de IA",
+  "texto": "Adicionalmente, o cenário atual exige uma abordagem robusta para o time.",
+  "espera": [
+   "palavra de IA"
+  ]
+ },
+ {
+  "nome": "pt: texto limpo",
+  "texto": "O deploy de ontem quebrou porque a migração rodou antes do código novo. Voltamos a versão e marcamos a migração para depois do próximo release.",
+  "nao_espera": [
+   "não é",
+   "travessão",
+   "resíduo",
+   "aquecimento",
+   "venda",
+   "contraste no fim",
+   "fecho de moral"
+  ]
+ },
+ {
+  "nome": "pt: \"não é\" comum não dispara",
+  "texto": "O índice não é usado nessa consulta porque a coluna está dentro de uma função. Tire a função e ele volta.",
+  "nao_espera": [
+   "não é X, é Y"
+  ]
+ },
+ {
+  "nome": "en: not just but",
+  "texto": "Queues are not just about decoupling but about surviving traffic spikes at the end of the month.",
+  "espera": [
+   "não é X, é Y"
+  ]
+ },
+ {
+  "nome": "en: it's not X, it's Y",
+  "texto": "It's not a tooling problem, it's a review problem. The team merges without reading the diff.",
+  "espera": [
+   "não é X, é Y"
+  ]
+ },
+ {
+  "nome": "en: contraste no fim",
+  "texto": "I would run the same scanner in CI as a second gate, so the check depends on the pipeline instead of on memory.",
+  "espera": [
+   "contraste no fim"
+  ]
+ },
+ {
+  "nome": "en: fecho de moral",
+  "texto": "I would keep the keys in user secrets during development, so there is nothing to catch.",
+  "espera": [
+   "fecho de moral"
+  ]
+ },
+ {
+  "nome": "en: elogio-ponte",
+  "texto": "Great post! The retry policy you describe matches what the Polly docs recommend for transient errors.",
+  "espera": [
+   "elogio-ponte"
+  ]
+ },
+ {
+  "nome": "en: B1/B2",
+  "texto": "We need to leverage the existing pipeline and utilize the cache in order to reduce cost.",
+  "espera": [
+   "acima de B1/B2: leverage",
+   "acima de B1/B2: utilize",
+   "acima de B1/B2: in order to"
+  ]
+ },
+ {
+  "nome": "en: termo técnico em código não conta",
+  "texto": "Call `Utilize()` from the handler and check the log at /var/log/app.log for the result.",
+  "nao_espera": [
+   "acima de B1/B2"
+  ]
+ },
+ {
+  "nome": "en: hashtag com --sem-hashtag",
+  "texto": "Good point about idempotency keys in payment APIs. #dotnet",
+  "sem_hashtag": true,
+  "espera": [
+   "hashtag"
+  ]
+ },
+ {
+  "nome": "en: C# não é hashtag",
+  "texto": "In C# the same idea works with a record and a unique index on the key.",
+  "sem_hashtag": true,
+  "nao_espera": [
+   "hashtag"
+  ]
+ },
+ {
+  "nome": "en: dois-pontos de revelação",
+  "texto": "The fix was small: one index. The lesson was bigger: read the plan first.",
+  "espera": [
+   "dois-pontos de revelação"
+  ]
+ },
+ {
+  "nome": "en: fecho de uma linha",
+  "texto": "We moved the payment call outside the transaction, so the row lock is held for a few milliseconds instead of the full network round trip to the provider, which removed the queue of blocked queries we saw every Friday.\n\nThat changed everything.",
+  "espera": [
+   "fecho de uma linha"
+  ]
+ },
+ {
+  "nome": "en: texto limpo",
+  "texto": "Your benchmark matches what I would expect from cache misses. One thing to check is whether the list version allocates per node in the loop.",
+  "nao_espera": [
+   "não é",
+   "travessão",
+   "resíduo",
+   "aquecimento",
+   "venda",
+   "contraste no fim",
+   "fecho de moral",
+   "elogio"
+  ]
+ },
+ {
+  "nome": "pt: \"não é minha área, mas\" não dispara",
+  "texto": "Não é minha área, mas eu olharia primeiro o plano da consulta antes de criar outro índice.",
+  "nao_espera": [
+   "não é X, é Y"
+  ]
+ },
+ {
+  "nome": "pt: não é X, mas sobre Y",
+  "texto": "Não é sobre ferramenta, mas sobre o processo de revisão que o time segue.",
+  "espera": [
+   "não é X, é Y"
+  ]
+ },
+ {
+  "nome": "en: 'so I'd' no meio não é moral",
+  "texto": "The default status is 503, so I'd set it to 429 in the options.",
+  "nao_espera": [
+   "fecho de moral"
+  ]
+ }
+]

@@ -73,7 +73,10 @@ comentário que prova leitura, e publica nos dois lugares só depois da aprovaç
 4. **Escrever os comentários.** Ver `references/estilo-comentarios.md`. Um par por post: EN para o
    LinkedIn, PT para o mural, mesma ideia. Passe o EN pela `terras-humanizer` (modo embutido:
    padrões de IA e régua B1/B2 de `terras-humanizer/references/ingles-b1b2.md`) antes de
-   montar a tabela; termo técnico exato fica. Salve num JSON (`id, autor, link, en, pt`). Se um
+   montar a tabela; termo técnico exato fica. Salve num JSON (`id, autor, link, en, pt`) e rode
+   `python3 -I <terras-humanizer>/scripts/checar.py --lote <json> --campo en --sem-hashtag` (e de
+   novo com `--campo pt`): `duro` ou `forte` se corrige antes da tabela; aviso de lote (mesmo fecho
+   em boa parte dos comentários) pede variar o molde. Se um
    comentário afirmar algo sobre a experiência pessoal do usuário, sinalize na tabela.
    **Não repita a conversa**: se alguém já fez a mesma pergunta ou o mesmo ponto, troque o ângulo;
    se o autor já respondeu, construa em cima da resposta em vez de perguntar de novo. Na tabela,
