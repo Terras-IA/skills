@@ -220,6 +220,19 @@ def checar(texto, lingua=None, sem_hashtag=False, b1=(), ia_pt=()):
             out.append(achado('aberturas repetidas', 'atencao', ' / '.join(f[:30] for f in todas[i:i + 3]), linha_de(t, t.find(todas[i]))))
             break
 
+    # Frases curtas em série: três ou mais frases seguidas de até 8 palavras (fora lista e hashtag).
+    corridas = [f for p in pars for f in frases(p)]
+    seq = []
+    for f in corridas + ['']:
+        prosa_f = f.strip() and not re.match(r'\s*([-*•#]|\d+\.)', f)
+        if prosa_f and len(f.split()) <= 8:
+            seq.append(f)
+            continue
+        if len(seq) >= 3:
+            out.append(achado('frases curtas em série', 'atencao', ' / '.join(s[:30] for s in seq[:4]), linha_de(t, t.find(seq[0]))))
+            break
+        seq = []
+
     baixo = t.lower()
     if lingua == 'en':
         for termo in b1:

@@ -422,6 +422,26 @@ Padrões vistos em comentários curtos escritos em série (rodadas do mural da C
 
 **Problema:** elogio genérico que só serve de rampa para o ponto. Se o elogio diz algo específico, ele é o ponto: escreva o específico. Se não diz, corte e comece pelo que você acrescenta.
 
+## H. Ritmo
+
+### 31. Frases curtas em série
+
+**Sinais:** três ou mais frases seguidas de até oito palavras cada. Aparece no gancho e no fecho: "A linha estava travada. As duas transações deram commit. E o saldo ficou errado." "O lock funcionou. Quem errou foi o ORM." Em inglês: "The row was locked. Both transactions committed. The balance was still wrong."
+
+**Problema:** cada frase sozinha é limpa, mas a sequência vira batida de metrônomo, o ritmo de template de LinkedIn. O leitor percebe a fôrma antes do conteúdo. Pessoa escrevendo liga as ideias com vírgula, "porque", "e" ou ponto e vírgula, e deixa a frase curta para o lugar onde ela pesa. Foi a correção pedida pelo autor no post do EF Core em novembro de 2026 ("tem muita frase curta, quase robótica").
+
+**Antes:**
+> A linha estava travada. As duas transações deram commit. E o saldo ficou errado.
+>
+> O Renan mostrou isso num experimento. O lock funcionou. Quem errou foi o ORM.
+
+**Depois:**
+> Duas transações travam a mesma linha, fazem commit sem erro e, no fim, o saldo da conta não bate com o ledger.
+>
+> Foi o que o Renan mostrou num experimento. O lock do banco funcionou; quem atrapalhou foi o ORM, que devolveu o objeto que já tinha em memória, com o valor antigo.
+
+Em lista, cada item numa frase só, com o motivo junto ("ExecuteUpdate com balance = balance + amount, para a conta acontecer dentro do próprio UPDATE"), em vez de item curto seguido de uma frase de explicação. Uma frase curta isolada, entre frases longas, continua valendo: o problema é a série.
+
 ---
 
 ## Quando não agir

@@ -1,6 +1,6 @@
 ---
 name: terras-humanizer
-version: 1.2.0
+version: 1.3.0
 description: "Reescreve texto com cara de IA para soar humano, sem mudar o que ele diz nem inventar nada; remove marcas de IA em português e inglês e baixa o inglês para nível B1/B2. Use para humanizar ou revisar prosa com cara de IA. Humanize text, plain English."
 keywords: [humanizar, humanizer, texto de IA, AI writing, marcas de IA, revisão, edição, prosa, resposta, reply, português, inglês, inglês B1 B2, vocabulário simples, simplificar inglês, plain English]
 ---
@@ -33,8 +33,8 @@ Use para texto em geral: e-mail, carta, artigo, documentação, README, proposta
 
 1. **Marque os sinais.** Leia o texto inteiro uma vez e aponte cada padrão que encontrar, do mais forte para o mais fraco. Olhe o formato do parágrafo, não só a frase: contraste espalhado em duas frases, três exemplos paralelos e o mesmo fecho depois de cada seção são o mesmo vício em escala maior.
 2. **Rascunhe a reescrita.** Mantenha toda afirmação sustentada pelo original. Pode encurtar trecho monótono, juntar ou separar parágrafos e mudar a estrutura, mas preserve a informação.
-3. **Confira o rascunho.** Leia em voz alta. Pergunte o que ainda soa artificial. Verifique se a reescrita acrescentou ou perdeu fato, nome, número, data, citação ou relação de causa. Acrescentar sem base é erro; perder afirmação também é erro, salvo quando o padrão manda cortar. Depois procure os cinco vícios que mais sobrevivem a uma reescrita: contraste "não é X, é Y", fecho de uma linha, travessão, trio e rótulo em negrito.
-4. **Escreva a versão final.** Diga cada ponto de forma natural em vez de remendar frase por frase. Se uma frase continua travada, reescreva o parágrafo em volta do ponto principal. Varie o tamanho das frases: texto humano alterna curta e longa.
+3. **Confira o rascunho.** Leia em voz alta. Pergunte o que ainda soa artificial. Verifique se a reescrita acrescentou ou perdeu fato, nome, número, data, citação ou relação de causa. Acrescentar sem base é erro; perder afirmação também é erro, salvo quando o padrão manda cortar. Depois procure os cinco vícios que mais sobrevivem a uma reescrita: contraste "não é X, é Y", fecho de uma linha, travessão, trio, rótulo em negrito e rajada de frases curtas.
+4. **Escreva a versão final.** Diga cada ponto de forma natural em vez de remendar frase por frase. Se uma frase continua travada, reescreva o parágrafo em volta do ponto principal. Varie o tamanho das frases: texto humano alterna curta e longa. Três frases curtas seguidas ("A linha travou. O commit passou. O saldo errou.") são batida de template: ligue as ideias com vírgula, "porque" ou ponto e vírgula, e deixe a frase curta para onde ela pesa (padrão 31).
 
 ## Voz
 
@@ -56,7 +56,7 @@ Estes cinco justificam edição com um único avistamento. Ação imediata, sem 
 4. **Aquecimento antes do ponto.** "Vamos mergulhar", "vale destacar", "antes de mais nada", "sem mais delongas", "olha só". O texto anuncia que vai dizer em vez de dizer. Corte a corrida de aproximação inteira, não só o tom.
 5. **Briga com ninguém.** "Não estou dizendo que", "para deixar claro", "não me entenda mal", "alguém poderia argumentar que". O texto responde a objeção que não existe no texto. Se a defesa carrega afirmação real, afirme-a direto.
 
-O catálogo completo, com os 30 padrões e exemplos em português, está em `references/padroes-pt.md`. O guia em inglês, com exemplos em inglês, está em `references/upstream-en.md`, reescrito em nível B1-B2; a régua abaixo governa o vocabulário da sua própria escrita.
+O catálogo completo, com os 31 padrões e exemplos em português, está em `references/padroes-pt.md`. O guia em inglês, com exemplos em inglês, está em `references/upstream-en.md`, reescrito em nível B1-B2; a régua abaixo governa o vocabulário da sua própria escrita.
 
 ## Regras duras para texto seu
 
@@ -79,7 +79,7 @@ Vale para texto escrito em inglês para leitor geral: a palavra comum ganha da p
 
 ## Verificador
 
-`scripts/checar.py` acha por regra, sem modelo, o que dá para achar por regra: travessão, resíduo de chat, os cinco padrões fortes, linguagem de venda, palavra acima de B1/B2 (lida das tabelas de `references/ingles-b1b2.md`), palavra de IA em português (seção C do catálogo) e os sinais fracos (dois-pontos de revelação, contraste no fim, fecho de moral, elogio-ponte, trio, aberturas repetidas). Ignora bloco de código, código inline, URL e caminho. Só lê.
+`scripts/checar.py` acha por regra, sem modelo, o que dá para achar por regra: travessão, resíduo de chat, os cinco padrões fortes, linguagem de venda, palavra acima de B1/B2 (lida das tabelas de `references/ingles-b1b2.md`), palavra de IA em português (seção C do catálogo) e os sinais fracos (dois-pontos de revelação, contraste no fim, fecho de moral, elogio-ponte, trio, aberturas repetidas, frases curtas em série). Ignora bloco de código, código inline, URL e caminho. Só lê.
 
 ```bash
 python3 -I $SKILL_DIR/scripts/checar.py texto.md

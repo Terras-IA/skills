@@ -1,6 +1,6 @@
 ---
 name: terras-humanizer
-version: 1.2.0
+version: 1.3.0
 access: free
 category: conteudo
 description: Reescreve texto com cara de IA para soar humano, sem mudar o que diz e sem inventar nada, com critério declarado, self-check antes de entregar e régua de nível B1/B2 para o vocabulário em inglês.
@@ -29,8 +29,8 @@ Reescrever texto que soa gerado por IA para soar escrito por uma pessoa, mantend
 
 1. **Marque os sinais.** Leia o texto inteiro uma vez e aponte cada padrão, do mais forte para o mais fraco. Olhe o formato do parágrafo, não só a frase: contraste espalhado em duas frases, três exemplos paralelos e o mesmo fecho depois de cada seção são o mesmo vício em escala maior.
 2. **Rascunhe a reescrita.** Mantenha toda afirmação sustentada pelo original. Pode encurtar trecho monótono, juntar ou separar parágrafos e mudar a estrutura, mas preserve a informação.
-3. **Confira o rascunho.** Leia em voz alta. Pergunte o que ainda soa artificial. Verifique se a reescrita acrescentou ou perdeu fato, nome, número, data, citação ou relação de causa. Acrescentar sem base é erro; perder afirmação também é erro, salvo quando o padrão manda cortar. Depois procure os cinco vícios que mais sobrevivem: contraste "não é X, é Y", fecho de uma linha, travessão, trio e rótulo em negrito.
-4. **Escreva a versão final.** Diga cada ponto de forma natural em vez de remendar frase por frase. Se uma frase continua travada, reescreva o parágrafo em volta do ponto principal. Varie o tamanho das frases: texto humano alterna curta e longa.
+3. **Confira o rascunho.** Leia em voz alta. Pergunte o que ainda soa artificial. Verifique se a reescrita acrescentou ou perdeu fato, nome, número, data, citação ou relação de causa. Acrescentar sem base é erro; perder afirmação também é erro, salvo quando o padrão manda cortar. Depois procure os cinco vícios que mais sobrevivem: contraste "não é X, é Y", fecho de uma linha, travessão, trio, rótulo em negrito e rajada de frases curtas.
+4. **Escreva a versão final.** Diga cada ponto de forma natural em vez de remendar frase por frase. Se uma frase continua travada, reescreva o parágrafo em volta do ponto principal. Varie o tamanho das frases: texto humano alterna curta e longa. Três frases curtas seguidas ("A linha travou. O commit passou. O saldo errou.") são batida de template: ligue as ideias com vírgula, "porque" ou ponto e vírgula, e deixe a frase curta para onde ela pesa (padrão 31).
 
 ## Voz
 

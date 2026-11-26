@@ -177,5 +177,33 @@
   "nao_espera": [
    "fecho de moral"
   ]
+ },
+ {
+  "nome": "pt: frases curtas em série",
+  "texto": "A linha estava travada. As duas transações deram commit. E o saldo ficou errado. O Renan mostrou isso num experimento com SQLAlchemy e PostgreSQL, com saldo 600 e ledger 700.",
+  "espera": [
+   "frases curtas em série"
+  ]
+ },
+ {
+  "nome": "en: frases curtas em série",
+  "texto": "The row was locked. Both transactions committed. The balance was still wrong. Renan showed this in an experiment with SQLAlchemy and PostgreSQL, with a balance of 600 and a ledger of 700.",
+  "espera": [
+   "frases curtas em série"
+  ]
+ },
+ {
+  "nome": "pt: frase curta isolada entre longas não conta",
+  "texto": "Duas transações travam a mesma linha, fazem commit sem erro e, no fim, o saldo da conta não bate com o ledger. O lock funcionou. Quem atrapalhou foi o ORM, que devolveu o objeto que já tinha em memória, com o valor antigo, e a aplicação calculou o novo saldo em cima disso.",
+  "nao_espera": [
+   "frases curtas em série"
+  ]
+ },
+ {
+  "nome": "pt: itens curtos de lista não contam",
+  "texto": "Eu olharia três coisas antes do deploy, na ordem em que costumam quebrar:\n\n- Migração.\n- Variável de ambiente.\n- Imagem base.\n\nCom isso o rollback fica mais simples, porque cada uma tem um dono e um teste próprio.",
+  "nao_espera": [
+   "frases curtas em série"
+  ]
  }
 ]

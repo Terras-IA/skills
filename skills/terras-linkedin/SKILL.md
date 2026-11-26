@@ -27,7 +27,7 @@ Quando o usuário pedir para escrever um post para LinkedIn:
    - Qual o tom (casual, técnico, executivo, storytelling)?
 2. **Sugira estrutura** de acordo com o objetivo:
    - **Hook** (primeira linha): impactante, curiosa ou polêmica. Decide se alguém para para ler.
-   - **Corpo**: 3-5 parágrafos curtos. Uma ideia por linha. Emojis com moderação.
+   - **Corpo**: 3-5 parágrafos curtos. Parágrafos curtos, frases que variam de tamanho e se ligam umas às outras. Emojis com moderação.
    - **CTA**: pergunta para engajamento, convite para comentar ou call-to-action claro.
 3. **Formato de saída** — entregue o post em texto puro, pronto para copiar e colar:
    - Texto do post
@@ -89,7 +89,7 @@ Self-check do perfil pessoal: trocando o nome do produto por "um projeto meu", o
   simplesmente reescrever a frase.
 - Variar tamanho e início das frases. Nunca repetir o mesmo molde em parágrafos seguidos.
 - Preferir palavras do dia a dia, voz ativa e precisão em vez de adornos. Se uma
-  frase curta resolve, usar a frase curta.
+  frase curta resolve, usar a frase curta, mas nunca três seguidas: gancho e fecho em rajada ("A linha travou. O commit passou. O saldo errou.") soam robóticos para o autor (pedido dele em 26/11/2026). Ligar as ideias com vírgula, "porque", "e" ou ponto e vírgula, e escrever cada item de lista numa frase só, com o motivo junto. Exemplo aprovado: `~/linkedin/posts/post-efcore-saldo-errado-pt.md`.
 - **Todo texto em inglês passa pela `terras-humanizer`** (modo embutido) antes de
   entregar: os padrões de IA e a régua B1/B2 de
   `terras-humanizer/references/ingles-b1b2.md`. Vale para `-en-long`, `-en-short`,
