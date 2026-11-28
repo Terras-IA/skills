@@ -1603,7 +1603,7 @@
     {
       "name": "terras-humanizer",
       "description": "Reescreve texto com cara de IA para soar humano, sem mudar o que ele diz nem inventar nada; remove marcas de IA em português e inglês e baixa o inglês para nível B1/B2. Use para humanizar ou revisar prosa com cara de IA. Humanize text, plain English.",
-      "version": "1.2.0",
+      "version": "1.3.0",
       "source": "./skills/terras-humanizer",
       "strict": false,
       "skills": [
@@ -2573,6 +2573,34 @@
         "producao",
         "revisao",
         "agentic"
+      ]
+    },
+    {
+      "name": "terras-pitch-por-vaga",
+      "description": "Gera, a partir do CV (PDF, texto ou LinkedIn), o JSON de CV-base que o site Pitch por Vaga importa: perfis de vaga, projetos e 20 falas em inglês para entrevista, validado. Use para 'meu CV para o Pitch por Vaga'. Carta: terras-cover-letter; ATS: terras-checagem-ats.",
+      "version": "1.0.0",
+      "source": "./skills/terras-pitch-por-vaga",
+      "strict": false,
+      "skills": [
+        "./"
+      ],
+      "category": "productivity",
+      "license": "MIT",
+      "author": {
+        "name": "Everton Lima"
+      },
+      "keywords": [
+        "pitch por vaga",
+        "pitch.coderstudio.club",
+        "cv json",
+        "curriculo",
+        "apresentacao de entrevista",
+        "self introduction",
+        "tell me about yourself",
+        "entrevista em ingles",
+        "interview pitch",
+        "perfis de vaga",
+        "importar cv"
       ]
     },
     {

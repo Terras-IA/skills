@@ -2,7 +2,7 @@
 
 > **Arquivo gerado.** Rode `node scripts/manual.mjs` para regravar; não edite à mão.
 
-**158 skills** neste repositório: **147 instaláveis** pelo marketplace, **8 de processo do motor** e **3 ligadas a projeto de cliente**.
+**159 skills** neste repositório: **148 instaláveis** pelo marketplace, **8 de processo do motor** e **3 ligadas a projeto de cliente**.
 
 ## Instalar e usar
 
@@ -38,7 +38,7 @@ O script cria um link por skill em cada pasta de agente que já existir na máqu
 ## Índice
 
 - [Conteúdo, marca e publicação](#conteúdo-marca-e-publicação) — 19 skills
-- [Pessoas, RH e carreira](#pessoas-rh-e-carreira) — 27 skills
+- [Pessoas, RH e carreira](#pessoas-rh-e-carreira) — 28 skills
 - [Financeiro e fiscal](#financeiro-e-fiscal) — 6 skills
 - [Comercial e vendas](#comercial-e-vendas) — 3 skills
 - [Gestão, processos e decisão](#gestão-processos-e-decisão) — 9 skills
@@ -110,7 +110,7 @@ Histórias infantis ilustradas em quadrinhos e o livro de colorir da mesma hist�
 
 Reescreve texto com cara de IA para soar humano, sem mudar o que ele diz nem inventar nada; remove marcas de IA em português e inglês e baixa o inglês para nível B1/B2. Use para humanizar ou revisar prosa com cara de IA. Humanize text, plain English.
 
-`/plugin install terras-humanizer@terras` · v1.2.0
+`/plugin install terras-humanizer@terras` · v1.3.0
 
 Palavras-chave: `humanizar`, `humanizer`, `texto de IA`, `AI writing`, `marcas de IA`, `revisão`, `edição`, `prosa`, `resposta`, `reply`, `português`, `inglês`, `inglês B1 B2`, `vocabulário simples`, `simplificar inglês`, `plain English`
 
@@ -373,6 +373,14 @@ Monta um dashboard mensal de liderança com headcount, retenção, remuneração
 `/plugin install terras-people-dashboard-automatico@terras` · v1.0.0
 
 Palavras-chave: `people dashboard`, `dashboard de rh`, `headcount`, `turnover`, `retenção de pessoas`, `people analytics`, `indicadores de rh`
+
+### terras-pitch-por-vaga
+
+Gera, a partir do CV (PDF, texto ou LinkedIn), o JSON de CV-base que o site Pitch por Vaga importa: perfis de vaga, projetos e 20 falas em inglês para entrevista, validado. Use para 'meu CV para o Pitch por Vaga'. Carta: terras-cover-letter; ATS: terras-checagem-ats.
+
+`/plugin install terras-pitch-por-vaga@terras`
+
+Palavras-chave: `pitch por vaga`, `pitch.coderstudio.club`, `cv json`, `curriculo`, `apresentacao de entrevista`, `self introduction`, `tell me about yourself`, `entrevista em ingles`, `interview pitch`, `perfis de vaga`, `importar cv`
 
 ### terras-robo-de-atendimento-de-rh
 

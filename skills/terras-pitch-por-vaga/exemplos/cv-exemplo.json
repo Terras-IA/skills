@@ -1,0 +1,118 @@
+{
+  "tipo": "pitch-cv",
+  "versao": 2,
+  "cv": {
+    "nome": "Alex Example",
+    "titulo": "Back-end Developer | Node.js and Cloud",
+    "contato": "Curitiba, Brazil · linkedin.com/in/alex-example · github.com/alex-example",
+    "tagline": "I build back ends that stay fast when traffic grows.",
+    "perfis": [
+      {
+        "id": "backend-node",
+        "nome": "Back-end Node.js",
+        "foco": "My main stack is Node.js with NestJS and PostgreSQL. At Example Store I build the APIs behind checkout and coupons, with RabbitMQ for background jobs.",
+        "skills": [
+          "Node.js",
+          "NestJS",
+          "TypeScript",
+          "PostgreSQL",
+          "RabbitMQ",
+          "REST APIs",
+          "Microservices",
+          "Docker"
+        ],
+        "projetos": [
+          "cupons",
+          "migracao"
+        ]
+      },
+      {
+        "id": "backend-php",
+        "nome": "Back-end PHP / Laravel",
+        "foco": "I spent three years building Laravel applications with MySQL, and I later led the move from that PHP monolith to services.",
+        "skills": [
+          "PHP",
+          "Laravel",
+          "MySQL",
+          "REST APIs",
+          "Docker",
+          "Git"
+        ],
+        "projetos": [
+          "migracao",
+          "cupons"
+        ]
+      }
+    ],
+    "extras": [
+      "AWS",
+      "Git",
+      "Agile"
+    ],
+    "exp": [
+      {
+        "periodo": "2022 – now",
+        "cargo": "Back-end Developer",
+        "detalhe": "Example Store · checkout and coupon APIs in Node.js"
+      },
+      {
+        "periodo": "2019 – 2022",
+        "cargo": "PHP Developer",
+        "detalhe": "Sample Agency · Laravel applications"
+      }
+    ],
+    "projetos": [
+      {
+        "id": "cupons",
+        "nome": "Coupon system",
+        "curto": "Coupon service used by 2 million customers",
+        "stack": "Node.js · NestJS · PostgreSQL · RabbitMQ",
+        "fala": "I built the coupon service for our store. It serves about two million customers, and I designed it so coupon checks happen in [time] even on peak days."
+      },
+      {
+        "id": "migracao",
+        "nome": "Monolith to services",
+        "curto": "Moved a PHP monolith to independent services",
+        "stack": "PHP · Laravel · Node.js · Docker",
+        "fala": "I helped move a PHP monolith to independent services, one module at a time, so we could deploy without stopping the store. The result was [result with a number]."
+      }
+    ],
+    "bullets": {
+      "pitch": [
+        "Build reliable APIs",
+        "Design for peak traffic",
+        "Move legacy systems safely"
+      ],
+      "edu": [
+        "BSc in Information Systems, UFPR",
+        "AWS Certified Cloud Practitioner"
+      ],
+      "soft": [
+        "Portuguese native · English intermediate",
+        "[Mentoring or community]"
+      ]
+    },
+    "textos": {
+      "intro": "Hi, I'm {{nome}}. I'm a back-end developer from Curitiba, Brazil. Thank you for having me. I'm really glad to talk about the {{vaga}} role at {{empresa}}.",
+      "pitch": "In short: I build APIs that keep working when traffic grows. {{foco}}",
+      "skills": "Looking at this role, the skills I'd bring from day one are {{skills}}.",
+      "exp": "Today I'm a back-end developer at Example Store, where I build the checkout and coupon APIs. Before that, I spent three years at Sample Agency building Laravel applications.",
+      "proj": "Let me give you a couple of concrete examples. {{projetos}}",
+      "why": "Why {{empresa}}? {{motivo}}",
+      "edu": "I have a degree in Information Systems from UFPR, and I'm AWS Certified Cloud Practitioner.",
+      "soft": "Portuguese is my native language and I'm improving my English every day. Outside of work, I [mentoring, community, volunteering].",
+      "close": "So, in one sentence: {{tagline}} I'd love to hear more about the team and the main challenges for this role.",
+      "q-about": "I'm a back-end developer with about [X] years of experience. {{foco}} Now I'm looking for a {{vaga}} role where I can work on systems at scale, and {{empresa}} looks like a great fit.",
+      "q-why-leave": "I've learned a lot at Example Store, and now I'm looking for [a bigger challenge / an international team].",
+      "q-strength": "I'd say it's designing for peak traffic. For example, the coupon service I built serves about two million customers.",
+      "q-weak": "I used to [weakness]. What I do now is [how you handle it], and it's working well.",
+      "q-challenge": "Situation: we had to move a PHP monolith to services without stopping the store. Task: I was responsible for [part]. Action: I moved one module at a time, behind [technique]. Result: [result with a number].",
+      "q-conflict": "Situation: [what we disagreed on]. I listened first to understand their goal, then I showed the options with the trade-offs. We agreed on [decision], and the result was [outcome].",
+      "q-hire": "Because I've done what this role needs: {{skills}}. I've done it in production, at scale, and I'd need little ramp-up to start delivering.",
+      "q-english": "I work with English every day: documentation, code and tickets. In meetings, if I don't understand something, I ask, because I'd rather confirm than assume.",
+      "q-salary": "Based on the scope of the role and the market, I'm looking at {{salario}}. I'm open to discussing it as part of the full package.",
+      "q-start": "I could start in {{inicio}}.",
+      "q-ask": "Yes, a few. What does success look like in the first ninety days? What's the biggest challenge the team is facing right now? And how do you handle code review and deployments?"
+    }
+  }
+}

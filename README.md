@@ -99,10 +99,10 @@ Revisão pelo risco que a mudança cria, segurança e scan com o OWASP ZAP, risc
 <!-- catalogo:inicio -->
 <!-- gerado por `npm run readme` a partir do catálogo — não edite à mão -->
 
-**147 skills instaláveis** entre as 158 deste repositório; as demais ficam fora do marketplace — 8 skills de processo do motor (`.nao-instalar`) e 3 skills ligadas a projeto de cliente (`marketplace-fora.json`).
+**148 skills instaláveis** entre as 159 deste repositório; as demais ficam fora do marketplace — 8 skills de processo do motor (`.nao-instalar`) e 3 skills ligadas a projeto de cliente (`marketplace-fora.json`).
 
 <details>
-<summary><b>Ver a lista completa (147 skills)</b></summary>
+<summary><b>Ver a lista completa (148 skills)</b></summary>
 
 | Skill | O que faz |
 |---|---|
@@ -205,6 +205,7 @@ Revisão pelo risco que a mudança cria, segurança e scan com o OWASP ZAP, risc
 | [`terras-people-dashboard-automatico`](skills/terras-people-dashboard-automatico) | Monta um dashboard mensal de liderança com headcount, retenção, remuneração, contratação e DEI. |
 | [`terras-php`](skills/terras-php) | Write solid PHP avoiding type juggling traps, array quirks, and common security pitfalls. |
 | [`terras-pipeline-de-automacao`](skills/terras-pipeline-de-automacao) | Projeta pipelines de automação em que scripts determinísticos fazem o trabalho e o agente só decide em pontos de revisão, com rastro de hashes e recibos de execução. |
+| [`terras-pitch-por-vaga`](skills/terras-pitch-por-vaga) | Gera, a partir do CV (PDF, texto ou LinkedIn), o JSON de CV-base que o site Pitch por Vaga importa: perfis de vaga, projetos e 20 falas em inglês para entrevista… |
 | [`terras-plano-tdd`](skills/terras-plano-tdd) | Transforma uma spec revisada em plano test-first (RED, GREEN, REFACTOR) com arquivo e nome de teste concretos, e uma lista de tarefas em que cada uma diz por comando… |
 | [`terras-playbook-quebra-objecoes`](skills/terras-playbook-quebra-objecoes) | Classifica a objeção real por trás do que o cliente disse e devolve caminhos de resposta apoiados no que a empresa consegue sustentar, sem prometer preço, prazo… |
 | [`terras-ponytail`](skills/terras-ponytail) | Lazy senior dev mode for any coding task (write, refactor, fix, review): YAGNI, stdlib first, no unrequested abstractions. Not for non-coding requests. |
